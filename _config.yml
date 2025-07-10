@@ -1,5 +1,5 @@
-title: trustgraph.ai
-description: Information on the trustgraph.ai system
+title: TrustGraph
+description: Information on the TrustGraph platform
 theme: just-the-docs
 
 url: https://just-the-docs.github.io
@@ -44,11 +44,11 @@ mermaid:
   version: "9.1.3"
 
 aux_links:
-  "Just the Docs on GitHub":
-    - "//github.com/just-the-docs/just-the-docs"
+  "TrustGraph on GitHub":
+    - "//github.com/trustgraph-ai/trustgraph"
 
 # Makes Aux links open in a new tab. Default is false
-aux_links_new_tab: false
+aux_links_new_tab: true
 
 nav_enabled: true
 
