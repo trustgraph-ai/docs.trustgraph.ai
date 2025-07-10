@@ -48,3 +48,4 @@ Advanced configuration, performance tuning, and extensions.
 - Review [common use cases](overview/use-cases.md)
 
 Coming soon - comprehensive documentation for all TrustGraph features!
+
