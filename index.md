@@ -20,12 +20,6 @@ Learn about TrustGraph's features, architecture, and use cases.
 ### [Deployment](deployment/)
 Deploy TrustGraph on various platforms and environments.
 
-### [API Documentation](api/)
-Complete API reference with examples and best practices.
-
-### [CLI Tools](cli/)
-Command-line interface for managing TrustGraph.
-
 ### [How-to Guides](guides/)
 Step-by-step guides for common tasks and integrations.
 

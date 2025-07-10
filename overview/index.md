@@ -12,8 +12,9 @@ Learn about TrustGraph's capabilities, architecture, and how it can solve your t
 
 ## Topics Covered
 
-- **[Features](features.md)** - Complete feature overview
+- **[Philosophy](philosophy.md)** - Complete feature overview
 - **[Architecture](architecture.md)** - System architecture and design
+- **[Features](features.md)** - Complete feature overview
 - **[Use Cases](use-cases.md)** - Common use cases and applications
 - **[Feature Maturity](feature-maturity.md)** - Feature maturity and roadmap
 

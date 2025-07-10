@@ -12,11 +12,11 @@ Join the TrustGraph community and contribute to the project.
 
 ## Community Resources
 
-- **[Contributing](contributing.md)** - How to contribute to TrustGraph
-- **[Code of Conduct](code-of-conduct.md)** - Community guidelines
-- **[Support](support.md)** - Getting help and support
-- **[Roadmap](roadmap.md)** - Project roadmap and future plans
-- **[Changelog](changelog.md)** - Release notes and changes
+- **[Contributing](contributing/)** - How to contribute to TrustGraph
+- **[Code of Conduct](code-of-conduct/)** - Community guidelines
+- **[Support](support/)** - Getting help and support
+- **[Roadmap](roadmap/)** - Project roadmap and future plans
+- **[Changelog](changelog/)** - Release notes and changes
 
 ## Getting Involved
 
