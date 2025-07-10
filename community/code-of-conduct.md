@@ -7,6 +7,10 @@ grand_parent: TrustGraph Documentation
 
 # Code of Conduct
 
-FIXME: Coming soon
+- Be respectful and professional in all interactions. No harassment,
+  discriminaton, or personal attacks.
 
-This page will contain the community guidelines and code of conduct for the TrustGraph project.
+- Disagreements should focus on ideas, not individuals.
+
+- Maintainers may remove content or ban users who violate this standard.
+
