@@ -17,6 +17,7 @@ Join the TrustGraph community and contribute to the project.
 - **[Support](support/)** - Getting help and support
 - **[Roadmap](roadmap/)** - Project roadmap and future plans
 - **[Changelog](changelog/)** - Release notes and changes
+- **[Developer's Guide](developer/)** - Information for developers and contributors
 
 ## Getting Involved
 

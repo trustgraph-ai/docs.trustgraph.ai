@@ -7,6 +7,7 @@ grand_parent: TrustGraph Documentation
 
 # Support
 
-FIXME: Coming soon
+## Community forum
 
-This page will contain information about getting help and support for TrustGraph.
+Come join us on the [Discord](https://discord.gg/sQMwkRz5GX).
+
