@@ -407,6 +407,6 @@ Using service base classes provides:
 
 ## See Also
 
-- [FlowProcessor](flow-processor.md) - Understanding the underlying base class
-- [AsyncProcessor](async-processor.md) - For services that don't fit these patterns
-- [Service Architecture](../architecture.md) - Overall service design patterns
+- [FlowProcessor](flow-processor) - Understanding the underlying base class
+- [AsyncProcessor](async-processor) - For services that don't fit these patterns
+- [Service Architecture](../architecture) - Overall service design patterns

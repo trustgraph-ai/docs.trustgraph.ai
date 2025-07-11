@@ -459,6 +459,6 @@ except asyncio.TimeoutError:
 
 ## See Also
 
-- [FlowProcessor](flow-processor.md) - Understanding the base class
-- [Service Base Classes](service-base-classes.md) - Pre-built service patterns
-- [AsyncProcessor](async-processor.md) - For non-flow services
+- [FlowProcessor](flow-processor) - Understanding the base class
+- [Service Base Classes](service-base-classes) - Pre-built service patterns
+- [AsyncProcessor](async-processor) - For non-flow services

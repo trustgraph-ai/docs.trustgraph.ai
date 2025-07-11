@@ -14,28 +14,28 @@ Learn how to build custom services and processors for TrustGraph.
 
 TrustGraph provides multiple levels of abstraction for building extension services:
 
-### [AsyncProcessor](async-processor.md)
+### [AsyncProcessor](async-processor)
 For building global services that operate independently of flow management. Best for:
 - Core infrastructure services
 - Request/response services
 - Services that don't participate in processing flows
 - Global data stores and managers
 
-### [FlowProcessor](flow-processor.md)
+### [FlowProcessor](flow-processor)
 For building flow-aware services that integrate with TrustGraph's processing pipelines. Best for:
 - Data processing services
 - Services that transform or enrich data
 - Services that need dynamic reconfiguration
 - Services with multiple input/output streams
 
-### [Service Base Classes](service-base-classes.md)
+### [Service Base Classes](service-base-classes)
 Pre-built service templates that extend FlowProcessor for common patterns. Best for:
 - Standard service types (LLM, embeddings, storage, query)
 - Rapid development with minimal boilerplate
 - Consistent service patterns across your system
 - Built-in error handling and metrics
 
-### [Flow Specifications](flow-specifications.md)
+### [Flow Specifications](flow-specifications)
 Declarative interfaces for defining how services integrate with flows. Best for:
 - Automatic message queue management
 - Type-safe service integration
@@ -80,7 +80,7 @@ All base classes handle the underlying infrastructure including Pulsar messaging
 
 ## Documentation Index
 
-- **[AsyncProcessor](async-processor.md)** - Base class for global services
-- **[FlowProcessor](flow-processor.md)** - Base class for flow-aware services  
+- **[AsyncProcessor](async-processor)** - Base class for global services
+- **[FlowProcessor](flow-processor)** - Base class for flow-aware services  
 - **[Service Base Classes](service-base-classes)** - Pre-built service templates
 - **[Flow Specifications](flow-specifications)** - Declarative flow integration

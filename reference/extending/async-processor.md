@@ -200,5 +200,5 @@ Services automatically receive configuration updates through the Pulsar configur
 
 ## See Also
 
-- [FlowProcessor](flow-processor.md) - For flow-aware services
-- [Service Architecture](../architecture.md) - Overall service design patterns
+- [FlowProcessor](flow-processor) - For flow-aware services
+- [Service Architecture](../architecture) - Overall service design patterns
