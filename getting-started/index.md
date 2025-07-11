@@ -12,9 +12,9 @@ Welcome to TrustGraph! This section will help you get up and running quickly.
 
 ## Quick Start Path
 
-1. **[Core Concepts](concepts.md)** - Understand key TrustGraph concepts
-2. **[First Steps](first-steps.md)** - Set up your first TrustGraph instance
-3. **[Installation](installation.md)** - Install TrustGraph on your system
+1. **[Core Concepts](concepts.html)** - Understand key TrustGraph concepts
+2. **[First Steps](first-steps.html)** - Set up your first TrustGraph instance
+3. **[Installation](installation.html)** - Install TrustGraph on your system
 
 ## What You'll Learn
 
