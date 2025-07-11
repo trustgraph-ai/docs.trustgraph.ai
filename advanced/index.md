@@ -12,12 +12,12 @@ Advanced configuration, performance tuning, and extending TrustGraph.
 
 ## Advanced Topics
 
-- **[Custom Algorithms](custom-algorithms.md)** - Developing custom algorithms
-- **[Performance Tuning](performance-tuning.md)** - Optimization techniques
-- **[Clustering](clustering.md)** - Multi-node clustering setup
-- **[Backup & Restore](backup-restore.md)** - Data backup and recovery
-- **[Disaster Recovery](disaster-recovery.md)** - Disaster recovery planning
-- **[Extending TrustGraph](extending-trustgraph.md)** - Custom extensions and plugins
+- **[Custom Algorithms](custom-algorithms)** - Developing custom algorithms
+- **[Performance Tuning](performance-tuning)** - Optimization techniques
+- **[Clustering](clustering)** - Multi-node clustering setup
+- **[Backup & Restore](backup-restore)** - Data backup and recovery
+- **[Disaster Recovery](disaster-recovery)** - Disaster recovery planning
+- **[Extending TrustGraph](extending-trustgraph)** - Custom extensions and plugins
 
 ## Prerequisites
 
