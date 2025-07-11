@@ -77,6 +77,12 @@ pip install trustgraph-cli
 
 > **Note**: Keep this virtual environment activated for all TrustGraph CLI commands.
 
+### Launch TrustGraph
+
+```bash
+docker-compose -f docker-compose.yaml up -d
+```
+
 ### Verify TrustGraph Installation
 
 #### Check Container Status
