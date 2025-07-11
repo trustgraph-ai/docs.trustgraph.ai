@@ -38,7 +38,7 @@ Simple cloud deployment for experimentation:
 
 For production use, choose from enterprise-grade deployment options:
 
-- **[AWS RKE](../deployment/aws)**: Multi-node Kubernetes with AWS Bedrock
+- **[AWS RKE](../deployment/aws-rke)**: Multi-node Kubernetes with AWS Bedrock
 - **[Google Cloud](../deployment/gcp)**: GKE with VertexAI integration
 - **[Azure AKS](../deployment/azure)**: Azure Kubernetes with AI Foundry
 - **[Scaleway](../deployment/scaleway)**: European cloud with GDPR compliance
