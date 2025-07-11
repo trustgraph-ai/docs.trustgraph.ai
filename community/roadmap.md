@@ -10,7 +10,7 @@ grand_parent: TrustGraph Documentation
 ## Roadmap
 
 <a href="roadmap.png">
-  <img src="roadmap.png" alt="TrustGraph roadmap view" style="width: 1000%">
+  <img src="roadmap.png" alt="TrustGraph roadmap view" style="width: 100%">
 </a>
 
 This page will contain the project roadmap and future plans for TrustGraph.
