@@ -9,6 +9,12 @@ parent: Reference
 
 TrustGraph uses a modular container architecture where different containers provide specialized capabilities. This approach allows for flexible deployment where only needed capabilities are included, reducing resource usage and attack surface while maintaining full functionality when all containers are deployed together.
 
+## Version strategy
+
+The TrustGraph release process creates containers and packages with the
+same version number.  For best results, match the container and package
+version numbers.
+
 ## Container Overview
 
 | Container | Purpose | Key Features | Use Case |
