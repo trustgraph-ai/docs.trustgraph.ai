@@ -15,6 +15,7 @@ Technical reference materials and specifications for TrustGraph.
 - **[APIs](apis/)** - API documentation and specifications
 - **[CLI](cli/)** - Command-line interface reference
 - **[Containers](containers)** - Container architecture and deployment guide
+- **[Extending](extending)** - Building custom TrustGraph services and processors
 - **[Python Package](python-packages)** - Container architecture and deployment guide
 
 ## Quick Reference
