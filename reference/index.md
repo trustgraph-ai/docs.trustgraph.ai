@@ -14,7 +14,8 @@ Technical reference materials and specifications for TrustGraph.
 
 - **[APIs](apis/)** - API documentation and specifications
 - **[CLI](cli/)** - Command-line interface reference
+- **[Containers](containers.md)** - Container architecture and deployment guide
 
 ## Quick Reference
 
-For API documentation, see [APIs](apis/). For command-line tools, see [CLI](cli/).
+For API documentation, see [APIs](apis/). For command-line tools, see [CLI](cli/). For container deployment information, see [Containers](containers.md).
