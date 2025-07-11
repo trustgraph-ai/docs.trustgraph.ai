@@ -38,7 +38,7 @@ Docker Compose provides the easiest way to get TrustGraph running locally with a
 
 ### 1. Create Configuration
 
-Use the [TrustGraph Configuration Portal](https://config-ui.demo.trustgraph.ai/) to generate your deployment configuration:
+Use the [TrustGraph Configuration Builder](https://config-ui.demo.trustgraph.ai/) to generate your deployment configuration:
 
 1. **Select Deployment**: Choose Docker Compose or Podman Compose
 2. **Graph Store**: Select Cassandra (recommended for ease of use)

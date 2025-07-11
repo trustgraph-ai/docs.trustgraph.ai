@@ -61,7 +61,7 @@ kubectl get nodes
 
 ### YAML Configuration
 
-Obtain your TrustGraph Kubernetes configuration file from the [TrustGraph Configuration Portal](https://config-ui.demo.trustgraph.ai/):
+Obtain your TrustGraph Kubernetes configuration file from the [TrustGraph Configuration Builder](https://config-ui.demo.trustgraph.ai/):
 
 1. Select **Kubernetes/Minikube** as deployment method
 2. Configure your preferred LLM, graph store, and vector store

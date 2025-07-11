@@ -10,14 +10,14 @@ parent: TrustGraph Documentation
 
 Welcome to TrustGraph! This section will help you get up and running quickly.
 
-## Quick Start Path
+## TrustGraph Fundamentals
 
 1. **[Core Concepts](concepts)** - Understand key TrustGraph concepts
 2. **[Installation](installation)** - Deploy TrustGraph in the environment of your choice
 3. **[First Steps](first-steps)** - Interact with your TrustGraph instance,
    load some data and get some results from it.
 
-## What You'll Learn
+### What You'll Learn
 
 - What TrustGraph is, and why you would want to use it
 - Core concepts and terminology
@@ -25,7 +25,7 @@ Welcome to TrustGraph! This section will help you get up and running quickly.
 - Basic configuration and setup
 - First-hand experience of some basic usage
 
-## Quickstart with Docker
+## Quickstart with Docker Deployed Locally
 
 Docker Compose provides the easiest way to get TrustGraph running locally with all required services orchestrated together. This deployment method is ideal for:
 - Local development and testing
