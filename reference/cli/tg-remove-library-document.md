@@ -486,14 +486,14 @@ create_removal_audit "doc_123" "Outdated content"
 
 ## Related Commands
 
-- [`tg-show-library-documents`](tg-show-library-documents.md) - List library documents
-- [`tg-add-library-document`](tg-add-library-document.md) - Add documents to library
-- [`tg-start-library-processing`](tg-start-library-processing.md) - Start document processing
-- [`tg-stop-library-processing`](tg-stop-library-processing.md) - Stop document processing
+- [`tg-show-library-documents`](tg-show-library-documents) - List library documents
+- [`tg-add-library-document`](tg-add-library-document) - Add documents to library
+- [`tg-start-library-processing`](tg-start-library-processing) - Start document processing
+- [`tg-stop-library-processing`](tg-stop-library-processing) - Stop document processing
 
 ## API Integration
 
-This command uses the [Library API](../apis/api-librarian.md) to remove documents from the document repository.
+This command uses the [Library API](../apis/api-librarian) to remove documents from the document repository.
 
 ## Best Practices
 

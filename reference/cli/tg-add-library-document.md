@@ -218,15 +218,15 @@ tg-show-library-processing
 
 ## Related Commands
 
-- [`tg-show-library-documents`](tg-show-library-documents.md) - List library documents
-- [`tg-remove-library-document`](tg-remove-library-document.md) - Remove documents from library
-- [`tg-start-library-processing`](tg-start-library-processing.md) - Process library documents
-- [`tg-stop-library-processing`](tg-stop-library-processing.md) - Stop library processing
-- [`tg-show-library-processing`](tg-show-library-processing.md) - Show processing status
+- [`tg-show-library-documents`](tg-show-library-documents) - List library documents
+- [`tg-remove-library-document`](tg-remove-library-document) - Remove documents from library
+- [`tg-start-library-processing`](tg-start-library-processing) - Process library documents
+- [`tg-stop-library-processing`](tg-stop-library-processing) - Stop library processing
+- [`tg-show-library-processing`](tg-show-library-processing) - Show processing status
 
 ## API Integration
 
-This command uses the [Librarian API](../apis/api-librarian.md) with the `add-document` operation to store documents with metadata.
+This command uses the [Librarian API](../apis/api-librarian) with the `add-document` operation to store documents with metadata.
 
 ## Use Cases
 

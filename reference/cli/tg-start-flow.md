@@ -141,15 +141,15 @@ Once started, flows provide service interfaces based on their class definition. 
 
 ## Related Commands
 
-- [`tg-stop-flow`](tg-stop-flow.md) - Stop a running flow
-- [`tg-show-flows`](tg-show-flows.md) - List active flows and their interfaces
-- [`tg-show-flow-classes`](tg-show-flow-classes.md) - List available flow classes
-- [`tg-put-flow-class`](tg-put-flow-class.md) - Upload/update flow class definitions
-- [`tg-show-flow-state`](tg-show-flow-state.md) - Check flow status
+- [`tg-stop-flow`](tg-stop-flow) - Stop a running flow
+- [`tg-show-flows`](tg-show-flows) - List active flows and their interfaces
+- [`tg-show-flow-classes`](tg-show-flow-classes) - List available flow classes
+- [`tg-put-flow-class`](tg-put-flow-class) - Upload/update flow class definitions
+- [`tg-show-flow-state`](tg-show-flow-state) - Check flow status
 
 ## API Integration
 
-This command uses the [Flow API](../apis/api-flow.md) with the `start-flow` operation to create and start flow instances.
+This command uses the [Flow API](../apis/api-flow) with the `start-flow` operation to create and start flow instances.
 
 ## Use Cases
 

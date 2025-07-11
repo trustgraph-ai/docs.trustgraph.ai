@@ -446,9 +446,9 @@ time_msgpack_ops() {
 
 ## Related Commands
 
-- [`tg-get-kg-core`](tg-get-kg-core.md) - Export knowledge cores to MessagePack
-- [`tg-load-kg-core`](tg-load-kg-core.md) - Load MessagePack knowledge cores
-- [`tg-save-doc-embeds`](tg-save-doc-embeds.md) - Save document embeddings to MessagePack
+- [`tg-get-kg-core`](tg-get-kg-core) - Export knowledge cores to MessagePack
+- [`tg-load-kg-core`](tg-load-kg-core) - Load MessagePack knowledge cores
+- [`tg-save-doc-embeds`](tg-save-doc-embeds) - Save document embeddings to MessagePack
 
 ## Best Practices
 

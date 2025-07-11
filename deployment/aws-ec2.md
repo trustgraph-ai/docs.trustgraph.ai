@@ -19,7 +19,7 @@ TrustGraph provides a simplified AWS deployment using **Pulumi** (Infrastructure
 - **Quick prototyping**
 - **Analysis and evaluation**
 
-⚠️ **Not Recommended for Production**: This is a single instance deployment with no redundancy or high availability. For production use, consider the [AWS RKE deployment](aws.md) or container services like EKS/ECS.
+⚠️ **Not Recommended for Production**: This is a single instance deployment with no redundancy or high availability. For production use, consider the [AWS RKE deployment](aws) or container services like EKS/ECS.
 
 ## What You Get
 
@@ -123,7 +123,7 @@ The repository contains:
 ## Production Alternatives
 
 For production deployments, consider:
-- **[AWS RKE Deployment](aws.md)**: Multi-node Kubernetes cluster
+- **[AWS RKE Deployment](aws)**: Multi-node Kubernetes cluster
 - **AWS EKS**: Managed Kubernetes service
 - **AWS ECS**: Container orchestration service
 - **Multi-instance setup**: Load balanced instances

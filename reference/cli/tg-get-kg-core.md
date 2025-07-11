@@ -229,14 +229,14 @@ tg-show-kg-cores | grep "test-import"
 
 ## Related Commands
 
-- [`tg-put-kg-core`](tg-put-kg-core.md) - Import knowledge core from MessagePack file
-- [`tg-show-kg-cores`](tg-show-kg-cores.md) - List available knowledge cores
-- [`tg-delete-kg-core`](tg-delete-kg-core.md) - Delete knowledge cores
-- [`tg-dump-msgpack`](tg-dump-msgpack.md) - Examine MessagePack file contents
+- [`tg-put-kg-core`](tg-put-kg-core) - Import knowledge core from MessagePack file
+- [`tg-show-kg-cores`](tg-show-kg-cores) - List available knowledge cores
+- [`tg-delete-kg-core`](tg-delete-kg-core) - Delete knowledge cores
+- [`tg-dump-msgpack`](tg-dump-msgpack) - Examine MessagePack file contents
 
 ## API Integration
 
-This command uses the [Knowledge API](../apis/api-knowledge.md) via WebSocket connection with `get-kg-core` operations to retrieve knowledge data.
+This command uses the [Knowledge API](../apis/api-knowledge) via WebSocket connection with `get-kg-core` operations to retrieve knowledge data.
 
 ## Use Cases
 

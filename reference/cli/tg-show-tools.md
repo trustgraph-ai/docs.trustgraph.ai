@@ -136,11 +136,11 @@ diff dev_tools.txt prod_tools.txt
 Generate documentation for agent tools:
 ```bash
 #!/bin/bash
-echo "# Available Agent Tools" > AGENT_TOOLS.md
-echo "" >> AGENT_TOOLS.md
-echo "Generated on: $(date)" >> AGENT_TOOLS.md
-echo "" >> AGENT_TOOLS.md
-tg-show-tools >> AGENT_TOOLS.md
+echo "# Available Agent Tools" > AGENT_TOOLS
+echo "" >> AGENT_TOOLS
+echo "Generated on: $(date)" >> AGENT_TOOLS
+echo "" >> AGENT_TOOLS
+tg-show-tools >> AGENT_TOOLS
 ```
 
 ### Tool Configuration Validation
@@ -277,10 +277,10 @@ tg-show-tools > updated_tools.txt
 
 ## Related Commands
 
-- [`tg-show-config`](tg-show-config.md) - Show TrustGraph configuration
-- [`tg-show-prompts`](tg-show-prompts.md) - Display available prompts
-- [`tg-show-flows`](tg-show-flows.md) - Show active flows
-- [`tg-invoke-agent`](tg-invoke-agent.md) - Invoke agent with tools
+- [`tg-show-config`](tg-show-config) - Show TrustGraph configuration
+- [`tg-show-prompts`](tg-show-prompts) - Display available prompts
+- [`tg-show-flows`](tg-show-flows) - Show active flows
+- [`tg-invoke-agent`](tg-invoke-agent) - Invoke agent with tools
 
 ## See Also
 

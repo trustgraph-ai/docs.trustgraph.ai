@@ -410,8 +410,8 @@ fi
 
 ## Related Commands
 
-- [`tg-init-trustgraph`](tg-init-trustgraph.md) - Initialize TrustGraph with Pulsar configuration
-- [`tg-show-config`](tg-show-config.md) - Display current TrustGraph configuration
+- [`tg-init-trustgraph`](tg-init-trustgraph) - Initialize TrustGraph with Pulsar configuration
+- [`tg-show-config`](tg-show-config) - Display current TrustGraph configuration
 
 ## Integration Points
 

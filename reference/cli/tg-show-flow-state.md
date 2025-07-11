@@ -474,10 +474,10 @@ Exception: Unable to parse flow state
 
 ## Related Commands
 
-- [`tg-show-flows`](tg-show-flows.md) - List all flows
-- [`tg-show-processor-state`](tg-show-processor-state.md) - Show all processor states
-- [`tg-start-flow`](tg-start-flow.md) - Start flow instances
-- [`tg-stop-flow`](tg-stop-flow.md) - Stop flow instances
+- [`tg-show-flows`](tg-show-flows) - List all flows
+- [`tg-show-processor-state`](tg-show-processor-state) - Show all processor states
+- [`tg-start-flow`](tg-start-flow) - Start flow instances
+- [`tg-stop-flow`](tg-stop-flow) - Stop flow instances
 
 ## API Integration
 

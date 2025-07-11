@@ -439,11 +439,11 @@ process_document_workflow() {
 
 ## Related Commands
 
-- [`tg-add-library-document`](tg-add-library-document.md) - Add documents to library
-- [`tg-start-library-processing`](tg-start-library-processing.md) - Process library documents
-- [`tg-show-library-documents`](tg-show-library-documents.md) - List library documents
-- [`tg-invoke-document-rag`](tg-invoke-document-rag.md) - Query document content
-- [`tg-show-flows`](tg-show-flows.md) - Monitor processing flows
+- [`tg-add-library-document`](tg-add-library-document) - Add documents to library
+- [`tg-start-library-processing`](tg-start-library-processing) - Process library documents
+- [`tg-show-library-documents`](tg-show-library-documents) - List library documents
+- [`tg-invoke-document-rag`](tg-invoke-document-rag) - Query document content
+- [`tg-show-flows`](tg-show-flows) - Monitor processing flows
 
 ## API Integration
 

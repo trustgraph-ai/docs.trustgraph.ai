@@ -120,15 +120,15 @@ Exception: User not found
 
 ## Related Commands
 
-- [`tg-put-kg-core`](tg-put-kg-core.md) - Store knowledge core from file
-- [`tg-get-kg-core`](tg-get-kg-core.md) - Retrieve knowledge core to file
-- [`tg-load-kg-core`](tg-load-kg-core.md) - Load knowledge core into flow
-- [`tg-delete-kg-core`](tg-delete-kg-core.md) - Remove knowledge core
-- [`tg-unload-kg-core`](tg-unload-kg-core.md) - Unload knowledge core from flow
+- [`tg-put-kg-core`](tg-put-kg-core) - Store knowledge core from file
+- [`tg-get-kg-core`](tg-get-kg-core) - Retrieve knowledge core to file
+- [`tg-load-kg-core`](tg-load-kg-core) - Load knowledge core into flow
+- [`tg-delete-kg-core`](tg-delete-kg-core) - Remove knowledge core
+- [`tg-unload-kg-core`](tg-unload-kg-core) - Unload knowledge core from flow
 
 ## API Integration
 
-This command uses the [Knowledge API](../apis/api-knowledge.md) with the `list-kg-cores` operation to retrieve available knowledge cores.
+This command uses the [Knowledge API](../apis/api-knowledge) with the `list-kg-cores` operation to retrieve available knowledge cores.
 
 ## Use Cases
 

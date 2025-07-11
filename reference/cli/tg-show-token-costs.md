@@ -431,12 +431,12 @@ Exception: Access denied
 
 ## Related Commands
 
-- [`tg-set-token-costs`](tg-set-token-costs.md) - Configure token costs
-- [`tg-show-config`](tg-show-config.md) - Show other configuration settings (if available)
+- [`tg-set-token-costs`](tg-set-token-costs) - Configure token costs
+- [`tg-show-config`](tg-show-config) - Show other configuration settings (if available)
 
 ## API Integration
 
-This command uses the [Config API](../apis/api-config.md) to retrieve token cost configuration from TrustGraph's configuration system.
+This command uses the [Config API](../apis/api-config) to retrieve token cost configuration from TrustGraph's configuration system.
 
 ## Best Practices
 

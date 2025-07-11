@@ -292,15 +292,15 @@ echo "Healthy: $healthy, Unhealthy: $unhealthy"
 
 ## Related Commands
 
-- [`tg-get-flow-class`](tg-get-flow-class.md) - Retrieve specific flow class definitions
-- [`tg-put-flow-class`](tg-put-flow-class.md) - Create/update flow class definitions
-- [`tg-delete-flow-class`](tg-delete-flow-class.md) - Delete flow class definitions
-- [`tg-start-flow`](tg-start-flow.md) - Create flow instances from classes
-- [`tg-show-flows`](tg-show-flows.md) - List active flow instances
+- [`tg-get-flow-class`](tg-get-flow-class) - Retrieve specific flow class definitions
+- [`tg-put-flow-class`](tg-put-flow-class) - Create/update flow class definitions
+- [`tg-delete-flow-class`](tg-delete-flow-class) - Delete flow class definitions
+- [`tg-start-flow`](tg-start-flow) - Create flow instances from classes
+- [`tg-show-flows`](tg-show-flows) - List active flow instances
 
 ## API Integration
 
-This command uses the [Flow API](../apis/api-flow.md) with the `list-classes` operation to retrieve flow class listings.
+This command uses the [Flow API](../apis/api-flow) with the `list-classes` operation to retrieve flow class listings.
 
 ## Best Practices
 

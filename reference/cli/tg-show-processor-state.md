@@ -190,10 +190,10 @@ If the command fails with JSON parsing errors:
 
 ## Related Commands
 
-- [`tg-show-flow-state`](tg-show-flow-state.md) - Display flow processor states
-- [`tg-show-config`](tg-show-config.md) - Show TrustGraph configuration
-- [`tg-show-token-costs`](tg-show-token-costs.md) - Display token usage costs
-- [`tg-show-library-processing`](tg-show-library-processing.md) - Show library processing status
+- [`tg-show-flow-state`](tg-show-flow-state) - Display flow processor states
+- [`tg-show-config`](tg-show-config) - Show TrustGraph configuration
+- [`tg-show-token-costs`](tg-show-token-costs) - Display token usage costs
+- [`tg-show-library-processing`](tg-show-library-processing) - Show library processing status
 
 ## See Also
 

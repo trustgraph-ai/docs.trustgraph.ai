@@ -8,7 +8,7 @@ parent: APIs
 
 This is a low-level interface to the LLM service.  For a higher-level
 interface with template management, consider the
-[Prompt API](api-prompt.md).
+[Prompt API](api-prompt).
 
 ## Request/response
 

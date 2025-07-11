@@ -240,10 +240,10 @@ If token rates are unexpectedly high:
 
 ## Related Commands
 
-- [`tg-show-token-costs`](tg-show-token-costs.md) - Display token usage costs
-- [`tg-show-processor-state`](tg-show-processor-state.md) - Show processor states
-- [`tg-show-flow-state`](tg-show-flow-state.md) - Display flow processor states
-- [`tg-show-config`](tg-show-config.md) - Show TrustGraph configuration
+- [`tg-show-token-costs`](tg-show-token-costs) - Display token usage costs
+- [`tg-show-processor-state`](tg-show-processor-state) - Show processor states
+- [`tg-show-flow-state`](tg-show-flow-state) - Display flow processor states
+- [`tg-show-config`](tg-show-config) - Show TrustGraph configuration
 
 ## See Also
 

@@ -208,15 +208,15 @@ tg-load-kg-core --id "core-3" --flow-id "research-flow"
 
 ## Related Commands
 
-- [`tg-show-kg-cores`](tg-show-kg-cores.md) - List available knowledge cores
-- [`tg-put-kg-core`](tg-put-kg-core.md) - Store knowledge core in system
-- [`tg-unload-kg-core`](tg-unload-kg-core.md) - Remove knowledge from flow
-- [`tg-show-graph`](tg-show-graph.md) - View loaded knowledge triples
-- [`tg-invoke-graph-rag`](tg-invoke-graph-rag.md) - Query loaded knowledge
+- [`tg-show-kg-cores`](tg-show-kg-cores) - List available knowledge cores
+- [`tg-put-kg-core`](tg-put-kg-core) - Store knowledge core in system
+- [`tg-unload-kg-core`](tg-unload-kg-core) - Remove knowledge from flow
+- [`tg-show-graph`](tg-show-graph) - View loaded knowledge triples
+- [`tg-invoke-graph-rag`](tg-invoke-graph-rag) - Query loaded knowledge
 
 ## API Integration
 
-This command uses the [Knowledge API](../apis/api-knowledge.md) with the `load-kg-core` operation to make stored knowledge active within flows.
+This command uses the [Knowledge API](../apis/api-knowledge) with the `load-kg-core` operation to make stored knowledge active within flows.
 
 ## Use Cases
 

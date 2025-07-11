@@ -228,7 +228,7 @@ docker volume ls
 
 ## Next Steps
 
-- **Production Deployment**: See [Production Considerations](production-considerations.md)
-- **Cloud Deployment**: Explore [AWS](aws.md), [GCP](gcp.md), or [Scaleway](scaleway.md) guides
-- **Advanced Configuration**: Check [Security Considerations](security-considerations.md)
-- **Scaling**: Review [Minikube](minikube.md) for Kubernetes deployment
+- **Production Deployment**: See [Production Considerations](production-considerations)
+- **Cloud Deployment**: Explore [AWS](aws), [GCP](gcp), or [Scaleway](scaleway) guides
+- **Advanced Configuration**: Check [Security Considerations](security-considerations)
+- **Scaling**: Review [Minikube](minikube) for Kubernetes deployment

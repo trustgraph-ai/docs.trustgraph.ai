@@ -400,13 +400,13 @@ tg-set-prompt \
 
 ## Related Commands
 
-- [`tg-show-prompts`](tg-show-prompts.md) - Display configured prompts
-- [`tg-invoke-prompt`](tg-invoke-prompt.md) - Use prompt templates
-- [`tg-invoke-document-rag`](tg-invoke-document-rag.md) - Document-based AI queries
+- [`tg-show-prompts`](tg-show-prompts) - Display configured prompts
+- [`tg-invoke-prompt`](tg-invoke-prompt) - Use prompt templates
+- [`tg-invoke-document-rag`](tg-invoke-document-rag) - Document-based AI queries
 
 ## API Integration
 
-This command uses the [Config API](../apis/api-config.md) to store prompt templates and system prompts in TrustGraph's configuration system.
+This command uses the [Config API](../apis/api-config) to store prompt templates and system prompts in TrustGraph's configuration system.
 
 ## Best Practices
 

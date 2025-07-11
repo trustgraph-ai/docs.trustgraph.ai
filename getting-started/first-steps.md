@@ -12,7 +12,7 @@ Get started with your TrustGraph deployment and perform your first knowledge ext
 
 ## Prerequisites
 
-This guide assumes you have TrustGraph already deployed using one of the [installation methods](installation.md). If you haven't deployed TrustGraph yet, start with the [Installation Guide](installation.md).
+This guide assumes you have TrustGraph already deployed using one of the [installation methods](installation). If you haven't deployed TrustGraph yet, start with the [Installation Guide](installation).
 
 ## Install TrustGraph CLI
 
@@ -175,6 +175,6 @@ Now that you've successfully:
 - ✅ Performed Graph RAG queries
 
 **Continue learning:**
-- [Core Concepts](concepts.md): Understand TrustGraph architecture
+- [Core Concepts](concepts): Understand TrustGraph architecture
 - [Deployment Options](../deployment/): Explore production deployments
 - [API Reference](../reference/): Learn about TrustGraph APIs

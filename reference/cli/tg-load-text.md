@@ -169,14 +169,14 @@ document.txt: Failed: Invalid flow
 
 ## Related Commands
 
-- [`tg-add-library-document`](tg-add-library-document.md) - Add documents to library (recommended)
-- [`tg-load-pdf`](tg-load-pdf.md) - Load PDF documents
-- [`tg-show-library-documents`](tg-show-library-documents.md) - List loaded documents
-- [`tg-start-library-processing`](tg-start-library-processing.md) - Start document processing
+- [`tg-add-library-document`](tg-add-library-document) - Add documents to library (recommended)
+- [`tg-load-pdf`](tg-load-pdf) - Load PDF documents
+- [`tg-show-library-documents`](tg-show-library-documents) - List loaded documents
+- [`tg-start-library-processing`](tg-start-library-processing) - Start document processing
 
 ## API Integration
 
-This command uses the [Text Load API](../apis/api-text-load.md) to submit documents for processing. The text content is base64-encoded for transmission.
+This command uses the [Text Load API](../apis/api-text-load) to submit documents for processing. The text content is base64-encoded for transmission.
 
 ## Use Cases
 

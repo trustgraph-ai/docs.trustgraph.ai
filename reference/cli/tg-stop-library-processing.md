@@ -465,14 +465,14 @@ processing_lifecycle "doc_123" "proc_test_001" "test-collection"
 
 ## Related Commands
 
-- [`tg-start-library-processing`](tg-start-library-processing.md) - Start document processing
-- [`tg-show-library-documents`](tg-show-library-documents.md) - List library documents
-- [`tg-show-flows`](tg-show-flows.md) - Monitor active processing flows
-- [`tg-invoke-document-rag`](tg-invoke-document-rag.md) - Verify processed documents
+- [`tg-start-library-processing`](tg-start-library-processing) - Start document processing
+- [`tg-show-library-documents`](tg-show-library-documents) - List library documents
+- [`tg-show-flows`](tg-show-flows) - Monitor active processing flows
+- [`tg-invoke-document-rag`](tg-invoke-document-rag) - Verify processed documents
 
 ## API Integration
 
-This command uses the [Library API](../apis/api-librarian.md) to remove processing records from the document processing system.
+This command uses the [Library API](../apis/api-librarian) to remove processing records from the document processing system.
 
 ## Best Practices
 

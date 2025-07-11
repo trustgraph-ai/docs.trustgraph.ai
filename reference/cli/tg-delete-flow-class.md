@@ -292,15 +292,15 @@ done
 
 ## Related Commands
 
-- [`tg-show-flow-classes`](tg-show-flow-classes.md) - List available flow classes
-- [`tg-get-flow-class`](tg-get-flow-class.md) - Retrieve flow class definitions
-- [`tg-put-flow-class`](tg-put-flow-class.md) - Create/update flow class definitions
-- [`tg-show-flows`](tg-show-flows.md) - List active flow instances
-- [`tg-stop-flow`](tg-stop-flow.md) - Stop flow instances
+- [`tg-show-flow-classes`](tg-show-flow-classes) - List available flow classes
+- [`tg-get-flow-class`](tg-get-flow-class) - Retrieve flow class definitions
+- [`tg-put-flow-class`](tg-put-flow-class) - Create/update flow class definitions
+- [`tg-show-flows`](tg-show-flows) - List active flow instances
+- [`tg-stop-flow`](tg-stop-flow) - Stop flow instances
 
 ## API Integration
 
-This command uses the [Flow API](../apis/api-flow.md) with the `delete-class` operation to remove flow class definitions.
+This command uses the [Flow API](../apis/api-flow) with the `delete-class` operation to remove flow class definitions.
 
 ## Best Practices
 

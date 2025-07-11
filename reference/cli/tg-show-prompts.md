@@ -156,7 +156,7 @@ analyze_templates
 ```bash
 # Generate template documentation
 generate_template_docs() {
-  local output_file="template_documentation.md"
+  local output_file="template_documentation"
   
   echo "# TrustGraph Prompt Templates" > "$output_file"
   echo "Generated on $(date)" >> "$output_file"
@@ -416,13 +416,13 @@ Exception: Access denied
 
 ## Related Commands
 
-- [`tg-set-prompt`](tg-set-prompt.md) - Create/update prompt templates
-- [`tg-invoke-prompt`](tg-invoke-prompt.md) - Use prompt templates
-- [`tg-invoke-document-rag`](tg-invoke-document-rag.md) - Document-based queries
+- [`tg-set-prompt`](tg-set-prompt) - Create/update prompt templates
+- [`tg-invoke-prompt`](tg-invoke-prompt) - Use prompt templates
+- [`tg-invoke-document-rag`](tg-invoke-document-rag) - Document-based queries
 
 ## API Integration
 
-This command uses the [Config API](../apis/api-config.md) to retrieve prompt templates and system prompts from TrustGraph's configuration system.
+This command uses the [Config API](../apis/api-config) to retrieve prompt templates and system prompts from TrustGraph's configuration system.
 
 ## Best Practices
 

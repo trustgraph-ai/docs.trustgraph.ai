@@ -137,14 +137,14 @@ Exception: Unauthorized
 
 ## Related Commands
 
-- [`tg-put-flow-class`](tg-put-flow-class.md) - Update flow class definitions
-- [`tg-show-flows`](tg-show-flows.md) - List active flows
-- [`tg-set-prompt`](tg-set-prompt.md) - Configure prompt templates
-- [`tg-set-token-costs`](tg-set-token-costs.md) - Configure token costs
+- [`tg-put-flow-class`](tg-put-flow-class) - Update flow class definitions
+- [`tg-show-flows`](tg-show-flows) - List active flows
+- [`tg-set-prompt`](tg-set-prompt) - Configure prompt templates
+- [`tg-set-token-costs`](tg-set-token-costs) - Configure token costs
 
 ## API Integration
 
-This command uses the [Config API](../apis/api-config.md) with the `config` operation to retrieve the complete system configuration.
+This command uses the [Config API](../apis/api-config) with the `config` operation to retrieve the complete system configuration.
 
 **API Call:**
 ```json

@@ -158,15 +158,15 @@ Exception: Invalid parameter value
 
 ## Related Commands
 
-- [`tg-invoke-document-rag`](tg-invoke-document-rag.md) - Document-based RAG queries
-- [`tg-invoke-agent`](tg-invoke-agent.md) - Interactive agent with multiple tools
-- [`tg-load-kg-core`](tg-load-kg-core.md) - Load knowledge into graph
-- [`tg-show-graph`](tg-show-graph.md) - Explore graph contents
-- [`tg-show-flows`](tg-show-flows.md) - List available flows
+- [`tg-invoke-document-rag`](tg-invoke-document-rag) - Document-based RAG queries
+- [`tg-invoke-agent`](tg-invoke-agent) - Interactive agent with multiple tools
+- [`tg-load-kg-core`](tg-load-kg-core) - Load knowledge into graph
+- [`tg-show-graph`](tg-show-graph) - Explore graph contents
+- [`tg-show-flows`](tg-show-flows) - List available flows
 
 ## API Integration
 
-This command uses the [Graph RAG API](../apis/api-graph-rag.md) to perform retrieval augmented generation using knowledge graph data.
+This command uses the [Graph RAG API](../apis/api-graph-rag) to perform retrieval augmented generation using knowledge graph data.
 
 ## Use Cases
 

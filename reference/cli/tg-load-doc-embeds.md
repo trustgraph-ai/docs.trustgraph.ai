@@ -522,10 +522,10 @@ backup_restore_cycle() {
 
 ## Related Commands
 
-- [`tg-save-doc-embeds`](tg-save-doc-embeds.md) - Save document embeddings to MessagePack
-- [`tg-dump-msgpack`](tg-dump-msgpack.md) - Analyze MessagePack files
-- [`tg-load-pdf`](tg-load-pdf.md) - Load PDF documents for processing
-- [`tg-show-flows`](tg-show-flows.md) - List available flows
+- [`tg-save-doc-embeds`](tg-save-doc-embeds) - Save document embeddings to MessagePack
+- [`tg-dump-msgpack`](tg-dump-msgpack) - Analyze MessagePack files
+- [`tg-load-pdf`](tg-load-pdf) - Load PDF documents for processing
+- [`tg-show-flows`](tg-show-flows) - List available flows
 
 ## API Integration
 

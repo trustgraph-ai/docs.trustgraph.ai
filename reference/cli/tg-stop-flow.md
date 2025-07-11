@@ -174,14 +174,14 @@ done
 
 ## Related Commands
 
-- [`tg-start-flow`](tg-start-flow.md) - Start a new flow instance
-- [`tg-show-flows`](tg-show-flows.md) - List active flows
-- [`tg-show-flow-state`](tg-show-flow-state.md) - Check detailed flow status
-- [`tg-show-flow-classes`](tg-show-flow-classes.md) - List available flow classes
+- [`tg-start-flow`](tg-start-flow) - Start a new flow instance
+- [`tg-show-flows`](tg-show-flows) - List active flows
+- [`tg-show-flow-state`](tg-show-flow-state) - Check detailed flow status
+- [`tg-show-flow-classes`](tg-show-flow-classes) - List available flow classes
 
 ## API Integration
 
-This command uses the [Flow API](../apis/api-flow.md) with the `stop-flow` operation to terminate flow instances.
+This command uses the [Flow API](../apis/api-flow) with the `stop-flow` operation to terminate flow instances.
 
 ## Use Cases
 

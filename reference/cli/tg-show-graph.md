@@ -158,15 +158,15 @@ Exception: Access denied
 
 ## Related Commands
 
-- [`tg-graph-to-turtle`](tg-graph-to-turtle.md) - Export graph to Turtle format
-- [`tg-load-kg-core`](tg-load-kg-core.md) - Load knowledge into graph
-- [`tg-show-kg-cores`](tg-show-kg-cores.md) - List available knowledge cores
-- [`tg-invoke-graph-rag`](tg-invoke-graph-rag.md) - Query graph with natural language
-- [`tg-load-turtle`](tg-load-turtle.md) - Import RDF data from Turtle files
+- [`tg-graph-to-turtle`](tg-graph-to-turtle) - Export graph to Turtle format
+- [`tg-load-kg-core`](tg-load-kg-core) - Load knowledge into graph
+- [`tg-show-kg-cores`](tg-show-kg-cores) - List available knowledge cores
+- [`tg-invoke-graph-rag`](tg-invoke-graph-rag) - Query graph with natural language
+- [`tg-load-turtle`](tg-load-turtle) - Import RDF data from Turtle files
 
 ## API Integration
 
-This command uses the [Triples Query API](../apis/api-triples-query.md) to retrieve knowledge graph triples with no filtering constraints.
+This command uses the [Triples Query API](../apis/api-triples-query) to retrieve knowledge graph triples with no filtering constraints.
 
 ## Use Cases
 

@@ -274,7 +274,7 @@ minikube status
 ## Next Steps
 
 - **Production Kubernetes**: Scale to full Kubernetes clusters
-- **Cloud Deployment**: Explore [AWS](aws.md), [GCP](gcp.md) managed Kubernetes
+- **Cloud Deployment**: Explore [AWS](aws), [GCP](gcp) managed Kubernetes
 - **Monitoring**: Set up comprehensive monitoring with Prometheus/Grafana
-- **Security**: Review [Security Considerations](security-considerations.md)
+- **Security**: Review [Security Considerations](security-considerations)
 - **Performance**: Optimize for larger workloads

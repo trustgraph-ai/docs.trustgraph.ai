@@ -139,15 +139,15 @@ Exception: Unauthorized
 
 ## Related Commands
 
-- [`tg-start-flow`](tg-start-flow.md) - Start a new flow instance
-- [`tg-stop-flow`](tg-stop-flow.md) - Stop a running flow
-- [`tg-show-flow-classes`](tg-show-flow-classes.md) - List available flow classes
-- [`tg-show-flow-state`](tg-show-flow-state.md) - Show detailed flow status
-- [`tg-show-config`](tg-show-config.md) - Show complete system configuration
+- [`tg-start-flow`](tg-start-flow) - Start a new flow instance
+- [`tg-stop-flow`](tg-stop-flow) - Stop a running flow
+- [`tg-show-flow-classes`](tg-show-flow-classes) - List available flow classes
+- [`tg-show-flow-state`](tg-show-flow-state) - Show detailed flow status
+- [`tg-show-config`](tg-show-config) - Show complete system configuration
 
 ## API Integration
 
-This command uses the [Flow API](../apis/api-flow.md) to list flows and the [Config API](../apis/api-config.md) to retrieve interface descriptions.
+This command uses the [Flow API](../apis/api-flow) to list flows and the [Config API](../apis/api-config) to retrieve interface descriptions.
 
 ## Use Cases
 

@@ -35,88 +35,88 @@ Most CLI commands support these common options:
 ### System Administration & Configuration
 
 **System Setup:**
-- [`tg-init-trustgraph`](tg-init-trustgraph.md) - Initialize Pulsar with TrustGraph configuration
-- [`tg-init-pulsar-manager`](tg-init-pulsar-manager.md) - Initialize Pulsar manager setup
-- [`tg-show-config`](tg-show-config.md) - Display current system configuration
+- [`tg-init-trustgraph`](tg-init-trustgraph) - Initialize Pulsar with TrustGraph configuration
+- [`tg-init-pulsar-manager`](tg-init-pulsar-manager) - Initialize Pulsar manager setup
+- [`tg-show-config`](tg-show-config) - Display current system configuration
 
 **Token Management:**
-- [`tg-set-token-costs`](tg-set-token-costs.md) - Configure model token costs
-- [`tg-show-token-costs`](tg-show-token-costs.md) - Display token cost configuration
-- [`tg-show-token-rate`](tg-show-token-rate.md) - Show token usage rates
+- [`tg-set-token-costs`](tg-set-token-costs) - Configure model token costs
+- [`tg-show-token-costs`](tg-show-token-costs) - Display token cost configuration
+- [`tg-show-token-rate`](tg-show-token-rate) - Show token usage rates
 
 **Prompt Management:**
-- [`tg-set-prompt`](tg-set-prompt.md) - Configure prompt templates and system prompts
-- [`tg-show-prompts`](tg-show-prompts.md) - Display configured prompt templates
+- [`tg-set-prompt`](tg-set-prompt) - Configure prompt templates and system prompts
+- [`tg-show-prompts`](tg-show-prompts) - Display configured prompt templates
 
 ### Flow Management
 
 **Flow Operations:**
-- [`tg-start-flow`](tg-start-flow.md) - Start a processing flow
-- [`tg-stop-flow`](tg-stop-flow.md) - Stop a running flow
-- [`tg-show-flows`](tg-show-flows.md) - List all configured flows
-- [`tg-show-flow-state`](tg-show-flow-state.md) - Show current flow states
+- [`tg-start-flow`](tg-start-flow) - Start a processing flow
+- [`tg-stop-flow`](tg-stop-flow) - Stop a running flow
+- [`tg-show-flows`](tg-show-flows) - List all configured flows
+- [`tg-show-flow-state`](tg-show-flow-state) - Show current flow states
 
 **Flow Class Management:**
-- [`tg-put-flow-class`](tg-put-flow-class.md) - Upload/update flow class definition
-- [`tg-get-flow-class`](tg-get-flow-class.md) - Retrieve flow class definition
-- [`tg-delete-flow-class`](tg-delete-flow-class.md) - Remove flow class definition
-- [`tg-show-flow-classes`](tg-show-flow-classes.md) - List available flow classes
+- [`tg-put-flow-class`](tg-put-flow-class) - Upload/update flow class definition
+- [`tg-get-flow-class`](tg-get-flow-class) - Retrieve flow class definition
+- [`tg-delete-flow-class`](tg-delete-flow-class) - Remove flow class definition
+- [`tg-show-flow-classes`](tg-show-flow-classes) - List available flow classes
 
 ### Knowledge Graph Management
 
 **Knowledge Core Operations:**
-- [`tg-load-kg-core`](tg-load-kg-core.md) - Load knowledge core into processing
-- [`tg-put-kg-core`](tg-put-kg-core.md) - Store knowledge core in system
-- [`tg-get-kg-core`](tg-get-kg-core.md) - Retrieve knowledge core
-- [`tg-delete-kg-core`](tg-delete-kg-core.md) - Remove knowledge core
-- [`tg-unload-kg-core`](tg-unload-kg-core.md) - Unload knowledge core from processing
-- [`tg-show-kg-cores`](tg-show-kg-cores.md) - List available knowledge cores
+- [`tg-load-kg-core`](tg-load-kg-core) - Load knowledge core into processing
+- [`tg-put-kg-core`](tg-put-kg-core) - Store knowledge core in system
+- [`tg-get-kg-core`](tg-get-kg-core) - Retrieve knowledge core
+- [`tg-delete-kg-core`](tg-delete-kg-core) - Remove knowledge core
+- [`tg-unload-kg-core`](tg-unload-kg-core) - Unload knowledge core from processing
+- [`tg-show-kg-cores`](tg-show-kg-cores) - List available knowledge cores
 
 **Graph Data Operations:**
-- [`tg-show-graph`](tg-show-graph.md) - Display graph triples/edges
-- [`tg-graph-to-turtle`](tg-graph-to-turtle.md) - Export graph to Turtle format
-- [`tg-load-turtle`](tg-load-turtle.md) - Import RDF triples from Turtle files
+- [`tg-show-graph`](tg-show-graph) - Display graph triples/edges
+- [`tg-graph-to-turtle`](tg-graph-to-turtle) - Export graph to Turtle format
+- [`tg-load-turtle`](tg-load-turtle) - Import RDF triples from Turtle files
 
 ### Document Processing & Library Management
 
 **Document Loading:**
-- [`tg-load-pdf`](tg-load-pdf.md) - Load PDF documents into processing
-- [`tg-load-text`](tg-load-text.md) - Load text documents into processing
-- [`tg-load-sample-documents`](tg-load-sample-documents.md) - Load sample documents for testing
+- [`tg-load-pdf`](tg-load-pdf) - Load PDF documents into processing
+- [`tg-load-text`](tg-load-text) - Load text documents into processing
+- [`tg-load-sample-documents`](tg-load-sample-documents) - Load sample documents for testing
 
 **Library Management:**
-- [`tg-add-library-document`](tg-add-library-document.md) - Add documents to library
-- [`tg-show-library-documents`](tg-show-library-documents.md) - List documents in library
-- [`tg-remove-library-document`](tg-remove-library-document.md) - Remove documents from library
-- [`tg-start-library-processing`](tg-start-library-processing.md) - Start processing library documents
-- [`tg-stop-library-processing`](tg-stop-library-processing.md) - Stop library document processing
-- [`tg-show-library-processing`](tg-show-library-processing.md) - Show library processing status
+- [`tg-add-library-document`](tg-add-library-document) - Add documents to library
+- [`tg-show-library-documents`](tg-show-library-documents) - List documents in library
+- [`tg-remove-library-document`](tg-remove-library-document) - Remove documents from library
+- [`tg-start-library-processing`](tg-start-library-processing) - Start processing library documents
+- [`tg-stop-library-processing`](tg-stop-library-processing) - Stop library document processing
+- [`tg-show-library-processing`](tg-show-library-processing) - Show library processing status
 
 **Document Embeddings:**
-- [`tg-load-doc-embeds`](tg-load-doc-embeds.md) - Load document embeddings
-- [`tg-save-doc-embeds`](tg-save-doc-embeds.md) - Save document embeddings
+- [`tg-load-doc-embeds`](tg-load-doc-embeds) - Load document embeddings
+- [`tg-save-doc-embeds`](tg-save-doc-embeds) - Save document embeddings
 
 ### AI Services & Agent Interaction
 
 **Query & Interaction:**
-- [`tg-invoke-agent`](tg-invoke-agent.md) - Interactive agent Q&A via WebSocket
-- [`tg-invoke-llm`](tg-invoke-llm.md) - Direct LLM text completion
-- [`tg-invoke-prompt`](tg-invoke-prompt.md) - Use configured prompt templates
-- [`tg-invoke-document-rag`](tg-invoke-document-rag.md) - Document-based RAG queries
-- [`tg-invoke-graph-rag`](tg-invoke-graph-rag.md) - Graph-based RAG queries
+- [`tg-invoke-agent`](tg-invoke-agent) - Interactive agent Q&A via WebSocket
+- [`tg-invoke-llm`](tg-invoke-llm) - Direct LLM text completion
+- [`tg-invoke-prompt`](tg-invoke-prompt) - Use configured prompt templates
+- [`tg-invoke-document-rag`](tg-invoke-document-rag) - Document-based RAG queries
+- [`tg-invoke-graph-rag`](tg-invoke-graph-rag) - Graph-based RAG queries
 
 **Tool & Prompt Management:**
-- [`tg-show-tools`](tg-show-tools.md) - List available agent tools
-- [`tg-set-prompt`](tg-set-prompt.md) - Configure prompt templates
-- [`tg-show-prompts`](tg-show-prompts.md) - List configured prompts
+- [`tg-show-tools`](tg-show-tools) - List available agent tools
+- [`tg-set-prompt`](tg-set-prompt) - Configure prompt templates
+- [`tg-show-prompts`](tg-show-prompts) - List configured prompts
 
 ### System Monitoring & Debugging
 
 **System Status:**
-- [`tg-show-processor-state`](tg-show-processor-state.md) - Show processing component states
+- [`tg-show-processor-state`](tg-show-processor-state) - Show processing component states
 
 **Debugging:**
-- [`tg-dump-msgpack`](tg-dump-msgpack.md) - Dump MessagePack data for debugging
+- [`tg-dump-msgpack`](tg-dump-msgpack) - Dump MessagePack data for debugging
 
 ## Quick Start Examples
 
@@ -176,6 +176,6 @@ All CLI commands provide:
 
 ## Related Documentation
 
-- [TrustGraph API Documentation](../apis/README.md)
-- [TrustGraph WebSocket Guide](../apis/websocket.md)
-- [TrustGraph Pulsar Guide](../apis/pulsar.md)
+- [TrustGraph API Documentation](../apis/README)
+- [TrustGraph WebSocket Guide](../apis/websocket)
+- [TrustGraph Pulsar Guide](../apis/pulsar)

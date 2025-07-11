@@ -528,14 +528,14 @@ Exception: Service temporarily unavailable
 
 ## Related Commands
 
-- [`tg-start-library-processing`](tg-start-library-processing.md) - Start document processing
-- [`tg-stop-library-processing`](tg-stop-library-processing.md) - Stop document processing
-- [`tg-show-library-documents`](tg-show-library-documents.md) - List library documents
-- [`tg-show-flows`](tg-show-flows.md) - List available flows
+- [`tg-start-library-processing`](tg-start-library-processing) - Start document processing
+- [`tg-stop-library-processing`](tg-stop-library-processing) - Stop document processing
+- [`tg-show-library-documents`](tg-show-library-documents) - List library documents
+- [`tg-show-flows`](tg-show-flows) - List available flows
 
 ## API Integration
 
-This command uses the [Library API](../apis/api-librarian.md) to retrieve processing record information.
+This command uses the [Library API](../apis/api-librarian) to retrieve processing record information.
 
 ## Best Practices
 

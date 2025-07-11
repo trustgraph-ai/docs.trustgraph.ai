@@ -118,11 +118,11 @@ Exception: Unauthorized
 
 ## Related Commands
 
-- [`tg-invoke-graph-rag`](tg-invoke-graph-rag.md) - Graph-based retrieval augmented generation
-- [`tg-invoke-document-rag`](tg-invoke-document-rag.md) - Document-based retrieval augmented generation
-- [`tg-invoke-llm`](tg-invoke-llm.md) - Direct LLM text completion
-- [`tg-show-tools`](tg-show-tools.md) - List available agent tools
-- [`tg-show-flows`](tg-show-flows.md) - List available flows
+- [`tg-invoke-graph-rag`](tg-invoke-graph-rag) - Graph-based retrieval augmented generation
+- [`tg-invoke-document-rag`](tg-invoke-document-rag) - Document-based retrieval augmented generation
+- [`tg-invoke-llm`](tg-invoke-llm) - Direct LLM text completion
+- [`tg-show-tools`](tg-show-tools) - List available agent tools
+- [`tg-show-flows`](tg-show-flows) - List available flows
 
 ## Technical Details
 
@@ -158,7 +158,7 @@ Messages are exchanged in JSON format:
 ```
 
 ### API Integration
-This command uses the [Agent API](../apis/api-agent.md) via WebSocket connection for real-time interaction.
+This command uses the [Agent API](../apis/api-agent) via WebSocket connection for real-time interaction.
 
 ## Use Cases
 

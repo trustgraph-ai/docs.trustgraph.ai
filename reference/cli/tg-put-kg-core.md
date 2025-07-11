@@ -198,15 +198,15 @@ tg-put-kg-core --id "new-core" -i exported.msgpack
 
 ## Related Commands
 
-- [`tg-get-kg-core`](tg-get-kg-core.md) - Retrieve knowledge core
-- [`tg-load-kg-core`](tg-load-kg-core.md) - Load knowledge core into flow
-- [`tg-show-kg-cores`](tg-show-kg-cores.md) - List available knowledge cores
-- [`tg-delete-kg-core`](tg-delete-kg-core.md) - Remove knowledge core
-- [`tg-dump-msgpack`](tg-dump-msgpack.md) - Debug MessagePack files
+- [`tg-get-kg-core`](tg-get-kg-core) - Retrieve knowledge core
+- [`tg-load-kg-core`](tg-load-kg-core) - Load knowledge core into flow
+- [`tg-show-kg-cores`](tg-show-kg-cores) - List available knowledge cores
+- [`tg-delete-kg-core`](tg-delete-kg-core) - Remove knowledge core
+- [`tg-dump-msgpack`](tg-dump-msgpack) - Debug MessagePack files
 
 ## API Integration
 
-This command uses the [Knowledge API](../apis/api-knowledge.md) via WebSocket connection with `put-kg-core` operations to store knowledge data.
+This command uses the [Knowledge API](../apis/api-knowledge) via WebSocket connection with `put-kg-core` operations to store knowledge data.
 
 ## Use Cases
 

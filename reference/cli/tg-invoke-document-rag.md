@@ -393,15 +393,15 @@ ask_question "What are the system requirements?" "spec-docs"
 
 ## Related Commands
 
-- [`tg-load-pdf`](tg-load-pdf.md) - Load PDF documents for RAG
-- [`tg-show-library-documents`](tg-show-library-documents.md) - List available documents
-- [`tg-invoke-prompt`](tg-invoke-prompt.md) - Direct prompt invocation without RAG
-- [`tg-start-flow`](tg-start-flow.md) - Start flows for document processing
-- [`tg-show-flows`](tg-show-flows.md) - List active flow instances
+- [`tg-load-pdf`](tg-load-pdf) - Load PDF documents for RAG
+- [`tg-show-library-documents`](tg-show-library-documents) - List available documents
+- [`tg-invoke-prompt`](tg-invoke-prompt) - Direct prompt invocation without RAG
+- [`tg-start-flow`](tg-start-flow) - Start flows for document processing
+- [`tg-show-flows`](tg-show-flows) - List active flow instances
 
 ## API Integration
 
-This command uses the [DocumentRAG API](../apis/api-document-rag.md) to perform retrieval-augmented generation using the document corpus.
+This command uses the [DocumentRAG API](../apis/api-document-rag) to perform retrieval-augmented generation using the document corpus.
 
 ## Best Practices
 

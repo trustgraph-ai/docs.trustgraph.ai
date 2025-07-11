@@ -130,7 +130,7 @@ Open-source architecture prevents vendor lock-in and enables customization.
 
 ## From Your First Steps
 
-When you followed the [First Steps](first-steps.md) guide, you experienced these concepts in action:
+When you followed the [First Steps](first-steps) guide, you experienced these concepts in action:
 
 - **Document Loading**: Your PDFs became entities and relationships in a knowledge graph
 - **Graph Visualization**: You saw how TrustGraph represents knowledge as interconnected data

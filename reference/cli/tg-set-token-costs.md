@@ -424,12 +424,12 @@ generate_cost_report
 
 ## Related Commands
 
-- [`tg-show-token-costs`](tg-show-token-costs.md) - Display current token costs
-- [`tg-show-config`](tg-show-config.md) - Show configuration settings (if available)
+- [`tg-show-token-costs`](tg-show-token-costs) - Display current token costs
+- [`tg-show-config`](tg-show-config) - Show configuration settings (if available)
 
 ## API Integration
 
-This command uses the [Config API](../apis/api-config.md) to store token cost configuration in TrustGraph's configuration system.
+This command uses the [Config API](../apis/api-config) to store token cost configuration in TrustGraph's configuration system.
 
 ## Best Practices
 

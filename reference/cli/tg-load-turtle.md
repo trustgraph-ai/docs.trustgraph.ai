@@ -460,10 +460,10 @@ split_turtle() {
 
 ## Related Commands
 
-- [`tg-triples-query`](tg-triples-query.md) - Query loaded triples
-- [`tg-graph-to-turtle`](tg-graph-to-turtle.md) - Export graph to Turtle format
-- [`tg-show-flows`](tg-show-flows.md) - Monitor processing flows
-- [`tg-load-pdf`](tg-load-pdf.md) - Load document content
+- [`tg-triples-query`](tg-triples-query) - Query loaded triples
+- [`tg-graph-to-turtle`](tg-graph-to-turtle) - Export graph to Turtle format
+- [`tg-show-flows`](tg-show-flows) - Monitor processing flows
+- [`tg-load-pdf`](tg-load-pdf) - Load document content
 
 ## API Integration
 

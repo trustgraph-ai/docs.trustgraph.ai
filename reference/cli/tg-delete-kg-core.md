@@ -172,14 +172,14 @@ tg-invoke-graph-rag -q "test query" -f remaining-flow
 
 ## Related Commands
 
-- [`tg-show-kg-cores`](tg-show-kg-cores.md) - List available knowledge cores
-- [`tg-get-kg-core`](tg-get-kg-core.md) - Export knowledge core for backup
-- [`tg-unload-kg-core`](tg-unload-kg-core.md) - Unload core from flows
-- [`tg-put-kg-core`](tg-put-kg-core.md) - Store new knowledge cores
+- [`tg-show-kg-cores`](tg-show-kg-cores) - List available knowledge cores
+- [`tg-get-kg-core`](tg-get-kg-core) - Export knowledge core for backup
+- [`tg-unload-kg-core`](tg-unload-kg-core) - Unload core from flows
+- [`tg-put-kg-core`](tg-put-kg-core) - Store new knowledge cores
 
 ## API Integration
 
-This command uses the [Knowledge API](../apis/api-knowledge.md) with the `delete-kg-core` operation to permanently remove knowledge cores.
+This command uses the [Knowledge API](../apis/api-knowledge) with the `delete-kg-core` operation to permanently remove knowledge cores.
 
 ## Use Cases
 

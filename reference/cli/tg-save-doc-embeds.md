@@ -567,9 +567,9 @@ export_analyze_pipeline() {
 
 ## Related Commands
 
-- [`tg-load-doc-embeds`](tg-load-doc-embeds.md) - Load document embeddings from files
-- [`tg-dump-msgpack`](tg-dump-msgpack.md) - Analyze MessagePack files
-- [`tg-show-flows`](tg-show-flows.md) - List available flows for monitoring
+- [`tg-load-doc-embeds`](tg-load-doc-embeds) - Load document embeddings from files
+- [`tg-dump-msgpack`](tg-dump-msgpack) - Analyze MessagePack files
+- [`tg-show-flows`](tg-show-flows) - List available flows for monitoring
 
 ## API Integration
 

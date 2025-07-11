@@ -486,9 +486,9 @@ tg-init-trustgraph \
 
 ## Related Commands
 
-- [`tg-init-pulsar-manager`](tg-init-pulsar-manager.md) - Initialize Pulsar Manager
-- [`tg-show-config`](tg-show-config.md) - Display current configuration
-- [`tg-set-prompt`](tg-set-prompt.md) - Configure individual prompts
+- [`tg-init-pulsar-manager`](tg-init-pulsar-manager) - Initialize Pulsar Manager
+- [`tg-show-config`](tg-show-config) - Display current configuration
+- [`tg-set-prompt`](tg-set-prompt) - Configure individual prompts
 
 ## Best Practices
 

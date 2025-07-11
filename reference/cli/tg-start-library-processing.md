@@ -515,14 +515,14 @@ monitor_batch "batch_proc_"
 
 ## Related Commands
 
-- [`tg-show-library-documents`](tg-show-library-documents.md) - List available documents
-- [`tg-stop-library-processing`](tg-stop-library-processing.md) - Stop processing jobs
-- [`tg-show-flows`](tg-show-flows.md) - Monitor processing flows
-- [`tg-invoke-document-rag`](tg-invoke-document-rag.md) - Query processed documents
+- [`tg-show-library-documents`](tg-show-library-documents) - List available documents
+- [`tg-stop-library-processing`](tg-stop-library-processing) - Stop processing jobs
+- [`tg-show-flows`](tg-show-flows) - Monitor processing flows
+- [`tg-invoke-document-rag`](tg-invoke-document-rag) - Query processed documents
 
 ## API Integration
 
-This command uses the [Library API](../apis/api-librarian.md) to initiate document processing workflows.
+This command uses the [Library API](../apis/api-librarian) to initiate document processing workflows.
 
 ## Best Practices
 

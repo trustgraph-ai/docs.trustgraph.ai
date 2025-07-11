@@ -452,14 +452,14 @@ Exception: Access denied
 
 ## Related Commands
 
-- [`tg-load-turtle`](tg-load-turtle.md) - Import Turtle files
-- [`tg-triples-query`](tg-triples-query.md) - Query graph triples
-- [`tg-show-flows`](tg-show-flows.md) - List available flows
-- [`tg-get-kg-core`](tg-get-kg-core.md) - Export knowledge cores
+- [`tg-load-turtle`](tg-load-turtle) - Import Turtle files
+- [`tg-triples-query`](tg-triples-query) - Query graph triples
+- [`tg-show-flows`](tg-show-flows) - List available flows
+- [`tg-get-kg-core`](tg-get-kg-core) - Export knowledge cores
 
 ## API Integration
 
-This command uses the [Triples Query API](../apis/api-triples-query.md) to retrieve graph data and convert it to Turtle format.
+This command uses the [Triples Query API](../apis/api-triples-query) to retrieve graph data and convert it to Turtle format.
 
 ## Best Practices
 

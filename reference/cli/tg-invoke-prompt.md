@@ -387,10 +387,10 @@ tg-invoke-prompt document \
 
 ## Related Commands
 
-- [`tg-show-prompts`](tg-show-prompts.md) - List available prompt templates
-- [`tg-set-prompt`](tg-set-prompt.md) - Create/update prompt templates
-- [`tg-invoke-document-rag`](tg-invoke-document-rag.md) - Document-based question answering
-- [`tg-show-flows`](tg-show-flows.md) - List available flow instances
+- [`tg-show-prompts`](tg-show-prompts) - List available prompt templates
+- [`tg-set-prompt`](tg-set-prompt) - Create/update prompt templates
+- [`tg-invoke-document-rag`](tg-invoke-document-rag) - Document-based question answering
+- [`tg-show-flows`](tg-show-flows) - List available flow instances
 
 ## API Integration
 

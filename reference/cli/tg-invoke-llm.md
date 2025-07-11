@@ -154,14 +154,14 @@ Exception: Invalid prompt format
 
 ## Related Commands
 
-- [`tg-invoke-agent`](tg-invoke-agent.md) - Interactive agent with tools and reasoning
-- [`tg-invoke-graph-rag`](tg-invoke-graph-rag.md) - Graph-based retrieval augmented generation
-- [`tg-invoke-document-rag`](tg-invoke-document-rag.md) - Document-based retrieval augmented generation
-- [`tg-invoke-prompt`](tg-invoke-prompt.md) - Use predefined prompt templates
+- [`tg-invoke-agent`](tg-invoke-agent) - Interactive agent with tools and reasoning
+- [`tg-invoke-graph-rag`](tg-invoke-graph-rag) - Graph-based retrieval augmented generation
+- [`tg-invoke-document-rag`](tg-invoke-document-rag) - Document-based retrieval augmented generation
+- [`tg-invoke-prompt`](tg-invoke-prompt) - Use predefined prompt templates
 
 ## API Integration
 
-This command uses the [Text Completion API](../apis/api-text-completion.md) to perform direct LLM inference with custom prompts.
+This command uses the [Text Completion API](../apis/api-text-completion) to perform direct LLM inference with custom prompts.
 
 ## Use Cases
 

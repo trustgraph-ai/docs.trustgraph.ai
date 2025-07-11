@@ -291,14 +291,14 @@ unload_all_knowledge "cleanup-flow"
 
 ## Related Commands
 
-- [`tg-load-kg-core`](tg-load-kg-core.md) - Load knowledge core into flow
-- [`tg-show-kg-cores`](tg-show-kg-cores.md) - List available knowledge cores
-- [`tg-show-graph`](tg-show-graph.md) - View currently loaded knowledge
-- [`tg-show-flows`](tg-show-flows.md) - List active flows
+- [`tg-load-kg-core`](tg-load-kg-core) - Load knowledge core into flow
+- [`tg-show-kg-cores`](tg-show-kg-cores) - List available knowledge cores
+- [`tg-show-graph`](tg-show-graph) - View currently loaded knowledge
+- [`tg-show-flows`](tg-show-flows) - List active flows
 
 ## API Integration
 
-This command uses the [Knowledge API](../apis/api-knowledge.md) with the `unload-kg-core` operation to remove knowledge from active flows.
+This command uses the [Knowledge API](../apis/api-knowledge) with the `unload-kg-core` operation to remove knowledge from active flows.
 
 ## Best Practices
 

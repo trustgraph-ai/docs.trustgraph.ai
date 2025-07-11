@@ -527,14 +527,14 @@ validate_sample_loading() {
 
 ## Related Commands
 
-- [`tg-show-library-documents`](tg-show-library-documents.md) - List loaded documents
-- [`tg-start-library-processing`](tg-start-library-processing.md) - Process loaded documents
-- [`tg-invoke-document-rag`](tg-invoke-document-rag.md) - Query processed documents
-- [`tg-load-pdf`](tg-load-pdf.md) - Load individual PDF documents
+- [`tg-show-library-documents`](tg-show-library-documents) - List loaded documents
+- [`tg-start-library-processing`](tg-start-library-processing) - Process loaded documents
+- [`tg-invoke-document-rag`](tg-invoke-document-rag) - Query processed documents
+- [`tg-load-pdf`](tg-load-pdf) - Load individual PDF documents
 
 ## API Integration
 
-This command uses the [Library API](../apis/api-librarian.md) to add sample documents to TrustGraph's document repository.
+This command uses the [Library API](../apis/api-librarian) to add sample documents to TrustGraph's document repository.
 
 ## Best Practices
 

@@ -437,15 +437,15 @@ Exception: User not found
 
 ## Related Commands
 
-- [`tg-add-library-document`](tg-add-library-document.md) - Add documents to library
-- [`tg-remove-library-document`](tg-remove-library-document.md) - Remove documents from library
-- [`tg-start-library-processing`](tg-start-library-processing.md) - Start document processing
-- [`tg-stop-library-processing`](tg-stop-library-processing.md) - Stop document processing
-- [`tg-invoke-document-rag`](tg-invoke-document-rag.md) - Query processed documents
+- [`tg-add-library-document`](tg-add-library-document) - Add documents to library
+- [`tg-remove-library-document`](tg-remove-library-document) - Remove documents from library
+- [`tg-start-library-processing`](tg-start-library-processing) - Start document processing
+- [`tg-stop-library-processing`](tg-stop-library-processing) - Stop document processing
+- [`tg-invoke-document-rag`](tg-invoke-document-rag) - Query processed documents
 
 ## API Integration
 
-This command uses the [Library API](../apis/api-librarian.md) to retrieve document metadata and listings.
+This command uses the [Library API](../apis/api-librarian) to retrieve document metadata and listings.
 
 ## Best Practices
 
