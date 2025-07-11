@@ -11,79 +11,15 @@ TrustGraph uses a modular container architecture where different containers prov
 
 ## Container Overview
 
-### trustgraph-base
-**Purpose**: Foundation container with basic building blocks, client APIs, and base classes.
-
-**Key Features**:
-- Core Python runtime (3.12)
-- Basic HTTP client capabilities (`aiohttp`)
-- Pulsar messaging system integration
-- Foundational libraries for other containers
-
-**Use Case**: Required as a base layer for other containers. Contains minimal dependencies focused on core messaging and HTTP capabilities.
-
-### trustgraph-flow
-**Purpose**: Main processing container containing the bulk of TrustGraph's capabilities.
-
-**Key Features**:
-- **Multi-provider AI integration**: OpenAI, Anthropic, Cohere, Mistral, Google Generative AI, Ollama
-- **LangChain ecosystem**: Complete text processing and splitting capabilities
-- **Database support**: Vector databases (Milvus), Graph databases (Neo4j, FalkorDB), Cassandra
-- **RDF/Semantic web**: Advanced graph processing capabilities
-- **Document processing**: Comprehensive text analysis and manipulation
-
-**Use Case**: Core container for most TrustGraph workflows. Deploy when you need full AI processing capabilities, document handling, or database integration.
-
-### trustgraph-mcp
-**Purpose**: Model Context Protocol (MCP) server functionality.
-
-**Key Features**:
-- MCP server implementation
-- WebSocket-based communication
-- Lightweight protocol handling
-
-**Use Case**: Deploy when you need MCP server capabilities for model context management and protocol-based communication.
-
-### trustgraph-hf
-**Purpose**: Hugging Face model processing with local ML inference.
-
-**Key Features**:
-- **PyTorch support**: CPU-optimized PyTorch runtime
-- **Hugging Face integration**: Transformers, sentence transformers, embeddings
-- **Local ML inference**: Run models without external API calls
-- **Pre-loaded models**: Common embedding models (all-MiniLM-L6-v2)
-
-**Use Case**: Deploy when you need local ML model inference, text embeddings, or want to avoid external API dependencies for certain AI tasks.
-
-### trustgraph-ocr
-**Purpose**: Optical Character Recognition and document processing.
-
-**Key Features**:
-- **Tesseract OCR**: Text extraction from images
-- **PDF processing**: Document analysis and content extraction (Poppler utilities)
-- **Document workflows**: Complete document processing pipeline
-
-**Use Case**: Deploy when you need to process scanned documents, extract text from images, or handle PDF document analysis.
-
-### trustgraph-bedrock
-**Purpose**: AWS Bedrock AI services integration.
-
-**Key Features**:
-- AWS Bedrock model access
-- Cloud-based AI inference
-- Lightweight AWS-specific integration
-
-**Use Case**: Deploy when using AWS Bedrock as your AI provider. Provides dedicated integration without the overhead of other AI providers.
-
-### trustgraph-vertexai
-**Purpose**: Google Vertex AI integration.
-
-**Key Features**:
-- Google Cloud Vertex AI model access
-- Cloud-based AI inference
-- Google AI Platform SDK integration
-
-**Use Case**: Deploy when using Google Vertex AI as your AI provider. Provides dedicated integration for Google's AI/ML platform.
+| Container | Purpose | Key Features | Use Case |
+|-----------|---------|--------------|----------|
+| **trustgraph-base** | Foundation container with basic building blocks, client APIs, and base classes | • Core Python runtime (3.12)<br>• Basic HTTP client capabilities (`aiohttp`)<br>• Pulsar messaging system integration<br>• Foundational libraries for other containers | Required as a base layer for other containers. Contains minimal dependencies focused on core messaging and HTTP capabilities. |
+| **trustgraph-flow** | Main processing container containing the bulk of TrustGraph's capabilities | • Multi-provider AI integration (OpenAI, Anthropic, Cohere, Mistral, Google Generative AI, Ollama)<br>• LangChain ecosystem with complete text processing<br>• Database support (Milvus, Neo4j, FalkorDB, Cassandra)<br>• RDF/Semantic web capabilities<br>• Document processing and analysis | Core container for most TrustGraph workflows. Deploy when you need full AI processing capabilities, document handling, or database integration. |
+| **trustgraph-mcp** | Model Context Protocol (MCP) server functionality | • MCP server implementation<br>• WebSocket-based communication<br>• Lightweight protocol handling | Deploy when you need MCP server capabilities for model context management and protocol-based communication. |
+| **trustgraph-hf** | Hugging Face model processing with local ML inference | • PyTorch support (CPU-optimized)<br>• Hugging Face integration (Transformers, sentence transformers, embeddings)<br>• Local ML inference without external API calls<br>• Pre-loaded models (all-MiniLM-L6-v2) | Deploy when you need local ML model inference, text embeddings, or want to avoid external API dependencies for certain AI tasks. |
+| **trustgraph-ocr** | Optical Character Recognition and document processing | • Tesseract OCR for text extraction from images<br>• PDF processing with Poppler utilities<br>• Complete document processing pipeline | Deploy when you need to process scanned documents, extract text from images, or handle PDF document analysis. |
+| **trustgraph-bedrock** | AWS Bedrock AI services integration | • AWS Bedrock model access<br>• Cloud-based AI inference<br>• Lightweight AWS-specific integration | Deploy when using AWS Bedrock as your AI provider. Provides dedicated integration without the overhead of other AI providers. |
+| **trustgraph-vertexai** | Google Vertex AI integration | • Google Cloud Vertex AI model access<br>• Cloud-based AI inference<br>• Google AI Platform SDK integration | Deploy when using Google Vertex AI as your AI provider. Provides dedicated integration for Google's AI/ML platform. |
 
 ## Architecture Principles
 
@@ -104,32 +40,31 @@ All containers share common patterns:
 ### Deployment Flexibility
 
 **Minimal Deployment**: 
-- `trustgraph-base` + `trustgraph-flow` for basic AI capabilities
-- Add `trustgraph-mcp` for protocol support
+- `trustgraph-base` as a base for extension
+- `trustgraph-flow` for the most common AI capabilities
+- `trustgraph-mcp` for MCP protocol suppport
 
 **Document Processing**:
-- Add `trustgraph-ocr` for document analysis workflows
+- Add `trustgraph-ocr` for document OCR with Tesseract
 
 **Local ML Processing**:
 - Add `trustgraph-hf` for local model inference without external APIs
 
 **Cloud AI Integration**:
 - Add `trustgraph-bedrock` for AWS Bedrock
-- Add `trustgraph-vertexai` for Google Vertex AI
-
-**Full Deployment**:
-- All containers for complete functionality across all supported platforms and capabilities
+- Add `trustgraph-vertexai` for Google Vertex AI (Google AIStudio is supported
+  in `trustgraph-flow`.
 
 ## Container Dependencies
 
 ```
 trustgraph-base (foundation)
-├── trustgraph-flow (main processing)
-├── trustgraph-mcp (protocol server)
-├── trustgraph-hf (local ML)
-├── trustgraph-ocr (document processing)
-├── trustgraph-bedrock (AWS AI)
-└── trustgraph-vertexai (Google AI)
+├── trustgraph-flow (most of the capability is here)
+├── trustgraph-hf (HuggingFace, local ML, transformers model)
+├── trustgraph-ocr (tesseract)
+├── trustgraph-bedrock (AWS Bedrock)
+└── trustgraph-vertexai (Google AI with VertexAI libraries)
+trustgraph-mcp (MCP protocol server)
 ```
 
 Most containers depend on `trustgraph-base` for core functionality, while specialized containers can be deployed independently based on your specific requirements.
