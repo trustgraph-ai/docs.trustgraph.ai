@@ -35,6 +35,13 @@ Pre-built service templates that extend FlowProcessor for common patterns. Best 
 - Consistent service patterns across your system
 - Built-in error handling and metrics
 
+### [Flow Specifications](flow-specifications.md)
+Declarative interfaces for defining how services integrate with flows. Best for:
+- Automatic message queue management
+- Type-safe service integration
+- Request/response client patterns
+- Dynamic flow reconfiguration
+
 ## Choosing the Right Base Class
 
 | Use Case | AsyncProcessor | FlowProcessor | Service Base Classes |
@@ -59,7 +66,7 @@ Pre-built service templates that extend FlowProcessor for common patterns. Best 
 
 2. **Implement the required methods**:
    - Service Base Classes: One core method (e.g., `generate_content`, `invoke_tool`)
-   - FlowProcessor: Message handlers and specifications
+   - FlowProcessor: Message handlers and flow specifications
    - AsyncProcessor: Consumers, producers, and lifecycle management
 
 3. **Configure your service**:
@@ -70,3 +77,10 @@ Pre-built service templates that extend FlowProcessor for common patterns. Best 
 4. **Create an entry point** for your service
 
 All base classes handle the underlying infrastructure including Pulsar messaging, configuration management, metrics collection, and error handling, allowing you to focus on your service's core logic.
+
+## Documentation Index
+
+- **[AsyncProcessor](async-processor.md)** - Base class for global services
+- **[FlowProcessor](flow-processor.md)** - Base class for flow-aware services  
+- **[Service Base Classes](service-base-classes)** - Pre-built service templates
+- **[Flow Specifications](flow-specifications)** - Declarative flow integration
