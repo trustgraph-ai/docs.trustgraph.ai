@@ -21,6 +21,6 @@ Join the TrustGraph community and contribute to the project.
 
 ## Getting Involved
 
-We welcome contributions! Start by reading our [Contributing Guidelines](contributing.md) and [Code of Conduct](code-of-conduct.md).
+We welcome contributions! Start by reading our [Contributing Guidelines](contributing) and [Code of Conduct](code-of-conduct).
 
 Coming soon - community resources and contribution guides!
