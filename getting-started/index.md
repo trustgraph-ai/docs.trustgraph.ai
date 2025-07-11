@@ -14,11 +14,11 @@ Welcome to TrustGraph! This section will help you get up and running quickly.
 
 1. **[Core Concepts](concepts)** - Understand key TrustGraph concepts
 2. **[First Steps](first-steps)** - Set up your first TrustGraph instance
-3. **[Installation](installation)** - Install TrustGraph on your system
+3. **[Installation](installation)** - Deploy TrustGraph in the environment of your choice
 
 ## What You'll Learn
 
-- How to install TrustGraph
+- How to deploy TrustGraph
 - Basic configuration and setup
 - Core concepts and terminology
 - Your first graph operations
