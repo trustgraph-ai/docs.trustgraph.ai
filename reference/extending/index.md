@@ -12,7 +12,7 @@ Learn how to build custom services and processors for TrustGraph.
 
 ## Base Classes
 
-TrustGraph provides two main base classes for building extension services:
+TrustGraph provides multiple levels of abstraction for building extension services:
 
 ### [AsyncProcessor](async-processor.md)
 For building global services that operate independently of flow management. Best for:
@@ -28,24 +28,45 @@ For building flow-aware services that integrate with TrustGraph's processing pip
 - Services that need dynamic reconfiguration
 - Services with multiple input/output streams
 
+### [Service Base Classes](service-base-classes.md)
+Pre-built service templates that extend FlowProcessor for common patterns. Best for:
+- Standard service types (LLM, embeddings, storage, query)
+- Rapid development with minimal boilerplate
+- Consistent service patterns across your system
+- Built-in error handling and metrics
+
 ## Choosing the Right Base Class
 
-| Use Case | AsyncProcessor | FlowProcessor |
-|----------|---------------|---------------|
-| Global services | ✓ | |
-| Flow-based processing | | ✓ |
-| Request/response patterns | ✓ | ✓ |
-| Multiple concurrent flows | | ✓ |
-| Dynamic flow configuration | | ✓ |
-| Simple message handling | ✓ | |
-| Complex pipeline integration | | ✓ |
+| Use Case | AsyncProcessor | FlowProcessor | Service Base Classes |
+|----------|---------------|---------------|---------------------|
+| Global services | ✓ | | |
+| Flow-based processing | | ✓ | ✓ |
+| Request/response patterns | ✓ | ✓ | ✓ |
+| Multiple concurrent flows | | ✓ | ✓ |
+| Dynamic flow configuration | | ✓ | ✓ |
+| Simple message handling | ✓ | | |
+| Complex pipeline integration | | ✓ | ✓ |
+| Standard service patterns | | | ✓ |
+| Minimal boilerplate | | | ✓ |
+| Built-in error handling | | | ✓ |
 
 ## Getting Started
 
-1. **Choose your base class** based on your service requirements
-2. **Implement the required methods** for message handling and lifecycle management
-3. **Register specifications** (for FlowProcessor) or set up consumers/producers (for AsyncProcessor)
-4. **Add command-line arguments** for configuration
-5. **Create an entry point** for your service
+1. **Choose your base class** based on your service requirements:
+   - **Service Base Classes**: For standard patterns (LLM, embeddings, storage, etc.)
+   - **FlowProcessor**: For custom flow-aware services
+   - **AsyncProcessor**: For global services outside the flow system
 
-Both base classes handle the underlying infrastructure including Pulsar messaging, configuration management, metrics collection, and error handling, allowing you to focus on your service's core logic.
+2. **Implement the required methods**:
+   - Service Base Classes: One core method (e.g., `generate_content`, `invoke_tool`)
+   - FlowProcessor: Message handlers and specifications
+   - AsyncProcessor: Consumers, producers, and lifecycle management
+
+3. **Configure your service**:
+   - Add command-line arguments for configuration
+   - Set up any required dependencies
+   - Configure concurrency if supported
+
+4. **Create an entry point** for your service
+
+All base classes handle the underlying infrastructure including Pulsar messaging, configuration management, metrics collection, and error handling, allowing you to focus on your service's core logic.
