@@ -25,5 +25,5 @@ Welcome to TrustGraph! This section will help you get up and running quickly.
 - Basic configuration and setup
 - First-hand experience of some basic usage
 
-Ready to begin? Start with [[Core Concepts](concepts)!
+Ready to begin? Start with [Core Concepts](concepts)!
 
