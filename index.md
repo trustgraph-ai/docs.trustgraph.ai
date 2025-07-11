@@ -37,9 +37,9 @@ Advanced configuration, performance tuning, and extensions.
 
 ## Getting Help
 
-- Check our [troubleshooting guides](deployment/troubleshooting.md)
-- Visit our [community support](community/support.md)
-- Review [common use cases](overview/use-cases.md)
+- Check our [troubleshooting guides](deployment/troubleshooting)
+- Visit our [community support](community/support)
+- Review [common use cases](overview/use-cases)
 
 Coming soon - comprehensive documentation for all TrustGraph features!
 
