@@ -1,3 +1,0 @@
-# This is TrustGraph
-
-This is *really* all of TrustGraph.

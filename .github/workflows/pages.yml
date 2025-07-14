@@ -45,6 +45,12 @@ jobs:
         run: bundle exec jekyll build --baseurl "${{ steps.pages.outputs.base_path }}"
         env:
           JEKYLL_ENV: production
+
+      - name: Generate LLM context files
+        run: |
+          pip install beautifulsoup4
+          python3 generate_llms_txt.py --site-dir _site --output-dir _site
+
       - name: Upload artifact
         # Automatically uploads an artifact from the './_site' directory by default
         uses: actions/upload-pages-artifact@v3

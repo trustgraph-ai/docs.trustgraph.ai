@@ -1,3 +1,0 @@
-# This is TrustGraph
-
-This is a test.
