@@ -83,3 +83,11 @@ callouts:
     title: Warning
     color: red
 
+# Exclude files and directories from Jekyll build
+exclude:
+  - generate_llms_txt.py
+  - Gemfile
+  - Gemfile.lock
+  - .github/
+  - README.md
+
