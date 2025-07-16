@@ -229,21 +229,21 @@ Add the following tool configurations:
 1. **Get Current Time**
    - Type: `MCP Tool`
    - Tool ID: `get_current_time`
-   - Name: `get_current_time`
+   - Name: `Get the current time`
    - Description: `Fetches the current time as an ISO format string`
    - Arguments: (leave empty)
 
 2. **Get Bank Balance**
    - Type: `MCP Tool`
    - Tool ID: `get_bank_balance`
-   - Name: `get_bank_balance`
+   - Name: `Get the user's current bank balance`
    - Description: `Fetches the bank balance, the value returned is in GBP sterling`
    - Arguments: (leave empty)
 
 3. **Get Tesla List Prices**
    - Type: `MCP Tool`
    - Tool ID: `get_tesla_list_prices`
-   - Name: `get_tesla_list_prices`
+   - Name: `Get tesla list prices`
    - Description: `Fetches the current Tesla vehicle price list. This contains information such as model, current price, and notes that are relevant`
    - Arguments: (leave empty)
 
@@ -254,7 +254,7 @@ If you loaded sample documents earlier, you can also add a knowledge query tool:
 - **Surveillance and Intelligence**
   - Type: `Knowledge query`
   - Tool ID: `surveillance-and-intelligence`
-  - Name: `surveillance-and-intelligence`
+  - Name: `Search the surveillance and intelligence knowledge base`
   - Description: `This tool has information about the topics of state surveillance and intelligence gathering. The question should be a natural language question.`
 
 ## Step 5: Test the Integration
