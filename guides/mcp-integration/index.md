@@ -191,7 +191,32 @@ The finished MCP tool list should appear as below:
   <img src="mcp-tool-list.png" alt="MCP tool configuration list">
 </a>
 
+### Alternative: Configure via CLI
+
+For automation or scripting, you can also configure MCP tools using the CLI:
+
+```bash
+# Configure the three MCP tools
+tg-set-mcp-tool --id get_current_time \
+  --tool-url "http://host.containers.internal:9870/mcp"
+
+tg-set-mcp-tool --id get_tesla_list_prices \
+  --tool-url "http://host.containers.internal:9870/mcp"
+
+tg-set-mcp-tool --id get_bank_balance \
+  --tool-url "http://host.containers.internal:9870/mcp"
+```
+
 ### Verify MCP Integration
+
+First, verify that your MCP tools are properly configured:
+
+```bash
+# List all configured MCP tools
+tg-show-mcp-tools
+```
+
+This should show your three configured MCP tools with their URLs and settings.
 
 Test that TrustGraph can communicate with your MCP server:
 
@@ -214,15 +239,24 @@ tg-invoke-mcp-tool -n get_tesla_list_prices
 tg-invoke-mcp-tool -n get_bank_balance
 ```
 
+If any tool isn't working, you can check the configuration and remove/reconfigure it:
+
+```bash
+# Remove a tool if needed
+tg-delete-mcp-tool --id get_current_time
+
+# Reconfigure it
+tg-set-mcp-tool --id get_current_time \
+  --tool-url "http://host.containers.internal:9870/mcp"
+```
+
 ## Step 4: Configure Agent Tools
 
-Now we'll make these MCP tools available to TrustGraph agents.
+Now we'll make these MCP tools available to TrustGraph agents. You can configure them via the web interface or CLI.
 
-### Access Agent Tools Configuration
+### Option A: Configure via Web Interface
 
 In the web interface, navigate to **"Agent Tools"**. You can delete the sample tools and add your MCP tools.
-
-### Add MCP Tools for Agents
 
 Add the following tool configurations:
 
@@ -247,15 +281,57 @@ Add the following tool configurations:
    - Description: `Fetches the current Tesla vehicle price list. This contains information such as model, current price, and notes that are relevant`
    - Arguments: (leave empty)
 
+### Option B: Configure via CLI
+
+Use the CLI to configure agent tools that reference your MCP tools:
+
+```bash
+# Configure agent tool for current time
+tg-set-tool --id get_current_time --name "Get the current time" \
+  --type mcp-tool --mcp-tool get_current_time \
+  --description "Fetches the current time as an ISO format string"
+
+# Configure agent tool for bank balance
+tg-set-tool --id get_bank_balance --name "Get the user's current bank balance" \
+  --type mcp-tool --mcp-tool get_bank_balance \
+  --description "Fetches the bank balance, the value returned is in GBP sterling"
+
+# Configure agent tool for Tesla prices
+tg-set-tool --id get_tesla_list_prices --name "Get tesla list prices" \
+  --type mcp-tool --mcp-tool get_tesla_list_prices \
+  --description "Fetches the current Tesla vehicle price list. This contains information such as model, current price, and notes that are relevant"
+```
+
 ### Optional: Add Knowledge Query Tool
 
 If you loaded sample documents earlier, you can also add a knowledge query tool:
 
+**Via Web Interface:**
 - **Surveillance and Intelligence**
   - Type: `Knowledge query`
   - Tool ID: `surveillance-and-intelligence`
   - Name: `Search the surveillance and intelligence knowledge base`
   - Description: `This tool has information about the topics of state surveillance and intelligence gathering. The question should be a natural language question.`
+
+**Via CLI:**
+```bash
+tg-set-tool --id surveillance-and-intelligence \
+  --name "Search the surveillance and intelligence knowledge base" \
+  --type knowledge-query --collection default \
+  --description "This tool has information about the topics of state surveillance and intelligence gathering. The question should be a natural language question." \
+  --argument query:string:"Natural language question about surveillance and intelligence"
+```
+
+### Verify Agent Tool Configuration
+
+Check that your agent tools are properly configured:
+
+```bash
+# List all configured agent tools
+tg-show-tools
+```
+
+This should show your MCP-based agent tools along with any knowledge query tools you configured.
 
 ## Step 5: Test the Integration
 
@@ -345,6 +421,135 @@ def calculate_savings_timeline(target_amount: float, monthly_savings: float) -> 
     }
 ```
 
+## CLI-Based Workflow Examples
+
+### Complete MCP Setup Script
+
+Create a script to automate the entire MCP setup process:
+
+```bash
+#!/bin/bash
+# setup-mcp-tools.sh
+
+echo "Setting up MCP tools for TrustGraph..."
+
+# Configure MCP tools (the underlying MCP service references)
+echo "Configuring MCP tool endpoints..."
+tg-set-mcp-tool --id get_current_time \
+  --tool-url "http://host.containers.internal:9870/mcp"
+
+tg-set-mcp-tool --id get_tesla_list_prices \
+  --tool-url "http://host.containers.internal:9870/mcp"
+
+tg-set-mcp-tool --id get_bank_balance \
+  --tool-url "http://host.containers.internal:9870/mcp"
+
+# Verify MCP tools are configured
+echo "Verifying MCP tool configuration..."
+tg-show-mcp-tools
+
+# Configure agent tools (the tools agents can use)
+echo "Configuring agent tools..."
+tg-set-tool --id get_current_time --name "Get the current time" \
+  --type mcp-tool --mcp-tool get_current_time \
+  --description "Fetches the current time as an ISO format string"
+
+tg-set-tool --id get_bank_balance --name "Get the user's current bank balance" \
+  --type mcp-tool --mcp-tool get_bank_balance \
+  --description "Fetches the bank balance, the value returned is in GBP sterling"
+
+tg-set-tool --id get_tesla_list_prices --name "Get tesla list prices" \
+  --type mcp-tool --mcp-tool get_tesla_list_prices \
+  --description "Fetches the current Tesla vehicle price list"
+
+# Verify agent tools are configured
+echo "Verifying agent tool configuration..."
+tg-show-tools
+
+# Test MCP connectivity
+echo "Testing MCP tool connectivity..."
+tg-invoke-mcp-tool -n get_current_time
+tg-invoke-mcp-tool -n get_bank_balance
+
+echo "MCP setup complete!"
+```
+
+### Environment-Specific Configuration
+
+Configure different MCP endpoints for different environments:
+
+```bash
+#!/bin/bash
+# configure-mcp-environment.sh
+
+ENVIRONMENT=${1:-development}
+
+case $ENVIRONMENT in
+  development)
+    MCP_BASE_URL="http://host.containers.internal:9870/mcp"
+    ;;
+  staging)
+    MCP_BASE_URL="http://staging-mcp.internal:9870/mcp"
+    ;;
+  production)
+    MCP_BASE_URL="https://mcp.production.com/mcp"
+    ;;
+  *)
+    echo "Unknown environment: $ENVIRONMENT"
+    exit 1
+    ;;
+esac
+
+echo "Configuring MCP tools for $ENVIRONMENT environment..."
+
+tg-set-mcp-tool --id get_current_time --tool-url "$MCP_BASE_URL"
+tg-set-mcp-tool --id get_tesla_list_prices --tool-url "$MCP_BASE_URL"
+tg-set-mcp-tool --id get_bank_balance --tool-url "$MCP_BASE_URL"
+
+echo "Configuration complete for $ENVIRONMENT environment"
+```
+
+### MCP Tool Health Check Script
+
+Monitor MCP tool health and availability:
+
+```bash
+#!/bin/bash
+# mcp-health-check.sh
+
+echo "=== MCP Tools Health Check ==="
+
+# Check MCP tool configurations
+echo "Checking MCP tool configurations..."
+if tg-show-mcp-tools > /dev/null 2>&1; then
+    echo "✓ MCP tools configured"
+    tool_count=$(tg-show-mcp-tools | grep -c "id.*|")
+    echo "  Found $tool_count MCP tools"
+else
+    echo "✗ No MCP tools configured"
+    exit 1
+fi
+
+# Test each MCP tool
+echo "Testing MCP tool connectivity..."
+mcp_tools=("get_current_time" "get_tesla_list_prices" "get_bank_balance")
+
+for tool in "${mcp_tools[@]}"; do
+    if tg-invoke-mcp-tool -n "$tool" > /dev/null 2>&1; then
+        echo "✓ $tool - responding"
+    else
+        echo "✗ $tool - not responding"
+    fi
+done
+
+# Check agent tool configurations
+echo "Checking agent tool configurations..."
+agent_tool_count=$(tg-show-tools | grep -c "mcp-tool")
+echo "  Found $agent_tool_count MCP-based agent tools"
+
+echo "Health check complete"
+```
+
 ## Best Practices
 
 ### MCP Server Development
@@ -355,12 +560,21 @@ def calculate_savings_timeline(target_amount: float, monthly_savings: float) -> 
 4. **Logging**: Implement logging for debugging and monitoring
 5. **Security**: Validate inputs and sanitize outputs
 
+### CLI-Based Configuration Management
+
+1. **Automation Scripts**: Use scripts to automate MCP setup and configuration
+2. **Environment Management**: Maintain separate configurations for different environments
+3. **Version Control**: Keep your configuration scripts in version control
+4. **Testing**: Test MCP tools individually before integrating with agents
+5. **Documentation**: Document your MCP tool configurations and their purposes
+
 ### Integration Configuration
 
 1. **Network Security**: Use proper firewall rules for MCP server ports
 2. **Authentication**: Consider adding authentication for production deployments
 3. **Performance**: Monitor tool execution times and optimize as needed
 4. **Versioning**: Version your MCP tools to manage updates
+5. **Health Monitoring**: Implement regular health checks for MCP services
 
 ### Tool Design
 
@@ -368,6 +582,7 @@ def calculate_savings_timeline(target_amount: float, monthly_savings: float) -> 
 2. **Idempotency**: Tools should produce consistent results for the same inputs
 3. **Descriptive Names**: Use clear, action-oriented tool names
 4. **Comprehensive Descriptions**: Help agents understand when to use each tool
+5. **Configuration Separation**: Keep MCP tool configurations separate from agent tool configurations
 
 ## Troubleshooting
 
@@ -391,14 +606,28 @@ def calculate_savings_timeline(target_amount: float, monthly_savings: float) -> 
 ### Debug Commands
 
 ```bash
-# List configured MCP tools
+# List configured MCP tools (the underlying MCP tool configurations)
+tg-show-mcp-tools
+
+# List configured agent tools (tools available to agents)
 tg-show-tools
 
-# Test individual MCP tool
-tg-invoke-mcp-tool -n <tool_name> -a '{"param": "value"}'
+# Test individual MCP tool directly
+tg-invoke-mcp-tool -n <tool_name> -P '{"param": "value"}'
+
+# Check specific MCP tool configuration
+tg-show-mcp-tools | grep -A 5 <tool_name>
 
 # Check agent configuration
 tg-show-config | grep -A 10 agent
+
+# Remove and reconfigure MCP tools if needed
+tg-delete-mcp-tool --id <tool_name>
+tg-set-mcp-tool --id <tool_name> --tool-url "http://host.containers.internal:9870/mcp"
+
+# Remove and reconfigure agent tools if needed
+tg-delete-tool --id <tool_name>
+tg-set-tool --id <tool_name> --name "Tool Name" --type mcp-tool --mcp-tool <tool_name> --description "Tool description"
 ```
 
 ## Next Steps
@@ -410,6 +639,19 @@ tg-show-config | grep -A 10 agent
 
 ## Further Reading
 
+### MCP and Tool CLI Documentation
+
+- [`tg-set-mcp-tool`](../../reference/cli/tg-set-mcp-tool) - Configure MCP tools
+- [`tg-show-mcp-tools`](../../reference/cli/tg-show-mcp-tools) - List MCP tool configurations
+- [`tg-delete-mcp-tool`](../../reference/cli/tg-delete-mcp-tool) - Remove MCP tool configurations
+- [`tg-invoke-mcp-tool`](../../reference/cli/tg-invoke-mcp-tool) - Test and execute MCP tools
+- [`tg-set-tool`](../../reference/cli/tg-set-tool) - Configure agent tools
+- [`tg-show-tools`](../../reference/cli/tg-show-tools) - List agent tool configurations
+- [`tg-delete-tool`](../../reference/cli/tg-delete-tool) - Remove agent tool configurations
+
+### Additional Resources
+
 - [MCP Protocol Specification](https://github.com/anthropics/mcp)
 - [TrustGraph Agent Documentation](../../reference/apis/api-agent)
+- [TrustGraph CLI Reference](../../reference/cli/)
 - [Advanced Agent Workflows](../../advanced/custom-algorithms)
