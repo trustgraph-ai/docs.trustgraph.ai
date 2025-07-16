@@ -14,15 +14,22 @@ tg-show-tools [OPTIONS]
 
 ## Description
 
-The `tg-show-tools` command displays the current agent tool configuration from TrustGraph. It retrieves and presents detailed information about all available tools that agents can use, including their descriptions, arguments, and parameter types.
+The `tg-show-tools` command displays the current agent tool configuration from TrustGraph. It retrieves and presents detailed information about all available tools that agents can use, including their types, descriptions, arguments, and parameter specifications.
+
+Supported tool types include:
+- **knowledge-query**: Tools that query knowledge bases  
+- **text-completion**: Tools for text generation
+- **mcp-tool**: References to MCP (Model Context Protocol) tools
+- **prompt**: Tools that execute prompt templates
 
 This command is useful for:
 - Understanding available agent tools and their capabilities
 - Debugging agent tool configuration issues
 - Documenting the current tool set
 - Verifying tool definitions and argument specifications
+- Reviewing MCP tool integrations and references
 
-The command queries the TrustGraph API to fetch the tool index and individual tool definitions, then presents them in a formatted table for easy reading.
+The command queries the TrustGraph API to fetch individual tool definitions from the 'tool' configuration group, then presents them in a formatted table for easy reading.
 
 ## Options
 
@@ -101,6 +108,10 @@ For each tool, the output includes:
 - **id**: Unique identifier for the tool
 - **name**: Human-readable name of the tool
 - **description**: Detailed description of what the tool does
+- **type**: Tool type (knowledge-query, text-completion, mcp-tool, prompt)
+- **mcp-tool**: (For mcp-tool type) ID of the referenced MCP tool configuration
+- **collection**: (For knowledge-query type) Knowledge collection to query
+- **template**: (For prompt type) Prompt template ID to use
 - **arg N**: Arguments the tool accepts, with name, type, and description
 
 ## Advanced Usage
@@ -277,9 +288,12 @@ tg-show-tools > updated_tools.txt
 
 ## Related Commands
 
+- [`tg-set-tool`](tg-set-tool) - Configure agent tools
+- [`tg-delete-tool`](tg-delete-tool) - Remove agent tool configurations
+- [`tg-show-mcp-tools`](tg-show-mcp-tools) - Display MCP tool configurations
+- [`tg-set-mcp-tool`](tg-set-mcp-tool) - Configure MCP tools
 - [`tg-show-config`](tg-show-config) - Show TrustGraph configuration
 - [`tg-show-prompts`](tg-show-prompts) - Display available prompts
-- [`tg-show-flows`](tg-show-flows) - Show active flows
 - [`tg-invoke-agent`](tg-invoke-agent) - Invoke agent with tools
 
 ## See Also

@@ -105,8 +105,18 @@ Most CLI commands support these common options:
 - [`tg-invoke-document-rag`](tg-invoke-document-rag) - Document-based RAG queries
 - [`tg-invoke-graph-rag`](tg-invoke-graph-rag) - Graph-based RAG queries
 
-**Tool & Prompt Management:**
+**Agent Tool Management:**
+- [`tg-set-tool`](tg-set-tool) - Configure agent tools (knowledge-query, text-completion, mcp-tool, prompt)
 - [`tg-show-tools`](tg-show-tools) - List available agent tools
+- [`tg-delete-tool`](tg-delete-tool) - Remove agent tool configurations
+
+**MCP Tool Management:**
+- [`tg-set-mcp-tool`](tg-set-mcp-tool) - Configure MCP (Model Context Protocol) tools
+- [`tg-show-mcp-tools`](tg-show-mcp-tools) - List MCP tool configurations
+- [`tg-delete-mcp-tool`](tg-delete-mcp-tool) - Remove MCP tool configurations
+- [`tg-invoke-mcp-tool`](tg-invoke-mcp-tool) - Test and execute MCP tools directly
+
+**Prompt Management:**
 - [`tg-set-prompt`](tg-set-prompt) - Configure prompt templates
 - [`tg-show-prompts`](tg-show-prompts) - List configured prompts
 
