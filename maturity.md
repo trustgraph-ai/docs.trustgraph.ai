@@ -115,41 +115,45 @@ The following table lists TrustGraph repositories and their testing facilities:
 
 <table>
     <tr>
-        <th rowspan="2">Repository</th>
-        <th colspan="3">Regime</th>
-        <th rowspan="2">Results</th>
+        <th>Repository</th>
+        <th>Regime</th>
+        <th>Results</th>
     </tr>
     <tr>
-        <th>Unit</th>
-        <th>Integration</th>
-        <th>Operations</th>
-    </tr>
-    <tr>
-        <td><a href="https://github.com/trustgraph-ai/trustgraph">trustgraph</a><br/>core system</td>
-        <td style="text-align: center;">✅</td>
-        <td style="text-align: center;">✅</td>
-        <td style="text-align: center;">❌</td>
+        <td><a href="https://github.com/trustgraph-ai/trustgraph">trustgraph</a><br/>testing that the core system functionality behaves as expected and complies with contracts</td>
+        <td>
+            ✅ unit<br/>
+            ✅ integration<br/>
+            ❌ scale/load
+        </td>
         <td><a href="https://github.com/trustgraph-ai/trustgraph/actions/workflows/pull-request.yaml">pipeline</a></td>
     </tr>
     <tr>
-        <td><a href="https://github.com/trustgraph-ai/trustgraph-templates">trustgraph-templates</a><br/>deployment configurations</td>
-        <td style="text-align: center;">✅</td>
-        <td style="text-align: center;">✅</td>
-        <td style="text-align: center;">❌</td>
+        <td><a href="https://github.com/trustgraph-ai/trustgraph-templates">trustgraph-templates</a><br/>testing that deployment configurations build correctly and accurately</td>
+        </td>
+        <td>
+            ✅ unit<br/>
+            ✅ integration<br/>
+            ❌ scale/load
+        </td>
         <td><a href="https://github.com/trustgraph-ai/trustgraph-templates/actions/workflows/pull-request.yaml">pipeline</a></td>
     </tr>
     <tr>
         <td><a href="https://github.com/trustgraph-ai/simple-config-ui">config UI</a></td>
-        <td style="text-align: center;">❌</td>
-        <td style="text-align: center;">❌</td>
-        <td style="text-align: center;">❌</td>
+        <td>
+            ❌ unit<br/>
+            ❌ integration<br/>
+            ❌ scale/load
+        </td>
         <td>&nbsp;</td>
     </tr>
     <tr>
-        <td><a href="https://github.com/trustgraph-ai/pulumi-trustgraph-scaleway">Scaleway</a><br/>Automated deployment package</td>
-        <td style="text-align: center;">✅</td>
-        <td style="text-align: center;">❌</td>
-        <td style="text-align: center;">❌</td>
+        <td><a href="https://github.com/trustgraph-ai/pulumi-trustgraph-scaleway">Scaleway</a><br/>testing that expected resources are deployed as expected</td>
+        <td>
+            ✅ unit<br/>
+            ❌ integration<br/>
+            ❌ scale/load
+        </td>
         <td><a href="https://github.com/trustgraph-ai/pulumi-trustgraph-scaleway/actions/workflows/pull-request.yaml">pipeline</a></td>
     </tr>
 </table>
