@@ -115,29 +115,42 @@ The following table lists TrustGraph repositories and their testing facilities:
 
 <table>
     <tr>
-        <th>Repository</th>
-        <th>Purpose</th>
-        <th>Test Facilities</th>
+        <th rowspan="2">Repository</th>
+        <th colspan="3">Regime</th>
+        <th rowspan="2">Results</th>
     </tr>
     <tr>
-        <td><a href="https://github.com/trustgraph-ai/trustgraph">trustgraph</a></td>
-        <td>Unit, integration, contract tests on the core TrustGraph platform to assure compliance with expected behaviour and detect quality regression.</td>
-        <td><a href="https://github.com/trustgraph-ai/trustgraph/actions/workflows/pull-request.yaml">pull requests pipeline</a></td>
+        <th>Unit</th>
+        <th>Integration</th>
+        <th>Operations</th>
     </tr>
     <tr>
-        <td><a href="https://github.com/trustgraph-ai/trustgraph-templates">trustgraph-templates</a></td>
-        <td>Unit and template generation tests on the template generation to assure expected behaviour in a number of configuration scenarios and to ensure continued successful operation of the configuration generation</td>
-        <td><a href="https://github.com/trustgraph-ai/trustgraph-templates/actions/workflows/pull-request.yaml">pull requests pipeline</a></td>
+        <td><a href="https://github.com/trustgraph-ai/trustgraph">trustgraph</a><br/>core system</td>
+        <td style="text-align: center;">✅</td>
+        <td style="text-align: center;">✅</td>
+        <td style="text-align: center;">❌</td>
+        <td><a href="https://github.com/trustgraph-ai/trustgraph/actions/workflows/pull-request.yaml">pipeline</a></td>
     </tr>
     <tr>
-        <td><a href="https://github.com/trustgraph-ai/simple-config-ui">simple config UI</a></td>
-        <td>No tests currently</td>
-        <td>-</td>
+        <td><a href="https://github.com/trustgraph-ai/trustgraph-templates">trustgraph-templates</a><br/>deployment configurations</td>
+        <td style="text-align: center;">✅</td>
+        <td style="text-align: center;">✅</td>
+        <td style="text-align: center;">❌</td>
+        <td><a href="https://github.com/trustgraph-ai/trustgraph-templates/actions/workflows/pull-request.yaml">pipeline</a></td>
     </tr>
     <tr>
-        <td><a href="https://github.com/trustgraph-ai/pulumi-trustgraph-scaleway">Scaleway deployment</a></td>
-        <td>Unit testing the Pulumi deployment code to assure it uses the configuration correctly and deploys expected resources</td>
-        <td><a href="https://github.com/trustgraph-ai/pulumi-trustgraph-scaleway/actions/workflows/pull-request.yaml">pull requests pipeline</a></td>
+        <td><a href="https://github.com/trustgraph-ai/simple-config-ui">config UI</a></td>
+        <td style="text-align: center;">❌</td>
+        <td style="text-align: center;">❌</td>
+        <td style="text-align: center;">❌</td>
+        <td>&nbsp;</td>
+    </tr>
+    <tr>
+        <td><a href="https://github.com/trustgraph-ai/pulumi-trustgraph-scaleway">Scaleway</a><br/>Automated deployment package</td>
+        <td style="text-align: center;">✅</td>
+        <td style="text-align: center;">❌</td>
+        <td style="text-align: center;">❌</td>
+        <td><a href="https://github.com/trustgraph-ai/pulumi-trustgraph-scaleway/actions/workflows/pull-request.yaml">pipeline</a></td>
     </tr>
 </table>
 
