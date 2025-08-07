@@ -50,14 +50,14 @@ Request:
         },
         "triples": [
             {
-                "s": {"value": "Person1", "is_uri": true},
-                "p": {"value": "hasName", "is_uri": true},
-                "o": {"value": "John Doe", "is_uri": false}
+                "s": {"v": "Person1", "e": true},
+                "p": {"v": "hasName", "e": true},
+                "o": {"v": "John Doe", "e": false}
             },
             {
-                "s": {"value": "Person1", "is_uri": true},
-                "p": {"value": "worksAt", "is_uri": true},
-                "o": {"value": "Company1", "is_uri": true}
+                "s": {"v": "Person1", "e": true},
+                "p": {"v": "worksAt", "e": true},
+                "o": {"v": "Company1", "e": true}
             }
         ]
     },
@@ -69,7 +69,7 @@ Request:
         },
         "entities": [
             {
-                "entity": {"value": "Person1", "is_uri": true},
+                "entity": {"v": "Person1", "e": true},
                 "vectors": [[0.1, 0.2, 0.3], [0.4, 0.5, 0.6]]
             }
         ]
@@ -103,9 +103,9 @@ Response:
         },
         "triples": [
             {
-                "s": {"value": "Person1", "is_uri": true},
-                "p": {"value": "hasName", "is_uri": true},
-                "o": {"value": "John Doe", "is_uri": false}
+                "s": {"v": "Person1", "e": true},
+                "p": {"v": "hasName", "e": true},
+                "o": {"v": "John Doe", "e": false}
             }
         ]
     },
@@ -117,7 +117,7 @@ Response:
         },
         "entities": [
             {
-                "entity": {"value": "Person1", "is_uri": true},
+                "entity": {"v": "Person1", "e": true},
                 "vectors": [[0.1, 0.2, 0.3], [0.4, 0.5, 0.6]]
             }
         ]

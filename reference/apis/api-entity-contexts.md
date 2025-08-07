@@ -42,9 +42,9 @@ descriptions, definitions, or explanatory text in knowledge graphs.
         "collection": "research",
         "metadata": [
             {
-                "s": {"value": "source-doc", "is_uri": true},
-                "p": {"value": "dc:title", "is_uri": true},
-                "o": {"value": "Research Paper", "is_uri": false}
+                "s": {"v": "source-doc", "e": true},
+                "p": {"v": "dc:title", "e": true},
+                "o": {"v": "Research Paper", "e": false}
             }
         ]
     },
@@ -92,9 +92,9 @@ The export endpoint streams entity contexts data in real-time. Each message cont
         "collection": "research",
         "metadata": [
             {
-                "s": {"value": "source-doc", "is_uri": true},
-                "p": {"value": "dc:title", "is_uri": true},
-                "o": {"value": "Research Paper", "is_uri": false}
+                "s": {"v": "source-doc", "e": true},
+                "p": {"v": "dc:title", "e": true},
+                "o": {"v": "Research Paper", "e": false}
             }
         ]
     },

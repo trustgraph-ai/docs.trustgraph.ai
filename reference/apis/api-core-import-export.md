@@ -53,9 +53,9 @@ The import stream contains MessagePack-encoded tuples with type indicators:
     },
     "t": [  # triples array
         {
-            "s": {"value": "subject", "is_uri": true},
-            "p": {"value": "predicate", "is_uri": true}, 
-            "o": {"value": "object", "is_uri": false}
+            "s": {"v": "subject", "e": true},
+            "p": {"v": "predicate", "e": true}, 
+            "o": {"v": "object", "e": false}
         }
     ]
 })
@@ -72,7 +72,7 @@ The import stream contains MessagePack-encoded tuples with type indicators:
     },
     "e": [  # entities array
         {
-            "e": {"value": "entity", "is_uri": true},
+            "e": {"v": "entity", "e": true},
             "v": [[0.1, 0.2, 0.3]]  # vectors
         }
     ]
@@ -174,15 +174,15 @@ def import_knowledge_core(core_id, user, triples_data, embeddings_data, token):
 # Usage
 triples = [
     {
-        "s": {"value": "Person1", "is_uri": True},
-        "p": {"value": "hasName", "is_uri": True},
-        "o": {"value": "John Doe", "is_uri": False}
+        "s": {"v": "Person1", "e": True},
+        "p": {"v": "hasName", "e": True},
+        "o": {"v": "John Doe", "e": False}
     }
 ]
 
 embeddings = [
     {
-        "e": {"value": "Person1", "is_uri": True},
+        "e": {"v": "Person1", "e": True},
         "v": [[0.1, 0.2, 0.3, 0.4]]
     }
 ]
@@ -258,9 +258,9 @@ Each message is a tuple: `(type_indicator, data_object)`
 
 ```python
 {
-    "s": {"value": "subject", "is_uri": boolean},
-    "p": {"value": "predicate", "is_uri": boolean},
-    "o": {"value": "object", "is_uri": boolean}
+    "s": {"v": "subject", "e": boolean},
+    "p": {"v": "predicate", "e": boolean},
+    "o": {"v": "object", "e": boolean}
 }
 ```
 
@@ -268,7 +268,7 @@ Each message is a tuple: `(type_indicator, data_object)`
 
 ```python
 {
-    "e": {"value": "entity", "is_uri": boolean},
+    "e": {"v": "entity", "e": boolean},
     "v": [[float, float, ...]]  # Array of vectors
 }
 ```

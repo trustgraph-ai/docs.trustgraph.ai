@@ -52,9 +52,9 @@ Request:
         "tags": ["research", "ai", "machine-learning"],
         "metadata": [
             {
-                "subject": "doc-123",
-                "predicate": "dc:creator",
-                "object": "Dr. Smith"
+                "s": {"v": "doc-123", "e": true},
+                "p": {"v": "dc:creator", "e": true},
+                "o": {"v": "Dr. Smith", "e": false}
             }
         ]
     },
@@ -91,9 +91,9 @@ Response:
         "tags": ["research", "ai", "machine-learning"],
         "metadata": [
             {
-                "subject": "doc-123",
-                "predicate": "dc:creator",
-                "object": "Dr. Smith"
+                "s": {"v": "doc-123", "e": true},
+                "p": {"v": "dc:creator", "e": true},
+                "o": {"v": "Dr. Smith", "e": false}
             }
         ]
     }
