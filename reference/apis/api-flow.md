@@ -16,17 +16,17 @@ complex data processing pipelines.
 
 The request contains the following fields:
 - `operation`: The operation to perform (see operations below)
-- `class_name`: Flow class name (for class operations and start-flow)
-- `class_definition`: Flow class definition JSON (for put-class)
+- `class-name`: Flow class name (for class operations and start-flow)
+- `class-definition`: Flow class definition JSON (for put-class)
 - `description`: Flow description (for start-flow)
-- `flow_id`: Flow instance ID (for flow instance operations)
+- `flow-id`: Flow instance ID (for flow instance operations)
 
 ### Response
 
 The response contains the following fields:
-- `class_names`: Array of flow class names (returned by list-classes)
-- `flow_ids`: Array of active flow IDs (returned by list-flows)
-- `class_definition`: Flow class definition JSON (returned by get-class)
+- `class-names`: Array of flow class names (returned by list-classes)
+- `flow-ids`: Array of active flow IDs (returned by list-flows)
+- `class-definition`: Flow class definition JSON (returned by get-class)
 - `flow`: Flow instance JSON (returned by get-flow)
 - `description`: Flow description (returned by get-flow)
 - `error`: Error information if operation fails
@@ -47,7 +47,7 @@ Request:
 Response:
 ```json
 {
-    "class_names": ["pdf-processor", "text-analyzer", "knowledge-extractor"]
+    "class-names": ["pdf-processor", "text-analyzer", "knowledge-extractor"]
 }
 ```
 
@@ -57,14 +57,14 @@ Request:
 ```json
 {
     "operation": "get-class",
-    "class_name": "pdf-processor"
+    "class-name": "pdf-processor"
 }
 ```
 
 Response:
 ```json
 {
-    "class_definition": "{\"interfaces\": {\"text-completion\": {\"request\": \"persistent://tg/request/text-completion\", \"response\": \"persistent://tg/response/text-completion\"}}, \"description\": \"PDF processing workflow\"}"
+    "class-definition": "{\"interfaces\": {\"text-completion\": {\"request\": \"persistent://tg/request/text-completion\", \"response\": \"persistent://tg/response/text-completion\"}}, \"description\": \"PDF processing workflow\"}"
 }
 ```
 
@@ -74,8 +74,8 @@ Request:
 ```json
 {
     "operation": "put-class",
-    "class_name": "pdf-processor",
-    "class_definition": "{\"interfaces\": {\"text-completion\": {\"request\": \"persistent://tg/request/text-completion\", \"response\": \"persistent://tg/response/text-completion\"}}, \"description\": \"PDF processing workflow\"}"
+    "class-name": "pdf-processor",
+    "class-definition": "{\"interfaces\": {\"text-completion\": {\"request\": \"persistent://tg/request/text-completion\", \"response\": \"persistent://tg/response/text-completion\"}}, \"description\": \"PDF processing workflow\"}"
 }
 ```
 
@@ -90,7 +90,7 @@ Request:
 ```json
 {
     "operation": "delete-class",
-    "class_name": "pdf-processor"
+    "class-name": "pdf-processor"
 }
 ```
 
@@ -113,7 +113,7 @@ Request:
 Response:
 ```json
 {
-    "flow_ids": ["flow-123", "flow-456", "flow-789"]
+    "flow-ids": ["flow-123", "flow-456", "flow-789"]
 }
 ```
 
@@ -123,7 +123,7 @@ Request:
 ```json
 {
     "operation": "get-flow",
-    "flow_id": "flow-123"
+    "flow-id": "flow-123"
 }
 ```
 
@@ -141,8 +141,8 @@ Request:
 ```json
 {
     "operation": "start-flow",
-    "class_name": "pdf-processor",
-    "flow_id": "flow-123",
+    "class-name": "pdf-processor",
+    "flow-id": "flow-123",
     "description": "Processing document batch 1"
 }
 ```
@@ -158,7 +158,7 @@ Request:
 ```json
 {
     "operation": "stop-flow",
-    "flow_id": "flow-123"
+    "flow-id": "flow-123"
 }
 ```
 
@@ -192,7 +192,7 @@ Response:
 {
     "id": "unique-request-id",
     "response": {
-        "class_names": ["pdf-processor", "text-analyzer"]
+        "class-names": ["pdf-processor", "text-analyzer"]
     },
     "complete": true
 }

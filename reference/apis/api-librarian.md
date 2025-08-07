@@ -16,11 +16,11 @@ Cassandra for metadata) with multi-user support.
 
 The request contains the following fields:
 - `operation`: The operation to perform (see operations below)
-- `document_id`: Document identifier (for document operations)
-- `document_metadata`: Document metadata object (for add/update operations)
+- `document-id`: Document identifier (for document operations)
+- `document-metadata`: Document metadata object (for add/update operations)
 - `content`: Document content as base64-encoded bytes (for add operations)
-- `processing_id`: Processing job identifier (for processing operations)
-- `processing_metadata`: Processing metadata object (for add-processing)
+- `processing-id`: Processing job identifier (for processing operations)
+- `processing-metadata`: Processing metadata object (for add-processing)
 - `user`: User identifier (required for most operations)
 - `collection`: Collection filter (optional for list operations)
 - `criteria`: Query criteria array (for filtering operations)
@@ -29,10 +29,10 @@ The request contains the following fields:
 
 The response contains the following fields:
 - `error`: Error information if operation fails
-- `document_metadata`: Single document metadata (for get operations)
+- `document-metadata`: Single document metadata (for get operations)
 - `content`: Document content as base64-encoded bytes (for get-content)
-- `document_metadatas`: Array of document metadata (for list operations)
-- `processing_metadatas`: Array of processing metadata (for list-processing)
+- `document-metadatas`: Array of document metadata (for list operations)
+- `processing-metadatas`: Array of processing metadata (for list-processing)
 
 ## Document Operations
 
@@ -42,7 +42,7 @@ Request:
 ```json
 {
     "operation": "add-document",
-    "document_metadata": {
+    "document-metadata": {
         "id": "doc-123",
         "time": 1640995200000,
         "kind": "application/pdf",
@@ -73,7 +73,7 @@ Request:
 ```json
 {
     "operation": "get-document-metadata",
-    "document_id": "doc-123",
+    "document-id": "doc-123",
     "user": "alice"
 }
 ```
@@ -81,7 +81,7 @@ Request:
 Response:
 ```json
 {
-    "document_metadata": {
+    "document-metadata": {
         "id": "doc-123",
         "time": 1640995200000,
         "kind": "application/pdf",
@@ -106,7 +106,7 @@ Request:
 ```json
 {
     "operation": "get-document-content",
-    "document_id": "doc-123",
+    "document-id": "doc-123",
     "user": "alice"
 }
 ```
@@ -132,7 +132,7 @@ Request:
 Response:
 ```json
 {
-    "document_metadatas": [
+    "document-metadatas": [
         {
             "id": "doc-123",
             "time": 1640995200000,
@@ -161,7 +161,7 @@ Request:
 ```json
 {
     "operation": "update-document",
-    "document_metadata": {
+    "document-metadata": {
         "id": "doc-123",
         "title": "Updated Research Paper",
         "comments": "Updated findings and conclusions",
@@ -182,7 +182,7 @@ Request:
 ```json
 {
     "operation": "remove-document",
-    "document_id": "doc-123",
+    "document-id": "doc-123",
     "user": "alice"
 }
 ```
@@ -200,9 +200,9 @@ Request:
 ```json
 {
     "operation": "add-processing",
-    "processing_metadata": {
+    "processing-metadata": {
         "id": "proc-456",
-        "document_id": "doc-123",
+        "document-id": "doc-123",
         "time": 1640995400000,
         "flow": "pdf-extraction",
         "user": "alice",
@@ -231,10 +231,10 @@ Request:
 Response:
 ```json
 {
-    "processing_metadatas": [
+    "processing-metadatas": [
         {
             "id": "proc-456",
-            "document_id": "doc-123",
+            "document-id": "doc-123",
             "time": 1640995400000,
             "flow": "pdf-extraction",
             "user": "alice",
@@ -251,7 +251,7 @@ Request:
 ```json
 {
     "operation": "remove-processing",
-    "processing_id": "proc-456",
+    "processing-id": "proc-456",
     "user": "alice"
 }
 ```
@@ -287,7 +287,7 @@ Response:
 {
     "id": "unique-request-id",
     "response": {
-        "document_metadatas": [...]
+        "document-metadatas": [...]
     },
     "complete": true
 }

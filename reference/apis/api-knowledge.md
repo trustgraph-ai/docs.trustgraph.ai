@@ -21,7 +21,7 @@ The request contains the following fields:
 - `flow`: Flow identifier (for load operations)
 - `collection`: Collection identifier (for load operations)
 - `triples`: RDF triples data (for put operations)
-- `graph_embeddings`: Graph embeddings data (for put operations)
+- `graph-embeddings`: Graph embeddings data (for put operations)
 
 ### Response
 
@@ -30,7 +30,7 @@ The response contains the following fields:
 - `ids`: Array of knowledge core IDs (returned by list operation)
 - `eos`: End of stream indicator for streaming responses
 - `triples`: RDF triples data (returned by get operation)
-- `graph_embeddings`: Graph embeddings data (returned by get operation)
+- `graph-embeddings`: Graph embeddings data (returned by get operation)
 
 ## Operations
 
@@ -61,7 +61,7 @@ Request:
             }
         ]
     },
-    "graph_embeddings": {
+    "graph-embeddings": {
         "metadata": {
             "id": "core-123",
             "user": "alice",
@@ -109,7 +109,7 @@ Response:
             }
         ]
     },
-    "graph_embeddings": {
+    "graph-embeddings": {
         "metadata": {
             "id": "core-123",
             "user": "alice",
