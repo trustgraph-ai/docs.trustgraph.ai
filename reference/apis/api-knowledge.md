@@ -50,14 +50,14 @@ Request:
         },
         "triples": [
             {
-                "s": {"v": "Person1", "e": true},
-                "p": {"v": "hasName", "e": true},
+                "s": {"v": "http://example.com/persons/Person1", "e": true},
+                "p": {"v": "http://schema.org/name", "e": true},
                 "o": {"v": "John Doe", "e": false}
             },
             {
-                "s": {"v": "Person1", "e": true},
-                "p": {"v": "worksAt", "e": true},
-                "o": {"v": "Company1", "e": true}
+                "s": {"v": "http://example.com/persons/Person1", "e": true},
+                "p": {"v": "http://schema.org/worksFor", "e": true},
+                "o": {"v": "http://example.com/companies/Company1", "e": true}
             }
         ]
     },
@@ -69,7 +69,7 @@ Request:
         },
         "entities": [
             {
-                "entity": {"v": "Person1", "e": true},
+                "entity": {"v": "http://example.com/persons/Person1", "e": true},
                 "vectors": [[0.1, 0.2, 0.3], [0.4, 0.5, 0.6]]
             }
         ]
@@ -103,8 +103,8 @@ Response:
         },
         "triples": [
             {
-                "s": {"v": "Person1", "e": true},
-                "p": {"v": "hasName", "e": true},
+                "s": {"v": "http://example.com/persons/Person1", "e": true},
+                "p": {"v": "http://schema.org/name", "e": true},
                 "o": {"v": "John Doe", "e": false}
             }
         ]
@@ -117,7 +117,7 @@ Response:
         },
         "entities": [
             {
-                "entity": {"v": "Person1", "e": true},
+                "entity": {"v": "http://example.com/persons/Person1", "e": true},
                 "vectors": [[0.1, 0.2, 0.3], [0.4, 0.5, 0.6]]
             }
         ]

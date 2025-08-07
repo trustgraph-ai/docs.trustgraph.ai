@@ -42,8 +42,8 @@ descriptions, definitions, or explanatory text in knowledge graphs.
         "collection": "research",
         "metadata": [
             {
-                "s": {"v": "source-doc", "e": true},
-                "p": {"v": "dc:title", "e": true},
+                "s": {"v": "http://example.com/documents/source-doc", "e": true},
+                "p": {"v": "http://purl.org/dc/terms/title", "e": true},
                 "o": {"v": "Research Paper", "e": false}
             }
         ]
@@ -92,8 +92,8 @@ The export endpoint streams entity contexts data in real-time. Each message cont
         "collection": "research",
         "metadata": [
             {
-                "s": {"v": "source-doc", "e": true},
-                "p": {"v": "dc:title", "e": true},
+                "s": {"v": "http://example.com/documents/source-doc", "e": true},
+                "p": {"v": "http://purl.org/dc/terms/title", "e": true},
                 "o": {"v": "Research Paper", "e": false}
             }
         ]

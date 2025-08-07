@@ -52,8 +52,8 @@ Request:
         "tags": ["research", "ai", "machine-learning"],
         "metadata": [
             {
-                "s": {"v": "doc-123", "e": true},
-                "p": {"v": "dc:creator", "e": true},
+                "s": {"v": "http://example.com/documents/doc-123", "e": true},
+                "p": {"v": "http://purl.org/dc/terms/creator", "e": true},
                 "o": {"v": "Dr. Smith", "e": false}
             }
         ]
@@ -91,8 +91,8 @@ Response:
         "tags": ["research", "ai", "machine-learning"],
         "metadata": [
             {
-                "s": {"v": "doc-123", "e": true},
-                "p": {"v": "dc:creator", "e": true},
+                "s": {"v": "http://example.com/documents/doc-123", "e": true},
+                "p": {"v": "http://purl.org/dc/terms/creator", "e": true},
                 "o": {"v": "Dr. Smith", "e": false}
             }
         ]

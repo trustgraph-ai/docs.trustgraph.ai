@@ -47,8 +47,8 @@ operations and request/response patterns.
         "collection": "research",
         "metadata": [
             {
-                "s": {"v": "doc-123", "e": true},
-                "p": {"v": "dc:title", "e": true},
+                "s": {"v": "http://example.com/documents/doc-123", "e": true},
+                "p": {"v": "http://purl.org/dc/terms/title", "e": true},
                 "o": {"v": "Research Paper", "e": false}
             }
         ]
@@ -90,8 +90,8 @@ The export endpoint streams document embeddings data in real-time. Each message 
         "collection": "research",
         "metadata": [
             {
-                "s": {"v": "doc-123", "e": true},
-                "p": {"v": "dc:title", "e": true},
+                "s": {"v": "http://example.com/documents/doc-123", "e": true},
+                "p": {"v": "http://purl.org/dc/terms/title", "e": true},
                 "o": {"v": "Research Paper", "e": false}
             }
         ]

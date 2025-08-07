@@ -53,8 +53,8 @@ The import stream contains MessagePack-encoded tuples with type indicators:
     },
     "t": [  # triples array
         {
-            "s": {"v": "subject", "e": true},
-            "p": {"v": "predicate", "e": true}, 
+            "s": {"v": "http://example.com/subject", "e": true},
+            "p": {"v": "http://example.com/predicate", "e": true}, 
             "o": {"v": "object", "e": false}
         }
     ]
@@ -72,7 +72,7 @@ The import stream contains MessagePack-encoded tuples with type indicators:
     },
     "e": [  # entities array
         {
-            "e": {"v": "entity", "e": true},
+            "e": {"v": "http://example.com/entity", "e": true},
             "v": [[0.1, 0.2, 0.3]]  # vectors
         }
     ]
@@ -174,15 +174,15 @@ def import_knowledge_core(core_id, user, triples_data, embeddings_data, token):
 # Usage
 triples = [
     {
-        "s": {"v": "Person1", "e": True},
-        "p": {"v": "hasName", "e": True},
+        "s": {"v": "http://example.com/persons/Person1", "e": True},
+        "p": {"v": "http://schema.org/name", "e": True},
         "o": {"v": "John Doe", "e": False}
     }
 ]
 
 embeddings = [
     {
-        "e": {"v": "Person1", "e": True},
+        "e": {"v": "http://example.com/persons/Person1", "e": True},
         "v": [[0.1, 0.2, 0.3, 0.4]]
     }
 ]
@@ -258,9 +258,9 @@ Each message is a tuple: `(type_indicator, data_object)`
 
 ```python
 {
-    "s": {"v": "subject", "e": boolean},
-    "p": {"v": "predicate", "e": boolean},
-    "o": {"v": "object", "e": boolean}
+    "s": {"v": "http://example.com/subject", "e": boolean},
+    "p": {"v": "http://example.com/predicate", "e": boolean},
+    "o": {"v": "literal_value_or_uri", "e": boolean}
 }
 ```
 
@@ -268,7 +268,7 @@ Each message is a tuple: `(type_indicator, data_object)`
 
 ```python
 {
-    "e": {"v": "entity", "e": boolean},
+    "e": {"v": "http://example.com/entity", "e": boolean},
     "v": [[float, float, ...]]  # Array of vectors
 }
 ```
