@@ -90,6 +90,54 @@ be seen as 'global' - they are not dependent on a flow to be running.
 Knowledge, Librarian, Config and Flow APIs fall into the latter
 category.
 
+## API Conventions
+
+### Field Naming
+
+TrustGraph APIs consistently use **kebab-case** for field names in JSON payloads. This applies to all REST and Websocket APIs.
+
+Examples:
+- `document-metadata` (not `document_metadata` or `documentMetadata`)
+- `flow-id` (not `flow_id` or `flowId`)
+- `class-name` (not `class_name` or `className`)
+
+### RDF Triple Representation
+
+Knowledge graphs in TrustGraph use RDF triples to represent edges/relationships. In the APIs, triples are represented with a specific JSON structure:
+
+```json
+{
+    "s": {"v": "http://example.com/persons/Person1", "e": true},
+    "p": {"v": "http://schema.org/name", "e": true},
+    "o": {"v": "John Doe", "e": false}
+}
+```
+
+Where:
+- **`s`**: Subject - the entity the statement is about
+- **`p`**: Predicate - the property or relationship
+- **`o`**: Object - the value or target entity
+
+Each component has two fields:
+- **`v`**: The value (must be a full URI when `e` is true)
+- **`e`**: Boolean indicating if this is an entity/URI (true) or literal value (false)
+
+### Value Types
+
+When `e: true`:
+- The `v` field must contain a full URI (e.g., `http://example.com/entity`)
+- Prefixed shortcuts like `dc:title` are not supported - use full URIs like `http://purl.org/dc/terms/title`
+
+When `e: false`:
+- The `v` field contains a literal value (string, number, etc.)
+- Examples: "John Doe", "42", "2024-01-01"
+
+### Operation Naming
+
+Most APIs use lowercase operation names, often with hyphens for multi-word operations:
+- Simple operations: `get`, `put`, `list`, `delete`
+- Compound operations: `add-document`, `get-kg-core`, `list-processing`
+
 ## See also
 
 - [TrustGraph websocket overview](websocket)
