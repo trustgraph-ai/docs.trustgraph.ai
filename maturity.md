@@ -89,7 +89,11 @@ The following table lists TrustGraph features and their current maturity status:
     </tr>
     <tr>
         <td><a href="https://github.com/trustgraph-ai/pulumi-trustgraph-scaleway">Scaleway</a><br/>Kubernetes on Scaleway</td>
-        <td style="background-color: #6d4e0c; color: #fff4d6;">⚠️ Pre-production - Unit testing, no integration or scale testing</td>
+        <td style="background-color: #6d4e0c; color: #fff4d6;">⚠️ Pre-production - Integration testing, no scale testing</td>
+    </tr>
+    <tr>
+        <td><a href="https://github.com/trustgraph-ai/pulumi-trustgraph-ovhcloud">OVHcloud</a><br/>Kubernetes on OVHcloud</td>
+        <td style="background-color: #6d4e0c; color: #fff4d6;">⚠️ Pre-production - Integration testing, no scale testing</td>
     </tr>
     <tr>
         <td><a href="https://github.com/trustgraph-ai/pulumi-trustgraph-aks">Azure</a><br/>AKS Kubernetes on Azure</td>
@@ -151,10 +155,19 @@ The following table lists TrustGraph repositories and their testing facilities:
         <td><a href="https://github.com/trustgraph-ai/pulumi-trustgraph-scaleway">Scaleway</a><br/>testing that expected resources are deployed as expected</td>
         <td>
             ✅ unit<br/>
-            ❌ integration<br/>
+            ✅ integration<br/>
             ❌ scale/load
         </td>
         <td><a href="https://github.com/trustgraph-ai/pulumi-trustgraph-scaleway/actions/workflows/pull-request.yaml">pipeline</a></td>
+    </tr>
+    <tr>
+        <td><a href="https://github.com/trustgraph-ai/pulumi-trustgraph-ovhcloud">OVHcloud</a><br/>testing that expected resources are deployed as expected</td>
+        <td>
+            ✅ unit<br/>
+            ✅ integration<br/>
+            ❌ scale/load
+        </td>
+        <td><a href="https://github.com/trustgraph-ai/pulumi-trustgraph-ovhcloud/actions/workflows/pull-request.yaml">pipeline</a></td>
     </tr>
 </table>
 
