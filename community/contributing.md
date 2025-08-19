@@ -26,5 +26,5 @@ For detailed information about the development workflow, including:
 - Working with AI assistants during development
 - Best practices for modular development
 
-Please see the [Developer Guide](developer.md).
+Please see the [Developer Guide](developer).
 
