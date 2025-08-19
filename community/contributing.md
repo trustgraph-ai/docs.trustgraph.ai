@@ -18,3 +18,13 @@ If you are happy to proceed with this agreement you can create a
 pull-request.  The pull-request will stall until you automatically sign
 the contributor agreement.
 
+## Development Process
+
+For detailed information about the development workflow, including:
+- Git branching strategy and release process
+- Testing environment setup
+- Working with AI assistants during development
+- Best practices for modular development
+
+Please see the [Developer Guide](developer.md).
+
