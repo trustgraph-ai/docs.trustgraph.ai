@@ -195,6 +195,20 @@ The finished MCP tool list should appear as below:
 
 For automation or scripting, you can also configure MCP tools using the CLI:
 
+For Docker:
+```bash
+# Configure the three MCP tools
+tg-set-mcp-tool --id get_current_time \
+  --tool-url "http://host.docker.internal:9870/mcp"
+
+tg-set-mcp-tool --id get_tesla_list_prices \
+  --tool-url "http://host.docker.internal:9870/mcp"
+
+tg-set-mcp-tool --id get_bank_balance \
+  --tool-url "http://host.docker.internal:9870/mcp"
+```
+
+For Podman:
 ```bash
 # Configure the three MCP tools
 tg-set-mcp-tool --id get_current_time \
