@@ -260,24 +260,24 @@ In the web interface, navigate to **"Agent Tools"**. You can delete the sample t
 
 Add the following tool configurations:
 
-1. **Get Current Time**
+1. **get_current_time**
    - Type: `MCP Tool`
    - Tool ID: `get_current_time`
-   - Name: `Get the current time`
+   - Name: `get_current_time`
    - Description: `Fetches the current time as an ISO format string`
    - Arguments: (leave empty)
 
-2. **Get Bank Balance**
+2. **get_bank_balance**
    - Type: `MCP Tool`
    - Tool ID: `get_bank_balance`
-   - Name: `Get the user's current bank balance`
-   - Description: `Fetches the bank balance, the value returned is in GBP sterling`
+   - Name: `get_bank_balance`
+   - Description: `Fetches the user's bank balance, the value returned is in GBP sterling`
    - Arguments: (leave empty)
 
-3. **Get Tesla List Prices**
+3. **get_tesla_list_prices**
    - Type: `MCP Tool`
    - Tool ID: `get_tesla_list_prices`
-   - Name: `Get tesla list prices`
+   - Name: `get_tesla_list_prices`
    - Description: `Fetches the current Tesla vehicle price list. This contains information such as model, current price, and notes that are relevant`
    - Arguments: (leave empty)
 
@@ -287,17 +287,20 @@ Use the CLI to configure agent tools that reference your MCP tools:
 
 ```bash
 # Configure agent tool for current time
-tg-set-tool --id get_current_time --name "Get the current time" \
+tg-set-tool --id get_current_time \
+  --name get_current_time \
   --type mcp-tool --mcp-tool get_current_time \
   --description "Fetches the current time as an ISO format string"
 
 # Configure agent tool for bank balance
-tg-set-tool --id get_bank_balance --name "Get the user's current bank balance" \
+tg-set-tool --id get_bank_balance \
+  --name get_bank_balance \
   --type mcp-tool --mcp-tool get_bank_balance \
   --description "Fetches the bank balance, the value returned is in GBP sterling"
 
 # Configure agent tool for Tesla prices
-tg-set-tool --id get_tesla_list_prices --name "Get tesla list prices" \
+tg-set-tool --id get_tesla_list_prices \
+  --name get_tesla_list_prices \
   --type mcp-tool --mcp-tool get_tesla_list_prices \
   --description "Fetches the current Tesla vehicle price list. This contains information such as model, current price, and notes that are relevant"
 ```
@@ -310,13 +313,13 @@ If you loaded sample documents earlier, you can also add a knowledge query tool:
 - **Surveillance and Intelligence**
   - Type: `Knowledge query`
   - Tool ID: `surveillance-and-intelligence`
-  - Name: `Search the surveillance and intelligence knowledge base`
+  - Name: `search_surveillance_intelligence_kb`
   - Description: `This tool has information about the topics of state surveillance and intelligence gathering. The question should be a natural language question.`
 
 **Via CLI:**
 ```bash
 tg-set-tool --id surveillance-and-intelligence \
-  --name "Search the surveillance and intelligence knowledge base" \
+  --name "search_surveillance_intelligence_kb" \
   --type knowledge-query --collection default \
   --description "This tool has information about the topics of state surveillance and intelligence gathering. The question should be a natural language question." \
   --argument query:string:"Natural language question about surveillance and intelligence"
