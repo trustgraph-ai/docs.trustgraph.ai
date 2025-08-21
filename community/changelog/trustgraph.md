@@ -1,11 +1,55 @@
 ---
-title: Changelog
+title: Changelog - TrustGraph
 layout: default
+nav_order: 1
 parent: Community
 grand_parent: TrustGraph Documentation
 ---
 
 # Changelog
+
+## v1.2.0
+
+### New Features
+- **MCP Tool Arguments Support** (#462): Added support for Model Context Protocol (MCP) tool arguments, including agent support and additional tests
+- **Anthropic Support for VertexAI** (#458): Added Anthropic model support for Google Vertex AI platform
+- **Knowledge Load Utility CLI** (#456): New command-line utility for loading knowledge into the system
+- **Structured Data MVP** (#452): Initial implementation of structured data handling with:
+  - New schemas and architecture principles
+  - Object extractor functionality
+  - Cassandra object storage support
+- **Knowledge Extraction via Agent Framework** (#439): 
+  - Implemented KG extraction agent (kg-extract-agent)
+  - Using ReAct framework (agent-manager-react)
+  - Refactored ReAct manager to use traditional ReAct messages
+
+### Improvements
+- **Agent Tool Coverage** (#460): Increased ReAct tool coverage with multi-step tool invocation and reasoning tests
+- **Schema Structure Refactor** (#451): Major refactoring of schema structure for better organization
+- **Logging Strategy** (#444): Implemented comprehensive logging strategy, converting all print() statements to proper logging invocations
+- **Build System Modernization** (#440): Migrated from setup.py to pyproject.toml for modern package infrastructure
+
+### Bug Fixes
+- **Agent Tool Resilience** (#461): 
+  - Fixed incorrect tool initialization in agent service
+  - Made Action parsing more resilient by handling quotation marks
+- **Missing Anthropic Import** (#459): Fixed missing import for Anthropic functionality
+- **Token Chunker API** (#454, #455): Fixed broken API invocation in token chunker
+- **Librarian Collection Validation** (#453): Added validation for librarian collections
+- **Mistral OCR** (#448, #450): 
+  - Fixed Mistral OCR to use current API
+  - Corrected Mistral OCR identifier to standard pdf-decoder
+- **Logging Startup Issues** (#445, #446, #447): Resolved multiple logging startup problems
+
+### Infrastructure
+- **Build Dependencies** (#441, #442): Added missing build dependencies
+- **Template Addition** (#463): Added new template support
+- **Python Dependencies**: Updated Python dependencies to version 1.2
+
+### Testing
+- **PDF Decoder Tests**: Added comprehensive tests for PDF decoder functionality
+- **MCP Arguments Tests**: Added test coverage for MCP tool arguments
+- **Multi-step Reasoning Tests**: New tests for multi-step tool invocation scenarios
 
 ## v1.1 (In Development)
 ### New Features
