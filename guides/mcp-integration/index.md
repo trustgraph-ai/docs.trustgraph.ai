@@ -327,13 +327,13 @@ If you loaded sample documents earlier, you can also add a knowledge query tool:
 - **Surveillance and Intelligence**
   - Type: `Knowledge query`
   - Tool ID: `surveillance-and-intelligence`
-  - Name: `search_surveillance_intelligence_kb`
+  - Name: `search_surveillance_intelligence`
   - Description: `This tool has information about the topics of state surveillance and intelligence gathering. The question should be a natural language question.`
 
 **Via CLI:**
 ```bash
 tg-set-tool --id surveillance-and-intelligence \
-  --name "search_surveillance_intelligence_kb" \
+  --name "search_surveillance_intelligence" \
   --type knowledge-query --collection default \
   --description "This tool has information about the topics of state surveillance and intelligence gathering. The question should be a natural language question." \
   --argument query:string:"Natural language question about surveillance and intelligence"
@@ -453,13 +453,13 @@ echo "Setting up MCP tools for TrustGraph..."
 # Configure MCP tools (the underlying MCP service references)
 echo "Configuring MCP tool endpoints..."
 tg-set-mcp-tool --id get_current_time \
-  --tool-url "http://host.containers.internal:9870/mcp"
+  --tool-url "http://host.docker.internal:9870/mcp"
 
 tg-set-mcp-tool --id get_tesla_list_prices \
-  --tool-url "http://host.containers.internal:9870/mcp"
+  --tool-url "http://host.docker.internal:9870/mcp"
 
 tg-set-mcp-tool --id get_bank_balance \
-  --tool-url "http://host.containers.internal:9870/mcp"
+  --tool-url "http://host.docker.internal:9870/mcp"
 
 # Verify MCP tools are configured
 echo "Verifying MCP tool configuration..."
@@ -562,7 +562,7 @@ done
 # Check agent tool configurations
 echo "Checking agent tool configurations..."
 agent_tool_count=$(tg-show-tools | grep -c "mcp-tool")
-echo "  Found $agent_tool_count MCP-based agent tools"
+echo "  Found $agent_tool_count agent tools"
 
 echo "Health check complete"
 ```
