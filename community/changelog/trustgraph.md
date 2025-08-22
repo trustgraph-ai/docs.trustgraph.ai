@@ -8,7 +8,7 @@ grand_parent: TrustGraph Documentation
 
 # Changelog
 
-## v1.2.0
+## v1.2.17
 
 ### New Features
 - **MCP Tool Arguments Support** (#462): Added support for Model Context Protocol (MCP) tool arguments, including agent support and additional tests
@@ -51,7 +51,7 @@ grand_parent: TrustGraph Documentation
 - **MCP Arguments Tests**: Added test coverage for MCP tool arguments
 - **Multi-step Reasoning Tests**: New tests for multi-step tool invocation scenarios
 
-## v1.1 (In Development)
+## v1.1.10
 ### New Features
 - **MCP (Model Context Protocol) Support**: Added MCP server and client support (#419, #425, #426, #427, #428)
 - **React Integration**: Added React call MCP functionality (#428)
@@ -62,7 +62,7 @@ grand_parent: TrustGraph Documentation
 
 ---
 
-## v1.0
+## v1.0.22
 ### Major Features
 - **Flow API & Management**: Complete flow configuration and management system (#345, #346, #356, #357, #358)
 - **Knowledge Management**: Knowledge service, library management, and core CLI tools (#367, #368, #369, #372)
