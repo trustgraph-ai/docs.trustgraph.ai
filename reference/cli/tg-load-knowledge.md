@@ -1,22 +1,22 @@
 ---
-title: tg-load-turtle
+title: tg-load-knowledge
 layout: default
 parent: CLI
 ---
 
-# tg-load-turtle
+# tg-load-knowledge
 
-Loads RDF triples from Turtle files into the TrustGraph knowledge graph.
+Loads RDF triples from RDF Turtle files into the TrustGraph knowledge graph.
 
 ## Synopsis
 
 ```bash
-tg-load-turtle -i DOCUMENT_ID [options] file1.ttl [file2.ttl ...]
+tg-load-knowledge -i DOCUMENT_ID [options] file1.ttl [file2.ttl ...]
 ```
 
 ## Description
 
-The `tg-load-turtle` command loads RDF triples from Turtle (TTL) format files into TrustGraph's knowledge graph. It parses Turtle files, converts them to TrustGraph's internal triple format, and imports them using WebSocket connections for efficient batch processing.
+The `tg-load-knowledge` command loads RDF triples from Turtle (TTL) format files into TrustGraph's knowledge graph. It parses Turtle files, converts them to TrustGraph's internal triple format, and imports them using WebSocket connections for efficient batch processing.
 
 The command supports retry logic and automatic reconnection to handle network interruptions during large data imports.
 
@@ -38,12 +38,12 @@ The command supports retry logic and automatic reconnection to handle network in
 
 ### Basic Turtle Loading
 ```bash
-tg-load-turtle -i "doc123" knowledge-base.ttl
+tg-load-knowledge -i "doc123" knowledge-base.ttl
 ```
 
 ### Multiple Files
 ```bash
-tg-load-turtle -i "ontology-v1" \
+tg-load-knowledge -i "ontology-v1" \
   schema.ttl \
   instances.ttl \
   relationships.ttl
@@ -51,7 +51,7 @@ tg-load-turtle -i "ontology-v1" \
 
 ### Custom Flow and Collection
 ```bash
-tg-load-turtle \
+tg-load-knowledge \
   -i "research-data" \
   -f "knowledge-import-flow" \
   -U "research-team" \
@@ -61,7 +61,7 @@ tg-load-turtle \
 
 ### Load with Custom API URL
 ```bash
-tg-load-turtle \
+tg-load-knowledge \
   -i "production-data" \
   -u "ws://production:8088/" \
   production-ontology.ttl
@@ -137,12 +137,12 @@ The loader converts Turtle triples to TrustGraph format:
 ### Ontology Import
 ```bash
 # Load domain ontology
-tg-load-turtle -i "healthcare-ontology" \
+tg-load-knowledge -i "healthcare-ontology" \
   -C "ontologies" \
   healthcare-schema.ttl
 
 # Load instance data
-tg-load-turtle -i "patient-data" \
+tg-load-knowledge -i "patient-data" \
   -C "healthcare-data" \
   patient-records.ttl
 ```
@@ -150,7 +150,7 @@ tg-load-turtle -i "patient-data" \
 ### Knowledge Base Migration
 ```bash
 # Migrate from external knowledge base
-tg-load-turtle -i "migration-$(date +%Y%m%d)" \
+tg-load-knowledge -i "migration-$(date +%Y%m%d)" \
   -C "migrated-data" \
   exported-knowledge.ttl
 ```
@@ -160,7 +160,7 @@ tg-load-turtle -i "migration-$(date +%Y%m%d)" \
 # Load research datasets
 datasets=("publications" "authors" "citations")
 for dataset in "${datasets[@]}"; do
-  tg-load-turtle -i "research-$dataset" \
+  tg-load-knowledge -i "research-$dataset" \
     -C "research-data" \
     "$dataset.ttl"
 done
@@ -169,9 +169,9 @@ done
 ### Structured Data Import
 ```bash
 # Load structured data from various sources
-tg-load-turtle -i "products" -C "catalog" product-catalog.ttl
-tg-load-turtle -i "customers" -C "crm" customer-data.ttl
-tg-load-turtle -i "orders" -C "transactions" order-history.ttl
+tg-load-knowledge -i "products" -C "catalog" product-catalog.ttl
+tg-load-knowledge -i "customers" -C "crm" customer-data.ttl
+tg-load-knowledge -i "orders" -C "transactions" order-history.ttl
 ```
 
 ## Advanced Usage
@@ -183,7 +183,7 @@ for ttl in *.ttl; do
   doc_id=$(basename "$ttl" .ttl)
   echo "Loading $ttl as document $doc_id..."
   
-  tg-load-turtle -i "$doc_id" \
+  tg-load-knowledge -i "$doc_id" \
     -C "bulk-import-$(date +%Y%m%d)" \
     "$ttl"
 done
@@ -197,7 +197,7 @@ for ttl in "${ttl_files[@]}"; do
   (
     doc_id=$(basename "$ttl" .ttl)
     echo "Loading $ttl in background..."
-    tg-load-turtle -i "parallel-$doc_id" \
+    tg-load-knowledge -i "parallel-$doc_id" \
       -C "parallel-import" \
       "$ttl"
   ) &
@@ -215,11 +215,11 @@ for ttl in *.ttl; do
   
   if [ $size -lt 10485760 ]; then  # < 10MB
     echo "Processing small file: $ttl"
-    tg-load-turtle -i "$doc_id" -C "small-files" "$ttl"
+    tg-load-knowledge -i "$doc_id" -C "small-files" "$ttl"
   else
     echo "Processing large file: $ttl"
     # Use dedicated collection for large files
-    tg-load-turtle -i "$doc_id" -C "large-files" "$ttl"
+    tg-load-knowledge -i "$doc_id" -C "large-files" "$ttl"
   fi
 done
 ```
@@ -243,7 +243,7 @@ validate_and_load() {
         
         # Load if valid
         echo "Loading $ttl_file..."
-        tg-load-turtle -i "$doc_id" -C "validated-data" "$ttl_file"
+        tg-load-knowledge -i "$doc_id" -C "validated-data" "$ttl_file"
     else
         echo "✗ Invalid Turtle syntax in $ttl_file"
         return 1
@@ -301,7 +301,7 @@ monitor_load() {
     echo "Starting load: $ttl_file"
     start_time=$(date +%s)
     
-    tg-load-turtle -i "$doc_id" -C "monitored" "$ttl_file"
+    tg-load-knowledge -i "$doc_id" -C "monitored" "$ttl_file"
     
     end_time=$(date +%s)
     duration=$((end_time - start_time))
@@ -379,7 +379,7 @@ load_batch_optimized() {
         echo "Processing batch $((i/5 + 1))..."
         for ttl in "${batch[@]}"; do
             doc_id=$(basename "$ttl" .ttl)
-            tg-load-turtle -i "$doc_id" -C "$collection" "$ttl" &
+            tg-load-knowledge -i "$doc_id" -C "$collection" "$ttl" &
         done
         wait
     done
@@ -400,7 +400,7 @@ load_with_memory_check() {
     fi
     
     # Monitor memory during load
-    tg-load-turtle -i "$doc_id" -C "memory-monitored" "$ttl_file" &
+    tg-load-knowledge -i "$doc_id" -C "memory-monitored" "$ttl_file" &
     load_pid=$!
     
     while kill -0 $load_pid 2>/dev/null; do
@@ -504,7 +504,7 @@ grep -n "\.$" file.ttl | head -5  # Check statement terminators
 ```bash
 # Monitor memory usage
 free -h
-ps aux | grep tg-load-turtle
+ps aux | grep tg-load-knowledge
 
 # Split large files if needed
 split -l 10000 large-file.ttl chunk_
