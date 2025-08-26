@@ -59,12 +59,12 @@ You can create a schema using either the web workbench or the command line inter
 4. **Create a New Schema**
    Click the **"Create New Schema"** button to open the schema creation dialog.
 
-4. **Configure Basic Schema Information**
+5. **Configure Basic Schema Information**
    - **Schema ID**: Enter a unique identifier (e.g., `cities`)
    - **Name**: Enter a display name (e.g., `Cities`)
    - **Description**: Add a description of what data this schema captures (e.g., `City demographics including population, currency, climate and language for the most populous cities`)
 
-5. **Add Schema Fields**
+6. **Add Schema Fields**
    Click **"Add Field"** for each field you want to include. For our cities example:
    
    **Field 1 - City Name:**
@@ -103,14 +103,14 @@ You can create a schema using either the web workbench or the command line inter
    - ☐ Primary Key
    - ☑ Required
 
-6. **Configure Indexes**
+7. **Configure Indexes**
    In the Indexes section, click **"Add Index"** and add:
    - `primary_language`
    - `currency`
    
-   Structured data does not support extra index fields at the moment.
+   Note: Structured data does not support extra index fields at the moment.
 
-7. **Save the Schema**
+8. **Save the Schema**
    Click **"Create"** to save your schema.
 
 <a href="create-schema.png">
@@ -122,7 +122,7 @@ You can create a schema using either the web workbench or the command line inter
 You can also create a schema using the CLI with the `tg-put-config` command:
 
 ```bash
-tg-put-config-item --type schema --key cities2 --value '{
+tg-put-config-item --type schema --key cities --value '{
   "name": "Cities",
   "description": "City demographics including population, currency, climate and language for the most populous cities",
   "fields": [
