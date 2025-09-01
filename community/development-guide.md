@@ -165,9 +165,15 @@ The process to replace a running component with a local run service is thus:
    in docker compose
 7. Check it starts, check the log for errors
 
-You can find out what command-lineq
+You can find out what command-line form is along with any command-line
+arguments are by looking in the `docker-compose.yaml` file.  You can also
+use `--help` with processors. The Pulsar address is specified, but it's set
+to the default so you can skip that if you want.
+e.g. for the recursive chunker.
 
-FIXME: Finish this
+```
+chunker-recursive - --chunk-size 2000 --chunk-overlap 100 --log-level DEBUG
+```
 
 ### Enough environment to run pytest
 
