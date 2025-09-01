@@ -44,13 +44,13 @@ One way to test capability is to run in the target environment, but building
 packages locally.
 
 To get running, you would follow this process:
-1) Using the configuration tool to create a docker compose / podman compose
+1. Using the configuration tool to create a docker compose / podman compose
    configuration.
-2) Launch that environment, check it all works.
-3) Shut the environment down
-4) In the source code, `make container VERSION=x.y.z` which rebuilds the
+2. Launch that environment, check it all works.
+3. Shut the environment down
+4. In the source code, `make container VERSION=x.y.z` which rebuilds the
    containers.  Use the same version number that's used in the compose file.
-5) Relaunch the environment, as you did at step 2).
+5. Relaunch the environment, as you did at step 2.
 
 At this point, you have a running container set you built yourself.
 
@@ -58,13 +58,13 @@ If you're wanting to change a part of the system, such as a single processor,
 it's possible to do this without relaunching the whole environment each time,
 you could use...
 
-1) Change the code
-2) Rebuild containers / just the container you want to build.  See the
+1. Change the code
+2. Rebuild containers / just the container you want to build.  See the
    Makefile's `some-containers` target to see how to build a partial set, or
    just one container.
-3) Use e.g. `docker-compose down -v -t 0 <CONTAINER>` to stop a running
+3. Use e.g. `docker-compose down -v -t 0 <CONTAINER>` to stop a running
    container and
-4) Use e.g. `docker-compose up -d <CONTAINER>` to start it again.
+4. Use e.g. `docker-compose up -d <CONTAINER>` to start it again.
 
 ### Changing the command line
 
@@ -85,25 +85,89 @@ The first complication is that the addressing scheme on your host doesn't
 match what's happening inside the container environment, and this
 is particularly relevant to how Pulsar works.
 
+Say you want to modify the recursive chunker process...
+
+The first part is to set up the development environment so that you
+can run the component standalone.  This means checking out the TrustGraph
+repo and installing the packages to a local environment.
+
+#### Package environment
+
+```
+python3 -m venv env
+. env/bin/activate
+make update-package-versions VERSION=x.y.z
+pip install ./trustgraph-base
+pip install ./trustgraph-cli
+pip install ./trustgraph-flow
+pip install ./trustgraph-bedrock
+pip install ./trustgraph-vertexai
+```
+
+The recursive chunker is a Python command called `chunker-recursive`, so
+check it runs...
+
+```
+chunker-recursive --help
+```
+
+If you see help text, that means the packages are installed enough
+to get things to work.
+
+#### Replace the running component
+
+For your test, you may not need all the packages above to be
+installed.  `trustgraph-base` is always needed, `trustgraph-flow`
+supplies the bulk of the remaining components.
+
 {: .warning }
-This can be fiddly to work through.  Changing the local host file
+This is fiddly and hacky.  Changing the local host file
 can break interactions inside and outside of containers so make a note
 of anything you change so that you can back it out.
 
-Say you want to modify the recursive chunker process...
+The only remaining major issue is that when you start the chunker,
+it will try to connect to the Pulsar service at hostname `pulsar` port 6650.
+Whereas on the host, the name `pulsar` is not known, and the Pulsar
+service as available at `localhost`.  TrustGraph processes provide a
+command-line parameter `--pulsar-host` to override the default Pulsar
+location, however it appears that Pulsar communications incorporate
+indirection mechanisms to find the various service components, and
+will still use the name `pulsar` for this.
 
-The development process would be
+So what we do, is to add an entry to the local host file (usually /etc/hosts)
+to include the line:
 
-1) Download a docker compose configuration
-2) Launch that environment, check it all works
-3) Check out the source code of TrustGraph
+```
+127.0.0.1 pulsar
+```
 
-You're typically running the command line on the 'host' so that they interact
-with running TrustGraph in a 'target' Docker/Podman environment through
-exposed ports.  If so, you have the packages installed locally, and you
-can just use `pip install` to update the packages from checked-out code.
-Make sure you ran `make update-package-versions VERSION=x.y.z` so that the
-packages install.
+This means that when any running component tries to reach out to
+`pulsar`, this will cause it to try the `localhost` address.
+
+But here's the remaining issue: The host `/etc/hosts` file may be passed
+through to containers, which means that containers will be looking for
+the Pulsar service in the wrong place.
+
+In my environment, I have to make sure that the additional host entry
+is NOT present when launching the TrustGraph system.  Once everything
+is settled down, adding the line enables host components to interact
+with Pulsar.  When I forgetfully leave the entry in place and try launching
+TrustGraph in docker compose, I'm left wondering why nothing is working
+until I remember I modified the hosts file.
+
+The process to replace a running component with a local run service is thus:
+
+1. Launch the system
+2. Check it's working
+3. Use `docker-compose down` to stop the container you want to replace
+4. Modify the host file as described above
+6. Run the service with the same command-line configuration it would use
+   in docker compose
+7. Check it starts, check the log for errors
+
+You can find out what command-lineq
+
+FIXME: Finish this
 
 ### Enough environment to run pytest
 
@@ -113,6 +177,7 @@ packages plus a few extras...
 You need a virtual environment with the packages installed...
 ```
 python3 -m venv env
+. env/bin/activate
 ```
 
 And then install the packages.  Make the version number match the
