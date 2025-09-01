@@ -1,8 +1,8 @@
 ---
 title: Support
 layout: default
+nav_order: 9
 parent: Community
-grand_parent: TrustGraph Documentation
 ---
 
 # Support

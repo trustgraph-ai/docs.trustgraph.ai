@@ -1,8 +1,8 @@
 ---
 title: Code of Conduct
 layout: default
+nav_order: 6
 parent: Community
-grand_parent: TrustGraph Documentation
 ---
 
 # Code of Conduct
