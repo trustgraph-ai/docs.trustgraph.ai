@@ -5,6 +5,8 @@ nav_order: 5
 parent: Community
 ---
 
+This is a WORK IN PROGRESS!
+
 # Running TrustGraph as a developer
 
 ## Target environment
