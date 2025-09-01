@@ -17,15 +17,24 @@ needed to run.  For a target environment, we use both:
 - Kubernetes, deployed using a resources.yaml
 - Docker/Podman deployed using docker-compose/podman-compose
 
-So.. you're wondering how to test capability
+So... you're wondering how to develop code and test it?
 
 ## Things you should know
 
-- Release branches
-- It works fine with Python 3.12, there's an incompatibility with 3.13
+- Release branches - don't develop against master, use
+  a branch like `release/v1.2` as the base.  Release branches always
+  contain the latest code used to build containers so are a relatively
+  stable branch to start building on.  Note that the latest release branch
+  may contain unstable changes, so you may want to use the latest stable
+  release.
+- It works fine with Python 3.12, there's an incompatibility with 3.13, due
+  to cassandra-driver having problems in some environments.  We're tracking
+  this to work out when to move to 3.13 or later.
 - Packages can be built and installed, you need to run
   make update-package-versions VERSION=x.y.z
   and make sure the x.y part is correct for what you're building
+- It's possible to run code on the host and have to interact with a
+  container environment.
 
 ## There are several ways to run code
 
@@ -59,11 +68,42 @@ you could use...
 
 ### Changing the command line
 
-You're typically running the command line
+You're typically running the command line on the 'host' so that they interact
+with running TrustGraph in a 'target' Docker/Podman environment through
+exposed ports.  If so, you have the packages installed locally, and you
+can just use `pip install` to update the packages from checked-out code.
+Make sure you ran `make update-package-versions VERSION=x.y.z` so that the
+packages install.
 
-- Running TrustGraph components on the 'host' so that they interact
-  with running TrustGraph in a 'target' Docker/Podman environment through
-  exposed ports
+### Running a component on the host
+
+You have components running in docker, but want to test an existing
+processor or support component on the host so that it interacts with the
+docker environment.  This is possible.
+
+The first complication is that the addressing scheme on your host doesn't
+match what's happening inside the container environment, and this
+is particularly relevant to how Pulsar works.
+
+{: .warning }
+This can be fiddly to work through.  Changing the local host file
+can break interactions inside and outside of containers so make a note
+of anything you change so that you can back it out.
+
+Say you want to modify the recursive chunker process...
+
+The development process would be
+
+1) Download a docker compose configuration
+2) Launch that environment, check it all works
+3) Check out the source code of TrustGraph
+
+You're typically running the command line on the 'host' so that they interact
+with running TrustGraph in a 'target' Docker/Podman environment through
+exposed ports.  If so, you have the packages installed locally, and you
+can just use `pip install` to update the packages from checked-out code.
+Make sure you ran `make update-package-versions VERSION=x.y.z` so that the
+packages install.
 
 ### Enough environment to run pytest
 
