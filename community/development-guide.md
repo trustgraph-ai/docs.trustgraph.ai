@@ -175,6 +175,45 @@ e.g. for the recursive chunker.
 chunker-recursive - --chunk-size 2000 --chunk-overlap 100 --log-level DEBUG
 ```
 
+### Alternative to modifying `/etc/hosts`
+
+If you don't like the `/etc/hosts` hack, there is another way.  If you run
+Pulsar in standalone mode, we can just talk to the Pulsar port from inside
+a container or on the host without problems.  This means hacking the
+Docker Compose file:
+
+- Remove the `bookie` service completely.
+- Remove the `zookeeper` service completely.
+- Remote the `pulsar-init` service completely.
+- Replace the `pulsar` service with the configuration below.
+- Add a `pulsar-data` volume in the volume section at the end.
+- You can remove the `zookeeper` and `bookie` volumes as they are not needed.
+
+```
+  pulsar:
+    command:
+    - bin/pulsar
+    - standalone
+    deploy:
+      resources:
+        limits:
+          cpus: '2.0'
+          memory: 1500M
+        reservations:
+          cpus: '1.0'
+          memory: 1500M
+    environment:
+      PULSAR_MEM: -Xms600M -Xmx600M
+    image: docker.io/apachepulsar/pulsar:3.3.1
+    ports:
+    - 6650:6650
+    - 8080:8080
+    restart: on-failure:100
+    volumes:
+    - pulsar-data:/pulsar/data
+```
+
+
 ### Enough environment to run pytest
 
 The process to run the pytest tests involves setting up the
