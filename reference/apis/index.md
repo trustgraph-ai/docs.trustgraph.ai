@@ -148,6 +148,9 @@ Most APIs use lowercase operation names, often with hyphens for multi-word opera
   - [Graph RAG](api-graph-rag)
   - [Document RAG](api-document-rag)
   - [Agent](api-agent)
+  - [NLP Query](api-nlp-query) - Convert natural language to GraphQL
+  - [Structured Query](api-structured-query) - Execute queries against structured data
+  - [Object Storage](api-object-storage) - Store and query structured objects
   - [Embeddings](api-embeddings)
   - [Graph embeddings](api-graph-embeddings)
   - [Document embeddings](api-document-embeddings)
