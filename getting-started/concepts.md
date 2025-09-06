@@ -39,6 +39,23 @@ TrustGraph is an **Open Source Agent Intelligence Platform** that transforms AI 
 - Provides more accurate, nuanced responses
 - Significantly reduces AI hallucinations
 
+### Structured Query Processing
+
+**NLP Query** converts natural language questions into structured GraphQL queries:
+- Transform "Show me all products over $100" into precise database queries
+- Generate GraphQL from conversational language
+- Support complex filtering and aggregation requests
+
+**Structured Query** executes queries against extracted structured data:
+- Query objects extracted from documents using natural language
+- Execute GraphQL queries directly against your data
+- Return results in multiple formats (JSON, CSV, tables)
+
+**Object Storage** manages structured entities extracted from unstructured text:
+- Store products, customers, financials as queryable objects
+- Maintain schema validation and relationships
+- Enable rapid structured data analysis
+
 ### Knowledge Packages
 
 **Knowledge Packages** combine the best of both worlds:

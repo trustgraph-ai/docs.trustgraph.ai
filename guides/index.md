@@ -16,6 +16,9 @@ Step-by-step guides for common TrustGraph tasks and integrations.
 - **[Data Integration](data-integration/)** - Loading and processing data
 - **[MCP Integration](mcp-integration/)** - Model Context Protocol integration
 - **[Querying](querying/)** - Query patterns and optimization
+- **[Agent Extraction](agent-extraction)** - Agent-based data extraction workflows
+- **[Object Extraction](object-extraction)** - Extract structured objects from text
+- **[Structured Query Integration](structured-query-integration)** - Integrate queries with agent functionality
 
 ### Visualization & Security
 - **[Visualization](visualization/)** - Graph visualization and dashboards
