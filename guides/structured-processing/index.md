@@ -15,26 +15,26 @@ This feature was introduced in TrustGraph 1.2.
 
 TrustGraph provides capabilities for extracting structured information from documents using configurable schemas. This allows you to define custom data structures and have TrustGraph automatically extract matching information from your documents.
 
-**Note**: At the time of writing, this feature is partially complete. The structured data loading and extraction functionality is working and available in version 1.2. The query interface for agents is still a work in progress. Currently, you can access the extracted data directly through Cassandra queries, with full agent query capabilities coming in a future release.
+**Note**: TrustGraph 1.3 introduces fully integrated query capabilities for structured data. You can now query extracted data using natural language, GraphQL, or direct object queries through the CLI commands.
 
-This guide walks through defining extraction schemas, processing documents, and querying the extracted data using Cassandra Query Language (CQL).
+This guide walks through defining extraction schemas, loading structured data, processing documents, and querying the extracted data using TrustGraph's integrated query tools.
 
 ## What You'll Learn
 
 - How to define a custom extraction schema
-- How to load test data into TrustGraph
+- How to load structured data directly using `tg-load-structured-data`
+- How to load test documents into TrustGraph
 - How to start an object extraction flow
 - How to process documents through the extraction pipeline
-- How to query extracted data using Cassandra
+- How to query extracted data using natural language, GraphQL, and object queries
 
 ## Prerequisites
 
 Before starting this guide, ensure you have:
 
-- A running TrustGraph instance version 1.2 or later (see [Installation Guide](../../getting-started/installation))
+- A running TrustGraph instance version 1.3 or later (see [Installation Guide](../../getting-started/installation))
 - Python 3.8 or later with the TrustGraph CLI tools installed (`pip install trustgraph-cli`)
-- Sample documents to process
-- Access to the Cassandra database (for querying extracted data)
+- Sample documents or structured data files to process
 
 ## Step 1: Define a Schema
 
@@ -187,9 +187,75 @@ tg-get-config-item --type schema --key cities
 
 You should see your `cities` schema with all defined fields and indexes.
 
-## Step 2: Load Test Data
+## Step 2: Load Data into TrustGraph
 
-Now we'll load some test documents that contain information matching our schema. TrustGraph can process various document formats including PDFs, Word documents, and text files.
+You have two options for getting structured data into TrustGraph:
+1. **Direct loading** of structured data files (CSV, JSON, XML) using `tg-load-structured-data`
+2. **Document extraction** where TrustGraph extracts structured data from unstructured documents
+
+### Option A: Direct Loading of Structured Data (New in 1.3)
+
+> **Note**: The `tg-load-structured-data` command is an emerging utility that may change as structured data capabilities become more integrated into the TrustGraph platform.
+
+If you already have structured data in CSV, JSON, or XML format, you can load it directly:
+
+#### Load CSV Data
+
+Create a CSV file with city data (`cities.csv`):
+
+```csv
+city,country,population,climate,primary_language,currency
+Tokyo,Japan,37400000,humid subtropical,Japanese,Japanese Yen
+Delhi,India,32900000,semi-arid,Hindi,Indian Rupee
+Shanghai,China,28500000,humid subtropical,Mandarin Chinese,Chinese Yuan
+São Paulo,Brazil,22800000,subtropical highland,Portuguese,Brazilian Real
+Dhaka,Bangladesh,22400000,tropical monsoon,Bengali,Bangladeshi Taka
+```
+
+Load the CSV file:
+
+```bash
+# Load with auto-detected schema
+tg-load-structured-data -f cities.csv -s auto -c cities
+
+# Or load with the predefined schema
+tg-load-structured-data -f cities.csv -s cities -c cities
+```
+
+#### Load JSON Data
+
+Create a JSON file with city data (`cities.json`):
+
+```json
+[
+  {
+    "city": "Tokyo",
+    "country": "Japan",
+    "population": 37400000,
+    "climate": "humid subtropical",
+    "primary_language": "Japanese",
+    "currency": "Japanese Yen"
+  },
+  {
+    "city": "Delhi",
+    "country": "India",
+    "population": 32900000,
+    "climate": "semi-arid",
+    "primary_language": "Hindi",
+    "currency": "Indian Rupee"
+  }
+]
+```
+
+Load the JSON file:
+
+```bash
+tg-load-structured-data -f cities.json -c cities -t City
+```
+
+### Option B: Extract from Documents
+
+If your data is in unstructured documents, you can use TrustGraph's extraction capabilities to process them.
 
 ### Prepare Test Documents
 
@@ -288,73 +354,128 @@ provided should process quickly, say under 1 minute.  The processing
 makes use of an LLM to perform extraction so there will be time needed
 when processing large datasets.
 
-## Step 5: Query Data Using Cassandra
+## Step 5: Query Extracted Data
 
-Since the agent query interface is still under development, we'll use Cassandra Query Language (CQL) directly to examine the extracted data.
+TrustGraph 1.3 provides multiple integrated ways to query your structured data. You can use natural language queries, GraphQL, or direct object queries through the CLI.
 
-### Access Cassandra Shell
+### Method 1: Natural Language Queries
 
-Connect to the Cassandra database.  The easiest way is to execute
-the `cqlsh` command line utility inside the running Cassandra container.
-
-Find out the Cassandra container name:
-```bash
-docker ps -a | grep -i cassandra
-```
-
-The first field is the container ID, and the last field is a stable name
-for the container.  Use either container ID or container name
-(say it's `tg_cassandra_1` I can attach to the container and run the `cqlsh`
-command:
+Use `tg-invoke-nlp-query` to convert natural language questions into GraphQL queries:
 
 ```bash
-docker exec -it tr_cassandra_1 cqlsh
+# Generate a GraphQL query from natural language
+tg-invoke-nlp-query -q "Show all cities with population over 30 million"
+
+# Generate and execute in one step
+tg-invoke-nlp-query -q "List cities where the primary language is English" --format graphql | \
+  xargs -I {} tg-invoke-structured-query -q '{}'
 ```
 
-### Explore the Data Structure
+### Method 2: Direct GraphQL Queries
 
-First, let's understand the database structure:
+Use `tg-invoke-structured-query` to execute GraphQL queries directly:
 
-```sql
--- List all keyspaces
-DESCRIBE KEYSPACES;
+```bash
+# Get all cities
+tg-invoke-structured-query -q "Show all cities"
 
--- Use the TrustGraph keyspace
-USE trustgraph;
+# Filter by population
+tg-invoke-structured-query -q "Find cities with population over 25 million"
 
--- List all tables
-DESCRIBE TABLES;
+# Query specific fields
+tg-invoke-structured-query -q 'query { cities { city country population currency } }'
+
+# Complex query with filters
+tg-invoke-structured-query -q 'query { 
+  cities(where: {population: {_gt: 30000000}}) { 
+    city 
+    country 
+    population 
+    climate 
+  } 
+}'
 ```
 
-You should see a table based on the name of your schema.  If you used
-`cities` that would be `o_cities`.
-
-### Query Extracted Entities
-
-Query the extracted company entities:
-
-```sql
--- Show table structure
-DESCRIBE o_cities;
+Example output:
+```
++----------+---------+------------+------------------+
+| city     | country | population | climate          |
++----------+---------+------------+------------------+
+| Tokyo    | Japan   | 37400000   | humid subtropical|
+| Delhi    | India   | 32900000   | semi-arid        |
++----------+---------+------------+------------------+
 ```
 
-```sql
--- Find all extracted companies
-SELECT * FROM o_cities;
+### Method 3: Object Queries
+
+Use `tg-invoke-objects-query` to query objects directly from collections:
+
+```bash
+# Query all objects in the cities collection
+tg-invoke-objects-query -c cities
+
+# Filter by type
+tg-invoke-objects-query -c cities -t City
+
+# Apply filters using JSON query syntax
+tg-invoke-objects-query -c cities -q '{"population": {"$gt": 25000000}}'
+
+# Filter by multiple conditions
+tg-invoke-objects-query -c cities -q '{"$and": [
+  {"population": {"$gte": 20000000}},
+  {"primary_language": "Portuguese"}
+]}'
+
+# Export to different formats
+tg-invoke-objects-query -c cities --format json > cities.json
+tg-invoke-objects-query -c cities --format csv > cities.csv
 ```
 
-And you should see extracted objects:
+Example output:
+```
++------+-----------+------------+------------+----------------------+------------------+------------------+
+| id   | city      | country    | population | climate              | primary_language | currency         |
++------+-----------+------------+------------+----------------------+------------------+------------------+
+| c001 | São Paulo | Brazil     | 22800000   | subtropical highland | Portuguese       | Brazilian Real   |
+| c002 | Tokyo     | Japan      | 37400000   | humid subtropical    | Japanese         | Japanese Yen     |
+| c003 | Shanghai  | China      | 28500000   | humid subtropical    | Mandarin Chinese | Chinese Yuan     |
+| c004 | Delhi     | India      | 32900000   | semi-arid           | Hindi            | Indian Rupee     |
+| c005 | Dhaka     | Bangladesh | 22400000   | tropical monsoon    | Bengali          | Bangladeshi Taka |
++------+-----------+------------+------------+----------------------+------------------+------------------+
+```
 
-```text
-cqlsh:trustgraph> select * from o_cities;
+### Advanced Query Examples
 
- collection | city      | country    | climate              | currency         | population | primary_language
-------------+-----------+------------+----------------------+------------------+------------+------------------
-    default | São Paulo |     Brazil | subtropical highland |   Brazilian Real |   22800000 |       Portuguese
-    default |     Tokyo |      Japan |    humid subtropical |     Japanese Yen |   37400000 |         Japanese
-    default |  Shanghai |      China |    humid subtropical |     Chinese Yuan |   28500000 | Mandarin Chinese
-    default |     Delhi |      India |            semi-arid |     Indian Rupee |   32900000 |            Hindi
-    default |     Dhaka | Bangladesh |     tropical monsoon | Bangladeshi Taka |   22400000 |          Bengali
+#### Aggregations
+```bash
+# Count cities by primary language
+tg-invoke-structured-query -q "What's the count of cities grouped by primary language?"
+
+# Average population by climate type
+tg-invoke-structured-query -q "Show average population by climate type"
+```
+
+#### Sorting and Limiting
+```bash
+# Top 3 most populous cities
+tg-invoke-objects-query -c cities -l 3 --sort population:desc
+
+# Cities sorted by name
+tg-invoke-structured-query -q 'query { cities(orderBy: {city: asc}) { city population } }'
+```
+
+#### Export and Processing
+```bash
+# Export to CSV for analysis
+tg-invoke-objects-query -c cities --format csv > cities_data.csv
+
+# Process with jq
+tg-invoke-objects-query -c cities --format json | \
+  jq '.objects[] | select(.population > 30000000) | .city'
+
+# Calculate total population
+tg-invoke-objects-query -c cities --format json | \
+  jq '[.objects[].population] | add'
 ```
 
 ### Common Issues and Solutions
@@ -371,12 +492,13 @@ cqlsh:trustgraph> select * from o_cities;
 
 ## Next Steps
 
-While waiting for the full agent query capabilities to be released, you can:
+Now that you have structured data loaded and queryable in TrustGraph, you can:
 
-1. **Experiment with different schemas** - Try creating schemas for different domains
-2. **Build data pipelines** - Export extracted data for use in other systems
-3. **Create validation scripts** - Write scripts to validate extraction quality
-4. **Prepare for agent integration** - Design queries that agents will eventually use
+1. **Build complex queries** - Combine natural language and GraphQL for sophisticated data retrieval
+2. **Integrate with applications** - Use the query APIs to power data-driven applications
+3. **Create data pipelines** - Export and transform data for downstream systems
+4. **Experiment with schemas** - Try different schemas for various data domains
+5. **Combine with RAG** - Use structured data alongside document RAG for comprehensive knowledge retrieval
 
 ## Best Practices
 
@@ -403,6 +525,9 @@ While waiting for the full agent query capabilities to be released, you can:
 
 ## Further Reading
 
-- [Cassandra Query Language Guide](https://cassandra.apache.org/doc/latest/cql/)
-- [TrustGraph CLI Reference](../../reference/cli/)
+- [tg-load-structured-data](../../reference/cli/tg-load-structured-data) - Load structured data files
+- [tg-invoke-structured-query](../../reference/cli/tg-invoke-structured-query) - Execute GraphQL queries
+- [tg-invoke-nlp-query](../../reference/cli/tg-invoke-nlp-query) - Convert natural language to GraphQL
+- [tg-invoke-objects-query](../../reference/cli/tg-invoke-objects-query) - Query objects in collections
+- [TrustGraph CLI Reference](../../reference/cli/) - Complete CLI documentation
 
