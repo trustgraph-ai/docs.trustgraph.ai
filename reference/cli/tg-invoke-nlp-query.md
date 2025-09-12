@@ -1,9 +1,7 @@
 ---
 layout: default
 title: tg-invoke-nlp-query
-parent: Command-Line Interface
-grand_parent: Reference
-permalink: /reference/cli/tg-invoke-nlp-query
+parent: CLI
 ---
 
 # tg-invoke-nlp-query

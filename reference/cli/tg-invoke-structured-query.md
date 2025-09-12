@@ -1,9 +1,7 @@
 ---
 layout: default
 title: tg-invoke-structured-query
-parent: Command-Line Interface
-grand_parent: Reference
-permalink: /reference/cli/tg-invoke-structured-query
+parent: CLI
 ---
 
 # tg-invoke-structured-query
