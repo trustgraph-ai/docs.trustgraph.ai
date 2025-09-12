@@ -104,6 +104,8 @@ Most CLI commands support these common options:
 - [`tg-invoke-prompt`](tg-invoke-prompt) - Use configured prompt templates
 - [`tg-invoke-document-rag`](tg-invoke-document-rag) - Document-based RAG queries
 - [`tg-invoke-graph-rag`](tg-invoke-graph-rag) - Graph-based RAG queries
+- [`tg-invoke-nlp-query`](tg-invoke-nlp-query) - Convert natural language to GraphQL
+- [`tg-invoke-structured-query`](tg-invoke-structured-query) - Execute queries against structured data
 
 **Agent Tool Management:**
 - [`tg-set-tool`](tg-set-tool) - Configure agent tools (knowledge-query, text-completion, mcp-tool, prompt)
