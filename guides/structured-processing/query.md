@@ -61,6 +61,7 @@ store.
 
 ```
 tg-invoke-objects-query -f obj-ex \
+  --collection uk-pies \
   -q '
 {
   pies (where: {diameter_cm: {gt: 20}})
@@ -87,6 +88,7 @@ This is an API which uses the above two operations in sequence.
 
 ```
 tg-invoke-structured-query -f obj-ex \
+  --collection uk-pies \
   -q 'Which pies have more than 20cm diameter?'
 ```
 
