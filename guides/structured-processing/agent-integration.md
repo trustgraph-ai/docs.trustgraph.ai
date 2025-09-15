@@ -61,7 +61,7 @@ When an agent receives a question about structured data:
 Here's an example of querying pie data stored in TrustGraph:
 
 ```bash
-$ tg-invoke-agent -f obj-ex -q 'Which pies are larger than 20cm diameter?'
+tg-invoke-agent -f obj-ex -q 'Which pies are larger than 20cm diameter?'
 ```
 
 **Agent Response:**
@@ -93,7 +93,7 @@ Flamiche aux Poireaux
 Here's an example showing the agent handling a French language query:
 
 ```bash
-$ tg-invoke-agent -f obj-ex -v -q 'Quelles tartes utilisent une technique de pâtisserie Pâte Brisée?'
+tg-invoke-agent -f obj-ex -v -q 'Quelles tartes utilisent une technique de pâtisserie Pâte Brisée?'
 ```
 
 **Agent Response:**
@@ -130,7 +130,7 @@ Flamiche aux Poireaux.
 For comparison, the same query works directly with `tg-invoke-structured-query` when the data exists:
 
 ```bash
-$ tg-invoke-structured-query -f obj-ex --collection fr-pies \
+tg-invoke-structured-query -f obj-ex --collection fr-pies \
     -q 'Quelles tartes utilisent une technique de pâtisserie Pâte Brisée? Quel serait son prix?'
 
 +------------------------+--------------------+
