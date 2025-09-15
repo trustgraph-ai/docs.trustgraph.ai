@@ -379,6 +379,10 @@ and collection load.
 
 ## Notes
 
+- At the time of writing, the prompts work well at XML processing, 
+  but we'll be optimising to work with smaller models and provide
+  better coverage of other data types.  We recommend you stick with
+  XML data for TrustGraph 1.3.
 - You may find that the prompts are sensitive to different LLMs, and
   that you may see hallucinations or insensitivity to different data features.
 - XPath expressions have some incompatibilities and edge cases with

@@ -121,6 +121,12 @@ e.g. `Object extraction`.
 
 ## Step 3: Launch Document Processing
 
+When loading the document on the workbench, it can help to decide to store
+the data in a particular collection for later.  Click the dialog
+top right, and set the collection to `cities`.
+
+<img src="set-collection.png" alt="Set collection option"/>
+
 On the Library page, select your document containing city information,
 click 'Submit' at the bottom of the screen.
 

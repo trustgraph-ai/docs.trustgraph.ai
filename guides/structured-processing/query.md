@@ -32,11 +32,46 @@ Before starting this guide, ensure you have:
 - Python 3.10 or later with the TrustGraph CLI tools installed (`pip install trustgraph-cli`)
 - Sample documents or structured data files to process
 
+## Workbench
+
+The Structured Query page on the workbench UI allows you to run the
+queries we'll be running here.  Make sure:
+
+- You have set the collection parameter correctly in the session state
+  popover, top-right.
+- Be sure to set a flow which has object processing enabled e.g. the
+  `obj-ex` flow which you created if you are following this guide.
+
+<img src="nlp-query.png" alt="NLP query"/>
+
+<img src="structured-query.png" alt="Structured query"/>
+
 ## NLP query operation
 
 This operation takes a natural language query, and uses an LLM prompt
 to convert to a GraphQL query.  This uses defined schema, so you need
-to have the pies schema loaded:
+to have the schemas loaded in the previous guide steps.
+
+This is a building block for more complete functionality, but it may
+be useful for you to be able to look at converted queries to check that
+your application is performing well.
+
+```bash
+tg-invoke-nlp-query -f obj-ex -q 'Cities with more than 22.8m people'
+```
+
+If successful the output is something like...
+
+```
+Generated GraphQL Query:
+----------------------------------------
+query { cities(where: {population: {gt: 22800000}}) { city country population } }
+----------------------------------------
+Detected Schemas: cities
+Confidence: 95.00%
+```
+
+Querying the pies data:
 
 ```
 tg-invoke-nlp-query -f obj-ex \
@@ -58,6 +93,31 @@ Confidence: 95.00%
 
 This operation takes a GraphQL query, and executes it on the object
 store.
+
+City example:
+
+```
+tg-invoke-objects-query -f obj-ex --collection cities -q '
+{
+  cities(where: {population: {gt: 22800000}}) { city country population }
+}
+'
+```
+
+```
++-----------+------------+------------+
+|   city    |  country   | population |
++-----------+------------+------------+
+| Shanghai  |   China    |  30482140  |
+| São Paulo |   Brazil   |  22990007  |
+|   Delhi   |   India    |  34665569  |
+|   Tokyo   |   Japan    |  37036204  |
+|   Dhaka   | Bangladesh |  24652864  |
+|   Cairo   |   Egypt    |  23074225  |
++-----------+------------+------------+
+```
+
+Pies example:
 
 ```
 tg-invoke-objects-query -f obj-ex \
@@ -86,6 +146,28 @@ You can use `--format` to request CSV or JSON output.
 
 This is an API which uses the above two operations in sequence.
 
+Cities example:
+
+```
+tg-invoke-structure-query -f obj-ex --collection cities \
+  -q 'Cities with more than 22.8m people'
+```
+
+```
++-----------+------------+------------+
+|   city    |  country   | population |
++-----------+------------+------------+
+| Shanghai  |   China    |  30482140  |
+| São Paulo |   Brazil   |  22990007  |
+|   Delhi   |   India    |  34665569  |
+|   Tokyo   |   Japan    |  37036204  |
+|   Dhaka   | Bangladesh |  24652864  |
+|   Cairo   |   Egypt    |  23074225  |
++-----------+------------+------------+
+```
+
+Pies example:
+
 ```
 tg-invoke-structured-query -f obj-ex \
   --collection uk-pies \
@@ -106,6 +188,9 @@ If successful the output is something like...
 You can use `--format` to request CSV or JSON output.
 
 ## With collections
+
+Using the same schema with different collections allows you to group
+data:
 
 ```
 tg-invoke-structured-query -f obj-ex \
