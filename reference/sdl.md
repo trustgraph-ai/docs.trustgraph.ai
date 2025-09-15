@@ -2,7 +2,7 @@
 layout: default
 title: Structure Descriptor Language (SDL)
 parent: Reference
-nav_order: 15
+nav_order: 6
 permalink: /reference/sdl
 ---
 
