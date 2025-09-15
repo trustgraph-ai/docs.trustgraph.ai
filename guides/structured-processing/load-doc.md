@@ -44,7 +44,7 @@ For this example, we'll use a sample document containing city demographic data t
 
 1. **Access the Sample Document**
    Open this Google Docs document containing city demographic data:
-   [https://docs.google.com/document/d/1_5KfhWL9fN3VuhANIVKuJX6MVBH3vFVW3RiUNYE9jHQ/edit](https://docs.google.com/document/d/1_5KfhWL9fN3VuhANIVKuJX6MVBH3vFVW3RiUNYE9jHQ)
+   [https://raw.githubusercontent.com/trustgraph-ai/example-data/main/cities/most-populous-cities.pdf](https://raw.githubusercontent.com/trustgraph-ai/example-data/main/cities/most-populous-cities.pdf)
 
 2. **Save as PDF**
    - In Google Docs, click **File** → **Download** → **PDF Document (.pdf)**

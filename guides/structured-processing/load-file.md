@@ -49,9 +49,9 @@ Before starting this guide, ensure you have:
 
 ## Data files you will need:
 
-- [UK pies](https://drive.google.com/file/d/1u0DzP5bu15sSwnHldpZTVXUNoVo5DzFQ/view?usp=sharing)
-- [French pies](https://drive.google.com/file/d/1xHBYLkrbB1NmJeeXNRlQUuQCQyPThuN-/view?usp=drive_link)
-- [Pies Structured Descriptor Language](https://drive.google.com/file/d/1ALuMuwRy8m_hUk2Y_ftFLHK44TwhNUv3/view?usp=drive_link)
+- [UK pies](https://raw.githubusercontent.com/trustgraph-ai/example-data/main/pies/uk-pies-simplified.xml)
+- [French pies](https://raw.githubusercontent.com/trustgraph-ai/example-data/main/pies/fr-pies-simplified.xml)
+- [Pies Structured Descriptor Language](https://raw.githubusercontent.com/trustgraph-ai/example-data/main/pies/pies-sdl.json)
 
 ## Step 1: Define a Schema
 
