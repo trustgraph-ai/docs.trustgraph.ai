@@ -235,345 +235,165 @@ You should see your `cities` schema with all defined fields and indexes.
 
 ## Step 2: Load Data into TrustGraph
 
+### Automated load
+
+The script `tg-load-structured-data` is a command-line utility to load
+data.  It has a number of modes, the easiest of which is the automated load
+mode.
+
+When loading, you to specify the flow you want to load data into, and
+you may want to override the collection (`default`).
+
+Here's completely automated mode:
+
+```
+tg-load-structured-data -f obj-ex --collection uk-pies --auto \
+  -i uk-pies.xml
+```
+
+Automated load performs the following steps:
+- Examines a sample of the data file with a comparison against defined
+  schema, using an LLM to select the best schema for the file.
+- Diagnoses the file structure using an LLM to produce a
+  Structured Descriptor Language (SDL) for the file format.
+- Uses the SDL to process the file, sending objeects to the object storage
+  service.
+
 You have two options for getting structured data into TrustGraph:
 1. **Direct loading** of structured data files (CSV, JSON, XML) using `tg-load-structured-data`
 2. **Document extraction** where TrustGraph extracts structured data from unstructured documents
 
-### Option A: Direct Loading of Structured Data (New in 1.3)
+### Step-by-step load
 
-> **Note**: The `tg-load-structured-data` command is an emerging utility that may change as structured data capabilities become more integrated into the TrustGraph platform.
+You have the option of doing all the steps of the automated load one
+at a time, in order to verify the output e.g.
 
-If you already have structured data in CSV, JSON, or XML format, you can load it directly:
 
-#### Load CSV Data
-
-Create a CSV file with city data (`cities.csv`):
-
-```csv
-city,country,population,climate,primary_language,currency
-Tokyo,Japan,37400000,humid subtropical,Japanese,Japanese Yen
-Delhi,India,32900000,semi-arid,Hindi,Indian Rupee
-Shanghai,China,28500000,humid subtropical,Mandarin Chinese,Chinese Yuan
-São Paulo,Brazil,22800000,subtropical highland,Portuguese,Brazilian Real
-Dhaka,Bangladesh,22400000,tropical monsoon,Bengali,Bangladeshi Taka
+#### Schema selection
+```
+tg-load-structured-data -f obj-ex \
+  -i uk-pies.xml \
+  --discover-schema
 ```
 
-Load the CSV file:
+You will see some output which can include a schema recommendation:
 
-```bash
-# Load with auto-detected schema
-tg-load-structured-data -f cities.csv -s auto -c cities
-
-# Or load with the predefined schema
-tg-load-structured-data -f cities.csv -s cities -c cities
+```
+Best matching schema: pies
 ```
 
-#### Load JSON Data
+#### Descriptor generation
 
-Create a JSON file with city data (`cities.json`):
+This step takes as input the selected schema, takes the data file
+and tries to create a structured descriptor:
 
-```json
-[
-  {
-    "city": "Tokyo",
-    "country": "Japan",
-    "population": 37400000,
-    "climate": "humid subtropical",
-    "primary_language": "Japanese",
-    "currency": "Japanese Yen"
-  },
-  {
-    "city": "Delhi",
-    "country": "India",
-    "population": 32900000,
-    "climate": "semi-arid",
-    "primary_language": "Hindi",
-    "currency": "Indian Rupee"
-  }
-]
+```
+tg-load-structured-data -f obj-ex \
+  -i uk-pies.xml \
+  --schema-name pies \
+  --generate-descriptor --output sdl.json
 ```
 
-Load the JSON file:
+If successful you will see output like...
 
-```bash
-tg-load-structured-data -f cities.json -c cities -t City
+```
+INFO:trustgraph.cli.load_structured_data:Sample size: 100 records
+INFO:trustgraph.cli.load_structured_data:Sample chars: 500 characters
+INFO:trustgraph.cli.load_structured_data:Target schema: pies
+Generated descriptor saved to: sdl.json
 ```
 
-### Option B: Extract from Documents
+#### Trial parse
 
-If your data is in unstructured documents, you can use TrustGraph's extraction capabilities to process them.
+This step parses the file using the descriptor, and reports how much
+of the data could be processed:
 
-### Prepare Test Documents
-
-For this example, we'll use a sample document containing city demographic data that matches our schema.
-
-1. **Access the Sample Document**
-   Open this Google Docs document containing city demographic data:
-   [https://docs.google.com/document/d/1_5KfhWL9fN3VuhANIVKuJX6MVBH3vFVW3RiUNYE9jHQ/edit](https://docs.google.com/document/d/1_5KfhWL9fN3VuhANIVKuJX6MVBH3vFVW3RiUNYE9jHQ)
-
-2. **Save as PDF**
-   - In Google Docs, click **File** → **Download** → **PDF Document (.pdf)**
-   - Save the file as `cities_data.pdf` to your local machine
-
-3. **Alternative: Create Your Own Test Document**
-   If you prefer, you can create your own test document with city information. Make sure it includes:
-   - City names and their countries
-   - Population figures
-   - Climate descriptions
-   - Primary languages spoken
-   - Local currencies
-
-   Example content format:
-
-   ```text
-   Tokyo, Japan has a population of 37.4 million people. The climate
-   is humid subtropical with hot summers and mild winters. The primary
-   language is Japanese and the currency is the Japanese Yen.
-
-   Delhi, India has a population of 32.9 million. The climate is
-   semi-arid with extreme summers and cool winters. The primary
-   language is Hindi and the currency is the Indian Rupee.
-
-   Shanghai, China has a population of 28.5 million people. The
-   climate is humid subtropical with hot, humid summers and cool, damp
-   winters. The primary language is Mandarin Chinese and the currency
-   is the Chinese Yuan.
-
-   São Paulo, Brazil has a population of 22.8 million people. The
-   climate is subtropical highland with warm, rainy summers and mild,
-   dry winters. The primary language is Portuguese and the currency is
-   the Brazilian Real.
-
-   Dhaka, Bangladesh has a population of 22.4 million people. The
-   climate is tropical monsoon with hot, humid summers and mild
-   winters. The primary language is Bengali and the currency is the
-   Bangladeshi Taka.
-  ```
-
-### Load Documents into TrustGraph
-
-You can load documents using either the web workbench or the command line interface.
-
-#### Option A: Using the Web Workbench
-
-1. **Navigate to Library**
-   In the TrustGraph workbench, click on **Library** in the navigation menu.
-
-2. **Upload Documents**
-   Click **Upload Documents** button.
-
-3. **Configure Document Upload**
-   - **Title**: Enter `30 Most Populous Cities`
-   - **Document Type**: Select `PDF` from the dropdown
-   - **Select Files**: Click **Select PDF files** and choose your `cities_data.pdf` file
-
-4. **Submit Upload**
-   Click **Submit** to load the document into the library.
-
-#### Option B: Using the Command Line
-
-Load the document using the `tg-add-library-document` command:
-
-```bash
-tg-add-library-document cities_data.pdf \
-  --name "30 Most Populous Cities" \
-  --kind "application/pdf"
+```
+tg-load-structured-data -f obj-ex \
+  -i uk-pies.xml \
+  --schema-name pies \
+  --descriptor sdl.json \
+  --parse-only
 ```
 
-## Step 3: Start an Object Extraction Flow
+If successful you will see output like...
 
-Use the Workbench to create a new flow on the Flows page.
-
-Select 'Create', give your flow an ID e.g. `object-extraction` and
-select the `object-extract` flow class.  Give it a helpful description
-e.g. `Object extraction`.
-
-## Step 4: Launch Document Processing
-
-On the Library page, select your document containing city information,
-click 'Submit' at the bottom of the screen.
-
-Select your new object extraction processing and submit the document.
-
-You can track progress on the Grafana dashboard.  The sample document
-provided should process quickly, say under 1 minute.  The processing
-makes use of an LLM to perform extraction so there will be time needed
-when processing large datasets.
-
-## Step 5: Query Extracted Data
-
-TrustGraph 1.3 provides multiple integrated ways to query your structured data. You can use natural language queries, GraphQL, or direct object queries through the CLI.
-
-### Method 1: Natural Language Queries
-
-Use `tg-invoke-nlp-query` to convert natural language questions into GraphQL queries:
-
-```bash
-# Generate a GraphQL query from natural language
-tg-invoke-nlp-query -q "Show all cities with population over 30 million"
-
-# Generate and execute in one step
-tg-invoke-nlp-query -q "List cities where the primary language is English" --format graphql | \
-  xargs -I {} tg-invoke-structured-query -q '{}'
 ```
 
-### Method 2: Direct GraphQL Queries
+... and 22 more records
+Total records processed: 25
 
-Use `tg-invoke-structured-query` to execute GraphQL queries directly:
-
-```bash
-# Get all cities
-tg-invoke-structured-query -q "Show all cities"
-
-# Filter by population
-tg-invoke-structured-query -q "Find cities with population over 25 million"
-
-# Query specific fields
-tg-invoke-structured-query -q 'query { cities { city country population currency } }'
-
-# Complex query with filters
-tg-invoke-structured-query -q 'query { 
-  cities(where: {population: {_gt: 30000000}}) { 
-    city 
-    country 
-    population 
-    climate 
-  } 
-}'
+Parsing Summary:
+- Input format: xml
+- Records processed: 25
+- Target schema: Pies
+- Field mappings: 10
 ```
 
-Example output:
+#### Data load
+
+This step parses the file using the descriptor, and reports how much
+of the data could be processed:
+
 ```
-+----------+---------+------------+------------------+
-| city     | country | population | climate          |
-+----------+---------+------------+------------------+
-| Tokyo    | Japan   | 37400000   | humid subtropical|
-| Delhi    | India   | 32900000   | semi-arid        |
-+----------+---------+------------+------------------+
-```
-
-### Method 3: Object Queries
-
-Use `tg-invoke-objects-query` to query objects directly from collections:
-
-```bash
-# Query all objects in the cities collection
-tg-invoke-objects-query -c cities
-
-# Filter by type
-tg-invoke-objects-query -c cities -t City
-
-# Apply filters using JSON query syntax
-tg-invoke-objects-query -c cities -q '{"population": {"$gt": 25000000}}'
-
-# Filter by multiple conditions
-tg-invoke-objects-query -c cities -q '{"$and": [
-  {"population": {"$gte": 20000000}},
-  {"primary_language": "Portuguese"}
-]}'
-
-# Export to different formats
-tg-invoke-objects-query -c cities --format json > cities.json
-tg-invoke-objects-query -c cities --format csv > cities.csv
+tg-load-structured-data -f obj-ex \
+  -i uk-pies.xml \
+  --schema-name pies \
+  --descriptor sdl.json \
+  --load
 ```
 
-Example output:
+If successful you will see output like...
+
 ```
-+------+-----------+------------+------------+----------------------+------------------+------------------+
-| id   | city      | country    | population | climate              | primary_language | currency         |
-+------+-----------+------------+------------+----------------------+------------------+------------------+
-| c001 | São Paulo | Brazil     | 22800000   | subtropical highland | Portuguese       | Brazilian Real   |
-| c002 | Tokyo     | Japan      | 37400000   | humid subtropical    | Japanese         | Japanese Yen     |
-| c003 | Shanghai  | China      | 28500000   | humid subtropical    | Mandarin Chinese | Chinese Yuan     |
-| c004 | Delhi     | India      | 32900000   | semi-arid           | Hindi            | Indian Rupee     |
-| c005 | Dhaka     | Bangladesh | 22400000   | tropical monsoon    | Bengali          | Bangladeshi Taka |
-+------+-----------+------------+------------+----------------------+------------------+------------------+
+🎉 Load Complete!
+- Input format: xml
+- Target schema: pies
+- Records imported: 25
+- Flow used: obj-ex
 ```
 
-### Advanced Query Examples
+## Collection management
 
-#### Aggregations
-```bash
-# Count cities by primary language
-tg-invoke-structured-query -q "What's the count of cities grouped by primary language?"
+One of the things you may find useful is loading different datasets into
+different collections e.g.
 
-# Average population by climate type
-tg-invoke-structured-query -q "Show average population by climate type"
+```
+tg-load-structured-data -f obj-ex \
+  -i uk-pies.xml \
+  --collection uk-pies \
+  --schema-name pies \
+  --descriptor sdl.json \
+  --load
+
+tg-load-structured-data -f obj-ex \
+  -i fr-pies.xml \
+  --collection french-pies \
+  --schema-name pies \
+  --descriptor sdl.json \
+  --load
 ```
 
-#### Sorting and Limiting
-```bash
-# Top 3 most populous cities
-tg-invoke-objects-query -c cities -l 3 --sort population:desc
+This allows data to be treated separately, but using the same schema
+and collection load.
 
-# Cities sorted by name
-tg-invoke-structured-query -q 'query { cities(orderBy: {city: asc}) { city population } }'
-```
+## Notes
 
-#### Export and Processing
-```bash
-# Export to CSV for analysis
-tg-invoke-objects-query -c cities --format csv > cities_data.csv
-
-# Process with jq
-tg-invoke-objects-query -c cities --format json | \
-  jq '.objects[] | select(.population > 30000000) | .city'
-
-# Calculate total population
-tg-invoke-objects-query -c cities --format json | \
-  jq '[.objects[].population] | add'
-```
-
-### Common Issues and Solutions
-
-**No entities extracted**
-- Check that your schema matches the document content
-- Verify the document was properly loaded
-- Review extraction logs for errors
-- Try adjusting the confidence threshold lower
-- Check Grafana (http://localhost:3000) to see any indicators of load
-  failure.
-- Check container logs of `kg-extract-objects` and `store-objects` for
-  errors.
-
-## Next Steps
-
-Now that you have structured data loaded and queryable in TrustGraph, you can:
-
-1. **Build complex queries** - Combine natural language and GraphQL for sophisticated data retrieval
-2. **Integrate with applications** - Use the query APIs to power data-driven applications
-3. **Create data pipelines** - Export and transform data for downstream systems
-4. **Experiment with schemas** - Try different schemas for various data domains
-5. **Combine with RAG** - Use structured data alongside document RAG for comprehensive knowledge retrieval
-
-## Best Practices
-
-1. **Schema Design**
-   - Keep schemas focused on specific domains
-   - Use clear, descriptive property names
-   - Include helpful descriptions for each property
-   - Start simple and iterate
-
-2. **Document Preparation**
-   - Ensure documents contain clear, structured information
-   - Use consistent formatting and terminology
-   - Include relevant context around entities
-
-3. **Extraction Configuration**
-   - Start with higher confidence thresholds and adjust down if needed
-   - Use appropriate models for your document complexity
-   - Monitor extraction quality and iterate on schemas
-
-4. **Data Management**
-   - Regularly backup extracted data
-   - Implement data validation checks
-   - Plan for data versioning as schemas evolve
+- You may find that the prompts are sensitive to different LLMs, and
+  that you may see hallucinations or insensitivity to different data features.
+- XPath expressions have some incompatibilities and edge cases with
+  incompatibility across different libraries.  In our pie example, the
+  expression `/pies/pie` accurately captures every pie record.
+  The expression `//pies/pie` is looser binding which _should_ capture the
+  same records, but due to ambiguities in the standard is not handled
+  the same by all XML processing software.  You may need to modify and
+  experiment with the SDL file XPath expressions.
+- Be prepared to experiment with the SDL using `--parse-only` mode until
+  it works.
 
 ## Further Reading
 
 - [tg-load-structured-data](../../reference/cli/tg-load-structured-data) - Load structured data files
-- [tg-invoke-structured-query](../../reference/cli/tg-invoke-structured-query) - Execute GraphQL queries
-- [tg-invoke-nlp-query](../../reference/cli/tg-invoke-nlp-query) - Convert natural language to GraphQL
-- [tg-invoke-objects-query](../../reference/cli/tg-invoke-objects-query) - Query objects in collections
+- [Structured Data Definition](../../reference/sdl) - Data definition language
 - [TrustGraph CLI Reference](../../reference/cli/) - Complete CLI documentation
 
