@@ -59,11 +59,11 @@ The following table lists TrustGraph features and their current maturity status:
     </tr>
     <tr>
         <td>Neo4j</td>
-        <td style="background-color: #6d4e0c; color: #fff4d6;">⚠️ Pre-production - Unit testing and limited integration testing</td>
+        <td style="background-color: #2d5a3d; color: #d4f4dd;">✅ Production-ready in 1.4</td>
     </tr>
     <tr>
         <td>Memgraph</td>
-        <td style="background-color: #6d4e0c; color: #fff4d6;">⚠️ Pre-production - Unit testing and limited integration testing</td>
+        <td style="background-color: #2d5a3d; color: #d4f4dd;">✅ Production-ready in 1.4</td>
     </tr>
     <tr>
         <td>FalkorDB</td>
@@ -93,7 +93,7 @@ The following table lists TrustGraph features and their current maturity status:
     </tr>
     <tr>
         <td><a href="https://github.com/trustgraph-ai/pulumi-trustgraph-ovhcloud">OVHcloud</a><br/>Kubernetes on OVHcloud</td>
-        <td style="background-color: #6d4e0c; color: #fff4d6;">⚠️ Pre-production - Integration testing, no scale testing</td>
+        <td style="background-color: #2d5a3d; color: #d4f4dd;">✅ Production-ready</td>
     </tr>
     <tr>
         <td><a href="https://github.com/trustgraph-ai/pulumi-trustgraph-aks">Azure</a><br/>AKS Kubernetes on Azure</td>
@@ -128,17 +128,18 @@ The following table lists TrustGraph repositories and their testing facilities:
         <td>
             ✅ unit<br/>
             ✅ integration<br/>
-            ❌ scale/load
+            ❌ scale/load<br/>
+            ✅ end-end
         </td>
         <td><a href="https://github.com/trustgraph-ai/trustgraph/actions/workflows/pull-request.yaml">pipeline</a></td>
     </tr>
     <tr>
         <td><a href="https://github.com/trustgraph-ai/trustgraph-templates">trustgraph-templates</a><br/>testing that deployment configurations build correctly and accurately</td>
-        </td>
         <td>
             ✅ unit<br/>
             ✅ integration<br/>
-            ❌ scale/load
+            ❌ scale/load<br/>
+            ✅ end-end
         </td>
         <td><a href="https://github.com/trustgraph-ai/trustgraph-templates/actions/workflows/pull-request.yaml">pipeline</a></td>
     </tr>
@@ -156,7 +157,8 @@ The following table lists TrustGraph repositories and their testing facilities:
         <td>
             ✅ unit<br/>
             ✅ integration<br/>
-            ❌ scale/load
+            ❌ scale/load<br/>
+            ✅ end-end
         </td>
         <td><a href="https://github.com/trustgraph-ai/pulumi-trustgraph-scaleway/actions/workflows/pull-request.yaml">pipeline</a></td>
     </tr>
@@ -165,7 +167,8 @@ The following table lists TrustGraph repositories and their testing facilities:
         <td>
             ✅ unit<br/>
             ✅ integration<br/>
-            ❌ scale/load
+            ❌ scale/load<br/>
+            ✅ end-end
         </td>
         <td><a href="https://github.com/trustgraph-ai/pulumi-trustgraph-ovhcloud/actions/workflows/pull-request.yaml">pipeline</a></td>
     </tr>
