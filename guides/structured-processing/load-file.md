@@ -5,36 +5,53 @@ parent: Structured data processing
 nav_order: 3
 ---
 
-# Structured Data Processing
+# Structured Data Load from a File
 
-Learn how to process documents and extract structured data using TrustGraph's schema-based extraction capabilities.
+In this guide a document containing tabular data will be loaded using a
+new schema to load data from XML files.
 
-This feature was introduced in TrustGraph 1.2.
+Learn how to process data files and load structured data using
+command-line utilities.
+
+This feature was introduced in TrustGraph 1.3.
 
 ## Overview
 
-TrustGraph provides capabilities for extracting structured information from documents using configurable schemas. This allows you to define custom data structures and have TrustGraph automatically extract matching information from your documents.
+TrustGraph provides capabilities for extracting structured information from
+data files using configurable schemas. This allows you to define custom data
+structures and have TrustGraph automatically extract matching information from
+your documents.
 
-**Note**: TrustGraph 1.3 introduces fully integrated query capabilities for structured data. You can now query extracted data using natural language, GraphQL, or direct object queries through the CLI commands.
+**Note**: At the time of writing, the automated data diagnosis features
+rely on prompts which can be demanding of the LLM and are sensitive to 
+LLM training and capabilities.
 
-This guide walks through defining extraction schemas, loading structured data, processing documents, and querying the extracted data using TrustGraph's integrated query tools.
+Expect to see further developments on the structured load capablity
+on the roadmap:
+- Broader testing with a broader set of LLMs and models.  We're particularly
+  interested in allowing these capabilities to be effective on smaller
+  models.
+- Integration of data diagnosis with TrustGraph services so that they can
+  be invoked using APIs and used in the workbench.
 
 ## What You'll Learn
 
-- How to define a custom extraction schema
+- The purpose of a structured data schema.
 - How to load structured data directly using `tg-load-structured-data`
-- How to load test documents into TrustGraph
-- How to start an object extraction flow
-- How to process documents through the extraction pipeline
-- How to query extracted data using natural language, GraphQL, and object queries
 
 ## Prerequisites
 
 Before starting this guide, ensure you have:
 
 - A running TrustGraph instance version 1.3 or later (see [Installation Guide](../../getting-started/installation))
-- Python 3.8 or later with the TrustGraph CLI tools installed (`pip install trustgraph-cli`)
+- Python 3.10 with the TrustGraph CLI tools installed (`pip install trustgraph-cli`)
 - Sample documents or structured data files to process
+
+## Data files you will need:
+
+- [UK pies](https://drive.google.com/file/d/1u0DzP5bu15sSwnHldpZTVXUNoVo5DzFQ/view?usp=sharing)
+- [French pies](https://drive.google.com/file/d/1xHBYLkrbB1NmJeeXNRlQUuQCQyPThuN-/view?usp=drive_link)
+- [Pies Structured Descriptor Language](https://drive.google.com/file/d/1ALuMuwRy8m_hUk2Y_ftFLHK44TwhNUv3/view?usp=drive_link)
 
 ## Step 1: Define a Schema
 
@@ -44,132 +61,161 @@ You can create a schema using either the web workbench or the command line inter
 
 ### Option A: Using the Web Workbench
 
-1. **Access the TrustGraph Workbench**
-   Navigate to [http://localhost:8888/](http://localhost:8888/) in your web browser.
 
-2. **Enable Schema Feature**
-   Before you can access schemas, ensure the feature is enabled:
-   - Go to **Settings** in the navigation menu
-   - Find the **Schemas** option and make sure it is checked/enabled
-   - Save settings if needed
+**Add Schema Fields**:
 
-3. **Open Schema Configuration**
-   Once schemas are enabled, click on the **"Schema"** tab in the navigation menu.
-
-4. **Create a New Schema**
-   Click the **"Create New Schema"** button to open the schema creation dialog.
-
-5. **Configure Basic Schema Information**
-   - **Schema ID**: Enter a unique identifier (e.g., `cities`)
-   - **Name**: Enter a display name (e.g., `Cities`)
-   - **Description**: Add a description of what data this schema captures (e.g., `City demographics including population, currency, climate and language for the most populous cities`)
-
-6. **Add Schema Fields**
    Click **"Add Field"** for each field you want to include. For our cities example:
    
-   **Field 1 - City Name:**
-   - Field Name: `city`
+   **Field 1 - Pie type:**
+   - Field Name: `pie_type`
    - Type: `String`
    - ☑ Primary Key
    - ☑ Required
    
-   **Field 2 - Country:**
-   - Field Name: `country`
+   **Field 2 - Region:**
+   - Field Name: `region`
    - Type: `String`
    - ☑ Primary Key
    - ☑ Required
    
-   **Field 3 - Population:**
-   - Field Name: `population`
-   - Type: `Integer`
+   **Field 3 - Diameter (cm):**
+   - Field Name: `diameter_cm`
+   - Type: `float`
    - ☐ Primary Key
    - ☑ Required
    
-   **Field 4 - Climate:**
-   - Field Name: `climate`
-   - Type: `String`
+   **Field 4 - Height (cm):**
+   - Field Name: `height_cm`
+   - Type: `float`
    - ☐ Primary Key
    - ☑ Required
    
-   **Field 5 - Primary Language:**
-   - Field Name: `primary_language`
-   - Type: `String`
+   **Field 5 - Weight (grams):**
+   - Field Name: `weight_grams`
+   - Type: `float`
    - ☐ Primary Key
    - ☑ Required
    
-   **Field 6 - Currency:**
+   **Field 6 - Crust type:**
+   - Field Name: `crust_type`
+   - Type: `string`
+   - ☐ Primary Key
+   - ☑ Required
+   
+   **Field 7 - Filling category:**
+   - Field Name: `filling_category`
+   - Type: `string`
+   - ☐ Primary Key
+   - ☑ Required
+   
+   **Field 8 - Price:**
+   - Field Name: `price`
+   - Type: `float`
+   - ☐ Primary Key
+   - ☑ Required
+   
+   **Field 9 - Currency:**
    - Field Name: `currency`
+   - Type: `String`
+   - ☐ Primary Key
+   - ☑ Required
+
+   **Field 10 - Bakery type:**
+   - Field Name: `bakery_type`
    - Type: `String`
    - ☐ Primary Key
    - ☑ Required
 
 7. **Configure Indexes**
    In the Indexes section, click **"Add Index"** and add:
-   - `primary_language`
+   - `filling_category`
    - `currency`
+   - `region`
+   - `backery_type`
    
    Note: Structured data does not support extra index fields at the moment.
-
-8. **Save the Schema**
-   Click **"Create"** to save your schema.
-
-<a href="create-schema.png">
-  <img src="create-schema.png" alt="Schema creation dialog in TrustGraph workbench">
-</a>
 
 ### Option B: Using the Command Line
 
 You can also create a schema using the CLI with the `tg-put-config` command:
 
 ```bash
-tg-put-config-item --type schema --key cities --value '{
-  "name": "Cities",
-  "description": "City demographics including population, currency, climate and language for the most populous cities",
+tg-put-config-item --type schema --key pies --value '{
+  "name": "pies",
+  "description": "Pie measurements including dimensions, weight, pricing, and regional characteristics for various pie types",
   "fields": [
     {
-      "id": "278f1d70-5000-42ae-b9d5-dea78d0d01a9",
-      "name": "city",
+      "id": "0000c3d4-5e6f-7890-abcd-ef1234567890",
+      "name": "pie_type",
       "type": "string",
       "primary_key": true,
       "required": true
     },
     {
-      "name": "country",
+      "name": "region",
       "type": "string",
       "primary_key": true,
       "required": true,
-      "id": "83b7d911-b086-4614-b44c-74d20d8e8ba8"
+      "id": "0000d4e5-6f78-9012-bcde-f23456789012"
     },
     {
-      "name": "population",
-      "type": "integer",
+      "name": "diameter_cm",
+      "type": "float",
       "primary_key": false,
       "required": true,
-      "id": "00b09134-34ec-46be-a374-4ba2e3cb95e2"
+      "id": "0000e5f6-7890-1234-cdef-345678901234"
     },
     {
-      "name": "climate",
+      "name": "height_cm",
+      "type": "float",
+      "primary_key": false,
+      "required": true,
+      "id": "0000f6a7-8901-2345-def0-456789012345"
+    },
+    {
+      "name": "weight_grams",
+      "type": "float",
+      "primary_key": false,
+      "required": true,
+      "id": "0000a7b8-9012-3456-ef01-567890123456"
+    },
+    {
+      "name": "crust_type",
       "type": "string",
       "primary_key": false,
       "required": true,
-      "id": "18e434ae-3dbb-4431-a8b5-15a744ad23b2"
+      "id": "0000b8c9-0123-4567-f012-678901234567"
     },
     {
-      "name": "primary_language",
+      "name": "filling_category",
       "type": "string",
       "primary_key": false,
       "required": true,
-      "id": "e4e8ff1f-7605-4a49-aebc-3538d15f52ff"
+      "id": "0000c9d0-1234-5678-0123-789012345678"
+    },
+    {
+      "name": "price",
+      "type": "float",
+      "primary_key": false,
+      "required": true,
+      "id": "0000d0e1-2345-6789-1234-890123456789"
     },
     {
       "name": "currency",
       "type": "string",
       "primary_key": false,
       "required": true,
-      "id": "2d661b00-d3e2-4d6b-b283-8c65220b8d59"
+      "id": "0000e1f2-3456-7890-2345-901234567890"
+    },
+    {
+      "name": "bakery_type",
+      "type": "string",
+      "primary_key": false,
+      "required": true,
+      "id": "0000f2a3-4567-8901-3456-012345678901"
     }
   ],
-  "indexes": ["primary_language", "currency"]
+  "indexes": ["filling_category", "currency", "region", "bakery_type"]
 }'
 ```
 
@@ -182,7 +228,7 @@ Regardless of which method you used, verify the schema was created:
 tg-list-config-items --type schema
 
 # View specific schema details
-tg-get-config-item --type schema --key cities
+tg-get-config-item --type schema --key pies
 ```
 
 You should see your `cities` schema with all defined fields and indexes.
