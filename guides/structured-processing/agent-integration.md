@@ -88,6 +88,67 @@ Tarte Flambée, Tarte Alsacienne, Quiche Lorraine, Pissaladière, Galette des Ro
 Flamiche aux Poireaux
 ```
 
+### Multi-language Query
+
+Here's an example showing the agent handling a French language query:
+
+```bash
+$ tg-invoke-agent -f obj-ex -v -q 'Quelles tartes utilisent une technique de pâtisserie Pâte Brisée?'
+```
+
+**Agent Response:**
+```
+❓ Quelles tartes utilisent une technique de pâtisserie Pâte Brisée?
+
+🤔 The user is asking for a list of pies that use the "Pâte Brisée" pastry
+🤔 technique. I should use the structured_query tool to query the database for
+🤔 this information.
+
+💡 {"pies": [{"pie_type": "Quiche aux Champignons"}, {"pie_type": "Tarte Tatin"}, 
+💡 {"pie_type": "Tarte aux Poireaux"}, {"pie_type": "Tarte Alsacienne"}, 
+💡 {"pie_type": "Quiche Lorraine"}, {"pie_type": "Quiche Saumon"}, 
+💡 {"pie_type": "Quiche Courgette"}, {"pie_type": "Tourte aux Blettes"}, 
+💡 {"pie_type": "Tourte Savoyarde"}, {"pie_type": "Flamiche aux Poireaux"}]}
+
+🤔 The last observation provides a list of pies and their corresponding pastry
+🤔 techniques. I can now filter this list to identify the pies that use "Pâte
+🤔 Brisée". I will extract the `pie_type` for all entries where
+🤔 `pastry_technique` is "Pâte Brisée".
+
+Les tartes qui utilisent une technique de pâtisserie Pâte Brisée sont : 
+Quiche aux Champignons, Tarte aux Poireaux, Tarte Alsacienne, Quiche Lorraine, 
+Quiche Saumon, Quiche Courgette, Tourte aux Blettes, Tourte Savoyarde, 
+Flamiche aux Poireaux.
+```
+
+**Note:** This example demonstrates that:
+- The agent can understand queries in multiple languages (French in this case)
+- The agent successfully retrieves data about pastry techniques
+- The agent filters and formats the results appropriately
+- The agent responds in the same language as the query
+
+For comparison, the same query works directly with `tg-invoke-structured-query` when the data exists:
+
+```bash
+$ tg-invoke-structured-query -f obj-ex --collection fr-pies \
+    -q 'Quelles tartes utilisent une technique de pâtisserie Pâte Brisée? Quel serait son prix?'
+
++------------------------+--------------------+
+|        pie_type        |       price        |
++------------------------+--------------------+
+| Quiche aux Champignons | 6.199999809265137  |
+|      Tarte Tatin       | 7.199999809265137  |
+|   Tarte aux Poireaux   | 5.800000190734863  |
+|    Tarte Alsacienne    | 7.699999809265137  |
+|    Quiche Lorraine     | 6.800000190734863  |
+|     Quiche Saumon      | 8.899999618530273  |
+|    Quiche Courgette    | 6.599999904632568  |
+|   Tourte aux Blettes   | 6.699999809265137  |
+|    Tourte Savoyarde    | 11.199999809265137 |
+| Flamiche aux Poireaux  | 8.300000190734863  |
++------------------------+--------------------+
+```
+
 ### Understanding the Process
 
 In the example above:
