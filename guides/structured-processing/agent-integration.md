@@ -13,11 +13,36 @@ This feature was introduced in TrustGraph 1.3.
 
 ## Overview
 
-TrustGraph agents can directly query structured data using the `structured_query` tool. This enables agents to:
+TrustGraph agents can directly query structured data using the
+`structured-query` tool. This enables agents to:
 - Answer questions about tabular data stored in TrustGraph
 - Combine structured data queries with document analysis
 - Provide intelligent responses based on database content
 - Execute complex queries without requiring the user to know GraphQL
+
+## Prerequisites
+
+Before agents can query structured data, you must configure the `structured_query` tool:
+
+```bash
+tg-set-tool --id structured_query \
+  --name structured_query \
+  --description 'Executes a database structured query' \
+  --type structured-query \
+  --collection <your-collection-name>
+```
+
+**Example for pie data:**
+```bash
+tg-set-tool --id structured_query \
+  --name structured_query \
+  --description 'Executes a database structured query for pie data' \
+  --type structured-query \
+  --collection fr-pies
+```
+
+**Important**: The `--collection` parameter must match the collection where
+your structured data is stored.
 
 ## How It Works
 
@@ -73,45 +98,10 @@ In the example above:
 4. **Result Processing**: The agent receives JSON data with pie information
 5. **Answer Generation**: The agent filters and formats the results for the user
 
-## Setting Up Agent Flows
-
-### Step 1: Create an Object Extraction Flow
-
-First, ensure you have an object extraction flow configured:
-
-```bash
-# Create the flow using the workbench or CLI
-# Flow ID: obj-ex
-# Flow class: object-extract
-```
-
-### Step 2: Load Structured Data
-
-Load your structured data into TrustGraph (see [Load from a data file](load-file) for details):
-
-```bash
-# Example: Load pie data from CSV
-tg-load-structured-data -f pies.csv -c pies -s auto
-```
-
-### Step 3: Query with Agent
-
-Once data is loaded, agents can query it:
-
-```bash
-# Ask questions about the data
-tg-invoke-agent -f obj-ex -q 'What is the average diameter of all pies?'
-
-# Complex filtering
-tg-invoke-agent -f obj-ex -q 'Show me French pies between 20-25cm'
-
-# Aggregations
-tg-invoke-agent -f obj-ex -q 'How many pies are there by country of origin?'
-```
-
 ## Query Capabilities
 
-Agents can handle various types of structured queries:
+Agents can handle various types of structured queries, depending on
+the capabilities of the LLM in use:
 
 ### Filtering
 ```bash
@@ -149,31 +139,6 @@ When querying structured data through agents:
 - ✅ "List customer names and email addresses"
 - ❌ "Show customer info"
 
-## How Agents Use Structured Query
-
-Behind the scenes, agents use the `structured_query` tool which:
-
-1. **Accepts natural language**: The agent passes your question to the tool
-2. **Converts to GraphQL**: The tool generates appropriate GraphQL
-3. **Executes query**: Runs against the object store
-4. **Returns JSON**: Provides structured results to the agent
-
-Example internal flow:
-```python
-# Agent receives: "Which pies are larger than 20cm?"
-
-# Agent calls structured_query tool:
-result = structured_query("Show all pies with diameter_cm > 20")
-
-# Tool generates GraphQL:
-# query { pies(where: {diameter_cm: {_gt: 20}}) { pie_type diameter_cm } }
-
-# Returns JSON to agent:
-# {"pies": [{"pie_type": "Tarte Flambée", "diameter_cm": 28.0}, ...]}
-
-# Agent formats response for user
-```
-
 ## Combining with Other Agent Capabilities
 
 Agents can combine structured queries with other capabilities:
@@ -202,6 +167,8 @@ tg-invoke-agent -f obj-ex -q \
 - Verify data is loaded: `tg-invoke-objects-query -c <collection>`
 - Check the flow is configured for object extraction
 - Ensure schema matches the data structure
+- Check that you're using the right flow - it's important to use a flow
+  with the structured data capabilities deployed
 
 ### Incorrect results
 - Be more specific in your questions

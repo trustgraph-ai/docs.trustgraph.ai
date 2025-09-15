@@ -390,6 +390,8 @@ and collection load.
   experiment with the SDL file XPath expressions.
 - Be prepared to experiment with the SDL using `--parse-only` mode until
   it works.
+- At the moment, you have to create the schema - there's no automated
+  process to do that.  This is something we'll add later.
 
 ## Further Reading
 
