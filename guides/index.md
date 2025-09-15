@@ -18,7 +18,6 @@ Step-by-step guides for common TrustGraph tasks and integrations.
 - **[Querying](querying/)** - Query patterns and optimization
 - **[Agent Extraction](agent-extraction)** - Agent-based data extraction workflows
 - **[Object Extraction](object-extraction)** - Extract structured objects from text
-- **[Structured Query Integration](structured-query-integration)** - Integrate queries with agent functionality
 
 ### Visualization & Security
 - **[Visualization](visualization/)** - Graph visualization and dashboards
