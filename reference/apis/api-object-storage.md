@@ -1,9 +1,7 @@
 ---
 layout: default
 title: Object Storage API
-nav_order: 4
 parent: APIs
-grand_parent: Reference
 permalink: /reference/apis/object-storage
 ---
 

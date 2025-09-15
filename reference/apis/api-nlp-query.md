@@ -1,7 +1,6 @@
 ---
 layout: default
 title: NLP Query API
-nav_order: 2
 parent: APIs
 grand_parent: Reference
 permalink: /reference/apis/nlp-query

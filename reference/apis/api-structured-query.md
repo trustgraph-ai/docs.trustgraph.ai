@@ -1,9 +1,7 @@
 ---
 layout: default
 title: Structured Query API
-nav_order: 3
 parent: APIs
-grand_parent: Reference
 permalink: /reference/apis/structured-query
 ---
 
