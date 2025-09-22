@@ -15,9 +15,9 @@ This is a service which queries the knowledge graph for triples ("facts").
 The request contains the following fields:
 - `s`: Optional, if included specifies a match for the subject part of a
   triple.
-- `p`: Optional, if included specifies a match for the subject part of a
+- `p`: Optional, if included specifies a match for the predicate part of a
   triple.
-- `o`: Optional, if included specifies a match for the subject part of a
+- `o`: Optional, if included specifies a match for the object part of a
   triple.
 - `limit`: Optional, if included specifies the maximum number of triples to
   return.  If not specified, an arbitrary value is used.
