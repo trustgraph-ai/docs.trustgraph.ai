@@ -20,6 +20,8 @@ The `tg-show-flow-classes` command displays a formatted table of all flow class 
 
 Flow classes are templates that define the structure and services available for creating flow instances. This command helps you understand what flow classes are available for use.
 
+**New in v1.4**: The command now displays configurable parameters for each flow class, including their types and default values.
+
 ## Options
 
 ### Optional Arguments
@@ -35,14 +37,20 @@ tg-show-flow-classes
 
 Output:
 ```
-+-----------------+----------------------------------+----------------------+
-| flow class      | description                      | tags                 |
-+-----------------+----------------------------------+----------------------+
-| document-proc   | Document processing pipeline     | production, nlp      |
-| data-analysis   | Data analysis and visualization  | analytics, dev       |
-| web-scraper     | Web content extraction flow     | scraping, batch      |
-| chat-assistant  | Conversational AI assistant     | ai, interactive      |
-+-----------------+----------------------------------+----------------------+
++-------------------+----------------------------------+----------------------+
+| name              | document-proc                    |
+| description       | Document processing pipeline     |
+| tags              | production, nlp                  |
+| parameters        |   model: LLM model [llm-model (default: gpt-4)] |
+|                   |   temperature: Response creativity [temperature (default: 0.7)] |
++-------------------+----------------------------------+----------------------+
+
++-------------------+----------------------------------+
+| name              | data-analysis                    |
+| description       | Data analysis and visualization  |
+| tags              | analytics, dev                   |
+| parameters        |   chunk-size: Text chunking size [chunk-size (default: 1000)] |
++-------------------+----------------------------------+----------------------+
 ```
 
 ### Using Custom API URL
@@ -66,14 +74,24 @@ tg-show-flow-classes | grep -E "(document|text|nlp)"
 
 The command displays results in a formatted table with columns:
 
-- **flow class**: The unique name/identifier of the flow class
+- **name**: The unique name/identifier of the flow class
 - **description**: Human-readable description of the flow class purpose
 - **tags**: Comma-separated list of categorization tags
+- **parameters**: Configurable parameters with types and defaults (new in v1.4)
+
+### Parameter Information (New in v1.4)
+
+Parameters are displayed with:
+- Parameter name and description
+- Parameter type reference
+- Default value from parameter type definition
+
+Format: `  param-name: Description [param-type (default: value)]`
 
 ### Empty Results
 If no flow classes exist:
 ```
-No flows.
+No flow classes.
 ```
 
 ## Use Cases
