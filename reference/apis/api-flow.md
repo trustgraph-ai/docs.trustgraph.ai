@@ -20,6 +20,7 @@ The request contains the following fields:
 - `class-definition`: Flow class definition JSON (for put-class)
 - `description`: Flow description (for start-flow)
 - `flow-id`: Flow instance ID (for flow instance operations)
+- `parameters`: Map of parameter name to value (for start-flow, new in v1.4)
 
 ### Response
 
@@ -29,6 +30,7 @@ The response contains the following fields:
 - `class-definition`: Flow class definition JSON (returned by get-class)
 - `flow`: Flow instance JSON (returned by get-flow)
 - `description`: Flow description (returned by get-flow)
+- `parameters`: Map of parameter name to value (returned by get-flow, new in v1.4)
 - `error`: Error information if operation fails
 
 ## Operations
@@ -131,7 +133,11 @@ Response:
 ```json
 {
     "flow": "{\"interfaces\": {\"text-completion\": {\"request\": \"persistent://tg/request/text-completion-flow-123\", \"response\": \"persistent://tg/response/text-completion-flow-123\"}}}",
-    "description": "PDF processing workflow instance"
+    "description": "PDF processing workflow instance",
+    "parameters": {
+        "model": "gpt-4",
+        "temperature": "0.7"
+    }
 }
 ```
 
@@ -146,6 +152,23 @@ Request:
     "description": "Processing document batch 1"
 }
 ```
+
+**New in v1.4**: Request with parameters:
+```json
+{
+    "operation": "start-flow",
+    "class-name": "pdf-processor",
+    "flow-id": "flow-123",
+    "description": "Processing document batch 1",
+    "parameters": {
+        "model": "gpt-4",
+        "temperature": "0.7",
+        "chunk-size": "1500"
+    }
+}
+```
+
+All parameter values are stored as strings. Parameters not specified will use defaults from parameter type definitions.
 
 Response:
 ```json
@@ -234,6 +257,14 @@ definition = await client.get_class("pdf-processor")
 # Start a flow instance
 await client.start_flow("pdf-processor", "flow-123", "Processing batch 1")
 
+# Start a flow instance with parameters (new in v1.4)
+await client.start_flow(
+    "pdf-processor",
+    "flow-123",
+    "Processing batch 1",
+    parameters={"model": "gpt-4", "temperature": "0.7"}
+)
+
 # List active flows
 flows = await client.list_flows()
 
@@ -245,6 +276,7 @@ await client.stop_flow("flow-123")
 
 - **Flow Classes**: Templates that define workflow structure and interfaces
 - **Flow Instances**: Active running workflows based on flow classes
+- **Configurable Parameters**: Customize flow behavior with parameters (new in v1.4)
 - **Dynamic Management**: Flows can be started/stopped dynamically
 - **Template Processing**: Uses template replacement for customizing flow instances
 - **Integration**: Works with TrustGraph ecosystem for data processing pipelines

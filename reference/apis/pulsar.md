@@ -28,6 +28,10 @@ These services run independently and have fixed Pulsar queue names:
 ### Flow API
 - **Request Queue**: `non-persistent://tg/request/flow`
 - **Response Queue**: `non-persistent://tg/response/flow`
+- **Request Schema**: `trustgraph.schema.FlowRequest`
+- **Response Schema**: `trustgraph.schema.FlowResponse`
+
+**New in v1.4**: The `FlowRequest` schema includes a `parameters` field for configuring flow instances. See [Flow Parameters](#flow-parameters) below.
 
 ### Knowledge API
 - **Request Queue**: `non-persistent://tg/request/knowledge`
@@ -221,6 +225,91 @@ config_request = ConfigRequest(
 # Then connect to the appropriate queues for the service you need
 ```
 
+## Flow Parameters
+
+**New in v1.4**: Flow instances can be configured with parameters that customize their behavior. Parameters are passed when starting flows and stored with the flow instance.
+
+### FlowRequest Schema
+
+The `trustgraph.schema.FlowRequest` schema includes a `parameters` field:
+
+```python
+class FlowRequest(Record):
+    operation = String()           # Operation to perform (e.g., "start-flow")
+    class_name = String()          # Flow class name
+    flow_id = String()             # Flow instance ID
+    description = String()         # Flow description
+    parameters = Map(String())     # Parameter name -> value map (new in v1.4)
+    class_definition = String()    # Flow class definition JSON
+```
+
+### Parameters Field
+
+The `parameters` field is a `Map(String())` in the Pulsar schema:
+- **Type**: Map with string keys and string values
+- **Keys**: Parameter names (e.g., `"model"`, `"temperature"`, `"chunk-size"`)
+- **Values**: Parameter values as strings (e.g., `"gpt-4"`, `"0.7"`, `"1500"`)
+
+All parameter values are stored as strings internally, regardless of the parameter type. Processors are responsible for converting string values to appropriate types based on parameter type definitions.
+
+### Example with Parameters
+
+Starting a flow with parameters via Pulsar:
+
+```python
+import pulsar
+from trustgraph.schema import FlowRequest, FlowResponse
+
+# Connect to Pulsar
+client = pulsar.Client('pulsar://localhost:6650')
+
+# Create producer for flow requests
+producer = client.create_producer(
+    'non-persistent://tg/request/flow',
+    schema=pulsar.schema.AvroSchema(FlowRequest)
+)
+
+# Start flow with parameters
+request = FlowRequest(
+    operation='start-flow',
+    class_name='document-rag+graph-rag',
+    flow_id='my-custom-flow',
+    description='Custom processing flow',
+    parameters={
+        'model': 'claude-3-opus',
+        'temperature': '0.5',
+        'chunk-size': '2000'
+    }
+)
+
+producer.send(request)
+```
+
+### FlowResponse Schema
+
+The `trustgraph.schema.FlowResponse` schema includes parameters in flow information:
+
+```python
+class FlowResponse(Record):
+    class_names = Array(String())  # List of flow class names
+    flow_ids = Array(String())     # List of flow instance IDs
+    class_definition = String()    # Flow class definition JSON
+    flow = String()                # Flow instance JSON
+    description = String()         # Flow description
+    parameters = Map(String())     # Parameter settings (new in v1.4)
+    error = String()               # Error information
+```
+
+When querying for flow information with `get-flow`, the response includes the `parameters` map showing the current parameter settings for that flow instance.
+
+### Parameter Documentation
+
+For more information about flow parameters:
+- [Parameter Types Configuration](../configuration/parameters) - Parameter type definitions
+- [Flow Class Configuration](../configuration/flow-classes) - Using parameters in flow classes
+- [Flow API](api-flow) - Flow management API including parameters
+- [tg-start-flow](../cli/tg-start-flow) - Starting flows with parameters via CLI
+
 ## Best Practices
 
 1. **Query Flow Configuration**: Always query the current flow configuration to get accurate queue names
@@ -228,6 +317,7 @@ config_request = ConfigRequest(
 3. **Choose Appropriate Persistence**: Use persistent queues for critical data, non-persistent for performance
 4. **Schema Validation**: Use the appropriate Pulsar schema for each service
 5. **Error Handling**: Implement proper error handling for queue connection and message failures
+6. **Parameter Values**: Remember that all parameter values are strings in the Pulsar schema
 
 ## Security Considerations
 
