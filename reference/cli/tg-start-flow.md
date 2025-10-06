@@ -20,6 +20,8 @@ The `tg-start-flow` command creates and starts a new processing flow instance ba
 
 Once started, a flow provides endpoints for document processing, knowledge queries, and other TrustGraph services through its configured interfaces.
 
+**New in v1.4**: Flows can now be customized with configurable parameters that control LLM models, chunking behavior, and other processing settings.
+
 ## Options
 
 ### Required Arguments
@@ -31,6 +33,16 @@ Once started, a flow provides endpoints for document processing, knowledge queri
 ### Optional Arguments
 
 - `-u, --api-url URL`: TrustGraph API URL (default: `$TRUSTGRAPH_URL` or `http://localhost:8088/`)
+
+### Flow Parameters (New in v1.4)
+
+Parameters can be provided in three ways:
+
+- `-p, --parameters JSON`: Flow parameters as JSON string (e.g., `'{"model": "gpt-4", "temp": "0.7"}'`)
+- `--parameters-file FILE`: Path to JSON file containing flow parameters
+- `--param KEY=VALUE`: Individual parameter as key=value pair (can be used multiple times)
+
+**Note**: All parameter values are stored as strings internally, regardless of their input format.
 
 ## Examples
 
@@ -57,6 +69,48 @@ tg-start-flow \
   -i "production-flow" \
   -d "Production document processing" \
   -u http://production:8088/
+```
+
+### Start Flow with Parameters (New in v1.4)
+
+#### Using Key=Value Pairs
+```bash
+tg-start-flow \
+  -n "document-rag+graph-rag" \
+  -i "custom-flow" \
+  -d "Customized processing with Claude" \
+  --param model=claude-3-opus \
+  --param temperature=0.5 \
+  --param chunk-size=2000
+```
+
+#### Using JSON String
+```bash
+tg-start-flow \
+  -n "document-rag+graph-rag" \
+  -i "custom-flow" \
+  -d "Customized processing" \
+  -p '{"model": "gpt-4", "temperature": "0.7", "chunk-size": "1500"}'
+```
+
+#### Using JSON File
+```bash
+# Create parameters file
+cat > flow-params.json <<EOF
+{
+  "model": "gpt-4",
+  "temperature": "0.7",
+  "chunk-size": "1500",
+  "embedding-model": "text-embedding-3-large"
+}
+EOF
+
+# Start flow with parameters file
+tg-start-flow \
+  -n "document-rag+graph-rag" \
+  -i "custom-flow" \
+  -d "Customized processing" \
+  --parameters-file flow-params.json
 ```
 
 ## Prerequisites
@@ -139,11 +193,36 @@ Once started, flows provide service interfaces based on their class definition. 
 
 - `TRUSTGRAPH_URL`: Default API URL
 
+## Flow Parameters
+
+Flow parameters allow customization of flow behavior without modifying flow class definitions. Common configurable parameters include:
+
+- **model**: LLM model selection (e.g., `gpt-4`, `claude-3-opus`, `mistral-large`)
+- **rag-model**: Separate model for RAG queries
+- **temperature**: LLM temperature for response randomness (0.0-2.0)
+- **chunk-size**: Text chunking size in characters
+- **embedding-model**: Model for generating embeddings
+
+### Parameter Defaults
+
+If parameters are not specified, flows use defaults from parameter type definitions. Use `tg-show-parameter-types` to view available parameters and their defaults.
+
+### Viewing Parameters for Flow Classes
+
+```bash
+# See what parameters a flow class accepts
+tg-show-flow-classes
+
+# View parameter type definitions
+tg-show-parameter-types
+```
+
 ## Related Commands
 
 - [`tg-stop-flow`](tg-stop-flow) - Stop a running flow
-- [`tg-show-flows`](tg-show-flows) - List active flows and their interfaces
-- [`tg-show-flow-classes`](tg-show-flow-classes) - List available flow classes
+- [`tg-show-flows`](tg-show-flows) - List active flows and their parameter settings
+- [`tg-show-flow-classes`](tg-show-flow-classes) - List available flow classes and parameters
+- [`tg-show-parameter-types`](tg-show-parameter-types) - View parameter type definitions
 - [`tg-put-flow-class`](tg-put-flow-class) - Upload/update flow class definitions
 - [`tg-show-flow-state`](tg-show-flow-state) - Check flow status
 
