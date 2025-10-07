@@ -41,14 +41,23 @@ Minikube requires a driver for virtualization. The most common is Docker Engine.
 # Install TrustGraph CLI tools
 python3 -m venv env
 source env/bin/activate
-pip install trustgraph-cli
+pip install trustgraph-cli==x.y.z
 ```
+
+where `x.y.z` is the TrustGraph version.
 
 ### 2. Start Minikube
 
+Minikube needs to be started with enough resources.  At the time of
+writing, tracking TrustGraph 1.4, this is roughly 9 CPUs and 11GB of memory.
+
 ```bash
-minikube start --cpus=4 --memory=8192
+minikube start --cpus=9 --memory=11264
 ```
+
+Different deployment environments cause different pressures on memory, and so
+you may get different resource requirements depending on the options you
+deploy.
 
 ### 3. Verify Minikube
 
@@ -74,6 +83,29 @@ Obtain your TrustGraph Kubernetes configuration file from the [TrustGraph Config
 ```bash
 kubectl apply -f <configuration-file.yaml>
 ```
+
+You also need to deploy some secrets:
+
+```
+kubectl -n trustgraph create secret generic gateway-secret \
+    --from-literal=gateway-secret=
+
+kubectl -n trustgraph create secret generic mcp-server-secret \
+    --from-literal="mcp-server-secret="
+```
+
+If you are deployment an Ollama integration, the Ollama URL needs to be
+presented to the system in a secret:
+
+```
+kubectl -n trustgraph create secret generic ollama-credentials \
+    --from-literal="ollama-host=http://MY.OLLAMA.HOST:11434"
+```
+
+Replace `MY.OLLAMA.HOST` with the actual hostname.
+
+When Minikube services want to access services on the host, the hostname
+`host.minikube.internal` can be used.
 
 ### 2. Launch LoadBalancer
 
