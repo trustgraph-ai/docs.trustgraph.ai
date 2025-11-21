@@ -1,10 +1,10 @@
 ---
-layout: default
 title: Flow Classes
 parent: Configuration
 grand_parent: Reference
 nav_order: 1
 permalink: /reference/configuration/flow-classes
+review_date: 2026-08-01
 ---
 
 # Flow Class Configuration

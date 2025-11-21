@@ -1,7 +1,7 @@
 ---
 title: websocket
-layout: default
 parent: APIs
+review_date: 2025-11-21
 ---
 
 # TrustGraph websocket overview

@@ -1,8 +1,8 @@
 ---
 title: Containers
-layout: default
 nav_order: 3
 parent: Reference
+review_date: 2026-08-01
 ---
 
 # TrustGraph Containers

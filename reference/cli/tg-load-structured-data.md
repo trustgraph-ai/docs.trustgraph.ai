@@ -1,7 +1,7 @@
 ---
-layout: default
 title: tg-load-structured-data
 parent: CLI
+review_date: 2025-11-21
 ---
 
 # tg-load-structured-data

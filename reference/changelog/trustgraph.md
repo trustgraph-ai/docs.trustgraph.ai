@@ -1,9 +1,9 @@
 ---
 title: Changelog - TrustGraph
-layout: default
 nav_order: 1
 parent: Reference
 grand_parent: TrustGraph Documentation
+review_date: 2025-11-21
 ---
 
 # Changelog

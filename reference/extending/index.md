@@ -1,6 +1,5 @@
 ---
 title: Extending TrustGraph
-layout: default
 nav_order: 5
 parent: Reference
 has_children: true

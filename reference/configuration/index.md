@@ -1,9 +1,9 @@
 ---
-layout: default
 title: Configuration
 parent: Reference
 has_children: true
 nav_order: 7
+review_date: 2026-08-01
 ---
 
 # Configuration Schemas

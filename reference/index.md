@@ -1,9 +1,9 @@
 ---
 title: Reference
-layout: default
 nav_order: 8
 has_children: true
 parent: TrustGraph Documentation
+review_date: 2026-08-01
 ---
 
 # Reference Documentation

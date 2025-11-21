@@ -1,6 +1,5 @@
 ---
 title: FlowProcessor
-layout: default
 nav_order: 2
 parent: Extending TrustGraph
 ---

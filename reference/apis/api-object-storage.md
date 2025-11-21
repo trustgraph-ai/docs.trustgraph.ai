@@ -1,8 +1,8 @@
 ---
-layout: default
 title: Object Storage API
 parent: APIs
 permalink: /reference/apis/object-storage
+review_date: 2025-11-21
 ---
 
 # Object Storage API

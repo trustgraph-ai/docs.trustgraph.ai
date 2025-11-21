@@ -1,10 +1,10 @@
 ---
-layout: default
 title: Schemas
 parent: Configuration
 grand_parent: Reference
 nav_order: 2
 permalink: /reference/configuration/schemas
+review_date: 2026-08-01
 ---
 
 # Schema Configuration

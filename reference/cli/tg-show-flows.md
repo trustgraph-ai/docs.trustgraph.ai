@@ -1,7 +1,7 @@
 ---
 title: tg-show-flows
-layout: default
 parent: CLI
+review_date: 2025-11-21
 ---
 
 # tg-show-flows

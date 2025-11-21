@@ -1,9 +1,9 @@
 ---
 title: Changelog - Workbench
-layout: default
 nav_order: 2
 parent: Reference
 grand_parent: TrustGraph Documentation
+review_date: 2025-11-21
 ---
 
 # Changelog - Workbench UI
