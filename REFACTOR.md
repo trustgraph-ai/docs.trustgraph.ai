@@ -1,6 +1,6 @@
 # TrustGraph Documentation Refactoring Plan
 
-**Status**: In Progress - Phase 2 Complete
+**Status**: In Progress - Phase 3 Complete
 **Started**: 2025-11-20
 **Target Completion**: TBD
 **Last Updated**: 2025-11-20
@@ -245,83 +245,71 @@ When we've achieved this vision:
 
 ---
 
-### Phase 3: Navigation & Signposting
+### Phase 3: Navigation & Signposting ✅ COMPLETE
 
 **Goal**: Help users find what they need quickly
 
-#### 3.1 Rewrite Landing Page
+#### 3.1 ✅ Rewrite Landing Page
 
 **File**: `index.md`
 
-**New structure**:
-```markdown
-# Welcome to TrustGraph
+**Completed**:
+- ✅ Added value proposition and tagline
+- ✅ Created 5 user journey paths:
+  - 👨‍💻 Developer (API integration, guides, examples)
+  - 🏗️ Deploying TrustGraph (deployment options, production)
+  - 📊 Data Scientist (GraphRAG, extraction, queries)
+  - 🏢 Evaluating TrustGraph (concepts, use cases, maturity)
+  - 🔧 Extending TrustGraph (contributing, custom development)
+- ✅ Added key features section with descriptions
+- ✅ Added documentation sections overview
+- ✅ Added "Quick Links by Task" table
+- ✅ Added getting help resources
 
-[Value proposition paragraph]
+#### 3.2 ✅ Add Section Signposting
 
-## Get Started in 5 Minutes
-[Quick link to quickstart]
+**Completed for all major section indexes**:
+- ✅ Purpose statements ("This section is for...")
+- ✅ Audience identification
+- ✅ Navigation guides with "If you want X, see Y" patterns
+- ✅ Reading order recommendations
+- ✅ Prerequisites listed
+- ✅ Cross-references to other sections
 
-## Choose Your Path
+**Files updated**:
+- ✅ `overview/index.md` - 3 reading paths, quick answers, comparison tables
+- ✅ `deployment/index.md` - Decision tables, quick decision guide, production checklist, component architecture
+- ✅ `guides/index.md` - Already updated in Phase 2 with task finder table
+- ✅ `reference/index.md` - Quick find tables, API/CLI quick references, usage guidance
+- ✅ `examples/index.md` - Already updated in Phase 2 with Examples vs Guides comparison
+- ✅ `advanced/index.md` - Prerequisites, topic roadmap, decision table, contribution guide
+- ✅ `getting-started/index.md` - Already updated in Phase 2 with user paths
 
-### 👨‍💻 I'm a Developer
-- New to TrustGraph? → [Quick Start Guide](getting-started/quickstart)
-- Want to understand the concepts? → [Introduction](overview/introduction)
-- Ready to integrate? → [Integration Guides](guides/)
-
-### 🏗️ I'm Deploying TrustGraph
-- Local development → [Docker Compose](deployment/docker-compose)
-- Production deployment → [Deployment Guide](deployment/)
-- Scaling & clustering → [Advanced Topics](advanced/clustering)
-
-### 📊 I'm a Data Scientist
-- Understanding GraphRAG → [GraphRAG Guide](guides/rag/graph-rag)
-- Working with embeddings → [Document Embeddings](guides/embeddings)
-- Querying knowledge → [Query Guides](guides/querying)
-
-### 🔧 I Want to Extend TrustGraph
-- Custom algorithms → [Extending TrustGraph](advanced/extending-trustgraph)
-- Plugin development → [Developer Guide](contributing/developer)
-- API reference → [API Documentation](reference/apis/)
-
-## Key Features
-[Feature highlights with links]
-
-## Getting Help
-[Support resources]
-```
-
-#### 3.2 Add Section Signposting
-
-**For each major section index, add**:
-- **Purpose statement**: "This section is for..."
-- **Audience**: "Read this if you are..."
-- **Navigation guide**: "If you want to X, see Y"
-- **Reading order**: Suggested path through content
-- **Prerequisites**: What to read first
-
-**Files to update**:
-- `overview/index.md`
-- `getting-started/index.md`
-- `deployment/index.md`
-- `guides/index.md`
-- `reference/index.md`
-- `examples/index.md`
-- `advanced/index.md`
-
-#### 3.3 Create Deployment Decision Guide
+#### 3.3 ✅ Create Deployment Decision Guide
 
 **File**: `deployment/choosing-deployment.md` (new)
 
-**Content**:
-- Decision tree for deployment selection
-- Comparison table: Local vs Cloud
-- Cloud platform comparison matrix
-- Resource requirements by deployment type
-- When to use what (development, staging, production)
-- Quick decision guide: "If X, then Y"
+**Completed**:
+- ✅ Decision tree flowchart (text-based)
+- ✅ Comparison matrix by use case (6x5 table)
+- ✅ Comparison matrix by technical requirements (8x6 table)
+- ✅ Detailed profiles for all 8 deployment options:
+  - Docker Compose
+  - Minikube
+  - AWS EC2 Single Instance
+  - AWS RKE (Production)
+  - Azure AKS
+  - Google Cloud Platform
+  - Intel/Tiber Cloud
+  - Scaleway
+- ✅ Each profile includes: strengths, limitations, requirements, when to choose, cost estimates
+- ✅ Decision factors by scale, budget, and team expertise
+- ✅ Migration paths between deployment types
+- ✅ Next steps and links to specific guides
 
-**Update**: `deployment/index.md` to feature this prominently
+**Also updated**: `deployment/index.md` features the choosing-deployment guide prominently with quick decision table
+
+**Completed**: 2025-11-20
 
 ---
 
