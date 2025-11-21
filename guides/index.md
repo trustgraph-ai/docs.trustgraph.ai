@@ -50,13 +50,16 @@ Guides answer the question **"How do I...?"** with step-by-step instructions. Ea
 - **[Ontology RAG](ontology-rag)** - Extract and query structured data using schemas
 - **[Document RAG](document-rag)** - Query documents using vector embeddings (basic RAG, naive RAG)
 
+### Security
+- **[Security Overview](security/)** - Security philosophy, current features, and enterprise roadmap
+- **[Current Security Features](security/current-features)** - What's available today
+- **[Enterprise Security Roadmap](security/enterprise-roadmap)** - Planned enterprise-grade features
+
 ## Planned Guides
 
 {: .wip }
 > **Work in Progress**
 > The following guides are planned for future releases:
-
-- **Security** - Authentication, authorization, and encryption setup (Phase 4 in progress)
 - **Data Integration** - Advanced data loading and processing patterns
 - **Querying** - Query optimization and advanced patterns
 - **Visualization** - Graph visualization and custom dashboards
