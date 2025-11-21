@@ -1,6 +1,5 @@
 ---
 title: Running TrustGraph as a developer
-layout: default
 nav_order: 5
 parent: Contributing
 ---
