@@ -3,7 +3,9 @@ title: Graph RAG
 nav_order: 10
 parent: How-to Guides
 grand_parent: TrustGraph Documentation
-review_date: 2025-11-21
+review_date: 2026-08-01
+todo: true
+todo_notes: Verify AI-generated output
 ---
 
 # Graph RAG Guide
