@@ -1,9 +1,9 @@
 # TrustGraph Documentation Refactoring Plan
 
-**Status**: In Progress - Phase 3 Complete
+**Status**: In Progress - Phase 4 Complete
 **Started**: 2025-11-20
 **Target Completion**: TBD
-**Last Updated**: 2025-11-20
+**Last Updated**: 2025-11-21
 
 ## Overview
 
@@ -313,87 +313,130 @@ When we've achieved this vision:
 
 ---
 
-### Phase 4: New Content Creation
+### Phase 4: New Content Creation ✅ COMPLETE
 
 **Goal**: Fill critical content gaps
 
-#### 4.1 Create RAG Guides
+#### 4.1 ✅ Create RAG Guides
 
-**New directory**: `guides/rag/`
+**Structure decision**: Created three separate RAG guides directly under `guides/` (not in a `guides/rag/` subdirectory)
 
-**New files**:
+**Completed files**:
 
-1. **`guides/rag/index.md`**
-   - Overview of RAG capabilities in TrustGraph
-   - When to use which RAG type
-   - Comparison table
+1. **✅ `guides/graph-rag.md`** (nav_order: 10)
+   - Complete Graph RAG guide emphasizing relationship-aware retrieval
+   - What is GraphRAG and when to use it
+   - Knowledge graph structure and traversal
+   - Step-by-step implementation guide (load documents, extract entities, build graph, query)
+   - Common patterns: entity relationships, temporal queries, comparative analysis
+   - Advanced usage: controlling traversal depth, entity-focused queries
+   - Troubleshooting section (incomplete graphs, poor entity extraction, slow queries)
+   - Comparison with Document RAG and Ontology RAG
 
-2. **`guides/rag/document-rag.md`**
-   - What is DocumentRAG
-   - Setting up document collections
-   - Embedding documents
-   - Querying with DocumentRAG
-   - Best practices
-   - Example walkthrough
+2. **✅ `guides/ontology-rag.md`** (nav_order: 11)
+   - Complete Ontology/Structured RAG guide for schema-based extraction
+   - What is OntologyRAG and when to use it
+   - SDL (Schema Definition Language) examples and usage
+   - Step-by-step guide (define schema, load documents, extract data, query structured data)
+   - Natural language to GraphQL query conversion examples
+   - Common patterns: product catalogs, financial data, contacts, events
+   - Complex schemas with nested objects and arrays
+   - Validation and quality control
+   - Export to JSON/CSV
 
-3. **`guides/rag/graph-rag.md`**
-   - What is GraphRAG
-   - Knowledge graph structure
-   - Loading graph data
-   - Graph-augmented queries
-   - Advanced patterns
-   - Example walkthrough
+3. **✅ `guides/document-rag.md`** (nav_order: 12)
+   - Complete Document RAG guide (mentions "basic RAG", "naive RAG", or just "RAG")
+   - What is DocumentRAG and when to use it
+   - Vector embeddings and semantic search explanation
+   - Step-by-step guide (prepare documents, configure chunking, load documents, process, query)
+   - Chunking configuration guidance (size, overlap)
+   - CLI, API, and Workbench query methods
+   - Understanding results: source attribution, confidence indicators
+   - Troubleshooting: poor retrieval, missing context, slow queries, empty results
+   - Advanced configuration: custom embedding models, retrieval tuning, collection management
+   - Comparison table with GraphRAG and OntologyRAG
 
-4. **`guides/rag/ontology-rag.md`**
-   - What is OntologyRAG
-   - Working with ontologies
-   - Schema-based retrieval
-   - Combining with graph and document RAG
-   - Example walkthrough
+**Also updated**:
+- ✅ `guides/index.md` - Added comprehensive RAG workflow section with all three guides
+- ✅ Updated guides/index.md task finder table to include all three RAG types
 
-**Source material**: Extract from existing API docs, CLI docs, and code examples
+**Note**: User requested specific ordering: GraphRAG → Ontology RAG → Document RAG (achieved via nav_order values)
 
-#### 4.2 Create Security Documentation
+#### 4.2 ✅ Create Security Documentation
 
-**New directory**: `guides/security/`
+**New directory**: ✅ `guides/security/` created
 
-**New files**:
+**Philosophy**: "Tell it like it is" - honest assessment of current features vs. enterprise roadmap, based on team's 20+ years cybersecurity experience
 
-1. **`guides/security/index.md`**
-   - Security overview
-   - Threat model
-   - Security checklist for production
+**Completed files**:
 
-2. **`guides/security/authentication.md`**
-   - Authentication mechanisms
-   - API key management
-   - Token-based auth
-   - Integration with identity providers
+1. **✅ `guides/security/index.md`** (nav_order: 50)
+   - Security philosophy emphasizing honesty and real expertise
+   - Current status: strong foundations, enterprise features in development
+   - What exists today: Pulsar multi-tenant separation, optional service auth, infrastructure security
+   - Enterprise roadmap overview (MCP credentials, tamper-proof logging, enhanced multi-tenancy)
+   - Government AI security programme validation details
+   - Security recommendations by deployment type (Development, Kubernetes, Cloud)
+   - Production security checklist (network, auth, data protection, monitoring, infrastructure)
+   - What TrustGraph does differently: security-first architecture, real cybersec experience
+   - Reporting security issues and getting help
 
-3. **`guides/security/network-security.md`**
-   - Network architecture
-   - Firewall configuration
-   - TLS/SSL setup
-   - Service mesh integration
+2. **✅ `guides/security/current-features.md`** (nav_order: 1)
+   - Honest documentation of available security features today
+   - Multi-tenant data separation: Pulsar-based architecture, collection-based isolation
+   - Service authentication: optional inter-service auth, configuration examples, limitations
+   - Infrastructure security: Kubernetes deployment, Pulumi secret management, CI/CD security testing
+   - Network security: K8s network policies, TLS configuration
+   - Data security: encryption at rest (storage layer), encryption in transit (TLS)
+   - Access control: current state (application layer responsibility), recommendations
+   - Monitoring & audit: Grafana dashboards, Pulsar audit trail, gaps clearly stated
+   - Government security programme validation
+   - Security configuration examples (minimal/dev, basic/staging, enhanced/production)
+   - Clear about what's missing and what's the user's responsibility
 
-4. **`guides/security/data-security.md`**
-   - Encryption at rest
-   - Encryption in transit
-   - Secrets management
-   - Data isolation
+3. **✅ `guides/security/enterprise-roadmap.md`** (nav_order: 2)
+   - Comprehensive enterprise security roadmap with development status indicators
+   - Multi-layer MCP credential encryption (🔄 Active Development):
+     - Per-user credential management with vault isolation
+     - Multi-layer encryption (storage, transit, just-in-time decryption)
+     - Credential exposure minimization design
+     - Use cases: multi-tenant SaaS, enterprise, government/defense
+     - Timeline: Q1-Q3 2025
+   - Tamper-proof logging architecture (🔄 Active Development):
+     - Blockchain-inspired immutable log design
+     - Cryptographic verification and chain integrity
+     - Compliance support (SOC 2, GDPR, HIPAA, government standards)
+     - Timeline: Q2-Q4 2025
+   - Enhanced multi-tenant security (✅ Foundation complete, 🔄 Enhancements in development):
+     - Hard multi-tenancy guarantees with cryptographic isolation
+     - Injection attack protection (prompt injection, tool calling manipulation)
+     - Secure tool calling in agentic flows
+   - Universal service authentication (✅ Partial, 🔄 Being completed):
+     - Mandatory authentication for all services
+     - Automatic token rotation
+     - Zero-trust service mesh integration
+   - Additional roadmap: RBAC, DLP, security analytics, compliance certifications
+   - Enterprise security package tiers (Government/Defense, Enterprise SaaS, Enterprise On-Premise)
+   - Early access and influencing the roadmap
+   - Team experience and "why trust our roadmap" section
 
-5. **`guides/security/access-control.md`**
-   - Authorization models
-   - Role-based access control
-   - Multi-tenancy considerations
+**Also updated**:
+- ✅ `guides/index.md` - Added Security section with three guides listed
 
-**Update**:
-- Delete stub `deployment/security-considerations.md`
-- Replace with link to `guides/security/`
+**Key features of security docs**:
+- Honest about current state vs. planned features
+- Clear timeline estimates (not commitments)
+- Emphasizes team's real cybersecurity experience (Lyft, 20+ years)
+- Government AI security programme validation mentioned
+- MCP (Model Context Protocol) security focus for agentic systems
+- Pulsar-based multi-tenant architecture as foundation
+- "We don't oversell" philosophy throughout
 
 #### 4.3 Improve Deployment Guidance
 
-**Enhance existing files**:
+**Status**: 🎯 **Planned** (not yet started)
+
+**Planned enhancements**:
 
 1. **`deployment/production-considerations.md`**
    - High availability setup
@@ -412,6 +455,10 @@ When we've achieved this vision:
    - Add "When to use Docker Compose" section
    - Add resource requirements
    - Add scaling limitations
+
+**Note**: This sub-phase is optional/deferred pending review of Phase 4 RAG and security work.
+
+**Completed**: 2025-11-21
 
 ---
 
@@ -541,18 +588,19 @@ When we've achieved this vision:
 - `review.txt` (temp file)
 
 ### Creating (New Files)
-- `getting-started/quickstart.md`
-- `overview/introduction.md`
-- `deployment/choosing-deployment.md`
-- `guides/rag/index.md`
-- `guides/rag/document-rag.md`
-- `guides/rag/graph-rag.md`
-- `guides/rag/ontology-rag.md`
-- `guides/security/index.md`
-- `guides/security/authentication.md`
-- `guides/security/network-security.md`
-- `guides/security/data-security.md`
-- `guides/security/access-control.md`
+- ✅ `getting-started/quickstart.md`
+- ✅ `overview/introduction.md`
+- ✅ `deployment/choosing-deployment.md`
+- ✅ `guides/graph-rag.md` (changed: not in rag/ subdirectory)
+- ✅ `guides/ontology-rag.md` (changed: not in rag/ subdirectory)
+- ✅ `guides/document-rag.md` (changed: not in rag/ subdirectory)
+- ✅ `guides/security/index.md`
+- ✅ `guides/security/current-features.md` (changed from original plan)
+- ✅ `guides/security/enterprise-roadmap.md` (changed from original plan)
+- ❌ `guides/security/authentication.md` (not created - consolidated into current-features and enterprise-roadmap)
+- ❌ `guides/security/network-security.md` (not created - consolidated into current-features)
+- ❌ `guides/security/data-security.md` (not created - consolidated into current-features)
+- ❌ `guides/security/access-control.md` (not created - consolidated into current-features)
 
 ### Rewriting (Major Changes)
 - `index.md` (landing page)
