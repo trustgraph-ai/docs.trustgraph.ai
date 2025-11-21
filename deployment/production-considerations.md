@@ -1,9 +1,9 @@
 ---
 title: Production Considerations
-layout: default
 nav_order: 11
 parent: Deployment
 grand_parent: TrustGraph Documentation
+review_date: 2025-11-21
 ---
 
 # Production Considerations

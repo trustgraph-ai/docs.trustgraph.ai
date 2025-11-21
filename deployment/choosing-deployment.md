@@ -1,9 +1,9 @@
 ---
 title: Choosing a Deployment
-layout: default
 nav_order: 1
 parent: Deployment
 grand_parent: TrustGraph Documentation
+review_date: 2025-11-21
 ---
 
 # Choosing a Deployment Option

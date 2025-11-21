@@ -1,9 +1,9 @@
 ---
 title: OVHcloud
-layout: default
 nav_order: 4.5
 parent: Deployment
 grand_parent: TrustGraph Documentation
+review_date: 2025-11-21
 ---
 
 # OVHcloud Deployment

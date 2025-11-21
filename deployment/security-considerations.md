@@ -1,9 +1,9 @@
 ---
 title: Security Considerations
-layout: default
 nav_order: 10
 parent: Deployment
 grand_parent: TrustGraph Documentation
+review_date: 2025-11-21
 ---
 
 # Security Considerations

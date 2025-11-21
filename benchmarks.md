@@ -1,8 +1,8 @@
 ---
-layout: default
 title: Benchmarks
 nav_order: 7
 parent: TrustGraph Documentation
+review_date: 2026-02-01
 ---
 
 # Benchmarks

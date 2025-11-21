@@ -1,9 +1,9 @@
 ---
 title: Advanced Topics
-layout: default
 nav_order: 11
 has_children: true
 parent: TrustGraph Documentation
+review_date: 2026-02-01
 ---
 
 # Advanced Topics

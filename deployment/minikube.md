@@ -1,9 +1,9 @@
 ---
 title: Minikube
-layout: default
 nav_order: 2
 parent: Deployment
 grand_parent: TrustGraph Documentation
+review_date: 2025-11-21
 ---
 
 # Minikube Deployment
