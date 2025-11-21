@@ -1,9 +1,9 @@
 ---
-layout: default
 title: Object Extraction Process
 parent: Guides
 nav_order: 8
 permalink: /guides/object-extraction
+review_date: 2025-11-21
 ---
 
 # Object Extraction Process

@@ -1,9 +1,9 @@
 ---
 title: Current Security Features
-layout: default
 nav_order: 1
 parent: Security
 grand_parent: How-to Guides
+review_date: 2025-11-21
 ---
 
 # Current Security Features

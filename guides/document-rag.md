@@ -1,9 +1,9 @@
 ---
 title: Document RAG
-layout: default
 nav_order: 12
 parent: How-to Guides
 grand_parent: TrustGraph Documentation
+review_date: 2025-11-21
 ---
 
 # Document RAG Guide

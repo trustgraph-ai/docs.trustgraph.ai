@@ -1,8 +1,8 @@
 ---
 title: Querying structured data
-layout: default
 parent: Structured data processing
 nav_order: 4
+review_date: 2026-02-01
 ---
 
 # Querying Structured Data

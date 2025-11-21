@@ -1,6 +1,5 @@
 ---
 title: Tutorials
-layout: default
 parent: Examples
 grand_parent: TrustGraph Documentation
 ---

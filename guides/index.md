@@ -1,9 +1,9 @@
 ---
 title: How-to Guides
-layout: default
 nav_order: 7
 has_children: true
 parent: TrustGraph Documentation
+review_date: 2026-08-01
 ---
 
 # How-to Guides
