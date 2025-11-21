@@ -63,7 +63,7 @@ Ready to try TrustGraph? Our Docker-based quickstart gets you running locally in
 
 **Contributing and customizing**
 
-- **Contributing code** → [Contributing Guide](contributing/contributing) - How to contribute
+- **Contributing code** → [Contributing Guidelines](contributing/contributing) - How to contribute
 - **Development setup** → [Developer Guide](contributing/developer) - Set up dev environment
 - **Custom algorithms** → [Extending TrustGraph](advanced/extending-trustgraph) - Plugin development
 - **Project roadmap** → [Roadmap](overview/roadmap) - Future plans

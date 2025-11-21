@@ -1,12 +1,12 @@
 ---
-title: Contributing
+title: Contributing Guidelines
 layout: default
 parent: Contributing
-nav_order: 3
+nav_order: 1
 grand_parent: TrustGraph Documentation
 ---
 
-# Contributing
+# Contributing Guidelines
 
 We welcome contributors to the TrustGraph Github project.
 
