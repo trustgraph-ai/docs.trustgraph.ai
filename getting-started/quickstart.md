@@ -1,6 +1,5 @@
 ---
 title: Quickstart
-layout: default
 nav_order: 2
 parent: Getting Started
 grand_parent: TrustGraph Documentation

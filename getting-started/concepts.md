@@ -1,6 +1,5 @@
 ---
 title: Core Concepts
-layout: default
 nav_order: 1
 parent: Getting Started
 grand_parent: TrustGraph Documentation

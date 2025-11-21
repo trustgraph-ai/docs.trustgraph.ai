@@ -1,6 +1,5 @@
 ---
 title: First Steps
-layout: default
 nav_order: 3
 parent: Getting Started
 grand_parent: TrustGraph Documentation
