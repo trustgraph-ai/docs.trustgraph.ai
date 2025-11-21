@@ -1,9 +1,8 @@
 ---
 title: Maturity
 layout: default
-nav_order: 4.5
-has_children: true
-parent: TrustGraph Documentation
+nav_order: 5
+parent: Overview
 ---
 
 # TrustGraph Maturity
