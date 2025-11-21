@@ -45,14 +45,18 @@ Guides answer the question **"How do I...?"** with step-by-step instructions. Ea
 ### Monitoring & Operations
 - **[Monitoring](monitoring/)** - Set up metrics, alerts, and observability
 
+### RAG Workflows
+- **[Graph RAG](graph-rag)** - Leverage knowledge graph relationships for contextual retrieval
+- **[Ontology RAG](ontology-rag)** - Extract and query structured data using schemas
+- **[Document RAG](document-rag)** - Query documents using vector embeddings (basic RAG, naive RAG)
+
 ## Planned Guides
 
 {: .wip }
 > **Work in Progress**
 > The following guides are planned for future releases:
 
-- **RAG Workflows** - DocumentRAG, GraphRAG, and OntologyRAG guides (Phase 4 of refactoring)
-- **Security** - Authentication, authorization, and encryption setup
+- **Security** - Authentication, authorization, and encryption setup (Phase 4 in progress)
 - **Data Integration** - Advanced data loading and processing patterns
 - **Querying** - Query optimization and advanced patterns
 - **Visualization** - Graph visualization and custom dashboards
@@ -73,6 +77,9 @@ Each guide follows this format:
 
 | Task | Guide |
 |------|-------|
+| Query documents with semantic search | [Document RAG](document-rag) |
+| Query knowledge graph relationships | [Graph RAG](graph-rag) |
+| Extract structured typed data | [Ontology RAG](ontology-rag) |
 | Extract structured data from PDFs | [Agent Extraction](agent-extraction) |
 | Extract typed objects (products, etc.) | [Object Extraction](object-extraction) |
 | Define what data to extract | [Structured Processing: Schemas](structured-processing/schemas) |
