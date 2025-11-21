@@ -2,7 +2,7 @@
 title: Support
 layout: default
 nav_order: 9
-parent: Community
+parent: Contributing
 ---
 
 # Support

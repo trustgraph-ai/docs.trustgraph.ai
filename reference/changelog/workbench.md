@@ -2,7 +2,7 @@
 title: Changelog - Workbench
 layout: default
 nav_order: 2
-parent: Community
+parent: Reference
 grand_parent: TrustGraph Documentation
 ---
 

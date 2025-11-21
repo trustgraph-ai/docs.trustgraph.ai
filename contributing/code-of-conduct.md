@@ -2,7 +2,7 @@
 title: Code of Conduct
 layout: default
 nav_order: 6
-parent: Community
+parent: Contributing
 ---
 
 # Code of Conduct

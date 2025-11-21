@@ -2,7 +2,7 @@
 title: Changelog - TrustGraph
 layout: default
 nav_order: 1
-parent: Community
+parent: Reference
 grand_parent: TrustGraph Documentation
 ---
 

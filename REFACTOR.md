@@ -1,6 +1,6 @@
 # TrustGraph Documentation Refactoring Plan
 
-**Status**: In Progress - Phase 1 Complete
+**Status**: In Progress - Phase 2 Complete
 **Started**: 2025-11-20
 **Target Completion**: TBD
 **Last Updated**: 2025-11-20
@@ -176,67 +176,72 @@ When we've achieved this vision:
 
 ---
 
-### Phase 2: Content Reorganization
+### Phase 2: Content Reorganization ✅ COMPLETE
 
 **Goal**: Move content to logical locations and eliminate duplication
 
-#### 2.1 Consolidate Maturity Documentation
+#### 2.1 ✅ Consolidate Maturity Documentation
 
-- **Move** `maturity.md` → `overview/maturity.md`
-- **Delete** `overview/feature-maturity.md` (empty placeholder)
-- **Update** navigation order in moved file
+- ✅ **Move** `maturity.md` → `overview/maturity.md`
+- ✅ **Delete** `overview/feature-maturity.md` (empty placeholder)
+- ✅ **Update** navigation order in moved file (nav_order: 5, parent: Overview)
 - **Rationale**: Feature maturity is overview/meta information, belongs with architecture and features
 
 **Files affected**:
-- `maturity.md` (move to overview/)
-- `overview/feature-maturity.md` (delete)
+- `maturity.md` → `overview/maturity.md` (moved)
+- `overview/feature-maturity.md` (deleted)
 
-#### 2.2 Restructure Getting Started
+#### 2.2 ✅ Restructure Getting Started
 
-- **Extract** quickstart from `getting-started/index.md` → `getting-started/quickstart.md`
-- **Simplify** `getting-started/index.md` to be a proper landing page
-- **Move** conceptual content from `getting-started/concepts.md` → `overview/introduction.md`
-- **Rewrite** `getting-started/concepts.md` to focus on practical concepts needed for first steps
+- ✅ **Extract** quickstart from `getting-started/index.md` → `getting-started/quickstart.md`
+- ✅ **Simplify** `getting-started/index.md` to be a proper landing page with user journeys
+- ✅ **Move** conceptual content from `getting-started/concepts.md` → `overview/introduction.md`
+- ✅ **Rewrite** `getting-started/concepts.md` to focus on practical concepts needed for first steps
 - **Rationale**: Separate "learning about TrustGraph" from "getting TrustGraph running"
 
 **Files affected**:
-- `getting-started/index.md` (rewrite)
-- `getting-started/quickstart.md` (new, extracted content)
-- `getting-started/concepts.md` (rewrite)
-- `overview/introduction.md` (new, receives conceptual content)
+- `getting-started/index.md` (rewritten with user paths)
+- `getting-started/quickstart.md` (new, extracted 200-line quickstart)
+- `getting-started/concepts.md` (rewritten - practical focus)
+- `overview/introduction.md` (new, conceptual architecture content)
 
-#### 2.3 Rename Community Section
+#### 2.3 ✅ Rename Community Section
 
-- **Rename** `community/` → `contributing/` (directory and all references)
-- **Update** section title and description
-- **Reorganize** content:
-  - Keep: contributing.md, code-of-conduct.md, development-guide.md, developer.md
-  - Move: `roadmap.md` → `overview/roadmap.md`
-  - Move: `changelog/` → `reference/changelog/`
-  - Keep but rename: `support.md` → `getting-help.md`
+- ✅ **Rename** `community/` → `contributing/` (directory and all references)
+- ✅ **Update** section title and description
+- ✅ **Reorganize** content:
+  - ✅ Keep: contributing.md, code-of-conduct.md, development-guide.md, developer.md
+  - ✅ Move: `roadmap.md` → `overview/roadmap.md`
+  - ✅ Move: `changelog/` → `reference/changelog/`
+  - ✅ Rename: `support.md` → `getting-help.md`
+- ✅ Update all parent references in child pages
 
 **Files affected**:
-- `community/` → `contributing/` (entire directory)
-- `community/roadmap.md` → `overview/roadmap.md`
-- `community/changelog/` → `reference/changelog/`
-- Navigation updates in all affected files
+- `community/` → `contributing/` (renamed)
+- `contributing/index.md` (rewritten)
+- `community/roadmap.md` → `overview/roadmap.md` (moved)
+- `community/changelog/` → `reference/changelog/` (moved)
+- `community/support.md` → `contributing/getting-help.md` (renamed)
+- All child pages updated with correct parent references
 
-#### 2.4 Clarify Examples vs Guides
+#### 2.4 ✅ Clarify Examples vs Guides
 
-**Define clear distinction**:
+**Defined clear distinction**:
 - **Guides**: Task-oriented how-to instructions ("How do I...?")
 - **Examples**: Complete working code samples and datasets
 - **Tutorials**: Learning-oriented lessons (step-by-step learning paths)
 
-**Reorganization**:
-- Move `examples/tutorials/` content → `guides/tutorials/` (when content exists)
-- Keep `examples/` for: sample-data, integrations, code snippets
-- Ensure no overlap in navigation
+**Completed**:
+- ✅ Rewrite `examples/index.md` with clear scope and Examples vs Guides comparison table
+- ✅ Rewrite `guides/index.md` with clear scope, available guides listed, planned guides marked WIP
+- ✅ Add cross-references between sections
+- ✅ Document the distinction in both index pages
 
 **Files affected**:
-- `examples/index.md` (rewrite with clear scope)
-- `guides/index.md` (rewrite with clear scope)
-- Update cross-references
+- `examples/index.md` (completely rewritten - clear scope, comparison table)
+- `guides/index.md` (completely rewritten - task finder table, WIP markers)
+
+**Completed**: 2025-11-20
 
 ---
 

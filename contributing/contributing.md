@@ -1,7 +1,7 @@
 ---
 title: Contributing
 layout: default
-parent: Community
+parent: Contributing
 nav_order: 3
 grand_parent: TrustGraph Documentation
 ---

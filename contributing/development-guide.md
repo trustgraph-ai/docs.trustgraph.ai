@@ -2,7 +2,7 @@
 title: Running TrustGraph as a developer
 layout: default
 nav_order: 5
-parent: Community
+parent: Contributing
 ---
 
 This is a WORK IN PROGRESS!
