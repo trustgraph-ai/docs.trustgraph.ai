@@ -1,0 +1,11 @@
+{% if page.todo %}
+<blockquote class="wip">
+  <p><strong>🚧 This page needs work</strong></p>
+  <p>
+    {% if page.todo_notes %}
+    Note:
+    {{ page.todo_notes }}
+    {% endif %}
+  </p>
+</blockquote>
+{% endif %}

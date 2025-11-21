@@ -6,9 +6,6 @@ url: "https://docs.trustgraph.ai"
 plugins:
   - jekyll-sitemap
 
-aux_links:
-  Template Repository: https://github.com/just-the-docs/just-the-docs-template
-
 # logo: "/assets/images/just-the-docs.png"
 # favicon_ico: "/assets/images/favicon.ico"
 
@@ -70,7 +67,7 @@ last_edit_time_format: "%b %e %Y at %I:%M %p" # uses ruby's time format: https:/
 # Footer "Edit this page on GitHub" link text
 gh_edit_link: true # show or hide edit this page link
 gh_edit_link_text: "Edit this page on GitHub."
-gh_edit_repository: "https://github.com/trustgraph-ai/trustgraph-ai.github.io"
+gh_edit_repository: "https://github.com/trustgraph-ai/docs.trustgraph.ai"
 gh_edit_branch: "main" # the branch that your docs is served from
 # gh_edit_source: docs # the source that your files originate from
 gh_edit_view_mode: "tree" # "tree" or "edit" if you want the user to jump into the editor immediately
@@ -82,6 +79,9 @@ callouts:
   warning:
     title: Warning
     color: red
+  wip:
+    title: Work in Progress
+    color: yellow
 
 # Exclude files and directories from Jekyll build
 exclude:
@@ -90,4 +90,10 @@ exclude:
   - Gemfile.lock
   - .github/
   - README.md
+
+defaults:
+  - scope:
+      path: ""
+    values:
+      layout: page
 

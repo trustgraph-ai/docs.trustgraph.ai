@@ -1,7 +1,7 @@
 ---
 title: tg-set-token-costs
-layout: default
 parent: CLI
+review_date: 2025-11-21
 ---
 
 # tg-set-token-costs

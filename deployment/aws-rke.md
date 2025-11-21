@@ -1,9 +1,9 @@
 ---
 title: Amazon Web Services (RKE)
-layout: default
 nav_order: 9
 parent: Deployment
 grand_parent: TrustGraph Documentation
+review_date: 2025-11-21
 ---
 
 # Amazon Web Services (RKE) Deployment

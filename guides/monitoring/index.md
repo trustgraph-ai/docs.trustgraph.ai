@@ -1,9 +1,12 @@
 ---
 title: Monitoring
-layout: default
 parent: How-to Guides
 grand_parent: TrustGraph Documentation
+review_date: 2025-11-21
 ---
+
+{: .wip }
+> This page is planned but not yet complete.
 
 # Monitoring
 

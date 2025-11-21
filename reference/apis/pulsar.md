@@ -1,8 +1,8 @@
 ---
 title: About Pulsar
-layout: default
 nav_order: 1
 parent: APIs
+review_date: 2025-11-21
 ---
 
 # TrustGraph Pulsar API

@@ -1,6 +1,5 @@
 ---
 title: AsyncProcessor
-layout: default
 nav_order: 1
 parent: Extending TrustGraph
 ---

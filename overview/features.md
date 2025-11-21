@@ -1,6 +1,5 @@
 ---
 title: Features
-layout: default
 nav_order: 2
 parent: Overview
 grand_parent: TrustGraph Documentation

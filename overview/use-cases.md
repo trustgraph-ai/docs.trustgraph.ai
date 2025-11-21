@@ -1,6 +1,5 @@
 ---
 title: Use Cases
-layout: default
 nav_order: 3
 parent: Overview
 grand_parent: TrustGraph Documentation

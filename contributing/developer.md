@@ -1,8 +1,7 @@
 ---
 title: Developer's Guide
-layout: default
 nav_order: 4
-parent: Community
+parent: Contributing
 ---
 
 # Developer Guide

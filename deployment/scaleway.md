@@ -1,9 +1,9 @@
 ---
 title: Scaleway
-layout: default
 nav_order: 4
 parent: Deployment
 grand_parent: TrustGraph Documentation
+review_date: 2025-11-21
 ---
 
 # Scaleway Deployment

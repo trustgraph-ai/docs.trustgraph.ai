@@ -1,7 +1,7 @@
 ---
 title: tg-graph-to-turtle
-layout: default
 parent: CLI
+review_date: 2025-11-21
 ---
 
 # tg-graph-to-turtle

@@ -1,8 +1,8 @@
 ---
 title: Structure data load from a data file
-layout: default
 parent: Structured data processing
 nav_order: 3
+review_date: 2026-02-01
 ---
 
 # Structured Data Load from a File

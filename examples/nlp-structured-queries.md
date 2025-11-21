@@ -1,5 +1,4 @@
 ---
-layout: default
 title: NLP and Structured Query Examples
 parent: Examples
 nav_order: 5

@@ -1,6 +1,5 @@
 ---
 title: Service Base Classes
-layout: default
 nav_order: 3
 parent: Extending TrustGraph
 ---

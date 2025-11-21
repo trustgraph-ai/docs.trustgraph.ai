@@ -1,8 +1,8 @@
 ---
 title: Schemas
-layout: default
 parent: Structured data processing
 nav_order: 1
+review_date: 2026-02-01
 ---
 
 # Schemas for structured data processing

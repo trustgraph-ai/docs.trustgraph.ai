@@ -1,7 +1,7 @@
 ---
 title: tg-invoke-graph-rag
-layout: default
 parent: CLI
+review_date: 2025-11-21
 ---
 
 # tg-invoke-graph-rag

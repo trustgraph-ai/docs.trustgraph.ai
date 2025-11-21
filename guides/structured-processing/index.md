@@ -1,7 +1,7 @@
 ---
 title: Structured data processing
-layout: default
 parent: How-to Guides
+review_date: 2026-02-01
 ---
 
 # Structured Data Processing

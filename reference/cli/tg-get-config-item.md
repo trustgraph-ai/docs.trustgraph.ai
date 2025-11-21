@@ -1,7 +1,7 @@
 ---
-layout: default
 title: tg-get-config-item
 parent: CLI
+review_date: 2025-11-21
 ---
 
 # tg-get-config-item

@@ -1,7 +1,7 @@
 ---
 title: tg-load-sample-documents
-layout: default
 parent: CLI
+review_date: 2025-11-21
 ---
 
 # tg-load-sample-documents

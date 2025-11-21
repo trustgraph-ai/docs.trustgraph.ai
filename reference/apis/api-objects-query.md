@@ -1,8 +1,8 @@
 ---
-layout: default
 title: Objects Query API
 parent: APIs
 permalink: /reference/apis/objects-query
+review_date: 2025-11-21
 ---
 
 # Objects Query API
