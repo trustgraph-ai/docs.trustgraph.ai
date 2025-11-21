@@ -1,7 +1,7 @@
 ---
 title: tg-list-config-items
 parent: CLI
-review_date: 2025-11-21
+review_date: 2026-05-23
 ---
 
 # tg-list-config-items

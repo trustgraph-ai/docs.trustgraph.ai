@@ -1,7 +1,7 @@
 ---
 title: tg-unload-kg-core
 parent: CLI
-review_date: 2025-11-21
+review_date: 2026-04-06
 ---
 
 # tg-unload-kg-core

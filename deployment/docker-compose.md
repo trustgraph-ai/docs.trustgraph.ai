@@ -3,7 +3,7 @@ title: Docker Compose / Podman Compose
 nav_order: 1
 parent: Deployment
 grand_parent: TrustGraph Documentation
-review_date: 2025-11-21
+review_date: 2026-03-20
 ---
 
 # Docker/Podman Compose Deployment

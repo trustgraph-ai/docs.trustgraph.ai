@@ -1,7 +1,7 @@
 ---
 title: tg-init-trustgraph
 parent: CLI
-review_date: 2025-11-21
+review_date: 2026-04-16
 ---
 
 # tg-init-trustgraph

@@ -1,7 +1,7 @@
 ---
 title: tg-put-config-item
 parent: CLI
-review_date: 2025-11-21
+review_date: 2026-01-30
 ---
 
 # tg-put-config-item

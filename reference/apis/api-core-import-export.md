@@ -1,7 +1,7 @@
 ---
 title: Core Import/Export API
 parent: APIs
-review_date: 2025-11-21
+review_date: 2025-12-08
 ---
 
 # TrustGraph Core Import/Export API

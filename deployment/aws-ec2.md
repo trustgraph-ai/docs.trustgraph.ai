@@ -3,7 +3,7 @@ title: AWS EC2 Single Instance
 nav_order: 7
 parent: Deployment
 grand_parent: TrustGraph Documentation
-review_date: 2025-11-21
+review_date: 2026-01-20
 ---
 
 # AWS EC2 Single Instance Deployment

@@ -3,7 +3,7 @@ title: Deployment
 nav_order: 4
 has_children: true
 parent: TrustGraph Documentation
-review_date: 2025-11-21
+review_date: 2025-12-29
 ---
 
 # Deployment Guide

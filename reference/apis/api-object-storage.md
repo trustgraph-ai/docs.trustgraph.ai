@@ -2,7 +2,7 @@
 title: Object Storage API
 parent: APIs
 permalink: /reference/apis/object-storage
-review_date: 2025-11-21
+review_date: 2026-02-26
 ---
 
 # Object Storage API

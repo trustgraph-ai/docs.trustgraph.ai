@@ -1,7 +1,7 @@
 ---
 title: tg-load-kg-core
 parent: CLI
-review_date: 2025-11-21
+review_date: 2026-05-15
 ---
 
 # tg-load-kg-core

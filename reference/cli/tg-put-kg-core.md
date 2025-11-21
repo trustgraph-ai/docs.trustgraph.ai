@@ -1,7 +1,7 @@
 ---
 title: tg-put-kg-core
 parent: CLI
-review_date: 2025-11-21
+review_date: 2026-05-26
 ---
 
 # tg-put-kg-core

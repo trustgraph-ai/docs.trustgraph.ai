@@ -1,7 +1,7 @@
 ---
 title: Embeddings API
 parent: APIs
-review_date: 2025-11-21
+review_date: 2026-04-29
 ---
 
 # TrustGraph Embeddings API

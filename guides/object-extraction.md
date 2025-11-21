@@ -3,7 +3,7 @@ title: Object Extraction Process
 parent: Guides
 nav_order: 8
 permalink: /guides/object-extraction
-review_date: 2025-11-21
+review_date: 2026-03-05
 ---
 
 # Object Extraction Process

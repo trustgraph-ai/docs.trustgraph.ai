@@ -1,7 +1,7 @@
 ---
 title: Knowledge API
 parent: APIs
-review_date: 2025-11-21
+review_date: 2025-12-07
 ---
 
 # TrustGraph Knowledge API

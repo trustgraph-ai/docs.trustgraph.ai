@@ -1,7 +1,7 @@
 ---
 title: tg-init-pulsar-manager
 parent: CLI
-review_date: 2025-11-21
+review_date: 2026-02-25
 ---
 
 # tg-init-pulsar-manager

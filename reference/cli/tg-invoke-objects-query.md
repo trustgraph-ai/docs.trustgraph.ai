@@ -1,7 +1,7 @@
 ---
 title: tg-invoke-objects-query
 parent: CLI
-review_date: 2025-11-21
+review_date: 2026-03-05
 ---
 
 # tg-invoke-objects-query

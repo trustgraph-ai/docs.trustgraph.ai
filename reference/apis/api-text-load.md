@@ -1,7 +1,7 @@
 ---
 title: Text Load API
 parent: APIs
-review_date: 2025-11-21
+review_date: 2026-02-26
 ---
 
 # TrustGraph Text Load API

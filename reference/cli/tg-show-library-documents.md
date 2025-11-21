@@ -1,7 +1,7 @@
 ---
 title: tg-show-library-documents
 parent: CLI
-review_date: 2025-11-21
+review_date: 2026-01-24
 ---
 
 # tg-show-library-documents

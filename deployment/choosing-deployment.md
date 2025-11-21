@@ -3,7 +3,7 @@ title: Choosing a Deployment
 nav_order: 1
 parent: Deployment
 grand_parent: TrustGraph Documentation
-review_date: 2025-11-21
+review_date: 2026-05-08
 ---
 
 # Choosing a Deployment Option

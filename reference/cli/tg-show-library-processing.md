@@ -1,7 +1,7 @@
 ---
 title: tg-show-library-processing
 parent: CLI
-review_date: 2025-11-21
+review_date: 2026-03-12
 ---
 
 # tg-show-library-processing

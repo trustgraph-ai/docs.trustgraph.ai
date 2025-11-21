@@ -2,7 +2,7 @@
 title: Structured Query API
 parent: APIs
 permalink: /reference/apis/structured-query
-review_date: 2025-11-21
+review_date: 2026-01-21
 ---
 
 # Structured Query API

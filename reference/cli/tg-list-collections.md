@@ -1,7 +1,7 @@
 ---
 title: tg-list-collections
 parent: CLI
-review_date: 2025-11-21
+review_date: 2025-12-20
 ---
 
 # tg-list-collections

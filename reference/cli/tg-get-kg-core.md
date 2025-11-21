@@ -1,7 +1,7 @@
 ---
 title: tg-get-kg-core
 parent: CLI
-review_date: 2025-11-21
+review_date: 2026-03-21
 ---
 
 # tg-get-kg-core

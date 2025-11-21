@@ -1,7 +1,7 @@
 ---
 title: tg-invoke-nlp-query
 parent: CLI
-review_date: 2025-11-21
+review_date: 2026-02-15
 ---
 
 # tg-invoke-nlp-query

@@ -1,7 +1,7 @@
 ---
 title: tg-show-kg-cores
 parent: CLI
-review_date: 2025-11-21
+review_date: 2026-05-07
 ---
 
 # tg-show-kg-cores

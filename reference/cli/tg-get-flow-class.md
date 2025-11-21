@@ -1,7 +1,7 @@
 ---
 title: tg-get-flow-class
 parent: CLI
-review_date: 2025-11-21
+review_date: 2025-12-24
 ---
 
 # tg-get-flow-class

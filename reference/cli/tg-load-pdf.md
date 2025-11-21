@@ -1,7 +1,7 @@
 ---
 title: tg-load-pdf
 parent: CLI
-review_date: 2025-11-21
+review_date: 2026-04-17
 ---
 
 # tg-load-pdf

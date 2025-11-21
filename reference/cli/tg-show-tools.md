@@ -1,7 +1,7 @@
 ---
 title: tg-show-tools
 parent: CLI
-review_date: 2025-11-21
+review_date: 2025-11-28
 ---
 
 # tg-show-tools

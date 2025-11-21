@@ -1,7 +1,7 @@
 ---
 title: tg-load-text
 parent: CLI
-review_date: 2025-11-21
+review_date: 2026-05-03
 ---
 
 # tg-load-text

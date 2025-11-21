@@ -1,7 +1,7 @@
 ---
 title: Entity Contexts API
 parent: APIs
-review_date: 2025-11-21
+review_date: 2025-12-19
 ---
 
 # TrustGraph Entity Contexts API

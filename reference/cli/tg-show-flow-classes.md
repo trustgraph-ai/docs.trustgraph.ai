@@ -1,7 +1,7 @@
 ---
 title: tg-show-flow-classes
 parent: CLI
-review_date: 2025-11-21
+review_date: 2026-03-11
 ---
 
 # tg-show-flow-classes

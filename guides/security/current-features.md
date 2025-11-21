@@ -3,7 +3,7 @@ title: Current Security Features
 nav_order: 1
 parent: Security
 grand_parent: How-to Guides
-review_date: 2025-11-21
+review_date: 2026-02-13
 ---
 
 # Current Security Features

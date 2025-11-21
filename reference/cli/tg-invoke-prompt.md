@@ -1,7 +1,7 @@
 ---
 title: tg-invoke-prompt
 parent: CLI
-review_date: 2025-11-21
+review_date: 2026-05-08
 ---
 
 # tg-invoke-prompt

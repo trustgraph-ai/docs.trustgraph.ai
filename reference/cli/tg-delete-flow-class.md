@@ -1,7 +1,7 @@
 ---
 title: tg-delete-flow-class
 parent: CLI
-review_date: 2025-11-21
+review_date: 2026-05-01
 ---
 
 # tg-delete-flow-class

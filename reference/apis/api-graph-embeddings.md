@@ -1,7 +1,7 @@
 ---
 title: Graph Embeddings API
 parent: APIs
-review_date: 2025-11-21
+review_date: 2026-05-06
 ---
 
 # TrustGraph Graph Embeddings API

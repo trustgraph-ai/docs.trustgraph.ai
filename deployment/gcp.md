@@ -3,7 +3,7 @@ title: Google Cloud Platform
 nav_order: 6
 parent: Deployment
 grand_parent: TrustGraph Documentation
-review_date: 2025-11-21
+review_date: 2026-02-09
 ---
 
 # Google Cloud Platform Deployment

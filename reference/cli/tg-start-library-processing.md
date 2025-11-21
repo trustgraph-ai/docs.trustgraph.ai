@@ -1,7 +1,7 @@
 ---
 title: tg-start-library-processing
 parent: CLI
-review_date: 2025-11-21
+review_date: 2025-12-23
 ---
 
 # tg-start-library-processing

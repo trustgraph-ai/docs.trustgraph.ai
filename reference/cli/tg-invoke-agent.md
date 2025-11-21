@@ -1,7 +1,7 @@
 ---
 title: tg-invoke-agent
 parent: CLI
-review_date: 2025-11-21
+review_date: 2026-05-14
 ---
 
 # tg-invoke-agent

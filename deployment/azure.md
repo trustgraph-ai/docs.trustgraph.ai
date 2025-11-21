@@ -3,7 +3,7 @@ title: Azure AKS
 nav_order: 5
 parent: Deployment
 grand_parent: TrustGraph Documentation
-review_date: 2025-11-21
+review_date: 2026-02-21
 ---
 
 # Microsoft Azure AKS Deployment

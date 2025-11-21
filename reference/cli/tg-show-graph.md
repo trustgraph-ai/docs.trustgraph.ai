@@ -1,7 +1,7 @@
 ---
 title: tg-show-graph
 parent: CLI
-review_date: 2025-11-21
+review_date: 2026-03-28
 ---
 
 # tg-show-graph

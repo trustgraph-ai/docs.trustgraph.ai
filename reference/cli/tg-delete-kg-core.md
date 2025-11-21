@@ -1,7 +1,7 @@
 ---
 title: tg-delete-kg-core
 parent: CLI
-review_date: 2025-11-21
+review_date: 2026-03-08
 ---
 
 # tg-delete-kg-core

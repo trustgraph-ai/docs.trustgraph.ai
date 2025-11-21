@@ -3,7 +3,7 @@ title: NLP Query API
 parent: APIs
 grand_parent: Reference
 permalink: /reference/apis/nlp-query
-review_date: 2025-11-21
+review_date: 2026-05-10
 ---
 
 # NLP Query API

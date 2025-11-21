@@ -3,7 +3,7 @@ title: Intel GPU / Tiber Cloud
 nav_order: 3
 parent: Deployment
 grand_parent: TrustGraph Documentation
-review_date: 2025-11-21
+review_date: 2025-12-02
 ---
 
 # Intel Tiber Cloud Deployment

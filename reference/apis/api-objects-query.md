@@ -2,7 +2,7 @@
 title: Objects Query API
 parent: APIs
 permalink: /reference/apis/objects-query
-review_date: 2025-11-21
+review_date: 2026-04-28
 ---
 
 # Objects Query API
