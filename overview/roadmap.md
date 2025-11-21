@@ -1,6 +1,5 @@
 ---
 title: Roadmap
-layout: default
 nav_order: 6
 parent: Overview
 grand_parent: TrustGraph Documentation

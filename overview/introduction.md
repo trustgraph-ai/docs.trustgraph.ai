@@ -1,6 +1,5 @@
 ---
 title: Introduction
-layout: default
 nav_order: 1
 parent: Overview
 grand_parent: TrustGraph Documentation
