@@ -91,3 +91,9 @@ exclude:
   - .github/
   - README.md
 
+defaults:
+  - scope:
+      path: ""
+    values:
+      layout: page
+
