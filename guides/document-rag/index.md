@@ -4,8 +4,6 @@ nav_order: 12
 parent: How-to Guides
 grand_parent: TrustGraph Documentation
 review_date: 2026-08-01
-todo: true
-todo_notes: Verify AI-generated output
 ---
 
 # Document RAG Guide
@@ -17,10 +15,11 @@ retrieval-augmented generation approach that uses vector embeddings to find
 relevant document chunks and provides them as context to an LLM for generating
 responses.
 
-Document RAG is the most basic information retrieval flow. It will prove
-effective for some limited cases, but you should consider
-[GraphRAG](graph-rag) or [Ontology RAG](ontology-rag) for more effective
-information retrieval.
+{: .note }
+> Document RAG is the most basic information retrieval flow. It can prove
+> useful for some limited cases, but you should consider
+> [GraphRAG](graph-rag) or [Ontology RAG](ontology-rag) for real-world
+> information retrieval use-cases.
 
 ## What is Document RAG?
 
@@ -34,8 +33,8 @@ The essential Document RAG ingest flow consists of:
 The pros and cons of this approach:
 - ✅ *Pro*: Quicker ingest time compared to knowledge extraction flows
 - ✅ *Pro*: No token consumption on document ingest
-- ⚠️ *Con*: Sentence embeddings are limited for retrieval where chunks
-  contain many concepts
+- ⚠️ *Con*: Sentence embeddings are imprecise and limited for retrieval
+  where documents contain diverse concepts
 - ⚠️ *Con*: Ineffective for resolving complex questions
 
 ### When to Use Document RAG
@@ -225,132 +224,103 @@ dashboard, which has a 'pub/sub backlog' graph.
 
 <img src="monitoring.png" alt="Set collection option"/>
 
+The document we loaded is small, and will process very quickly, so you
+should only see a 'blip' on the backlog showing that chunks were loaded
+and cleared quickly.
 
-## Troubleshooting
+### Step 6: Retrieval
 
-### Poor Retrieval Quality
+Presently, there is no Document RAG support in the workbench.
 
-**Problem**: Irrelevant chunks retrieved
+#### Command-line
 
-**Solutions**:
-- Verify documents processed successfully: `tg-show-processor-state`
-- Check embedding quality: `tg-invoke-vector-search "test query"`
-- Adjust chunk size in flow configuration
-- Reformulate query for better semantic match
-
-### Missing Context
-
-**Problem**: Answers lack necessary context
-
-**Solutions**:
-- Increase chunk size (e.g., 1000 → 1500)
-- Increase retrieval limit (more chunks)
-- Increase chunk overlap (50 → 100)
-- Use [Graph RAG](graph-rag) for relationship-based context
-
-### Slow Queries
-
-**Problem**: Document RAG queries take too long
-
-**Solutions**:
-- Reduce number of documents in collection
-- Optimize vector database configuration
-- Use more powerful hardware
-- Consider indexing strategies
-
-### Empty Results
-
-**Problem**: No results returned
-
-**Solutions**:
-- Verify documents are processed: `tg-show-processor-state`
-- Check collection name is correct
-- Verify embeddings created: `tg-show-graph`
-- Check for processing errors in logs
-
-## Advanced Configuration
-
-### Custom Embedding Models
-
-Configure different embedding models in your flow:
-
-```yaml
-embeddings:
-  model: sentence-transformers/all-mpnet-base-v2
-  dimension: 768
+```
+tg-invoke-document-rag \
+    -f doc-rag -C intelligence \
+    -q 'What is the PHANTOM CARGO report about?'
 ```
 
-**Popular choices**:
-- `all-mpnet-base-v2`: Balanced quality/speed (768d)
-- `all-MiniLM-L6-v2`: Fast, smaller (384d)
-- `bge-large-en`: High quality (1024d)
+Which should return a result like:
 
-### Retrieval Tuning
-
-Adjust retrieval parameters:
-
-```bash
-# Get more context (more chunks)
-tg-invoke-document-rag --limit 10 "query"
-
-# Focus on top matches (fewer chunks)
-tg-invoke-document-rag --limit 2 "query"
+```
+The PHANTOM CARGO report is about an operation that detected unusual shipping
+patterns involving a Dubai-based freight company, Meridian Logistics LLC. This
+company was moving containerized "agricultural equipment" on irregular
+schedules with inconsistent documentation between Limassol (Cyprus), Durban
+(South Africa), and Batumi (Georgia). The operation aimed to uncover a
+suspected arms trafficking network operating under the guise of legitimate
+trade, circumventing sanctions.
 ```
 
-### Collection Management
+Retrieval in Document RAG consists of selecting some chunks based on semantic
+similarity to the question.  In this case, for a small report on a single
+topic, which produces a very small number of chunks.  The retrieval process is
+very likely to select all the chunks, and so the retrieval is going to be
+effective.
 
-**Create collection**:
-```bash
-tg-set-collection my-project
+An interesting experiment you might want to try is to try loading other
+documents into the collection, and using more complex questions - you should
+see Document RAG begin to become ineffective very quickly.
+
+The question:
+```
+tg-invoke-document-rag -f doc-rag -C intelligence -q 'Which organisation operated agents which observed the warehouse?'
+```
+provides the answer:
+```
+An AISE officer operating under commercial cover in Cyprus was tasked to
+establish visual observation of Meridian's warehouse facility.
 ```
 
-**List collections**:
-```bash
-tg-list-collections
+But once more documents are loaded, the context gets overwhelmed with
+irrelevant chunks:
+
+```
+The provided context does not specify which organization operated the agents
+who observed the warehouse. It only mentions that an asset, a disgruntled
+Meridian logistics coordinator in Cyprus, provided pre-encrypted shipping
+schedules.
 ```
 
-**Delete collection**:
-```bash
-tg-delete-collection my-project
-```
+Document RAG is useful for small amounts of data
+and quick demos but not useful for more complex scenarios.
 
 ## Document RAG vs. Other Approaches
 
 | Aspect | Document RAG | Graph RAG | Ontology RAG |
 |--------|--------------|-----------|--------------|
 | **Retrieval** | Vector similarity | Graph relationships | Schema-based |
-| **Context** | Isolated chunks | Connected entities | Structured data |
-| **Best for** | Semantic search | Complex relationships | Typed extraction |
-| **Setup** | Simple | Medium | Complex |
+| **Context** | Isolated chunks | Connected entities | Connected objects, properties and types |
+| **Best for** | Semantic search | Complex relationships | Complex relationships + precise types |
+| **Setup** | Simple | Simple | Complex |
 | **Speed** | Fast | Medium | Medium |
 
-**Use multiple approaches**:
-- Document RAG for quick semantic search
-- [Graph RAG](graph-rag) when relationships matter
-- [Ontology RAG](ontology-rag) for structured extraction
+**Use multiple approaches**: The processing flow defines the extraction
+and retrieval mechanisms, so you can use multiple approaches on the same
+data.
 
 ## Next Steps
 
 ### Explore Other RAG Types
 
-- **[Graph RAG](graph-rag)** - Leverage knowledge graph relationships
-- **[Ontology RAG](ontology-rag)** - Use structured schemas for extraction
+- **[Graph RAG](../graph-rag)** - Leverage knowledge graph relationships
+- **[Ontology RAG](../ontology-rag)** - Use structured schemas for extraction
 
 ### Advanced Features
 
-- **[Structured Processing](structured-processing/)** - Extract typed objects
-- **[Agent Extraction](agent-extraction)** - AI-powered extraction workflows
-- **[Object Extraction](object-extraction)** - Domain-specific extraction
+- **[Structured Processing](../structured-processing/)** - Extract typed objects
+- **[Agent Extraction](../agent-extraction)** - AI-powered extraction workflows
+- **[Object Extraction](../object-extraction)** - Domain-specific extraction
 
 ### API Integration
 
-- **[Document RAG API](../reference/apis/api-document-rag)** - API reference
-- **[CLI Reference](../reference/cli/)** - Command-line tools
-- **[Examples](../examples/)** - Code samples
+- **[Document RAG API](../../reference/apis/api-document-rag)** - API reference
+- **[CLI Reference](../../reference/cli/)** - Command-line tools
+- **[Examples](../../examples/)** - Code samples
 
 ## Related Resources
 
-- **[Core Concepts](../getting-started/concepts)** - Understanding embeddings and chunks
-- **[Vector Search](../getting-started/concepts#vector-embeddings)** - How semantic search works
-- **[Deployment](../deployment/)** - Scaling for production
-- **[Troubleshooting](../deployment/troubleshooting)** - Common issues
+- **[Core Concepts](../../getting-started/concepts)** - Understanding embeddings and chunks
+- **[Vector Search](../../getting-started/concepts#vector-embeddings)** - How semantic search works
+- **[Deployment](../../deployment/)** - Scaling for production
+- **[Troubleshooting](../../deployment/troubleshooting)** - Common issues

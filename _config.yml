@@ -82,6 +82,9 @@ callouts:
   wip:
     title: Work in Progress
     color: yellow
+  note:
+    title: Note
+    color: yellow
 
 # Exclude files and directories from Jekyll build
 exclude:
