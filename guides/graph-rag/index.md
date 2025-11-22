@@ -4,8 +4,6 @@ nav_order: 10
 parent: How-to Guides
 grand_parent: TrustGraph Documentation
 review_date: 2026-08-01
-todo: true
-todo_notes: Fix image alt tags
 ---
 
 # Graph RAG Guide
@@ -20,7 +18,7 @@ information, with complex structures.  Graph RAG uses vector embeddings
 to go from questions to knowledge graph nodes, but then uses graph node
 relationships to discover related information.
 
-<img src="graph-rag.jpg" alt="Graph RAG" width="75%"/>
+<img src="graph-rag.jpg" alt="GraphRAG pictorial representation" width="75%"/>
 
 In TrustGraph, Graph RAG refers to information extraction without an
 ontology or schema.  Ontology-free knowledge extraction automatically
@@ -131,7 +129,7 @@ $ tg-show-library-documents
 - Add the document you just downloaded
 - Click Submit
 
-<img src="load-document.png" alt="Set collection option"/>
+<img src="load-document.png" alt="Load document dialogue"/>
 
 ### Step 2: Create a Collection
 
@@ -206,12 +204,12 @@ tg-start-library-processing \
 There is a selection widget top right of the screen with an database icon
 top left.
 
-<img src="selection.png" alt="Set collection option"/>
+<img src="selection.png" alt="Selection widget"/>
 
 Click that to open the collection/flow selector, and select the
 Intelligence collection, and Graph RAG, both of which you created earlier.
 
-<img src="collection-selected.png" alt="Set collection option"/>
+<img src="collection-selected.png" alt="Selection dialogue"/>
 
 You are ready to submit the document:
 
@@ -232,23 +230,23 @@ The pub/sub backlog.  You can monitor the size of queues in Pulsar.
 GraphRAG knowledge extraction causes a queue of chunks for processing in
 knowledge extraction and you can see this in the backlog:
 
-<img src="monitoring1.png" alt="FIXME"/>
+<img src="monitoring1.png" alt="Pub/sub backlog graph"/>
 
 There is also a knowledge extraction backlog graph which helps to see
 knowledge extraction if other queues are being exercised:
 
-<img src="monitoring2.png" alt="FIXME"/>
+<img src="monitoring2.png" alt="Knowledge extraction backlog graph"/>
 
 To gauge LLM effectiveness, there is a heatmap which shows LLM latency.
 Here we can see that LLM response times for my LLM processing are in the
 6 second window.
 
-<img src="monitoring3.png" alt="FIXME"/>
+<img src="monitoring3.png" alt="LLM latency heatmap"/>
 
 Another LLM effectiveness graph, the Token graph shows token throughput
 over time, the Y-axis shows tokens/s rate.
 
-<img src="monitoring4.png" alt="FIXME"/>
+<img src="monitoring4.png" alt="LLM token throughput graph"/>
 
 Finally, another useful chart shows the rate limit events per second.
 These are commonly seen in the text-completion process which interfaces
@@ -256,7 +254,7 @@ with the LLM.  Rate limit events are normal for a knowledge extraction
 backlog.  This might particularly be helpful for you to determine whether
 you need to provision more LLM bandwidth or dedicated hosting.
 
-<img src="monitoring5.png" alt="FIXME"/>
+<img src="monitoring5.png" alt="LLM rate limit events graph"/>
 
 The document we loaded is small, and will process very quickly, so you
 should only see a 'blip' on the backlog showing that chunks were loaded
@@ -313,14 +311,14 @@ along with the graph node description and the vector similarity score.
 The exact view may vary depending on the LLM model you are using and the
 entities discovered by it.
 
-<img src="vector-results.png" alt="FIXME"/>
+<img src="vector-results.png" alt="Vector results table"/>
 
 This is a list of graph nodes.  Clicking on an item moves to a node
 exploration view, showing graph nodes related to the selected node.
 Clicking on CSO-class optical reconnaissance satellite shows
 relationships:
 
-<img src="relationships.png" alt="FIXME"/>
+<img src="relationships.png" alt="Relationships view"/>
 
 Each row is a graph edge, on the left-hand side is the subject of the
 graph node, the middle term shows the predicate (relationship), and the
@@ -329,21 +327,21 @@ On this view you can navigate from the graph node show to other nodes by
 clicking on the details.  Clicking on the 'subject of' relationship
 shows a long list of all 'subject of' relationships which is a common term.
 
-<img src="relationships2.png" alt="FIXME"/>
+<img src="relationships2.png" alt="Relationships view"/>
 
 The 'subject of' relationship links discovered entities to the document
 from which they were taken.  The right-hand side entities represent the
 PHANTOM CARGO document itself.  Clicking that shows relationships, including
 a 'has type' showing that 'PHANTOM CARGO' is a 'digital document'.
 
-<img src="relationships3.png" alt="FIXME"/>
+<img src="relationships3.png" alt="Relationships view"/>
 
 Once you have an interesting node, you can click 'Graph view' to switch to
 a 3D graph view.  This is navigable.  Clicking a node shows a panel on the
 right-hand side allowing you to see node properties, along with controls
 to navigate relationships.  This adds further nodes to the graph.
 
-<img src="3d.png" alt="FIXME"/>
+<img src="3d.png" alt="3D graph view"/>
 
 You can rotate the graph and navigate 3D space using the mouse /
 pointer controls.

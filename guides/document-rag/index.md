@@ -124,7 +124,7 @@ $ tg-show-library-documents
 - Add the document you just downloaded
 - Click Submit
 
-<img src="load-document.png" alt="Set collection option"/>
+<img src="load-document.png" alt="Document load dialogue"/>
 
 ### Step 2: Create a Collection
 
@@ -199,12 +199,12 @@ tg-start-library-processing \
 There is a selection widget top right of the screen with an database icon
 top left.
 
-<img src="selection.png" alt="Set collection option"/>
+<img src="selection.png" alt="Selection widget"/>
 
 Click that to open the collection/flow selector, and select the
 Intelligence collection, and Document RAG, both of which you created earlier.
 
-<img src="collection-selected.png" alt="Set collection option"/>
+<img src="collection-selected.png" alt="Selection dialogue"/>
 
 You are ready to submit the document:
 
@@ -221,7 +221,7 @@ If you want to see the document loading, you can go to Grafana at
 login user is admin, password admin.  Grafana is configured with a single
 dashboard, which has a 'pub/sub backlog' graph.
 
-<img src="monitoring.png" alt="Set collection option"/>
+<img src="monitoring.png" alt="Grafana pub/sub backlog graph"/>
 
 The document we loaded is small, and will process very quickly, so you
 should only see a 'blip' on the backlog showing that chunks were loaded
