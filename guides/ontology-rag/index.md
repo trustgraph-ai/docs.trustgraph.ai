@@ -1,61 +1,62 @@
 ---
-title: Graph RAG
+title: Ontology RAG
 nav_order: 10
 parent: How-to Guides
 grand_parent: TrustGraph Documentation
 review_date: 2026-08-01
 ---
 
-# Graph RAG Guide
+# Ontology RAG Guide
 
+**Extract knowledge using language definition**
 **Query documents using graph embeddings and knowledge graph relationships**
 
-GraphRAG is a technique which uses automated extraction of relationships
+Ontology RAG is a technique which uses automated extraction of relationships
 from unstructured text, which is stored in a knowledge graph.
+It is similar to [GraphRAG](../graph-rag).
 
-GraphRAG is a very effective technique for retrieval on complex diverse
-information, with complex structures.  Graph RAG uses vector embeddings
-to go from questions to knowledge graph nodes, but then uses graph node
-relationships to discover related information.
+Ontology RAG uses an ontology, which is a form of schema, defining the
+semantic meaning of language concepts.
 
-<img src="graph-rag.jpg" alt="GraphRAG pictorial representation" width="75%"/>
+<img src="ontology-rag.jpg" alt="Ontology RAG pictorial representation" width="75%"/>
 
-In TrustGraph, Graph RAG refers to information extraction without an
-ontology or schema.  Ontology-free knowledge extraction automatically
-discovers relationships in unstructured text.  In contrast, Ontology RAG
-uses an ontology.
+In TrustGraph, Ontology RAG refers to information extraction using an
+ontology.  TrustGraph supports importing OWL ontologies which can then be
+used to import objects and properties from unstructured text.
 
-## What is Graph RAG?
+## What is Ontology RAG?
 
 The essential Graph RAG ingest flow consists of:
 1. **Chunking** documents into smaller pieces
-2. **Knowledge Extraction** to discover entities and relationships
-3. **Embedding** each entity as a vector and storing these in a vector store
-4. **Storing** entity relationships in a knowledge graph
-5. **Retrieving** using semantic similarity to discover knowledge graph entry points
-6. **Traversing** the knowledge graph to find related information
-7. **Generating** responses using the knowledge subgraph as context to an LLM
+2. **Ontology loading** an OWL ontology is loaded into an in-memory store
+3. **Knowledge Extraction** using the ontologies to discover entities and relationships
+4. **Embedding** each entity as a vector and storing these in a vector store
+5. **Storing** entity relationships in a knowledge graph
+6. **Retrieving** using semantic similarity to discover knowledge graph entry points
+7. **Traversing** the knowledge graph to find related information
+8. **Generating** responses using the knowledge subgraph as context to an LLM
 
 The pros and cons of this approach:
-- ✅ *Pro*: Much more precise retrieval
+- ✅ *Pro*: Very precise retrieval
+- ✅ *Pro*: Conformant knowledge graphs - knowledge graph structures are defined by the ontologies
 - ✅ *Pro*: Effective when faced with complex relationships or diverse data
-- ✅ *Pro*: Scales to handle much larger document sets
-- ✅ *Pro*: No need for an ontology/schema as relationships are discovered automatically
+- ✅ *Pro*: Scales to handle much larger document sets and complex ontologies
 - ⚠️ *Con*: Knowledge extract has a cost at document ingest time
 - ⚠️ *Con*: Token costs required to ingest documents
+- ⚠️ *Con*: Ontology creation can be a complex process
 
-## When to Use Graph RAG
+## When to Use Ontology RAG
 
-✅ **Use Graph RAG when**:
-- Questions require understanding relationships
+✅ **Use Ontology RAG when**:
+- Ontologies already exist for your information space
 - Answers need context from multiple documents
 - You need to connect disparate information
-- Reducing hallucinations is critical
-- Questions involve "how are X and Y related?"
+- Complex custom knowledge problems require precision of retrieval
+- Working with specialist knowledge such as cybersecurity or intelligence
 
 ⚠️ **Consider alternatives when**:
-- Simple keyword search on small data is sufficient → Use [Document RAG](document-rag)
-- Need structured typed data → Use [Ontology RAG](ontology-rag)
+- Simple keyword search on small data is sufficient → Use [Document RAG](../document-rag)
+- Ontology defintion will be too complex → Use [GraphRAG](../graph-rag)
 
 ## Prerequisites
 
@@ -130,7 +131,102 @@ $ tg-show-library-documents
 
 <img src="load-document.png" alt="Load document dialogue"/>
 
-### Step 2: Create a Collection
+### Step 2: Load the Ontology
+
+The ontology we're going to use is the SSN with SOSA extensions.  This is a
+standard ontology family defined by the W3C.
+
+SOSA (Sensor, Observation, Sample, and Actuator) and SSN (Semantic Sensor
+Network) are standardized vocabularies for describing sensors, observations,
+and measurements on the web. They're maintained by the W3C (World Wide Web
+Consortium).
+
+Think of them as a shared language that lets different systems talk about
+sensor data in a consistent way.
+
+#### The Relationship Between Them
+
+SOSA is the lightweight core — it defines the essential concepts you need to describe observations and sensors. SSN builds on top of SOSA, adding more detailed concepts for complex scenarios.
+
+You can use SOSA alone for simple cases, or bring in SSN when you need more expressive power.
+
+#### Core Concepts in SOSA
+
+The main classes you'll work with are:
+
+- *Sensor* - A device or agent that observes something (a thermometer, a
+  satellite, even a human observer).
+- *Observation* - The act of measuring or estimating a property. An
+  observation links together what was observed, how it was observed, and what
+  the result was.
+- *ObservableProperty* - The quality being measured (temperature, humidity,
+  speed).
+- *FeatureOfInterest* - The real-world thing you're interested in (a room,
+  a lake, a patient).
+- *Result* - The output value of an observation.
+- *Actuator* and *Actuation* - The counterparts for doing something rather
+  than observing (turning on a heater, opening a valve).
+- *Sample* - A representative portion of a larger feature (a water sample
+  from a lake).
+
+#### A Simple Example
+
+Imagine a weather station measuring air temperature:
+- *FeatureOfInterest*: The atmosphere at a specific location
+- *ObservableProperty*: Air temperature
+- *Sensor*: A digital thermometer
+- *Observation*: The act of taking a reading at 2pm on Tuesday
+- *Result*: 22.5 degrees Celsius
+
+#### How TrustGraph uses ontologies
+
+TrustGraph stores ontologies as an internal JSON format which is not
+standard but closely follows the OWL Ontology structure.
+
+You can create an ontology using the Workbench Ontology editor.  This is
+able to import a standard OWL ontology.  Once loaded, you can use the
+configuration API or CLI tools to save and load the ontology in its
+imported format.
+
+#### Command-line
+
+Download the ontology in internal JSON format at the following URL:
+
+[https://raw.githubusercontent.com/trustgraph-ai/example-data/refs/heads/main/tracking/ssn-ontology.json](https://raw.githubusercontent.com/trustgraph-ai/example-data/refs/heads/main/tracking/ssn-ontology.json)
+
+e.g.
+
+```
+wget -O ssn-ontology.json https://raw.githubusercontent.com/trustgraph-ai/example-data/refs/heads/main/tracking/ssn-ontology.json
+```
+
+and then install to TrustGraph:
+
+```
+cat ssn-ontology.json | tg-put-config-item --type ontology --key ssn --stdin
+```
+
+#### Workbench
+
+Download the ontology in standard Turtle format at the following URL:
+
+[https://raw.githubusercontent.com/trustgraph-ai/example-data/refs/heads/main/tracking/ssn-ontology.ttl](https://raw.githubusercontent.com/trustgraph-ai/example-data/refs/heads/main/tracking/ssn-ontology.ttl)
+
+Then load the ontology:
+
+- On the workbench, go to the settings page, and in the Feature Switches
+  section, ensure 'Ontology Editor' is enabled
+- Go to the Ontologies page
+- Click 'Import Ontology'
+- Click the 'Select File' section, and select the ontology you just
+  downloaded
+- At the bottom of the dialog click 'Import'
+
+At this point you should be looking at a structured view of the ontology.
+You can explore the structure of the ontology in this editor.  The ontology
+contains classes, properties and datatypes.
+
+### Step 3: Create a Collection
 
 A collection is used to organise a set of related documents or data sources
 into a single unit.  Retrieval operations operate across a single collection.
@@ -156,9 +252,9 @@ tg-set-collection -n Intelligence -d 'Intelligence analysis' intelligence
 ### Step 3: Create the Flow
 
 A flow describes the collection of processing operations.  We're going
-to create a single flow for Graph RAG processing.
+to create a single flow for Ontology RAG processing.
 
-We'll create a 'graph-rag' flow:
+We'll create a 'onto-rag' flow:
 
 #### Command-line
 
@@ -166,16 +262,16 @@ This command allows you to add parameters for LLM model, temperature etc.
 but we're just going to use the defaults:
 
 ```
-tg-start-flow -n graph-rag -i graph-rag -d "Graph RAG"
+tg-start-flow -n onto-rag -i onto-rag -d "Ontology RAG"
 ```
 
 #### Workbench
 
 - Go to the 'Flows' page
 - Click 'Create'
-- Select the flow class 'Graph RAG'
-- Set the ID: graph-rag
-- Set the description: Graph RAG
+- Select the flow class 'Ontology RAG Only'
+- Set the ID: onto-rag
+- Set the description: Ontology RAG
 - Click 'Create'
 
 ### Step 4: Submit the Document for Processing
@@ -185,17 +281,17 @@ This pushes the document into the flow input.
 #### Command-line
 
 This command submits the document for processing.  You need to specify
-the flow ID (`graph-rag`) and the document ID which was used when the
+the flow ID (`onto-rag`) and the document ID which was used when the
 document was added to the library in step 1.  The collection ID is
 that which was used to create the collection.
 Processing objects need an ID, and you can make up any string:
 
 ```
 tg-start-library-processing \
-    --flow-id graph-rag \
+    --flow-id onto-rag \
     --document-id https://trustgraph.ai/doc/phantom-cargo \
     --collection intelligence \
-    --processing-id urn:processing-02
+    --processing-id urn:processing-03
 ```
 
 #### Workbench

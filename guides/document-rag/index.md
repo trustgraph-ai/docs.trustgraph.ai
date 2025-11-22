@@ -172,7 +172,7 @@ tg-start-flow -n document-rag -i doc-rag -d "Document RAG"
 - Select the flow class 'Document RAG'
 - Set the ID: doc-rag
 - Set the description: Document RAG
-- Click 'Create
+- Click 'Create'
 
 ### Step 4: Submit the Document for Processing
 
