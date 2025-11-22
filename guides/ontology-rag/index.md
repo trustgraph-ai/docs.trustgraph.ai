@@ -455,6 +455,29 @@ to navigate relationships.  This adds further nodes to the graph.
 You can rotate the graph and navigate 3D space using the mouse /
 pointer controls.
 
+## Further exploration
+
+If you want to try a RAG approach but don't know where to start, an
+interesting experiment is to compare GraphRAG and Ontology RAG to see which
+works best for your use-case.
+
+If you don't know anything about ontologies, you could try using Claude
+to generate an ontology.  Feed in some text, tell the assistant the
+important use-cases and ask for an OWL ontology presented in Turtle
+format.
+
+<img src="ontology-gen-ai.png" alt="Ontology rag generation"/>
+
+## Conclusion
+
+The advantage of Ontology RAG is that it guides the knowledge extraction
+to extract knowledge in a particularly precise manner.  For complex use-cases
+this means that the knowledge going into retrieval contexts is packed with
+the right information to answer the question.  This is a major advantage
+for complex information analysis use-cases.
+
+<img src="onto-rag-result.png" alt="Ontology rag result"/>
+
 ## Ontology RAG vs. Other Approaches
 
 | Aspect | Document RAG | Graph RAG | Ontology RAG |
