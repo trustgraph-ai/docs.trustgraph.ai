@@ -226,6 +226,8 @@ At this point you should be looking at a structured view of the ontology.
 You can explore the structure of the ontology in this editor.  The ontology
 contains classes, properties and datatypes.
 
+<img src="ssn-ontology.png" alt="SSN ontology in ontology editor"/>
+
 ### Step 3: Create a Collection
 
 A collection is used to organise a set of related documents or data sources
@@ -311,7 +313,7 @@ You are ready to submit the document:
 - Go to the 'Library' page
 - Select the PHANTOM CARGO document so that the tick box is selected
 - Click 'Submit' at the bottom of the page
-- Change the Processing flow to Document RAG
+- Change the Processing flow to Ontology RAG
 - Click Submit
 
 From hereon, everything is very similar to GraphRAG.
@@ -324,7 +326,7 @@ login user is admin, password admin.  Grafana is configured with a single
 dashboard.  Some useful things to monitor are:
 
 The pub/sub backlog.  You can monitor the size of queues in Pulsar.
-GraphRAG knowledge extraction causes a queue of chunks for processing in
+Knowledge extraction causes a queue of chunks for processing in
 knowledge extraction and you can see this in the backlog:
 
 <img src="monitoring1.png" alt="Pub/sub backlog graph"/>
@@ -358,7 +360,7 @@ should only see a 'blip' on the backlog showing that chunks were loaded
 and cleared quickly.
 
 It can take many minutes or hours to process large documents or large document
-sets using GraphRAG extraction.
+sets using Ontology RAG extraction.
 
 ### Step 7: Retrieval
 
@@ -454,7 +456,7 @@ to navigate relationships.  This adds further nodes to the graph.
 You can rotate the graph and navigate 3D space using the mouse /
 pointer controls.
 
-## Document RAG vs. Other Approaches
+## Ontology RAG vs. Other Approaches
 
 | Aspect | Document RAG | Graph RAG | Ontology RAG |
 |--------|--------------|-----------|--------------|
@@ -472,7 +474,7 @@ data.
 
 ### Explore Other RAG Types
 
-- **[Ontology RAG](../ontology-rag)** - Use structured schemas for extraction
+- **[GraphRAG](../graph-rag)** - Schema-free automated knowledge extraction
 
 ### Advanced Features
 

@@ -215,7 +215,7 @@ You are ready to submit the document:
 - Go to the 'Library' page
 - Select the PHANTOM CARGO document so that the tick box is selected
 - Click 'Submit' at the bottom of the page
-- Change the Processing flow to Document RAG
+- Change the Processing flow to GraphRAG
 - Click Submit
 
 ### Step 5: Monitoring
@@ -345,7 +345,7 @@ to navigate relationships.  This adds further nodes to the graph.
 You can rotate the graph and navigate 3D space using the mouse /
 pointer controls.
 
-## Document RAG vs. Other Approaches
+## GraphRAG vs. Other Approaches
 
 | Aspect | Document RAG | Graph RAG | Ontology RAG |
 |--------|--------------|-----------|--------------|
