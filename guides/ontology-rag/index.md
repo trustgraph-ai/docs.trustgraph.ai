@@ -249,7 +249,7 @@ tg-set-collection -n Intelligence -d 'Intelligence analysis' intelligence
 - Set the description to: Intelligence analysis
 - Click 'Submit'
 
-### Step 3: Create the Flow
+### Step 4: Create the Flow
 
 A flow describes the collection of processing operations.  We're going
 to create a single flow for Ontology RAG processing.
@@ -274,7 +274,7 @@ tg-start-flow -n onto-rag -i onto-rag -d "Ontology RAG"
 - Set the description: Ontology RAG
 - Click 'Create'
 
-### Step 4: Submit the Document for Processing
+### Step 5: Submit the Document for Processing
 
 This pushes the document into the flow input.
 
@@ -314,7 +314,9 @@ You are ready to submit the document:
 - Change the Processing flow to Document RAG
 - Click Submit
 
-### Step 5: Monitoring
+From hereon, everything is very similar to GraphRAG.
+
+### Step 6: Monitoring
 
 If you want to see the document loading, you can go to Grafana at
 [`http://localhost:3000`](http://localhost:3000).  The default
@@ -358,7 +360,7 @@ and cleared quickly.
 It can take many minutes or hours to process large documents or large document
 sets using GraphRAG extraction.
 
-### Step 6: Retrieval
+### Step 7: Retrieval
 
 Retrieval in Graph RAG consists of mapping the question to a set of candidate
 graph entities, and then following graph edges to create a subgraph, which
@@ -366,9 +368,20 @@ is used as context with the LLM.
 
 #### Command-line
 
+]$ tg-invoke-graph-rag     -f onto-rag -C intelligence --max-path-length 5 -q 'Write a report about the intelligence gained from optical satellite sensors'
+Based on the provided knowledge statements, here's a report about intelligence gained from optical satellite sensors:
+
+Optical satellite sensors are utilized for various intelligence gathering purposes. For instance, "satellite systems photography" is an "Observation" made by "satellite systems" and can be deployed for "port facilities photography" and "port facility surveillance." The "Maxar WorldView-3 commercial satellite tasking (0.31m resolution)" is an example of an optical sensor that has been used to observe "Satellite imagery of Durban Port." This imagery can observe features like "durban-port" and has a specific valid time.
+
+Furthermore, "CSO-class optical reconnaissance satellite" is classified as a "Sensor or Observer," indicating its role in intelligence collection. "IMINT" (Imagery Intelligence) is also categorized as a "Sensor or Observer," which is often derived from optical satellite imagery.
+
+The intelligence gained from these optical sensors can be related to various aspects, such as observing "port facilities" and conducting "port facility surveillance."
+
+
+
 ```
 tg-invoke-graph-rag \
-    -f graph-rag -C intelligence \
+    -f onto-rag -C intelligence \
     -q 'What intelligence resources were using during the PHANTOM CARGO operation?'
 ```
 
@@ -393,7 +406,7 @@ The intelligence resources used during the PHANTOM CARGO operation were:
 - Enter the question: What intelligence resources were using during the PHANTOM CARGO operation?
 - Press 'Send' and wait for the answer
 
-### Step 7: Explore the knowledge graph
+### Step 8: Explore the knowledge graph
 
 The Workbench provides access to some more tools you can play with.
 
