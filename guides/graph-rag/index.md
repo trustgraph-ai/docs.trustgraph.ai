@@ -1,63 +1,72 @@
 ---
-title: Document RAG
-nav_order: 12
+title: Graph RAG
+nav_order: 10
 parent: How-to Guides
 grand_parent: TrustGraph Documentation
 review_date: 2026-08-01
+todo: true
+todo_notes: Verify AI-generated output
 ---
 
 # Document RAG Guide
 
-**Query documents using vector embeddings and semantic search**
+**Query documents using graph embeddings and knowledge graph relationships**
 
-Document RAG (also called "basic RAG", "naive RAG", or simply "RAG") is a
-retrieval-augmented generation approach that uses vector embeddings to find
-relevant document chunks and provides them as context to an LLM for generating
-responses.
+GraphRAG is a technique which uses automated extraction of relationships
+from unstructured text, which is stored in a knowledge graph.
 
-{: .note }
-> Document RAG is the most basic information retrieval flow. It can prove
-> useful for some limited cases, but you should consider
-> [GraphRAG](graph-rag) or [Ontology RAG](ontology-rag) for real-world
-> information retrieval use-cases.
+GraphRAG is a very effective technique for retrieval on complex diverse
+information, with complex structures.  Graph RAG uses vector embeddings
+to go from questions to knowledge graph nodes, but then uses graph node
+relationships to discover related information.
 
-## What is Document RAG?
+<img src="graph-rag.jpg" alt="Graph RAG" width="75%"/>
 
-The essential Document RAG ingest flow consists of:
+In TrustGraph, Graph RAG refers to information extraction without an
+ontology or schema.  Ontology-free knowledge extraction automatically
+discovers relationships in unstructured text.  In contrast, Ontology RAG
+uses an ontology.
+
+## What is Graph RAG?
+
+The essential Graph RAG ingest flow consists of:
 1. **Chunking** documents into smaller pieces
-2. **Embedding** each chunk as a vector
-3. **Storing** vectors in a vector database along with the chunks
-4. **Retrieving** similar chunks based on query embedding
-5. **Generating** responses using retrieved context and an LLM
+2. **Knowledge Extraction** to discover entities and relationships
+3. **Embedding** each entity as a vector and storing these in a vector store
+4. **Storing** entity relationships in a knowledge graph
+5. **Retrieving** using semantic similarity to discover knowledge graph entry points
+6. **Traversing** the knowledge graph to find related information
+7. **Generating** responses using the knowledge subgraph as context to an LLM
 
 The pros and cons of this approach:
-- ✅ *Pro*: Quicker ingest time compared to knowledge extraction flows
-- ✅ *Pro*: No token consumption on document ingest
-- ⚠️ *Con*: Sentence embeddings are imprecise and limited for retrieval
-  where documents contain diverse concepts
-- ⚠️ *Con*: Ineffective for resolving complex questions
+- ✅ *Pro*: Much more precise retrieval
+- ✅ *Pro*: Effective when faced with complex relationships or diverse data
+- ✅ *Pro*: Scales to handle much larger document sets
+- ✅ *Pro*: No need for an ontology/schema as relationships are discovered automatically
+- ⚠️ *Con*: Knowledge extract has a cost at document ingest time
+- ⚠️ *Con*: Token costs required to ingest documents
 
 ### When to Use Document RAG
 
-✅ **Use Document RAG when**:
-- You need semantic search over documents
-- Questions can be answered from isolated passages
-- You want simple, fast implementation
-- Document context is self-contained in paragraphs or chunks
+## When to Use Graph RAG
+
+✅ **Use Graph RAG when**:
+- Questions require understanding relationships
+- Answers need context from multiple documents
+- You need to connect disparate information
+- Reducing hallucinations is critical
+- Questions involve "how are X and Y related?"
 
 ⚠️ **Consider alternatives when**:
-- You need to understand relationships between entities
-  → Use [Graph RAG](graph-rag)
-- You need structured schema-based extraction
-  → Use [Ontology RAG](ontology-rag)
-- Answers require connecting information across documents
-  → Use [Graph RAG](graph-rag)
+- Simple keyword search on small data is sufficient → Use [Document RAG](document-rag)
+- Need structured typed data → Use [Ontology RAG](ontology-rag)
 
 ## Prerequisites
 
 Before starting:
 - ✅ TrustGraph deployed ([Quick Start](../getting-started/quickstart))
 - ✅ Understanding of [Core Concepts](../getting-started/concepts)
+- ✅ Documents ready to load
 
 ## Step-by-Step Guide
 
@@ -152,9 +161,9 @@ tg-set-collection -n Intelligence -d 'Intelligence analysis' intelligence
 ### Step 3: Create the Flow
 
 A flow describes the collection of processing operations.  We're going
-to create a single flow for Document RAG processing.
+to create a single flow for Graph RAG processing.
 
-We'll create a 'doc-rag' flow:
+We'll create a 'graph-rag' flow:
 
 #### Command-line
 
@@ -162,7 +171,7 @@ This command allows you to add parameters for LLM model, temperature etc.
 but we're just going to use the defaults:
 
 ```
-tg-start-flow -n document-rag -i doc-rag -d "Document RAG"
+tg-start-flow -n graph-rag -i graph-rag -d "Graph RAG"
 ```
 
 #### Workbench
