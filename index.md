@@ -18,15 +18,15 @@ Ready to try TrustGraph? Our Docker-based quickstart gets you running locally in
 
 ## Choose Your Path
 
-### 👨‍💻 I'm a Developer
+### 🏢 I'm Evaluating TrustGraph
 
-**Building applications with TrustGraph**
+**Understanding capabilities and fit**
 
-- **New to TrustGraph?** → [Quick Start Guide](getting-started/quickstart) - Deploy and test in 15 minutes
-- **Understand the concepts** → [Introduction](overview/introduction) - Learn about GraphRAG and knowledge graphs
-- **Ready to integrate?** → [How-to Guides](guides/) - Task-oriented instructions
-- **Need API docs?** → [API Reference](reference/apis/) - Complete API documentation
-- **Want code samples?** → [Examples](examples/) - Working code to copy and adapt
+- **What is TrustGraph?** → [Introduction](overview/introduction) - Core concepts and value
+- **Architecture overview** → [Architecture](overview/architecture) - System design
+- **Use cases** → [Use Cases](overview/use-cases) - Real-world applications
+- **Feature maturity** → [Maturity](overview/maturity) - Feature stability and roadmap
+- **Try it yourself** → [Quick Start](getting-started/quickstart) - Hands-on evaluation
 
 ### 🏗️ I'm Deploying TrustGraph
 
@@ -38,6 +38,16 @@ Ready to try TrustGraph? Our Docker-based quickstart gets you running locally in
 - **Production ready?** → [Production Considerations](deployment/production-considerations) - HA, security, scaling
 - **Need to choose?** → [Choosing Deployment](deployment/choosing-deployment) - Decision guide
 
+### 👨‍💻 I'm a Developer
+
+**Building applications with TrustGraph**
+
+- **New to TrustGraph?** → [Quick Start Guide](getting-started/quickstart) - Deploy and test in 15 minutes
+- **Understand the concepts** → [Introduction](overview/introduction) - Learn about GraphRAG and knowledge graphs
+- **Ready to integrate?** → [How-to Guides](guides/) - Task-oriented instructions
+- **Need API docs?** → [API Reference](reference/apis/) - Complete API documentation
+- **Want code samples?** → [Examples](examples/) - Working code to copy and adapt
+
 ### 📊 I'm a Data Scientist
 
 **Working with knowledge and data**
@@ -47,16 +57,6 @@ Ready to try TrustGraph? Our Docker-based quickstart gets you running locally in
 - **Query knowledge** → [Structured Query Guide](guides/structured-processing/query) - Query your data
 - **Sample datasets** → [Sample Data](examples/sample-data/) - Test data and examples
 - **CLI reference** → [CLI Commands](reference/cli/) - Command-line tools
-
-### 🏢 I'm Evaluating TrustGraph
-
-**Understanding capabilities and fit**
-
-- **What is TrustGraph?** → [Introduction](overview/introduction) - Core concepts and value
-- **Architecture overview** → [Architecture](overview/architecture) - System design
-- **Use cases** → [Use Cases](overview/use-cases) - Real-world applications
-- **Feature maturity** → [Maturity](overview/maturity) - Feature stability and roadmap
-- **Try it yourself** → [Quick Start](getting-started/quickstart) - Hands-on evaluation
 
 ### 🔧 I Want to Extend TrustGraph
 
