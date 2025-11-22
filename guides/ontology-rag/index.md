@@ -2,7 +2,6 @@
 title: Ontology RAG
 nav_order: 10
 parent: How-to Guides
-grand_parent: TrustGraph Documentation
 review_date: 2026-08-01
 ---
 
