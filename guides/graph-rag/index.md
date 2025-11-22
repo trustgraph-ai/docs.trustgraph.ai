@@ -5,10 +5,10 @@ parent: How-to Guides
 grand_parent: TrustGraph Documentation
 review_date: 2026-08-01
 todo: true
-todo_notes: Verify AI-generated output
+todo_notes: Fix image alt tags
 ---
 
-# Document RAG Guide
+# Graph RAG Guide
 
 **Query documents using graph embeddings and knowledge graph relationships**
 
@@ -45,8 +45,6 @@ The pros and cons of this approach:
 - ✅ *Pro*: No need for an ontology/schema as relationships are discovered automatically
 - ⚠️ *Con*: Knowledge extract has a cost at document ingest time
 - ⚠️ *Con*: Token costs required to ingest documents
-
-### When to Use Document RAG
 
 ## When to Use Graph RAG
 
@@ -178,9 +176,9 @@ tg-start-flow -n graph-rag -i graph-rag -d "Graph RAG"
 
 - Go to the 'Flows' page
 - Click 'Create'
-- Select the flow class 'Document RAG'
-- Set the ID: doc-rag
-- Set the description: Document RAG
+- Select the flow class 'Graph RAG'
+- Set the ID: graph-rag
+- Set the description: Graph RAG
 - Click 'Create
 
 ### Step 4: Submit the Document for Processing
@@ -190,17 +188,17 @@ This pushes the document into the flow input.
 #### Command-line
 
 This command submits the document for processing.  You need to specify
-the flow ID (`doc-rag`) and the document ID which was used when the
+the flow ID (`graph-rag`) and the document ID which was used when the
 document was added to the library in step 1.  The collection ID is
 that which was used to create the collection.
 Processing objects need an ID, and you can make up any string:
 
 ```
 tg-start-library-processing \
-    --flow-id doc-rag \
+    --flow-id graph-rag \
     --document-id https://trustgraph.ai/doc/phantom-cargo \
     --collection intelligence \
-    --processing-id urn:processing-01
+    --processing-id urn:processing-02
 ```
 
 #### Workbench
@@ -211,7 +209,7 @@ top left.
 <img src="selection.png" alt="Set collection option"/>
 
 Click that to open the collection/flow selector, and select the
-Intelligence collection, and Document RAG, both of which you created earlier.
+Intelligence collection, and Graph RAG, both of which you created earlier.
 
 <img src="collection-selected.png" alt="Set collection option"/>
 
@@ -228,70 +226,127 @@ You are ready to submit the document:
 If you want to see the document loading, you can go to Grafana at
 [`http://localhost:3000`](http://localhost:3000).  The default
 login user is admin, password admin.  Grafana is configured with a single
-dashboard, which has a 'pub/sub backlog' graph.
+dashboard.  Some useful things to monitor are:
 
-<img src="monitoring.png" alt="Set collection option"/>
+The pub/sub backlog.  You can monitor the size of queues in Pulsar.
+GraphRAG knowledge extraction causes a queue of chunks for processing in
+knowledge extraction and you can see this in the backlog:
+
+<img src="monitoring1.png" alt="FIXME"/>
+
+There is also a knowledge extraction backlog graph which helps to see
+knowledge extraction if other queues are being exercised:
+
+<img src="monitoring2.png" alt="FIXME"/>
+
+To gauge LLM effectiveness, there is a heatmap which shows LLM latency.
+Here we can see that LLM response times for my LLM processing are in the
+6 second window.
+
+<img src="monitoring3.png" alt="FIXME"/>
+
+Another LLM effectiveness graph, the Token graph shows token throughput
+over time, the Y-axis shows tokens/s rate.
+
+<img src="monitoring4.png" alt="FIXME"/>
+
+Finally, another useful chart shows the rate limit events per second.
+These are commonly seen in the text-completion process which interfaces
+with the LLM.  Rate limit events are normal for a knowledge extraction
+backlog.  This might particularly be helpful for you to determine whether
+you need to provision more LLM bandwidth or dedicated hosting.
+
+<img src="monitoring5.png" alt="FIXME"/>
 
 The document we loaded is small, and will process very quickly, so you
 should only see a 'blip' on the backlog showing that chunks were loaded
 and cleared quickly.
 
+It can take many minutes or hours to process large documents or large document
+sets using GraphRAG extraction.
+
 ### Step 6: Retrieval
 
-Presently, there is no Document RAG support in the workbench.
+Retrieval in Graph RAG consists of mapping the question to a set of candidate
+graph entities, and then following graph edges to create a subgraph, which
+is used as context with the LLM.
 
 #### Command-line
 
 ```
-tg-invoke-document-rag \
-    -f doc-rag -C intelligence \
-    -q 'What is the PHANTOM CARGO report about?'
+tg-invoke-graph-rag \
+    -f graph-rag -C intelligence \
+    -q 'What intelligence resources were using during the PHANTOM CARGO operation?'
 ```
 
 Which should return a result like:
 
 ```
-The PHANTOM CARGO report is about an operation that detected unusual shipping
-patterns involving a Dubai-based freight company, Meridian Logistics LLC. This
-company was moving containerized "agricultural equipment" on irregular
-schedules with inconsistent documentation between Limassol (Cyprus), Durban
-(South Africa), and Batumi (Georgia). The operation aimed to uncover a
-suspected arms trafficking network operating under the guise of legitimate
-trade, circumventing sanctions.
+The intelligence resources used during the PHANTOM CARGO operation were:
+* SIGINT
+* MASINT
+* Electro-Optical HUMINT
+* FININT
+* AIS
+* synthetic aperture radar (SAR)
+* GPS coordinates
 ```
 
-Retrieval in Document RAG consists of selecting some chunks based on semantic
-similarity to the question.  In this case, for a small report on a single
-topic, which produces a very small number of chunks.  The retrieval process is
-very likely to select all the chunks, and so the retrieval is going to be
-effective.
+#### Workbench
 
-An interesting experiment you might want to try is to try loading other
-documents into the collection, and using more complex questions - you should
-see Document RAG begin to become ineffective very quickly.
+- Ensure the correct collection and flow are selected in the selection widget
+- Navigate to the 'Assistant' page
+- Select 'Graph RAG' assistant
+- Enter the question: What intelligence resources were using during the PHANTOM CARGO operation?
+- Press 'Send' and wait for the answer
 
-The question:
-```
-tg-invoke-document-rag -f doc-rag -C intelligence -q 'Which organisation operated agents which observed the warehouse?'
-```
-provides the answer:
-```
-An AISE officer operating under commercial cover in Cyprus was tasked to
-establish visual observation of Meridian's warehouse facility.
-```
+### Step 7: Explore the knowledge graph
 
-But once more documents are loaded, the context gets overwhelmed with
-irrelevant chunks:
+The Workbench provides access to some more tools you can play with.
 
-```
-The provided context does not specify which organization operated the agents
-who observed the warehouse. It only mentions that an asset, a disgruntled
-Meridian logistics coordinator in Cyprus, provided pre-encrypted shipping
-schedules.
-```
+- Select Vector search
+- The search box enter 'optical'
+- Click 'Send'
 
-Document RAG is useful for small amounts of data
-and quick demos but not useful for more complex scenarios.
+This executes a search in the vector store for graph entities which are listed
+along with the graph node description and the vector similarity score.
+The exact view may vary depending on the LLM model you are using and the
+entities discovered by it.
+
+<img src="vector-results.png" alt="FIXME"/>
+
+This is a list of graph nodes.  Clicking on an item moves to a node
+exploration view, showing graph nodes related to the selected node.
+Clicking on CSO-class optical reconnaissance satellite shows
+relationships:
+
+<img src="relationships.png" alt="FIXME"/>
+
+Each row is a graph edge, on the left-hand side is the subject of the
+graph node, the middle term shows the predicate (relationship), and the
+right-hand side is the object (end node) of the relationship.
+On this view you can navigate from the graph node show to other nodes by
+clicking on the details.  Clicking on the 'subject of' relationship
+shows a long list of all 'subject of' relationships which is a common term.
+
+<img src="relationships2.png" alt="FIXME"/>
+
+The 'subject of' relationship links discovered entities to the document
+from which they were taken.  The right-hand side entities represent the
+PHANTOM CARGO document itself.  Clicking that shows relationships, including
+a 'has type' showing that 'PHANTOM CARGO' is a 'digital document'.
+
+<img src="relationships3.png" alt="FIXME"/>
+
+Once you have an interesting node, you can click 'Graph view' to switch to
+a 3D graph view.  This is navigable.  Clicking a node shows a panel on the
+right-hand side allowing you to see node properties, along with controls
+to navigate relationships.  This adds further nodes to the graph.
+
+<img src="3d.png" alt="FIXME"/>
+
+You can rotate the graph and navigate 3D space using the mouse /
+pointer controls.
 
 ## Document RAG vs. Other Approaches
 
@@ -311,7 +366,6 @@ data.
 
 ### Explore Other RAG Types
 
-- **[Graph RAG](../graph-rag)** - Leverage knowledge graph relationships
 - **[Ontology RAG](../ontology-rag)** - Use structured schemas for extraction
 
 ### Advanced Features
@@ -322,7 +376,7 @@ data.
 
 ### API Integration
 
-- **[Document RAG API](../../reference/apis/api-document-rag)** - API reference
+- **[Graph RAG API](../../reference/apis/api-graph-rag)** - API reference
 - **[CLI Reference](../../reference/cli/)** - Command-line tools
 - **[Examples](../../examples/)** - Code samples
 
