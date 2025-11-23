@@ -2,9 +2,10 @@
 title: Security
 nav_order: 50
 parent: How-to Guides
-grand_parent: TrustGraph Documentation
 has_children: true
 review_date: 2026-03-26
+todo: true
+todo_notes: This is majorly incorrect
 ---
 
 # Security Guide
