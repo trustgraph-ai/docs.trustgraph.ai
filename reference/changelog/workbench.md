@@ -8,6 +8,66 @@ review_date: 2026-01-15
 
 # Changelog - Workbench UI
 
+## v1.3.7 (2025-11-23) - release in TrustGraph 1.5
+
+### Features
+- **LLM Models** (#98): Added LLM model selection support.
+- **MCP Auth Token UX** (#108): Added MCP authentication token user interface.
+
+### Bug Fixes
+- **Multi Ontology Import** (#109): Fixed issues with importing multiple ontologies.
+- **Flow Class Viewer Crash** (#104): Fixed crash in flow class viewer.
+- **Socket Provider** (#105): Fixed socket provider issues.
+
+### Performance Improvements
+- **Faster System UI** (#100): Improved system UI performance.
+
+### Maintenance
+- **Library Breakout** (#99): Refactored library into separate modules.
+- **Module Updates** (#102): Updated to new modules.
+- **React State Bump** (#106): Updated react-state dependency.
+- **Ontology Editing** (#103): Minor improvements to ontology editing and parsing.
+- **Fallback Route** (#101): Fallback route now serves the index page.
+
+---
+
+## v1.2.6 - released in TrustGraph 1.4
+
+### Features
+- **Flow Class Visual Editor** (#90): New visual viewer for flow classes.
+- **Flow Parameters** (#93, #95): Added flow parameters with advanced parameters section support.
+- **Collections Dialogue** (#96): New collections management dialogue.
+- **Collection Selectors** (#97): Added collection selector components.
+
+### Bug Fixes
+- **Workbench Breakage** (#92): Fixed workbench breakage issues.
+- **Dedupe Flow Classes Pages** (#94): Fixed duplicate flow classes pages.
+
+### Enhancements
+- **OWL Ontology Editor** (#91): Updated ontology editor to support OWL format.
+
+---
+
+## v1.1.6 - released in TrustGraph 1.3
+
+### Features
+- **Structured Query Page** (#79): New page for structured queries.
+- **Structured Query Tool Type** (#80): Added structured query tool type on agent tools page.
+- **Tools Groups and States** (#83): Added tool grouping and state management.
+- **Collection Settings** (#81, #82): Collection is now a configurable setting with support for structured query collections.
+
+### Bug Fixes
+- **Search Issues** (#85, #88, #89): Fixed collection not used in search, empty search results handling, and needing to search twice.
+- **Graph View Collection** (#87): Fixed use of collection in graph view.
+- **Relationships Collection** (#86): Fixed relationships collection not being used.
+- **Default Settings** (#84): Fixed default trustgraph/user settings.
+
+### Maintenance
+- **Taxonomy → Ontology** (#75): Renamed taxonomy to ontology throughout.
+- **Dependency Pinning** (#77): Locked react-force-graph to 1.46.x.
+
+---
+
 ## v1.0.5
 
 ### Features

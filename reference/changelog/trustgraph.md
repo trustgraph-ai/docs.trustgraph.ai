@@ -8,7 +8,50 @@ review_date: 2026-02-01
 
 # Changelog
 
-## v1.4.0 (2025-10-06)
+## v1.5 (2025-11-23)
+
+### New Features
+- **OntoRAG: Ontology-Based Knowledge Extraction** (#523): New processor
+  `kg-extract-ontology` that uses ontology objects from config to guide triple
+  extraction. Includes entity contexts and integrates with ontology extractor
+  from workbench.
+- **MCP Authentication** (#557): Added MCP auth token header support for the
+  simple authentication case.
+- **Dynamic Embeddings Model Selection** (#556): Embeddings model can now be
+  selected dynamically rather than being fixed.
+
+### Bug Fixes
+- **Collection deletion batch error** (#559): Fixed batch error during
+  collection deletion by reducing batch size.
+- **Fix hard-coded vector size** (#555): Vector store now lazy-creates
+  collections with different collections for different dimension lengths.
+- **Fix AgentStep schema error** (#557): Agent step argument values are now
+  converted to strings to fix schema errors.
+- **Remove unnecessary OpenAI parameters** (#561): Removed parameters from
+  OpenAI invocation that were causing compatibility issues with
+  OpenAI-compatible services.
+
+### Infrastructure / Technical
+- **Python 3.13 Support** (#553): Upgraded to Python 3.13, switched from
+  cassandra-driver to scylla-driver (cassandra-driver doesn't work with
+  Python 3.13).
+- **Vector Store Lifecycle Tech Spec** (#555): Added technical specification
+  for vector store lifecycle.
+- **OntoRAG Tech Spec** (#523, #558): Added technical specification for
+  ontology-based knowledge extraction and query.
+
+### Testing
+- **Ontology extraction tests** (#560): Added tests for ontology extraction.
+- **Dynamic embeddings tests** (#556): Added tests for dynamic embeddings
+  model selection.
+- **MCP auth and agent step parsing tests** (#557): Added tests for MCP
+  authentication and agent step parsing.
+- **OpenAI invocation tests** (#561): Updated tests for OpenAI parameter
+  changes.
+
+---
+
+## v1.4 (2025-10-06)
 
 ### New Features
 - **Flow Configurable Parameters** (#526, #530, #531, #532, #533, #541):
