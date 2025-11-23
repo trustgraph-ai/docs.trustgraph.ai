@@ -55,11 +55,32 @@ raw text snippets.
 ## Ontology RAG
 
 You have probably heard of GraphRAG before.  Ontology RAG, much less likely.
+So, let's cover the basics.
+
+### Ontologies
+
+Ontologies are structured frameworks that formally define the concepts,
+relationships, and rules within a specific domain of knowledge. They provide a
+standardised vocabulary and logical structure for representing how entities
+relate to each other, enabling both humans and computers to share a consistent
+understanding of complex information.  It's like a database schema, but
+for human knowledge.
 
 In knowledge engineering, ontologies have a bad reputation - they are complex,
 take years to create, and people often have massive disagreements about what
-ontologies are there to do.  But don't give up too soon, bringing Ontologies
-into information retrieval produces some awesome results.
+ontologies are there to do.  Biologists famously disagree about what
+constitutes a 'cell'.
+
+But this isn't to say there's 'flaw' - there's nothing broken about ontology
+technology.  The real issue is that human knowledge is a profoundly complex
+experience.  When we try to classify human knowledge, we can't eliminate the
+fundamental human experiences which come with trying to make sense of the
+world around us.
+
+So, don't give up too soon, bringing ontologies into information retrieval
+produces some awesome results.
+
+### Ontology RAG
 
 Ontology RAG extends Graph RAG by incorporating domain ontologies to guide
 knowledge extraction. This approach is particularly valuable when working
