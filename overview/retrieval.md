@@ -67,12 +67,20 @@ with specialised domains that have well-defined conceptual structures.
 For many use-cases, Ontology extraction results in much improved retrieval
 results.
 
-The process begins by selecting relevant ontology components based on
-the document chunks being processed. This ontology subset then guides
-the knowledge extraction process, ensuring that extracted entities and
-relationships conform to the domain model. The result is a more consistent
-and semantically precise knowledge graph, with embeddings that align with
-the ontological structure.
+Early attempts at using ontologies in knowledge extraction attempted to
+guide extraction by loading the full ontology into an LLM context window.
+Here be dragons: Good ontologies are big, and this can easily flood the
+context window.  In a nutshell, the TrustGraph approach is to apply
+the GraphRAG algorithm itself to ontologies stored as graph - an information
+retrieval operation is used to work out the correct subset of ontology
+components to use for knowledge extraction.
+
+The process begins by selecting relevant ontology components based on the
+document chunks being processed. This ontology subset then guides the
+knowledge extraction process, ensuring that extracted entities and
+relationships conform to the domain model. The result is a more consistent and
+semantically precise knowledge graph, with embeddings that align with the
+ontological structure.
 
 <img src="retrieval-ontology-rag.png">
 
