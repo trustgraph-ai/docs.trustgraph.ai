@@ -10,10 +10,22 @@ review_date: 2026-08-01
 
 **Query documents using vector embeddings and semantic search**
 
-Document RAG (also called "basic RAG", "naive RAG", or simply "RAG") is a
-retrieval-augmented generation approach that uses vector embeddings to find
-relevant document chunks and provides them as context to an LLM for generating
-responses.
+Document RAG (also called "basic RAG", "naive RAG", or simply "RAG") is the
+original retrieval-augmented generation approach that uses vector embeddings
+to find relevant document chunks and provides them as context to an LLM for
+generating responses.
+
+Despite being introduced in 2020, many practitioners in 2023 treated basic RAG
+as if it were a revolutionary breakthrough, seemingly unaware of its
+well-documented limitations. The approach is straightforward: chunk your
+documents, embed them, perform similarity search, and hope the LLM can make
+sense of whatever fragments get retrieved.
+
+While document RAG can work for simple use cases, it struggles with multi-hop
+reasoning, fails to capture document structure, and has no mechanism for
+handling contradictory information across chunks. The "naive" in "naive RAG"
+is there for a reason—yet it remains surprisingly popular among those who
+stopped reading the literature after the first paper.
 
 {: .note }
 > Document RAG is the most basic information retrieval flow. It can prove
