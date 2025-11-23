@@ -22,8 +22,18 @@ The following table lists TrustGraph features and their current maturity status:
         <td colspan="2" style="background-color: #001020"><b>Core capability</b></td>
     </tr>
     <tr>
-        <td>GraphRAG + DocumentRAG</td>
+        <td>GraphRAG</td>
         <td style="background-color: #2d5a3d; color: #d4f4dd;">✅ Production-ready</td>
+    </tr>
+    <tr>
+        <td>Ontology RAG</td>
+        <td style="background-color: #2d5a3d; color: #d4f4dd;">✅ Production-ready</td>
+    </tr>
+    <tr>
+        <td>DocumentRAG</td>
+        <td style="background-color: #1a4e6d; color: #e8f4fd;">🔬 Works within inherent scale limits - not recommended for serious applications</td>
+
+
     </tr>
     <tr>
         <td>API gateway, REST APIs and websocket APIs</td>
@@ -35,7 +45,7 @@ The following table lists TrustGraph features and their current maturity status:
     </tr>
     <tr>
         <td>Workbench UI</td>
-        <td style="background-color: #1a4e6d; color: #e8f4fd;">🔬 Demonstrator - This is intended as a demonstrator, to showcase capabilities.  Care should be taken when considering broader deployment if matters such as authentication, access control and user separation are important.</td>
+        <td style="background-color: #1a4e6d; color: #e8f4fd;">🔬 Demonstrator - This is intended as a demonstrator, to showcase capabilities.  Care should be taken when considering broader deployment if matters such as authentication, access control and user separation are important</td>
     </tr>
     <tr>
         <td colspan="2" style="background-color: #001020"><b>Agent features</b></td>
@@ -46,7 +56,7 @@ The following table lists TrustGraph features and their current maturity status:
     </tr>
     <tr>
         <td>MCP server support</td>
-        <td style="background-color: #1a4e6d; color: #e8f4fd;">🔬 Evaluation - While the capability we developed is well tested, you should have concerns about the security of the MCP ecosystem for a production environment.  This is a problem we are actively tracking.</td>
+        <td style="background-color: #1a4e6d; color: #e8f4fd;">🔬 Evaluation - While the capability we developed is well tested, you should have concerns about the security of the MCP ecosystem for a production environment.  This is a problem we are actively tracking</td>
     </tr>
     <tr>
         <td colspan="2" style="background-color: #001020"><b>Graph stores</b></td>
@@ -87,27 +97,27 @@ The following table lists TrustGraph features and their current maturity status:
     </tr>
     <tr>
         <td><a href="https://github.com/trustgraph-ai/pulumi-trustgraph-scaleway">Scaleway</a><br/>Kubernetes on Scaleway</td>
-        <td style="background-color: #6d4e0c; color: #fff4d6;">⚠️ Pre-production - Integration testing, no scale testing</td>
+        <td style="background-color: #2d5a3d; color: #d4f4dd;">✅ Production-ready.  Full e2e test suite.</td>
     </tr>
     <tr>
         <td><a href="https://github.com/trustgraph-ai/pulumi-trustgraph-ovhcloud">OVHcloud</a><br/>Kubernetes on OVHcloud</td>
-        <td style="background-color: #2d5a3d; color: #d4f4dd;">✅ Production-ready</td>
+        <td style="background-color: #2d5a3d; color: #d4f4dd;">✅ Production-ready.  Full e2e test suite.</td>
     </tr>
     <tr>
         <td><a href="https://github.com/trustgraph-ai/pulumi-trustgraph-aks">Azure</a><br/>AKS Kubernetes on Azure</td>
-        <td style="background-color: #1a4e6d; color: #e8f4fd;">🔬 Evaluation - Manually verified, tailoring would be needed for a production deploy.</td>
+        <td style="background-color: #1a4e6d; color: #e8f4fd;">🔬 Evaluation - Manually verified, tailoring would be needed for a production deploy</td>
     </tr>
     <tr>
         <td><a href="https://github.com/trustgraph-ai/pulumi-trustgraph-ec2">AWS EC2</a><br/>Docker compose on single-EC2 instance</td>
-        <td style="background-color: #1a4e6d; color: #e8f4fd;">🔬 Evaluation - Manually verified, tailoring would be needed for a production deploy.</td>
+        <td style="background-color: #1a4e6d; color: #e8f4fd;">🔬 Evaluation - Manually verified, tailoring would be needed for a production deploy</td>
     </tr>
     <tr>
         <td><a href="https://github.com/trustgraph-ai/pulumi-trustgraph-gke">Google Cloud</a><br>GKE Kubernetes on GCP</td>
-        <td style="background-color: #6d4e0c; color: #fff4d6;">⚠️ Pre-production - Manually verified, tailoring would be needed for a production deploy.</td>
+        <td style="background-color: #6d4e0c; color: #fff4d6;">⚠️ Pre-production - Manually verified, tailoring would be needed for a production deploy</td>
     </tr>
     <tr>
         <td><a href="https://github.com/trustgraph-ai/pulumi-trustgraph-aws-rke">RKE2 on AWS</a><br/>Deployed on an RKE2 distribution on AWS</td>
-        <td style="background-color: #1a4e6d; color: #e8f4fd;">🔬 Evaluation - Manually verified, tailoring would be needed for a production deploy.</td>
+        <td style="background-color: #1a4e6d; color: #e8f4fd;">🔬 Evaluation - Manually verified, tailoring would be needed for a production deploy</td>
     </tr>
 </table>
 
