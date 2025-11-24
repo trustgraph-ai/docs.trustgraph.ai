@@ -1,7 +1,6 @@
 ---
 title: Backup & Restore
 parent: Advanced Topics
-grand_parent: TrustGraph Documentation
 review_date: 2026-03-01
 ---
 
