@@ -2,7 +2,7 @@
 title: Use Cases
 nav_order: 3
 parent: Overview
-grand_parent: TrustGraph Documentation
+review_date: 2026-04-01
 ---
 
 # Use Cases

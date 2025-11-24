@@ -2,7 +2,7 @@
 title: Introduction
 nav_order: 1
 parent: Overview
-grand_parent: TrustGraph Documentation
+review_date: 2026-08-01
 ---
 
 # Introduction to TrustGraph

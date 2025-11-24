@@ -2,7 +2,7 @@
 title: Features
 nav_order: 2
 parent: Overview
-grand_parent: TrustGraph Documentation
+review_date: 2026-08-01
 ---
 
 # Features

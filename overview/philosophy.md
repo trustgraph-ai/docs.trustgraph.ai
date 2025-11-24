@@ -2,7 +2,7 @@
 title: Philosophy
 nav_order: 0
 parent: Overview
-grand_parent: TrustGraph Documentation
+review_date: 2026-08-01
 ---
 
 # Philosophy

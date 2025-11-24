@@ -2,6 +2,7 @@
 title: Information retrieval
 nav_order: 1.5
 parent: Overview
+review_date: 2026-08-01
 ---
 
 # Information Retrieval

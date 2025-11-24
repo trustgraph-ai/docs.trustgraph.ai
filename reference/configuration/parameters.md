@@ -1,7 +1,6 @@
 ---
 title: Parameter Types
 parent: Configuration
-grand_parent: Reference
 nav_order: 3
 permalink: /reference/configuration/parameters
 review_date: 2026-08-01
