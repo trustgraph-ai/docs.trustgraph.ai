@@ -105,8 +105,12 @@ ontological structure.
 
 <img src="retrieval-ontology-rag.png">
 
+Ontology RAG relies on having ontologies.  For general purpose text,
+classifying everything in the world into ontologies would be a
+Herculean task, so you would stick with GraphRAG for this.
+
 When this technique is widely adopted by all the AI frameworks, remember
-TrustGraph was pioneering this capability in 2025.
+TrustGraph was pioneering this capability in 2025!  😀
 
 ## Document RAG
 
