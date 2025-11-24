@@ -3,63 +3,94 @@ title: Troubleshooting
 nav_order: 12
 parent: Deployment
 grand_parent: TrustGraph Documentation
-review_date: 2026-02-01
-todo: true
-todo_notes: This is all placeholder text and needs content to be added.
+review_date: 2026-03-12
 ---
 
-# Deployment Troubleshooting
+# Deployment troubleshooting
 
-Common deployment issues and their solutions for TrustGraph across different platforms.
+## Installation and environment
 
-## Overview
+### TrustGraph not working
 
-This guide helps diagnose and resolve common deployment issues you may encounter when deploying TrustGraph.
+#### Are you using SELinux (Linux only)?
 
-## Common Issues
+This is a default deployment on many Linux installations.
+You may need to run a command like this to give Docker containers the
+ability to access any configuration files needed for the deployment
 
-Coming soon - detailed content!
+```
+chcon -Rt svirt_sandbox_file_t prometheus grafana trustgraph
+```
 
-## Docker Compose Issues
+Also apply this to any LLM-specific configuration e.g. the `vertexai`
+directory.
 
-Coming soon - detailed content!
+#### Are processors running?
 
-## Kubernetes Issues
+Try:
 
-Coming soon - detailed content!
+```
+tg-show-processor-state
+```
 
-## Network Issues
+This will show the state of running processors in Prometheus.
+If the list is empty or you get an error, this indicates that Prometheus may
+not be running or accessible.
 
-Coming soon - detailed content!
+#### Is the configuration service running?
 
-## Storage Issues
+Try:
 
-Coming soon - detailed content!
+```
+tg-show-config
+```
 
-## Performance Issues
+This will show the state of the configuration service.  If you get an
+error, this shows that Pulsar, or the configuration service may not be
+running.
 
-Coming soon - detailed content!
+If the output says `version 0` and shows an empty configuration, it shows
+that initialisation may have failed.
 
-## Configuration Issues
+### TrustGraph CLI commands not working
 
-Coming soon - detailed content!
+#### Are you using a support version of Python?
 
-## Service Discovery Issues
+(>3.12)
 
-Coming soon - detailed content!
+#### Did you install the `trustgraph-cli` package?
 
-## Database Connection Issues
+If not, revisit the installation instructions 
+e.g. [installation](/deployment/docker-compose#2-install-cli-tools)).
 
-Coming soon - detailed content!
+#### Does your version of the `trustgraph-cli` package match the version of TrustGraph you deployed?
 
-## SSL/TLS Issues
+It's easiest to exact-match the versions, or at least ensure they major/minor
+numbers match, and that both versions were declared stable.
 
-Coming soon - detailed content!
+### LLM invocation not working with LMStudio / Ollama
 
-## Logging & Debugging
+#### Have you configured the Ollama or LMStudio URL correctly
 
-Coming soon - detailed content!
+When accessing Ollama or LMStudio running on the host from inside
+a container service, it is necessary to ensure that you use a service
+address which is usable from within containers.
 
-## Getting Help
+On Linux using Podman, containers can find the host on host.containers.internal
 
-Coming soon - detailed content!
+On Docker running directly on Linux or Windows (not WSL) containers can find the host on host.docker.internal
+
+WSL is complicated, because you have the host, a virtualised WSL environmnet, and Docker containers.
+
+Solving the WSL + Docker Desktop networking challenge: 
+
+Use WSL2's IP address directly
+
+From your Windows command prompt or PowerShell, find WSL2's IP:
+
+wsl hostname -I
+
+Then use that IP in your docker-compose file:
+
+OLLAMA_HOST=http://[WSL2_IP]:11434
+
