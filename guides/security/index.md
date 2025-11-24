@@ -3,9 +3,7 @@ title: Security
 nav_order: 50
 parent: How-to Guides
 has_children: true
-review_date: 2026-03-26
-todo: true
-todo_notes: This is majorly incorrect
+review_date: 2025-10-01
 ---
 
 # Security Guide

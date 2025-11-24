@@ -9,6 +9,8 @@ parent: TrustGraph Documentation
 This page automatically lists all documentation pages that have been tagged for review.
 
 {% assign today = site.time | date: '%Y-%m-%d' %}
+{% assign today_epoch = site.time | date: '%s' | plus: 0 %}
+{% assign thirty_days_epoch = today_epoch | plus: 2592000 %}
 {% assign review_pages = site.pages | where_exp: "page", "page.review_date" | sort: "review_date" %}
 
 {% assign overdue = "" | split: "" %}
@@ -16,9 +18,10 @@ This page automatically lists all documentation pages that have been tagged for 
 
 {% for page in review_pages %}
   {% assign review_str = page.review_date | date: '%Y-%m-%d' %}
+  {% assign review_epoch = page.review_date | date: '%s' | plus: 0 %}
   {% if review_str <= today %}
     {% assign overdue = overdue | push: page %}
-  {% else %}
+  {% elsif review_epoch <= thirty_days_epoch %}
     {% assign upcoming = upcoming | push: page %}
   {% endif %}
 {% endfor %}

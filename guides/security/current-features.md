@@ -2,9 +2,7 @@
 title: Current Security Features
 nav_order: 1
 parent: Security
-review_date: 2026-02-13
-todo: true
-todo_notes: This is majorly incorrect
+review_date: 2025-10-01
 ---
 
 # Current Security Features
