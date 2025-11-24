@@ -17,7 +17,7 @@ It is similar to [GraphRAG](../graph-rag).
 Ontology RAG uses an ontology, which is a form of schema, defining the
 semantic meaning of language concepts.
 
-<img src="ontology-rag.jpg" alt="Ontology RAG pictorial representation" width="75%"/>
+<img src="ontology-rag.png" alt="Ontology RAG pictorial representation"/>
 
 In TrustGraph, Ontology RAG refers to information extraction using an
 ontology.  TrustGraph supports importing OWL ontologies which can then be

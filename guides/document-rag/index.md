@@ -15,6 +15,8 @@ original retrieval-augmented generation approach that uses vector embeddings
 to find relevant document chunks and provides them as context to an LLM for
 generating responses.
 
+<img src="document-rag.png" alt="DocumentRAG pictorial representation"/>
+
 Despite being introduced in 2020, many practitioners in 2023 treated basic RAG
 as if it were a revolutionary breakthrough, seemingly unaware of its
 well-documented limitations. The approach is straightforward: chunk your

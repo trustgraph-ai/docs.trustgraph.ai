@@ -18,7 +18,7 @@ information, with complex structures.  Graph RAG uses vector embeddings
 to go from questions to knowledge graph nodes, but then uses graph node
 relationships to discover related information.
 
-<img src="graph-rag.jpg" alt="GraphRAG pictorial representation" width="75%"/>
+<img src="graph-rag.png" alt="GraphRAG pictorial representation"/>
 
 In TrustGraph, Graph RAG refers to information extraction without an
 ontology or schema.  Ontology-free knowledge extraction automatically
