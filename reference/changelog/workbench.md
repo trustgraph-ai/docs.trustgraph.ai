@@ -8,6 +8,16 @@ review_date: 2026-01-15
 
 # Changelog - Workbench UI
 
+## v1.4.1 (2025-12-04)
+
+### Features
+- **Stream LLM Interactions** (#110): Added streaming support for LLM interactions for real-time response display.
+
+### Enhancements
+- **Agent Dialog UI** (#111): Improved agent dialog by collapsing agent thinking and observation messages for a cleaner interface.
+
+---
+
 ## v1.3.7 (2025-11-23) - release in TrustGraph 1.5
 
 ### Features
