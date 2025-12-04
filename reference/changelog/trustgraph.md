@@ -8,6 +8,52 @@ review_date: 2026-02-01
 
 # Changelog
 
+## v1.6 (2025-12-04)
+
+### Major Features
+- **Streaming LLM Responses** (#566, #567): Comprehensive streaming support
+  for LLM text completion enabling real-time token-by-token delivery:
+  - Infrastructure with streaming flag in schemas, Gateway API
+    (REST/WebSocket), Python API, and CLI tools.
+  - Full streaming implementation across all LLM providers including
+    Azure, Azure OpenAI, Bedrock, Claude, Cohere, Google AI Studio, Llamafile,
+    LM Studio, Mistral, Ollama, OpenAI, TGI, Vertex AI, and vLLM
+  - Backward compatible with existing non-streaming clients
+  - Support for WebSocket streaming
+  - Reduces time-to-first-token and improved UX for long responses
+- **Streaming RAG Responses** (#568): Extended streaming support to GraphRAG
+  and DocumentRAG services:
+  - Token-by-token responses for knowledge graph and document retrieval queries
+  - Consistent streaming UX across all TrustGraph services
+  - Leverages existing PromptClient streaming infrastructure
+  - Gateway support via WebSocket for real-time client applications
+- **Streaming Agent Interactions** (#570): Enhanced agent framework with
+  streaming support:
+  - Real-time streaming of ReAct agent thought/observation/answer chunks
+  - Incremental response delivery for multi-step agent workflows
+  - Streaming parser for agent responses with robust error handling
+
+### Improvements
+- **Enhanced Integration Tests** (#568, #570): Comprehensive test coverage for
+  streaming functionality
+
+### Bug Fixes
+- **AWS Bedrock Model Invocation** (#572): Fixed compatibility issues with
+  newer Bedrock model invocation API including proper streaming support
+- **Minio Library Compatibility** (#565): Fixed incompatible library change in
+  Minio client for blob storage operations
+- **Streaming Agent Interactions** (#570): Fixed race conditions and message
+  ordering issues in streaming agent responses
+
+### Infrastructure / Technical
+- **CLI Improvements**: Enhanced CLI tools with streaming output:
+  - `tg-dump-queues`: New utility for developer queue diagnostics
+
+### Templates
+  - Updates to Bedrock and Claude models to support latest models
+
+---
+
 ## v1.5 (2025-11-23)
 
 ### New Features

@@ -2,8 +2,7 @@
 title: Choosing a Deployment
 nav_order: 1
 parent: Deployment
-grand_parent: TrustGraph Documentation
-review_date: 2026-05-08
+review_date: 2026-01-08
 ---
 
 # Choosing a Deployment Option
@@ -16,25 +15,22 @@ review_date: 2026-05-08
 Are you just trying TrustGraph for the first time?
 ├─ YES → Docker Compose (15 minutes)
 └─ NO ↓
-
-Is this for production use?
-├─ NO (dev/test) ↓
-│  ├─ Need Kubernetes? → Minikube
-│  └─ Simple setup? → Docker Compose
-└─ YES (production) ↓
-
-   Do you need high availability and scaling?
-   ├─ NO (small scale) ↓
-   │  ├─ On AWS? → AWS EC2 Single Instance
-   │  └─ Elsewhere? → Docker Compose
-   └─ YES (enterprise scale) ↓
-
-      Which cloud are you using?
-      ├─ AWS → AWS RKE
-      ├─ Azure → Azure AKS
-      ├─ GCP → Google Cloud Platform
-      ├─ Need GPU acceleration? → Intel/Tiber Cloud
-      └─ Budget-conscious? → Scaleway
+   Is this for production use?
+   ├─ NO (dev/test) ↓
+   │  ├─ Need Kubernetes? → Minikube
+   │  └─ Simple setup? → Docker Compose
+   └─ YES (production) ↓
+      Do you need high availability and scaling?
+      ├─ NO (small scale) ↓
+      │  ├─ Scaleway, OVHcloud, AWS EC2, GCP, Azure
+      │  └─ Elsewhere? → Docker Compose
+      └─ YES (enterprise scale) ↓
+         Which cloud are you using?
+         ├─ Need GPU acceleration? → Use cloud-hosted GPU + vLLM
+         ├─ Model-as-a-service? → Scaleway, OVHcloud
+         ├─ AWS → AWS RKE
+         ├─ Azure → Azure AKS
+         └─ GCP → Google Cloud Platform
 ```
 
 ## Comparison Matrix
@@ -58,18 +54,18 @@ Is this for production use?
 |------------|------------|------------|------------|------------|------|
 | **Docker Compose** | 15 min | Low | ❌ | ❌ | Free |
 | **Minikube** | 30 min | Medium | ❌ | ❌ | Free |
-| **AWS EC2** | 1 hour | Low | ❌ | ❌ | $ |
-| **AWS RKE** | 2-3 hours | High | ✅ | ✅ | $$$ |
-| **Azure AKS** | 2-3 hours | High | ✅ | ✅ | $$$ |
-| **GCP** | 2-3 hours | High | ✅ | ✅ | $$ |
-| **Intel/Tiber** | 2-4 hours | High | ✅ | ✅ | $$-$$$ |
-| **Scaleway** | 2-3 hours | Medium | ✅ | ✅ | $ |
+| **AWS EC2** | 1 hour | Low | ❌ | ❌ | € |
+| **AWS RKE** | 2-3 hours | High | ✅ | ✅ | €€€ |
+| **Azure AKS** | 2-3 hours | High | ✅ | ✅ | €€€ |
+| **GCP** | 2-3 hours | High | ✅ | ✅ | €€ |
+| **Intel/Tiber** | 2-4 hours | High | ✅ | ✅ | €€-€€€ |
+| **Scaleway** | 2-3 hours | Medium | ✅ | ✅ | € |
 
 **Legend**:
 - ✅ = Excellent support
 - ⚠️ = Limited or conditional
 - ❌ = Not supported
-- $ = Low cost, $$ = Medium, $$$ = High
+- € = Low cost, €€ = Medium, €€€ = High
 
 ## Detailed Deployment Profiles
 
