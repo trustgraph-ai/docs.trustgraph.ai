@@ -8,6 +8,56 @@ review_date: 2026-02-01
 
 # Changelog
 
+## v1.7 (2025-12-23)
+
+### Major Features
+- **Multi-Tenant Support** (#583): Basic multi-tenant infrastructure enabling
+  isolated deployments:
+  - Collection management migrated to config service from librarian
+  - Fixed parameter name mismatches for queue customization
+  - Collection storage now uses config service with push-based distribution
+  - Fixed AsyncProcessor and Config Service parameter handling
+  - Services can now use tenant-specific queues and configurations
+- **Python API Refactor** (#577): Comprehensive Python API client enhancement
+  with feature parity and streaming support:
+  - Streaming interfaces for all LLM services (agent, GraphRAG, DocumentRAG,
+    text completion, prompts)
+  - WebSocket transport for persistent connections and multiplexing
+  - Async/await support across all interfaces (REST, WebSocket, bulk, metrics)
+  - Bulk import/export for triples, graph embeddings, and document embeddings
+  - 60x latency improvement for streaming operations (500ms vs 30s first token)
+  - Type-safe interfaces with full backward compatibility
+  - CLI utilities updated to use new streaming API
+- **Improved Ontology Extraction** (#576): Enhanced ontology-based knowledge
+  extraction:
+  - Entity normalizer for consistent entity naming
+  - Simplified parser for improved extraction accuracy
+  - Triple converter for better schema adherence
+  - Enhanced prompt engineering for ontology extraction
+
+### Improvements
+- **System Monitoring** (#579): System startup tracker for deployment
+  verification with CLI tool `tg-verify-system-status`
+- **Logging Enhancements** (#586, #588): Production-grade logging infrastructure:
+  - Loki logging integration for centralized log aggregation
+  - Service ID added to log entries instead of module name
+  - Enhanced logging strategy with structured output
+- **Metrics** (#589): Added model information to metering metrics for better
+  cost tracking and analysis
+- **Gateway Configuration** (#584): Gateway queue overrides for flexible
+  deployment topologies
+
+### Infrastructure / Technical
+- **Tech Specs**: Added comprehensive technical specifications:
+  - Multi-tenant support architecture
+  - Python API refactor design
+  - Ontology extraction phase 2
+  - Enhanced logging strategy
+- **Testing**: Added comprehensive Python API client tests with streaming
+  validation
+
+---
+
 ## v1.6 (2025-12-04)
 
 ### Major Features
