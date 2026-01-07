@@ -18,7 +18,7 @@ guide_labels:
   - Quick Start
 ---
 
-# Docker/Podman Compose Deployment
+# Docker/Podman compose deployment
 
 ## Overview
 
@@ -41,7 +41,7 @@ proof-of-concept building, small-scale experiments, or just to learn more.
 
 ## Prerequisites
 
-### System Requirements
+### System requirements
 
 You need a machine with at least 12GB of RAM and 8 CPUs available.
 A 16GB machine is probably enough.
@@ -86,14 +86,14 @@ Here are some example ways to get an LLM to run:
 
 > **Note**: If using Podman, substitute `podman` for `docker` in all commands.
 
-## Configuration Setup
+## Configuration setup
 
-### Create Configuration
+### Create configuration
 
 Use the
 [TrustGraph Configuration Builder](https://config-ui.demo.trustgraph.ai/)
 to generate your deployment configuration.  By default, the configurator
-selects the newest stable deployment.
+selects the newest stable deployment.  To be compatible with this installation guide, you should make sure to use a version later than 1.8.9.
 
 {: .note }
 Remember the version number it is set up to deploy, you will need to know that to install CLI tools!
@@ -121,13 +121,13 @@ which is used to launch TrustGraph.  There are also various configuration
 files for TrustGraph, Grafana, Garage, Loki and Prometheus.
 
 ```sh
-unzip -l output.zip 
+unzip -l deploy.zip 
 ```
 
 The output should look something like this:
 
 ```sh
-Archive:  output.zip
+Archive:  deploy.zip
   Length      Date    Time    Name
 ---------  ---------- -----   ----
     26353  01-06-2026 23:04   docker-compose.yaml
@@ -149,7 +149,7 @@ work and unpack the ZIP file e.g.
 ```sh
 $ mkdir -p ~/trustgraph
 $ cd ~/trustgraph
-$ unzip ~/Downloads/trustgraph-deployment.zip
+$ unzip ~/Downloads/deploy.zip
 ```
 
 That may be all you need to unpack the TrustGraph file.  If you are having
@@ -174,7 +174,7 @@ sudo chcon -Rt svirt_sandbox_file_t garage/ loki/ grafana/ \
     prometheus/ vertexai/ trustgraph/
 ```
 
-## Install CLI Tools
+## Install CLI tools
 
 You need to have access to TrustGraph client tools.  In the terminal
 window you created above, install a virtual environment, and the
@@ -184,7 +184,7 @@ matches the version you chose to build a configuration for earlier:
 ```sh
 python3 -m venv env
 . env/bin/activate
-pip install trustgraph-cli==1.8.8
+pip install trustgraph-cli==1.8.9
 ```
 
 ## Launch TrustGraph
@@ -193,50 +193,85 @@ pip install trustgraph-cli==1.8.8
 docker-compose -f docker-compose.yaml up -d
 ```
 
-## Wait for Initialization
+## Wait for initialization
 
 Allow 120 seconds for all services to stabilize. Services like Pulsar and Cassandra need time to initialize properly.
 
-### Verify Installation
+### Verify installation
 
-Check that processors have started:
-
-```sh
-tg-show-processor-state
-```
-
-Verify all containers are running:
+There is a utility which runs a series of checks to verify the system
+as it starts.
 
 ```sh
-docker ps
+tg-verify-system-status
 ```
 
-Check that flows are available:
+The output looks something like...
 
-```sh
-tg-show-flows
+```
+============================================================
+TrustGraph System Status Verification
+============================================================
+
+Phase 1: Infrastructure
+------------------------------------------------------------
+[00:00] ⏳ Checking Pulsar...
+[00:03] ⏳ Checking Pulsar... (attempt 2)
+[00:03] ✓ Pulsar: Pulsar healthy (0 cluster(s))
+[00:03] ⏳ Checking API Gateway...
+[00:03] ✓ API Gateway: API Gateway is responding
+
+Phase 2: Core Services
+------------------------------------------------------------
+[00:03] ⏳ Checking Processors...
+[00:03] ✓ Processors: Found 34 processors (≥ 15)
+[00:03] ⏳ Checking Flow Classes...
+[00:06] ⏳ Checking Flow Classes... (attempt 2)
+[00:09] ⏳ Checking Flow Classes... (attempt 3)
+[00:22] ⏳ Checking Flow Classes... (attempt 4)
+[00:35] ⏳ Checking Flow Classes... (attempt 5)
+[00:38] ⏳ Checking Flow Classes... (attempt 6)
+[00:38] ✓ Flow Classes: Found 9 flow class(es)
+[00:38] ⏳ Checking Flows...
+[00:38] ✓ Flows: Flow manager responding (1 flow(s))
+[00:38] ⏳ Checking Prompts...
+[00:38] ✓ Prompts: Found 16 prompt(s)
+
+Phase 3: Data Services
+------------------------------------------------------------
+[00:38] ⏳ Checking Library...
+[00:38] ✓ Library: Library responding (0 document(s))
+
+Phase 4: User Interface
+------------------------------------------------------------
+[00:38] ⏳ Checking Workbench UI...
+[00:38] ✓ Workbench UI: Workbench UI is responding
+
+============================================================
+Summary
+============================================================
+Checks passed: 8/8
+Checks failed: 0/8
+Total time: 00:38
+
+✓ System is healthy!
 ```
 
-### Load Sample Data
+## Load sample documents
+
+There is a utility which loads a small set of sample documents into the
+library.  This does not initiate processing, but gives you a set of documents
+to test with:
 
 ```sh
 tg-load-sample-documents
 ```
 
-## Services & Interfaces
-
-### Web Workbench
+## Workbench
 
 Access the TrustGraph workbench at [http://localhost:8888/](http://localhost:8888/)
 
-**Features:**
-- Document library management
-- Vector search interface
-- Graph visualization
-- Graph RAG query interface
-- Prompt management
-
-### Monitoring Dashboard
+## Monitoring dashboard
 
 Access Grafana monitoring at [http://localhost:3000/](http://localhost:3000/)
 
@@ -244,30 +279,31 @@ Access Grafana monitoring at [http://localhost:3000/](http://localhost:3000/)
 - Username: `admin`
 - Password: `admin`
 
-**Features:**
-- TrustGraph dashboard
-- Processing metrics
-- System health monitoring
-- Document processing backlog
+## Working with a document
 
-## Working with Documents
-
-### 1. Load Documents
+### Load Documents
 
 **Via Workbench:**
 1. Navigate to the Library page
-2. Select a document (e.g., "Beyond State Vigilance")
+2. In the upper right-hand corner, there is a dark/light mode widget.
+   To its left, is a selector width.  Ensure the top and bottom lines say
+   "default".  If not click on the widget and change.
+2. On the library tab, select a document (e.g., "Beyond State Vigilance")
 3. Click Submit on the action bar
-4. Choose a processing flow (use default)
+4. Choose a processing flow (use Default processing flow)
 5. Click Submit to process
 
-**Via CLI:**
-```bash
-tg-load-pdf path/to/document.pdf
-tg-load-text path/to/document.txt
-```
+### Use Vector search
 
-### 2. Verify Knowledge Graph
+Select the *Vector Search* tab.  Enter a string e.g. "document" in the search
+bar, and hit RETURN.  The search term doesn't matter a great deal.  If
+information has started to load, you should see some search results.
+
+The vector search attempts to find up to 10 terms which are the closest
+matches for your search term.  It does this even if the search terms are not
+a strong match, so this is a simple way to observe whether dat has loaded.
+
+### Verify knowledge graph
 
 Check graph parsing results:
 
@@ -275,14 +311,18 @@ Check graph parsing results:
 tg-show-graph
 ```
 
-This displays semantic triples in N-Triples format:
+You should see some lines of text scrolling past.  This displays semantic
+triples in N-Triples format:
 
 ```
 <http://trustgraph.ai/e/enterprise> <http://trustgraph.ai/e/was-carried> "to altitude and released for a gliding approach" .
 <http://trustgraph.ai/e/enterprise> <http://www.w3.org/2000/01/rdf-schema#label> "Enterprise" .
 ```
 
-### 3. Query with Graph RAG
+The structure isn't hugely important for this test, but it is a simple
+way to verify that data has loaded.
+
+### Query with Graph RAG
 
 **Via Workbench:**
 1. Navigate to Graph RAG tab
