@@ -11,7 +11,7 @@ guide_description: Run TrustGraph in a local Kubernetes cluster for production-l
 guide_difficulty: intermediate
 guide_time: 2 - 3 hr
 guide_emoji: ☸️
-guide_banner: minikube.jpg
+guide_banner: /../minikube.png
 guide_labels:
   - Kubernetes
   - Local

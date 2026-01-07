@@ -1,5 +1,5 @@
 ---
-title: Docker Compose / Podman Compose
+title: Docker / Podman Compose
 nav_order: 1
 parent: Deployment
 grand_parent: TrustGraph Documentation
@@ -11,7 +11,7 @@ guide_description: Easiest way to get TrustGraph running locally with Docker or 
 guide_difficulty: beginner
 guide_time: 30 - 60 min
 guide_emoji: 🐳
-guide_banner: docker-compose.jpg
+guide_banner: /../podman.png
 guide_labels:
   - Docker
   - Local
