@@ -6,6 +6,10 @@ grand_parent: TrustGraph Documentation
 review_date: 2026-08-01
 guide_category: Common knowledge management tasks
 guide_category_order: 1
+guide_description: Query documents using automatically extracted entities and their relationships in a knowledge graph
+guide_difficulty: easy
+guide_emoji: 🕸️
+guide_banner: graph-rag.png
 ---
 
 # Graph RAG Guide

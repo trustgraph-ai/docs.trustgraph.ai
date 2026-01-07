@@ -15,8 +15,16 @@ review_date: 2026-08-01
 <div style="display: flex; flex-wrap: wrap; gap: 10px; margin-top: 10px;">
 {% assign guide_pages = site.pages | where: "parent", "How-to Guides" | where: "guide_category", "Common knowledge management tasks" | sort: "guide_category_order" %}
 {% for guide in guide_pages %}
-<div style="border: 1px solid #4a9eff; background-color: #0d1621; padding: 10px 15px; border-radius: 4px; flex: 1 1 200px;">
-<a href="{{ guide.url }}" style="text-decoration: none; color: inherit; display: block;">{{ guide.title }}</a>
+<div style="border: 1px solid #4a9eff; background-color: #0d1621; padding: 0; border-radius: 4px; flex: 1 1 200px; overflow: hidden;">
+<a href="{{ guide.url }}" style="text-decoration: none; color: inherit; display: block;">
+{% if guide.guide_banner %}<div style="width: 100%; height: 120px; background-image: url('{{ guide.url | replace: 'index.html', '' }}{{ guide.guide_banner }}'); background-size: cover; background-position: center;"></div>{% endif %}
+<div style="padding: 10px 15px;">
+{% if guide.guide_emoji %}<div style="font-size: 2em; margin-bottom: 5px;">{{ guide.guide_emoji }}</div>{% endif %}
+<strong>{{ guide.title }}</strong>
+{% if guide.guide_difficulty %}<div style="font-size: 0.85em; color: #4a9eff; margin-top: 5px;">{{ guide.guide_difficulty }}</div>{% endif %}
+{% if guide.guide_description %}<div style="font-size: 0.9em; margin-top: 8px; opacity: 0.9;">{{ guide.guide_description }}</div>{% endif %}
+</div>
+</a>
 </div>
 {% endfor %}
 </div>
@@ -30,8 +38,16 @@ review_date: 2026-08-01
 <div style="display: flex; flex-wrap: wrap; gap: 10px; margin-top: 10px;">
 {% assign guide_pages = site.pages | where: "parent", "How-to Guides" | where: "guide_category", "Advanced knowledge management" | sort: "guide_category_order" %}
 {% for guide in guide_pages %}
-<div style="border: 1px solid #9f7aea; background-color: #1a1529; padding: 10px 15px; border-radius: 4px; flex: 1 1 200px;">
-<a href="{{ guide.url }}" style="text-decoration: none; color: inherit; display: block;">{{ guide.title }}</a>
+<div style="border: 1px solid #9f7aea; background-color: #1a1529; padding: 0; border-radius: 4px; flex: 1 1 200px; overflow: hidden;">
+<a href="{{ guide.url }}" style="text-decoration: none; color: inherit; display: block;">
+{% if guide.guide_banner %}<div style="width: 100%; height: 120px; background-image: url('{{ guide.url | replace: 'index.html', '' }}{{ guide.guide_banner }}'); background-size: cover; background-position: center;"></div>{% endif %}
+<div style="padding: 10px 15px;">
+{% if guide.guide_emoji %}<div style="font-size: 2em; margin-bottom: 5px;">{{ guide.guide_emoji }}</div>{% endif %}
+<strong>{{ guide.title }}</strong>
+{% if guide.guide_difficulty %}<div style="font-size: 0.85em; color: #9f7aea; margin-top: 5px;">{{ guide.guide_difficulty }}</div>{% endif %}
+{% if guide.guide_description %}<div style="font-size: 0.9em; margin-top: 8px; opacity: 0.9;">{{ guide.guide_description }}</div>{% endif %}
+</div>
+</a>
 </div>
 {% endfor %}
 </div>
@@ -45,8 +61,16 @@ review_date: 2026-08-01
 <div style="display: flex; flex-wrap: wrap; gap: 10px; margin-top: 10px;">
 {% assign guide_pages = site.pages | where: "parent", "How-to Guides" | where: "guide_category", "Agentic systems" | sort: "guide_category_order" %}
 {% for guide in guide_pages %}
-<div style="border: 1px solid #48bb78; background-color: #0d2118; padding: 10px 15px; border-radius: 4px; flex: 1 1 200px;">
-<a href="{{ guide.url }}" style="text-decoration: none; color: inherit; display: block;">{{ guide.title }}</a>
+<div style="border: 1px solid #48bb78; background-color: #0d2118; padding: 0; border-radius: 4px; flex: 1 1 200px; overflow: hidden;">
+<a href="{{ guide.url }}" style="text-decoration: none; color: inherit; display: block;">
+{% if guide.guide_banner %}<div style="width: 100%; height: 120px; background-image: url('{{ guide.url | replace: 'index.html', '' }}{{ guide.guide_banner }}'); background-size: cover; background-position: center;"></div>{% endif %}
+<div style="padding: 10px 15px;">
+{% if guide.guide_emoji %}<div style="font-size: 2em; margin-bottom: 5px;">{{ guide.guide_emoji }}</div>{% endif %}
+<strong>{{ guide.title }}</strong>
+{% if guide.guide_difficulty %}<div style="font-size: 0.85em; color: #48bb78; margin-top: 5px;">{{ guide.guide_difficulty }}</div>{% endif %}
+{% if guide.guide_description %}<div style="font-size: 0.9em; margin-top: 8px; opacity: 0.9;">{{ guide.guide_description }}</div>{% endif %}
+</div>
+</a>
 </div>
 {% endfor %}
 </div>
@@ -60,8 +84,16 @@ review_date: 2026-08-01
 <div style="display: flex; flex-wrap: wrap; gap: 10px; margin-top: 10px;">
 {% assign guide_pages = site.pages | where: "parent", "How-to Guides" | where: "guide_category", "Managing operations" | sort: "guide_category_order" %}
 {% for guide in guide_pages %}
-<div style="border: 1px solid #f59e0b; background-color: #221a10; padding: 10px 15px; border-radius: 4px; flex: 1 1 200px;">
-<a href="{{ guide.url }}" style="text-decoration: none; color: inherit; display: block;">{{ guide.title }}</a>
+<div style="border: 1px solid #f59e0b; background-color: #221a10; padding: 0; border-radius: 4px; flex: 1 1 200px; overflow: hidden;">
+<a href="{{ guide.url }}" style="text-decoration: none; color: inherit; display: block;">
+{% if guide.guide_banner %}<div style="width: 100%; height: 120px; background-image: url('{{ guide.url | replace: 'index.html', '' }}{{ guide.guide_banner }}'); background-size: cover; background-position: center;"></div>{% endif %}
+<div style="padding: 10px 15px;">
+{% if guide.guide_emoji %}<div style="font-size: 2em; margin-bottom: 5px;">{{ guide.guide_emoji }}</div>{% endif %}
+<strong>{{ guide.title }}</strong>
+{% if guide.guide_difficulty %}<div style="font-size: 0.85em; color: #f59e0b; margin-top: 5px;">{{ guide.guide_difficulty }}</div>{% endif %}
+{% if guide.guide_description %}<div style="font-size: 0.9em; margin-top: 8px; opacity: 0.9;">{{ guide.guide_description }}</div>{% endif %}
+</div>
+</a>
 </div>
 {% endfor %}
 </div>
