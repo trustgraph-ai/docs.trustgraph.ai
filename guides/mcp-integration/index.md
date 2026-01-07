@@ -3,7 +3,8 @@ title: MCP Integration
 parent: How-to Guides
 grand_parent: TrustGraph Documentation
 review_date: 2026-03-06
-guide_category: Agentic systems
+guide_category:
+  - Agentic systems
 guide_category_order: 3
 guide_description: Integrate Model Context Protocol servers to extend agent workflows with custom tools
 guide_difficulty: advanced

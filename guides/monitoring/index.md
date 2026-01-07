@@ -3,7 +3,8 @@ title: Monitoring
 parent: How-to Guides
 grand_parent: TrustGraph Documentation
 review_date: 2026-04-17
-guide_category: Managing operations
+guide_category:
+  - Managing operations
 guide_category_order: 1
 guide_description: Talking about metrics and observability for TrustGraph deployments using Prometheus and Grafana.
 guide_difficulty: intermediate

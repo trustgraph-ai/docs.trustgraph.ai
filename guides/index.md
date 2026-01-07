@@ -13,8 +13,9 @@ review_date: 2026-08-01
 <h2>Common knowledge management tasks</h2>
 
 <div style="display: flex; flex-wrap: wrap; gap: 10px; margin-top: 10px;">
-{% assign guide_pages = site.pages | where: "parent", "How-to Guides" | where: "guide_category", "Common knowledge management tasks" | sort: "guide_category_order" %}
+{% assign guide_pages = site.pages | where: "parent", "How-to Guides" | sort: "guide_category_order" %}
 {% for guide in guide_pages %}
+{% if guide.guide_category contains "Common knowledge management tasks" %}
 <div style="border: 1px solid #4a9eff; background-color: #0d1621; padding: 0; border-radius: 4px; flex: 1 1 200px; overflow: hidden;">
 <a href="{{ guide.url }}" style="text-decoration: none; color: inherit; display: block;">
 {% if guide.guide_banner %}
@@ -46,6 +47,7 @@ review_date: 2026-08-01
 </div>
 </a>
 </div>
+{% endif %}
 {% endfor %}
 </div>
 
@@ -56,8 +58,9 @@ review_date: 2026-08-01
 <h2>Advanced knowledge management</h2>
 
 <div style="display: flex; flex-wrap: wrap; gap: 10px; margin-top: 10px;">
-{% assign guide_pages = site.pages | where: "parent", "How-to Guides" | where: "guide_category", "Advanced knowledge management" | sort: "guide_category_order" %}
+{% assign guide_pages = site.pages | where: "parent", "How-to Guides" | sort: "guide_category_order" %}
 {% for guide in guide_pages %}
+{% if guide.guide_category contains "Advanced knowledge management" %}
 <div style="border: 1px solid #9f7aea; background-color: #1a1529; padding: 0; border-radius: 4px; flex: 1 1 200px; overflow: hidden;">
 <a href="{{ guide.url }}" style="text-decoration: none; color: inherit; display: block;">
 {% if guide.guide_banner %}
@@ -89,6 +92,7 @@ review_date: 2026-08-01
 </div>
 </a>
 </div>
+{% endif %}
 {% endfor %}
 </div>
 
@@ -99,8 +103,9 @@ review_date: 2026-08-01
 <h2>Agentic systems</h2>
 
 <div style="display: flex; flex-wrap: wrap; gap: 10px; margin-top: 10px;">
-{% assign guide_pages = site.pages | where: "parent", "How-to Guides" | where: "guide_category", "Agentic systems" | sort: "guide_category_order" %}
+{% assign guide_pages = site.pages | where: "parent", "How-to Guides" | sort: "guide_category_order" %}
 {% for guide in guide_pages %}
+{% if guide.guide_category contains "Agentic systems" %}
 <div style="border: 1px solid #48bb78; background-color: #0d2118; padding: 0; border-radius: 4px; flex: 1 1 200px; overflow: hidden;">
 <a href="{{ guide.url }}" style="text-decoration: none; color: inherit; display: block;">
 {% if guide.guide_banner %}
@@ -132,6 +137,7 @@ review_date: 2026-08-01
 </div>
 </a>
 </div>
+{% endif %}
 {% endfor %}
 </div>
 
@@ -142,8 +148,9 @@ review_date: 2026-08-01
 <h2>Managing operations</h2>
 
 <div style="display: flex; flex-wrap: wrap; gap: 10px; margin-top: 10px;">
-{% assign guide_pages = site.pages | where: "parent", "How-to Guides" | where: "guide_category", "Managing operations" | sort: "guide_category_order" %}
+{% assign guide_pages = site.pages | where: "parent", "How-to Guides" | sort: "guide_category_order" %}
 {% for guide in guide_pages %}
+{% if guide.guide_category contains "Managing operations" %}
 <div style="border: 1px solid #f59e0b; background-color: #221a10; padding: 0; border-radius: 4px; flex: 1 1 200px; overflow: hidden;">
 <a href="{{ guide.url }}" style="text-decoration: none; color: inherit; display: block;">
 {% if guide.guide_banner %}
@@ -175,6 +182,7 @@ review_date: 2026-08-01
 </div>
 </a>
 </div>
+{% endif %}
 {% endfor %}
 </div>
 
