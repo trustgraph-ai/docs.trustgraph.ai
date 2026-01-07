@@ -20,29 +20,69 @@ guide_labels:
 
 # Docker/Podman Compose Deployment
 
-Deploy TrustGraph quickly using Docker Compose for local development and testing environments.
-
 ## Overview
 
-Docker Compose provides the easiest way to get TrustGraph running locally with all required services orchestrated together. This deployment method is ideal for:
-- Local development and testing
-- Proof-of-concept implementations
-- Small-scale deployments
-- Learning and experimentation
+Docker and Podman are popular container hosting environments which run on
+many types of system.  Docker was the original container engine and runs on
+Linux, MacOS and Windows.  Podman uses the Linux-kernel container
+capabilties, and can also run on MacOS.  Podman is an open-source alternative
+built to be highly compatible with Docker engine.
+
+Docker and Podman both have a "compose" utility which lets you easily
+manage a group of running containers.  This guide takes you through
+launching TrustGraph using Docker/Podman compose.
+
+Using Docker/Podman is the easiest way to launch a TrustGraph, because you
+can run it on a standalone environment.  If you have a desktop/laptop
+with enough resources, you can run TrustGraph directly on that device.
+
+This is a good way to get started for local development and testing,
+proof-of-concept building, small-scale experiments, or just to learn more.
 
 ## Prerequisites
 
 ### System Requirements
 
-- **Docker Engine** or **Podman Machine** installed and running
-- **Operating System**: Linux or macOS (Windows deployments not tested)
-- **Python 3.x** for CLI tools
-- Sufficient system resources (recommended: 8GB RAM, 4 CPU cores)
+You need a machine with at least 12GB of RAM and 8 CPUs available.
+A 16GB machine is probably enough.
 
-### Installation Links
+This has been tested with Linux, MacOS and Windows deployments.
+
+You need to have Python 3 installed to run the command-line tools.
+
+### Docker / Podman
+
+For Windows / MacOS we would recommend using Docker.  For Linux, podman is
+natively available with all major distributions.  You will need to have this
+installed before running this guide.
 
 - [Install Docker Engine](https://docs.docker.com/engine/install/)
 - [Install Podman Machine](http://podman.io/)
+
+### Large Language Model
+
+You need to have access to an LLM.  TrustGraph can work with many different
+kinds of LLM.  You can use a cloud-hosted service, or have an LLM hosted
+locally on your device or network.  TrustGraph can work with small models,
+but small models are still demanding on resources.
+
+Using a cloud-hosted service is a good starting point - you will need a
+subscription, but no extra hardware.  If you do want to run an LLM locally,
+you will need a device with a good GPU, and likely some experience of
+running this yourself as you may need to debug model / hosting issues.
+
+Here are some example ways to get an LLM to run:
+
+| Provider | Description | Best For |
+|----------|-------------|----------|
+| **Google Cloud VertexAI** | Access to Gemini models and other Google-hosted LLMs. Offers free credits for new users. | Cost-effective cloud option, good performance with Gemini Flash 1.5 |
+| **AWS Bedrock** | Amazon's managed LLM service with Claude, Mistral, and other models available. | AWS ecosystem integration, enterprise deployments |
+| **Azure OpenAI** | Microsoft's managed service providing GPT-4o and other OpenAI models. | Azure ecosystem integration, enterprise support |
+| **Anthropic Claude** | Direct access to Claude models via API subscription. | High-quality responses, large context windows |
+| **OpenAI** | Direct access to GPT models (GPT-4, GPT-3.5) via API subscription. | Wide model selection, familiar API |
+| **Ollama** | Run models locally on your machine. Supports Llama, Mistral, and many others. | Local deployment, no cloud costs, privacy |
+| **LMStudio** | Desktop application for running local LLMs with an OpenAI-compatible API. | Easy local setup, GPU acceleration, privacy |
+| **vLLM** | The most comprehensive self-hosted model engine | Well supported, GPU acceleration, privacy |
 
 > **Note**: If using Podman, substitute `podman` for `docker` in all commands.
 
