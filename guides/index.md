@@ -21,8 +21,11 @@ review_date: 2026-08-01
 <div style="padding: 10px 15px;">
 {% if guide.guide_emoji %}<div style="font-size: 2em; margin-bottom: 5px;">{{ guide.guide_emoji }}</div>{% endif %}
 <strong>{{ guide.title }}</strong>
-{% if guide.guide_difficulty %}<div style="font-size: 0.85em; color: #4a9eff; margin-top: 5px;">{{ guide.guide_difficulty }}</div>{% endif %}
+<div style="font-size: 0.85em; color: #4a9eff; margin-top: 5px;">
+{% if guide.guide_difficulty %}{{ guide.guide_difficulty }}{% endif %}{% if guide.guide_difficulty and guide.guide_time %} • {% endif %}{% if guide.guide_time %}{{ guide.guide_time }}{% endif %}
+</div>
 {% if guide.guide_description %}<div style="font-size: 0.9em; margin-top: 8px; opacity: 0.9;">{{ guide.guide_description }}</div>{% endif %}
+{% if guide.guide_labels %}<div style="display: flex; flex-wrap: wrap; gap: 5px; margin-top: 10px;">{% for label in guide.guide_labels %}<span style="font-size: 0.75em; padding: 2px 8px; background-color: rgba(74, 158, 255, 0.2); border: 1px solid #4a9eff; border-radius: 3px; white-space: nowrap;">{{ label }}</span>{% endfor %}</div>{% endif %}
 </div>
 </a>
 </div>
@@ -44,8 +47,11 @@ review_date: 2026-08-01
 <div style="padding: 10px 15px;">
 {% if guide.guide_emoji %}<div style="font-size: 2em; margin-bottom: 5px;">{{ guide.guide_emoji }}</div>{% endif %}
 <strong>{{ guide.title }}</strong>
-{% if guide.guide_difficulty %}<div style="font-size: 0.85em; color: #9f7aea; margin-top: 5px;">{{ guide.guide_difficulty }}</div>{% endif %}
+<div style="font-size: 0.85em; color: #9f7aea; margin-top: 5px;">
+{% if guide.guide_difficulty %}{{ guide.guide_difficulty }}{% endif %}{% if guide.guide_difficulty and guide.guide_time %} • {% endif %}{% if guide.guide_time %}{{ guide.guide_time }}{% endif %}
+</div>
 {% if guide.guide_description %}<div style="font-size: 0.9em; margin-top: 8px; opacity: 0.9;">{{ guide.guide_description }}</div>{% endif %}
+{% if guide.guide_labels %}<div style="display: flex; flex-wrap: wrap; gap: 5px; margin-top: 10px;">{% for label in guide.guide_labels %}<span style="font-size: 0.75em; padding: 2px 8px; background-color: rgba(159, 122, 234, 0.2); border: 1px solid #9f7aea; border-radius: 3px; white-space: nowrap;">{{ label }}</span>{% endfor %}</div>{% endif %}
 </div>
 </a>
 </div>
@@ -67,8 +73,11 @@ review_date: 2026-08-01
 <div style="padding: 10px 15px;">
 {% if guide.guide_emoji %}<div style="font-size: 2em; margin-bottom: 5px;">{{ guide.guide_emoji }}</div>{% endif %}
 <strong>{{ guide.title }}</strong>
-{% if guide.guide_difficulty %}<div style="font-size: 0.85em; color: #48bb78; margin-top: 5px;">{{ guide.guide_difficulty }}</div>{% endif %}
+<div style="font-size: 0.85em; color: #48bb78; margin-top: 5px;">
+{% if guide.guide_difficulty %}{{ guide.guide_difficulty }}{% endif %}{% if guide.guide_difficulty and guide.guide_time %} • {% endif %}{% if guide.guide_time %}{{ guide.guide_time }}{% endif %}
+</div>
 {% if guide.guide_description %}<div style="font-size: 0.9em; margin-top: 8px; opacity: 0.9;">{{ guide.guide_description }}</div>{% endif %}
+{% if guide.guide_labels %}<div style="display: flex; flex-wrap: wrap; gap: 5px; margin-top: 10px;">{% for label in guide.guide_labels %}<span style="font-size: 0.75em; padding: 2px 8px; background-color: rgba(72, 187, 120, 0.2); border: 1px solid #48bb78; border-radius: 3px; white-space: nowrap;">{{ label }}</span>{% endfor %}</div>{% endif %}
 </div>
 </a>
 </div>
@@ -90,8 +99,11 @@ review_date: 2026-08-01
 <div style="padding: 10px 15px;">
 {% if guide.guide_emoji %}<div style="font-size: 2em; margin-bottom: 5px;">{{ guide.guide_emoji }}</div>{% endif %}
 <strong>{{ guide.title }}</strong>
-{% if guide.guide_difficulty %}<div style="font-size: 0.85em; color: #f59e0b; margin-top: 5px;">{{ guide.guide_difficulty }}</div>{% endif %}
+<div style="font-size: 0.85em; color: #f59e0b; margin-top: 5px;">
+{% if guide.guide_difficulty %}{{ guide.guide_difficulty }}{% endif %}{% if guide.guide_difficulty and guide.guide_time %} • {% endif %}{% if guide.guide_time %}{{ guide.guide_time }}{% endif %}
+</div>
 {% if guide.guide_description %}<div style="font-size: 0.9em; margin-top: 8px; opacity: 0.9;">{{ guide.guide_description }}</div>{% endif %}
+{% if guide.guide_labels %}<div style="display: flex; flex-wrap: wrap; gap: 5px; margin-top: 10px;">{% for label in guide.guide_labels %}<span style="font-size: 0.75em; padding: 2px 8px; background-color: rgba(245, 158, 11, 0.2); border: 1px solid #f59e0b; border-radius: 3px; white-space: nowrap;">{{ label }}</span>{% endfor %}</div>{% endif %}
 </div>
 </a>
 </div>

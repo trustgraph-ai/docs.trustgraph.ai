@@ -6,6 +6,15 @@ grand_parent: TrustGraph Documentation
 review_date: 2026-08-01
 guide_category: Common knowledge management tasks
 guide_category_order: 3
+guide_description: Query documents using vector embeddings and semantic similarity search
+guide_difficulty: beginner
+guide_time: 30 min
+guide_emoji: 📄
+guide_banner: document-rag.png
+guide_labels:
+  - RAG
+  - Vector Search
+  - Embeddings
 ---
 
 # Document RAG Guide

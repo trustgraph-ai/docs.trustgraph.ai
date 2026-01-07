@@ -5,6 +5,15 @@ parent: How-to Guides
 review_date: 2026-08-01
 guide_category: Common knowledge management tasks
 guide_category_order: 2
+guide_description: Extract structured data using schemas and ontologies to define relationships and types
+guide_difficulty: intermediate
+guide_time: 45 min
+guide_emoji: 📋
+guide_banner: ontology-rag.png
+guide_labels:
+  - RAG
+  - Ontology
+  - Schema
 ---
 
 # Ontology RAG Guide
