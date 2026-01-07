@@ -88,25 +88,39 @@ Here are some example ways to get an LLM to run:
 
 ## Configuration Setup
 
-### 1. Create Configuration
+### Create Configuration
 
-Use the [TrustGraph Configuration Builder](https://config-ui.demo.trustgraph.ai/) to generate your deployment configuration:
+Use the
+[TrustGraph Configuration Builder](https://config-ui.demo.trustgraph.ai/)
+to generate your deployment configuration.  By default, the configurator
+selects the newest stable deployment.
 
 1. **Select Deployment**: Choose Docker Compose or Podman Compose
 2. **Graph Store**: Select Cassandra (recommended for ease of use)
 3. **Vector Store**: Select Qdrant (recommended for ease of use)
 4. **Chunker Settings**: 
    - Type: Recursive
-   - Chunk size: 1000
-   - Overlap: 50
-5. **LLM Model**: Choose your preferred model:
-   - **Local**: LMStudio or Ollama for local GPU deployment
-   - **Cloud**: VertexAI on Google (offers free credits)
-6. **Output Tokens**: 2048 (safe default)
-7. **Customization**: Enable LLM Prompt Manager and Agent Tools
-8. **Generate**: Download the deployment bundle
+5. **LLM Model**: Choose your preferred model as discussed above
+6. **Output Tokens**: 2048 is a safe default, 4096 works for most models,
+   8192 for the biggest models
+7. **Customization**: Leave defaults
+8. **Finish Deployment**: Click 'Generate' and then Download the
+   deployment bundle
+   
+## Unpack the configuration
 
-### 2. Install CLI Tools
+The configuration builder will download a `.zip` file containing your deployment configuration. Unpack it:
+
+```sh
+unzip trustgraph-deployment.zip
+```
+
+You should see:
+- `docker-compose.yaml` - The main deployment configuration
+- `.env` - Environment variables and configuration
+- Other configuration files specific to your setup
+
+### Install CLI Tools
 
 ```bash
 python3 -m venv env
