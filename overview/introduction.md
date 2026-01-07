@@ -3,6 +3,18 @@ title: Introduction
 nav_order: 1
 parent: Overview
 review_date: 2026-08-01
+guide_category:
+  - Concepts
+guide_category_order: 1
+guide_description: What is TrustGraph and how does it transform AI agents into contextually-aware systems?
+guide_difficulty: beginner
+guide_time: 15 min
+guide_emoji: 🎯
+guide_banner: /../introduction.jpg
+guide_labels:
+  - GraphRAG
+  - Knowledge Graphs
+  - Core Concepts
 ---
 
 # Introduction to TrustGraph

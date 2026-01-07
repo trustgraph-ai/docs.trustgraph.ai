@@ -3,6 +3,18 @@ title: Maturity
 nav_order: 5
 parent: Overview
 review_date: 2026-08-01
+guide_category:
+  - Enterprise integration
+guide_category_order: 2
+guide_description: Production readiness, feature stability, and deployment status for enterprise use
+guide_difficulty: beginner
+guide_time: 10 min
+guide_emoji: 📊
+guide_banner: /../maturity.jpg
+guide_labels:
+  - Production
+  - Stability
+  - Enterprise
 ---
 
 # TrustGraph Maturity

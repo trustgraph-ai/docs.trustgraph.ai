@@ -3,6 +3,18 @@ title: Architecture
 nav_order: 2
 parent: Overview
 review_date: 2026-08-01
+guide_category:
+  - How does it work?
+guide_category_order: 2
+guide_description: System design, component relationships, data flow, and integration points
+guide_difficulty: advanced
+guide_time: 30 min
+guide_emoji: 🏗️
+guide_banner: /../architecture.jpg
+guide_labels:
+  - Architecture
+  - Components
+  - Technical
 ---
 
 # Architecture

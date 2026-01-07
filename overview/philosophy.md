@@ -3,6 +3,18 @@ title: Philosophy
 nav_order: 0
 parent: Overview
 review_date: 2026-08-01
+guide_category:
+  - Concepts
+guide_category_order: 2
+guide_description: Design principles and philosophy behind TrustGraph's approach to AI agent intelligence
+guide_difficulty: beginner
+guide_time: 10 min
+guide_emoji: 💭
+guide_banner: /../philosophy.jpg
+guide_labels:
+  - Design
+  - Principles
+  - Vision
 ---
 
 # Philosophy
