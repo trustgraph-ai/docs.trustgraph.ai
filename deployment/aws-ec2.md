@@ -4,6 +4,18 @@ nav_order: 7
 parent: Deployment
 grand_parent: TrustGraph Documentation
 review_date: 2026-01-20
+guide_category:
+  - Standalone deployment
+guide_category_order: 3
+guide_description: Single AWS EC2 instance with Podman for development, testing, and small-scale deployments
+guide_difficulty: intermediate
+guide_time: 2 - 5 hr
+guide_emoji: 🖥️
+guide_banner: aws-ec2.jpg
+guide_labels:
+  - AWS
+  - Podman
+  - Development
 ---
 
 # AWS EC2 Single Instance Deployment

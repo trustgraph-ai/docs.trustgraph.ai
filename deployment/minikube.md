@@ -4,6 +4,18 @@ nav_order: 2
 parent: Deployment
 grand_parent: TrustGraph Documentation
 review_date: 2026-05-17
+guide_category:
+  - Standalone deployment
+guide_category_order: 2
+guide_description: Run TrustGraph in a local Kubernetes cluster for production-like development and testing
+guide_difficulty: intermediate
+guide_time: 2 - 3 hr
+guide_emoji: ☸️
+guide_banner: minikube.jpg
+guide_labels:
+  - Kubernetes
+  - Local
+  - Development
 ---
 
 # Minikube Deployment

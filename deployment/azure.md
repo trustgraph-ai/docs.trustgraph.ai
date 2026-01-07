@@ -4,6 +4,18 @@ nav_order: 5
 parent: Deployment
 grand_parent: TrustGraph Documentation
 review_date: 2026-02-21
+guide_category:
+  - Global cloud
+guide_category_order: 2
+guide_description: Deploy on Azure Kubernetes Service with AI Foundry and dual AI model support
+guide_difficulty: advanced
+guide_time: 2 - 4 hr
+guide_emoji: ☁️
+guide_banner: azure.jpg
+guide_labels:
+  - Azure
+  - Kubernetes
+  - Production
 ---
 
 # Microsoft Azure AKS Deployment

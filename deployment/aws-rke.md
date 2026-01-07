@@ -4,6 +4,18 @@ nav_order: 9
 parent: Deployment
 grand_parent: TrustGraph Documentation
 review_date: 2026-05-02
+guide_category:
+  - Global cloud
+guide_category_order: 1
+guide_description: Production-ready RKE2 Kubernetes cluster on AWS with Bedrock AI integration
+guide_difficulty: advanced
+guide_time: 2 - 5 hr
+guide_emoji: ☁️
+guide_banner: aws-rke.jpg
+guide_labels:
+  - AWS
+  - Kubernetes
+  - Production
 ---
 
 # Amazon Web Services (RKE) Deployment

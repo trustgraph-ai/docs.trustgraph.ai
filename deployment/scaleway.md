@@ -9,9 +9,9 @@ guide_category:
 guide_category_order: 2
 guide_description: Cost-effective Kubernetes deployment with GDPR compliance and European data residency
 guide_difficulty: intermediate
-guide_time: 2 hr
+guide_time: 1 - 2 hr
 guide_emoji: 🇫🇷
-guide_banner: scaleway.jpg
+guide_banner: /../scaleway.jpg
 guide_labels:
   - Kubernetes
   - Europe

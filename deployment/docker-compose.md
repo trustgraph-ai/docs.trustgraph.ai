@@ -4,6 +4,18 @@ nav_order: 1
 parent: Deployment
 grand_parent: TrustGraph Documentation
 review_date: 2026-03-20
+guide_category:
+  - Standalone deployment
+guide_category_order: 1
+guide_description: Easiest way to get TrustGraph running locally with Docker or Podman for development and testing
+guide_difficulty: beginner
+guide_time: 30 - 60 min
+guide_emoji: 🐳
+guide_banner: docker-compose.jpg
+guide_labels:
+  - Docker
+  - Local
+  - Quick Start
 ---
 
 # Docker/Podman Compose Deployment
