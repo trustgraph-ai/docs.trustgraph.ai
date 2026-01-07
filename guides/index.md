@@ -8,92 +8,47 @@ review_date: 2026-08-01
 
 # How-to Guides
 
-**Task-oriented instructions for accomplishing specific goals with TrustGraph.**
+<div style="border: 2px solid #4a9eff; background-color: #1e2a3a; padding: 5px 20px 20px 20px; margin: 20px 0; border-radius: 8px;" markdown="1">
 
-Guides answer the question **"How do I...?"** with step-by-step instructions. Each guide focuses on a single task or workflow and provides practical, actionable steps.
+## Common knowledge management tasks
 
-## What's in This Section?
+{% assign guide_pages = site.pages | where: "parent", "How-to Guides" | where: "guide_category", "Common knowledge management tasks" | sort: "guide_category_order" %}
+{% for guide in guide_pages %}
+- [{{ guide.title }}]({{ guide.url }})
+{% endfor %}
 
-**How-to Guides** are practical instructions for:
-- Completing specific tasks
-- Implementing features
-- Integrating with other systems
-- Solving common problems
+</div>
 
-**Not sure if you're in the right place?**
-- Want working code to copy? See [Examples](../examples/)
-- Want to understand concepts? See [Overview](../overview/)
-- Want API reference? See [Reference](../reference/)
+<div style="border: 2px solid #9f7aea; background-color: #2d2642; padding: 5px 20px 20px 20px; margin: 20px 0; border-radius: 8px;" markdown="1">
 
-## Available Guides
+## Advanced knowledge management
 
-### Agent & Object Extraction
-- **[Agent Extraction](agent-extraction)** - Use AI agents to extract structured data from documents
-- **[Object Extraction](object-extraction)** - Extract typed objects (products, people, events) from unstructured text
+{% assign guide_pages = site.pages | where: "parent", "How-to Guides" | where: "guide_category", "Advanced knowledge management" | sort: "guide_category_order" %}
+{% for guide in guide_pages %}
+- [{{ guide.title }}]({{ guide.url }})
+{% endfor %}
 
-### Structured Data Processing
-- **[Structured Processing](structured-processing/)** - Working with structured data extraction
-  - [Schemas](structured-processing/schemas) - Define extraction schemas
-  - [Load Documents](structured-processing/load-doc) - Load documents for structured extraction
-  - [Load Files](structured-processing/load-file) - Load file-based data
-  - [Query Data](structured-processing/query) - Query extracted structured data
-  - [Agent Integration](structured-processing/agent-integration) - Integrate with AI agents
+</div>
 
-### Integrations
-- **[MCP Integration](mcp-integration/)** - Integrate with Model Context Protocol
+<div style="border: 2px solid #48bb78; background-color: #1e3a2a; padding: 5px 20px 20px 20px; margin: 20px 0; border-radius: 8px;" markdown="1">
 
-### Monitoring & Operations
-- **[Monitoring](monitoring/)** - Set up metrics, alerts, and observability
+## Agentic systems
 
-### RAG Workflows
-- **[Graph RAG](graph-rag)** - Leverage knowledge graph relationships for contextual retrieval
-- **[Ontology RAG](ontology-rag)** - Extract and query structured data using schemas
-- **[Document RAG](document-rag)** - Query documents using vector embeddings (basic RAG, naive RAG)
+{% assign guide_pages = site.pages | where: "parent", "How-to Guides" | where: "guide_category", "Agentic systems" | sort: "guide_category_order" %}
+{% for guide in guide_pages %}
+- [{{ guide.title }}]({{ guide.url }})
+{% endfor %}
 
-### Security
-- **[Security Overview](security/)** - Security philosophy, current features, and enterprise roadmap
-- **[Current Security Features](security/current-features)** - What's available today
-- **[Enterprise Security Roadmap](security/enterprise-roadmap)** - Planned enterprise-grade features
+</div>
 
-## Planned Guides
+<div style="border: 2px solid #f59e0b; background-color: #3a2e1e; padding: 5px 20px 20px 20px; margin: 20px 0; border-radius: 8px;" markdown="1">
 
-{: .wip }
-> **Work in Progress**
-> The following guides are planned for future releases:
-- **Data Integration** - Advanced data loading and processing patterns
-- **Querying** - Query optimization and advanced patterns
-- **Visualization** - Graph visualization and custom dashboards
+## Managing operations
 
-## Guide Structure
+{% assign guide_pages = site.pages | where: "parent", "How-to Guides" | where: "guide_category", "Managing operations" | sort: "guide_category_order" %}
+{% for guide in guide_pages %}
+- [{{ guide.title }}]({{ guide.url }})
+{% endfor %}
 
-Each guide follows this format:
-
-1. **Goal**: What you'll accomplish
-2. **Prerequisites**: What you need before starting
-3. **Steps**: Numbered, actionable instructions
-4. **Verification**: How to confirm success
-5. **Next Steps**: Related tasks or advanced topics
-
-## Finding the Right Guide
-
-**I want to...**
-
-| Task | Guide |
-|------|-------|
-| Query documents with semantic search | [Document RAG](document-rag) |
-| Query knowledge graph relationships | [Graph RAG](graph-rag) |
-| Extract structured typed data | [Ontology RAG](ontology-rag) |
-| Extract structured data from PDFs | [Agent Extraction](agent-extraction) |
-| Extract typed objects (products, etc.) | [Object Extraction](object-extraction) |
-| Define what data to extract | [Structured Processing: Schemas](structured-processing/schemas) |
-| Query extracted data | [Structured Processing: Query](structured-processing/query) |
-| Integrate with MCP | [MCP Integration](mcp-integration/) |
-| Monitor TrustGraph | [Monitoring](monitoring/) |
-
-## Contributing Guides
-
-Want to contribute a guide? See our [Contributing Guidelines](../contributing/contributing) for:
-- Guide writing templates
-- Style guidelines
-- How to submit new guides
+</div>
 

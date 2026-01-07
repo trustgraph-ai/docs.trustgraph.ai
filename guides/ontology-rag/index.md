@@ -3,6 +3,8 @@ title: Ontology RAG
 nav_order: 10
 parent: How-to Guides
 review_date: 2026-08-01
+guide_category: Common knowledge management tasks
+guide_category_order: 2
 ---
 
 # Ontology RAG Guide
