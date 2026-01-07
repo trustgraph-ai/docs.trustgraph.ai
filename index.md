@@ -17,6 +17,7 @@ TrustGraph is an open-source Agent Intelligence Platform that transforms AI agen
 <div style="border: 2px solid #48bb78; background-color: #1e3a2a; padding: 12px 15px; border-radius: 8px; flex: 1 1 calc(50% - 8px); min-width: 280px;">
 <h3 style="margin-top: 0; font-size: 1.1em;">📚 Learn about TrustGraph</h3>
 <p style="margin-bottom: 10px; opacity: 0.9; font-size: 0.85em;">Understand what TrustGraph is and how it works</p>
+<img src="intro.jpg" alt="" style="width: 100%; height: 120px; object-fit: cover; border-radius: 4px; margin-bottom: 10px;">
 <div style="display: flex; flex-direction: column; gap: 6px;">
 <a href="overview/introduction" style="text-decoration: none; color: #d4f4dd; background-color: #0d2118; padding: 8px 12px; border-radius: 4px; border: 1px solid #48bb78; display: block;">
 <strong style="font-size: 0.9em; display: block; margin-bottom: 4px;">Introduction</strong>
@@ -44,6 +45,7 @@ TrustGraph is an open-source Agent Intelligence Platform that transforms AI agen
 <div style="border: 2px solid #4a9eff; background-color: #1e2a3a; padding: 12px 15px; border-radius: 8px; flex: 1 1 calc(50% - 8px); min-width: 280px;">
 <h3 style="margin-top: 0; font-size: 1.1em;">🚀 Try it out (Quickstart)</h3>
 <p style="margin-bottom: 10px; opacity: 0.9; font-size: 0.85em;">Get hands-on experience quickly with Docker</p>
+<img src="quickstart.jpg" alt="" style="width: 100%; height: 120px; object-fit: cover; border-radius: 4px; margin-bottom: 10px;">
 <div style="display: flex; flex-direction: column; gap: 6px;">
 <a href="deployment/docker-compose" style="text-decoration: none; color: #e8f4fd; background-color: #0d1621; padding: 8px 12px; border-radius: 4px; border: 1px solid #4a9eff; display: block;">
 <strong style="font-size: 0.9em; display: block; margin-bottom: 4px;">Docker Compose</strong>
@@ -67,6 +69,7 @@ TrustGraph is an open-source Agent Intelligence Platform that transforms AI agen
 <div style="border: 2px solid #9f7aea; background-color: #2d2642; padding: 12px 15px; border-radius: 8px; flex: 1 1 calc(50% - 8px); min-width: 280px;">
 <h3 style="margin-top: 0; font-size: 1.1em;">🏢 Plan a production deployment</h3>
 <p style="margin-bottom: 10px; opacity: 0.9; font-size: 0.85em;">Evaluate and plan enterprise deployment</p>
+<img src="plan.jpg" alt="" style="width: 100%; height: 120px; object-fit: cover; border-radius: 4px; margin-bottom: 10px;">
 <div style="display: flex; flex-direction: column; gap: 6px;">
 <a href="overview/introduction" style="text-decoration: none; color: #e9d5ff; background-color: #1a1529; padding: 8px 12px; border-radius: 4px; border: 1px solid #9f7aea; display: block;">
 <strong style="font-size: 0.9em; display: block; margin-bottom: 4px;">Introduction</strong>
@@ -94,6 +97,7 @@ TrustGraph is an open-source Agent Intelligence Platform that transforms AI agen
 <div style="border: 2px solid #f59e0b; background-color: #3a2e1e; padding: 12px 15px; border-radius: 8px; flex: 1 1 calc(50% - 8px); min-width: 280px;">
 <h3 style="margin-top: 0; font-size: 1.1em;">👨‍💻 Developer integration</h3>
 <p style="margin-bottom: 10px; opacity: 0.9; font-size: 0.85em;">Build applications with TrustGraph</p>
+<img src="develop.jpg" alt="" style="width: 100%; height: 120px; object-fit: cover; border-radius: 4px; margin-bottom: 10px;">
 <div style="display: flex; flex-direction: column; gap: 6px;">
 <a href="deployment/docker-compose" style="text-decoration: none; color: #fef3c7; background-color: #221a10; padding: 8px 12px; border-radius: 4px; border: 1px solid #f59e0b; display: block;">
 <strong style="font-size: 0.9em; display: block; margin-bottom: 4px;">Docker Compose</strong>
@@ -121,6 +125,7 @@ TrustGraph is an open-source Agent Intelligence Platform that transforms AI agen
 <div style="border: 2px solid #ec4899; background-color: #3a1e2e; padding: 12px 15px; border-radius: 8px; flex: 1 1 calc(50% - 8px); min-width: 280px;">
 <h3 style="margin-top: 0; font-size: 1.1em;">🔧 Extend TrustGraph</h3>
 <p style="margin-bottom: 10px; opacity: 0.9; font-size: 0.85em;">Contribute and customize TrustGraph</p>
+<img src="extend.jpg" alt="" style="width: 100%; height: 120px; object-fit: cover; border-radius: 4px; margin-bottom: 10px;">
 <div style="display: flex; flex-direction: column; gap: 6px;">
 <a href="overview/architecture" style="text-decoration: none; color: #fce7f3; background-color: #1a0d14; padding: 8px 12px; border-radius: 4px; border: 1px solid #ec4899; display: block;">
 <strong style="font-size: 0.9em; display: block; margin-bottom: 4px;">Architecture</strong>
