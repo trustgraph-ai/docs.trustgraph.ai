@@ -11,7 +11,7 @@ guide_description: Deploy on Azure Kubernetes Service with AI Foundry and dual A
 guide_difficulty: advanced
 guide_time: 2 - 4 hr
 guide_emoji: ☁️
-guide_banner: azure.jpg
+guide_banner: /../aks.jpg
 guide_labels:
   - Azure
   - Kubernetes
