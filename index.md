@@ -14,11 +14,14 @@ TrustGraph is an open-source Agent Intelligence Platform that transforms AI agen
 
 <div style="display: flex; flex-wrap: wrap; gap: 15px; margin: 20px 0;">
 
-<div style="border: 2px solid #48bb78; background-color: #1e3a2a; padding: 12px 15px; border-radius: 8px; flex: 1 1 calc(50% - 8px); min-width: 280px;">
-<h3 style="margin-top: 0; font-size: 1.1em;">📚 Learn about TrustGraph</h3>
-<p style="margin-bottom: 10px; opacity: 0.9; font-size: 0.85em;">Understand what TrustGraph is and how it works</p>
-<img src="intro.jpg" alt="" style="width: 100%; height: 120px; object-fit: cover; border-radius: 4px; margin-bottom: 10px;">
-<div style="display: flex; flex-direction: column; gap: 6px;">
+<div style="border: 2px solid #48bb78; background-color: #1e3a2a; border-radius: 8px; flex: 1 1 calc(50% - 8px); min-width: 280px; overflow: hidden;">
+<div style="position: relative; height: 120px; background-image: url('intro.jpg'); background-size: cover; background-position: center;">
+<div style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: linear-gradient(to bottom, rgba(0,0,0,0.5), rgba(0,0,0,0.7)); padding: 12px 15px; display: flex; flex-direction: column; justify-content: center;">
+<h3 style="margin: 0; font-size: 1.1em; color: white;">📚 Learn about TrustGraph</h3>
+<p style="margin: 4px 0 0 0; opacity: 0.9; font-size: 0.85em; color: white;">Understand what TrustGraph is and how it works</p>
+</div>
+</div>
+<div style="padding: 12px 15px; display: flex; flex-direction: column; gap: 6px;">
 <a href="overview/introduction" style="text-decoration: none; color: #d4f4dd; background-color: #0d2118; padding: 8px 12px; border-radius: 4px; border: 1px solid #48bb78; display: block;">
 <strong style="font-size: 0.9em; display: block; margin-bottom: 4px;">Introduction</strong>
 <span style="font-size: 0.8em; opacity: 0.85; line-height: 1.2; display: block;">What is TrustGraph and how it transforms AI agents into contextually-aware systems</span>
@@ -39,14 +42,21 @@ TrustGraph is an open-source Agent Intelligence Platform that transforms AI agen
 <strong style="font-size: 0.9em; display: block; margin-bottom: 4px;">Use Cases</strong>
 <span style="font-size: 0.8em; opacity: 0.85; line-height: 1.2; display: block;">Real-world applications from enterprise search to intelligent agents</span>
 </a>
+<a href="contributing/getting-help" style="text-decoration: none; color: #d4f4dd; background-color: #0d2118; padding: 8px 12px; border-radius: 4px; border: 1px solid #48bb78; display: block;">
+<strong style="font-size: 0.9em; display: block; margin-bottom: 4px;">Get Help</strong>
+<span style="font-size: 0.8em; opacity: 0.85; line-height: 1.2; display: block;">Support resources, community channels, and how to get assistance</span>
+</a>
 </div>
 </div>
 
-<div style="border: 2px solid #4a9eff; background-color: #1e2a3a; padding: 12px 15px; border-radius: 8px; flex: 1 1 calc(50% - 8px); min-width: 280px;">
-<h3 style="margin-top: 0; font-size: 1.1em;">🚀 Try it out (Quickstart)</h3>
-<p style="margin-bottom: 10px; opacity: 0.9; font-size: 0.85em;">Get hands-on experience quickly with Docker</p>
-<img src="quickstart.jpg" alt="" style="width: 100%; height: 120px; object-fit: cover; border-radius: 4px; margin-bottom: 10px;">
-<div style="display: flex; flex-direction: column; gap: 6px;">
+<div style="border: 2px solid #4a9eff; background-color: #1e2a3a; border-radius: 8px; flex: 1 1 calc(50% - 8px); min-width: 280px; overflow: hidden;">
+<div style="position: relative; height: 120px; background-image: url('quickstart.jpg'); background-size: cover; background-position: center;">
+<div style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: linear-gradient(to bottom, rgba(0,0,0,0.5), rgba(0,0,0,0.7)); padding: 12px 15px; display: flex; flex-direction: column; justify-content: center;">
+<h3 style="margin: 0; font-size: 1.1em; color: white;">🚀 Try it out (Quickstart)</h3>
+<p style="margin: 4px 0 0 0; opacity: 0.9; font-size: 0.85em; color: white;">Get hands-on experience quickly with Docker</p>
+</div>
+</div>
+<div style="padding: 12px 15px; display: flex; flex-direction: column; gap: 6px;">
 <a href="deployment/docker-compose" style="text-decoration: none; color: #e8f4fd; background-color: #0d1621; padding: 8px 12px; border-radius: 4px; border: 1px solid #4a9eff; display: block;">
 <strong style="font-size: 0.9em; display: block; margin-bottom: 4px;">Docker Compose</strong>
 <span style="font-size: 0.8em; opacity: 0.85; line-height: 1.2; display: block;">Easiest way to get TrustGraph running locally for development and testing</span>
@@ -63,14 +73,21 @@ TrustGraph is an open-source Agent Intelligence Platform that transforms AI agen
 <strong style="font-size: 0.9em; display: block; margin-bottom: 4px;">Information Retrieval</strong>
 <span style="font-size: 0.8em; opacity: 0.85; line-height: 1.2; display: block;">Understand the retrieval strategies you just used</span>
 </a>
+<a href="contributing/getting-help" style="text-decoration: none; color: #e8f4fd; background-color: #0d1621; padding: 8px 12px; border-radius: 4px; border: 1px solid #4a9eff; display: block;">
+<strong style="font-size: 0.9em; display: block; margin-bottom: 4px;">Get Help</strong>
+<span style="font-size: 0.8em; opacity: 0.85; line-height: 1.2; display: block;">Support resources, community channels, and how to get assistance</span>
+</a>
 </div>
 </div>
 
-<div style="border: 2px solid #9f7aea; background-color: #2d2642; padding: 12px 15px; border-radius: 8px; flex: 1 1 calc(50% - 8px); min-width: 280px;">
-<h3 style="margin-top: 0; font-size: 1.1em;">🏢 Plan a production deployment</h3>
-<p style="margin-bottom: 10px; opacity: 0.9; font-size: 0.85em;">Evaluate and plan enterprise deployment</p>
-<img src="plan.jpg" alt="" style="width: 100%; height: 120px; object-fit: cover; border-radius: 4px; margin-bottom: 10px;">
-<div style="display: flex; flex-direction: column; gap: 6px;">
+<div style="border: 2px solid #9f7aea; background-color: #2d2642; border-radius: 8px; flex: 1 1 calc(50% - 8px); min-width: 280px; overflow: hidden;">
+<div style="position: relative; height: 120px; background-image: url('plan.jpg'); background-size: cover; background-position: center;">
+<div style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: linear-gradient(to bottom, rgba(0,0,0,0.5), rgba(0,0,0,0.7)); padding: 12px 15px; display: flex; flex-direction: column; justify-content: center;">
+<h3 style="margin: 0; font-size: 1.1em; color: white;">🏢 Plan a production deployment</h3>
+<p style="margin: 4px 0 0 0; opacity: 0.9; font-size: 0.85em; color: white;">Evaluate and plan enterprise deployment</p>
+</div>
+</div>
+<div style="padding: 12px 15px; display: flex; flex-direction: column; gap: 6px;">
 <a href="overview/introduction" style="text-decoration: none; color: #e9d5ff; background-color: #1a1529; padding: 8px 12px; border-radius: 4px; border: 1px solid #9f7aea; display: block;">
 <strong style="font-size: 0.9em; display: block; margin-bottom: 4px;">Introduction</strong>
 <span style="font-size: 0.8em; opacity: 0.85; line-height: 1.2; display: block;">What is TrustGraph and how it transforms AI agents into contextually-aware systems</span>
@@ -91,14 +108,21 @@ TrustGraph is an open-source Agent Intelligence Platform that transforms AI agen
 <strong style="font-size: 0.9em; display: block; margin-bottom: 4px;">Choose Deployment</strong>
 <span style="font-size: 0.8em; opacity: 0.85; line-height: 1.2; display: block;">Select from Docker, Kubernetes, AWS, Azure, GCP, and other deployment options</span>
 </a>
+<a href="contributing/getting-help" style="text-decoration: none; color: #e9d5ff; background-color: #1a1529; padding: 8px 12px; border-radius: 4px; border: 1px solid #9f7aea; display: block;">
+<strong style="font-size: 0.9em; display: block; margin-bottom: 4px;">Get Help</strong>
+<span style="font-size: 0.8em; opacity: 0.85; line-height: 1.2; display: block;">Support resources, community channels, and how to get assistance</span>
+</a>
 </div>
 </div>
 
-<div style="border: 2px solid #f59e0b; background-color: #3a2e1e; padding: 12px 15px; border-radius: 8px; flex: 1 1 calc(50% - 8px); min-width: 280px;">
-<h3 style="margin-top: 0; font-size: 1.1em;">👨‍💻 Developer integration</h3>
-<p style="margin-bottom: 10px; opacity: 0.9; font-size: 0.85em;">Build applications with TrustGraph</p>
-<img src="develop.jpg" alt="" style="width: 100%; height: 120px; object-fit: cover; border-radius: 4px; margin-bottom: 10px;">
-<div style="display: flex; flex-direction: column; gap: 6px;">
+<div style="border: 2px solid #f59e0b; background-color: #3a2e1e; border-radius: 8px; flex: 1 1 calc(50% - 8px); min-width: 280px; overflow: hidden;">
+<div style="position: relative; height: 120px; background-image: url('develop.jpg'); background-size: cover; background-position: center;">
+<div style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: linear-gradient(to bottom, rgba(0,0,0,0.5), rgba(0,0,0,0.7)); padding: 12px 15px; display: flex; flex-direction: column; justify-content: center;">
+<h3 style="margin: 0; font-size: 1.1em; color: white;">👨‍💻 Developer integration</h3>
+<p style="margin: 4px 0 0 0; opacity: 0.9; font-size: 0.85em; color: white;">Build applications with TrustGraph</p>
+</div>
+</div>
+<div style="padding: 12px 15px; display: flex; flex-direction: column; gap: 6px;">
 <a href="deployment/docker-compose" style="text-decoration: none; color: #fef3c7; background-color: #221a10; padding: 8px 12px; border-radius: 4px; border: 1px solid #f59e0b; display: block;">
 <strong style="font-size: 0.9em; display: block; margin-bottom: 4px;">Docker Compose</strong>
 <span style="font-size: 0.8em; opacity: 0.85; line-height: 1.2; display: block;">Easiest way to get TrustGraph running locally for development and testing</span>
@@ -119,14 +143,21 @@ TrustGraph is an open-source Agent Intelligence Platform that transforms AI agen
 <strong style="font-size: 0.9em; display: block; margin-bottom: 4px;">MCP Integration</strong>
 <span style="font-size: 0.8em; opacity: 0.85; line-height: 1.2; display: block;">Integrate Model Context Protocol servers to extend agent workflows with custom tools</span>
 </a>
+<a href="contributing/getting-help" style="text-decoration: none; color: #fef3c7; background-color: #221a10; padding: 8px 12px; border-radius: 4px; border: 1px solid #f59e0b; display: block;">
+<strong style="font-size: 0.9em; display: block; margin-bottom: 4px;">Get Help</strong>
+<span style="font-size: 0.8em; opacity: 0.85; line-height: 1.2; display: block;">Support resources, community channels, and how to get assistance</span>
+</a>
 </div>
 </div>
 
-<div style="border: 2px solid #ec4899; background-color: #3a1e2e; padding: 12px 15px; border-radius: 8px; flex: 1 1 calc(50% - 8px); min-width: 280px;">
-<h3 style="margin-top: 0; font-size: 1.1em;">🔧 Extend TrustGraph</h3>
-<p style="margin-bottom: 10px; opacity: 0.9; font-size: 0.85em;">Contribute and customize TrustGraph</p>
-<img src="extend.jpg" alt="" style="width: 100%; height: 120px; object-fit: cover; border-radius: 4px; margin-bottom: 10px;">
-<div style="display: flex; flex-direction: column; gap: 6px;">
+<div style="border: 2px solid #ec4899; background-color: #3a1e2e; border-radius: 8px; flex: 1 1 calc(50% - 8px); min-width: 280px; overflow: hidden;">
+<div style="position: relative; height: 120px; background-image: url('extend.jpg'); background-size: cover; background-position: center;">
+<div style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: linear-gradient(to bottom, rgba(0,0,0,0.5), rgba(0,0,0,0.7)); padding: 12px 15px; display: flex; flex-direction: column; justify-content: center;">
+<h3 style="margin: 0; font-size: 1.1em; color: white;">🔧 Extend TrustGraph</h3>
+<p style="margin: 4px 0 0 0; opacity: 0.9; font-size: 0.85em; color: white;">Contribute and customize TrustGraph</p>
+</div>
+</div>
+<div style="padding: 12px 15px; display: flex; flex-direction: column; gap: 6px;">
 <a href="overview/architecture" style="text-decoration: none; color: #fce7f3; background-color: #1a0d14; padding: 8px 12px; border-radius: 4px; border: 1px solid #ec4899; display: block;">
 <strong style="font-size: 0.9em; display: block; margin-bottom: 4px;">Architecture</strong>
 <span style="font-size: 0.8em; opacity: 0.85; line-height: 1.2; display: block;">System design, component relationships, data flow, and integration points</span>
