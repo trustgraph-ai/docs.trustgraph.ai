@@ -95,6 +95,9 @@ Use the
 to generate your deployment configuration.  By default, the configurator
 selects the newest stable deployment.
 
+{: .note }
+Remember the version number it is set up to deploy, you will need to know that to install CLI tools!
+
 1. **Select Deployment**: Choose Docker Compose or Podman Compose
 2. **Graph Store**: Select Cassandra (recommended for ease of use)
 3. **Vector Store**: Select Qdrant (recommended for ease of use)
@@ -109,60 +112,114 @@ selects the newest stable deployment.
    
 ## Unpack the configuration
 
-The configuration builder will download a `.zip` file containing your deployment configuration. Unpack it:
+The configuration builder will download a `.zip` file containing your
+deployment configuration which will be downloaded to your device in
+e.g. a Downloads directory.  You need to find that zip file, and interact
+with it in a terminal.  You can use the `unzip` command to list the
+contents of the ZIP file.  There should be a `docker-compose.yaml` file
+which is used to launch TrustGraph.  There are also various configuration
+files for TrustGraph, Grafana, Garage, Loki and Prometheus.
 
 ```sh
-unzip trustgraph-deployment.zip
+unzip -l output.zip 
 ```
 
-You should see:
-- `docker-compose.yaml` - The main deployment configuration
-- `.env` - Environment variables and configuration
-- Other configuration files specific to your setup
+The output should look something like this:
 
-### Install CLI Tools
+```sh
+Archive:  output.zip
+  Length      Date    Time    Name
+---------  ---------- -----   ----
+    26353  01-06-2026 23:04   docker-compose.yaml
+   208539  01-06-2026 23:04   trustgraph/config.json
+      581  01-06-2026 23:04   garage/garage.toml
+     4084  01-06-2026 23:04   grafana/dashboards/log-dashboard.json
+    36032  01-06-2026 23:04   grafana/dashboards/overview-dashboard.json
+      336  01-06-2026 23:04   grafana/provisioning/dashboard.yml
+      773  01-06-2026 23:04   grafana/provisioning/datasource.yml
+     1518  01-06-2026 23:04   loki/local-config.yaml
+     5259  01-06-2026 23:04   prometheus/prometheus.yml
+---------                     -------
+   283475                     9 files
+```
 
-```bash
+You should use the terminal window to create a suitable directory for your
+work and unpack the ZIP file e.g.
+
+```sh
+$ mkdir -p ~/trustgraph
+$ cd ~/trustgraph
+$ unzip ~/Downloads/trustgraph-deployment.zip
+```
+
+That may be all you need to unpack the TrustGraph file.  If you are having
+problems launching TrustGraph, you might consider modifying the unpacked
+files to help Docker or Podman work with them.
+
+The first thing you might try doing is add read permissions to the files
+for any user on your system.  This may be necessary if your system has
+stricter access control policies on the files that can be read by containers.
+
+```sh
+$ find garage/ loki/ prometheus/ grafana/ trustgraph/ vertexai/ -type f | xargs chmod 644
+$ find garage/ loki/ prometheus/ grafana/ trustgraph/ vertexai/ -type d | xargs chmod 755
+```
+
+On Linux, if you are running SElinux, it may also be necessary to grant
+particular SElinux permissions to the configuration files so that they
+can be read by Linux:
+
+```sh
+sudo chcon -Rt svirt_sandbox_file_t garage/ loki/ grafana/ \
+    prometheus/ vertexai/ trustgraph/
+```
+
+## Install CLI Tools
+
+You need to have access to TrustGraph client tools.  In the terminal
+window you created above, install a virtual environment, and the
+TrustGraph CLI tools.  Make sure the version number of the CLI tools
+matches the version you chose to build a configuration for earlier:
+
+```sh
 python3 -m venv env
-source env/bin/activate
-pip install trustgraph-cli
+. env/bin/activate
+pip install trustgraph-cli==1.8.8
 ```
 
-## Quick Start
+## Launch TrustGraph
 
-### 1. Launch TrustGraph
-
-```bash
+```sh
 docker-compose -f docker-compose.yaml up -d
 ```
 
-### 2. Wait for Initialization
+## Wait for Initialization
 
 Allow 120 seconds for all services to stabilize. Services like Pulsar and Cassandra need time to initialize properly.
 
-### 3. Verify Installation
+### Verify Installation
 
 Check that processors have started:
 
-```bash
+```sh
 tg-show-processor-state
 ```
 
 Verify all containers are running:
 
-```bash
+```sh
 docker ps
 ```
 
 Check that flows are available:
 
-```bash
+```sh
 tg-show-flows
 ```
 
-### 4. Load Sample Data
+### Load Sample Data
 
-```bash
+```sh
 tg-load-sample-documents
 ```
 
@@ -294,7 +351,5 @@ docker volume ls
 
 ## Next Steps
 
-- **Production Deployment**: See [Production Considerations](production-considerations)
-- **Cloud Deployment**: Explore [AWS](aws), [GCP](gcp), or [Scaleway](scaleway) guides
-- **Advanced Configuration**: Check [Security Considerations](security-considerations)
-- **Scaling**: Review [Minikube](minikube) for Kubernetes deployment
+- **Guides**: See [Guides](../guides) for things you can do with your running
+  TrustGraph
