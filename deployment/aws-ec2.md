@@ -8,7 +8,7 @@ guide_category:
   - Standalone deployment
 guide_category_order: 3
 guide_description: Single AWS EC2 instance with Podman for development, testing, and small-scale deployments
-guide_difficulty: intermediate
+guide_difficulty: advanced
 guide_time: 2 - 5 hr
 guide_emoji: 🖥️
 guide_banner: aws-ec2.jpg
