@@ -90,9 +90,6 @@ TrustGraph is an open-source Agent Intelligence Platform that transforms AI agen
 
 ## Documentation Sections
 
-### [Getting Started](getting-started/)
-First steps with TrustGraph - Installation, quickstart, and core concepts for new users.
-
 ### [Overview](overview/)
 Understanding TrustGraph - Architecture, features, philosophy, and use cases.
 
@@ -103,4 +100,7 @@ Running TrustGraph - Docker Compose, Kubernetes, cloud platforms, and production
 Task-oriented instructions - Step-by-step guides for specific tasks and workflows.
 
 ### [Reference](reference/)
+Technical specifications - API docs, CLI commands, configuration, and technical details.
+
+### [Contributing](contributing/)
 Technical specifications - API docs, CLI commands, configuration, and technical details.
