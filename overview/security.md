@@ -10,7 +10,7 @@ guide_description: Cybersecurity foundations, privacy protections, and enterpris
 guide_difficulty: intermediate
 guide_time: 10 min
 guide_emoji: 🔒
-guide_banner: security.jpg
+guide_banner: /../security.jpg
 guide_labels:
   - Security
   - Enterprise
