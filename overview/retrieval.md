@@ -3,6 +3,18 @@ title: Information retrieval
 nav_order: 1.5
 parent: Overview
 review_date: 2026-08-01
+guide_category:
+  - How does it work?
+guide_category_order: 1
+guide_description: Understanding Graph RAG, Document RAG, and other retrieval strategies
+guide_difficulty: intermediate
+guide_time: 20 min
+guide_emoji: 🔍
+guide_banner: /../retrieval.jpg
+guide_labels:
+  - Graph RAG
+  - Retrieval
+  - Technical
 ---
 
 # Information Retrieval

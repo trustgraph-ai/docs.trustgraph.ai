@@ -8,92 +8,183 @@ review_date: 2026-08-01
 
 # How-to Guides
 
-**Task-oriented instructions for accomplishing specific goals with TrustGraph.**
+<div style="border: 2px solid #4a9eff; background-color: #1e2a3a; padding: 5px 20px 20px 20px; margin: 20px 0; border-radius: 8px;">
 
-Guides answer the question **"How do I...?"** with step-by-step instructions. Each guide focuses on a single task or workflow and provides practical, actionable steps.
+<h2>Common knowledge management tasks</h2>
 
-## What's in This Section?
+<div style="display: flex; flex-wrap: wrap; gap: 10px; margin-top: 10px;">
+{% assign guide_pages = site.pages | where: "parent", "How-to Guides" | sort: "guide_category_order" %}
+{% for guide in guide_pages %}
+{% if guide.guide_category contains "Common knowledge management tasks" %}
+<div style="border: 1px solid #4a9eff; background-color: #0d1621; padding: 0; border-radius: 4px; flex: 1 1 200px; overflow: hidden;">
+<a href="{{ guide.url }}" style="text-decoration: none; color: inherit; display: block;">
+{% if guide.guide_banner %}
+<div style="width: 100%; height: 180px; background-image: url('{{ guide.url | replace: 'index.html', '' }}{{ guide.guide_banner }}'); background-size: cover; background-position: center; position: relative;">
+<div style="position: absolute; bottom: 0; left: 0; right: 0; background: linear-gradient(to top, rgba(0,0,0,0.85), rgba(0,0,0,0.4)); padding: 15px;">
+<div style="display: flex; align-items: center; gap: 10px; margin-bottom: 5px;">
+{% if guide.guide_emoji %}<span style="font-size: 2em; filter: drop-shadow(2px 2px 4px rgba(0,0,0,0.8));">{{ guide.guide_emoji }}</span>{% endif %}
+<strong style="font-size: 1.1em; color: white; text-shadow: 2px 2px 4px rgba(0,0,0,0.8);">{{ guide.title }}</strong>
+</div>
+<div style="font-size: 0.85em; color: #4a9eff; text-shadow: 1px 1px 3px rgba(0,0,0,0.8);">
+{% if guide.guide_difficulty %}{{ guide.guide_difficulty }}{% endif %}{% if guide.guide_difficulty and guide.guide_time %} • {% endif %}{% if guide.guide_time %}{{ guide.guide_time }}{% endif %}
+</div>
+</div>
+</div>
+{% else %}
+<div style="padding: 10px 15px 0 15px;">
+<div style="display: flex; align-items: center; gap: 10px; margin-bottom: 5px;">
+{% if guide.guide_emoji %}<span style="font-size: 2em;">{{ guide.guide_emoji }}</span>{% endif %}
+<strong style="font-size: 1.1em;">{{ guide.title }}</strong>
+</div>
+<div style="font-size: 0.85em; color: #4a9eff;">
+{% if guide.guide_difficulty %}{{ guide.guide_difficulty }}{% endif %}{% if guide.guide_difficulty and guide.guide_time %} • {% endif %}{% if guide.guide_time %}{{ guide.guide_time }}{% endif %}
+</div>
+</div>
+{% endif %}
+<div style="padding: 10px 15px;">
+{% if guide.guide_description %}<div style="font-size: 0.9em; margin-top: 8px; opacity: 0.9;">{{ guide.guide_description }}</div>{% endif %}
+{% if guide.guide_labels %}<div style="display: flex; flex-wrap: wrap; gap: 5px; margin-top: 10px;">{% for label in guide.guide_labels %}<span style="font-size: 0.75em; padding: 2px 8px; background-color: rgba(74, 158, 255, 0.2); border: 1px solid #4a9eff; border-radius: 3px; white-space: nowrap;">{{ label }}</span>{% endfor %}</div>{% endif %}
+</div>
+</a>
+</div>
+{% endif %}
+{% endfor %}
+</div>
 
-**How-to Guides** are practical instructions for:
-- Completing specific tasks
-- Implementing features
-- Integrating with other systems
-- Solving common problems
+</div>
 
-**Not sure if you're in the right place?**
-- Want working code to copy? See [Examples](../examples/)
-- Want to understand concepts? See [Overview](../overview/)
-- Want API reference? See [Reference](../reference/)
+<div style="border: 2px solid #9f7aea; background-color: #2d2642; padding: 5px 20px 20px 20px; margin: 20px 0; border-radius: 8px;">
 
-## Available Guides
+<h2>Advanced knowledge management</h2>
 
-### Agent & Object Extraction
-- **[Agent Extraction](agent-extraction)** - Use AI agents to extract structured data from documents
-- **[Object Extraction](object-extraction)** - Extract typed objects (products, people, events) from unstructured text
+<div style="display: flex; flex-wrap: wrap; gap: 10px; margin-top: 10px;">
+{% assign guide_pages = site.pages | where: "parent", "How-to Guides" | sort: "guide_category_order" %}
+{% for guide in guide_pages %}
+{% if guide.guide_category contains "Advanced knowledge management" %}
+<div style="border: 1px solid #9f7aea; background-color: #1a1529; padding: 0; border-radius: 4px; flex: 1 1 200px; overflow: hidden;">
+<a href="{{ guide.url }}" style="text-decoration: none; color: inherit; display: block;">
+{% if guide.guide_banner %}
+<div style="width: 100%; height: 180px; background-image: url('{{ guide.url | replace: 'index.html', '' }}{{ guide.guide_banner }}'); background-size: cover; background-position: center; position: relative;">
+<div style="position: absolute; bottom: 0; left: 0; right: 0; background: linear-gradient(to top, rgba(0,0,0,0.85), rgba(0,0,0,0.4)); padding: 15px;">
+<div style="display: flex; align-items: center; gap: 10px; margin-bottom: 5px;">
+{% if guide.guide_emoji %}<span style="font-size: 2em; filter: drop-shadow(2px 2px 4px rgba(0,0,0,0.8));">{{ guide.guide_emoji }}</span>{% endif %}
+<strong style="font-size: 1.1em; color: white; text-shadow: 2px 2px 4px rgba(0,0,0,0.8);">{{ guide.title }}</strong>
+</div>
+<div style="font-size: 0.85em; color: #9f7aea; text-shadow: 1px 1px 3px rgba(0,0,0,0.8);">
+{% if guide.guide_difficulty %}{{ guide.guide_difficulty }}{% endif %}{% if guide.guide_difficulty and guide.guide_time %} • {% endif %}{% if guide.guide_time %}{{ guide.guide_time }}{% endif %}
+</div>
+</div>
+</div>
+{% else %}
+<div style="padding: 10px 15px 0 15px;">
+<div style="display: flex; align-items: center; gap: 10px; margin-bottom: 5px;">
+{% if guide.guide_emoji %}<span style="font-size: 2em;">{{ guide.guide_emoji }}</span>{% endif %}
+<strong style="font-size: 1.1em;">{{ guide.title }}</strong>
+</div>
+<div style="font-size: 0.85em; color: #9f7aea;">
+{% if guide.guide_difficulty %}{{ guide.guide_difficulty }}{% endif %}{% if guide.guide_difficulty and guide.guide_time %} • {% endif %}{% if guide.guide_time %}{{ guide.guide_time }}{% endif %}
+</div>
+</div>
+{% endif %}
+<div style="padding: 10px 15px;">
+{% if guide.guide_description %}<div style="font-size: 0.9em; margin-top: 8px; opacity: 0.9;">{{ guide.guide_description }}</div>{% endif %}
+{% if guide.guide_labels %}<div style="display: flex; flex-wrap: wrap; gap: 5px; margin-top: 10px;">{% for label in guide.guide_labels %}<span style="font-size: 0.75em; padding: 2px 8px; background-color: rgba(159, 122, 234, 0.2); border: 1px solid #9f7aea; border-radius: 3px; white-space: nowrap;">{{ label }}</span>{% endfor %}</div>{% endif %}
+</div>
+</a>
+</div>
+{% endif %}
+{% endfor %}
+</div>
 
-### Structured Data Processing
-- **[Structured Processing](structured-processing/)** - Working with structured data extraction
-  - [Schemas](structured-processing/schemas) - Define extraction schemas
-  - [Load Documents](structured-processing/load-doc) - Load documents for structured extraction
-  - [Load Files](structured-processing/load-file) - Load file-based data
-  - [Query Data](structured-processing/query) - Query extracted structured data
-  - [Agent Integration](structured-processing/agent-integration) - Integrate with AI agents
+</div>
 
-### Integrations
-- **[MCP Integration](mcp-integration/)** - Integrate with Model Context Protocol
+<div style="border: 2px solid #48bb78; background-color: #1e3a2a; padding: 5px 20px 20px 20px; margin: 20px 0; border-radius: 8px;">
 
-### Monitoring & Operations
-- **[Monitoring](monitoring/)** - Set up metrics, alerts, and observability
+<h2>Agentic systems</h2>
 
-### RAG Workflows
-- **[Graph RAG](graph-rag)** - Leverage knowledge graph relationships for contextual retrieval
-- **[Ontology RAG](ontology-rag)** - Extract and query structured data using schemas
-- **[Document RAG](document-rag)** - Query documents using vector embeddings (basic RAG, naive RAG)
+<div style="display: flex; flex-wrap: wrap; gap: 10px; margin-top: 10px;">
+{% assign guide_pages = site.pages | where: "parent", "How-to Guides" | sort: "guide_category_order" %}
+{% for guide in guide_pages %}
+{% if guide.guide_category contains "Agentic systems" %}
+<div style="border: 1px solid #48bb78; background-color: #0d2118; padding: 0; border-radius: 4px; flex: 1 1 200px; overflow: hidden;">
+<a href="{{ guide.url }}" style="text-decoration: none; color: inherit; display: block;">
+{% if guide.guide_banner %}
+<div style="width: 100%; height: 180px; background-image: url('{{ guide.url | replace: 'index.html', '' }}{{ guide.guide_banner }}'); background-size: cover; background-position: center; position: relative;">
+<div style="position: absolute; bottom: 0; left: 0; right: 0; background: linear-gradient(to top, rgba(0,0,0,0.85), rgba(0,0,0,0.4)); padding: 15px;">
+<div style="display: flex; align-items: center; gap: 10px; margin-bottom: 5px;">
+{% if guide.guide_emoji %}<span style="font-size: 2em; filter: drop-shadow(2px 2px 4px rgba(0,0,0,0.8));">{{ guide.guide_emoji }}</span>{% endif %}
+<strong style="font-size: 1.1em; color: white; text-shadow: 2px 2px 4px rgba(0,0,0,0.8);">{{ guide.title }}</strong>
+</div>
+<div style="font-size: 0.85em; color: #48bb78; text-shadow: 1px 1px 3px rgba(0,0,0,0.8);">
+{% if guide.guide_difficulty %}{{ guide.guide_difficulty }}{% endif %}{% if guide.guide_difficulty and guide.guide_time %} • {% endif %}{% if guide.guide_time %}{{ guide.guide_time }}{% endif %}
+</div>
+</div>
+</div>
+{% else %}
+<div style="padding: 10px 15px 0 15px;">
+<div style="display: flex; align-items: center; gap: 10px; margin-bottom: 5px;">
+{% if guide.guide_emoji %}<span style="font-size: 2em;">{{ guide.guide_emoji }}</span>{% endif %}
+<strong style="font-size: 1.1em;">{{ guide.title }}</strong>
+</div>
+<div style="font-size: 0.85em; color: #48bb78;">
+{% if guide.guide_difficulty %}{{ guide.guide_difficulty }}{% endif %}{% if guide.guide_difficulty and guide.guide_time %} • {% endif %}{% if guide.guide_time %}{{ guide.guide_time }}{% endif %}
+</div>
+</div>
+{% endif %}
+<div style="padding: 10px 15px;">
+{% if guide.guide_description %}<div style="font-size: 0.9em; margin-top: 8px; opacity: 0.9;">{{ guide.guide_description }}</div>{% endif %}
+{% if guide.guide_labels %}<div style="display: flex; flex-wrap: wrap; gap: 5px; margin-top: 10px;">{% for label in guide.guide_labels %}<span style="font-size: 0.75em; padding: 2px 8px; background-color: rgba(72, 187, 120, 0.2); border: 1px solid #48bb78; border-radius: 3px; white-space: nowrap;">{{ label }}</span>{% endfor %}</div>{% endif %}
+</div>
+</a>
+</div>
+{% endif %}
+{% endfor %}
+</div>
 
-### Security
-- **[Security Overview](security/)** - Security philosophy, current features, and enterprise roadmap
-- **[Current Security Features](security/current-features)** - What's available today
-- **[Enterprise Security Roadmap](security/enterprise-roadmap)** - Planned enterprise-grade features
+</div>
 
-## Planned Guides
+<div style="border: 2px solid #f59e0b; background-color: #3a2e1e; padding: 5px 20px 20px 20px; margin: 20px 0; border-radius: 8px;">
 
-{: .wip }
-> **Work in Progress**
-> The following guides are planned for future releases:
-- **Data Integration** - Advanced data loading and processing patterns
-- **Querying** - Query optimization and advanced patterns
-- **Visualization** - Graph visualization and custom dashboards
+<h2>Managing operations</h2>
 
-## Guide Structure
+<div style="display: flex; flex-wrap: wrap; gap: 10px; margin-top: 10px;">
+{% assign guide_pages = site.pages | where: "parent", "How-to Guides" | sort: "guide_category_order" %}
+{% for guide in guide_pages %}
+{% if guide.guide_category contains "Managing operations" %}
+<div style="border: 1px solid #f59e0b; background-color: #221a10; padding: 0; border-radius: 4px; flex: 1 1 200px; overflow: hidden;">
+<a href="{{ guide.url }}" style="text-decoration: none; color: inherit; display: block;">
+{% if guide.guide_banner %}
+<div style="width: 100%; height: 180px; background-image: url('{{ guide.url | replace: 'index.html', '' }}{{ guide.guide_banner }}'); background-size: cover; background-position: center; position: relative;">
+<div style="position: absolute; bottom: 0; left: 0; right: 0; background: linear-gradient(to top, rgba(0,0,0,0.85), rgba(0,0,0,0.4)); padding: 15px;">
+<div style="display: flex; align-items: center; gap: 10px; margin-bottom: 5px;">
+{% if guide.guide_emoji %}<span style="font-size: 2em; filter: drop-shadow(2px 2px 4px rgba(0,0,0,0.8));">{{ guide.guide_emoji }}</span>{% endif %}
+<strong style="font-size: 1.1em; color: white; text-shadow: 2px 2px 4px rgba(0,0,0,0.8);">{{ guide.title }}</strong>
+</div>
+<div style="font-size: 0.85em; color: #f59e0b; text-shadow: 1px 1px 3px rgba(0,0,0,0.8);">
+{% if guide.guide_difficulty %}{{ guide.guide_difficulty }}{% endif %}{% if guide.guide_difficulty and guide.guide_time %} • {% endif %}{% if guide.guide_time %}{{ guide.guide_time }}{% endif %}
+</div>
+</div>
+</div>
+{% else %}
+<div style="padding: 10px 15px 0 15px;">
+<div style="display: flex; align-items: center; gap: 10px; margin-bottom: 5px;">
+{% if guide.guide_emoji %}<span style="font-size: 2em;">{{ guide.guide_emoji }}</span>{% endif %}
+<strong style="font-size: 1.1em;">{{ guide.title }}</strong>
+</div>
+<div style="font-size: 0.85em; color: #f59e0b;">
+{% if guide.guide_difficulty %}{{ guide.guide_difficulty }}{% endif %}{% if guide.guide_difficulty and guide.guide_time %} • {% endif %}{% if guide.guide_time %}{{ guide.guide_time }}{% endif %}
+</div>
+</div>
+{% endif %}
+<div style="padding: 10px 15px;">
+{% if guide.guide_description %}<div style="font-size: 0.9em; margin-top: 8px; opacity: 0.9;">{{ guide.guide_description }}</div>{% endif %}
+{% if guide.guide_labels %}<div style="display: flex; flex-wrap: wrap; gap: 5px; margin-top: 10px;">{% for label in guide.guide_labels %}<span style="font-size: 0.75em; padding: 2px 8px; background-color: rgba(245, 158, 11, 0.2); border: 1px solid #f59e0b; border-radius: 3px; white-space: nowrap;">{{ label }}</span>{% endfor %}</div>{% endif %}
+</div>
+</a>
+</div>
+{% endif %}
+{% endfor %}
+</div>
 
-Each guide follows this format:
-
-1. **Goal**: What you'll accomplish
-2. **Prerequisites**: What you need before starting
-3. **Steps**: Numbered, actionable instructions
-4. **Verification**: How to confirm success
-5. **Next Steps**: Related tasks or advanced topics
-
-## Finding the Right Guide
-
-**I want to...**
-
-| Task | Guide |
-|------|-------|
-| Query documents with semantic search | [Document RAG](document-rag) |
-| Query knowledge graph relationships | [Graph RAG](graph-rag) |
-| Extract structured typed data | [Ontology RAG](ontology-rag) |
-| Extract structured data from PDFs | [Agent Extraction](agent-extraction) |
-| Extract typed objects (products, etc.) | [Object Extraction](object-extraction) |
-| Define what data to extract | [Structured Processing: Schemas](structured-processing/schemas) |
-| Query extracted data | [Structured Processing: Query](structured-processing/query) |
-| Integrate with MCP | [MCP Integration](mcp-integration/) |
-| Monitor TrustGraph | [Monitoring](monitoring/) |
-
-## Contributing Guides
-
-Want to contribute a guide? See our [Contributing Guidelines](../contributing/contributing) for:
-- Guide writing templates
-- Style guidelines
-- How to submit new guides
+</div>
 

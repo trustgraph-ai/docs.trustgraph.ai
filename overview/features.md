@@ -3,6 +3,18 @@ title: Features
 nav_order: 2
 parent: Overview
 review_date: 2026-08-01
+guide_category:
+  - How does it work?
+guide_category_order: 3
+guide_description: Complete overview of TrustGraph features and platform capabilities
+guide_difficulty: beginner
+guide_time: 15 min
+guide_emoji: ⚡
+guide_banner: /../features.jpg
+guide_labels:
+  - Features
+  - Capabilities
+  - Overview
 ---
 
 # Features

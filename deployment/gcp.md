@@ -4,6 +4,18 @@ nav_order: 6
 parent: Deployment
 grand_parent: TrustGraph Documentation
 review_date: 2026-02-09
+guide_category:
+  - Global cloud
+guide_category_order: 3
+guide_description: Production GKE deployment with VertexAI Gemini integration and comprehensive GCP services
+guide_difficulty: intermediate
+guide_time: 2 - 4 hr
+guide_emoji: ☁️
+guide_banner: /../gcp.jpg
+guide_labels:
+  - GCP
+  - Kubernetes
+  - Production
 ---
 
 # Google Cloud Platform Deployment

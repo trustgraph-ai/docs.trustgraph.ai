@@ -10,133 +10,188 @@ has_children: true
 
 TrustGraph is an open-source Agent Intelligence Platform that transforms AI agents from simple task executors into contextually-aware systems. By combining knowledge graphs with vector embeddings, TrustGraph enables AI agents to understand relationships, reduce hallucinations, and provide more accurate responses.
 
-## Get Started in 5 Minutes
-
-Ready to try TrustGraph? Our Docker-based quickstart gets you running locally in minutes.
-
-**[→ Quick Start Guide](getting-started/quickstart)**
-
 ## Choose Your Path
 
-### 🏢 I'm Evaluating TrustGraph
+<div style="display: flex; flex-wrap: wrap; gap: 15px; margin: 20px 0;">
 
-**Understanding capabilities and fit**
+<div style="border: 2px solid #48bb78; background-color: #1e3a2a; border-radius: 8px; flex: 1 1 calc(50% - 8px); min-width: 280px; overflow: hidden;">
+<div style="position: relative; height: 120px; background-image: url('intro.jpg'); background-size: cover; background-position: center;">
+<div style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: linear-gradient(to bottom, rgba(0,0,0,0.5), rgba(0,0,0,0.7)); padding: 12px 15px; display: flex; flex-direction: column; justify-content: center;">
+<h3 style="margin: 0; font-size: 1.1em; color: white;">📚 Learn about TrustGraph</h3>
+<p style="margin: 4px 0 0 0; opacity: 0.9; font-size: 0.85em; color: white;">Understand what TrustGraph is and how it works</p>
+</div>
+</div>
+<div style="padding: 12px 15px; display: flex; flex-direction: column; gap: 6px;">
+<a href="overview/introduction" style="text-decoration: none; color: #d4f4dd; background-color: #0d2118; padding: 8px 12px; border-radius: 4px; border: 1px solid #48bb78; display: block;">
+<strong style="font-size: 0.9em; display: block; margin-bottom: 4px;">Introduction</strong>
+<span style="font-size: 0.8em; opacity: 0.85; line-height: 1.2; display: block;">What is TrustGraph and how it transforms AI agents into contextually-aware systems</span>
+</a>
+<a href="overview/philosophy" style="text-decoration: none; color: #d4f4dd; background-color: #0d2118; padding: 8px 12px; border-radius: 4px; border: 1px solid #48bb78; display: block;">
+<strong style="font-size: 0.9em; display: block; margin-bottom: 4px;">Philosophy</strong>
+<span style="font-size: 0.8em; opacity: 0.85; line-height: 1.2; display: block;">Design principles and philosophy behind TrustGraph's approach</span>
+</a>
+<a href="overview/retrieval" style="text-decoration: none; color: #d4f4dd; background-color: #0d2118; padding: 8px 12px; border-radius: 4px; border: 1px solid #48bb78; display: block;">
+<strong style="font-size: 0.9em; display: block; margin-bottom: 4px;">Information Retrieval</strong>
+<span style="font-size: 0.8em; opacity: 0.85; line-height: 1.2; display: block;">Understanding Graph RAG, Document RAG, and other retrieval strategies</span>
+</a>
+<a href="overview/features" style="text-decoration: none; color: #d4f4dd; background-color: #0d2118; padding: 8px 12px; border-radius: 4px; border: 1px solid #48bb78; display: block;">
+<strong style="font-size: 0.9em; display: block; margin-bottom: 4px;">Features</strong>
+<span style="font-size: 0.8em; opacity: 0.85; line-height: 1.2; display: block;">Complete overview of TrustGraph features and platform capabilities</span>
+</a>
+<a href="overview/use-cases" style="text-decoration: none; color: #d4f4dd; background-color: #0d2118; padding: 8px 12px; border-radius: 4px; border: 1px solid #48bb78; display: block;">
+<strong style="font-size: 0.9em; display: block; margin-bottom: 4px;">Use Cases</strong>
+<span style="font-size: 0.8em; opacity: 0.85; line-height: 1.2; display: block;">Real-world applications from enterprise search to intelligent agents</span>
+</a>
+<a href="contributing/getting-help" style="text-decoration: none; color: #d4f4dd; background-color: #0d2118; padding: 8px 12px; border-radius: 4px; border: 1px solid #48bb78; display: block;">
+<strong style="font-size: 0.9em; display: block; margin-bottom: 4px;">Get Help</strong>
+<span style="font-size: 0.8em; opacity: 0.85; line-height: 1.2; display: block;">Support resources, community channels, and how to get assistance</span>
+</a>
+</div>
+</div>
 
-- **What is TrustGraph?** → [Introduction](overview/introduction) - Core concepts and value
-- **Architecture overview** → [Architecture](overview/architecture) - System design
-- **Use cases** → [Use Cases](overview/use-cases) - Real-world applications
-- **Feature maturity** → [Maturity](overview/maturity) - Feature stability and roadmap
-- **Try it yourself** → [Quick Start](getting-started/quickstart) - Hands-on evaluation
+<div style="border: 2px solid #4a9eff; background-color: #1e2a3a; border-radius: 8px; flex: 1 1 calc(50% - 8px); min-width: 280px; overflow: hidden;">
+<div style="position: relative; height: 120px; background-image: url('quickstart.jpg'); background-size: cover; background-position: center;">
+<div style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: linear-gradient(to bottom, rgba(0,0,0,0.5), rgba(0,0,0,0.7)); padding: 12px 15px; display: flex; flex-direction: column; justify-content: center;">
+<h3 style="margin: 0; font-size: 1.1em; color: white;">🚀 Try it out (Quickstart)</h3>
+<p style="margin: 4px 0 0 0; opacity: 0.9; font-size: 0.85em; color: white;">Get hands-on experience quickly with Docker</p>
+</div>
+</div>
+<div style="padding: 12px 15px; display: flex; flex-direction: column; gap: 6px;">
+<a href="deployment/docker-compose" style="text-decoration: none; color: #e8f4fd; background-color: #0d1621; padding: 8px 12px; border-radius: 4px; border: 1px solid #4a9eff; display: block;">
+<strong style="font-size: 0.9em; display: block; margin-bottom: 4px;">Docker Compose</strong>
+<span style="font-size: 0.8em; opacity: 0.85; line-height: 1.2; display: block;">Easiest way to get TrustGraph running locally for development and testing</span>
+</a>
+<a href="guides/graph-rag" style="text-decoration: none; color: #e8f4fd; background-color: #0d1621; padding: 8px 12px; border-radius: 4px; border: 1px solid #4a9eff; display: block;">
+<strong style="font-size: 0.9em; display: block; margin-bottom: 4px;">Graph RAG</strong>
+<span style="font-size: 0.8em; opacity: 0.85; line-height: 1.2; display: block;">Query documents using automatically extracted entities and relationships</span>
+</a>
+<a href="guides/document-rag" style="text-decoration: none; color: #e8f4fd; background-color: #0d1621; padding: 8px 12px; border-radius: 4px; border: 1px solid #4a9eff; display: block;">
+<strong style="font-size: 0.9em; display: block; margin-bottom: 4px;">Document RAG</strong>
+<span style="font-size: 0.8em; opacity: 0.85; line-height: 1.2; display: block;">Query documents using vector embeddings and semantic similarity search</span>
+</a>
+<a href="overview/retrieval" style="text-decoration: none; color: #e8f4fd; background-color: #0d1621; padding: 8px 12px; border-radius: 4px; border: 1px solid #4a9eff; display: block;">
+<strong style="font-size: 0.9em; display: block; margin-bottom: 4px;">Information Retrieval</strong>
+<span style="font-size: 0.8em; opacity: 0.85; line-height: 1.2; display: block;">Understand the retrieval strategies you just used</span>
+</a>
+<a href="contributing/getting-help" style="text-decoration: none; color: #e8f4fd; background-color: #0d1621; padding: 8px 12px; border-radius: 4px; border: 1px solid #4a9eff; display: block;">
+<strong style="font-size: 0.9em; display: block; margin-bottom: 4px;">Get Help</strong>
+<span style="font-size: 0.8em; opacity: 0.85; line-height: 1.2; display: block;">Support resources, community channels, and how to get assistance</span>
+</a>
+</div>
+</div>
 
-### 🏗️ I'm Deploying TrustGraph
+<div style="border: 2px solid #9f7aea; background-color: #2d2642; border-radius: 8px; flex: 1 1 calc(50% - 8px); min-width: 280px; overflow: hidden;">
+<div style="position: relative; height: 120px; background-image: url('plan.jpg'); background-size: cover; background-position: center;">
+<div style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: linear-gradient(to bottom, rgba(0,0,0,0.5), rgba(0,0,0,0.7)); padding: 12px 15px; display: flex; flex-direction: column; justify-content: center;">
+<h3 style="margin: 0; font-size: 1.1em; color: white;">🏢 Plan a production deployment</h3>
+<p style="margin: 4px 0 0 0; opacity: 0.9; font-size: 0.85em; color: white;">Evaluate and plan enterprise deployment</p>
+</div>
+</div>
+<div style="padding: 12px 15px; display: flex; flex-direction: column; gap: 6px;">
+<a href="overview/introduction" style="text-decoration: none; color: #e9d5ff; background-color: #1a1529; padding: 8px 12px; border-radius: 4px; border: 1px solid #9f7aea; display: block;">
+<strong style="font-size: 0.9em; display: block; margin-bottom: 4px;">Introduction</strong>
+<span style="font-size: 0.8em; opacity: 0.85; line-height: 1.2; display: block;">What is TrustGraph and how it transforms AI agents into contextually-aware systems</span>
+</a>
+<a href="overview/use-cases" style="text-decoration: none; color: #e9d5ff; background-color: #1a1529; padding: 8px 12px; border-radius: 4px; border: 1px solid #9f7aea; display: block;">
+<strong style="font-size: 0.9em; display: block; margin-bottom: 4px;">Use Cases</strong>
+<span style="font-size: 0.8em; opacity: 0.85; line-height: 1.2; display: block;">Real-world applications from enterprise search to intelligent agents</span>
+</a>
+<a href="overview/maturity" style="text-decoration: none; color: #e9d5ff; background-color: #1a1529; padding: 8px 12px; border-radius: 4px; border: 1px solid #9f7aea; display: block;">
+<strong style="font-size: 0.9em; display: block; margin-bottom: 4px;">Maturity</strong>
+<span style="font-size: 0.8em; opacity: 0.85; line-height: 1.2; display: block;">Production readiness, feature stability, and deployment status for enterprise use</span>
+</a>
+<a href="overview/security" style="text-decoration: none; color: #e9d5ff; background-color: #1a1529; padding: 8px 12px; border-radius: 4px; border: 1px solid #9f7aea; display: block;">
+<strong style="font-size: 0.9em; display: block; margin-bottom: 4px;">Security</strong>
+<span style="font-size: 0.8em; opacity: 0.85; line-height: 1.2; display: block;">Cybersecurity foundations, privacy protections, and enterprise security roadmap</span>
+</a>
+<a href="deployment/" style="text-decoration: none; color: #e9d5ff; background-color: #1a1529; padding: 8px 12px; border-radius: 4px; border: 1px solid #9f7aea; display: block;">
+<strong style="font-size: 0.9em; display: block; margin-bottom: 4px;">Choose Deployment</strong>
+<span style="font-size: 0.8em; opacity: 0.85; line-height: 1.2; display: block;">Select from Docker, Kubernetes, AWS, Azure, GCP, and other deployment options</span>
+</a>
+<a href="contributing/getting-help" style="text-decoration: none; color: #e9d5ff; background-color: #1a1529; padding: 8px 12px; border-radius: 4px; border: 1px solid #9f7aea; display: block;">
+<strong style="font-size: 0.9em; display: block; margin-bottom: 4px;">Get Help</strong>
+<span style="font-size: 0.8em; opacity: 0.85; line-height: 1.2; display: block;">Support resources, community channels, and how to get assistance</span>
+</a>
+</div>
+</div>
 
-**Setting up TrustGraph infrastructure**
+<div style="border: 2px solid #f59e0b; background-color: #3a2e1e; border-radius: 8px; flex: 1 1 calc(50% - 8px); min-width: 280px; overflow: hidden;">
+<div style="position: relative; height: 120px; background-image: url('develop.jpg'); background-size: cover; background-position: center;">
+<div style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: linear-gradient(to bottom, rgba(0,0,0,0.5), rgba(0,0,0,0.7)); padding: 12px 15px; display: flex; flex-direction: column; justify-content: center;">
+<h3 style="margin: 0; font-size: 1.1em; color: white;">👨‍💻 Developer integration</h3>
+<p style="margin: 4px 0 0 0; opacity: 0.9; font-size: 0.85em; color: white;">Build applications with TrustGraph</p>
+</div>
+</div>
+<div style="padding: 12px 15px; display: flex; flex-direction: column; gap: 6px;">
+<a href="deployment/docker-compose" style="text-decoration: none; color: #fef3c7; background-color: #221a10; padding: 8px 12px; border-radius: 4px; border: 1px solid #f59e0b; display: block;">
+<strong style="font-size: 0.9em; display: block; margin-bottom: 4px;">Docker Compose</strong>
+<span style="font-size: 0.8em; opacity: 0.85; line-height: 1.2; display: block;">Easiest way to get TrustGraph running locally for development and testing</span>
+</a>
+<a href="guides/knowledge-graphs" style="text-decoration: none; color: #fef3c7; background-color: #221a10; padding: 8px 12px; border-radius: 4px; border: 1px solid #f59e0b; display: block;">
+<strong style="font-size: 0.9em; display: block; margin-bottom: 4px;">Knowledge Graphs</strong>
+<span style="font-size: 0.8em; opacity: 0.85; line-height: 1.2; display: block;">Learn the fundamentals of knowledge graphs, triples, and RDF concepts</span>
+</a>
+<a href="guides/graph-rag" style="text-decoration: none; color: #fef3c7; background-color: #221a10; padding: 8px 12px; border-radius: 4px; border: 1px solid #f59e0b; display: block;">
+<strong style="font-size: 0.9em; display: block; margin-bottom: 4px;">Graph RAG</strong>
+<span style="font-size: 0.8em; opacity: 0.85; line-height: 1.2; display: block;">Query documents using automatically extracted entities and relationships</span>
+</a>
+<a href="reference/apis/" style="text-decoration: none; color: #fef3c7; background-color: #221a10; padding: 8px 12px; border-radius: 4px; border: 1px solid #f59e0b; display: block;">
+<strong style="font-size: 0.9em; display: block; margin-bottom: 4px;">API Reference</strong>
+<span style="font-size: 0.8em; opacity: 0.85; line-height: 1.2; display: block;">Complete API documentation for integrating TrustGraph into your applications</span>
+</a>
+<a href="guides/mcp-integration" style="text-decoration: none; color: #fef3c7; background-color: #221a10; padding: 8px 12px; border-radius: 4px; border: 1px solid #f59e0b; display: block;">
+<strong style="font-size: 0.9em; display: block; margin-bottom: 4px;">MCP Integration</strong>
+<span style="font-size: 0.8em; opacity: 0.85; line-height: 1.2; display: block;">Integrate Model Context Protocol servers to extend agent workflows with custom tools</span>
+</a>
+<a href="contributing/getting-help" style="text-decoration: none; color: #fef3c7; background-color: #221a10; padding: 8px 12px; border-radius: 4px; border: 1px solid #f59e0b; display: block;">
+<strong style="font-size: 0.9em; display: block; margin-bottom: 4px;">Get Help</strong>
+<span style="font-size: 0.8em; opacity: 0.85; line-height: 1.2; display: block;">Support resources, community channels, and how to get assistance</span>
+</a>
+</div>
+</div>
 
-- **Quick local test** → [Docker Compose](deployment/docker-compose) - Local development setup
-- **Kubernetes deployment** → [Minikube Guide](deployment/minikube) - K8s deployment
-- **Cloud deployment** → [Deployment Options](deployment/) - AWS, Azure, GCP, and more
-- **Production ready?** → [Production Considerations](deployment/production-considerations) - HA, security, scaling
-- **Need to choose?** → [Choosing Deployment](deployment/choosing-deployment) - Decision guide
+<div style="border: 2px solid #ec4899; background-color: #3a1e2e; border-radius: 8px; flex: 1 1 calc(50% - 8px); min-width: 280px; overflow: hidden;">
+<div style="position: relative; height: 120px; background-image: url('extend.jpg'); background-size: cover; background-position: center;">
+<div style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: linear-gradient(to bottom, rgba(0,0,0,0.5), rgba(0,0,0,0.7)); padding: 12px 15px; display: flex; flex-direction: column; justify-content: center;">
+<h3 style="margin: 0; font-size: 1.1em; color: white;">🔧 Extend TrustGraph</h3>
+<p style="margin: 4px 0 0 0; opacity: 0.9; font-size: 0.85em; color: white;">Contribute and customize TrustGraph</p>
+</div>
+</div>
+<div style="padding: 12px 15px; display: flex; flex-direction: column; gap: 6px;">
+<a href="overview/architecture" style="text-decoration: none; color: #fce7f3; background-color: #1a0d14; padding: 8px 12px; border-radius: 4px; border: 1px solid #ec4899; display: block;">
+<strong style="font-size: 0.9em; display: block; margin-bottom: 4px;">Architecture</strong>
+<span style="font-size: 0.8em; opacity: 0.85; line-height: 1.2; display: block;">System design, component relationships, data flow, and integration points</span>
+</a>
+<a href="contributing/developer" style="text-decoration: none; color: #fce7f3; background-color: #1a0d14; padding: 8px 12px; border-radius: 4px; border: 1px solid #ec4899; display: block;">
+<strong style="font-size: 0.9em; display: block; margin-bottom: 4px;">Developer Guide</strong>
+<span style="font-size: 0.8em; opacity: 0.85; line-height: 1.2; display: block;">Set up your development environment and understand the codebase</span>
+</a>
+<a href="contributing/contributing" style="text-decoration: none; color: #fce7f3; background-color: #1a0d14; padding: 8px 12px; border-radius: 4px; border: 1px solid #ec4899; display: block;">
+<strong style="font-size: 0.9em; display: block; margin-bottom: 4px;">Contributing</strong>
+<span style="font-size: 0.8em; opacity: 0.85; line-height: 1.2; display: block;">How to contribute code, documentation, and improvements to TrustGraph</span>
+</a>
+<a href="contributing/getting-help" style="text-decoration: none; color: #fce7f3; background-color: #1a0d14; padding: 8px 12px; border-radius: 4px; border: 1px solid #ec4899; display: block;">
+<strong style="font-size: 0.9em; display: block; margin-bottom: 4px;">Get Help</strong>
+<span style="font-size: 0.8em; opacity: 0.85; line-height: 1.2; display: block;">Support resources, community channels, and how to get assistance</span>
+</a>
+</div>
+</div>
 
-### 👨‍💻 I'm a Developer
-
-**Building applications with TrustGraph**
-
-- **New to TrustGraph?** → [Quick Start Guide](getting-started/quickstart) - Deploy and test in 15 minutes
-- **Understand the concepts** → [Introduction](overview/introduction) - Learn about GraphRAG and knowledge graphs
-- **Ready to integrate?** → [How-to Guides](guides/) - Task-oriented instructions
-- **Need API docs?** → [API Reference](reference/apis/) - Complete API documentation
-- **Want code samples?** → [Examples](examples/) - Working code to copy and adapt
-
-### 📊 I'm a Data Scientist
-
-**Working with knowledge and data**
-
-- **Understanding GraphRAG** → [Introduction](overview/introduction) - How GraphRAG works
-- **Extract structured data** → [Agent Extraction](guides/agent-extraction) - Extract entities from documents
-- **Query knowledge** → [Structured Query Guide](guides/structured-processing/query) - Query your data
-- **Sample datasets** → [Sample Data](examples/sample-data/) - Test data and examples
-- **CLI reference** → [CLI Commands](reference/cli/) - Command-line tools
-
-### 🔧 I Want to Extend TrustGraph
-
-**Contributing and customizing**
-
-- **Contributing code** → [Contributing Guidelines](contributing/contributing) - How to contribute
-- **Development setup** → [Developer Guide](contributing/developer) - Set up dev environment
-- **Custom algorithms** → [Extending TrustGraph](advanced/extending-trustgraph) - Plugin development
-- **Project roadmap** → [Roadmap](overview/roadmap) - Future plans
-
-## Key Features
-
-### 🧠 GraphRAG
-Move beyond traditional RAG with relationship-aware retrieval that understands how information connects.
-
-### 📈 Knowledge Graphs
-Automatically extract entities and relationships from your documents to build interconnected knowledge structures.
-
-### 🎯 Structured Query
-Convert natural language to GraphQL queries and extract structured objects from unstructured text.
-
-### 🤖 Agent Intelligence
-Give your AI agents contextual understanding grounded in structured knowledge to reduce hallucinations.
-
-### 🔌 Flexible Integration
-Works with multiple LLM providers (OpenAI, Anthropic, VertexAI, local models) and integrates with existing systems.
-
-### 🔓 Open Source
-Apache 2.0 licensed, no vendor lock-in, full transparency and customization.
+</div>
 
 ## Documentation Sections
 
-### [Getting Started](getting-started/)
-**First steps with TrustGraph** - Installation, quickstart, and core concepts for new users.
-
 ### [Overview](overview/)
-**Understanding TrustGraph** - Architecture, features, philosophy, and use cases.
+Understanding TrustGraph - Architecture, features, philosophy, and use cases.
 
 ### [Deployment](deployment/)
-**Running TrustGraph** - Docker Compose, Kubernetes, cloud platforms, and production setup.
+Running TrustGraph - Docker Compose, Kubernetes, cloud platforms, and production setup.
 
 ### [How-to Guides](guides/)
-**Task-oriented instructions** - Step-by-step guides for specific tasks and workflows.
+Task-oriented instructions - Step-by-step guides for specific tasks and workflows.
 
 ### [Reference](reference/)
-**Technical specifications** - API docs, CLI commands, configuration, and technical details.
-
-### [Examples](examples/)
-**Working code and data** - Sample implementations, datasets, and integration examples.
-
-### [Advanced Topics](advanced/)
-**Deep dives** - Performance tuning, clustering, custom algorithms, and extensions.
+Technical specifications - API docs, CLI commands, configuration, and technical details.
 
 ### [Contributing](contributing/)
-**Join the project** - Contributing guidelines, development setup, and community resources.
-
-## Getting Help
-
-### Documentation
-- **[Troubleshooting Guide](deployment/troubleshooting)** - Common issues and solutions
-- **[Getting Help](contributing/getting-help)** - Support resources
-
-### Community
-- **Discord** - Join our community chat
-- **GitHub** - Report issues and contribute
-- **Discussions** - Ask questions and share ideas
-
-## Quick Links by Task
-
-| I want to... | Go to... |
-|-------------|----------|
-| Try TrustGraph now | [Quick Start](getting-started/quickstart) |
-| Understand GraphRAG | [Introduction](overview/introduction) |
-| Deploy to production | [Deployment Guide](deployment/) |
-| Extract data from PDFs | [Agent Extraction](guides/agent-extraction) |
-| Query my knowledge graph | [Query Guide](guides/structured-processing/query) |
-| Integrate with my app | [API Reference](reference/apis/) |
-| See code examples | [Examples](examples/) |
-| Contribute to the project | [Contributing](contributing/) |
-
----
-
-**Ready to get started?** Head to the [Quick Start Guide](getting-started/quickstart) to deploy TrustGraph in 15 minutes.
+Technical specifications - API docs, CLI commands, configuration, and technical details.

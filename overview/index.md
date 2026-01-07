@@ -10,128 +10,137 @@ review_date: 2026-08-01
 
 **Understanding TrustGraph: concepts, architecture, and capabilities**
 
-## What's in This Section?
+<div style="border: 2px solid #48bb78; background-color: #1e3a2a; padding: 5px 20px 20px 20px; margin: 20px 0; border-radius: 8px;">
 
-This section explains **what TrustGraph is, how it works, and why you might use it**. Read this to understand the platform's conceptual foundation before diving into implementation.
+<h2>Concepts</h2>
 
-### This Section is For:
-- **Architects** evaluating TrustGraph for their organization
-- **Decision-makers** understanding capabilities and use cases
-- **Developers** wanting conceptual grounding before coding
-- **Anyone** curious about GraphRAG and knowledge graphs
+<div style="display: flex; flex-wrap: wrap; gap: 10px; margin-top: 10px;">
+{% assign overview_pages = site.pages | where: "parent", "Overview" | sort: "guide_category_order" %}
+{% for guide in overview_pages %}
+{% if guide.guide_category contains "Concepts" %}
+<div style="border: 1px solid #48bb78; background-color: #0d2118; padding: 0; border-radius: 4px; flex: 1 1 200px; overflow: hidden;">
+<a href="{{ guide.url }}" style="text-decoration: none; color: inherit; display: block;">
+{% if guide.guide_banner %}
+<div style="width: 100%; height: 180px; background-image: url('{{ guide.url | replace: 'index.html', '' }}{{ guide.guide_banner }}'); background-size: cover; background-position: center; position: relative;">
+<div style="position: absolute; bottom: 0; left: 0; right: 0; background: linear-gradient(to top, rgba(0,0,0,0.85), rgba(0,0,0,0.4)); padding: 15px;">
+<div style="display: flex; align-items: center; gap: 10px; margin-bottom: 5px;">
+{% if guide.guide_emoji %}<span style="font-size: 2em; filter: drop-shadow(2px 2px 4px rgba(0,0,0,0.8));">{{ guide.guide_emoji }}</span>{% endif %}
+<strong style="font-size: 1.1em; color: white; text-shadow: 2px 2px 4px rgba(0,0,0,0.8);">{{ guide.title }}</strong>
+</div>
+<div style="font-size: 0.85em; color: #48bb78; text-shadow: 1px 1px 3px rgba(0,0,0,0.8);">
+{% if guide.guide_difficulty %}{{ guide.guide_difficulty }}{% endif %}{% if guide.guide_difficulty and guide.guide_time %} • {% endif %}{% if guide.guide_time %}{{ guide.guide_time }}{% endif %}
+</div>
+</div>
+</div>
+{% else %}
+<div style="padding: 10px 15px 0 15px;">
+<div style="display: flex; align-items: center; gap: 10px; margin-bottom: 5px;">
+{% if guide.guide_emoji %}<span style="font-size: 2em;">{{ guide.guide_emoji }}</span>{% endif %}
+<strong style="font-size: 1.1em;">{{ guide.title }}</strong>
+</div>
+<div style="font-size: 0.85em; color: #48bb78;">
+{% if guide.guide_difficulty %}{{ guide.guide_difficulty }}{% endif %}{% if guide.guide_difficulty and guide.guide_time %} • {% endif %}{% if guide.guide_time %}{{ guide.guide_time }}{% endif %}
+</div>
+</div>
+{% endif %}
+<div style="padding: 10px 15px;">
+{% if guide.guide_description %}<div style="font-size: 0.9em; margin-top: 8px; opacity: 0.9;">{{ guide.guide_description }}</div>{% endif %}
+{% if guide.guide_labels %}<div style="display: flex; flex-wrap: wrap; gap: 5px; margin-top: 10px;">{% for label in guide.guide_labels %}<span style="font-size: 0.75em; padding: 2px 8px; background-color: rgba(72, 187, 120, 0.2); border: 1px solid #48bb78; border-radius: 3px; white-space: nowrap;">{{ label }}</span>{% endfor %}</div>{% endif %}
+</div>
+</a>
+</div>
+{% endif %}
+{% endfor %}
+</div>
 
-### Not What You Need?
-- **Want to get started?** → [Getting Started](../getting-started/)
-- **Need step-by-step instructions?** → [How-to Guides](../guides/)
-- **Looking for API docs?** → [Reference](../reference/)
+</div>
 
-## Recommended Reading Path
+<div style="border: 2px solid #4a9eff; background-color: #1e2a3a; padding: 5px 20px 20px 20px; margin: 20px 0; border-radius: 8px;">
 
-### New to TrustGraph?
-1. Start with **[Introduction](introduction)** - Core concepts and technology
-2. Read **[Philosophy](philosophy)** - Design principles and approach
-3. Review **[Use Cases](use-cases)** - Real-world applications
-4. Explore **[Architecture](architecture)** - System design details
+<h2>How does it work?</h2>
 
-### Evaluating TrustGraph?
-1. **[Introduction](introduction)** - What TrustGraph does
-2. **[Use Cases](use-cases)** - Is this right for my needs?
-3. **[Features](features)** - What capabilities exist?
-4. **[Maturity](maturity)** - What's production-ready?
-5. **[Roadmap](roadmap)** - Where is the project going?
+<div style="display: flex; flex-wrap: wrap; gap: 10px; margin-top: 10px;">
+{% assign overview_pages = site.pages | where: "parent", "Overview" | sort: "guide_category_order" %}
+{% for guide in overview_pages %}
+{% if guide.guide_category contains "How does it work?" %}
+<div style="border: 1px solid #4a9eff; background-color: #0d1621; padding: 0; border-radius: 4px; flex: 1 1 200px; overflow: hidden;">
+<a href="{{ guide.url }}" style="text-decoration: none; color: inherit; display: block;">
+{% if guide.guide_banner %}
+<div style="width: 100%; height: 180px; background-image: url('{{ guide.url | replace: 'index.html', '' }}{{ guide.guide_banner }}'); background-size: cover; background-position: center; position: relative;">
+<div style="position: absolute; bottom: 0; left: 0; right: 0; background: linear-gradient(to top, rgba(0,0,0,0.85), rgba(0,0,0,0.4)); padding: 15px;">
+<div style="display: flex; align-items: center; gap: 10px; margin-bottom: 5px;">
+{% if guide.guide_emoji %}<span style="font-size: 2em; filter: drop-shadow(2px 2px 4px rgba(0,0,0,0.8));">{{ guide.guide_emoji }}</span>{% endif %}
+<strong style="font-size: 1.1em; color: white; text-shadow: 2px 2px 4px rgba(0,0,0,0.8);">{{ guide.title }}</strong>
+</div>
+<div style="font-size: 0.85em; color: #4a9eff; text-shadow: 1px 1px 3px rgba(0,0,0,0.8);">
+{% if guide.guide_difficulty %}{{ guide.guide_difficulty }}{% endif %}{% if guide.guide_difficulty and guide.guide_time %} • {% endif %}{% if guide.guide_time %}{{ guide.guide_time }}{% endif %}
+</div>
+</div>
+</div>
+{% else %}
+<div style="padding: 10px 15px 0 15px;">
+<div style="display: flex; align-items: center; gap: 10px; margin-bottom: 5px;">
+{% if guide.guide_emoji %}<span style="font-size: 2em;">{{ guide.guide_emoji }}</span>{% endif %}
+<strong style="font-size: 1.1em;">{{ guide.title }}</strong>
+</div>
+<div style="font-size: 0.85em; color: #4a9eff;">
+{% if guide.guide_difficulty %}{{ guide.guide_difficulty }}{% endif %}{% if guide.guide_difficulty and guide.guide_time %} • {% endif %}{% if guide.guide_time %}{{ guide.guide_time }}{% endif %}
+</div>
+</div>
+{% endif %}
+<div style="padding: 10px 15px;">
+{% if guide.guide_description %}<div style="font-size: 0.9em; margin-top: 8px; opacity: 0.9;">{{ guide.guide_description }}</div>{% endif %}
+{% if guide.guide_labels %}<div style="display: flex; flex-wrap: wrap; gap: 5px; margin-top: 10px;">{% for label in guide.guide_labels %}<span style="font-size: 0.75em; padding: 2px 8px; background-color: rgba(74, 158, 255, 0.2); border: 1px solid #4a9eff; border-radius: 3px; white-space: nowrap;">{{ label }}</span>{% endfor %}</div>{% endif %}
+</div>
+</a>
+</div>
+{% endif %}
+{% endfor %}
+</div>
 
-### Understanding the Technology?
-1. **[Introduction](introduction)** - GraphRAG and knowledge graphs
-2. **[Architecture](architecture)** - How components fit together
-3. **[Philosophy](philosophy)** - Design decisions
-4. Then try: **[Getting Started](../getting-started/quickstart)** to see it in action
+</div>
 
-## Section Contents
+<div style="border: 2px solid #9f7aea; background-color: #2d2642; padding: 5px 20px 20px 20px; margin: 20px 0; border-radius: 8px;">
 
-### [Introduction](introduction)
-**Start here** - Comprehensive introduction to TrustGraph, GraphRAG, knowledge graphs, and AI agent intelligence. Explains core technologies and how they work together.
+<h2>Enterprise integration</h2>
 
-**Read this if**: You're new to TrustGraph or want to understand what makes it different.
+<div style="display: flex; flex-wrap: wrap; gap: 10px; margin-top: 10px;">
+{% assign overview_pages = site.pages | where: "parent", "Overview" | sort: "guide_category_order" %}
+{% for guide in overview_pages %}
+{% if guide.guide_category contains "Enterprise integration" %}
+<div style="border: 1px solid #9f7aea; background-color: #1a1529; padding: 0; border-radius: 4px; flex: 1 1 200px; overflow: hidden;">
+<a href="{{ guide.url }}" style="text-decoration: none; color: inherit; display: block;">
+{% if guide.guide_banner %}
+<div style="width: 100%; height: 180px; background-image: url('{{ guide.url | replace: 'index.html', '' }}{{ guide.guide_banner }}'); background-size: cover; background-position: center; position: relative;">
+<div style="position: absolute; bottom: 0; left: 0; right: 0; background: linear-gradient(to top, rgba(0,0,0,0.85), rgba(0,0,0,0.4)); padding: 15px;">
+<div style="display: flex; align-items: center; gap: 10px; margin-bottom: 5px;">
+{% if guide.guide_emoji %}<span style="font-size: 2em; filter: drop-shadow(2px 2px 4px rgba(0,0,0,0.8));">{{ guide.guide_emoji }}</span>{% endif %}
+<strong style="font-size: 1.1em; color: white; text-shadow: 2px 2px 4px rgba(0,0,0,0.8);">{{ guide.title }}</strong>
+</div>
+<div style="font-size: 0.85em; color: #9f7aea; text-shadow: 1px 1px 3px rgba(0,0,0,0.8);">
+{% if guide.guide_difficulty %}{{ guide.guide_difficulty }}{% endif %}{% if guide.guide_difficulty and guide.guide_time %} • {% endif %}{% if guide.guide_time %}{{ guide.guide_time }}{% endif %}
+</div>
+</div>
+</div>
+{% else %}
+<div style="padding: 10px 15px 0 15px;">
+<div style="display: flex; align-items: center; gap: 10px; margin-bottom: 5px;">
+{% if guide.guide_emoji %}<span style="font-size: 2em;">{{ guide.guide_emoji }}</span>{% endif %}
+<strong style="font-size: 1.1em;">{{ guide.title }}</strong>
+</div>
+<div style="font-size: 0.85em; color: #9f7aea;">
+{% if guide.guide_difficulty %}{{ guide.guide_difficulty }}{% endif %}{% if guide.guide_difficulty and guide.guide_time %} • {% endif %}{% if guide.guide_time %}{{ guide.guide_time }}{% endif %}
+</div>
+</div>
+{% endif %}
+<div style="padding: 10px 15px;">
+{% if guide.guide_description %}<div style="font-size: 0.9em; margin-top: 8px; opacity: 0.9;">{{ guide.guide_description }}</div>{% endif %}
+{% if guide.guide_labels %}<div style="display: flex; flex-wrap: wrap; gap: 5px; margin-top: 10px;">{% for label in guide.guide_labels %}<span style="font-size: 0.75em; padding: 2px 8px; background-color: rgba(159, 122, 234, 0.2); border: 1px solid #9f7aea; border-radius: 3px; white-space: nowrap;">{{ label }}</span>{% endfor %}</div>{% endif %}
+</div>
+</a>
+</div>
+{% endif %}
+{% endfor %}
+</div>
 
-### [Philosophy](philosophy)
-**Design principles** - Why TrustGraph was built this way, the problems it solves, and the philosophy behind its approach.
-
-**Read this if**: You want to understand the "why" behind TrustGraph's design.
-
-### [Architecture](architecture)
-**System design** - Technical architecture, component relationships, data flow, and integration points.
-
-**Read this if**: You need to understand how TrustGraph components work together.
-
-### [Features](features)
-**Capability catalog** - Complete overview of TrustGraph features and what you can do with the platform.
-
-**Read this if**: You want to know what TrustGraph can do.
-
-### [Use Cases](use-cases)
-**Real-world applications** - Common scenarios where TrustGraph adds value, from enterprise search to intelligent agents.
-
-**Read this if**: You're evaluating whether TrustGraph fits your needs.
-
-### [Maturity](maturity)
-**Feature stability** - Which features are production-ready, beta, or experimental. Includes test coverage and deployment status.
-
-**Read this if**: You need to assess production readiness.
-
-### [Roadmap](roadmap)
-**Future direction** - Planned features and development priorities.
-
-**Read this if**: You want to know what's coming next.
-
-## Quick Answers
-
-### What is TrustGraph?
-
-TrustGraph is an **Open Source Agent Intelligence Platform** that transforms AI agents from simple task executors into contextually-aware systems. It combines:
-- **Knowledge Graphs**: Interconnected entity-relationship structures
-- **Vector Embeddings**: Semantic similarity search
-- **GraphRAG**: Relationship-aware retrieval for AI responses
-- **Agent Runtime**: Execution environment with contextual understanding
-
-### Why Use TrustGraph?
-
-**For AI Developers**: Build agents that understand context and relationships, not just isolated facts.
-
-**For Data Scientists**: Query knowledge using both structured relationships and semantic similarity.
-
-**For Enterprises**: Unify fragmented organizational knowledge into coherent, queryable systems.
-
-**For Everyone**: Reduce AI hallucinations by grounding responses in structured knowledge.
-
-### How is TrustGraph Different?
-
-| Traditional RAG | TrustGraph GraphRAG |
-|----------------|---------------------|
-| Vector similarity only | Graph relationships + vectors |
-| Isolated documents | Connected knowledge |
-| Limited context | Rich contextual understanding |
-| Prone to hallucinations | Grounded in structured data |
-
-### Key Technologies
-
-- **Knowledge Graphs**: Entities and relationships extracted from documents
-- **GraphRAG**: Graph-enhanced retrieval and generation
-- **Knowledge Packages**: Combined graph + vector representations
-- **Structured Query**: Natural language to GraphQL conversion
-- **Agent Intelligence**: Contextual reasoning and transparency
-
-## Next Steps After Overview
-
-### Ready to Try It?
-Head to [Getting Started](../getting-started/) to deploy TrustGraph and see it in action.
-
-### Need Implementation Details?
-- **Task-oriented guides**: [How-to Guides](../guides/)
-- **API documentation**: [Reference](../reference/)
-- **Code examples**: [Examples](../examples/)
-
-### Want to Deploy?
-Review [Deployment Options](../deployment/) for production setups.
-
-### Have Questions?
-Check [Getting Help](../contributing/getting-help) for support resources.
+</div>

@@ -3,6 +3,18 @@ title: Use Cases
 nav_order: 3
 parent: Overview
 review_date: 2026-04-01
+guide_category:
+  - Enterprise integration
+guide_category_order: 1
+guide_description: Real-world applications from enterprise search to intelligent agents and decision support
+guide_difficulty: beginner
+guide_time: 15 min
+guide_emoji: 💼
+guide_banner: /../use-cases.jpg
+guide_labels:
+  - Enterprise
+  - Applications
+  - Real-world
 ---
 
 # Use Cases

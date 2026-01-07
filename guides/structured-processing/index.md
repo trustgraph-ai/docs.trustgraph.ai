@@ -2,6 +2,18 @@
 title: Structured data processing
 parent: How-to Guides
 review_date: 2026-02-01
+guide_category:
+  - Advanced knowledge management
+guide_category_order: 1
+guide_description: Extract and process structured data from documents and files using schema-based extraction
+guide_difficulty: intermediate
+guide_time: 45 min
+guide_emoji: 📊
+guide_banner: structured-processing.jpg
+guide_labels:
+  - Extraction
+  - Schema
+  - Objects
 ---
 
 # Structured Data Processing

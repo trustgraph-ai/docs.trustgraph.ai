@@ -6,190 +6,229 @@ parent: TrustGraph Documentation
 review_date: 2025-12-29
 ---
 
-# Deployment Guide
+# Deployment
 
-**Deploy and operate TrustGraph across different environments**
+<div style="border: 2px solid #06b6d4; background-color: #1e3a3f; padding: 5px 20px 20px 20px; margin: 20px 0; border-radius: 8px;">
 
-## What's in This Section?
+<h2>Deployment decisions</h2>
 
-This section provides **platform-specific deployment instructions** for running TrustGraph in various environments, from local development to production cloud deployments.
+<div style="display: flex; flex-wrap: wrap; gap: 10px; margin-top: 10px;">
+{% assign deployment_pages = site.pages | where: "parent", "Deployment" | sort: "guide_category_order" %}
+{% for guide in deployment_pages %}
+{% if guide.guide_category contains "Deployment decisions" %}
+<div style="border: 1px solid #06b6d4; background-color: #0d1f23; padding: 0; border-radius: 4px; flex: 1 1 200px; overflow: hidden;">
+<a href="{{ guide.url }}" style="text-decoration: none; color: inherit; display: block;">
+{% if guide.guide_banner %}
+<div style="width: 100%; height: 180px; background-image: url('{{ guide.url | replace: 'index.html', '' }}{{ guide.guide_banner }}'); background-size: cover; background-position: center; position: relative;">
+<div style="position: absolute; bottom: 0; left: 0; right: 0; background: linear-gradient(to top, rgba(0,0,0,0.85), rgba(0,0,0,0.4)); padding: 15px;">
+<div style="display: flex; align-items: center; gap: 10px; margin-bottom: 5px;">
+{% if guide.guide_emoji %}<span style="font-size: 2em; filter: drop-shadow(2px 2px 4px rgba(0,0,0,0.8));">{{ guide.guide_emoji }}</span>{% endif %}
+<strong style="font-size: 1.1em; color: white; text-shadow: 2px 2px 4px rgba(0,0,0,0.8);">{{ guide.title }}</strong>
+</div>
+<div style="font-size: 0.85em; color: #06b6d4; text-shadow: 1px 1px 3px rgba(0,0,0,0.8);">
+{% if guide.guide_difficulty %}{{ guide.guide_difficulty }}{% endif %}{% if guide.guide_difficulty and guide.guide_time %} • {% endif %}{% if guide.guide_time %}{{ guide.guide_time }}{% endif %}
+</div>
+</div>
+</div>
+{% else %}
+<div style="padding: 10px 15px 0 15px;">
+<div style="display: flex; align-items: center; gap: 10px; margin-bottom: 5px;">
+{% if guide.guide_emoji %}<span style="font-size: 2em;">{{ guide.guide_emoji }}</span>{% endif %}
+<strong style="font-size: 1.1em;">{{ guide.title }}</strong>
+</div>
+<div style="font-size: 0.85em; color: #06b6d4;">
+{% if guide.guide_difficulty %}{{ guide.guide_difficulty }}{% endif %}{% if guide.guide_difficulty and guide.guide_time %} • {% endif %}{% if guide.guide_time %}{{ guide.guide_time }}{% endif %}
+</div>
+</div>
+{% endif %}
+<div style="padding: 10px 15px;">
+{% if guide.guide_description %}<div style="font-size: 0.9em; margin-top: 8px; opacity: 0.9;">{{ guide.guide_description }}</div>{% endif %}
+{% if guide.guide_labels %}<div style="display: flex; flex-wrap: wrap; gap: 5px; margin-top: 10px;">{% for label in guide.guide_labels %}<span style="font-size: 0.75em; padding: 2px 8px; background-color: rgba(6, 182, 212, 0.2); border: 1px solid #06b6d4; border-radius: 3px; white-space: nowrap;">{{ label }}</span>{% endfor %}</div>{% endif %}
+</div>
+</a>
+</div>
+{% endif %}
+{% endfor %}
+</div>
 
-### This Section is For:
-- **DevOps engineers** deploying TrustGraph infrastructure
-- **System administrators** managing TrustGraph instances
-- **Developers** setting up local development environments
-- **Architects** planning production deployments
+</div>
 
-### Not What You Need?
-- **First time user?** → Start with [Quick Start](../getting-started/quickstart)
-- **Understanding concepts?** → See [Overview](../overview/)
-- **Looking for how-tos?** → Check [Guides](../guides/)
+<div style="border: 2px solid #48bb78; background-color: #1e3a2a; padding: 5px 20px 20px 20px; margin: 20px 0; border-radius: 8px;">
 
-## Choosing Your Deployment
+<h2>Standalone deployment</h2>
 
-Not sure which deployment option fits your needs? See **[Choosing a Deployment](choosing-deployment)** for a decision guide with comparison tables and recommendations.
+<div style="display: flex; flex-wrap: wrap; gap: 10px; margin-top: 10px;">
+{% assign deployment_pages = site.pages | where: "parent", "Deployment" | sort: "guide_category_order" %}
+{% for guide in deployment_pages %}
+{% if guide.guide_category contains "Standalone deployment" %}
+<div style="border: 1px solid #48bb78; background-color: #0d2118; padding: 0; border-radius: 4px; flex: 1 1 200px; overflow: hidden;">
+<a href="{{ guide.url }}" style="text-decoration: none; color: inherit; display: block;">
+{% if guide.guide_banner %}
+<div style="width: 100%; height: 180px; background-image: url('{{ guide.url | replace: 'index.html', '' }}{{ guide.guide_banner }}'); background-size: cover; background-position: center; position: relative;">
+<div style="position: absolute; bottom: 0; left: 0; right: 0; background: linear-gradient(to top, rgba(0,0,0,0.85), rgba(0,0,0,0.4)); padding: 15px;">
+<div style="display: flex; align-items: center; gap: 10px; margin-bottom: 5px;">
+{% if guide.guide_emoji %}<span style="font-size: 2em; filter: drop-shadow(2px 2px 4px rgba(0,0,0,0.8));">{{ guide.guide_emoji }}</span>{% endif %}
+<strong style="font-size: 1.1em; color: white; text-shadow: 2px 2px 4px rgba(0,0,0,0.8);">{{ guide.title }}</strong>
+</div>
+<div style="font-size: 0.85em; color: #48bb78; text-shadow: 1px 1px 3px rgba(0,0,0,0.8);">
+{% if guide.guide_difficulty %}{{ guide.guide_difficulty }}{% endif %}{% if guide.guide_difficulty and guide.guide_time %} • {% endif %}{% if guide.guide_time %}{{ guide.guide_time }}{% endif %}
+</div>
+</div>
+</div>
+{% else %}
+<div style="padding: 10px 15px 0 15px;">
+<div style="display: flex; align-items: center; gap: 10px; margin-bottom: 5px;">
+{% if guide.guide_emoji %}<span style="font-size: 2em;">{{ guide.guide_emoji }}</span>{% endif %}
+<strong style="font-size: 1.1em;">{{ guide.title }}</strong>
+</div>
+<div style="font-size: 0.85em; color: #48bb78;">
+{% if guide.guide_difficulty %}{{ guide.guide_difficulty }}{% endif %}{% if guide.guide_difficulty and guide.guide_time %} • {% endif %}{% if guide.guide_time %}{{ guide.guide_time }}{% endif %}
+</div>
+</div>
+{% endif %}
+<div style="padding: 10px 15px;">
+{% if guide.guide_description %}<div style="font-size: 0.9em; margin-top: 8px; opacity: 0.9;">{{ guide.guide_description }}</div>{% endif %}
+{% if guide.guide_labels %}<div style="display: flex; flex-wrap: wrap; gap: 5px; margin-top: 10px;">{% for label in guide.guide_labels %}<span style="font-size: 0.75em; padding: 2px 8px; background-color: rgba(72, 187, 120, 0.2); border: 1px solid #48bb78; border-radius: 3px; white-space: nowrap;">{{ label }}</span>{% endfor %}</div>{% endif %}
+</div>
+</a>
+</div>
+{% endif %}
+{% endfor %}
+</div>
 
-### Quick Decision Guide
+</div>
 
-| Your Situation | Recommended Option |
-|----------------|-------------------|
-| First time trying TrustGraph | [Docker Compose](docker-compose) |
-| Local development & testing | [Docker Compose](docker-compose) or [Minikube](minikube) |
-| Learning Kubernetes | [Minikube](minikube) |
-| Small production (<100 users) | [AWS EC2 Single Instance](aws-ec2) or [Docker Compose](docker-compose) |
-| Production with scaling needs | [AWS RKE](aws-rke), [Azure AKS](azure), or [GCP](gcp) |
-| GPU acceleration required | [Intel/Tiber Cloud](intel) |
-| Budget-conscious cloud | [Scaleway](scaleway) |
+<div style="border: 2px solid #9f7aea; background-color: #2d2642; padding: 5px 20px 20px 20px; margin: 20px 0; border-radius: 8px;">
 
-## Deployment Options
+<h2>Global cloud</h2>
 
-### Local Development
+<div style="display: flex; flex-wrap: wrap; gap: 10px; margin-top: 10px;">
+{% assign deployment_pages = site.pages | where: "parent", "Deployment" | sort: "guide_category_order" %}
+{% for guide in deployment_pages %}
+{% if guide.guide_category contains "Global cloud" %}
+<div style="border: 1px solid #9f7aea; background-color: #1a1529; padding: 0; border-radius: 4px; flex: 1 1 200px; overflow: hidden;">
+<a href="{{ guide.url }}" style="text-decoration: none; color: inherit; display: block;">
+{% if guide.guide_banner %}
+<div style="width: 100%; height: 180px; background-image: url('{{ guide.url | replace: 'index.html', '' }}{{ guide.guide_banner }}'); background-size: cover; background-position: center; position: relative;">
+<div style="position: absolute; bottom: 0; left: 0; right: 0; background: linear-gradient(to top, rgba(0,0,0,0.85), rgba(0,0,0,0.4)); padding: 15px;">
+<div style="display: flex; align-items: center; gap: 10px; margin-bottom: 5px;">
+{% if guide.guide_emoji %}<span style="font-size: 2em; filter: drop-shadow(2px 2px 4px rgba(0,0,0,0.8));">{{ guide.guide_emoji }}</span>{% endif %}
+<strong style="font-size: 1.1em; color: white; text-shadow: 2px 2px 4px rgba(0,0,0,0.8);">{{ guide.title }}</strong>
+</div>
+<div style="font-size: 0.85em; color: #9f7aea; text-shadow: 1px 1px 3px rgba(0,0,0,0.8);">
+{% if guide.guide_difficulty %}{{ guide.guide_difficulty }}{% endif %}{% if guide.guide_difficulty and guide.guide_time %} • {% endif %}{% if guide.guide_time %}{{ guide.guide_time }}{% endif %}
+</div>
+</div>
+</div>
+{% else %}
+<div style="padding: 10px 15px 0 15px;">
+<div style="display: flex; align-items: center; gap: 10px; margin-bottom: 5px;">
+{% if guide.guide_emoji %}<span style="font-size: 2em;">{{ guide.guide_emoji }}</span>{% endif %}
+<strong style="font-size: 1.1em;">{{ guide.title }}</strong>
+</div>
+<div style="font-size: 0.85em; color: #9f7aea;">
+{% if guide.guide_difficulty %}{{ guide.guide_difficulty }}{% endif %}{% if guide.guide_difficulty and guide.guide_time %} • {% endif %}{% if guide.guide_time %}{{ guide.guide_time }}{% endif %}
+</div>
+</div>
+{% endif %}
+<div style="padding: 10px 15px;">
+{% if guide.guide_description %}<div style="font-size: 0.9em; margin-top: 8px; opacity: 0.9;">{{ guide.guide_description }}</div>{% endif %}
+{% if guide.guide_labels %}<div style="display: flex; flex-wrap: wrap; gap: 5px; margin-top: 10px;">{% for label in guide.guide_labels %}<span style="font-size: 0.75em; padding: 2px 8px; background-color: rgba(159, 122, 234, 0.2); border: 1px solid #9f7aea; border-radius: 3px; white-space: nowrap;">{{ label }}</span>{% endfor %}</div>{% endif %}
+</div>
+</a>
+</div>
+{% endif %}
+{% endfor %}
+</div>
 
-Perfect for testing, development, and evaluation.
+</div>
 
-#### [Docker Compose](docker-compose)
-**Easiest way to get started** - Deploy TrustGraph locally with all services orchestrated.
+<div style="border: 2px solid #4a9eff; background-color: #1e2a3a; padding: 5px 20px 20px 20px; margin: 20px 0; border-radius: 8px;">
 
-- ✅ **Best for**: First-time users, POCs, local development
-- ✅ **Pros**: Simple setup, all-in-one, easy to tear down
-- ⚠️ **Limits**: Single machine, not for production scale
-- **Time to deploy**: 15 minutes
-- **Prerequisites**: Docker/Podman, 8GB RAM, 4 CPU cores
+<h2>European Cloud Providers</h2>
 
-#### [Minikube](minikube)
-**Local Kubernetes** - Run TrustGraph on Kubernetes locally.
+<div style="display: flex; flex-wrap: wrap; gap: 10px; margin-top: 10px;">
+{% assign deployment_pages = site.pages | where: "parent", "Deployment" | sort: "guide_category_order" %}
+{% for guide in deployment_pages %}
+{% if guide.guide_category contains "European Cloud Providers" %}
+<div style="border: 1px solid #4a9eff; background-color: #0d1621; padding: 0; border-radius: 4px; flex: 1 1 200px; overflow: hidden;">
+<a href="{{ guide.url }}" style="text-decoration: none; color: inherit; display: block;">
+{% if guide.guide_banner %}
+<div style="width: 100%; height: 180px; background-image: url('{{ guide.url | replace: 'index.html', '' }}{{ guide.guide_banner }}'); background-size: cover; background-position: center; position: relative;">
+<div style="position: absolute; bottom: 0; left: 0; right: 0; background: linear-gradient(to top, rgba(0,0,0,0.85), rgba(0,0,0,0.4)); padding: 15px;">
+<div style="display: flex; align-items: center; gap: 10px; margin-bottom: 5px;">
+{% if guide.guide_emoji %}<span style="font-size: 2em; filter: drop-shadow(2px 2px 4px rgba(0,0,0,0.8));">{{ guide.guide_emoji }}</span>{% endif %}
+<strong style="font-size: 1.1em; color: white; text-shadow: 2px 2px 4px rgba(0,0,0,0.8);">{{ guide.title }}</strong>
+</div>
+<div style="font-size: 0.85em; color: #4a9eff; text-shadow: 1px 1px 3px rgba(0,0,0,0.8);">
+{% if guide.guide_difficulty %}{{ guide.guide_difficulty }}{% endif %}{% if guide.guide_difficulty and guide.guide_time %} • {% endif %}{% if guide.guide_time %}{{ guide.guide_time }}{% endif %}
+</div>
+</div>
+</div>
+{% else %}
+<div style="padding: 10px 15px 0 15px;">
+<div style="display: flex; align-items: center; gap: 10px; margin-bottom: 5px;">
+{% if guide.guide_emoji %}<span style="font-size: 2em;">{{ guide.guide_emoji }}</span>{% endif %}
+<strong style="font-size: 1.1em;">{{ guide.title }}</strong>
+</div>
+<div style="font-size: 0.85em; color: #4a9eff;">
+{% if guide.guide_difficulty %}{{ guide.guide_difficulty }}{% endif %}{% if guide.guide_difficulty and guide.guide_time %} • {% endif %}{% if guide.guide_time %}{{ guide.guide_time }}{% endif %}
+</div>
+</div>
+{% endif %}
+<div style="padding: 10px 15px;">
+{% if guide.guide_description %}<div style="font-size: 0.9em; margin-top: 8px; opacity: 0.9;">{{ guide.guide_description }}</div>{% endif %}
+{% if guide.guide_labels %}<div style="display: flex; flex-wrap: wrap; gap: 5px; margin-top: 10px;">{% for label in guide.guide_labels %}<span style="font-size: 0.75em; padding: 2px 8px; background-color: rgba(74, 158, 255, 0.2); border: 1px solid #4a9eff; border-radius: 3px; white-space: nowrap;">{{ label }}</span>{% endfor %}</div>{% endif %}
+</div>
+</a>
+</div>
+{% endif %}
+{% endfor %}
+</div>
 
-- ✅ **Best for**: Learning K8s, testing K8s deployments
-- ✅ **Pros**: Real Kubernetes environment, good for learning
-- ⚠️ **Limits**: Single node, resource intensive
-- **Time to deploy**: 30 minutes
-- **Prerequisites**: Minikube, kubectl, 16GB RAM recommended
+</div>
 
-### Cloud Platforms
+<div style="border: 2px solid #f59e0b; background-color: #3a2e1e; padding: 5px 20px 20px 20px; margin: 20px 0; border-radius: 8px;">
 
-Production-ready deployments with scalability.
+<h2>Data centre</h2>
 
-#### [AWS (Amazon Web Services)](aws-rke)
-**Production AWS with RKE2** - Enterprise-ready deployment on AWS.
+<div style="display: flex; flex-wrap: wrap; gap: 10px; margin-top: 10px;">
+{% assign deployment_pages = site.pages | where: "parent", "Deployment" | sort: "guide_category_order" %}
+{% for guide in deployment_pages %}
+{% if guide.guide_category contains "Data centre" %}
+<div style="border: 1px solid #f59e0b; background-color: #221a10; padding: 0; border-radius: 4px; flex: 1 1 200px; overflow: hidden;">
+<a href="{{ guide.url }}" style="text-decoration: none; color: inherit; display: block;">
+{% if guide.guide_banner %}
+<div style="width: 100%; height: 180px; background-image: url('{{ guide.url | replace: 'index.html', '' }}{{ guide.guide_banner }}'); background-size: cover; background-position: center; position: relative;">
+<div style="position: absolute; bottom: 0; left: 0; right: 0; background: linear-gradient(to top, rgba(0,0,0,0.85), rgba(0,0,0,0.4)); padding: 15px;">
+<div style="display: flex; align-items: center; gap: 10px; margin-bottom: 5px;">
+{% if guide.guide_emoji %}<span style="font-size: 2em; filter: drop-shadow(2px 2px 4px rgba(0,0,0,0.8));">{{ guide.guide_emoji }}</span>{% endif %}
+<strong style="font-size: 1.1em; color: white; text-shadow: 2px 2px 4px rgba(0,0,0,0.8);">{{ guide.title }}</strong>
+</div>
+<div style="font-size: 0.85em; color: #f59e0b; text-shadow: 1px 1px 3px rgba(0,0,0,0.8);">
+{% if guide.guide_difficulty %}{{ guide.guide_difficulty }}{% endif %}{% if guide.guide_difficulty and guide.guide_time %} • {% endif %}{% if guide.guide_time %}{{ guide.guide_time }}{% endif %}
+</div>
+</div>
+</div>
+{% else %}
+<div style="padding: 10px 15px 0 15px;">
+<div style="display: flex; align-items: center; gap: 10px; margin-bottom: 5px;">
+{% if guide.guide_emoji %}<span style="font-size: 2em;">{{ guide.guide_emoji }}</span>{% endif %}
+<strong style="font-size: 1.1em;">{{ guide.title }}</strong>
+</div>
+<div style="font-size: 0.85em; color: #f59e0b;">
+{% if guide.guide_difficulty %}{{ guide.guide_difficulty }}{% endif %}{% if guide.guide_difficulty and guide.guide_time %} • {% endif %}{% if guide.guide_time %}{{ guide.guide_time }}{% endif %}
+</div>
+</div>
+{% endif %}
+<div style="padding: 10px 15px;">
+{% if guide.guide_description %}<div style="font-size: 0.9em; margin-top: 8px; opacity: 0.9;">{{ guide.guide_description }}</div>{% endif %}
+{% if guide.guide_labels %}<div style="display: flex; flex-wrap: wrap; gap: 5px; margin-top: 10px;">{% for label in guide.guide_labels %}<span style="font-size: 0.75em; padding: 2px 8px; background-color: rgba(245, 158, 11, 0.2); border: 1px solid #f59e0b; border-radius: 3px; white-space: nowrap;">{{ label }}</span>{% endfor %}</div>{% endif %}
+</div>
+</a>
+</div>
+{% endif %}
+{% endfor %}
+</div>
 
-- ✅ **Best for**: Production deployments, enterprise scale
-- ✅ **Pros**: High availability, auto-scaling, managed services
-- 💰 **Cost**: Medium to high (depends on resources)
-- **Time to deploy**: 2-3 hours
-- **Also see**: [AWS EC2 Single Instance](aws-ec2) for simpler development setup
-
-#### [Azure AKS](azure)
-**Microsoft Azure Kubernetes** - Deploy on Azure with AKS.
-
-- ✅ **Best for**: Azure-committed organizations
-- ✅ **Pros**: Azure integration, managed K8s, enterprise support
-- 💰 **Cost**: Medium to high
-- **Time to deploy**: 2-3 hours
-
-#### [Google Cloud Platform](gcp)
-**GCP deployment** - Run TrustGraph on Google Cloud.
-
-- ✅ **Best for**: GCP users, ML/AI workloads
-- ✅ **Pros**: VertexAI integration, GKE, good for AI projects
-- 💰 **Cost**: Medium (free credits available)
-- **Time to deploy**: 2-3 hours
-
-#### [Intel / Tiber Cloud](intel)
-**GPU-accelerated** - High-performance with Intel GPU acceleration.
-
-- ✅ **Best for**: GPU workloads, high-performance needs
-- ✅ **Pros**: Hardware acceleration, optimized for Intel
-- 💰 **Cost**: Variable
-- **Time to deploy**: 2-4 hours
-
-#### [Scaleway](scaleway)
-**Budget-friendly European cloud** - Cost-effective cloud deployment.
-
-- ✅ **Best for**: Budget-conscious deployments, EU data residency
-- ✅ **Pros**: Lower cost, European data centers
-- 💰 **Cost**: Lower than major clouds
-- **Time to deploy**: 2-3 hours
-
-#### [AWS EC2 Single Instance](aws-ec2)
-**Simple AWS setup** - Single EC2 instance for development/testing.
-
-- ✅ **Best for**: Development, small-scale testing on AWS
-- ✅ **Pros**: Simple, cost-effective for development
-- ⚠️ **Limits**: Not for production scale
-- 💰 **Cost**: Low
-- **Time to deploy**: 1 hour
-
-## Production Considerations
-
-### Before Going to Production
-
-Review these critical resources:
-
-1. **[Production Considerations](production-considerations)** - HA, monitoring, backups, disaster recovery
-2. **[Security Guide](../guides/security/)** - Authentication, encryption, access control (Phase 4)
-3. **[Choosing a Deployment](choosing-deployment)** - Detailed comparison and requirements
-
-### Production Checklist
-
-- [ ] High availability configured
-- [ ] Monitoring and alerting set up
-- [ ] Backup strategy implemented
-- [ ] Security hardening completed
-- [ ] Resource sizing validated
-- [ ] Disaster recovery plan tested
-- [ ] Performance benchmarks established
-- [ ] Documentation for operations team
-
-## Troubleshooting
-
-### Common Issues
-
-See **[Troubleshooting Guide](troubleshooting)** for solutions to common deployment problems:
-- Container startup failures
-- Network connectivity issues
-- Resource constraints
-- Configuration errors
-- Service dependencies
-
-### Getting Help
-
-- **[Troubleshooting Guide](troubleshooting)** - Detailed problem-solving
-- **[Getting Help](../contributing/getting-help)** - Community support
-- **[GitHub Issues](https://github.com/trustgraph-ai/trustgraph/issues)** - Report bugs
-
-## Deployment Architecture
-
-### Components
-
-TrustGraph deployments typically include:
-
-- **Processing Services**: Document processing, entity extraction, GraphRAG
-- **Storage Layer**: Graph database (Cassandra), vector store (Qdrant)
-- **Message Queue**: Apache Pulsar for service communication
-- **LLM Integration**: Connection to local or cloud LLMs
-- **Web Interface**: TrustGraph Workbench
-- **Monitoring**: Grafana dashboards (optional but recommended)
-
-### Network Requirements
-
-- **Internal**: Service-to-service communication
-- **External**: API access, web interface
-- **LLM Access**: Outbound to cloud LLMs or local model access
-- **Storage**: Persistent volumes for databases
-
-## Next Steps
-
-### Just Starting?
-1. Try [Docker Compose](docker-compose) locally
-2. Load sample data: [Getting Started](../getting-started/quickstart)
-3. Explore features: [How-to Guides](../guides/)
-
-### Planning Production?
-1. Read [Choosing a Deployment](choosing-deployment)
-2. Review [Production Considerations](production-considerations)
-3. Set up monitoring and security
-4. Select your cloud platform guide above
-
-### Need Help?
-- Check [Troubleshooting](troubleshooting) for common issues
-- Visit [Getting Help](../contributing/getting-help) for support options
+</div>

@@ -4,6 +4,18 @@ nav_order: 4
 parent: Deployment
 grand_parent: TrustGraph Documentation
 review_date: 2026-01-06
+guide_category:
+  - European Cloud Providers
+guide_category_order: 2
+guide_description: Cost-effective Kubernetes deployment with GDPR compliance and European data residency
+guide_difficulty: intermediate
+guide_time: 1 - 2 hr
+guide_emoji: 🇫🇷
+guide_banner: /../scaleway.jpg
+guide_labels:
+  - Kubernetes
+  - Europe
+  - Budget-friendly
 ---
 
 # Scaleway Deployment

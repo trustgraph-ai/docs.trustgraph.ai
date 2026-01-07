@@ -2,8 +2,19 @@
 title: OVHcloud
 nav_order: 4.5
 parent: Deployment
-grand_parent: TrustGraph Documentation
 review_date: 2026-02-02
+guide_category:
+  - European Cloud Providers
+guide_category_order: 1
+guide_description: Deploy on OVHcloud Managed Kubernetes with European data sovereignty and AI Endpoints
+guide_difficulty: intermediate
+guide_time: 1 - 3 hr
+guide_emoji: 🇪🇺
+guide_banner: /../ovhcloud.png
+guide_labels:
+  - Kubernetes
+  - Europe
+  - Cloud
 ---
 
 # OVHcloud Deployment

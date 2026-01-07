@@ -1,18 +1,31 @@
 ---
-title: Intel GPU / Tiber Cloud
+title: Intel GPU
 nav_order: 3
 parent: Deployment
 grand_parent: TrustGraph Documentation
 review_date: 2025-12-02
+guide_category:
+  - Data centre
+guide_category_order: 1
+guide_description: High-performance AI deployment with Intel Gaudi and GPU accelerators for large models
+guide_difficulty: advanced
+guide_time: 5 - 10 hr
+guide_emoji: 🚀
+guide_banner: /../gaudi.jpg
+guide_labels:
+  - Intel
+  - GPU
+  - High-Performance
 ---
 
-# Intel Tiber Cloud Deployment
+# Intel Gaudi Cloud Deployment
 
-Deploy TrustGraph on Intel Tiber Cloud with Intel GPU and Gaudi accelerated systems for high-performance AI workloads.
+Deploy TrustGraph using Gaudi accelerated systems for high-performance
+AI workloads.
 
 ## Overview
 
-TrustGraph provides specialized deployment configurations for Intel's advanced hardware platforms, including Intel Tiber Cloud and bare-metal Intel GPU/Gaudi systems. This deployment method is designed for:
+TrustGraph provides specialized deployment configurations for Intel's advanced hardware platforms, including bare-metal Intel GPU/Gaudi systems. This deployment method is designed for:
 
 - **High-performance AI inference** with Intel accelerators
 - **Self-hosted deployments** on Intel hardware

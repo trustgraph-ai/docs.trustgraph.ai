@@ -4,6 +4,18 @@ nav_order: 10
 parent: How-to Guides
 grand_parent: TrustGraph Documentation
 review_date: 2026-08-01
+guide_category:
+  - Common knowledge management tasks
+guide_category_order: 1
+guide_description: Query documents using automatically extracted entities and their relationships in a knowledge graph
+guide_difficulty: beginner
+guide_time: 30 min
+guide_emoji: 🕸️
+guide_banner: graph-rag.png
+guide_labels:
+  - RAG
+  - Knowledge Graph
+  - Semantic Search
 ---
 
 # Graph RAG Guide
