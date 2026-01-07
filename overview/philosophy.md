@@ -1,6 +1,6 @@
 ---
 title: Philosophy
-nav_order: 0
+nav_order: 1
 parent: Overview
 review_date: 2026-08-01
 guide_category:
