@@ -3,6 +3,18 @@ title: Security
 nav_order: 50
 parent: Overview
 review_date: 2026-03-01
+guide_category:
+  - Enterprise integration
+guide_category_order: 3
+guide_description: Cybersecurity foundations, privacy protections, and enterprise security roadmap
+guide_difficulty: intermediate
+guide_time: 10 min
+guide_emoji: 🔒
+guide_banner: security.jpg
+guide_labels:
+  - Security
+  - Enterprise
+  - Compliance
 ---
 
 # Cybersecurity, Privacy and Safety
