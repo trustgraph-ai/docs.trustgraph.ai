@@ -3,6 +3,18 @@ title: Choosing a Deployment
 nav_order: 1
 parent: Deployment
 review_date: 2026-01-08
+guide_category:
+  - Deployment decisions
+guide_category_order: 1
+guide_description: Decision guide to help you select the right deployment method for your needs
+guide_difficulty: beginner
+guide_time: 10 min
+guide_emoji: 🤔
+guide_banner: /../choosing-deployment.jpg
+guide_labels:
+  - Planning
+  - Decision Guide
+  - Getting Started
 ---
 
 # Choosing a Deployment Option

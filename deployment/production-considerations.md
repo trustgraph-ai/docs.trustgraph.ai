@@ -4,6 +4,17 @@ nav_order: 11
 parent: Deployment
 grand_parent: TrustGraph Documentation
 review_date: 2026-01-04
+guide_category:
+guide_category_order: 2
+guide_description: Essential considerations and best practices for security, performance, and reliability
+guide_difficulty: advanced
+guide_time: 20 min
+guide_emoji: 🏭
+guide_banner: /../production.jpg
+guide_labels:
+  - Production
+  - Best Practices
+  - Enterprise
 ---
 
 # Production Considerations

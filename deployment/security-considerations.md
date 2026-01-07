@@ -3,6 +3,17 @@ title: Security Considerations
 nav_order: 10
 parent: Deployment
 review_date: 2026-02-19
+guide_category:
+guide_category_order: 3
+guide_description: Security characteristics and considerations for different deployment options
+guide_difficulty: intermediate
+guide_time: 15 min
+guide_emoji: 🔐
+guide_banner: /../security-considerations.jpg
+guide_labels:
+  - Security
+  - Best Practices
+  - Planning
 ---
 
 # Security Considerations
