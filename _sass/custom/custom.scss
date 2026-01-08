@@ -147,3 +147,30 @@ pre {
   overflow-y: auto;
 }
 
+details {
+
+  border: 1px solid var(--border-color, #e1e4e8);
+  border-radius: 6px;
+  padding: 0.75rem 1rem;
+  margin: 1rem 0;
+  
+  summary {
+    cursor: pointer;
+    font-weight: 500;
+    
+    &:hover {
+      color: var(--link-color, #0366d6);
+    }
+  }
+  
+  > *:nth-child(n+2) {
+    margin-top: 1rem;
+  }
+  
+  img {
+    max-width: 100%;
+    border: 1px solid var(--border-color, #e1e4e8);
+    border-radius: 4px;
+  }
+}
+

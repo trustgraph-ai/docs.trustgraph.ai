@@ -22,7 +22,7 @@ guide_labels:
 
 {% capture requirements %}
 <ul style="margin: 0; padding-left: 20px;">
-<li>Machine with 12GB+ RAM and 8 CPUs available for TrustGraph to use - a 16GB Macbook or laptop will probably be fine</li>
+<li>Machine with 12GB+ RAM and 8 CPUs available for TrustGraph to use - a 16GB Macbook or laptop will probably cope</li>
 <li>Docker Engine or Podman installed (see below)</li>
 <li>Python 3 for CLI tools (see below)</li>
 <li>Access to an LLM (cloud service like VertexAI, AWS Bedrock, or local with Ollama)</li>
@@ -43,7 +43,7 @@ guide_labels:
 Docker and Podman are popular container hosting environments which run on
 many types of system.  Docker was the original container engine and runs on
 Linux, MacOS and Windows.  Podman uses the Linux-kernel container
-capabilties, and can also run on MacOS.  Podman is an open-source alternative
+capabilities, and can also run on MacOS.  Podman is an open-source alternative
 built to be highly compatible with Docker engine.
 
 Docker and Podman both have a "compose" utility which lets you easily
@@ -57,25 +57,76 @@ with enough resources, you can run TrustGraph directly on that device.
 This is a good way to get started for local development and testing,
 proof-of-concept building, small-scale experiments, or just to learn more.
 
-## Prerequisites
+## Getting ready
 
-### System requirements
+### System resources
 
-You need a machine with at least 12GB of RAM and 8 CPUs available.
-A 16GB machine is probably enough.
+As mentioned above, you need a machine with at least 12GB of RAM and 8 CPUs
+available for TrustGraph.  That means if you're running other significant
+resources on it, it will probably fail. We can run TrustGraph on 16GB
+Macbook, but not when other things are running.
 
-This has been tested with Linux, MacOS and Windows deployments.
+You can also deploy an instance to your favourite cloud provider and use
+that.
 
-You need to have Python 3 installed to run the command-line tools.
+This has been tested with Linux, MacOS and Windows devices.
+
+### Python
+
+You need to have Python 3 installed to run the command-line tools.  You
+should use a newer version, Python 3.11 or later.
+
+<details>
+
+<summary>Specific guidance for MacOS</summary>
+
+<div markdown="1">
+MacOS X-Code is the usual way to get developer tools on your Macbook.  Note
+that X-Code doesn't track later Python versions (Python 3.9)?  If you're
+on MacOS you should consider using Homebrew to install Python3, and
+making sure that the Homebrew version of Python takes priority over
+the default OS version.  You can run the `python` command to see what
+version of Python you have installed as the default.
+</div>
+
+<div markdown="1">
+```
+Python 3.14.2 (main, Dec  5 2025, 00:00:00) [GCC 15.2.1 20251111 (Red
+Hat 15.2.1-4)] on linux
+Type "help", "copyright", "credits" or "license" for more information.
+>>> 
+```
+</div>
+
+</details>
 
 ### Docker / Podman
 
-For Windows / MacOS we would recommend using Docker.  For Linux, podman is
+For Windows / MacOS it is recommended to use Docker.  For Linux, Podman is
 natively available with all major distributions.  You will need to have this
-installed before running this guide.
+installed before running this installation.
 
 - [Install Docker Engine](https://docs.docker.com/engine/install/)
 - [Install Podman Machine](http://podman.io/)
+
+If you are using Docker desktop, you may need to review the resource settings
+as described in this section.
+
+<details>
+
+<summary>Resource settings for Docker desktop</summary>
+
+<div>
+Note that if you are using Docker desktop, there are CPU and memory limits
+which can be applied to limit the resources set aside for containers.
+If you find that containers get stuck unresourced, you will need to allocate
+more resources.  We run with 12GB of RAM and 8 CPUs allocated to TrustGraph.
+These settings are on the *Settings* tab under *Resources*.
+</div>
+
+<img src="docker-desktop-resources.png" alt="Docker desktop settings screenshot"/>
+
+</details>
 
 ### Large Language Model
 
@@ -101,8 +152,6 @@ Here are some example ways to get an LLM to run:
 | **Ollama** | Run models locally on your machine. Supports Llama, Mistral, and many others. | Local deployment, no cloud costs, privacy |
 | **LMStudio** | Desktop application for running local LLMs with an OpenAI-compatible API. | Easy local setup, GPU acceleration, privacy |
 | **vLLM** | The most comprehensive self-hosted model engine | Well supported, GPU acceleration, privacy |
-
-> **Note**: If using Podman, substitute `podman` for `docker` in all commands.
 
 ## Configuration setup
 
@@ -334,7 +383,7 @@ information has started to load, you should see some search results.
 
 The vector search attempts to find up to 10 terms which are the closest
 matches for your search term.  It does this even if the search terms are not
-a strong match, so this is a simple way to observe whether dat has loaded.
+a strong match, so this is a simple way to observe whether data has loaded.
 
 ### Verify knowledge graph
 
