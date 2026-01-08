@@ -801,10 +801,8 @@ podman volume ls
 ### Service Failure
 
 <details>
-<summary>Services not starting</summary>
+<summary>Run out of resources</summary>
 <div markdown="1">
-
-**Run out of resources**
 
 *Diagnosis:*
 
@@ -850,7 +848,12 @@ Look for `"OOMKilled": true` or error messages in the inspect output.
 - **Docker Desktop**: Increase memory allocation in Settings → Resources
 - **Alternative**: Run on a machine with more available memory (16GB+ recommended)
 
-**Application error**
+</div>
+</details>
+
+<details>
+<summary>Application error</summary>
+<div markdown="1">
 
 *Diagnosis:*
 
