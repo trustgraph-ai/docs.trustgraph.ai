@@ -798,52 +798,111 @@ podman volume ls
 
 ## Troubleshooting
 
-### Common Issues
+### Service Failure
 
-**Services Not Starting:**
-- Wait 120 seconds for full initialization
-- Check container status: `docker ps -a`
-- Review logs: `docker-compose logs [service-name]`
+<details>
+<summary>Services not starting</summary>
+<div markdown="1">
 
-**Memory Issues:**
-- Ensure sufficient RAM (8GB recommended)
-- Monitor resource usage: `docker stats`
+**Run out of resources**
 
-**Connection Issues:**
-- Verify ports are available (8888, 3000)
-- Check firewall settings
-- Ensure Docker daemon is running
+*Diagnosis:*
 
-### Debugging Commands
+Check which containers are running. Init containers (names ending in `-init`)
+should show `Exited (0)` - this is normal. Other containers should be running.
 
+{% capture docker_ps %}
 ```bash
-# Check all containers
+# Show all containers
 docker ps -a
 
-# View logs for specific service
-docker-compose logs [service-name]
+# Find OOM-killed containers (exit code 137)
+docker ps -a --filter 'exited=137'
 
-# Check system resources
-docker stats
-
-# Verify TrustGraph flows
-tg-show-flows
-
-# Check processor state
-tg-show-processor-state
+# Inspect a failed container for details
+docker inspect <container-name> | grep -A 5 "OOMKilled\|Error"
 ```
+{% endcapture %}
+
+{% capture podman_ps %}
+```bash
+# Show all containers
+podman ps -a
+
+# Find OOM-killed containers (exit code 137)
+podman ps -a --filter 'exited=137'
+
+# Inspect a failed container for details
+podman inspect <container-name> | grep -A 5 "OOMKilled\|Error"
+```
+{% endcapture %}
+
+{% include code_tabs.html
+   tabs="Docker,Podman"
+   content1=docker_ps
+   content2=podman_ps
+%}
+
+Look for `"OOMKilled": true` or error messages in the inspect output.
+
+*Resolution:*
+
+- **Docker Desktop**: Increase memory allocation in Settings → Resources
+- **Alternative**: Run on a machine with more available memory (16GB+ recommended)
+
+**Application error**
+
+*Diagnosis:*
+
+Find failed containers and examine their logs:
+
+{% capture docker_logs %}
+```bash
+# Show all containers
+docker ps -a
+
+# View logs for a specific container
+docker logs <container-name>
+
+# Follow logs in real-time
+docker logs -f <container-name>
+```
+{% endcapture %}
+
+{% capture podman_logs %}
+```bash
+# Show all containers
+podman ps -a
+
+# View logs for a specific container
+podman logs <container-name>
+
+# Follow logs in real-time
+podman logs -f <container-name>
+```
+{% endcapture %}
+
+{% include code_tabs.html
+   tabs="Docker,Podman"
+   content1=docker_logs
+   content2=podman_logs
+%}
+
+Alternatively, view aggregated logs in the Grafana dashboard at
+[http://localhost:3000/](http://localhost:3000/) (default credentials:
+admin/admin). The Logs dashboard shows all TrustGraph container logs in one place.
+
+*Resolution:*
+
+Resolution depends on the specific error message. Common issues include
+configuration errors, missing environment variables, or service dependencies
+not being ready.
+
+</div>
+</details>
 
 ## Next Steps
 
 - **Guides**: See [Guides](../guides) for things you can do with your running
   TrustGraph
-
-
-
-
-    
-
-
-chcon -Rt svirt_sandbox_file_t vertexai/
-
 
