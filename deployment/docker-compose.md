@@ -32,7 +32,7 @@ guide_labels:
 
 {% include guide-intro-box.html
    description=page.guide_description
-   difficulty=page.guide_difficulty
+   difficulty="{{ page.guide_difficulty | capitalize }}"
    duration=page.guide_time
    you_will_need=requirements
    goal="Launch a complete TrustGraph environment locally using Docker or Podman for development, testing, and learning."
