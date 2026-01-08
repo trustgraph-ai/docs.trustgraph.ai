@@ -22,9 +22,9 @@ guide_labels:
 
 {% capture requirements %}
 <ul style="margin: 0; padding-left: 20px;">
-<li>Machine with 12GB+ RAM and 8 CPUs (16GB recommended)</li>
-<li>Docker Engine or Podman installed</li>
-<li>Python 3 for CLI tools</li>
+<li>Machine with 12GB+ RAM and 8 CPUs available for TrustGraph to use - a 16GB Macbook or laptop will probably be fine</li>
+<li>Docker Engine or Podman installed (see below)</li>
+<li>Python 3 for CLI tools (see below)</li>
 <li>Access to an LLM (cloud service like VertexAI, AWS Bedrock, or local with Ollama)</li>
 <li>Basic command-line familiarity</li>
 </ul>
@@ -32,7 +32,7 @@ guide_labels:
 
 {% include guide-intro-box.html
    description=page.guide_description
-   difficulty="{{ page.guide_difficulty | capitalize }}"
+   difficulty=page.guide_difficulty
    duration=page.guide_time
    you_will_need=requirements
    goal="Launch a complete TrustGraph environment locally using Docker or Podman for development, testing, and learning."
