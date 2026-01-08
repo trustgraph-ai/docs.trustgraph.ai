@@ -109,6 +109,7 @@ installed before running this installation.
 - [Install Docker Engine](https://docs.docker.com/engine/install/)
 - [Install Podman Machine](http://podman.io/)
 
+{: .note }
 If you are using Docker desktop, you may need to review the resource settings
 as described in this section.
 
@@ -132,26 +133,30 @@ These settings are on the *Settings* tab under *Resources*.
 
 You need to have access to an LLM.  TrustGraph can work with many different
 kinds of LLM.  You can use a cloud-hosted service, or have an LLM hosted
-locally on your device or network.  TrustGraph can work with small models,
-but small models are still demanding on resources.
+locally on your device or network.  TrustGraph can work with small models
+which you can run on standard home/office equipment,
+but small models are still demanding on resources.  A 16GB Macbook is able to
+run an LLM but likely not at the same time as running all the containers which
+make up a TrustGraph deployment.
+
+Here are some example ways to get an LLM to run:
+
+| Provider | Description | Access type |
+|----------|-------------|----------|
+| **Google Cloud VertexAI** | This is a subscription-based service which is part of Google Cloud. The Gemini models are good and cost-effective.  There are free credits for new users. | Cloud subscription |
+| **AWS Bedrock** | Amazon's managed LLM service with Claude, Mistral, and other models available. Running Claude on Bedrock is a good option. | Cloud subscription |
+| **Azure** | Microsoft's cloud subscription services include Machine Learning Services (MLS) and Cognitive Services (CS). The TrustGraph *Azure* integration can use the MLS service, while *Azure OpenAI* can use CS models. | Cloud subscription |
+| **Anthropic Claude** | Integrates with Anthropic's APIs directly for access to the Claude models. Claude models are very capable. | API subscription |
+| **Mistral AI** | Integrates with Mistral's APIs directly for access to the Mistral models. | API subscription |
+| **OpenAI** | Integrates with OpenAI's API for GPT models | API subscription |
+| **Ollama** | Run models locally on your machine. Supports Llama, Mistral, and many others. | Self-hosted |
+| **vLLM** | The most comprehensive self-hosted model engine | Self-hosted |
+| **LMStudio** | Desktop application for running local LLMs with an OpenAI-compatible API. LMStudio is a very user-friendly experience, which makes it easier to diagnose and solve hosting problems. Note: LMStudio is free, but only for non-work-related use. | Self-hosted |
 
 Using a cloud-hosted service is a good starting point - you will need a
 subscription, but no extra hardware.  If you do want to run an LLM locally,
 you will need a device with a good GPU, and likely some experience of
 running this yourself as you may need to debug model / hosting issues.
-
-Here are some example ways to get an LLM to run:
-
-| Provider | Description | Best For |
-|----------|-------------|----------|
-| **Google Cloud VertexAI** | Access to Gemini models and other Google-hosted LLMs. Offers free credits for new users. | Cost-effective cloud option, good performance with Gemini Flash 1.5 |
-| **AWS Bedrock** | Amazon's managed LLM service with Claude, Mistral, and other models available. | AWS ecosystem integration, enterprise deployments |
-| **Azure OpenAI** | Microsoft's managed service providing GPT-4o and other OpenAI models. | Azure ecosystem integration, enterprise support |
-| **Anthropic Claude** | Direct access to Claude models via API subscription. | High-quality responses, large context windows |
-| **OpenAI** | Direct access to GPT models (GPT-4, GPT-3.5) via API subscription. | Wide model selection, familiar API |
-| **Ollama** | Run models locally on your machine. Supports Llama, Mistral, and many others. | Local deployment, no cloud costs, privacy |
-| **LMStudio** | Desktop application for running local LLMs with an OpenAI-compatible API. | Easy local setup, GPU acceleration, privacy |
-| **vLLM** | The most comprehensive self-hosted model engine | Well supported, GPU acceleration, privacy |
 
 ## Configuration setup
 
