@@ -296,6 +296,86 @@ python3 -m venv env
 pip install trustgraph-cli==1.8.9
 ```
 
+## Configure LLM
+
+Depending on which LLM you selected, there are some configuration settings
+you need to prepare:
+
+<details>
+<summary>Specific guidance for Azure</summary>
+<div markdown="1">
+There are 2 hosted model options for Azure:
+
+- Machine Learning Services (MLS)
+- Cognitive Services (CS)
+
+TrustGraph's *Azure* is for integration with MLS.  *Azure OpenAI* is for
+integration with CS.  If you are using the *Azure* / MLS integration, you
+should make sure you know your model endpoint, and the token granted for the
+endpoint, and configure these values thus:
+```
+export AZURE_ENDPOINT=https://ENDPOINT.API.HOST.GOES.HERE/
+export AZURE_TOKEN=TOKEN-GOES-HERE
+```
+If you are using the *Azure OpenAI* / CS integration, you should make sure
+you know your model endpoint, the token and configure them thus:
+```
+export AZURE_ENDPOINT=https://ENDPOINT.API.HOST.GOES.HERE/
+export AZURE_TOKEN=TOKEN-GOES-HERE
+```
+</div>
+</details>
+
+<details>
+<summary>Specific guidance for AWS Bedrock</summary>
+<div markdown="1">
+To use Bedrock, you need to have AWS credentials provisioned.
+The easiest way is to create an IAM user, and create credentials for this
+user.  When you provision the user, you will be asked to give the user
+permissions.  To allow Bedrock access, the `AmazonBedrockFullAccess`
+role should be added.
+
+You would then provision credentials which would give you an *access key ID*
+and a *secret access key*.  You should pick the identifier of an
+AWS region to connect to e.g. `eu-west-2`.  In order to prepare to deploy,
+you should set three environment variables using the information.
+
+```
+export AWS_ACCESS_KEY_ID=ID-KEY-HERE
+export AWS_SECRET_ACCESS_KEY=TOKEN-GOES-HERE
+export AWS_DEFAULT_REGION=AWS-REGION-HERE
+```
+
+Note: You should be very careful with AWS cloud credentials provisioned
+this way: if lost or leaked this provides a malicious person access to the
+AWS resources you gave this user.
+</div>
+</details>
+
+<details>
+<summary>Specific guidance for Anthropic Claude</summary>
+<div markdown="1">
+
+FIXME
+
+```
+export CLAUDE_KEY=Claude-key-goes-here
+```
+</div>
+</details>
+
+<details>
+<summary>Specific guidance for Cohere</summary>
+<div markdown="1">
+
+FIXME
+
+```
+export COHERE_KEY=TOKEN-GOES-HERE
+```
+</div>
+</details>
+
 ## Launch TrustGraph
 
 {% capture docker %}
@@ -315,7 +395,6 @@ podman-compose -f docker-compose.yaml up -d
    content1=docker
    content2=podman
 %}
-
 
 ### Verify startup
 
@@ -596,3 +675,55 @@ tg-show-processor-state
 
 - **Guides**: See [Guides](../guides) for things you can do with your running
   TrustGraph
+
+MODEL STUFF
+
+Ollama:
+
+export OLLAMA_HOST=http://ollama-host:11434
+
+
+
+
+
+Claude:
+kubectl -n trustgraph create secret \
+    generic claude-credentials \
+    --from-literal=claude-key=CLAUDE_KEY
+    
+    CLAUDE_KEY
+    
+    
+    
+export COHERE_KEY=TOKEN-GOES-HERE
+
+
+
+export GOOGLE_AI_STUDIO_KEY=TOKEN-GOES-HERE
+
+export LLAMAFILE_URL=LLAMAFILE-URL
+
+export LMSTUDIO_URL=http://localhost:1234
+
+export MISTRAL_TOKEN=TOKEN-GOES-HERE
+
+export OLLAMA_HOST=http://ollama-host:11434
+
+export OPENAI_TOKEN=TOKEN-GOES-HERE
+
+
+
+
+
+chcon -Rt svirt_sandbox_file_t vertexai/
+
+
+
+
+
+MCP_SERVER_SECRET
+
+
+GATEWAY_SECRET
+
+
