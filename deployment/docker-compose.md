@@ -22,6 +22,11 @@ guide_labels:
 
 <div style="border: 2px solid #4a9eff; background-color: #1e2a3a; padding: 20px; margin: 20px 0; border-radius: 8px;">
 
+<div style="margin-bottom: 20px;">
+<strong style="color: #4a9eff; font-size: 0.85em; text-transform: uppercase;">Description</strong>
+<p style="margin: 5px 0 0 0; font-size: 1.1em; line-height: 1.5;">{{ page.guide_description }}</p>
+</div>
+
 <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px; margin-bottom: 15px;">
 
 <div>
