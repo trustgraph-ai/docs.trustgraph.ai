@@ -20,44 +20,23 @@ guide_labels:
 
 # Docker/Podman compose deployment
 
-<div style="border: 2px solid #4a9eff; background-color: #1e2a3a; padding: 20px; margin: 20px 0; border-radius: 8px; font-size: 0.9em;">
-
-<div style="margin-bottom: 20px;">
-<strong style="color: #4a9eff; font-size: 0.85em; text-transform: uppercase;">Description</strong>
-<p style="margin: 5px 0 0 0; line-height: 1.5;">{{ page.guide_description }}</p>
-</div>
-
-<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px; margin-bottom: 15px;">
-
-<div>
-<strong style="color: #4a9eff; font-size: 0.85em; text-transform: uppercase;">Difficulty</strong>
-<p style="margin: 5px 0 0 0;">{{ page.guide_difficulty | capitalize }}</p>
-</div>
-
-<div>
-<strong style="color: #4a9eff; font-size: 0.85em; text-transform: uppercase;">Duration</strong>
-<p style="margin: 5px 0 0 0;">{{ page.guide_time }}</p>
-</div>
-
-</div>
-
-<div style="margin-bottom: 15px;">
-<strong style="color: #4a9eff; font-size: 0.85em; text-transform: uppercase;">You will need</strong>
-<ul style="margin: 5px 0 0 0; padding-left: 20px;">
+{% capture requirements %}
+<ul style="margin: 0; padding-left: 20px;">
 <li>Machine with 12GB+ RAM and 8 CPUs (16GB recommended)</li>
 <li>Docker Engine or Podman installed</li>
 <li>Python 3 for CLI tools</li>
 <li>Access to an LLM (cloud service like VertexAI, AWS Bedrock, or local with Ollama)</li>
 <li>Basic command-line familiarity</li>
 </ul>
-</div>
+{% endcapture %}
 
-<div>
-<strong style="color: #4a9eff; font-size: 0.85em; text-transform: uppercase;">Goal</strong>
-<p style="margin: 5px 0 0 0;">Launch a complete TrustGraph environment locally using Docker or Podman for development, testing, and learning.</p>
-</div>
-
-</div>
+{% include guide-intro-box.html
+   description=page.guide_description
+   difficulty=page.guide_difficulty
+   duration=page.guide_time
+   you_will_need=requirements
+   goal="Launch a complete TrustGraph environment locally using Docker or Podman for development, testing, and learning."
+%}
 
 ## Overview
 
