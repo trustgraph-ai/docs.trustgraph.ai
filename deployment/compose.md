@@ -852,6 +852,36 @@ Look for `"OOMKilled": true` or error messages in the inspect output.
 </details>
 
 <details>
+<summary>Hitting major CPU resource limits</summary>
+<div markdown="1">
+
+*Diagnosis:*
+
+System is very slow to start, taking several minutes to become available.
+Operations are sluggish. Check CPU load:
+
+```bash
+# Monitor CPU usage
+top
+
+# Or use htop if available
+htop
+```
+
+If CPU load remains very high (near 100%) for an extended period during startup
+and operations, this indicates insufficient CPU resources or an older CPU
+architecture struggling with the workload.
+
+*Resolution:*
+
+Migrate to a device with more CPU cores or a newer CPU architecture. TrustGraph
+requires 8 CPUs minimum, but more cores or faster processors will improve
+performance significantly.
+
+</div>
+</details>
+
+<details>
 <summary>Configuration volume mount access restriction</summary>
 <div markdown="1">
 
