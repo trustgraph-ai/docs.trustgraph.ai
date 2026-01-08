@@ -801,7 +801,7 @@ podman volume ls
 ### Service Failure
 
 <details>
-<summary>Run out of resources</summary>
+<summary>Run out of memory</summary>
 <div markdown="1">
 
 *Diagnosis:*
