@@ -951,6 +951,67 @@ not being ready.
 </div>
 </details>
 
+### LLM Failure
+
+<details>
+<summary>LLM configuration error</summary>
+<div markdown="1">
+
+*Diagnosis:*
+
+The system appears to be running but LLM connectivity is not working. Test LLM
+connectivity:
+
+```bash
+tg-invoke-llm '' 'What is 2+2'
+```
+
+A long timeout or error indicates LLM configuration issues. Check the Grafana
+logs dashboard at [http://localhost:3000/](http://localhost:3000/) for
+application logs. Look for errors in the `text-completion` container logs
+which indicate LLM connection failures.
+
+*Resolution:*
+
+Review the LLM configuration settings in the [Configure LLM settings](#configure-llm-settings)
+section. Common issues include:
+- Missing or incorrect API keys
+- Wrong endpoint URLs
+- Missing `/v1` suffix for self-hosted models
+- Incorrect `host.containers.internal` hostname for local services
+
+</div>
+</details>
+
+<details>
+<summary>Locally-hosted LLM connectivity error</summary>
+<div markdown="1">
+
+*Diagnosis:*
+
+Check the Grafana logs dashboard for connectivity errors in the `text-completion`
+container. Look for errors indicating connection refused, timeouts, or unreachable
+hosts when attempting to connect to your LLM service.
+
+*Resolution:*
+
+Review your network connectivity and addressing configuration:
+
+- Verify your LLM service is running and accessible
+- Check the URL configuration for your LLM (environment variables like
+  `OLLAMA_HOST`, `LMSTUDIO_URL`, `VLLM_URL`, etc.)
+- For services on the same host, ensure you're using `host.containers.internal`
+  as the hostname
+- Verify the correct port number
+- Ensure URLs include `/v1` suffix where required
+
+See also:
+- [Container networking and self-hosted models](container-networking)
+- [WSL networking and self-hosted models](wsl-networking)
+
+</div>
+</details>
+
 ## Next Steps
 
 - **Guides**: See [Guides](../guides) for things you can do with your running
