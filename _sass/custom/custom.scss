@@ -141,3 +141,9 @@
     background-color: #0d1117;
   }
 }
+
+pre {
+  max-height: 400px;  // adjust this to whatever you want
+  overflow-y: auto;
+}
+

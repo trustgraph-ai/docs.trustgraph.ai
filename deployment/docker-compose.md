@@ -147,9 +147,9 @@ You should use the terminal window to create a suitable directory for your
 work and unpack the ZIP file e.g.
 
 ```sh
-$ mkdir -p ~/trustgraph
-$ cd ~/trustgraph
-$ unzip ~/Downloads/deploy.zip
+mkdir -p ~/trustgraph
+cd ~/trustgraph
+unzip ~/Downloads/deploy.zip
 ```
 
 That may be all you need to unpack the TrustGraph file.  If you are having
@@ -161,8 +161,9 @@ for any user on your system.  This may be necessary if your system has
 stricter access control policies on the files that can be read by containers.
 
 ```sh
-$ find garage/ loki/ prometheus/ grafana/ trustgraph/ vertexai/ -type f | xargs chmod 644
-$ find garage/ loki/ prometheus/ grafana/ trustgraph/ vertexai/ -type d | xargs chmod 755
+find garage/ loki/ prometheus/ grafana/ trustgraph/ vertexai/ -type f | xargs chmod 644
+
+find garage/ loki/ prometheus/ grafana/ trustgraph/ vertexai/ -type d | xargs chmod 755
 ```
 
 On Linux, if you are running SElinux, it may also be necessary to grant
@@ -189,9 +190,23 @@ pip install trustgraph-cli==1.8.9
 
 ## Launch TrustGraph
 
+{% capture docker %}
 ```sh
-docker-compose -f docker-compose.yaml up -d
+docker compose -f docker-compose.yaml up -d
 ```
+{% endcapture %}
+
+{% capture podman %}
+```sh
+podman-compose -f docker-compose.yaml up -d
+```
+{% endcapture %}
+
+{% include code_tabs.html
+   tabs="Docker,Podman"
+   content1=docker
+   content2=podman
+%}
 
 ## Wait for initialization
 
@@ -375,12 +390,27 @@ tg-show-processor-state
 
 ### Clean Shutdown
 
+{% capture docker_shutdown %}
 ```bash
-docker-compose -f docker-compose.yaml down -v -t 0
+docker compose -f docker-compose.yaml down -v -t 0
 ```
+{% endcapture %}
+
+{% capture podman_shutdown %}
+```bash
+podman-compose -f docker-compose.yaml down -v -t 0
+```
+{% endcapture %}
+
+{% include code_tabs.html
+   tabs="Docker,Podman"
+   content1=docker_shutdown
+   content2=podman_shutdown
+%}
 
 ### Verify Cleanup
 
+{% capture docker_verify %}
 ```bash
 # Confirm no containers running
 docker ps
@@ -388,6 +418,23 @@ docker ps
 # Confirm volumes removed
 docker volume ls
 ```
+{% endcapture %}
+
+{% capture podman_verify %}
+```bash
+# Confirm no containers running
+podman ps
+
+# Confirm volumes removed
+podman volume ls
+```
+{% endcapture %}
+
+{% include code_tabs.html
+   tabs="Docker,Podman"
+   content1=docker_verify
+   content2=podman_verify
+%}
 
 ## Next Steps
 
