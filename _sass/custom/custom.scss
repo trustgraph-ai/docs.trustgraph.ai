@@ -26,22 +26,23 @@
   color: var(--grey-dk-100, #5c5c5c);
   transition: all 0.15s ease;
   position: relative;
-  
+  margin-bottom: -1px;
+  border-bottom: 2px solid transparent;
+
   &:hover {
     color: var(--link-color, #0366d6);
     background-color: rgba(0, 0, 0, 0.03);
   }
-  
+
   &:focus {
     outline: 2px solid var(--link-color, #0366d6);
     outline-offset: -2px;
   }
-  
+
   &.active {
     color: var(--link-color, #0366d6);
     background-color: var(--body-background-color, #fff);
-    border-bottom: 2px solid var(--link-color, #0366d6);
-    margin-bottom: -1px;
+    border-bottom-color: var(--link-color, #0366d6);
   }
 }
 
