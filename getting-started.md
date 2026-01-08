@@ -77,14 +77,14 @@ Choose your path to get started with TrustGraph. Whether you want to learn the c
    banner_image="quickstart.jpg"
    emoji="🚀"
    title="Try it out (Quickstart)"
-   description="Get hands-on experience quickly with Docker"
+   description="Get hands-on experience quickly by running it on a local device"
 %}
 {% include journey-card.html
-   url="deployment/docker-compose"
+   url="deployment/compose"
    text_color="#e8f4fd"
    bg_color="#0d1621"
    border_color="#4a9eff"
-   title="Docker Compose"
+   title="Docker/Podman Compose"
    description="Easiest way to get TrustGraph running locally for development and testing"
 %}
 {% include journey-card.html

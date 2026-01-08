@@ -45,12 +45,12 @@ guide_labels:
    border_color="#48bb78"
    bg_color="#0d2118"
    text_color="#d4f4dd"
-   title="Option 1: Docker Compose"
+   title="Option 1: Docker/Podman Compose"
    description="The easiest way to get started. Run TrustGraph locally in 15-30 minutes."
    best_for=docker_best_for
    list2_title="Requirements"
    list2_items=docker_requirements
-   link="docker-compose"
+   link="compose"
    button_bg="#48bb78"
    button_text="#0d2118"
 %}

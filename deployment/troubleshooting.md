@@ -62,7 +62,7 @@ TrustGraph requires Python 3.12 or later.
 ### Missing `trustgraph-cli` package
 
 If CLI commands aren't found, revisit the installation instructions:
-[installation](/deployment/docker-compose#2-install-cli-tools)
+[installation](/deployment/compose#2-install-cli-tools)
 
 ### Version mismatch
 

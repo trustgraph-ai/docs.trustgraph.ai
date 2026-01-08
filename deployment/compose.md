@@ -160,7 +160,8 @@ running this yourself as you may need to debug model / hosting issues.
 
 ### A word on networking and self-hosting
 
-If you are self-hosting a model
+If you are self-hosting a model on the same device you are intending
+to run TrustGraph, you may need 
 
 <details>
 
