@@ -40,7 +40,7 @@ this device.
 The diagram below illustrates how container
 networking operates on a host.
 
-<img src="podman-networking.png" alt="Podman networking diagram"/>
+<img src="container-networking.png" alt="Podman networking diagram"/>
 
 The container engine creates a network space for containers, so that
 containers appear to talk to each across a network.  Containers talk to
