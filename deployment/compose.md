@@ -397,11 +397,78 @@ If running a llamafile or llama.cpp server locally, configure the URL to point
 to your server. The URL must include the `/v1` path:
 
 ```
-export LLAMAFILE_URL=http://host.containers.internal:7000/v1
+export LLAMAFILE_URL=http://your-server-host:port/v1
 ```
 
-Note: Use `host.containers.internal` to reference services on your host machine
-from within containers.
+If running on the same host as your containers, use `host.containers.internal`
+as the hostname (e.g., `http://host.containers.internal:7000/v1`).
+
+See also: [Container networking and self-hosted models](container-networking)
+</div>
+</details>
+
+<details>
+<summary>Specific guidance for LMStudio</summary>
+<div markdown="1">
+If running LMStudio locally, configure the URL to point to your LMStudio server.
+LMStudio typically runs on port 1234:
+
+```
+export LMSTUDIO_URL=http://your-server-host:1234
+```
+
+If running on the same host as your containers, use `host.containers.internal`
+as the hostname (e.g., `http://host.containers.internal:1234`).
+
+See also: [Container networking and self-hosted models](container-networking)
+</div>
+</details>
+
+<details>
+<summary>Specific guidance for Mistral AI</summary>
+<div markdown="1">
+To use Mistral's API, sign up at [console.mistral.ai](https://console.mistral.ai/)
+and create an API key. Set the key as an environment variable:
+
+```
+export MISTRAL_TOKEN=your-mistral-api-key-here
+```
+</div>
+</details>
+
+<details>
+<summary>Specific guidance for Ollama</summary>
+<div markdown="1">
+If running Ollama locally, configure the URL to point to your Ollama server.
+Ollama typically runs on port 11434:
+
+```
+export OLLAMA_HOST=http://your-server-host:11434
+```
+
+If running on the same host as your containers, use `host.containers.internal`
+as the hostname (e.g., `http://host.containers.internal:11434`).
+
+See also: [Container networking and self-hosted models](container-networking)
+</div>
+</details>
+
+<details>
+<summary>Specific guidance for OpenAI</summary>
+<div markdown="1">
+To use OpenAI's API, sign up at [platform.openai.com](https://platform.openai.com/)
+and create an API key. Set the key as an environment variable:
+
+```
+export OPENAI_TOKEN=your-openai-api-key-here
+```
+
+Many other services provide OpenAI-compatible APIs. You can use these by setting
+the `OPENAI_BASE_URL` environment variable to point to the alternative service:
+
+```
+export OPENAI_BASE_URL=http://your-server-host:8000/v1
+```
 </div>
 </details>
 
@@ -718,12 +785,6 @@ export OLLAMA_HOST=http://ollama-host:11434
     
     
 
-
-export LLAMAFILE_URL=LLAMAFILE-URL
-
-export LMSTUDIO_URL=http://localhost:1234
-
-export MISTRAL_TOKEN=TOKEN-GOES-HERE
 
 export OLLAMA_HOST=http://ollama-host:11434
 
