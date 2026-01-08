@@ -296,7 +296,7 @@ python3 -m venv env
 pip install trustgraph-cli==1.8.9
 ```
 
-## Configure LLM
+## Configure LLM settings
 
 Depending on which LLM you selected, there are some configuration settings
 you need to prepare:
@@ -471,6 +471,22 @@ export OPENAI_BASE_URL=http://your-server-host:8000/v1
 ```
 </div>
 </details>
+
+## Configure security settings
+
+For this local deployment, set the following security variables to empty strings
+to disable authentication:
+
+```sh
+export MCP_SERVER_SECRET=""
+export GATEWAY_SECRET=""
+```
+
+The `MCP_SERVER_SECRET` protects the MCP server with a secret but is not fully
+implemented yet. The `GATEWAY_SECRET` provides single-secret protection for the
+gateway API, which does not currently support comprehensive API security. For a
+local non-networked deployment, it is safe to disable authentication by setting
+these to empty strings.
 
 ## Launch TrustGraph
 
@@ -772,37 +788,12 @@ tg-show-processor-state
 - **Guides**: See [Guides](../guides) for things you can do with your running
   TrustGraph
 
-MODEL STUFF
-
-Ollama:
-
-export OLLAMA_HOST=http://ollama-host:11434
-
-
 
 
 
     
-    
-
-
-export OLLAMA_HOST=http://ollama-host:11434
-
-export OPENAI_TOKEN=TOKEN-GOES-HERE
-
-
-
 
 
 chcon -Rt svirt_sandbox_file_t vertexai/
-
-
-
-
-
-MCP_SERVER_SECRET
-
-
-GATEWAY_SECRET
 
 
