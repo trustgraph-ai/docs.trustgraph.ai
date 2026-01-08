@@ -494,6 +494,67 @@ discovered relationships.
 3. Enter your question (e.g., "What is this document about?")
 4. You will see the answer to your question after a short period
 
+## Shutting down
+
+### Clean shutdown
+
+Once you have finished with your system, you can close it down.
+The easiest way is to reverse the launch operation you ran up:
+
+{% capture docker_shutdown %}
+```bash
+docker-compose -f docker-compose.yaml down -v -t 0
+```
+{% endcapture %}
+
+{% capture podman_shutdown %}
+```bash
+podman-compose -f docker-compose.yaml down -v -t 0
+```
+{% endcapture %}
+
+{% include code_tabs.html
+   tabs="Docker,Podman"
+   content1=docker_shutdown
+   content2=podman_shutdown
+%}
+
+The `-v` option specifies to delete all data volumes.  The `-t 0` option
+directs to close down containers without delay - the default is to wait for
+clean shutdown.
+
+### Manual cleanup
+
+If the compose shutdown has problems, you can check and see what containers
+are running with the `docker`/`podman` tools.
+
+
+{% capture docker_verify %}
+```bash
+# Confirm no containers running
+docker ps
+
+# Confirm volumes removed
+docker volume ls
+```
+{% endcapture %}
+
+{% capture podman_verify %}
+```bash
+# Confirm no containers running
+podman ps
+
+# Confirm volumes removed
+podman volume ls
+```
+{% endcapture %}
+
+{% include code_tabs.html
+   tabs="Docker,Podman"
+   content1=docker_verify
+   content2=podman_verify
+%}
+
 ## Troubleshooting
 
 ### Common Issues
@@ -530,56 +591,6 @@ tg-show-flows
 # Check processor state
 tg-show-processor-state
 ```
-
-## Shutdown
-
-### Clean Shutdown
-
-{% capture docker_shutdown %}
-```bash
-docker-compose -f docker-compose.yaml down -v -t 0
-```
-{% endcapture %}
-
-{% capture podman_shutdown %}
-```bash
-podman-compose -f docker-compose.yaml down -v -t 0
-```
-{% endcapture %}
-
-{% include code_tabs.html
-   tabs="Docker,Podman"
-   content1=docker_shutdown
-   content2=podman_shutdown
-%}
-
-### Verify Cleanup
-
-{% capture docker_verify %}
-```bash
-# Confirm no containers running
-docker ps
-
-# Confirm volumes removed
-docker volume ls
-```
-{% endcapture %}
-
-{% capture podman_verify %}
-```bash
-# Confirm no containers running
-podman ps
-
-# Confirm volumes removed
-podman volume ls
-```
-{% endcapture %}
-
-{% include code_tabs.html
-   tabs="Docker,Podman"
-   content1=docker_verify
-   content2=podman_verify
-%}
 
 ## Next Steps
 
