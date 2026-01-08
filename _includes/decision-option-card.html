@@ -1,0 +1,13 @@
+<div style="border: 1px solid {{ include.border_color }}; background-color: {{ include.bg_color }}; padding: 15px; border-radius: 4px;">
+<h3 style="margin-top: 0; color: {{ include.text_color }};">{{ include.title }}</h3>
+<p style="margin: 10px 0; font-size: 0.95em; opacity: 0.9;">{{ include.description }}</p>
+<p style="margin: 10px 0; font-size: 0.9em;"><strong>Best for:</strong></p>
+<ul style="margin: 5px 0; padding-left: 20px; font-size: 0.9em;">
+{{ include.best_for }}
+</ul>
+<p style="margin: 10px 0; font-size: 0.9em;"><strong>{{ include.list2_title }}:</strong></p>
+<ul style="margin: 5px 0; padding-left: 20px; font-size: 0.9em;">
+{{ include.list2_items }}
+</ul>
+<a href="{{ include.link }}" style="display: inline-block; margin-top: 10px; padding: 8px 16px; background-color: {{ include.button_bg }}; color: {{ include.button_text }}; text-decoration: none; border-radius: 4px; font-weight: bold;">Get Started →</a>
+</div>

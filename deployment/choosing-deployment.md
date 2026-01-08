@@ -21,206 +21,265 @@ guide_labels:
 
 **Decision guide to help you select the right deployment method for your needs**
 
-<div style="border: 2px solid #48bb78; background-color: #1e3a2a; padding: 15px 20px; margin: 20px 0; border-radius: 8px;">
+{% include decision-section-start.html
+   border_color="#48bb78"
+   bg_color="#1e3a2a"
+   emoji="🚀"
+   title="I just want to try it out"
+   description="Simple standalone deployment that runs locally. Doesn't need a lot of planning or resources to be set up."
+%}
 
-<h2 style="margin-top: 0;">🚀 I just want to try it out</h2>
-
-<p style="margin-bottom: 15px; opacity: 0.9;">Simple standalone deployment that runs locally. Doesn't need a lot of planning or resources to be set up.</p>
-
-<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 15px; margin-top: 15px;">
-
-<div style="border: 1px solid #48bb78; background-color: #0d2118; padding: 15px; border-radius: 4px;">
-<h3 style="margin-top: 0; color: #d4f4dd;">Option 1: Docker Compose</h3>
-<p style="margin: 10px 0; font-size: 0.95em; opacity: 0.9;">The easiest way to get started. Run TrustGraph locally in 15-30 minutes.</p>
-<p style="margin: 10px 0; font-size: 0.9em;"><strong>Best for:</strong></p>
-<ul style="margin: 5px 0; padding-left: 20px; font-size: 0.9em;">
+{% capture docker_best_for %}
 <li>First time trying TrustGraph</li>
 <li>Learning and experimentation</li>
 <li>Local development</li>
-</ul>
-<p style="margin: 10px 0; font-size: 0.9em;"><strong>Requirements:</strong></p>
-<ul style="margin: 5px 0; padding-left: 20px; font-size: 0.9em;">
+{% endcapture %}
+
+{% capture docker_requirements %}
 <li>8GB RAM, 4 CPU cores</li>
 <li>Docker or Podman installed</li>
 <li>20GB disk space</li>
-</ul>
-<a href="docker-compose" style="display: inline-block; margin-top: 10px; padding: 8px 16px; background-color: #48bb78; color: #0d2118; text-decoration: none; border-radius: 4px; font-weight: bold;">Get Started →</a>
-</div>
+{% endcapture %}
 
-<div style="border: 1px solid #48bb78; background-color: #0d2118; padding: 15px; border-radius: 4px;">
-<h3 style="margin-top: 0; color: #d4f4dd;">Option 2: Minikube</h3>
-<p style="margin: 10px 0; font-size: 0.95em; opacity: 0.9;">Run TrustGraph in a local Kubernetes cluster. Great for learning Kubernetes.</p>
-<p style="margin: 10px 0; font-size: 0.9em;"><strong>Best for:</strong></p>
-<ul style="margin: 5px 0; padding-left: 20px; font-size: 0.9em;">
+{% include decision-option-card.html
+   border_color="#48bb78"
+   bg_color="#0d2118"
+   text_color="#d4f4dd"
+   title="Option 1: Docker Compose"
+   description="The easiest way to get started. Run TrustGraph locally in 15-30 minutes."
+   best_for=docker_best_for
+   list2_title="Requirements"
+   list2_items=docker_requirements
+   link="docker-compose"
+   button_bg="#48bb78"
+   button_text="#0d2118"
+%}
+
+{% capture minikube_best_for %}
 <li>Learning Kubernetes</li>
 <li>Testing K8s configurations</li>
 <li>Production-like environment locally</li>
-</ul>
-<p style="margin: 10px 0; font-size: 0.9em;"><strong>Requirements:</strong></p>
-<ul style="margin: 5px 0; padding-left: 20px; font-size: 0.9em;">
+{% endcapture %}
+
+{% capture minikube_requirements %}
 <li>16GB RAM, 8 CPU cores</li>
 <li>Minikube and kubectl installed</li>
 <li>50GB disk space</li>
-</ul>
-<a href="minikube" style="display: inline-block; margin-top: 10px; padding: 8px 16px; background-color: #48bb78; color: #0d2118; text-decoration: none; border-radius: 4px; font-weight: bold;">Get Started →</a>
-</div>
+{% endcapture %}
 
-</div>
+{% include decision-option-card.html
+   border_color="#48bb78"
+   bg_color="#0d2118"
+   text_color="#d4f4dd"
+   title="Option 2: Minikube"
+   description="Run TrustGraph in a local Kubernetes cluster. Great for learning Kubernetes."
+   best_for=minikube_best_for
+   list2_title="Requirements"
+   list2_items=minikube_requirements
+   link="minikube"
+   button_bg="#48bb78"
+   button_text="#0d2118"
+%}
 
-</div>
+{% include decision-section-end.html %}
 
-<div style="border: 2px solid #4a9eff; background-color: #1e2a3a; padding: 15px 20px; margin: 20px 0; border-radius: 8px;">
+{% include decision-section-start.html
+   border_color="#4a9eff"
+   bg_color="#1e2a3a"
+   emoji="🇪🇺"
+   title="I need to use a European Cloud"
+   description="Deploy on European cloud providers with GDPR compliance and EU data residency. Keep your data within European borders for regulatory compliance and data sovereignty."
+%}
 
-<h2 style="margin-top: 0;">🇪🇺 I need to use a European Cloud</h2>
-
-<p style="margin-bottom: 15px; opacity: 0.9;">Deploy on European cloud providers with GDPR compliance and EU data residency. Keep your data within European borders for regulatory compliance and data sovereignty.</p>
-
-<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 15px; margin-top: 15px;">
-
-<div style="border: 1px solid #4a9eff; background-color: #0d1621; padding: 15px; border-radius: 4px;">
-<h3 style="margin-top: 0; color: #e8f4fd;">Option 1: OVHcloud</h3>
-<p style="margin: 10px 0; font-size: 0.95em; opacity: 0.9;">Europe's largest cloud provider with Managed Kubernetes and AI Endpoints.</p>
-<p style="margin: 10px 0; font-size: 0.9em;"><strong>Best for:</strong></p>
-<ul style="margin: 5px 0; padding-left: 20px; font-size: 0.9em;">
+{% capture ovh_best_for %}
 <li>European data sovereignty</li>
 <li>No egress fees</li>
 <li>Multi-region deployments</li>
-</ul>
-<p style="margin: 10px 0; font-size: 0.9em;"><strong>Key features:</strong></p>
-<ul style="margin: 5px 0; padding-left: 20px; font-size: 0.9em;">
+{% endcapture %}
+
+{% capture ovh_features %}
 <li>GDPR native compliance</li>
 <li>40+ data centers worldwide</li>
 <li>Anti-DDoS included</li>
-</ul>
-<a href="ovhcloud" style="display: inline-block; margin-top: 10px; padding: 8px 16px; background-color: #4a9eff; color: #0d1621; text-decoration: none; border-radius: 4px; font-weight: bold;">Get Started →</a>
-</div>
+{% endcapture %}
 
-<div style="border: 1px solid #4a9eff; background-color: #0d1621; padding: 15px; border-radius: 4px;">
-<h3 style="margin-top: 0; color: #e8f4fd;">Option 2: Scaleway</h3>
-<p style="margin: 10px 0; font-size: 0.95em; opacity: 0.9;">Cost-effective European cloud with Kubernetes Kapsule and Generative AI services.</p>
-<p style="margin: 10px 0; font-size: 0.9em;"><strong>Best for:</strong></p>
-<ul style="margin: 5px 0; padding-left: 20px; font-size: 0.9em;">
+{% include decision-option-card.html
+   border_color="#4a9eff"
+   bg_color="#0d1621"
+   text_color="#e8f4fd"
+   title="Option 1: OVHcloud"
+   description="Europe's largest cloud provider with Managed Kubernetes and AI Endpoints."
+   best_for=ovh_best_for
+   list2_title="Key features"
+   list2_items=ovh_features
+   link="ovhcloud"
+   button_bg="#4a9eff"
+   button_text="#0d1621"
+%}
+
+{% capture scaleway_best_for %}
 <li>Budget-conscious deployments</li>
 <li>GDPR compliance</li>
 <li>Open source commitment</li>
-</ul>
-<p style="margin: 10px 0; font-size: 0.9em;"><strong>Key features:</strong></p>
-<ul style="margin: 5px 0; padding-left: 20px; font-size: 0.9em;">
+{% endcapture %}
+
+{% capture scaleway_features %}
 <li>EU-based infrastructure</li>
 <li>Competitive pricing</li>
 <li>Mistral AI integration</li>
-</ul>
-<a href="scaleway" style="display: inline-block; margin-top: 10px; padding: 8px 16px; background-color: #4a9eff; color: #0d1621; text-decoration: none; border-radius: 4px; font-weight: bold;">Get Started →</a>
-</div>
+{% endcapture %}
 
-</div>
+{% include decision-option-card.html
+   border_color="#4a9eff"
+   bg_color="#0d1621"
+   text_color="#e8f4fd"
+   title="Option 2: Scaleway"
+   description="Cost-effective European cloud with Kubernetes Kapsule and Generative AI services."
+   best_for=scaleway_best_for
+   list2_title="Key features"
+   list2_items=scaleway_features
+   link="scaleway"
+   button_bg="#4a9eff"
+   button_text="#0d1621"
+%}
 
-<p style="margin-top: 15px; padding: 10px; background-color: rgba(74, 158, 255, 0.1); border-left: 3px solid #4a9eff; border-radius: 4px; font-size: 0.9em;">
-<strong>💡 Data Sovereignty:</strong> Both providers ensure your data remains within EU boundaries, meeting strict European data protection regulations including GDPR. This is essential for organizations handling EU citizen data or operating under EU regulatory frameworks.
-</p>
+{% include decision-section-end.html
+   info_label="💡 Data Sovereignty"
+   info_text="Both providers ensure your data remains within EU boundaries, meeting strict European data protection regulations including GDPR. This is essential for organizations handling EU citizen data or operating under EU regulatory frameworks."
+   info_bg="rgba(74, 158, 255, 0.1)"
+   info_border="#4a9eff"
+%}
 
-</div>
+{% include decision-section-start.html
+   border_color="#9f7aea"
+   bg_color="#2d2642"
+   emoji="☁️"
+   title="I need a global cloud provider"
+   description="Deploy on major global cloud platforms with enterprise-grade infrastructure, high availability, and comprehensive managed services."
+%}
 
-<div style="border: 2px solid #9f7aea; background-color: #2d2642; padding: 15px 20px; margin: 20px 0; border-radius: 8px;">
-
-<h2 style="margin-top: 0;">☁️ I need a global cloud provider</h2>
-
-<p style="margin-bottom: 15px; opacity: 0.9;">Deploy on major global cloud platforms with enterprise-grade infrastructure, high availability, and comprehensive managed services.</p>
-
-<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 15px; margin-top: 15px;">
-
-<div style="border: 1px solid #9f7aea; background-color: #1a1529; padding: 15px; border-radius: 4px;">
-<h3 style="margin-top: 0; color: #e9d5ff;">Option 1: AWS RKE</h3>
-<p style="margin: 10px 0; font-size: 0.95em; opacity: 0.9;">Production-ready RKE2 Kubernetes cluster on AWS with Bedrock AI integration.</p>
-<p style="margin: 10px 0; font-size: 0.9em;"><strong>Best for:</strong></p>
-<ul style="margin: 5px 0; padding-left: 20px; font-size: 0.9em;">
+{% capture aws_best_for %}
 <li>AWS-committed organizations</li>
 <li>High availability requirements</li>
 <li>Enterprise production</li>
-</ul>
-<p style="margin: 10px 0; font-size: 0.9em;"><strong>Key features:</strong></p>
-<ul style="margin: 5px 0; padding-left: 20px; font-size: 0.9em;">
+{% endcapture %}
+
+{% capture aws_features %}
 <li>AWS Bedrock integration</li>
 <li>RKE2 security hardening</li>
 <li>Auto-scaling support</li>
-</ul>
-<a href="aws-rke" style="display: inline-block; margin-top: 10px; padding: 8px 16px; background-color: #9f7aea; color: #1a1529; text-decoration: none; border-radius: 4px; font-weight: bold;">Get Started →</a>
-</div>
+{% endcapture %}
 
-<div style="border: 1px solid #9f7aea; background-color: #1a1529; padding: 15px; border-radius: 4px;">
-<h3 style="margin-top: 0; color: #e9d5ff;">Option 2: Azure AKS</h3>
-<p style="margin: 10px 0; font-size: 0.95em; opacity: 0.9;">Managed Kubernetes on Azure with AI Foundry and dual AI model support.</p>
-<p style="margin: 10px 0; font-size: 0.9em;"><strong>Best for:</strong></p>
-<ul style="margin: 5px 0; padding-left: 20px; font-size: 0.9em;">
+{% include decision-option-card.html
+   border_color="#9f7aea"
+   bg_color="#1a1529"
+   text_color="#e9d5ff"
+   title="Option 1: AWS RKE"
+   description="Production-ready RKE2 Kubernetes cluster on AWS with Bedrock AI integration."
+   best_for=aws_best_for
+   list2_title="Key features"
+   list2_items=aws_features
+   link="aws-rke"
+   button_bg="#9f7aea"
+   button_text="#1a1529"
+%}
+
+{% capture azure_best_for %}
 <li>Microsoft ecosystem integration</li>
 <li>Enterprise Azure deployments</li>
 <li>Azure Active Directory</li>
-</ul>
-<p style="margin: 10px 0; font-size: 0.9em;"><strong>Key features:</strong></p>
-<ul style="margin: 5px 0; padding-left: 20px; font-size: 0.9em;">
+{% endcapture %}
+
+{% capture azure_features %}
 <li>Phi-4 and GPT-4o support</li>
 <li>Azure AI Foundry</li>
 <li>Managed Kubernetes</li>
-</ul>
-<a href="azure" style="display: inline-block; margin-top: 10px; padding: 8px 16px; background-color: #9f7aea; color: #1a1529; text-decoration: none; border-radius: 4px; font-weight: bold;">Get Started →</a>
-</div>
+{% endcapture %}
 
-<div style="border: 1px solid #9f7aea; background-color: #1a1529; padding: 15px; border-radius: 4px;">
-<h3 style="margin-top: 0; color: #e9d5ff;">Option 3: Google Cloud Platform</h3>
-<p style="margin: 10px 0; font-size: 0.95em; opacity: 0.9;">GKE deployment with VertexAI Gemini integration and ML/AI optimization.</p>
-<p style="margin: 10px 0; font-size: 0.9em;"><strong>Best for:</strong></p>
-<ul style="margin: 5px 0; padding-left: 20px; font-size: 0.9em;">
+{% include decision-option-card.html
+   border_color="#9f7aea"
+   bg_color="#1a1529"
+   text_color="#e9d5ff"
+   title="Option 2: Azure AKS"
+   description="Managed Kubernetes on Azure with AI Foundry and dual AI model support."
+   best_for=azure_best_for
+   list2_title="Key features"
+   list2_items=azure_features
+   link="azure"
+   button_bg="#9f7aea"
+   button_text="#1a1529"
+%}
+
+{% capture gcp_best_for %}
 <li>ML/AI-focused projects</li>
 <li>VertexAI integration</li>
 <li>Google technology stack</li>
-</ul>
-<p style="margin: 10px 0; font-size: 0.9em;"><strong>Key features:</strong></p>
-<ul style="margin: 5px 0; padding-left: 20px; font-size: 0.9em;">
+{% endcapture %}
+
+{% capture gcp_features %}
 <li>VertexAI Gemini Flash 1.5</li>
 <li>GKE managed Kubernetes</li>
 <li>Free credits available</li>
-</ul>
-<a href="gcp" style="display: inline-block; margin-top: 10px; padding: 8px 16px; background-color: #9f7aea; color: #1a1529; text-decoration: none; border-radius: 4px; font-weight: bold;">Get Started →</a>
-</div>
+{% endcapture %}
 
-</div>
+{% include decision-option-card.html
+   border_color="#9f7aea"
+   bg_color="#1a1529"
+   text_color="#e9d5ff"
+   title="Option 3: Google Cloud Platform"
+   description="GKE deployment with VertexAI Gemini integration and ML/AI optimization."
+   best_for=gcp_best_for
+   list2_title="Key features"
+   list2_items=gcp_features
+   link="gcp"
+   button_bg="#9f7aea"
+   button_text="#1a1529"
+%}
 
-<p style="margin-top: 15px; padding: 10px; background-color: rgba(159, 122, 234, 0.1); border-left: 3px solid #9f7aea; border-radius: 4px; font-size: 0.9em;">
-<strong>💡 Enterprise Features:</strong> All global cloud providers offer high availability, auto-scaling, enterprise support, and comprehensive managed services. Choose based on your existing cloud commitments and AI service preferences.
-</p>
+{% include decision-section-end.html
+   info_label="💡 Enterprise Features"
+   info_text="All global cloud providers offer high availability, auto-scaling, enterprise support, and comprehensive managed services. Choose based on your existing cloud commitments and AI service preferences."
+   info_bg="rgba(159, 122, 234, 0.1)"
+   info_border="#9f7aea"
+%}
 
-</div>
+{% include decision-section-start.html
+   border_color="#f59e0b"
+   bg_color="#3a2e1e"
+   emoji="🏢"
+   title="I want to self-host"
+   description="Deploy on your own infrastructure with complete control over hardware, data, and operations. Perfect for high-performance requirements and maximum data sovereignty."
+%}
 
-<div style="border: 2px solid #f59e0b; background-color: #3a2e1e; padding: 15px 20px; margin: 20px 0; border-radius: 8px;">
-
-<h2 style="margin-top: 0;">🏢 I want to self-host</h2>
-
-<p style="margin-bottom: 15px; opacity: 0.9;">Deploy on your own infrastructure with complete control over hardware, data, and operations. Perfect for high-performance requirements and maximum data sovereignty.</p>
-
-<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 15px; margin-top: 15px;">
-
-<div style="border: 1px solid #f59e0b; background-color: #221a10; padding: 15px; border-radius: 4px;">
-<h3 style="margin-top: 0; color: #fef3c7;">Option 1: Intel Gaudi</h3>
-<p style="margin: 10px 0; font-size: 0.95em; opacity: 0.9;">High-performance AI deployment with Intel Gaudi and GPU accelerators for large models.</p>
-<p style="margin: 10px 0; font-size: 0.9em;"><strong>Best for:</strong></p>
-<ul style="margin: 5px 0; padding-left: 20px; font-size: 0.9em;">
+{% capture intel_best_for %}
 <li>GPU-accelerated workloads</li>
 <li>Large model inference (70B+)</li>
 <li>High-performance computing</li>
-</ul>
-<p style="margin: 10px 0; font-size: 0.9em;"><strong>Key features:</strong></p>
-<ul style="margin: 5px 0; padding-left: 20px; font-size: 0.9em;">
+{% endcapture %}
+
+{% capture intel_features %}
 <li>Intel GPU/Gaudi optimization</li>
 <li>Llama 3.3 70B support</li>
 <li>vLLM and TGI servers</li>
-</ul>
-<a href="intel" style="display: inline-block; margin-top: 10px; padding: 8px 16px; background-color: #f59e0b; color: #221a10; text-decoration: none; border-radius: 4px; font-weight: bold;">Get Started →</a>
-</div>
+{% endcapture %}
 
-</div>
+{% include decision-option-card.html
+   border_color="#f59e0b"
+   bg_color="#221a10"
+   text_color="#fef3c7"
+   title="Option 1: Intel Gaudi"
+   description="High-performance AI deployment with Intel Gaudi and GPU accelerators for large models."
+   best_for=intel_best_for
+   list2_title="Key features"
+   list2_items=intel_features
+   link="intel"
+   button_bg="#f59e0b"
+   button_text="#221a10"
+%}
 
-<p style="margin-top: 15px; padding: 10px; background-color: rgba(245, 158, 11, 0.1); border-left: 3px solid #f59e0b; border-radius: 4px; font-size: 0.9em;">
-<strong>💡 Self-Hosting Benefits:</strong> Complete control over your data and infrastructure, no vendor lock-in, and the ability to optimize for your specific hardware. Ideal for organizations with strict data governance requirements or specialized performance needs.
-</p>
-
-</div>
+{% include decision-section-end.html
+   info_label="💡 Self-Hosting Benefits"
+   info_text="Complete control over your data and infrastructure, no vendor lock-in, and the ability to optimize for your specific hardware. Ideal for organizations with strict data governance requirements or specialized performance needs."
+   info_bg="rgba(245, 158, 11, 0.1)"
+   info_border="#f59e0b"
+%}
