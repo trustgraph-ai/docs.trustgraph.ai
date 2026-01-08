@@ -170,7 +170,7 @@ read [Container networking and self-hosted models](container-networking).
 If you are trying to connect TrustGraph to a service running on WSL,
 read [WSL networking and self-hosted models](wsl-networking).
 
-## Configuration setup
+## Prepare the deployment
 
 ### Create configuration
 
@@ -236,35 +236,59 @@ cd ~/trustgraph
 unzip ~/Downloads/deploy.zip
 ```
 
-That may be all you need to unpack the TrustGraph file.  If you are having
-problems launching TrustGraph, you might consider modifying the unpacked
-files to help Docker or Podman work with them.
+It is possible that this is all you need to prepare to launch the
+containers.  If you are having problems launching TrustGraph you might
+consider modifying the unpacked configuration for environments
+where container engines use stricter access policies:
 
+<details>
+<summary>Remove file access restrictions</summary>
+
+<div markdown="1">
 The first thing you might try doing is add read permissions to the files
 for any user on your system.  This may be necessary if your system has
 stricter access control policies on the files that can be read by containers.
+</div>
 
+<div markdown="1">
 ```sh
-find garage/ loki/ prometheus/ grafana/ trustgraph/ vertexai/ -type f | xargs chmod 644
-
-find garage/ loki/ prometheus/ grafana/ trustgraph/ vertexai/ -type d | xargs chmod 755
+find garage/ loki/ prometheus/ grafana/ trustgraph/ -type f | xargs chmod 644
+find garage/ loki/ prometheus/ grafana/ trustgraph/ -type d | xargs chmod 755
 ```
+</div>
 
+<div markdown="1">
+This adds global-read access of these configuration files to any user on your
+system, which may be a problem if you have multiple users accessing the
+system.
+</div>
+
+</details>
+
+<details>
+<summary>Configure SElinux access controls</summary>
+
+<div markdown="1">
 On Linux, if you are running SElinux, it may also be necessary to grant
 particular SElinux permissions to the configuration files so that they
 can be read by Linux:
+</div>
 
+<div markdown="1">
 ```sh
-sudo chcon -Rt svirt_sandbox_file_t garage/ loki/ grafana/ \
-    prometheus/ vertexai/ trustgraph/
+sudo chcon -Rt svirt_sandbox_file_t garage/ loki/ grafana/ prometheus/ trustgraph/
 ```
+</div>
+
+</details>
 
 ## Install CLI tools
 
 You need to have access to TrustGraph client tools.  In the terminal
 window you created above, install a virtual environment, and the
 TrustGraph CLI tools.  Make sure the version number of the CLI tools
-matches the version you chose to build a configuration for earlier:
+matches the version you chose to build a configuration for earlier.
+i.e. replace `1.8.9` with the version you used earlier.
 
 ```sh
 python3 -m venv env
@@ -276,7 +300,7 @@ pip install trustgraph-cli==1.8.9
 
 {% capture docker %}
 ```sh
-docker compose -f docker-compose.yaml up -d
+docker-compose -f docker-compose.yaml up -d
 ```
 {% endcapture %}
 
@@ -292,20 +316,19 @@ podman-compose -f docker-compose.yaml up -d
    content2=podman
 %}
 
-## Wait for initialization
 
-Allow 120 seconds for all services to stabilize. Services like Pulsar and Cassandra need time to initialize properly.
+### Verify startup
 
-### Verify installation
-
+It can take around 40 - 120 seconds for all services to stabilize. Services
+like Pulsar and Cassandra need time to initialize properly.
 There is a utility which runs a series of checks to verify the system
-as it starts.
+as it starts and reports when the system is working successfully.
 
 ```sh
 tg-verify-system-status
 ```
 
-The output looks something like...
+If everything is working, the output looks something like this:
 
 ```
 ============================================================
@@ -356,6 +379,12 @@ Total time: 00:38
 ✓ System is healthy!
 ```
 
+The *Checks failed* line is the most interesting and is hopefully zero.  If
+you are having issues, look at the troubleshooting section later.
+
+If everything appears to be working, the following parts of the deployment
+guide are a whistle-stop tour through various parts of the system.
+
 ## Load sample documents
 
 There is a utility which loads a small set of sample documents into the
@@ -366,9 +395,22 @@ to test with:
 tg-load-sample-documents
 ```
 
+This downloads documents from the internet and caches them in a local
+directory, so that the load is quicker if you need to do it again.
+The download can take a little time to run.
+
 ## Workbench
 
-Access the TrustGraph workbench at [http://localhost:8888/](http://localhost:8888/)
+TrustGraph is bundled with a simple web interface which exercises most of
+the functionality.
+
+Access the TrustGraph workbench at
+[http://localhost:8888/](http://localhost:8888/)
+
+By default, there are no credentials.
+
+You should be able to navigate to the Flows tab, and see a single
+*default* flow running.
 
 ## Monitoring dashboard
 
@@ -476,7 +518,7 @@ tg-show-processor-state
 
 {% capture docker_shutdown %}
 ```bash
-docker compose -f docker-compose.yaml down -v -t 0
+docker-compose -f docker-compose.yaml down -v -t 0
 ```
 {% endcapture %}
 
