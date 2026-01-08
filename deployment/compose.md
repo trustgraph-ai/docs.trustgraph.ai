@@ -161,7 +161,12 @@ running this yourself as you may need to debug model / hosting issues.
 ### A word on networking and self-hosting
 
 If you are self-hosting a model on the same device you are intending
-to run TrustGraph, you may need 
+to run TrustGraph, you will need to understand how to get TrustGraph
+to talk to your model service.
+
+If this applies to you read [container](podman-networking).
+
+If this applies to you read [WSL](wsl-networking).
 
 <details>
 
