@@ -852,6 +852,53 @@ Look for `"OOMKilled": true` or error messages in the inspect output.
 </details>
 
 <details>
+<summary>Configuration volume mount access restriction</summary>
+<div markdown="1">
+
+*Diagnosis:*
+
+Check for failures in containers that need configuration files (Prometheus, Grafana,
+Loki). View their logs for permission denied or file access errors:
+
+{% capture docker_config_logs %}
+```bash
+# Check Prometheus logs
+docker logs prometheus
+
+# Check Grafana logs
+docker logs grafana
+```
+{% endcapture %}
+
+{% capture podman_config_logs %}
+```bash
+# Check Prometheus logs
+podman logs prometheus
+
+# Check Grafana logs
+podman logs grafana
+```
+{% endcapture %}
+
+{% include code_tabs.html
+   tabs="Docker,Podman"
+   content1=docker_config_logs
+   content2=podman_config_logs
+%}
+
+Look for errors mentioning "permission denied" or inability to read configuration files.
+
+*Resolution:*
+
+Review and apply the file permission steps from the [Unpack the configuration](#unpack-the-configuration)
+section, including:
+- Setting global-read permissions with `chmod`
+- Configuring SELinux permissions with `chcon` (Linux only)
+
+</div>
+</details>
+
+<details>
 <summary>Application error</summary>
 <div markdown="1">
 
