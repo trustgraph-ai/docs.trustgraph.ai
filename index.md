@@ -14,168 +14,271 @@ TrustGraph is an open-source Agent Intelligence Platform that transforms AI agen
 
 <div style="display: flex; flex-wrap: wrap; gap: 15px; margin: 20px 0;">
 
-<div style="border: 2px solid #48bb78; background-color: #1e3a2a; border-radius: 8px; flex: 1 1 calc(50% - 8px); min-width: 280px; overflow: hidden;">
-<div style="position: relative; height: 120px; background-image: url('intro.jpg'); background-size: cover; background-position: center;">
-<div style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: linear-gradient(to bottom, rgba(0,0,0,0.5), rgba(0,0,0,0.7)); padding: 12px 15px; display: flex; flex-direction: column; justify-content: center;">
-<h3 style="margin: 0; font-size: 1.1em; color: white;">📚 Learn about TrustGraph</h3>
-<p style="margin: 4px 0 0 0; opacity: 0.9; font-size: 0.85em; color: white;">Understand what TrustGraph is and how it works</p>
-</div>
-</div>
-<div style="padding: 12px 15px; display: flex; flex-direction: column; gap: 6px;">
-<a href="overview/introduction" style="text-decoration: none; color: #d4f4dd; background-color: #0d2118; padding: 8px 12px; border-radius: 4px; border: 1px solid #48bb78; display: block;">
-<strong style="font-size: 0.9em; display: block; margin-bottom: 4px;">Introduction</strong>
-<span style="font-size: 0.8em; opacity: 0.85; line-height: 1.2; display: block;">What is TrustGraph and how it transforms AI agents into contextually-aware systems</span>
-</a>
-<a href="overview/philosophy" style="text-decoration: none; color: #d4f4dd; background-color: #0d2118; padding: 8px 12px; border-radius: 4px; border: 1px solid #48bb78; display: block;">
-<strong style="font-size: 0.9em; display: block; margin-bottom: 4px;">Philosophy</strong>
-<span style="font-size: 0.8em; opacity: 0.85; line-height: 1.2; display: block;">Design principles and philosophy behind TrustGraph's approach</span>
-</a>
-<a href="overview/retrieval" style="text-decoration: none; color: #d4f4dd; background-color: #0d2118; padding: 8px 12px; border-radius: 4px; border: 1px solid #48bb78; display: block;">
-<strong style="font-size: 0.9em; display: block; margin-bottom: 4px;">Information Retrieval</strong>
-<span style="font-size: 0.8em; opacity: 0.85; line-height: 1.2; display: block;">Understanding Graph RAG, Document RAG, and other retrieval strategies</span>
-</a>
-<a href="overview/features" style="text-decoration: none; color: #d4f4dd; background-color: #0d2118; padding: 8px 12px; border-radius: 4px; border: 1px solid #48bb78; display: block;">
-<strong style="font-size: 0.9em; display: block; margin-bottom: 4px;">Features</strong>
-<span style="font-size: 0.8em; opacity: 0.85; line-height: 1.2; display: block;">Complete overview of TrustGraph features and platform capabilities</span>
-</a>
-<a href="overview/use-cases" style="text-decoration: none; color: #d4f4dd; background-color: #0d2118; padding: 8px 12px; border-radius: 4px; border: 1px solid #48bb78; display: block;">
-<strong style="font-size: 0.9em; display: block; margin-bottom: 4px;">Use Cases</strong>
-<span style="font-size: 0.8em; opacity: 0.85; line-height: 1.2; display: block;">Real-world applications from enterprise search to intelligent agents</span>
-</a>
-<a href="contributing/getting-help" style="text-decoration: none; color: #d4f4dd; background-color: #0d2118; padding: 8px 12px; border-radius: 4px; border: 1px solid #48bb78; display: block;">
-<strong style="font-size: 0.9em; display: block; margin-bottom: 4px;">Get Help</strong>
-<span style="font-size: 0.8em; opacity: 0.85; line-height: 1.2; display: block;">Support resources, community channels, and how to get assistance</span>
-</a>
-</div>
-</div>
+{% include pathway-box-start.html
+   border_color="#48bb78"
+   bg_color="#1e3a2a"
+   banner_image="intro.jpg"
+   emoji="📚"
+   title="Learn about TrustGraph"
+   description="Understand what TrustGraph is and how it works"
+%}
+{% include journey-card.html
+   url="overview/introduction"
+   text_color="#d4f4dd"
+   bg_color="#0d2118"
+   border_color="#48bb78"
+   title="Introduction"
+   description="What is TrustGraph and how it transforms AI agents into contextually-aware systems"
+%}
+{% include journey-card.html
+   url="overview/philosophy"
+   text_color="#d4f4dd"
+   bg_color="#0d2118"
+   border_color="#48bb78"
+   title="Philosophy"
+   description="Design principles and philosophy behind TrustGraph's approach"
+%}
+{% include journey-card.html
+   url="overview/retrieval"
+   text_color="#d4f4dd"
+   bg_color="#0d2118"
+   border_color="#48bb78"
+   title="Information Retrieval"
+   description="Understanding Graph RAG, Document RAG, and other retrieval strategies"
+%}
+{% include journey-card.html
+   url="overview/features"
+   text_color="#d4f4dd"
+   bg_color="#0d2118"
+   border_color="#48bb78"
+   title="Features"
+   description="Complete overview of TrustGraph features and platform capabilities"
+%}
+{% include journey-card.html
+   url="overview/use-cases"
+   text_color="#d4f4dd"
+   bg_color="#0d2118"
+   border_color="#48bb78"
+   title="Use Cases"
+   description="Real-world applications from enterprise search to intelligent agents"
+%}
+{% include journey-card.html
+   url="contributing/getting-help"
+   text_color="#d4f4dd"
+   bg_color="#0d2118"
+   border_color="#48bb78"
+   title="Get Help"
+   description="Support resources, community channels, and how to get assistance"
+%}
+{% include pathway-box-end.html %}
 
-<div style="border: 2px solid #4a9eff; background-color: #1e2a3a; border-radius: 8px; flex: 1 1 calc(50% - 8px); min-width: 280px; overflow: hidden;">
-<div style="position: relative; height: 120px; background-image: url('quickstart.jpg'); background-size: cover; background-position: center;">
-<div style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: linear-gradient(to bottom, rgba(0,0,0,0.5), rgba(0,0,0,0.7)); padding: 12px 15px; display: flex; flex-direction: column; justify-content: center;">
-<h3 style="margin: 0; font-size: 1.1em; color: white;">🚀 Try it out (Quickstart)</h3>
-<p style="margin: 4px 0 0 0; opacity: 0.9; font-size: 0.85em; color: white;">Get hands-on experience quickly with Docker</p>
-</div>
-</div>
-<div style="padding: 12px 15px; display: flex; flex-direction: column; gap: 6px;">
-<a href="deployment/docker-compose" style="text-decoration: none; color: #e8f4fd; background-color: #0d1621; padding: 8px 12px; border-radius: 4px; border: 1px solid #4a9eff; display: block;">
-<strong style="font-size: 0.9em; display: block; margin-bottom: 4px;">Docker Compose</strong>
-<span style="font-size: 0.8em; opacity: 0.85; line-height: 1.2; display: block;">Easiest way to get TrustGraph running locally for development and testing</span>
-</a>
-<a href="guides/graph-rag" style="text-decoration: none; color: #e8f4fd; background-color: #0d1621; padding: 8px 12px; border-radius: 4px; border: 1px solid #4a9eff; display: block;">
-<strong style="font-size: 0.9em; display: block; margin-bottom: 4px;">Graph RAG</strong>
-<span style="font-size: 0.8em; opacity: 0.85; line-height: 1.2; display: block;">Query documents using automatically extracted entities and relationships</span>
-</a>
-<a href="guides/document-rag" style="text-decoration: none; color: #e8f4fd; background-color: #0d1621; padding: 8px 12px; border-radius: 4px; border: 1px solid #4a9eff; display: block;">
-<strong style="font-size: 0.9em; display: block; margin-bottom: 4px;">Document RAG</strong>
-<span style="font-size: 0.8em; opacity: 0.85; line-height: 1.2; display: block;">Query documents using vector embeddings and semantic similarity search</span>
-</a>
-<a href="overview/retrieval" style="text-decoration: none; color: #e8f4fd; background-color: #0d1621; padding: 8px 12px; border-radius: 4px; border: 1px solid #4a9eff; display: block;">
-<strong style="font-size: 0.9em; display: block; margin-bottom: 4px;">Information Retrieval</strong>
-<span style="font-size: 0.8em; opacity: 0.85; line-height: 1.2; display: block;">Understand the retrieval strategies you just used</span>
-</a>
-<a href="contributing/getting-help" style="text-decoration: none; color: #e8f4fd; background-color: #0d1621; padding: 8px 12px; border-radius: 4px; border: 1px solid #4a9eff; display: block;">
-<strong style="font-size: 0.9em; display: block; margin-bottom: 4px;">Get Help</strong>
-<span style="font-size: 0.8em; opacity: 0.85; line-height: 1.2; display: block;">Support resources, community channels, and how to get assistance</span>
-</a>
-</div>
-</div>
+{% include pathway-box-start.html
+   border_color="#4a9eff"
+   bg_color="#1e2a3a"
+   banner_image="quickstart.jpg"
+   emoji="🚀"
+   title="Try it out (Quickstart)"
+   description="Get hands-on experience quickly with Docker"
+%}
+{% include journey-card.html
+   url="deployment/docker-compose"
+   text_color="#e8f4fd"
+   bg_color="#0d1621"
+   border_color="#4a9eff"
+   title="Docker Compose"
+   description="Easiest way to get TrustGraph running locally for development and testing"
+%}
+{% include journey-card.html
+   url="guides/graph-rag"
+   text_color="#e8f4fd"
+   bg_color="#0d1621"
+   border_color="#4a9eff"
+   title="Graph RAG"
+   description="Query documents using automatically extracted entities and relationships"
+%}
+{% include journey-card.html
+   url="guides/document-rag"
+   text_color="#e8f4fd"
+   bg_color="#0d1621"
+   border_color="#4a9eff"
+   title="Document RAG"
+   description="Query documents using vector embeddings and semantic similarity search"
+%}
+{% include journey-card.html
+   url="overview/retrieval"
+   text_color="#e8f4fd"
+   bg_color="#0d1621"
+   border_color="#4a9eff"
+   title="Information Retrieval"
+   description="Understand the retrieval strategies you just used"
+%}
+{% include journey-card.html
+   url="contributing/getting-help"
+   text_color="#e8f4fd"
+   bg_color="#0d1621"
+   border_color="#4a9eff"
+   title="Get Help"
+   description="Support resources, community channels, and how to get assistance"
+%}
+{% include pathway-box-end.html %}
 
-<div style="border: 2px solid #9f7aea; background-color: #2d2642; border-radius: 8px; flex: 1 1 calc(50% - 8px); min-width: 280px; overflow: hidden;">
-<div style="position: relative; height: 120px; background-image: url('plan.jpg'); background-size: cover; background-position: center;">
-<div style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: linear-gradient(to bottom, rgba(0,0,0,0.5), rgba(0,0,0,0.7)); padding: 12px 15px; display: flex; flex-direction: column; justify-content: center;">
-<h3 style="margin: 0; font-size: 1.1em; color: white;">🏢 Plan a production deployment</h3>
-<p style="margin: 4px 0 0 0; opacity: 0.9; font-size: 0.85em; color: white;">Evaluate and plan enterprise deployment</p>
-</div>
-</div>
-<div style="padding: 12px 15px; display: flex; flex-direction: column; gap: 6px;">
-<a href="overview/introduction" style="text-decoration: none; color: #e9d5ff; background-color: #1a1529; padding: 8px 12px; border-radius: 4px; border: 1px solid #9f7aea; display: block;">
-<strong style="font-size: 0.9em; display: block; margin-bottom: 4px;">Introduction</strong>
-<span style="font-size: 0.8em; opacity: 0.85; line-height: 1.2; display: block;">What is TrustGraph and how it transforms AI agents into contextually-aware systems</span>
-</a>
-<a href="overview/use-cases" style="text-decoration: none; color: #e9d5ff; background-color: #1a1529; padding: 8px 12px; border-radius: 4px; border: 1px solid #9f7aea; display: block;">
-<strong style="font-size: 0.9em; display: block; margin-bottom: 4px;">Use Cases</strong>
-<span style="font-size: 0.8em; opacity: 0.85; line-height: 1.2; display: block;">Real-world applications from enterprise search to intelligent agents</span>
-</a>
-<a href="overview/maturity" style="text-decoration: none; color: #e9d5ff; background-color: #1a1529; padding: 8px 12px; border-radius: 4px; border: 1px solid #9f7aea; display: block;">
-<strong style="font-size: 0.9em; display: block; margin-bottom: 4px;">Maturity</strong>
-<span style="font-size: 0.8em; opacity: 0.85; line-height: 1.2; display: block;">Production readiness, feature stability, and deployment status for enterprise use</span>
-</a>
-<a href="overview/security" style="text-decoration: none; color: #e9d5ff; background-color: #1a1529; padding: 8px 12px; border-radius: 4px; border: 1px solid #9f7aea; display: block;">
-<strong style="font-size: 0.9em; display: block; margin-bottom: 4px;">Security</strong>
-<span style="font-size: 0.8em; opacity: 0.85; line-height: 1.2; display: block;">Cybersecurity foundations, privacy protections, and enterprise security roadmap</span>
-</a>
-<a href="deployment/" style="text-decoration: none; color: #e9d5ff; background-color: #1a1529; padding: 8px 12px; border-radius: 4px; border: 1px solid #9f7aea; display: block;">
-<strong style="font-size: 0.9em; display: block; margin-bottom: 4px;">Choose Deployment</strong>
-<span style="font-size: 0.8em; opacity: 0.85; line-height: 1.2; display: block;">Select from Docker, Kubernetes, AWS, Azure, GCP, and other deployment options</span>
-</a>
-<a href="contributing/getting-help" style="text-decoration: none; color: #e9d5ff; background-color: #1a1529; padding: 8px 12px; border-radius: 4px; border: 1px solid #9f7aea; display: block;">
-<strong style="font-size: 0.9em; display: block; margin-bottom: 4px;">Get Help</strong>
-<span style="font-size: 0.8em; opacity: 0.85; line-height: 1.2; display: block;">Support resources, community channels, and how to get assistance</span>
-</a>
-</div>
-</div>
+{% include pathway-box-start.html
+   border_color="#9f7aea"
+   bg_color="#2d2642"
+   banner_image="plan.jpg"
+   emoji="🏢"
+   title="Plan a production deployment"
+   description="Evaluate and plan enterprise deployment"
+%}
+{% include journey-card.html
+   url="overview/introduction"
+   text_color="#e9d5ff"
+   bg_color="#1a1529"
+   border_color="#9f7aea"
+   title="Introduction"
+   description="What is TrustGraph and how it transforms AI agents into contextually-aware systems"
+%}
+{% include journey-card.html
+   url="overview/use-cases"
+   text_color="#e9d5ff"
+   bg_color="#1a1529"
+   border_color="#9f7aea"
+   title="Use Cases"
+   description="Real-world applications from enterprise search to intelligent agents"
+%}
+{% include journey-card.html
+   url="overview/maturity"
+   text_color="#e9d5ff"
+   bg_color="#1a1529"
+   border_color="#9f7aea"
+   title="Maturity"
+   description="Production readiness, feature stability, and deployment status for enterprise use"
+%}
+{% include journey-card.html
+   url="overview/security"
+   text_color="#e9d5ff"
+   bg_color="#1a1529"
+   border_color="#9f7aea"
+   title="Security"
+   description="Cybersecurity foundations, privacy protections, and enterprise security roadmap"
+%}
+{% include journey-card.html
+   url="deployment/"
+   text_color="#e9d5ff"
+   bg_color="#1a1529"
+   border_color="#9f7aea"
+   title="Choose Deployment"
+   description="Select from Docker, Kubernetes, AWS, Azure, GCP, and other deployment options"
+%}
+{% include journey-card.html
+   url="contributing/getting-help"
+   text_color="#e9d5ff"
+   bg_color="#1a1529"
+   border_color="#9f7aea"
+   title="Get Help"
+   description="Support resources, community channels, and how to get assistance"
+%}
+{% include pathway-box-end.html %}
 
-<div style="border: 2px solid #f59e0b; background-color: #3a2e1e; border-radius: 8px; flex: 1 1 calc(50% - 8px); min-width: 280px; overflow: hidden;">
-<div style="position: relative; height: 120px; background-image: url('develop.jpg'); background-size: cover; background-position: center;">
-<div style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: linear-gradient(to bottom, rgba(0,0,0,0.5), rgba(0,0,0,0.7)); padding: 12px 15px; display: flex; flex-direction: column; justify-content: center;">
-<h3 style="margin: 0; font-size: 1.1em; color: white;">👨‍💻 Developer integration</h3>
-<p style="margin: 4px 0 0 0; opacity: 0.9; font-size: 0.85em; color: white;">Build applications with TrustGraph</p>
-</div>
-</div>
-<div style="padding: 12px 15px; display: flex; flex-direction: column; gap: 6px;">
-<a href="deployment/docker-compose" style="text-decoration: none; color: #fef3c7; background-color: #221a10; padding: 8px 12px; border-radius: 4px; border: 1px solid #f59e0b; display: block;">
-<strong style="font-size: 0.9em; display: block; margin-bottom: 4px;">Docker Compose</strong>
-<span style="font-size: 0.8em; opacity: 0.85; line-height: 1.2; display: block;">Easiest way to get TrustGraph running locally for development and testing</span>
-</a>
-<a href="guides/knowledge-graphs" style="text-decoration: none; color: #fef3c7; background-color: #221a10; padding: 8px 12px; border-radius: 4px; border: 1px solid #f59e0b; display: block;">
-<strong style="font-size: 0.9em; display: block; margin-bottom: 4px;">Knowledge Graphs</strong>
-<span style="font-size: 0.8em; opacity: 0.85; line-height: 1.2; display: block;">Learn the fundamentals of knowledge graphs, triples, and RDF concepts</span>
-</a>
-<a href="guides/graph-rag" style="text-decoration: none; color: #fef3c7; background-color: #221a10; padding: 8px 12px; border-radius: 4px; border: 1px solid #f59e0b; display: block;">
-<strong style="font-size: 0.9em; display: block; margin-bottom: 4px;">Graph RAG</strong>
-<span style="font-size: 0.8em; opacity: 0.85; line-height: 1.2; display: block;">Query documents using automatically extracted entities and relationships</span>
-</a>
-<a href="reference/apis/" style="text-decoration: none; color: #fef3c7; background-color: #221a10; padding: 8px 12px; border-radius: 4px; border: 1px solid #f59e0b; display: block;">
-<strong style="font-size: 0.9em; display: block; margin-bottom: 4px;">API Reference</strong>
-<span style="font-size: 0.8em; opacity: 0.85; line-height: 1.2; display: block;">Complete API documentation for integrating TrustGraph into your applications</span>
-</a>
-<a href="guides/mcp-integration" style="text-decoration: none; color: #fef3c7; background-color: #221a10; padding: 8px 12px; border-radius: 4px; border: 1px solid #f59e0b; display: block;">
-<strong style="font-size: 0.9em; display: block; margin-bottom: 4px;">MCP Integration</strong>
-<span style="font-size: 0.8em; opacity: 0.85; line-height: 1.2; display: block;">Integrate Model Context Protocol servers to extend agent workflows with custom tools</span>
-</a>
-<a href="contributing/getting-help" style="text-decoration: none; color: #fef3c7; background-color: #221a10; padding: 8px 12px; border-radius: 4px; border: 1px solid #f59e0b; display: block;">
-<strong style="font-size: 0.9em; display: block; margin-bottom: 4px;">Get Help</strong>
-<span style="font-size: 0.8em; opacity: 0.85; line-height: 1.2; display: block;">Support resources, community channels, and how to get assistance</span>
-</a>
-</div>
-</div>
+{% include pathway-box-start.html
+   border_color="#f59e0b"
+   bg_color="#3a2e1e"
+   banner_image="develop.jpg"
+   emoji="👨‍💻"
+   title="Developer integration"
+   description="Build applications with TrustGraph"
+%}
+{% include journey-card.html
+   url="deployment/docker-compose"
+   text_color="#fef3c7"
+   bg_color="#221a10"
+   border_color="#f59e0b"
+   title="Docker Compose"
+   description="Easiest way to get TrustGraph running locally for development and testing"
+%}
+{% include journey-card.html
+   url="guides/knowledge-graphs"
+   text_color="#fef3c7"
+   bg_color="#221a10"
+   border_color="#f59e0b"
+   title="Knowledge Graphs"
+   description="Learn the fundamentals of knowledge graphs, triples, and RDF concepts"
+%}
+{% include journey-card.html
+   url="guides/graph-rag"
+   text_color="#fef3c7"
+   bg_color="#221a10"
+   border_color="#f59e0b"
+   title="Graph RAG"
+   description="Query documents using automatically extracted entities and relationships"
+%}
+{% include journey-card.html
+   url="reference/apis/"
+   text_color="#fef3c7"
+   bg_color="#221a10"
+   border_color="#f59e0b"
+   title="API Reference"
+   description="Complete API documentation for integrating TrustGraph into your applications"
+%}
+{% include journey-card.html
+   url="guides/mcp-integration"
+   text_color="#fef3c7"
+   bg_color="#221a10"
+   border_color="#f59e0b"
+   title="MCP Integration"
+   description="Integrate Model Context Protocol servers to extend agent workflows with custom tools"
+%}
+{% include journey-card.html
+   url="contributing/getting-help"
+   text_color="#fef3c7"
+   bg_color="#221a10"
+   border_color="#f59e0b"
+   title="Get Help"
+   description="Support resources, community channels, and how to get assistance"
+%}
+{% include pathway-box-end.html %}
 
-<div style="border: 2px solid #ec4899; background-color: #3a1e2e; border-radius: 8px; flex: 1 1 calc(50% - 8px); min-width: 280px; overflow: hidden;">
-<div style="position: relative; height: 120px; background-image: url('extend.jpg'); background-size: cover; background-position: center;">
-<div style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: linear-gradient(to bottom, rgba(0,0,0,0.5), rgba(0,0,0,0.7)); padding: 12px 15px; display: flex; flex-direction: column; justify-content: center;">
-<h3 style="margin: 0; font-size: 1.1em; color: white;">🔧 Extend TrustGraph</h3>
-<p style="margin: 4px 0 0 0; opacity: 0.9; font-size: 0.85em; color: white;">Contribute and customize TrustGraph</p>
-</div>
-</div>
-<div style="padding: 12px 15px; display: flex; flex-direction: column; gap: 6px;">
-<a href="overview/architecture" style="text-decoration: none; color: #fce7f3; background-color: #1a0d14; padding: 8px 12px; border-radius: 4px; border: 1px solid #ec4899; display: block;">
-<strong style="font-size: 0.9em; display: block; margin-bottom: 4px;">Architecture</strong>
-<span style="font-size: 0.8em; opacity: 0.85; line-height: 1.2; display: block;">System design, component relationships, data flow, and integration points</span>
-</a>
-<a href="contributing/developer" style="text-decoration: none; color: #fce7f3; background-color: #1a0d14; padding: 8px 12px; border-radius: 4px; border: 1px solid #ec4899; display: block;">
-<strong style="font-size: 0.9em; display: block; margin-bottom: 4px;">Developer Guide</strong>
-<span style="font-size: 0.8em; opacity: 0.85; line-height: 1.2; display: block;">Set up your development environment and understand the codebase</span>
-</a>
-<a href="contributing/contributing" style="text-decoration: none; color: #fce7f3; background-color: #1a0d14; padding: 8px 12px; border-radius: 4px; border: 1px solid #ec4899; display: block;">
-<strong style="font-size: 0.9em; display: block; margin-bottom: 4px;">Contributing</strong>
-<span style="font-size: 0.8em; opacity: 0.85; line-height: 1.2; display: block;">How to contribute code, documentation, and improvements to TrustGraph</span>
-</a>
-<a href="contributing/getting-help" style="text-decoration: none; color: #fce7f3; background-color: #1a0d14; padding: 8px 12px; border-radius: 4px; border: 1px solid #ec4899; display: block;">
-<strong style="font-size: 0.9em; display: block; margin-bottom: 4px;">Get Help</strong>
-<span style="font-size: 0.8em; opacity: 0.85; line-height: 1.2; display: block;">Support resources, community channels, and how to get assistance</span>
-</a>
-</div>
-</div>
+{% include pathway-box-start.html
+   border_color="#ec4899"
+   bg_color="#3a1e2e"
+   banner_image="extend.jpg"
+   emoji="🔧"
+   title="Extend TrustGraph"
+   description="Contribute and customize TrustGraph"
+%}
+{% include journey-card.html
+   url="overview/architecture"
+   text_color="#fce7f3"
+   bg_color="#1a0d14"
+   border_color="#ec4899"
+   title="Architecture"
+   description="System design, component relationships, data flow, and integration points"
+%}
+{% include journey-card.html
+   url="contributing/developer"
+   text_color="#fce7f3"
+   bg_color="#1a0d14"
+   border_color="#ec4899"
+   title="Developer Guide"
+   description="Set up your development environment and understand the codebase"
+%}
+{% include journey-card.html
+   url="contributing/contributing"
+   text_color="#fce7f3"
+   bg_color="#1a0d14"
+   border_color="#ec4899"
+   title="Contributing"
+   description="How to contribute code, documentation, and improvements to TrustGraph"
+%}
+{% include journey-card.html
+   url="contributing/getting-help"
+   text_color="#fce7f3"
+   bg_color="#1a0d14"
+   border_color="#ec4899"
+   title="Get Help"
+   description="Support resources, community channels, and how to get assistance"
+%}
+{% include pathway-box-end.html %}
 
 </div>
 
