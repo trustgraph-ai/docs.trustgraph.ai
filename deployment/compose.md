@@ -164,9 +164,11 @@ If you are self-hosting a model on the same device you are intending
 to run TrustGraph, you will need to understand how to get TrustGraph
 to talk to your model service.
 
-If this applies to you read [container](container-networking).
+If you are trying to connect TrustGraph to a service running on the host,
+read [Container networking and self-hosted models](container-networking).
 
-If this applies to you read [WSL](wsl-networking).
+If you are trying to connect TrustGraph to a service running on WSL,
+read [WSL networking and self-hosted models](wsl-networking).
 
 ## Configuration setup
 
