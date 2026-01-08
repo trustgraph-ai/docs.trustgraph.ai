@@ -355,11 +355,12 @@ AWS resources you gave this user.
 <details>
 <summary>Specific guidance for Anthropic Claude</summary>
 <div markdown="1">
-
-FIXME
+To use Anthropic's Claude models directly, sign up for API access at
+[console.anthropic.com](https://console.anthropic.com/). Create an API key
+from the dashboard. Set the key as an environment variable:
 
 ```
-export CLAUDE_KEY=Claude-key-goes-here
+export CLAUDE_KEY=sk-ant-api03-xxxxx
 ```
 </div>
 </details>
@@ -367,12 +368,40 @@ export CLAUDE_KEY=Claude-key-goes-here
 <details>
 <summary>Specific guidance for Cohere</summary>
 <div markdown="1">
-
-FIXME
+To use Cohere's models, sign up at [cohere.com](https://cohere.com/) and
+create an API key from your dashboard. Set the key as an environment variable:
 
 ```
-export COHERE_KEY=TOKEN-GOES-HERE
+export COHERE_KEY=your-cohere-api-key-here
 ```
+</div>
+</details>
+
+<details>
+<summary>Specific guidance for Google AI Studio</summary>
+<div markdown="1">
+To use Google's Gemini models via AI Studio, visit
+[aistudio.google.com](https://aistudio.google.com/) and generate an API key.
+Set the key as an environment variable:
+
+```
+export GOOGLE_AI_STUDIO_KEY=your-api-key-here
+```
+</div>
+</details>
+
+<details>
+<summary>Specific guidance for Llamafile / llama.cpp server</summary>
+<div markdown="1">
+If running a llamafile or llama.cpp server locally, configure the URL to point
+to your server. The URL must include the `/v1` path:
+
+```
+export LLAMAFILE_URL=http://host.containers.internal:7000/v1
+```
+
+Note: Use `host.containers.internal` to reference services on your host machine
+from within containers.
 </div>
 </details>
 
@@ -686,20 +715,9 @@ export OLLAMA_HOST=http://ollama-host:11434
 
 
 
-Claude:
-kubectl -n trustgraph create secret \
-    generic claude-credentials \
-    --from-literal=claude-key=CLAUDE_KEY
-    
-    CLAUDE_KEY
     
     
-    
-export COHERE_KEY=TOKEN-GOES-HERE
 
-
-
-export GOOGLE_AI_STUDIO_KEY=TOKEN-GOES-HERE
 
 export LLAMAFILE_URL=LLAMAFILE-URL
 
