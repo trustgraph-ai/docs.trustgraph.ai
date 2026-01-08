@@ -100,3 +100,6 @@ defaults:
     values:
       layout: page
 
+fathom:
+  site_id: RJHALETV
+
