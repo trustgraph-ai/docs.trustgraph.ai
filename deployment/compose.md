@@ -410,7 +410,8 @@ Access the TrustGraph workbench at
 By default, there are no credentials.
 
 You should be able to navigate to the Flows tab, and see a single
-*default* flow running.
+*default* flow running.  The guide will return to the workbench to load
+a document.
 
 ## Monitoring dashboard
 
@@ -420,11 +421,37 @@ Access Grafana monitoring at [http://localhost:3000/](http://localhost:3000/)
 - Username: `admin`
 - Password: `admin`
 
+All TrustGraph components collect metrics using Prometheus and make these
+available using this Grafana workbench.  The Grafana deployment is
+configured with 2 dashboards, the first is an Overview metrics dashboard
+which shows processing metrics.  For a newly launched system, the metrics
+won't be particularly interesting.
+
+There is also a Logs dashboard which shows collated TrustGraph container
+logs.
+
+## Check the LLM is working
+
+Back in the workbench, select the *Assistant* tab.
+
+In the top line next to the *Assistant* word change the mode to *Basic LLM*.
+
+Enter a question in the prompt box at the bottom of the tab and press
+*Send*.  If everything works, after a short period you should see
+a response to your query.
+
+![Simple LLM usage](llm-interaction.png)
+
+If LLM interactions are not working, this needs to be diagnosed and fixed
+prior to continuing.  You should check the logs in Grafana to see if there
+are errors.
+
 ## Working with a document
 
-### Load Documents
+### Load a document
 
-**Via Workbench:**
+Back in the workbench:
+
 1. Navigate to the Library page
 2. In the upper right-hand corner, there is a dark/light mode widget.
    To its left, is a selector width.  Ensure the top and bottom lines say
@@ -433,6 +460,9 @@ Access Grafana monitoring at [http://localhost:3000/](http://localhost:3000/)
 3. Click Submit on the action bar
 4. Choose a processing flow (use Default processing flow)
 5. Click Submit to process
+
+Beyond State Vigilance is a relatively short document, so a good one to
+start with.
 
 ### Use Vector search
 
@@ -444,36 +474,25 @@ The vector search attempts to find up to 10 terms which are the closest
 matches for your search term.  It does this even if the search terms are not
 a strong match, so this is a simple way to observe whether data has loaded.
 
-### Verify knowledge graph
+![Vector search results](vector-search.png)
 
-Check graph parsing results:
+### Look at knowledge graph
 
-```bash
-tg-show-graph
-```
+Click on one of the Vector Search results terms on the left-hand-side.
+This shows relationships in the graph from the knowledge graph linking to
+that term.
 
-You should see some lines of text scrolling past.  This displays semantic
-triples in N-Triples format:
+![Relationships view](relationships.png)
 
-```
-<http://trustgraph.ai/e/enterprise> <http://trustgraph.ai/e/was-carried> "to altitude and released for a gliding approach" .
-<http://trustgraph.ai/e/enterprise> <http://www.w3.org/2000/01/rdf-schema#label> "Enterprise" .
-```
-
-The structure isn't hugely important for this test, but it is a simple
-way to verify that data has loaded.
+You can then click on the *Graph view* button to go to a 3D view of the
+discovered relationships.
 
 ### Query with Graph RAG
 
-**Via Workbench:**
-1. Navigate to Graph RAG tab
-2. Enter your question (e.g., "What is this document about?")
-3. View contextual responses
-
-**Via CLI:**
-```bash
-tg-invoke-graph-rag "What is this document about?"
-```
+1. Navigate to *Assistant* tab
+2. Change the Assistant mode to GraphRAG
+3. Enter your question (e.g., "What is this document about?")
+4. You will see the answer to your question after a short period
 
 ## Troubleshooting
 
