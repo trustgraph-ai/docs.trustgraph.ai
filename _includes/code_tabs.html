@@ -1,0 +1,58 @@
+{% comment %}
+  Code Tabs Include for Just the Docs
+  
+  Usage:
+    {% capture python %}
+    ```python
+    print("Hello")
+    ```
+    {% endcapture %}
+    
+    {% capture javascript %}
+    ```javascript
+    console.log("Hello");
+    ```
+    {% endcapture %}
+    
+    {% include code_tabs.html 
+       tabs="Python,JavaScript" 
+       content1=python 
+       content2=javascript 
+    %}
+{% endcomment %}
+
+{% assign tab_names = include.tabs | split: "," %}
+{% assign tab_id = include.tabs | slugify | append: "-" | append: site.time | date: "%s%N" %}
+
+<div class="code-tabs" data-tab-group="{{ tab_id }}">
+  <div class="code-tabs-nav" role="tablist">
+    {% for tab_name in tab_names %}
+      {% assign tab_slug = tab_name | strip | slugify %}
+      <button 
+        class="code-tabs-btn{% if forloop.first %} active{% endif %}" 
+        role="tab"
+        aria-selected="{% if forloop.first %}true{% else %}false{% endif %}"
+        aria-controls="{{ tab_id }}-panel-{{ forloop.index }}"
+        data-tab="{{ tab_slug }}"
+        id="{{ tab_id }}-tab-{{ forloop.index }}">
+        {{ tab_name | strip }}
+      </button>
+    {% endfor %}
+  </div>
+  
+  <div class="code-tabs-content">
+    {% for tab_name in tab_names %}
+      {% assign tab_slug = tab_name | strip | slugify %}
+      {% assign content_var = "content" | append: forloop.index %}
+      <div 
+        class="code-tabs-panel{% if forloop.first %} active{% endif %}"
+        role="tabpanel"
+        id="{{ tab_id }}-panel-{{ forloop.index }}"
+        aria-labelledby="{{ tab_id }}-tab-{{ forloop.index }}"
+        data-tab="{{ tab_slug }}"
+        {% unless forloop.first %}hidden{% endunless %}>
+        {{ include[content_var] | markdownify }}
+      </div>
+    {% endfor %}
+  </div>
+</div>

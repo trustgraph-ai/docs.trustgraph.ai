@@ -1,0 +1,48 @@
+{% assign box_font_size = include.font_size | default: "0.9em" %}
+
+<div style="border: 2px solid #4a9eff; background-color: #1e2a3a; padding: 20px; margin: 20px 0; border-radius: 8px; font-size: {{ box_font_size }};">
+
+{% if include.description %}
+<div style="margin-bottom: 20px;">
+<strong style="color: #4a9eff; font-size: 0.85em; text-transform: uppercase;">Description</strong>
+<p style="margin: 5px 0 0 0; line-height: 1.5;">{{ include.description }}</p>
+</div>
+{% endif %}
+
+{% if include.difficulty or include.duration %}
+<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px; margin-bottom: 15px;">
+
+{% if include.difficulty %}
+<div>
+<strong style="color: #4a9eff; font-size: 0.85em; text-transform: uppercase;">Difficulty</strong>
+<p style="margin: 5px 0 0 0;">{{ include.difficulty | capitalize }}</p>
+</div>
+{% endif %}
+
+{% if include.duration %}
+<div>
+<strong style="color: #4a9eff; font-size: 0.85em; text-transform: uppercase;">Duration</strong>
+<p style="margin: 5px 0 0 0;">{{ include.duration }}</p>
+</div>
+{% endif %}
+
+</div>
+{% endif %}
+
+{% if include.you_will_need %}
+<div style="margin-bottom: 15px;">
+<strong style="color: #4a9eff; font-size: 0.85em; text-transform: uppercase;">You will need</strong>
+<div style="margin: 5px 0 0 0;">
+{{ include.you_will_need }}
+</div>
+</div>
+{% endif %}
+
+{% if include.goal %}
+<div>
+<strong style="color: #4a9eff; font-size: 0.85em; text-transform: uppercase;">Goal</strong>
+<p style="margin: 5px 0 0 0;">{{ include.goal }}</p>
+</div>
+{% endif %}
+
+</div>

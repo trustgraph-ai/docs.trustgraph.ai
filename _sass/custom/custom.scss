@@ -1,0 +1,176 @@
+// Code Tabs Styling for Just the Docs
+// Add this to your _sass/custom/custom.scss file
+
+.code-tabs {
+  margin: 1.5rem 0;
+  border: 1px solid var(--border-color, #e1e4e8);
+  border-radius: 6px;
+  overflow: hidden;
+}
+
+.code-tabs-nav {
+  display: flex;
+  flex-wrap: wrap;
+  background-color: var(--sidebar-color, #f5f6fa);
+  border-bottom: 1px solid var(--border-color, #e1e4e8);
+  gap: 0;
+}
+
+.code-tabs-btn {
+  padding: 0.6rem 1.2rem;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: var(--grey-dk-100, #5c5c5c);
+  transition: all 0.15s ease;
+  position: relative;
+  margin-bottom: -1px;
+  border-bottom: 2px solid transparent;
+
+  &:hover {
+    color: var(--link-color, #0366d6);
+    background-color: rgba(0, 0, 0, 0.03);
+  }
+
+  &:focus {
+    outline: 2px solid var(--link-color, #0366d6);
+    outline-offset: -2px;
+  }
+
+  &.active {
+    color: var(--link-color, #0366d6);
+    background-color: var(--body-background-color, #fff);
+    border-bottom-color: var(--link-color, #0366d6);
+  }
+}
+
+.code-tabs-content {
+  background-color: var(--body-background-color, #fff);
+}
+
+.code-tabs-panel {
+  display: none;
+  
+  &.active {
+    display: block;
+  }
+  
+  // Remove margins from code blocks inside tabs
+  > .highlighter-rouge,
+  > .highlight,
+  > pre,
+  > div > .highlighter-rouge,
+  > div > .highlight,
+  > div > pre {
+    margin: 0;
+    border: none;
+    border-radius: 0;
+    
+    pre {
+      margin: 0;
+      border: none;
+      border-radius: 0;
+    }
+  }
+  
+  // Handle the paragraph wrapper that markdownify adds
+  > p {
+    margin: 0;
+    
+    > .highlighter-rouge,
+    > .highlight {
+      margin: 0;
+    }
+  }
+}
+
+// Dark mode support (if using Just the Docs dark mode)
+@media (prefers-color-scheme: dark) {
+  .code-tabs {
+    border-color: #373b41;
+  }
+  
+  .code-tabs-nav {
+    background-color: #1e1e1e;
+    border-bottom-color: #373b41;
+  }
+  
+  .code-tabs-btn {
+    color: #a0a0a0;
+    
+    &:hover {
+      background-color: rgba(255, 255, 255, 0.05);
+    }
+    
+    &.active {
+      background-color: #0d1117;
+    }
+  }
+  
+  .code-tabs-content {
+    background-color: #0d1117;
+  }
+}
+
+// Just the Docs specific dark mode class
+[data-theme="dark"] {
+  .code-tabs {
+    border-color: #373b41;
+  }
+  
+  .code-tabs-nav {
+    background-color: #1e1e1e;
+    border-bottom-color: #373b41;
+  }
+  
+  .code-tabs-btn {
+    color: #a0a0a0;
+    
+    &:hover {
+      background-color: rgba(255, 255, 255, 0.05);
+    }
+    
+    &.active {
+      background-color: #0d1117;
+    }
+  }
+  
+  .code-tabs-content {
+    background-color: #0d1117;
+  }
+}
+
+pre {
+  max-height: 30rem;  // adjust this to whatever you want
+  overflow-y: auto;
+}
+
+details {
+
+  border: 1px solid var(--border-color, #e1e4e8);
+  border-radius: 6px;
+  padding: 0.75rem 1rem;
+  margin: 1rem 0;
+  
+  summary {
+    cursor: pointer;
+    font-weight: 500;
+    
+    &:hover {
+      color: var(--link-color, #0366d6);
+    }
+  }
+  
+  > *:nth-child(n+2) {
+    margin-top: 1rem;
+  }
+  
+  img {
+    max-width: 100%;
+    border: 1px solid var(--border-color, #e1e4e8);
+    border-radius: 4px;
+  }
+}
+

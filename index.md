@@ -78,14 +78,14 @@ TrustGraph is an open-source Agent Intelligence Platform that transforms AI agen
    banner_image="quickstart.jpg"
    emoji="🚀"
    title="Try it out (Quickstart)"
-   description="Get hands-on experience quickly with Docker"
+   description="Get hands-on experience quickly by running it on a local device"
 %}
 {% include journey-card.html
-   url="deployment/docker-compose"
+   url="deployment/compose"
    text_color="#e8f4fd"
    bg_color="#0d1621"
    border_color="#4a9eff"
-   title="Docker Compose"
+   title="Docker/Podman Compose"
    description="Easiest way to get TrustGraph running locally for development and testing"
 %}
 {% include journey-card.html
@@ -168,7 +168,7 @@ TrustGraph is an open-source Agent Intelligence Platform that transforms AI agen
    bg_color="#1a1529"
    border_color="#9f7aea"
    title="Choose Deployment"
-   description="Select from Docker, Kubernetes, AWS, Azure, GCP, and other deployment options"
+   description="Select from Docker, Podman, Kubernetes, AWS, Azure, GCP, and other deployment options"
 %}
 {% include journey-card.html
    url="contributing/getting-help"
@@ -189,11 +189,11 @@ TrustGraph is an open-source Agent Intelligence Platform that transforms AI agen
    description="Build applications with TrustGraph"
 %}
 {% include journey-card.html
-   url="deployment/docker-compose"
+   url="deployment/compose"
    text_color="#fef3c7"
    bg_color="#221a10"
    border_color="#f59e0b"
-   title="Docker Compose"
+   title="Docker/Podman Compose"
    description="Easiest way to get TrustGraph running locally for development and testing"
 %}
 {% include journey-card.html
@@ -288,7 +288,7 @@ TrustGraph is an open-source Agent Intelligence Platform that transforms AI agen
 Understanding TrustGraph - Architecture, features, philosophy, and use cases.
 
 ### [Deployment](deployment/)
-Running TrustGraph - Docker Compose, Kubernetes, cloud platforms, and production setup.
+Running TrustGraph - Docker/Podman Compose, Kubernetes, cloud platforms, and production setup.
 
 ### [How-to Guides](guides/)
 Task-oriented instructions - Step-by-step guides for specific tasks and workflows.
