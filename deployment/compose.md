@@ -472,6 +472,56 @@ export OPENAI_BASE_URL=http://your-server-host:8000/v1
 </div>
 </details>
 
+<details>
+<summary>Specific guidance for Google Cloud VertexAI</summary>
+<div markdown="1">
+To use Google Cloud VertexAI, you need to create a service account with
+appropriate permissions and download its credentials file.
+
+1. In Google Cloud Console, create a service account
+2. Grant the service account permissions to invoke VertexAI models (e.g.,
+   `Vertex AI User` role - use minimal permissions, not admin roles)
+3. Create and download a JSON key file for the service account
+4. Save the key file as `vertexai/private.json` in your deployment directory
+
+{: .warning }
+**Important**: Service account credentials provide access to your Google Cloud
+resources. Never commit `private.json` to version control. Use minimal
+permissions - grant only what's needed for VertexAI model invocation, not
+administrator roles.
+
+After placing the file, you may need to adjust file permissions as described
+earlier in the configuration unpacking section:
+
+```sh
+chmod 644 vertexai/private.json
+```
+
+On SELinux systems, also run:
+
+```sh
+sudo chcon -Rt svirt_sandbox_file_t vertexai/
+```
+</div>
+</details>
+
+<details>
+<summary>Specific guidance for vLLM</summary>
+<div markdown="1">
+If running vLLM locally, configure the URL to point to your vLLM server.
+The URL should include the `/v1` path:
+
+```
+export VLLM_URL=http://your-server-host:port/v1
+```
+
+If running on the same host as your containers, use `host.containers.internal`
+as the hostname (e.g., `http://host.containers.internal:8000/v1`).
+
+See also: [Container networking and self-hosted models](container-networking)
+</div>
+</details>
+
 ## Configure security settings
 
 For this local deployment, set the following security variables to empty strings
