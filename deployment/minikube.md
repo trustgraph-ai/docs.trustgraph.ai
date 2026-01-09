@@ -9,7 +9,7 @@ guide_category:
 guide_category_order: 2
 guide_description: Run TrustGraph in a local Kubernetes cluster for production-like development and testing
 guide_difficulty: intermediate
-guide_time: 2 - 3 hr
+guide_time: 30 - 60 min
 guide_emoji: ☸️
 guide_banner: /../minikube.png
 guide_labels:
@@ -25,10 +25,9 @@ guide_labels:
 <li>Machine with 11GB+ RAM and 9 CPUs available for TrustGraph to use - a 16GB laptop will likely cope</li>
 <li>Minikube installed and configured</li>
 <li>kubectl command-line tool</li>
-<li>Docker Engine (most common driver for Minikube) or another virtualization driver</li>
 <li>Python 3.11+ for CLI tools</li>
 <li>Access to an LLM (cloud service like VertexAI, AWS Bedrock, or local with Ollama)</li>
-<li>Basic command-line and Kubernetes familiarity</li>
+<li>Basic command-line and basic Minikube familiarity</li>
 </ul>
 {% endcapture %}
 
@@ -42,14 +41,23 @@ guide_labels:
 
 ## Overview
 
-Minikube allows you to run TrustGraph in a local Kubernetes cluster, providing a production-like environment for development and testing. This deployment method offers:
+Minikube is a tool that runs a single-node Kubernetes cluster on your local
+machine. It's designed for developers who want to learn Kubernetes or test
+applications in a Kubernetes environment without needing access to a full
+cloud-based cluster.
+
+Running TrustGraph on Minikube provides a production-like environment for
+development and testing. This deployment method offers:
 
 - **Kubernetes-native deployment** with local development capabilities
-- **Production-like environment** for testing at scale
+- **Production-like environment** for testing in a more realistic environment
+  than Docker Compose.
 - **Resource isolation** and management
 - **LoadBalancer** and service discovery testing
 
-This is a good way to learn TrustGraph in a Kubernetes environment before deploying to production clusters, or to test Kubernetes-specific features locally.
+This is a good way to learn TrustGraph in a Kubernetes environment before
+deploying to production clusters, or to test Kubernetes-specific features
+locally.
 
 ## Getting ready
 
@@ -57,11 +65,12 @@ This is a good way to learn TrustGraph in a Kubernetes environment before deploy
 
 As mentioned above, you need a machine with at least 11GB of RAM and 9 CPUs
 available for TrustGraph. That means if you're running other significant
-workloads on it, it will probably fail. A 16GB laptop can typically run TrustGraph
-in Minikube, but not when other resource-intensive applications are running.
+workloads on it, it will probably fail. A 16GB laptop can typically run
+TrustGraph in Minikube, but not when other resource-intensive applications are
+running.
 
-You can also deploy a Minikube instance to your favourite cloud provider and use
-that if local resources are limited.
+You can also deploy a Minikube instance to your favourite cloud provider and
+use that if local resources are limited.
 
 This has been tested with Linux, MacOS and Windows devices.
 
