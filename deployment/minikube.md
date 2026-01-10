@@ -996,28 +996,6 @@ Check the previous logs to identify why the container is crashing. Common causes
 </div>
 </details>
 
-### Debug Commands
-
-```bash
-# Check cluster info
-kubectl cluster-info
-
-# Get all resources in trustgraph namespace
-kubectl -n trustgraph get all
-
-# Check node resources
-kubectl describe node minikube
-
-# View recent events
-kubectl -n trustgraph get events --sort-by=.metadata.creationTimestamp
-
-# Check Minikube logs
-minikube logs
-
-# Check specific service endpoints
-kubectl -n trustgraph get endpoints
-```
-
 ## Shutting down
 
 ### Clean shutdown
@@ -1025,30 +1003,8 @@ kubectl -n trustgraph get endpoints
 Once you have finished with your system, you can close it down.
 
 ```bash
-# Remove TrustGraph deployment
-kubectl delete -f trustgraph-minikube.yaml
-
-# Stop Minikube
-minikube stop
-
-# Optional: Delete Minikube cluster (removes all data)
 minikube delete
 ```
-
-The `minikube delete` command completely removes the Minikube cluster and all
-its data. Only use this if you want to start completely fresh.
-
-### Verify cleanup
-
-```bash
-# Check no pods remain in trustgraph namespace
-kubectl -n trustgraph get all
-
-# Verify Minikube status
-minikube status
-```
-
-If you deleted the cluster, `minikube status` should indicate no cluster exists.
 
 ## Next Steps
 
