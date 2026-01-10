@@ -125,6 +125,8 @@ settings as described in the system resources section above.
 
 ### A word on networking and self-hosting
 
+FIXME: ADDRESS THIS SECTION
+
 If you are self-hosting a model on the same device you are intending
 to run Minikube, you will need to understand how to get TrustGraph
 to talk to your model service.
@@ -151,7 +153,7 @@ selects the newest stable deployment. To be compatible with this installation gu
 {: .note }
 Remember the version number it is set up to deploy, you will need to know that to install CLI tools!
 
-1. **Select Deployment**: Choose Kubernetes/Minikube
+1. **Select Deployment**: Choose Minikube
 2. **Graph Store**: Select Cassandra (recommended for ease of use)
 3. **Vector Store**: Select Qdrant (recommended for ease of use)
 4. **Chunker Settings**:
@@ -165,16 +167,34 @@ Remember the version number it is set up to deploy, you will need to know that t
 
 ## Unpack the configuration
 
-The configuration builder will download a `.yaml` file (e.g., `trustgraph-minikube.yaml`)
-containing your Kubernetes deployment configuration which will be downloaded to your
-device in e.g. a Downloads directory.
-
-You should create a suitable directory for your work and move the YAML file there:
+The configuration builder will download a `.zip` file containing your
+deployment configuration which will be downloaded to your device in
+e.g. a Downloads directory.  You need to find that zip file, and interact
+with it in a terminal.  You can use the `unzip` command to list the
+contents of the ZIP file.  There should be a `resources.yaml` file
+which is used to launch TrustGraph.
 
 ```sh
-mkdir -p ~/trustgraph-minikube
-cd ~/trustgraph-minikube
-mv ~/Downloads/trustgraph-minikube.yaml .
+unzip -l deploy.zip 
+```
+
+The output should look something like this:
+
+```sh
+Archive:  deploy.zip
+  Length      Date    Time    Name
+---------  ---------- -----   ----
+   300102  2026-01-09 13:30   resources.yaml
+---------                     -------
+   300102                     1 file
+```
+You should create a suitable directory for your work and move the YAML file
+there:
+
+```sh
+mkdir -p ~/trustgraph
+cd ~/trustgraph
+unzip ~/Downloads/deploy.zip .
 ```
 
 ## Install CLI tools
@@ -192,6 +212,8 @@ pip install trustgraph-cli==1.8.9
 ```
 
 ## Configure security settings
+
+FIXME: THIS IS BROKEN
 
 For this local deployment, set the following security variables to empty strings
 to disable authentication:
@@ -232,7 +254,7 @@ Now you're ready to deploy TrustGraph to your Minikube cluster.
 ### Apply Kubernetes configuration
 
 ```bash
-kubectl apply -f trustgraph-minikube.yaml
+kubectl apply -f resources.yaml
 ```
 
 This creates all the necessary Kubernetes resources (deployments, services, configmaps, etc.) for TrustGraph.
@@ -242,6 +264,8 @@ This creates all the necessary Kubernetes resources (deployments, services, conf
 Depending on which LLM you selected, you need to create a Kubernetes secret with your credentials or configuration.
 
 **Required for all deployments:**
+
+FIXME: BREOKN
 
 First, create the security secrets:
 ```bash
