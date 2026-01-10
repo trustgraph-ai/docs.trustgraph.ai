@@ -180,6 +180,20 @@ mechanisms, KVM2 is the driver we have used with most consistent results.
 minikube start --cpus=9 --memory=14848 --driver=kvm2
 ```
 
+Startup looks something liek this:
+```
+😄  minikube v1.37.0 on Ubuntu 25.10
+✨  Using the kvm2 driver based on user configuration
+👍  Starting "minikube" primary control-plane node in "minikube" cluster
+🔥  Creating kvm2 VM (CPUs=9, Memory=14848MB, Disk=20000MB) ...
+🐳  Preparing Kubernetes v1.34.0 on Docker 28.4.0 ...
+🔗  Configuring bridge CNI (Container Networking Interface) ...
+🔎  Verifying Kubernetes components...
+    ▪ Using image gcr.io/k8s-minikube/storage-provisioner:v5
+🌟  Enabled addons: storage-provisioner, default-storageclass
+🏄  Done! kubectl is now configured to use "minikube" cluster and "default" namespace by default
+```
+
 By default, Minikube deploys 20GB of storage for the Kubernetes deployment.
 You can change this with the `--disk-size` option.
 
@@ -281,17 +295,43 @@ Now you're ready to deploy TrustGraph to your Minikube cluster.
 
 ### Apply Kubernetes configuration
 
+We'll offer you 2 options for deploying the configuration.
+
+1. The simplest, in terms of commands, is to deploy the `resource.yaml`
+   file, and then add the secret configuration.
+2. The second, is to deploy the namespace, configure extra settings,
+   and then deploy the application.  This has the advantage that
+   everything gets started with the resources it needs, so you'll end up
+   with a running system in quicker order.
+
+So, option 1 is to run this command with the `resources.yaml` file you
+unpacked earlier:
 ```bash
 kubectl apply -f resources.yaml
 ```
 
-This creates all the necessary Kubernetes resources (deployments, services, configmaps, etc.) for TrustGraph.
+This creates all the necessary Kubernetes resources (deployments, services,
+configmaps, etc.) for TrustGraph.  Some resources will fail to start until the
+configuration is complete, plus restart times.
 
-### Configure LLM settings
+Continue by deploying secrets below.
 
-Depending on which LLM you selected, you need to create a Kubernetes secret with your credentials or configuration.
+Option 2 is to deploy just the namespace.  You need to have the `yq` utility
+installed for this command to work:
 
-**Required for all deployments:**
+```sh
+yq '.items[] | select(.kind == "Namespace")' resources.yaml | \
+  kubectl apply -f -
+```
+
+## Configure LLM settings
+
+Depending on which LLM you selected, you need to create a Kubernetes secret
+with your credentials or configuration.
+
+{% include llm-configuration-kubernetes-secrets.md %}
+
+### Configure security settings
 
 First, create the security secrets. For this local deployment, we set these to
 empty strings to disable authentication:
@@ -305,14 +345,91 @@ kubectl -n trustgraph create secret generic mcp-server-secret \
 ```
 
 The `mcp-server-secret` protects the MCP server with a secret but is not fully
-implemented yet. The `gateway-secret` provides single-secret protection for the
-gateway API, which does not currently support comprehensive API security. For a
-local non-networked deployment, it is safe to disable authentication by setting
-these to empty strings.
+implemented yet. The `gateway-secret` provides single-secret protection for
+the gateway API, which does not currently support comprehensive API
+security. For a local non-networked deployment, it is safe to disable
+authentication by setting these to empty strings.
 
-**Then create the secret for your LLM provider:**
+### Finish configuration
 
-{% include llm-configuration-kubernetes-secrets.md %}
+If you went with option 1, there is no more configuration to do, but you
+may have to wait a while.  Parts of the system will have started, realised
+the configuration wasn't present, and backed off for a while.
+
+If you want with option 2, you finish by deploying the rest of the system:
+
+```sh
+kubectl apply -f resources.yaml
+```
+
+At this point you should have all the necessary Kubernetes resources
+(deployments, services, configmaps, etc.) for TrustGraph.
+
+At this point, you should wait until resources have started before
+continuing.  This shows the running workloads:
+
+```sh
+kubectl -n trustgraph get pods
+```
+
+The result for a working system will look something like this.  Pods
+should be running.  We run 3 initialisation containers which exit once
+their work is done, so it's OK for those to be in a failed state.
+
+```
+NAME                                        READY   STATUS             RESTARTS        AGE
+agent-manager-74fbb8b64-nzlwb               1/1     Running            0               67m
+api-gateway-b6848c6bb-nqtdm                 1/1     Running            0               67m
+bookie-5b8f57c985-d665l                     1/1     Running            1 (63m ago)     67m
+cassandra-6765fff974-pbh65                  1/1     Running            0               67m
+chunker-5449fddbf4-zgc5s                    1/1     Running            0               67m
+config-svc-7ff5684cbb-j2rbl                 1/1     Running            0               67m
+ddg-mcp-server-5b6d456cd9-lttts             1/1     Running            0               67m
+document-embeddings-6f57c977b8-5ksqt        1/1     Running            0               67m
+document-rag-67857f95b5-n8klg               1/1     Running            0               67m
+embeddings-8688f5875b-8wrxb                 1/1     Running            0               67m
+garage-69bbc995bb-ggsbd                     1/1     Running            0               67m
+garage-init-5c59cdc77f-hz46c                0/1     CrashLoopBackOff   17 (2m7s ago)   67m
+grafana-795dcfc9bf-ctsxv                    1/1     Running            0               67m
+graph-embeddings-7b75fd6845-hrh9v           1/1     Running            0               67m
+graph-rag-7f4bc95f7-q4jpl                   1/1     Running            0               67m
+init-trustgraph-7798b9d4f8-qzdgt            0/1     CrashLoopBackOff   17 (57s ago)    67m
+kg-extract-agent-7f6f754fb9-d5fh5           1/1     Running            0               67m
+kg-extract-definitions-54b454d784-2pkc2     1/1     Running            0               67m
+kg-extract-objects-5cdbdfdcc4-j885c         1/1     Running            0               67m
+kg-extract-ontology-7557fd7dc-2gf6j         1/1     Running            0               67m
+kg-extract-relationships-7cbf57d9b7-qnv47   1/1     Running            0               67m
+kg-manager-678c57d885-ptv9m                 1/1     Running            0               67m
+kg-store-6bc8b9c9b7-5chdr                   1/1     Running            0               67m
+librarian-75c8f6d7fb-98rkc                  1/1     Running            0               67m
+loki-8d5b86fb5-s9k4d                        1/1     Running            0               67m
+mcp-server-56bd6c4d6-788nw                  1/1     Running            0               67m
+mcp-tool-698f4b898b-ggm6l                   1/1     Running            0               67m
+metering-57d9fccdd-m45vp                    1/1     Running            0               67m
+metering-rag-5b9f8d5495-cnxsv               1/1     Running            0               67m
+nlp-query-9666cf9b6-wmzwv                   1/1     Running            0               67m
+pdf-decoder-69fd89776b-2cfpj                1/1     Running            0               67m
+prometheus-54995cff86-dc58n                 1/1     Running            0               67m
+prompt-899b97d7d-5rd6m                      1/1     Running            0               67m
+prompt-rag-5dc4f4b89b-qqvw7                 1/1     Running            0               67m
+pulsar-d85499879-x92qv                      1/1     Running            0               67m
+pulsar-init-6cd9ff4fbb-m5j7t                0/1     CrashLoopBackOff   16 (22s ago)    67m
+qdrant-58497bc84-rm9gm                      1/1     Running            0               67m
+query-doc-embeddings-5f6985ffd6-5qh9s       1/1     Running            0               67m
+query-graph-embeddings-588bd9779-7ddbb      1/1     Running            0               67m
+query-objects-bcd6fd894-w9bm7               1/1     Running            0               67m
+query-triples-55549dc477-bdcgj              1/1     Running            0               67m
+store-doc-embeddings-dbf4b7c69-w998d        1/1     Running            0               67m
+store-graph-embeddings-7885698676-vf422     1/1     Running            0               67m
+store-objects-655bf8b975-jcg2r              1/1     Running            0               67m
+store-triples-7c59c67f6-d8hbs               1/1     Running            0               67m
+structured-diag-86c58cd45b-54w8m            1/1     Running            0               67m
+structured-query-67fdff6967-7kljs           1/1     Running            0               67m
+text-completion-58ccf95586-6gkff            1/1     Running            0               67m
+text-completion-rag-75fc684f58-82jjm        1/1     Running            0               67m
+workbench-ui-5fc6d59899-8rczf               1/1     Running            0               67m
+zookeeper-66c484c7d5-67578                  1/1     Running            0               67m
+```
 
 ### Launch LoadBalancer
 
@@ -323,7 +440,8 @@ minikube tunnel
 ```
 
 {: .warning }
-**Important**: Keep this terminal window open. The LoadBalancer must remain running for cluster communications.
+**Important**: Keep this terminal window open. The LoadBalancer must remain
+running for cluster communications.
 
 ### Verify startup
 

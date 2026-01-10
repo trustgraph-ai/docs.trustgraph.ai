@@ -280,8 +280,8 @@ you need to prepare:
 
 ## Configure security settings
 
-For this local deployment, set the following security variables to empty strings
-to disable authentication:
+For this local deployment, set the following security variables to
+empty strings to disable authentication:
 
 ```sh
 export MCP_SERVER_SECRET=""
