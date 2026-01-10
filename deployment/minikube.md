@@ -433,13 +433,14 @@ zookeeper-66c484c7d5-67578                  1/1     Running            0        
 
 ### Launch LoadBalancer
 
-**In a separate terminal window:**
+Open a separate terminal window and run:
 
 ```bash
 minikube tunnel
 ```
 
-This command
+This command finds all the services running on Kubernetes and exposes them
+on a service address.  The output tells you the service address:
 
 ```
 Status:	
@@ -454,6 +455,10 @@ Status:
 		loadbalancer emulator: no errors
 ```
 
+In this case, `192.168.39.34` is the address at which you can access all
+Kubernetes services.  This is an address which is internal to your system
+and will not be accessible outside of your host.
+
 {: .note }
 Keep this terminal window open. The LoadBalancer must remain
 running for cluster communications to be accessible from 'outside' the
@@ -461,13 +466,23 @@ cluster.
 
 ### Verify startup
 
-It can take around 40 - 120 seconds for all services to stabilize. Services
+It can take around 2 - 3 minutes for all services to stabilize. Services
 like Pulsar and Cassandra need time to initialize properly.
 There is a utility which runs a series of checks to verify the system
 as it starts and reports when the system is working successfully.
 
+Note: TrustGraph commands attempt to connect to services at `localhost`
+by default, and the only way to communicate with TrustGraph services on
+Minikube is to use the tunnel address you created earlier.  So,
+commands need to be told where to communicate with TrustGraph services.
+
+To verify the working system, use the IP address of the minikube tunnel:
+
 ```sh
-tg-verify-system-status
+tg-verify-system-status \
+  --api-url http://192.168.39.34:8088 \
+  --pulsar-url http://192.168.39.34:8080 \
+  --ui-url http://192.168.39.34:8888
 ```
 
 If everything is working, the output looks something like this:
@@ -527,14 +542,29 @@ you are having issues, look at the troubleshooting section later.
 If everything appears to be working, the following parts of the deployment
 guide are a whistle-stop tour through various parts of the system.
 
+## Test LLM access
+
+This tests that LLM access works by accessing the gateway through the LLM
+tunnel.  This uses the tunnel address discovered above:
+
+```sh
+tg-invoke-llm -u http://192.168.39.34:8088 'Be helpful' 'What is 2 + 2?'
+```
+
+You should see output like...
+
+```
+2 + 2 = 4
+```
+
 ## Load sample documents
 
 There is a utility which loads a small set of sample documents into the
 library. This does not initiate processing, but gives you a set of documents
-to test with:
+to test with.  Again, this uses the tunnel address:
 
 ```sh
-tg-load-sample-documents
+tg-load-sample-documents -u http://192.168.39.34:8088
 ```
 
 This downloads documents from the internet and caches them in a local
