@@ -22,7 +22,7 @@ guide_labels:
 
 {% capture requirements %}
 <ul style="margin: 0; padding-left: 20px;">
-<li>Machine with 11GB+ RAM and 9 CPUs available for TrustGraph to use - a 16GB laptop will likely cope</li>
+<li>Machine with 13GB RAM and 10 CPUs available for TrustGraph to use - a 16GB laptop will likely not cope</li>
 <li>Minikube installed and configured</li>
 <li>kubectl command-line tool</li>
 <li>Python 3.11+ for CLI tools</li>
@@ -59,20 +59,35 @@ This is a good way to learn TrustGraph in a Kubernetes environment before
 deploying to production clusters, or to test Kubernetes-specific features
 locally.
 
+{: .note }
+We also describe a [Docker Compose/Podman Compose](compose) deployment.
+The Minikube deployment requires more resources for the cluster.
+
 ## Getting ready
 
 ### System resources
 
-As mentioned above, you need a machine with at least 11GB of RAM and 9 CPUs
+As mentioned above, you need a machine with at least 13GB of RAM and 10 CPUs
 available for TrustGraph. That means if you're running other significant
 workloads on it, it will probably fail. A 16GB laptop can typically run
 TrustGraph in Minikube, but not when other resource-intensive applications are
 running.
 
-You can also deploy a Minikube instance to your favourite cloud provider and
-use that if local resources are limited.
+A Kubernetes deployment is a little more demanding than a Docker Compose
+deployment, because:
+- With a Kubernetes deployment, there are Kubernetes system services which
+  are deployed alongside your application, and count as part of the resource
+  requirement.
+- Kubernetes has a stricter resource allocation mechanism when resource
+  constraints are defined.  The Kubernetes resource allocation approach has
+  a major advantage for production / persistent deployments because there
+  are guarantees that the resources are available as the system gets loaded.
 
-This has been tested with Linux, MacOS and Windows devices.
+You can also deploy an instance to your favourite cloud provider, and
+run Minikube on that if you don't have a device with enough resources.
+
+This has been tested with Linux.  Minikube will run on MacOS and Windows, 
+but it has not been tested.
 
 ### Python
 
@@ -110,14 +125,13 @@ You need to have Minikube and kubectl installed:
 - [Install Minikube](https://minikube.sigs.k8s.io/docs/start/)
 - [Install kubectl](https://kubernetes.io/docs/tasks/tools/)
 
-Minikube requires a driver for virtualization. The most common is Docker Engine,
-but there are several options available depending on your platform:
+Minikube requires a driver for virtualization.  Minikube supports many
+driver types - the level of support and maturity differs between them.
+Docker is commonly used.  We've had most success with the `kvm2` driver.
+This has been supported by Minikube for a long period.  The `podman`
+driver has been well supported for a while.
 
 - [Full Minikube driver documentation](https://minikube.sigs.k8s.io/docs/drivers/)
-
-{: .note }
-If you are using Docker as the Minikube driver, you may need to review the resource
-settings as described in the system resources section above.
 
 ### Large Language Model
 
@@ -142,6 +156,24 @@ If you are trying to connect TrustGraph to a service running on WSL,
 read [WSL networking and self-hosted models](wsl-networking).
 
 ## Prepare the deployment
+
+## Start Minikube
+
+Minikube needs to be started with enough resources. As mentioned earlier,
+this is roughly 9 CPUs and 11GB of memory.
+
+```bash
+minikube start --cpus=9 --memory=11264
+```
+
+### Verify Minikube
+
+```bash
+kubectl cluster-info
+kubectl get nodes
+```
+
+You should see output indicating your cluster is running and the node is ready.
 
 ### Create configuration
 
@@ -211,42 +243,6 @@ python3 -m venv env
 pip install trustgraph-cli==1.8.9
 ```
 
-## Configure security settings
-
-FIXME: THIS IS BROKEN
-
-For this local deployment, set the following security variables to empty strings
-to disable authentication:
-
-```sh
-export MCP_SERVER_SECRET=""
-export GATEWAY_SECRET=""
-```
-
-The `MCP_SERVER_SECRET` protects the MCP server with a secret but is not fully
-implemented yet. The `GATEWAY_SECRET` provides single-secret protection for the
-gateway API, which does not currently support comprehensive API security. For a
-local non-networked deployment, it is safe to disable authentication by setting
-these to empty strings.
-
-## Start Minikube
-
-Minikube needs to be started with enough resources. As mentioned earlier,
-this is roughly 9 CPUs and 11GB of memory.
-
-```bash
-minikube start --cpus=9 --memory=11264
-```
-
-### Verify Minikube
-
-```bash
-kubectl cluster-info
-kubectl get nodes
-```
-
-You should see output indicating your cluster is running and the node is ready.
-
 ## Deploy TrustGraph
 
 Now you're ready to deploy TrustGraph to your Minikube cluster.
@@ -265,16 +261,22 @@ Depending on which LLM you selected, you need to create a Kubernetes secret with
 
 **Required for all deployments:**
 
-FIXME: BREOKN
+First, create the security secrets. For this local deployment, we set these to
+empty strings to disable authentication:
 
-First, create the security secrets:
 ```bash
 kubectl -n trustgraph create secret generic gateway-secret \
-    --from-literal=gateway-secret="${GATEWAY_SECRET}"
+    --from-literal=gateway-secret=""
 
 kubectl -n trustgraph create secret generic mcp-server-secret \
-    --from-literal="mcp-server-secret=${MCP_SERVER_SECRET}"
+    --from-literal=mcp-server-secret=""
 ```
+
+The `mcp-server-secret` protects the MCP server with a secret but is not fully
+implemented yet. The `gateway-secret` provides single-secret protection for the
+gateway API, which does not currently support comprehensive API security. For a
+local non-networked deployment, it is safe to disable authentication by setting
+these to empty strings.
 
 **Then create the secret for your LLM provider:**
 
