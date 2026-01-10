@@ -439,9 +439,25 @@ zookeeper-66c484c7d5-67578                  1/1     Running            0        
 minikube tunnel
 ```
 
-{: .warning }
-**Important**: Keep this terminal window open. The LoadBalancer must remain
-running for cluster communications.
+This command
+
+```
+Status:	
+	machine: minikube
+	pid: 465861
+	route: 10.96.0.0/12 -> 192.168.39.34
+	minikube: Running
+	services: [agent-manager, api-gateway, bookie, cassandra, chunker, config-svc, ddg-mcp-server, document-embeddings, document-rag, embeddings, garage, grafana, graph-embeddings, graph-rag, kg-extract-agent, kg-extract-definitions, kg-extract-objects, kg-extract-ontology, kg-extract-relationships, kg-manager, kg-store, librarian, loki, mcp-server, mcp-tool, metering, metering-rag, nlp-query, pdf-decoder, prometheus, prompt, prompt-rag, pulsar, qdrant, query-doc-embeddings, query-graph-embeddings, query-objects, query-triples, store-doc-embeddings, store-graph-embeddings, store-objects, store-triples, structured-diag, structured-query, text-completion, text-completion-rag, workbench-ui, zookeeper]
+    errors: 
+		minikube: no errors
+		router: no errors
+		loadbalancer emulator: no errors
+```
+
+{: .note }
+Keep this terminal window open. The LoadBalancer must remain
+running for cluster communications to be accessible from 'outside' the
+cluster.
 
 ### Verify startup
 
