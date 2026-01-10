@@ -22,7 +22,7 @@ guide_labels:
 
 {% capture requirements %}
 <ul style="margin: 0; padding-left: 20px;">
-<li>Machine with 13GB RAM and 10 CPUs available for TrustGraph to use - a 16GB laptop will likely not cope</li>
+<li>Machine with 14.5GB RAM and 9 virtual CPUs / threads available for TrustGraph to use - a 16GB laptop is going to be too limited</li>
 <li>Minikube installed and configured</li>
 <li>kubectl command-line tool</li>
 <li>Python 3.11+ for CLI tools</li>
@@ -67,11 +67,10 @@ The Minikube deployment requires more resources for the cluster.
 
 ### System resources
 
-As mentioned above, you need a machine with at least 13GB of RAM and 10 CPUs
+As mentioned above, you need a machine with at least 14.5GB of RAM and 9 CPUs
 available for TrustGraph. That means if you're running other significant
-workloads on it, it will probably fail. A 16GB laptop can typically run
-TrustGraph in Minikube, but not when other resource-intensive applications are
-running.
+workloads on it, it will probably fail. A 16GB device is too
+limited.
 
 A Kubernetes deployment is a little more demanding than a Docker Compose
 deployment, because:
@@ -139,41 +138,74 @@ driver has been well supported for a while.
 
 ### A word on networking and self-hosting
 
-FIXME: ADDRESS THIS SECTION
-
 If you are self-hosting a model on the same device you are intending
 to run Minikube, you will need to understand how to get TrustGraph
 to talk to your model service.
 
-When Minikube services want to access services on the host, the hostname
-`host.minikube.internal` can be used. For example, if you're running
-Ollama on your host machine on port 11434, you would configure:
-```
-export OLLAMA_HOST=http://host.minikube.internal:11434
-```
+Minikube has many options for how things are deployed, so it is beyond
+the scope of this guide to cover all of them.  Minikube works by using
+a virtualisation system to run the container engine, but there are several
+layers:
+- The host device, that runs everything, including desktop apps if you
+  are on a desktop device.
+- Minikube runs a virtualisation layer on the host, there are many options
+  for the virtualisation layer, including Docker.
+- The virtualisation layer is used to run a container runtime, and there
+  are several options for that as well, including a Docker runtime.
+- The Kubernetes control play and various Containers run inside this
+  container runtime.
+  
+![Minikube networking](minikube-networking.png)
 
-If you are trying to connect TrustGraph to a service running on WSL,
-read [WSL networking and self-hosted models](wsl-networking).
+It's too complicated to explain all of the intricacies that emerge
+from this arrangement.  Minikube simplifies host access by making the
+hostname `host.minikube.internal` map to the host from within containers.
+So, to access ollama on your host machine on port 11434, you would configure
+access to the address
+
+```
+http://host.minikube.internal:11434
+```
 
 ## Prepare the deployment
 
 ## Start Minikube
 
 Minikube needs to be started with enough resources. As mentioned earlier,
-this is roughly 9 CPUs and 11GB of memory.
+this is roughly 9 CPUs and 14.5GB of memory.  You can specify the
+virtualisation driver here.  Minikube supports many virtualisation
+mechanisms, KVM2 is the driver we have used with most consistent results.
 
 ```bash
-minikube start --cpus=9 --memory=11264
+minikube start --cpus=9 --memory=14848 --driver=kvm2
 ```
+
+By default, Minikube deploys 20GB of storage for the Kubernetes deployment.
+You can change this with the `--disk-size` option.
+
+When Minikube starts, it configures access to the Kubernetes cluster
+in your default `~/.kube/config` so that you can use `kubectl` to access
+the cluster.
 
 ### Verify Minikube
 
-```bash
-kubectl cluster-info
-kubectl get nodes
+You can check the status of the Minikube cluster:
+
+```sh
+minikube status
 ```
 
-You should see output indicating your cluster is running and the node is ready.
+You can check the status of the Kubernetes cluster:
+
+```sh
+kubectl cluster-info
+```
+
+And see the nodes.  Minikube only supports a single node:
+
+```sh
+kubectl get nodes
+```
 
 ### Create configuration
 
@@ -522,7 +554,7 @@ Look for `"OOMKilled": true` or error messages in the describe output.
   minikube stop
   minikube start --cpus=9 --memory=16384
   ```
-- **Alternative**: Run on a machine with more available memory (16GB+ recommended)
+- **Alternative**: Run on a machine with more available memory (20GB+ recommended)
 
 </div>
 </details>
