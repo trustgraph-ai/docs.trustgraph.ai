@@ -576,11 +576,12 @@ The download can take a little time to run.
 TrustGraph is bundled with a simple web interface which exercises most of
 the functionality.
 
-{: .note }
-<!-- FIXME: Need to verify the correct way to access workbench in Minikube - is it through a service with LoadBalancer, port-forward, or minikube service command? -->
-**FIXME**: Instructions needed for accessing the Workbench UI in Minikube. This may require port-forwarding or using `minikube service` command.
+Access the TrustGraph workbench at the appropriate URL, which, using the
+IP address above, would like:
 
-Access the TrustGraph workbench at the appropriate URL (see FIXME above).
+```
+http://192.168.39.34:8888
+```
 
 By default, there are no credentials.
 
@@ -590,11 +591,12 @@ a document.
 
 ## Monitoring dashboard
 
-{: .note }
-<!-- FIXME: Need to verify if Grafana is deployed in the Minikube configuration and how to access it -->
-**FIXME**: Instructions needed for accessing Grafana monitoring in Minikube. Verify if Grafana is included in the Kubernetes deployment and provide access instructions.
+Access Grafana at the appropriate URL, which, using the IP address above
+looks like this:
 
-If Grafana is deployed, access it at the appropriate URL.
+```
+http://192.168.39.34:3000
+```
 
 **Default credentials:**
 - Username: `admin`
