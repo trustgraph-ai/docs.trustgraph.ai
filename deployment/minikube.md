@@ -681,12 +681,6 @@ discovered relationships.
 3. Enter your question (e.g., "What is this document about?")
 4. You will see the answer to your question after a short period
 
-You can also test GraphRAG from the command line:
-
-```bash
-tg-invoke-graph-rag -q "What is this document about?"
-```
-
 ## Troubleshooting
 
 ### Service Failure
