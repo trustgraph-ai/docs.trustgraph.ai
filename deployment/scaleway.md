@@ -105,7 +105,6 @@ Install Pulumi on your local machine:
 
 <details>
 <summary>Linux</summary>
-
 <div markdown="1">
 ```bash
 curl -fsSL https://get.pulumi.com | sh
@@ -115,7 +114,6 @@ curl -fsSL https://get.pulumi.com | sh
 
 <details>
 <summary>MacOS</summary>
-
 <div markdown="1">
 ```bash
 brew install pulumi/tap/pulumi
@@ -125,13 +123,8 @@ brew install pulumi/tap/pulumi
 
 <details>
 <summary>Windows</summary>
-
 <div markdown="1">
-```powershell
-choco install pulumi
-```
-
-Or download the installer from [pulumi.com](https://www.pulumi.com/docs/get-started/install/).
+Download the installer from [pulumi.com](https://www.pulumi.com/docs/get-started/install/).
 </div>
 </details>
 
@@ -184,7 +177,7 @@ Clone the TrustGraph Scaleway Pulumi repository:
 
 ```bash
 git clone https://github.com/trustgraph-ai/pulumi-trustgraph-scaleway.git
-cd pulumi-trustgraph-scaleway
+cd pulumi-trustgraph-scaleway/pulumi
 ```
 
 ### Install dependencies
@@ -211,6 +204,15 @@ You can also set a default region (optional, defaults to `fr-par`):
 ```bash
 export SCW_DEFAULT_REGION="fr-par"  # Paris region
 # Other options: nl-ams (Amsterdam), pl-waw (Warsaw)
+```
+
+### Configure Pulumi state
+
+You need to tell Pulumi which state to use. You can store this in an S3
+bucket, but for experimentation, you can just use local state:
+
+```sh
+pulumi login --local
 ```
 
 ### Create a Pulumi stack
