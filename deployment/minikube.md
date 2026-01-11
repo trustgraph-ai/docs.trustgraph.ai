@@ -624,14 +624,8 @@ a response to your query.
 ![Simple LLM usage](llm-interaction.png)
 
 If LLM interactions are not working, this needs to be diagnosed and fixed
-prior to continuing. You should check the logs to see if there are errors:
-
-```bash
-# Check logs for text-completion service
-kubectl -n trustgraph logs -l app=text-completion
-
-# Or use Grafana logs dashboard if available
-```
+prior to continuing.  You should check the logs in Grafana to see if there
+are errors.
 
 ## Working with a document
 
