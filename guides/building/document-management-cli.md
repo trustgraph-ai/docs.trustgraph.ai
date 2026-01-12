@@ -16,11 +16,37 @@ guide_labels:
   - CLI
   - Documents
   - Workflows
-todo: true
-todo_notes: This is just a placeholder.
 ---
 
 # Document management with the command-line
+
+{% capture requirements %}
+<ul style="margin: 0; padding-left: 20px;">
+<li>A running TrustGraph deployment</li>
+<li>TrustGraph CLI tools installed</li>
+<li>Basic command-line familiarity</li>
+</ul>
+{% endcapture %}
+
+{% include guide/guide-intro-box.html
+   description=page.guide_description
+   difficulty=page.guide_difficulty
+   duration=page.guide_time
+   you_will_need=requirements
+   goal="Learn to manage documents, flows, collections, and query knowledge using TrustGraph command-line tools."
+%}
+
+## Introduction
+
+This guide covers the practical workflow for managing documents in TrustGraph:
+
+1. **Flows** - Start and configure processing workflows
+2. **Document library** - Add, organize, and track documents
+3. **Collections** - Group documents into logical sets
+4. **Processing** - Submit documents for flow processing
+5. **Querying** - Retrieve information using LLM and RAG techniques
+
+Each section provides command syntax, examples, and practical usage patterns.
 
 ## Flows
 
