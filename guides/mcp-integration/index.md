@@ -1,7 +1,7 @@
 ---
 title: MCP Integration
 parent: How-to Guides
-grand_parent: TrustGraph Documentation
+nav_order: 5
 review_date: 2026-03-06
 guide_category:
   - Agentic systems

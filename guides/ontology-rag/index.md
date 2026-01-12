@@ -1,6 +1,6 @@
 ---
 title: Ontology RAG
-nav_order: 10
+nav_order: 3
 parent: How-to Guides
 review_date: 2026-08-01
 guide_category:
