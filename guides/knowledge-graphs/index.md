@@ -2,14 +2,14 @@
 title: Knowledge graph basics
 parent: How-to Guides
 nav_order: 1
-review_date: 2024-10-01
+review_date: 2026-10-01
 guide_category:
   - Common knowledge management tasks
 guide_category_order: 0
 guide_description: Learn the fundamentals of knowledge graphs, triples, and RDF concepts
 guide_difficulty: beginner
 guide_banner: knowledge-graphs.jpg
-guide_time: 10 min
+guide_time: 5 min
 guide_emoji: 🧠
 guide_labels:
   - Knowledge Graph

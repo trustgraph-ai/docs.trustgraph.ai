@@ -21,6 +21,18 @@ review_date: 2026-08-01
 %}
 
 {% include guide/guide-category-section.html
+   category_name="Building with TrustGraph"
+   section_title="Building with TrustGraph"
+   parent_page="How-to Guides"
+   border_color="#f56565"
+   bg_color="#3a1e1e"
+   card_border_color="#f56565"
+   card_bg_color="#221010"
+   accent_color="#f56565"
+   label_bg_color="rgba(245, 101, 101, 0.2)"
+%}
+
+{% include guide/guide-category-section.html
    category_name="Advanced knowledge management"
    section_title="Advanced knowledge management"
    parent_page="How-to Guides"
