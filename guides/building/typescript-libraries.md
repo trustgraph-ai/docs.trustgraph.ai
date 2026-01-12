@@ -11,6 +11,7 @@ guide_description: Explore TrustGraph TypeScript libraries for building web appl
 guide_difficulty: intermediate
 guide_time: 30 min
 guide_emoji: 📘
+guide_banner: /../typescript-intro.jpg
 guide_labels:
   - TypeScript
   - Libraries
