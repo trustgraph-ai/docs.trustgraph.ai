@@ -174,15 +174,35 @@ flow = api.flow().id('default')
 response = flow.text_completion(system="You are helpful", prompt="Hello")
 ```
 
-**Async variants:**
+## Example: Get a Prompt Template
 
-All services have async variants with the `async_` prefix:
+This example uses the config service to retrieve a specific prompt template:
 
 ```python
-api = Api(url='http://localhost:8088/')
+from trustgraph.api import Api, ConfigKey
+import json
 
-# Async versions
-flow_service = api.async_flow()
-config_service = api.async_config()
-# ... and so on
+# Create API client and get config service
+api = Api(url='http://localhost:8088/').config()
+
+# ConfigKey identifies a configuration item
+# type="prompt" specifies we want a prompt template
+# key="template.question" is the ID of the specific prompt we want
+# (prompt templates are stored with "template." prefix)
+values = api.get([
+    ConfigKey(type="prompt", key="template.question")
+])
+
+# Config values are stored as JSON strings, so we decode them
+prompt_data = json.loads(values[0].value)
+
+# The decoded data contains a "prompt" field with the actual template text
+print("Question prompt:")
+print(prompt_data["prompt"])
 ```
+
+This pattern demonstrates:
+1. Creating the API client and accessing the config service
+2. Using `ConfigKey` to specify what to retrieve (type="prompt", key="template.question")
+3. Parsing the JSON response
+4. Accessing the prompt text from the returned data
