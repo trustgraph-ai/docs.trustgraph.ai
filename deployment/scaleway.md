@@ -137,27 +137,11 @@ export SCW_DEFAULT_PROJECT_ID="your_project_id_here"
 
 ### Configure Pulumi state
 
-You need to tell Pulumi which state to use. You can store this in an S3
-bucket, but for experimentation, you can just use local state:
-
-```sh
-pulumi login --local
-```
-
-FIXME: Set PULUMI_CONFIG_PASSPHRASE
-```sh
-export PULUMI_CONFIG_PASSPHRASE=
-```
+{% include deployment/pulumi-configure-state.md %}
 
 ### Create a Pulumi stack
 
-Initialize a new Pulumi stack for your deployment:
-
-```bash
-pulumi stack init dev
-```
-
-You can use any name instead of `dev` - this helps you manage multiple deployments (dev, staging, prod, etc.).
+{% include deployment/pulumi-create-stack.md %}
 
 ### Configure the stack
 
