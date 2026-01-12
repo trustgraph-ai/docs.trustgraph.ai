@@ -14,7 +14,7 @@ TrustGraph is an open-source Agent Intelligence Platform that transforms AI agen
 
 <div style="display: flex; flex-wrap: wrap; gap: 15px; margin: 20px 0;">
 
-{% include pathway-box-start.html
+{% include pathways/pathway-box-start.html
    border_color="#48bb78"
    bg_color="#1e3a2a"
    banner_image="intro.jpg"
@@ -22,7 +22,7 @@ TrustGraph is an open-source Agent Intelligence Platform that transforms AI agen
    title="Learn about TrustGraph"
    description="Understand what TrustGraph is and how it works"
 %}
-{% include journey-card.html
+{% include pathways/journey-card.html
    url="overview/introduction"
    text_color="#d4f4dd"
    bg_color="#0d2118"
@@ -30,7 +30,7 @@ TrustGraph is an open-source Agent Intelligence Platform that transforms AI agen
    title="Introduction"
    description="What is TrustGraph and how it transforms AI agents into contextually-aware systems"
 %}
-{% include journey-card.html
+{% include pathways/journey-card.html
    url="overview/philosophy"
    text_color="#d4f4dd"
    bg_color="#0d2118"
@@ -38,7 +38,7 @@ TrustGraph is an open-source Agent Intelligence Platform that transforms AI agen
    title="Philosophy"
    description="Design principles and philosophy behind TrustGraph's approach"
 %}
-{% include journey-card.html
+{% include pathways/journey-card.html
    url="overview/retrieval"
    text_color="#d4f4dd"
    bg_color="#0d2118"
@@ -46,7 +46,7 @@ TrustGraph is an open-source Agent Intelligence Platform that transforms AI agen
    title="Information Retrieval"
    description="Understanding Graph RAG, Document RAG, and other retrieval strategies"
 %}
-{% include journey-card.html
+{% include pathways/journey-card.html
    url="overview/features"
    text_color="#d4f4dd"
    bg_color="#0d2118"
@@ -54,7 +54,7 @@ TrustGraph is an open-source Agent Intelligence Platform that transforms AI agen
    title="Features"
    description="Complete overview of TrustGraph features and platform capabilities"
 %}
-{% include journey-card.html
+{% include pathways/journey-card.html
    url="overview/use-cases"
    text_color="#d4f4dd"
    bg_color="#0d2118"
@@ -62,7 +62,7 @@ TrustGraph is an open-source Agent Intelligence Platform that transforms AI agen
    title="Use Cases"
    description="Real-world applications from enterprise search to intelligent agents"
 %}
-{% include journey-card.html
+{% include pathways/journey-card.html
    url="contributing/getting-help"
    text_color="#d4f4dd"
    bg_color="#0d2118"
@@ -70,9 +70,9 @@ TrustGraph is an open-source Agent Intelligence Platform that transforms AI agen
    title="Get Help"
    description="Support resources, community channels, and how to get assistance"
 %}
-{% include pathway-box-end.html %}
+{% include pathways/pathway-box-end.html %}
 
-{% include pathway-box-start.html
+{% include pathways/pathway-box-start.html
    border_color="#4a9eff"
    bg_color="#1e2a3a"
    banner_image="quickstart.jpg"
@@ -80,7 +80,7 @@ TrustGraph is an open-source Agent Intelligence Platform that transforms AI agen
    title="Try it out (Quickstart)"
    description="Get hands-on experience quickly by running it on a local device"
 %}
-{% include journey-card.html
+{% include pathways/journey-card.html
    url="deployment/compose"
    text_color="#e8f4fd"
    bg_color="#0d1621"
@@ -88,7 +88,7 @@ TrustGraph is an open-source Agent Intelligence Platform that transforms AI agen
    title="Docker/Podman Compose"
    description="Easiest way to get TrustGraph running locally for development and testing"
 %}
-{% include journey-card.html
+{% include pathways/journey-card.html
    url="guides/graph-rag"
    text_color="#e8f4fd"
    bg_color="#0d1621"
@@ -96,7 +96,7 @@ TrustGraph is an open-source Agent Intelligence Platform that transforms AI agen
    title="Graph RAG"
    description="Query documents using automatically extracted entities and relationships"
 %}
-{% include journey-card.html
+{% include pathways/journey-card.html
    url="guides/document-rag"
    text_color="#e8f4fd"
    bg_color="#0d1621"
@@ -104,7 +104,7 @@ TrustGraph is an open-source Agent Intelligence Platform that transforms AI agen
    title="Document RAG"
    description="Query documents using vector embeddings and semantic similarity search"
 %}
-{% include journey-card.html
+{% include pathways/journey-card.html
    url="overview/retrieval"
    text_color="#e8f4fd"
    bg_color="#0d1621"
@@ -112,7 +112,7 @@ TrustGraph is an open-source Agent Intelligence Platform that transforms AI agen
    title="Information Retrieval"
    description="Understand the retrieval strategies you just used"
 %}
-{% include journey-card.html
+{% include pathways/journey-card.html
    url="contributing/getting-help"
    text_color="#e8f4fd"
    bg_color="#0d1621"
@@ -120,9 +120,9 @@ TrustGraph is an open-source Agent Intelligence Platform that transforms AI agen
    title="Get Help"
    description="Support resources, community channels, and how to get assistance"
 %}
-{% include pathway-box-end.html %}
+{% include pathways/pathway-box-end.html %}
 
-{% include pathway-box-start.html
+{% include pathways/pathway-box-start.html
    border_color="#9f7aea"
    bg_color="#2d2642"
    banner_image="plan.jpg"
@@ -130,7 +130,7 @@ TrustGraph is an open-source Agent Intelligence Platform that transforms AI agen
    title="Plan a production deployment"
    description="Evaluate and plan enterprise deployment"
 %}
-{% include journey-card.html
+{% include pathways/journey-card.html
    url="overview/introduction"
    text_color="#e9d5ff"
    bg_color="#1a1529"
@@ -138,7 +138,7 @@ TrustGraph is an open-source Agent Intelligence Platform that transforms AI agen
    title="Introduction"
    description="What is TrustGraph and how it transforms AI agents into contextually-aware systems"
 %}
-{% include journey-card.html
+{% include pathways/journey-card.html
    url="overview/use-cases"
    text_color="#e9d5ff"
    bg_color="#1a1529"
@@ -146,7 +146,7 @@ TrustGraph is an open-source Agent Intelligence Platform that transforms AI agen
    title="Use Cases"
    description="Real-world applications from enterprise search to intelligent agents"
 %}
-{% include journey-card.html
+{% include pathways/journey-card.html
    url="overview/maturity"
    text_color="#e9d5ff"
    bg_color="#1a1529"
@@ -154,7 +154,7 @@ TrustGraph is an open-source Agent Intelligence Platform that transforms AI agen
    title="Maturity"
    description="Production readiness, feature stability, and deployment status for enterprise use"
 %}
-{% include journey-card.html
+{% include pathways/journey-card.html
    url="overview/security"
    text_color="#e9d5ff"
    bg_color="#1a1529"
@@ -162,7 +162,7 @@ TrustGraph is an open-source Agent Intelligence Platform that transforms AI agen
    title="Security"
    description="Cybersecurity foundations, privacy protections, and enterprise security roadmap"
 %}
-{% include journey-card.html
+{% include pathways/journey-card.html
    url="deployment/"
    text_color="#e9d5ff"
    bg_color="#1a1529"
@@ -170,7 +170,7 @@ TrustGraph is an open-source Agent Intelligence Platform that transforms AI agen
    title="Choose Deployment"
    description="Select from Docker, Podman, Kubernetes, AWS, Azure, GCP, and other deployment options"
 %}
-{% include journey-card.html
+{% include pathways/journey-card.html
    url="contributing/getting-help"
    text_color="#e9d5ff"
    bg_color="#1a1529"
@@ -178,9 +178,9 @@ TrustGraph is an open-source Agent Intelligence Platform that transforms AI agen
    title="Get Help"
    description="Support resources, community channels, and how to get assistance"
 %}
-{% include pathway-box-end.html %}
+{% include pathways/pathway-box-end.html %}
 
-{% include pathway-box-start.html
+{% include pathways/pathway-box-start.html
    border_color="#f59e0b"
    bg_color="#3a2e1e"
    banner_image="develop.jpg"
@@ -188,7 +188,7 @@ TrustGraph is an open-source Agent Intelligence Platform that transforms AI agen
    title="Developer integration"
    description="Build applications with TrustGraph"
 %}
-{% include journey-card.html
+{% include pathways/journey-card.html
    url="deployment/compose"
    text_color="#fef3c7"
    bg_color="#221a10"
@@ -196,7 +196,7 @@ TrustGraph is an open-source Agent Intelligence Platform that transforms AI agen
    title="Docker/Podman Compose"
    description="Easiest way to get TrustGraph running locally for development and testing"
 %}
-{% include journey-card.html
+{% include pathways/journey-card.html
    url="guides/knowledge-graphs"
    text_color="#fef3c7"
    bg_color="#221a10"
@@ -204,7 +204,7 @@ TrustGraph is an open-source Agent Intelligence Platform that transforms AI agen
    title="Knowledge Graphs"
    description="Learn the fundamentals of knowledge graphs, triples, and RDF concepts"
 %}
-{% include journey-card.html
+{% include pathways/journey-card.html
    url="guides/graph-rag"
    text_color="#fef3c7"
    bg_color="#221a10"
@@ -212,7 +212,7 @@ TrustGraph is an open-source Agent Intelligence Platform that transforms AI agen
    title="Graph RAG"
    description="Query documents using automatically extracted entities and relationships"
 %}
-{% include journey-card.html
+{% include pathways/journey-card.html
    url="reference/apis/"
    text_color="#fef3c7"
    bg_color="#221a10"
@@ -220,7 +220,7 @@ TrustGraph is an open-source Agent Intelligence Platform that transforms AI agen
    title="API Reference"
    description="Complete API documentation for integrating TrustGraph into your applications"
 %}
-{% include journey-card.html
+{% include pathways/journey-card.html
    url="guides/mcp-integration"
    text_color="#fef3c7"
    bg_color="#221a10"
@@ -228,7 +228,7 @@ TrustGraph is an open-source Agent Intelligence Platform that transforms AI agen
    title="MCP Integration"
    description="Integrate Model Context Protocol servers to extend agent workflows with custom tools"
 %}
-{% include journey-card.html
+{% include pathways/journey-card.html
    url="contributing/getting-help"
    text_color="#fef3c7"
    bg_color="#221a10"
@@ -236,9 +236,9 @@ TrustGraph is an open-source Agent Intelligence Platform that transforms AI agen
    title="Get Help"
    description="Support resources, community channels, and how to get assistance"
 %}
-{% include pathway-box-end.html %}
+{% include pathways/pathway-box-end.html %}
 
-{% include pathway-box-start.html
+{% include pathways/pathway-box-start.html
    border_color="#ec4899"
    bg_color="#3a1e2e"
    banner_image="extend.jpg"
@@ -246,7 +246,7 @@ TrustGraph is an open-source Agent Intelligence Platform that transforms AI agen
    title="Extend TrustGraph"
    description="Contribute and customize TrustGraph"
 %}
-{% include journey-card.html
+{% include pathways/journey-card.html
    url="overview/architecture"
    text_color="#fce7f3"
    bg_color="#1a0d14"
@@ -254,7 +254,7 @@ TrustGraph is an open-source Agent Intelligence Platform that transforms AI agen
    title="Architecture"
    description="System design, component relationships, data flow, and integration points"
 %}
-{% include journey-card.html
+{% include pathways/journey-card.html
    url="contributing/developer"
    text_color="#fce7f3"
    bg_color="#1a0d14"
@@ -262,7 +262,7 @@ TrustGraph is an open-source Agent Intelligence Platform that transforms AI agen
    title="Developer Guide"
    description="Set up your development environment and understand the codebase"
 %}
-{% include journey-card.html
+{% include pathways/journey-card.html
    url="contributing/contributing"
    text_color="#fce7f3"
    bg_color="#1a0d14"
@@ -270,7 +270,7 @@ TrustGraph is an open-source Agent Intelligence Platform that transforms AI agen
    title="Contributing"
    description="How to contribute code, documentation, and improvements to TrustGraph"
 %}
-{% include journey-card.html
+{% include pathways/journey-card.html
    url="contributing/getting-help"
    text_color="#fce7f3"
    bg_color="#1a0d14"
@@ -278,7 +278,7 @@ TrustGraph is an open-source Agent Intelligence Platform that transforms AI agen
    title="Get Help"
    description="Support resources, community channels, and how to get assistance"
 %}
-{% include pathway-box-end.html %}
+{% include pathways/pathway-box-end.html %}
 
 </div>
 
