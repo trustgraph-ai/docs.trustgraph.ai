@@ -216,6 +216,8 @@ npm run dev
 
 Visit the URL shown in the terminal (typically `http://localhost:5173`).
 
+![TrustGraph Q&A App](react-app-screenshot.png)
+
 **Try it:**
 1. Type a question like "What is cheese?"
 2. Click Submit
