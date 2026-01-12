@@ -292,67 +292,25 @@ guide are a whistle-stop tour through various parts of the system.
 
 ## Check the LLM is working
 
-Back in the workbench, select the *Assistant* tab.
-
-In the top line next to the *Assistant* word change the mode to *Basic LLM*.
-
-Enter a question in the prompt box at the bottom of the tab and press
-*Send*.  If everything works, after a short period you should see
-a response to your query.
-
-![Simple LLM usage](llm-interaction.png)
-
-If LLM interactions are not working, this needs to be diagnosed and fixed
-prior to continuing.  You should check the logs in Grafana to see if there
-are errors.
+{% include deployment/workbench/check-llm-working.md %}
 
 ## Working with a document
 
 ### Load a document
 
-Back in the workbench:
-
-1. Navigate to the Library page
-2. In the upper right-hand corner, there is a dark/light mode widget.
-   To its left, is a selector width.  Ensure the top and bottom lines say
-   "default".  If not click on the widget and change.
-2. On the library tab, select a document (e.g., "Beyond State Vigilance")
-3. Click Submit on the action bar
-4. Choose a processing flow (use Default processing flow)
-5. Click Submit to process
-
-Beyond State Vigilance is a relatively short document, so a good one to
-start with.
+{% include deployment/workbench/load-document.md %}
 
 ### Use Vector search
 
-Select the *Vector Search* tab.  Enter a string e.g. "document" in the search
-bar, and hit RETURN.  The search term doesn't matter a great deal.  If
-information has started to load, you should see some search results.
-
-The vector search attempts to find up to 10 terms which are the closest
-matches for your search term.  It does this even if the search terms are not
-a strong match, so this is a simple way to observe whether data has loaded.
-
-![Vector search results](vector-search.png)
+{% include deployment/workbench/vector-search.md %}
 
 ### Look at knowledge graph
 
-Click on one of the Vector Search results terms on the left-hand-side.
-This shows relationships in the graph from the knowledge graph linking to
-that term.
-
-![Relationships view](relationships.png)
-
-You can then click on the *Graph view* button to go to a 3D view of the
-discovered relationships.
+{% include deployment/workbench/knowledge-graph.md %}
 
 ### Query with Graph RAG
 
-1. Navigate to *Assistant* tab
-2. Change the Assistant mode to GraphRAG
-3. Enter your question (e.g., "What is this document about?")
-4. You will see the answer to your question after a short period
+{% include deployment/workbench/graph-rag-query.md %}
 
 ## Shutting down
 
