@@ -1,6 +1,7 @@
 ---
 title: Structured data processing
 parent: Advanced knowledge management
+grand_parent: How-to Guides
 nav_order: 7
 review_date: 2026-02-01
 guide_category:
@@ -18,6 +19,22 @@ guide_labels:
 ---
 
 # Structured Data Processing
+
+{% capture requirements %}
+<ul style="margin: 0; padding-left: 20px;">
+<li>TrustGraph deployed (<a href="../getting-started/quickstart">Quick Start</a>)</li>
+<li>TrustGraph 1.2+ (introduced in 1.2, querying in 1.3)</li>
+<li>Understanding of schemas and structured data</li>
+</ul>
+{% endcapture %}
+
+{% include guide/guide-intro-box.html
+   description=page.guide_description
+   difficulty=page.guide_difficulty
+   duration=page.guide_time
+   you_will_need=requirements
+   goal="Extract and query structured data from documents and files using schema-based extraction, working with XML, JSON, CSV, and integrating with agents."
+%}
 
 Learn how to process documents and extract structured data using TrustGraph's
 schema-based extraction capabilities.

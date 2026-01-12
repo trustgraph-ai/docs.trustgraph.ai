@@ -20,6 +20,21 @@ guide_labels:
 
 # Document RAG Guide
 
+{% capture requirements %}
+<ul style="margin: 0; padding-left: 20px;">
+<li>TrustGraph deployed (<a href="../getting-started/quickstart">Quick Start</a>)</li>
+<li>Understanding of <a href="../getting-started/concepts">Core Concepts</a></li>
+</ul>
+{% endcapture %}
+
+{% include guide/guide-intro-box.html
+   description=page.guide_description
+   difficulty=page.guide_difficulty
+   duration=page.guide_time
+   you_will_need=requirements
+   goal="Load documents into TrustGraph, create Document RAG flows, and query using vector similarity search while understanding its limitations."
+%}
+
 **Query documents using vector embeddings and semantic search**
 
 Document RAG (also called "basic RAG", "naive RAG", or simply "RAG") is the
