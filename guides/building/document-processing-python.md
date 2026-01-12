@@ -1,8 +1,8 @@
 ---
 title: Document processing with Python API
-nav_order: 2.5
-parent: How-to Guides
-grand_parent: TrustGraph Documentation
+nav_order: 5
+parent: Building with TrustGraph
+grand_parent: How-to Guides
 review_date: 2026-08-01
 guide_category:
   - Building with TrustGraph

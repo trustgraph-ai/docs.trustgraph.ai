@@ -1,6 +1,6 @@
 ---
 title: Knowledge graph basics
-parent: How-to Guides
+parent: Common knowledge management tasks
 nav_order: 1
 review_date: 2026-10-01
 guide_category:

@@ -1,8 +1,8 @@
 ---
 title: Introduction to building with TrustGraph
-nav_order: 2.1
-parent: How-to Guides
-grand_parent: TrustGraph Documentation
+nav_order: 1
+parent: Building with TrustGraph
+grand_parent: How-to Guides
 review_date: 2026-10-01
 guide_category:
   - Building with TrustGraph

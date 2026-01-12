@@ -1,8 +1,8 @@
 ---
 title: Graph RAG
 nav_order: 2
-parent: How-to Guides
-grand_parent: TrustGraph Documentation
+parent: Common knowledge management tasks
+grand_parent: How-to Guides
 review_date: 2026-08-01
 guide_category:
   - Common knowledge management tasks

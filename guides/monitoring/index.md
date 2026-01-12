@@ -1,7 +1,8 @@
 ---
 title: Monitoring
-parent: How-to Guides
-nav_order: 6
+parent: Managing operations
+grand_parent: How-to Guides
+nav_order: 1
 review_date: 2026-04-17
 guide_category:
   - Managing operations
