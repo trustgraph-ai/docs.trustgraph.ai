@@ -117,26 +117,26 @@ The main TrustGraph dashboard provides comprehensive system monitoring:
 ![TrustGraph dashboard part 1](dashboard1.jpg)
 
 **Top section shows:**
-- Active flows and instances
-- Total messages processed
-- Current processing rate
+- Knowledge backlog - backlog on knowledge extraction queues
+- Graph and tripple load backlog
+- Latency through LLM as a heatmap
 - Error rates
 
 ![TrustGraph dashboard part 2](dashboard2.jpg)
 
 **Middle section displays:**
-- Queue depths for each flow
-- Message throughput per queue
-- Processing latency metrics
-- Queue backlog trends
+- Request rates per queue
+- Pub/sub queue backlogs
+- Chunk size counts histogram
+- Indicator of the number of rate-limit events
 
 ![TrustGraph dashboard part 3](dashboard3.jpg)
 
 **Bottom section includes:**
 - Resource utilization (CPU, memory)
-- API gateway metrics
-- LLM request counts
-- System health indicators
+- List of models in use + token counts
+- Token usage
+- Token cost (based on token const configuration)
 
 ## Using Prometheus
 
