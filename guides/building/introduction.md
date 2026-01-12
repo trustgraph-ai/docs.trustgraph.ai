@@ -20,3 +20,20 @@ todo_notes: This is just a placeholder.
 ---
 
 # Introduction to building with TrustGraph
+
+{% capture requirements %}
+<ul style="margin: 0; padding-left: 20px;">
+<li>A basic understanding of TrustGraph</li>
+<li>A basic understanding of development terminology tools</li>
+</ul>
+{% endcapture %}
+
+{% include guide/guide-intro-box.html
+   description=page.guide_description
+   difficulty=page.guide_difficulty
+   duration=page.guide_time
+   you_will_need=requirements
+   goal="Understand the resources and capabilities available for building applications with TrustGraph."
+%}
+
+![API Overview](api-overview.png)
