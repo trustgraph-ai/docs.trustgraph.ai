@@ -67,6 +67,39 @@ poetry add trustgraph-cli@1.8.10
    content3=poetry_install_version
 %}
 
+## Common CLI arguments
+
+Most TrustGraph CLI tools accept these common arguments:
+
+- `-u, --api-url API_URL` - API URL (default: `http://localhost:8088/`)
+- `-t, --token TOKEN` - Authentication token (default: `$TRUSTGRAPH_TOKEN` environment variable)
+
+Example using custom API URL:
+```bash
+tg-show-flows -u http://my-trustgraph-host:8088/
+```
+
+Example using authentication token:
+```bash
+export TRUSTGRAPH_TOKEN="your-token-here"
+tg-show-flows
+```
+
+Or pass the token directly:
+```bash
+tg-show-flows -t "your-token-here"
+```
+
+The deployment patterns used in the deployment access the TrustGraph cluster
+at `localhost`.  Docker/Podman compose expose internal service ports on
+`localhost`, and the Kubernetes port-forward commands also expose services
+on `localhost`.  In this configuration, the default works, and the URL does
+not need to be specified.
+
+If an API gateway key is provisioned when the system is deployed, this needs
+to be specified with command-line tools in order to authenticate.  If no
+gateway key is provided, then no token needs to be provided.
+
 ## Command-line tools by category
 
 ### Flows
@@ -150,9 +183,27 @@ tg-stop-flow -i my-doc-flow
 ```
 
 **Managing flow definitions:**
-- `tg-get-flow-class <flow-class>` - Retrieve flow class configuration
-- `tg-put-flow-class <flow-class> <config-file>` - Create or update a flow class definition
-- `tg-delete-flow-class <flow-class>` - Remove a flow class definition
+
+Flow class definitions are JSON configurations that specify the processing components, parameters, and queue routing for flows.
+
+- `tg-get-flow-class -n <flow-class>` - Retrieve flow class configuration as JSON
+- `tg-put-flow-class -n <flow-class> -c '<json>'` - Create or update a flow class definition
+- `tg-delete-flow-class -n <flow-class>` - Remove a flow class definition
+
+Example - export a flow class definition:
+```bash
+tg-get-flow-class -n everything > everything-flow.json
+```
+
+Example - create or update a flow class:
+```bash
+tg-put-flow-class -n my-custom-flow -c "$(cat my-flow-definition.json)"
+```
+
+Example - delete a flow class:
+```bash
+tg-delete-flow-class -n old-flow-class
+```
 
 ### Document library management
 
