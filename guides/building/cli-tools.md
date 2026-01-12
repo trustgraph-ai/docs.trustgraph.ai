@@ -1,5 +1,5 @@
 ---
-title: Getting started with TrustGraph command-line tools
+title: Introduction to command-line tools
 nav_order: 2.2
 parent: How-to Guides
 grand_parent: TrustGraph Documentation
