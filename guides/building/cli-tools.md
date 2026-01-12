@@ -282,8 +282,10 @@ tg-show-library-processing
 `tg-start-library-processing` submits a library document for processing through a flow.
 
 Required arguments:
-- `-d, --document-id` - Document identifier (from library)
-- `--id, --processing-id` - Processing record identifier
+- `-d, --document-id` - Document identifier (from library) - must be a URI
+- `--id, --processing-id` - Processing record identifier - must be a URI
+
+Note: Document IDs and processing IDs must be URIs (e.g., `https://trustgraph.ai/docs/cats`) because they are used as document entity identifiers in the knowledge graph.
 
 Optional arguments:
 - `-i, --flow-id` - Flow to use for processing (default: `default`)
