@@ -162,7 +162,7 @@ bulk_service = api.bulk()
 metrics_service = api.metrics()
 ```
 
-**Flow-specific services** use a different pattern:
+The **flow-specific service** uses a different pattern:
 
 ```python
 api = Api(url='http://localhost:8088/')
