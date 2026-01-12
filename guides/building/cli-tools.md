@@ -265,6 +265,57 @@ Example output:
 +-------+---------------------------------+
 ```
 
+### Collections
+
+Collections provide logical grouping for documents and knowledge graphs. Each user can have multiple collections to organize different projects or data domains.
+
+**List collections:**
+
+`tg-list-collections` displays all collections for a user.
+
+```bash
+tg-list-collections
+```
+
+Filter by tags:
+```bash
+tg-list-collections -t research -t experimental
+```
+
+Example output:
+```
++------------+--------------------+--------------------+---------+
+| Collection | Name               | Description        | Tags    |
++------------+--------------------+--------------------+---------+
+| default    | Default Collection | Default collection | default |
++------------+--------------------+--------------------+---------+
+```
+
+**Create or update a collection:**
+
+`tg-set-collection` creates a new collection or updates metadata for an existing one.
+
+Example - create a new collection:
+```bash
+tg-set-collection my-research \
+  -n "Research Documents" \
+  -d "Documents for research project" \
+  -t research -t academic
+```
+
+**Delete a collection:**
+
+`tg-delete-collection` removes a collection and all its data.
+
+```bash
+tg-delete-collection my-research
+```
+
+Skip confirmation prompt:
+```bash
+tg-delete-collection my-research -y
+```
+
 ### Document library processing
 
 To process a document in TrustGraph, first add it to the library, then submit it for processing. Processing records track which documents have been submitted to flows for processing.
@@ -309,16 +360,6 @@ tg-start-library-processing \
 tg-stop-library-processing --id "cats-processing-2026-01"
 ```
 
-### Getting started
-
-- `tg-load-sample-documents` - Load sample documents for testing
-
-### System monitoring
-
-- `tg-verify-system-status` - Verify system health
-- `tg-show-processor-state` - Show processor state
-- `tg-show-parameter-types` - List parameter types
-
 ### Querying and retrieval
 
 - `tg-invoke-llm` - Invoke LLM directly
@@ -330,7 +371,17 @@ tg-stop-library-processing --id "cats-processing-2026-01"
 - `tg-invoke-structured-query` - Execute structured query
 - `tg-invoke-agent` - Invoke an agent
 
-### Knowledge graph management
+### Getting started
+
+- `tg-load-sample-documents` - Load sample documents for testing
+
+### System monitoring
+
+- `tg-verify-system-status` - Verify system health
+- `tg-show-processor-state` - Show processor state
+- `tg-show-parameter-types` - List parameter types
+
+### Context core management
 
 - `tg-load-kg-core` - Load knowledge graph core
 - `tg-unload-kg-core` - Unload knowledge graph core
@@ -338,6 +389,9 @@ tg-stop-library-processing --id "cats-processing-2026-01"
 - `tg-get-kg-core` - Get knowledge graph core details
 - `tg-put-kg-core` - Update knowledge graph core
 - `tg-delete-kg-core` - Delete knowledge graph core
+
+### Knowledge graph management
+
 - `tg-show-graph` - Display graph structure
 - `tg-graph-to-turtle` - Export graph to Turtle format
 
@@ -345,12 +399,6 @@ tg-stop-library-processing --id "cats-processing-2026-01"
 
 - `tg-load-doc-embeds` - Load document embeddings
 - `tg-save-doc-embeds` - Save document embeddings
-
-### Collections
-
-- `tg-list-collections` - List all collections
-- `tg-set-collection` - Set current collection
-- `tg-delete-collection` - Delete a collection
 
 ### Tools and MCP
 
