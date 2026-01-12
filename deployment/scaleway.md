@@ -259,103 +259,41 @@ It can take 2-3 minutes for all services to stabilize after deployment. Services
 
 ## Test LLM access
 
-Test that Scaleway Gen AI integration is working by invoking the LLM through the gateway:
-
-```bash
-tg-invoke-llm 'Be helpful' 'What is 2 + 2?'
-```
-
-You should see output like:
-
-```
-2 + 2 = 4
-```
-
-This confirms that TrustGraph can successfully communicate with Scaleway's Generative AI service.
+{% include deployment/application-localhost/test-llm-access.md %}
 
 ## Load sample documents
 
-Load a small set of sample documents into the library for testing:
-
-```bash
-tg-load-sample-documents
-```
-
-This downloads documents from the internet and caches them locally. The download can take a little time to run.
+{% include deployment/application-localhost/load-sample-documents.md %}
 
 ## Workbench
 
-TrustGraph includes a web interface for document processing and Graph RAG.
-
-Access the TrustGraph workbench at [http://localhost:8888](http://localhost:8888) (requires port-forwarding to be running).
-
-By default, there are no credentials.
-
-You should be able to navigate to the Flows tab and see a single *default* flow running. The guide will return to the workbench to load a document.
+{% include deployment/application-localhost/workbench.md %}
 
 ## Monitoring dashboard
 
-Access Grafana monitoring at [http://localhost:3000](http://localhost:3000) (requires port-forwarding to be running).
-
-**Default credentials:**
-- Username: `admin`
-- Password: `admin`
-
-All TrustGraph components collect metrics using Prometheus and make these available using this Grafana workbench. The Grafana deployment is configured with 2 dashboards:
-- **Overview metrics dashboard**: Shows processing metrics
-- **Logs dashboard**: Shows collated TrustGraph container logs
-
-For a newly launched system, the metrics won't be particularly interesting yet.
+{% include deployment/application-localhost/monitoring-dashboard.md %}
 
 ## Check the LLM is working
 
-Back in the workbench, select the *Assistant* tab.
-
-In the top line next to the *Assistant* word, change the mode to *Basic LLM*.
-
-Enter a question in the prompt box at the bottom of the tab and press *Send*. If everything works, after a short period you should see a response to your query.
-
-![Simple LLM usage](llm-interaction.png)
-
-If LLM interactions are not working, check the Grafana logs dashboard for errors in the `text-completion` service.
+{% include deployment/workbench/check-llm-working.md %}
 
 ## Working with a document
 
 ### Load a document
 
-Back in the workbench:
-
-1. Navigate to the Library page
-2. In the upper right-hand corner, there is a dark/light mode widget. To its left is a selector widget. Ensure the top and bottom lines say "default". If not, click on the widget and change.
-3. On the library tab, select a document (e.g., "Beyond State Vigilance")
-4. Click Submit on the action bar
-5. Choose a processing flow (use Default processing flow)
-6. Click Submit to process
-
-Beyond State Vigilance is a relatively short document, so it's a good one to start with.
+{% include deployment/workbench/load-document.md %}
 
 ### Use Vector search
 
-Select the *Vector Search* tab. Enter a string (e.g., "document") in the search bar and hit RETURN. The search term doesn't matter a great deal. If information has started to load, you should see some search results.
-
-The vector search attempts to find up to 10 terms which are the closest matches for your search term. It does this even if the search terms are not a strong match, so this is a simple way to observe whether data has loaded.
-
-![Vector search results](vector-search.png)
+{% include deployment/workbench/vector-search.md %}
 
 ### Look at knowledge graph
 
-Click on one of the Vector Search result terms on the left-hand side. This shows relationships in the graph from the knowledge graph linking to that term.
-
-![Relationships view](relationships.png)
-
-You can then click on the *Graph view* button to go to a 3D view of the discovered relationships.
+{% include deployment/workbench/knowledge-graph.md %}
 
 ### Query with Graph RAG
 
-1. Navigate to *Assistant* tab
-2. Change the Assistant mode to GraphRAG
-3. Enter your question (e.g., "What is this document about?")
-4. You will see the answer to your question after a short period
+{% include deployment/workbench/graph-rag-query.md %}
 
 ## Troubleshooting
 
