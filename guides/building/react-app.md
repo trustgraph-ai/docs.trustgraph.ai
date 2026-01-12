@@ -1,5 +1,5 @@
 ---
-title: Building a simple application with React and TypeScript
+title: Building with React and Typescript
 nav_order: 2.5
 parent: How-to Guides
 grand_parent: TrustGraph Documentation
@@ -11,6 +11,7 @@ guide_description: Create a simple web application using TrustGraph with React a
 guide_difficulty: intermediate
 guide_time: 45 min
 guide_emoji: ⚛️
+guide_banner: /../react.jpg
 guide_labels:
   - React
   - TypeScript

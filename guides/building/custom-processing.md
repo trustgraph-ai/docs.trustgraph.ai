@@ -11,6 +11,7 @@ guide_description: Extend TrustGraph with custom processing components and workf
 guide_difficulty: advanced
 guide_time: 1 hr
 guide_emoji: ⚙️
+guide_banner: /../processing.jpg
 guide_labels:
   - Custom Processing
   - Extensions
