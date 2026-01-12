@@ -205,11 +205,70 @@ Example - delete a flow class:
 tg-delete-flow-class -n old-flow-class
 ```
 
-### Document library management
+### Document library
 
-- `tg-add-library-document` - Add document to library
-- `tg-remove-library-document` - Remove document from library
-- `tg-show-library-documents` - List library documents
+The document library provides organized storage for documents with metadata. Documents added to the library can be processed by library processing flows.
+
+**Add a document:**
+
+`tg-add-library-document` uploads a document with metadata to the library.
+
+Required arguments:
+- `-k, --kind` - Document MIME type (e.g., `text/plain`, `application/pdf`)
+- `files` - Path to file(s) to upload
+
+Optional metadata:
+- `-U, --user` - User ID (default: `trustgraph`)
+- `--name` - Document name
+- `--description` - Document description
+- `--identifier, --id` - Document identifier/URL
+- `--keyword` - Keywords (space-separated)
+- `--tags` - Tags (comma-separated)
+
+Example:
+```bash
+tg-add-library-document -U trustgraph \
+  --name "Mark's cats" \
+  --description "A document about cats" \
+  --keyword cats pets "domestic life" \
+  --identifier "https://trustgraph.ai/docs/cats" \
+  -k text/plain \
+  --tags "cats,pets,domestic life" \
+  ../sources/README.cats
+```
+
+**Remove a document:**
+
+`tg-remove-library-document` removes a document from the library by its identifier.
+
+```bash
+tg-remove-library-document --identifier "https://trustgraph.ai/docs/cats"
+```
+
+**List documents:**
+
+`tg-show-library-documents` displays all documents in the library.
+
+```bash
+tg-show-library-documents
+```
+
+Example output:
+```
++-------+---------------------------------+
+| id    | https://trustgraph.ai/docs/cats |
+| time  | 2026-01-12 15:04:29             |
+| title | Mark's cats                     |
+| kind  | text/plain                      |
+| note  | A document about cats           |
+| tags  | cats, pets, domestic life       |
++-------+---------------------------------+
+```
+
+### Document library processing
+
+Manage processing of library documents:
+
 - `tg-show-library-processing` - Show library processing status
 - `tg-start-library-processing` - Start processing library documents
 - `tg-stop-library-processing` - Stop library processing
