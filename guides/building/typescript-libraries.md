@@ -1,13 +1,13 @@
 ---
 published: false
 title: Introduction to the TypeScript libraries
-nav_order: 2.5
+nav_order: 2.6
 parent: How-to Guides
 grand_parent: TrustGraph Documentation
 review_date: 2026-08-01
 guide_category:
   - Building with TrustGraph
-guide_category_order: 5
+guide_category_order: 6
 guide_description: Explore TrustGraph TypeScript libraries for building web applications
 guide_difficulty: intermediate
 guide_time: 30 min
