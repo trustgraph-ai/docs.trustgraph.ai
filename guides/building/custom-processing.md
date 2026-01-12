@@ -15,6 +15,8 @@ guide_banner: /../processing.jpg
 guide_labels:
   - Custom Processing
   - Extensions
+todo: true
+todo_notes: This is under construction
 ---
 
 # Adding your own processing
@@ -395,26 +397,31 @@ if __name__ == "__main__":
 
 ## Step 7: Package and Deploy
 
-Create `setup.py`:
+Create `pyproject.toml`:
 
-```python
-from setuptools import setup, find_packages
+```toml
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
 
-setup(
-    name="trustgraph-stix",
-    version="0.1.0",
-    packages=find_packages(),
-    install_requires=[
-        "trustgraph-base>=0.23",
-    ],
-    entry_points={
-        "console_scripts": [
-            "cyber-extract=trustgraph_stix.cyber_extract:run",
-            "stix-load=trustgraph_stix.stix_load:run",
-            "tg-init-cyberthreat=trustgraph_stix.init_cyberthreat:initialize",
-        ],
-    },
-)
+[project]
+name = "trustgraph-stix"
+version = "0.1.0"
+description = "STIX threat report processing for TrustGraph"
+readme = "README.md"
+requires-python = ">=3.11"
+dependencies = [
+    "trustgraph-base>=0.23",
+]
+
+[project.scripts]
+cyber-extract = "trustgraph_stix.cyber_extract:run"
+stix-load = "trustgraph_stix.stix_load:run"
+tg-init-cyberthreat = "trustgraph_stix.init_cyberthreat:initialize"
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["trustgraph_stix*"]
 ```
 
 Create `Containerfile`:
