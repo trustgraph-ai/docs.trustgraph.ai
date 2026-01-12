@@ -8,7 +8,7 @@ review_date: 2026-08-01
 
 # How-to Guides
 
-{% include guide-category-section.html
+{% include guide/guide-category-section.html
    category_name="Common knowledge management tasks"
    section_title="Common knowledge management tasks"
    parent_page="How-to Guides"
@@ -20,7 +20,7 @@ review_date: 2026-08-01
    label_bg_color="rgba(74, 158, 255, 0.2)"
 %}
 
-{% include guide-category-section.html
+{% include guide/guide-category-section.html
    category_name="Advanced knowledge management"
    section_title="Advanced knowledge management"
    parent_page="How-to Guides"
@@ -32,7 +32,7 @@ review_date: 2026-08-01
    label_bg_color="rgba(159, 122, 234, 0.2)"
 %}
 
-{% include guide-category-section.html
+{% include guide/guide-category-section.html
    category_name="Agentic systems"
    section_title="Agentic systems"
    parent_page="How-to Guides"
@@ -44,7 +44,7 @@ review_date: 2026-08-01
    label_bg_color="rgba(72, 187, 120, 0.2)"
 %}
 
-{% include guide-category-section.html
+{% include guide/guide-category-section.html
    category_name="Managing operations"
    section_title="Managing operations"
    parent_page="How-to Guides"

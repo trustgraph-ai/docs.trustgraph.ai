@@ -30,7 +30,7 @@ guide_labels:
 </ul>
 {% endcapture %}
 
-{% include guide-intro-box.html
+{% include guide/guide-intro-box.html
    description=page.guide_description
    difficulty=page.guide_difficulty
    duration=page.guide_time

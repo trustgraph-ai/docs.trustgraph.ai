@@ -10,7 +10,7 @@ review_date: 2026-08-01
 
 **Understanding TrustGraph: concepts, architecture, and capabilities**
 
-{% include guide-category-section.html
+{% include guide/guide-category-section.html
    category_name="Concepts"
    section_title="Concepts"
    parent_page="Overview"
@@ -22,7 +22,7 @@ review_date: 2026-08-01
    label_bg_color="rgba(72, 187, 120, 0.2)"
 %}
 
-{% include guide-category-section.html
+{% include guide/guide-category-section.html
    category_name="How does it work?"
    section_title="How does it work?"
    parent_page="Overview"
@@ -34,7 +34,7 @@ review_date: 2026-08-01
    label_bg_color="rgba(74, 158, 255, 0.2)"
 %}
 
-{% include guide-category-section.html
+{% include guide/guide-category-section.html
    category_name="Enterprise integration"
    section_title="Enterprise integration"
    parent_page="Overview"
