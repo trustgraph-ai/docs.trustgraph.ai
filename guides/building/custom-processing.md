@@ -5,7 +5,7 @@ parent: How-to Guides
 grand_parent: TrustGraph Documentation
 review_date: 2026-08-01
 guide_category:
-  - Building with TrustGraph
+  - PLACEHOLDER Building with TrustGraph
 guide_category_order: 8
 guide_description: Extend TrustGraph with custom processing components and workflows
 guide_difficulty: advanced
