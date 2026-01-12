@@ -1,8 +1,8 @@
 ---
 title: Document RAG
 nav_order: 4
-parent: How-to Guides
-grand_parent: TrustGraph Documentation
+parent: Common knowledge management tasks
+grand_parent: How-to Guides
 review_date: 2026-08-01
 guide_category:
   - Common knowledge management tasks
@@ -19,6 +19,21 @@ guide_labels:
 ---
 
 # Document RAG Guide
+
+{% capture requirements %}
+<ul style="margin: 0; padding-left: 20px;">
+<li>TrustGraph deployed (<a href="../getting-started/quickstart">Quick Start</a>)</li>
+<li>Understanding of <a href="../getting-started/concepts">Core Concepts</a></li>
+</ul>
+{% endcapture %}
+
+{% include guide/guide-intro-box.html
+   description=page.guide_description
+   difficulty=page.guide_difficulty
+   duration=page.guide_time
+   you_will_need=requirements
+   goal="Load documents into TrustGraph, create Document RAG flows, and query using vector similarity search while understanding its limitations."
+%}
 
 **Query documents using vector embeddings and semantic search**
 

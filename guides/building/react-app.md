@@ -1,8 +1,8 @@
 ---
 title: Building with React and Typescript
-nav_order: 2.8
-parent: How-to Guides
-grand_parent: TrustGraph Documentation
+nav_order: 8
+parent: Building with TrustGraph
+grand_parent: How-to Guides
 review_date: 2026-08-01
 guide_category:
   - Building with TrustGraph

@@ -1,7 +1,8 @@
 ---
 title: Ontology RAG
 nav_order: 3
-parent: How-to Guides
+parent: Common knowledge management tasks
+grand_parent: How-to Guides
 review_date: 2026-08-01
 guide_category:
   - Common knowledge management tasks
@@ -19,8 +20,23 @@ guide_labels:
 
 # Ontology RAG Guide
 
+{% capture requirements %}
+<ul style="margin: 0; padding-left: 20px;">
+<li>TrustGraph deployed (<a href="../getting-started/quickstart">Quick Start</a>)</li>
+<li>Understanding of <a href="../getting-started/concepts">Core Concepts</a></li>
+<li>Familiarity with ontologies and schemas</li>
+</ul>
+{% endcapture %}
+
+{% include guide/guide-intro-box.html
+   description=page.guide_description
+   difficulty=page.guide_difficulty
+   duration=page.guide_time
+   you_will_need=requirements
+   goal="Import OWL ontologies, extract structured knowledge using schemas, and query ontology-based knowledge graphs."
+%}
+
 **Extract knowledge using language definition**
-**Query documents using graph embeddings and knowledge graph relationships**
 
 Ontology RAG is a technique which uses automated extraction of relationships
 from unstructured text, which is stored in a knowledge graph.

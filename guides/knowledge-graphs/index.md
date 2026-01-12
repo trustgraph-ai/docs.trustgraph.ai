@@ -1,6 +1,7 @@
 ---
 title: Knowledge graph basics
-parent: How-to Guides
+parent: Common knowledge management tasks
+grand_parent: How-to Guides
 nav_order: 1
 review_date: 2026-10-01
 guide_category:
@@ -18,6 +19,20 @@ guide_labels:
 ---
 
 # Crash course in knowledge graph concepts
+
+{% capture requirements %}
+<ul style="margin: 0; padding-left: 20px;">
+<li>Basic understanding of data structures</li>
+</ul>
+{% endcapture %}
+
+{% include guide/guide-intro-box.html
+   description=page.guide_description
+   difficulty=page.guide_difficulty
+   duration=page.guide_time
+   you_will_need=requirements
+   goal="Understand knowledge graph fundamentals including triples (subject-predicate-object), RDF, and URI concepts."
+%}
 
 ## Facts
 

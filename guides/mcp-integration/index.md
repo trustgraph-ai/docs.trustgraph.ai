@@ -1,13 +1,14 @@
 ---
 title: MCP Integration
-parent: How-to Guides
-nav_order: 5
+parent: Agentic systems
+grand_parent: How-to Guides
+nav_order: 1
 review_date: 2026-03-06
 guide_category:
   - Agentic systems
 guide_category_order: 3
 guide_description: Integrate Model Context Protocol servers to extend agent workflows with custom tools
-guide_difficulty: advanced
+guide_difficulty: intermediate
 guide_time: 60 min
 guide_emoji: 🔌
 guide_banner: mcp-integration.jpg
@@ -18,6 +19,23 @@ guide_labels:
 ---
 
 # MCP Integration
+
+{% capture requirements %}
+<ul style="margin: 0; padding-left: 20px;">
+<li>TrustGraph deployed (<a href="../../getting-started/installation">Installation Guide</a>)</li>
+<li>TrustGraph 1.1+ (MCP introduced in 1.1)</li>
+<li>Python 3.8+ for MCP server development</li>
+<li>Understanding of agent workflows</li>
+</ul>
+{% endcapture %}
+
+{% include guide/guide-intro-box.html
+   description=page.guide_description
+   difficulty=page.guide_difficulty
+   duration=page.guide_time
+   you_will_need=requirements
+   goal="Create a basic MCP server with custom tools, configure TrustGraph to use MCP services, and enable agents to use MCP tools in workflows."
+%}
 
 Learn how to integrate Model Context Protocol (MCP) servers with TrustGraph to extend your agent workflows with custom tools and capabilities.
 
