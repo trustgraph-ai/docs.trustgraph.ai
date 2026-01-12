@@ -309,14 +309,6 @@ Use this when:
 - You need caching and performance optimization
 - You want the best developer experience
 
-## Version Compatibility
-
-For best compatibility, use library versions that match your deployed TrustGraph system version. Check your deployment version and install the corresponding package version:
-
-```bash
-npm install trustgraph-react-state@1.8.10
-```
-
 ## Next Steps
 
 - [Building a React application](react-app.html) - Build a complete app with `trustgraph-react-state`
