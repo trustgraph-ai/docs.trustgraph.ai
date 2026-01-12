@@ -73,32 +73,7 @@ This has been tested with Linux, MacOS and Windows devices.
 
 ### Python
 
-You need to have Python 3 installed to run the command-line tools.  You
-should use a newer version, Python 3.11 or later.
-
-<details>
-
-<summary>Specific guidance for MacOS</summary>
-
-<div markdown="1">
-MacOS X-Code is the usual way to get developer tools on your Macbook.  Note
-that X-Code doesn't track later Python versions (Python 3.9)?  If you're
-on MacOS you should consider using Homebrew to install Python3, and
-making sure that the Homebrew version of Python takes priority over
-the default OS version.  You can run the `python` command to see what
-version of Python you have installed as the default.
-</div>
-
-<div markdown="1">
-```
-Python 3.14.2 (main, Dec  5 2025, 00:00:00) [GCC 15.2.1 20251111 (Red
-Hat 15.2.1-4)] on linux
-Type "help", "copyright", "credits" or "license" for more information.
->>> 
-```
-</div>
-
-</details>
+{% include deployment/python-requirement.md %}
 
 ### Docker / Podman
 
@@ -305,48 +280,15 @@ guide are a whistle-stop tour through various parts of the system.
 
 ## Load sample documents
 
-There is a utility which loads a small set of sample documents into the
-library.  This does not initiate processing, but gives you a set of documents
-to test with:
-
-```sh
-tg-load-sample-documents
-```
-
-This downloads documents from the internet and caches them in a local
-directory, so that the load is quicker if you need to do it again.
-The download can take a little time to run.
+{% include deployment/application-localhost/load-sample-documents.md %}
 
 ## Workbench
 
-TrustGraph is bundled with a simple web interface which exercises most of
-the functionality.
-
-Access the TrustGraph workbench at
-[http://localhost:8888/](http://localhost:8888/)
-
-By default, there are no credentials.
-
-You should be able to navigate to the Flows tab, and see a single
-*default* flow running.  The guide will return to the workbench to load
-a document.
+{% include deployment/application-localhost/workbench.md %}
 
 ## Monitoring dashboard
 
-Access Grafana monitoring at [http://localhost:3000/](http://localhost:3000/)
-
-**Default credentials:**
-- Username: `admin`
-- Password: `admin`
-
-All TrustGraph components collect metrics using Prometheus and make these
-available using this Grafana workbench.  The Grafana deployment is
-configured with 2 dashboards, the first is an Overview metrics dashboard
-which shows processing metrics.  For a newly launched system, the metrics
-won't be particularly interesting.
-
-There is also a Logs dashboard which shows collated TrustGraph container
-logs.
+{% include deployment/application-localhost/monitoring-dashboard.md %}
 
 ## Check the LLM is working
 
