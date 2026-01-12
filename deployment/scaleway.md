@@ -85,56 +85,11 @@ To create API credentials:
 
 ### Python
 
-You need Python 3.11 or later installed for the TrustGraph CLI tools.
-
-<details>
-<summary>Check your Python version</summary>
-
-<div markdown="1">
-```bash
-python3 --version
-```
-
-If you need to install or upgrade Python, visit [python.org](https://www.python.org/downloads/).
-</div>
-</details>
+{% include deployment/python-requirement.md %}
 
 ### Pulumi
 
-Install Pulumi on your local machine:
-
-<details>
-<summary>Linux</summary>
-<div markdown="1">
-```bash
-curl -fsSL https://get.pulumi.com | sh
-```
-</div>
-</details>
-
-<details>
-<summary>MacOS</summary>
-<div markdown="1">
-```bash
-brew install pulumi/tap/pulumi
-```
-</div>
-</details>
-
-<details>
-<summary>Windows</summary>
-<div markdown="1">
-Download the installer from [pulumi.com](https://www.pulumi.com/docs/get-started/install/).
-</div>
-</details>
-
-Verify installation:
-
-```bash
-pulumi version
-```
-
-Full installation details are at [pulumi.com](https://www.pulumi.com/docs/get-started/install/).
+{% include deployment/pulumi-install.md %}
 
 ### kubectl
 
