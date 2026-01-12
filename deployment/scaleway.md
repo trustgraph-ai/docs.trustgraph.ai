@@ -134,6 +134,8 @@ Verify installation:
 pulumi version
 ```
 
+Full installation details are at [pulumi.com](https://www.pulumi.com/docs/get-started/install/).
+
 ### kubectl
 
 Install kubectl to manage your Kubernetes cluster:
@@ -199,13 +201,6 @@ export SCW_DEFAULT_ORGANIZATION_ID="your_org_id_here"
 export SCW_DEFAULT_PROJECT_ID="your_project_id_here"
 ```
 
-You can also set a default region (optional, defaults to `fr-par`):
-
-```bash
-export SCW_DEFAULT_REGION="fr-par"  # Paris region
-# Other options: nl-ams (Amsterdam), pl-waw (Warsaw)
-```
-
 ### Configure Pulumi state
 
 You need to tell Pulumi which state to use. You can store this in an S3
@@ -213,6 +208,11 @@ bucket, but for experimentation, you can just use local state:
 
 ```sh
 pulumi login --local
+```
+
+FIXME: Set PULUMI_CONFIG_PASSPHRASE
+```sh
+export PULUMI_CONFIG_PASSPHRASE=
 ```
 
 ### Create a Pulumi stack
@@ -227,22 +227,21 @@ You can use any name instead of `dev` - this helps you manage multiple deploymen
 
 ### Configure the stack
 
-The deployment is configured through a `Pulumi.STACKNAME.yaml` file. Create one for your stack:
+Apply settings for region, and environment name.  The environment
+name is used to construct resource names, so is important if you deploy
+multiple stacks:
 
-```bash
-# This creates Pulumi.dev.yaml if your stack is named 'dev'
-pulumi config set scaleway:region fr-par
-pulumi config set scaleway:zone fr-par-1
+```sh
+pulumi config set region fr-par
+pulumi config set environment prod
 ```
 
-You can customize the deployment by editing the `Pulumi.dev.yaml` file directly or using `pulumi config set` commands. Common configuration options:
+At the time of writing available regions are:
+- `fr-par` (Paris)
+- `nl-ams` (Amsterdam)
+- `pl-waw` (Warsaw)
 
-- Node count: Number of Kubernetes nodes (default: 2)
-- Node type: Scaleway instance type for nodes (default: PRO2-M)
-- Cluster name: Name for your Kapsule cluster
-- Mistral model: Which Scaleway Gen AI model to use
-
-Refer to the repository's README for a complete list of configuration options.
+Refer to the repository's README for more details.
 
 ## Deploy with Pulumi
 
@@ -273,7 +272,8 @@ pulumi up
 
 Pulumi will ask for confirmation before proceeding. Type `yes` to continue.
 
-The deployment typically takes **10-15 minutes** and progresses through these stages:
+The deployment typically takes 8 - 12 minutes and progresses through these
+stages:
 
 1. **Creating Kubernetes cluster** (5-7 minutes)
    - Provisions Kapsule cluster
@@ -294,28 +294,25 @@ You'll see output like:
 
 ```
 Updating (dev)
-
-View Live: https://app.pulumi.com/yourname/pulumi-trustgraph-scaleway/dev/updates/1
-
-     Type                              Name                            Status
- +   pulumi:pulumi:Stack               pulumi-trustgraph-scaleway-dev  created
- +   ├─ scaleway:index:K8sCluster      trustgraph-cluster              created
- +   ├─ scaleway:index:K8sPool         trustgraph-pool                 created
- +   ├─ scaleway:index:IamApplication  trustgraph-genai-app            created
- +   ├─ scaleway:index:IamApiKey       trustgraph-genai-key            created
- +   ├─ kubernetes:core:Namespace      trustgraph                      created
- +   ├─ kubernetes:core:Secret         llm-secret                      created
- +   ├─ kubernetes:core:Secret         gateway-secret                  created
- +   └─ kubernetes:yaml:ConfigFile     trustgraph-resources            created
-
-Outputs:
-    cluster_name: "trustgraph-cluster-abc123"
-    kubeconfig  : [secret]
+     Type                                Name                     Status
+ +   pulumi:pulumi:Stack                 trustgraph-scaleway-dev  created
+ +   ├─ pulumi:providers:scaleway        scaleway-provider        created
+ +   ├─ scaleway:network:PrivateNetwork  private-network          created
+ +   ├─ scaleway:kubernetes:Cluster      cluster                  created
+ +   ├─ scaleway:kubernetes:Pool         node-pool                created
+ +   ├─ scaleway:iam:ApiKey              api-key                  created
+ +   ├─ kubernetes:yaml/v2:ConfigGroup   resources                created
+ +   ├─ pulumi:providers:kubernetes      k8sProvider              created
+ +   ├─ scaleway:iam:Application         application              created
+ +   ├─ kubernetes:core/v1:Secret        mcp-server-secret        created
+ +   ├─ kubernetes:core/v1:Secret        gateway-secret           created
+ +   ├─ kubernetes:core/v1:Secret        ai-secret                created
+ +   └─ scaleway:iam:Policy              policy                   created
 
 Resources:
-    + 42 created
+    + 13 created
 
-Duration: 14m32s
+Duration: 8m32s
 ```
 
 ### Configure kubectl access
