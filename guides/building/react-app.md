@@ -1,12 +1,12 @@
 ---
 title: Building with React and Typescript
-nav_order: 2.5
+nav_order: 2.7
 parent: How-to Guides
 grand_parent: TrustGraph Documentation
 review_date: 2026-08-01
 guide_category:
   - Building with TrustGraph
-guide_category_order: 5
+guide_category_order: 7
 guide_description: Create a simple web application using TrustGraph with React and TypeScript
 guide_difficulty: intermediate
 guide_time: 45 min
