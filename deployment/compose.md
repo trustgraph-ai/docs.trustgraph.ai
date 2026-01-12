@@ -30,7 +30,7 @@ guide_labels:
 </ul>
 {% endcapture %}
 
-{% include guide-intro-box.html
+{% include guide/guide-intro-box.html
    description=page.guide_description
    difficulty=page.guide_difficulty
    duration=page.guide_time
@@ -73,65 +73,15 @@ This has been tested with Linux, MacOS and Windows devices.
 
 ### Python
 
-You need to have Python 3 installed to run the command-line tools.  You
-should use a newer version, Python 3.11 or later.
-
-<details>
-
-<summary>Specific guidance for MacOS</summary>
-
-<div markdown="1">
-MacOS X-Code is the usual way to get developer tools on your Macbook.  Note
-that X-Code doesn't track later Python versions (Python 3.9)?  If you're
-on MacOS you should consider using Homebrew to install Python3, and
-making sure that the Homebrew version of Python takes priority over
-the default OS version.  You can run the `python` command to see what
-version of Python you have installed as the default.
-</div>
-
-<div markdown="1">
-```
-Python 3.14.2 (main, Dec  5 2025, 00:00:00) [GCC 15.2.1 20251111 (Red
-Hat 15.2.1-4)] on linux
-Type "help", "copyright", "credits" or "license" for more information.
->>> 
-```
-</div>
-
-</details>
+{% include deployment/python-requirement.md %}
 
 ### Docker / Podman
 
-For Windows / MacOS it is recommended to use Docker.  For Linux, Podman is
-natively available with all major distributions.  You will need to have this
-installed before running this installation.
-
-- [Install Docker Engine](https://docs.docker.com/engine/install/)
-- [Install Podman Machine](http://podman.io/)
-
-{: .note }
-If you are using Docker desktop, you may need to review the resource settings
-as described in this section.
-
-<details>
-
-<summary>Resource settings for Docker desktop</summary>
-
-<div>
-Note that if you are using Docker desktop, there are CPU and memory limits
-which can be applied to limit the resources set aside for containers.
-If you find that containers get stuck unresourced, you will need to allocate
-more resources.  We run with 12GB of RAM and 8 CPUs allocated to TrustGraph.
-These settings are on the *Settings* tab under *Resources*.
-</div>
-
-<img src="docker-desktop-resources.png" alt="Docker desktop settings screenshot"/>
-
-</details>
+{% include deployment/docker-podman-install.md %}
 
 ### Large Language Model
 
-{% include llm-providers-overview.md %}
+{% include llm/llm-providers-overview.md %}
 
 ### A word on networking and self-hosting
 
@@ -276,7 +226,7 @@ pip install trustgraph-cli==1.8.9
 Depending on which LLM you selected, there are some configuration settings
 you need to prepare:
 
-{% include llm-configuration-details-compose.md %}
+{% include llm/llm-configuration-details-compose.md %}
 
 ## Configure security settings
 
@@ -314,182 +264,53 @@ podman-compose -f docker-compose.yaml up -d
    content2=podman
 %}
 
-### Verify startup
+### Startup period
 
 It can take around 40 - 120 seconds for all services to stabilize. Services
 like Pulsar and Cassandra need time to initialize properly.
 There is a utility which runs a series of checks to verify the system
 as it starts and reports when the system is working successfully.
 
-```sh
-tg-verify-system-status
-```
+### Verify system health
 
-If everything is working, the output looks something like this:
-
-```
-============================================================
-TrustGraph System Status Verification
-============================================================
-
-Phase 1: Infrastructure
-------------------------------------------------------------
-[00:00] ⏳ Checking Pulsar...
-[00:03] ⏳ Checking Pulsar... (attempt 2)
-[00:03] ✓ Pulsar: Pulsar healthy (0 cluster(s))
-[00:03] ⏳ Checking API Gateway...
-[00:03] ✓ API Gateway: API Gateway is responding
-
-Phase 2: Core Services
-------------------------------------------------------------
-[00:03] ⏳ Checking Processors...
-[00:03] ✓ Processors: Found 34 processors (≥ 15)
-[00:03] ⏳ Checking Flow Classes...
-[00:06] ⏳ Checking Flow Classes... (attempt 2)
-[00:09] ⏳ Checking Flow Classes... (attempt 3)
-[00:22] ⏳ Checking Flow Classes... (attempt 4)
-[00:35] ⏳ Checking Flow Classes... (attempt 5)
-[00:38] ⏳ Checking Flow Classes... (attempt 6)
-[00:38] ✓ Flow Classes: Found 9 flow class(es)
-[00:38] ⏳ Checking Flows...
-[00:38] ✓ Flows: Flow manager responding (1 flow(s))
-[00:38] ⏳ Checking Prompts...
-[00:38] ✓ Prompts: Found 16 prompt(s)
-
-Phase 3: Data Services
-------------------------------------------------------------
-[00:38] ⏳ Checking Library...
-[00:38] ✓ Library: Library responding (0 document(s))
-
-Phase 4: User Interface
-------------------------------------------------------------
-[00:38] ⏳ Checking Workbench UI...
-[00:38] ✓ Workbench UI: Workbench UI is responding
-
-============================================================
-Summary
-============================================================
-Checks passed: 8/8
-Checks failed: 0/8
-Total time: 00:38
-
-✓ System is healthy!
-```
-
-The *Checks failed* line is the most interesting and is hopefully zero.  If
-you are having issues, look at the troubleshooting section later.
+{% include deployment/application-localhost/verify-system-health.md %}
 
 If everything appears to be working, the following parts of the deployment
 guide are a whistle-stop tour through various parts of the system.
 
 ## Load sample documents
 
-There is a utility which loads a small set of sample documents into the
-library.  This does not initiate processing, but gives you a set of documents
-to test with:
-
-```sh
-tg-load-sample-documents
-```
-
-This downloads documents from the internet and caches them in a local
-directory, so that the load is quicker if you need to do it again.
-The download can take a little time to run.
+{% include deployment/application-localhost/load-sample-documents.md %}
 
 ## Workbench
 
-TrustGraph is bundled with a simple web interface which exercises most of
-the functionality.
-
-Access the TrustGraph workbench at
-[http://localhost:8888/](http://localhost:8888/)
-
-By default, there are no credentials.
-
-You should be able to navigate to the Flows tab, and see a single
-*default* flow running.  The guide will return to the workbench to load
-a document.
+{% include deployment/application-localhost/workbench.md %}
 
 ## Monitoring dashboard
 
-Access Grafana monitoring at [http://localhost:3000/](http://localhost:3000/)
-
-**Default credentials:**
-- Username: `admin`
-- Password: `admin`
-
-All TrustGraph components collect metrics using Prometheus and make these
-available using this Grafana workbench.  The Grafana deployment is
-configured with 2 dashboards, the first is an Overview metrics dashboard
-which shows processing metrics.  For a newly launched system, the metrics
-won't be particularly interesting.
-
-There is also a Logs dashboard which shows collated TrustGraph container
-logs.
+{% include deployment/application-localhost/monitoring-dashboard.md %}
 
 ## Check the LLM is working
 
-Back in the workbench, select the *Assistant* tab.
-
-In the top line next to the *Assistant* word change the mode to *Basic LLM*.
-
-Enter a question in the prompt box at the bottom of the tab and press
-*Send*.  If everything works, after a short period you should see
-a response to your query.
-
-![Simple LLM usage](llm-interaction.png)
-
-If LLM interactions are not working, this needs to be diagnosed and fixed
-prior to continuing.  You should check the logs in Grafana to see if there
-are errors.
+{% include deployment/workbench/check-llm-working.md %}
 
 ## Working with a document
 
 ### Load a document
 
-Back in the workbench:
-
-1. Navigate to the Library page
-2. In the upper right-hand corner, there is a dark/light mode widget.
-   To its left, is a selector width.  Ensure the top and bottom lines say
-   "default".  If not click on the widget and change.
-2. On the library tab, select a document (e.g., "Beyond State Vigilance")
-3. Click Submit on the action bar
-4. Choose a processing flow (use Default processing flow)
-5. Click Submit to process
-
-Beyond State Vigilance is a relatively short document, so a good one to
-start with.
+{% include deployment/workbench/load-document.md %}
 
 ### Use Vector search
 
-Select the *Vector Search* tab.  Enter a string e.g. "document" in the search
-bar, and hit RETURN.  The search term doesn't matter a great deal.  If
-information has started to load, you should see some search results.
-
-The vector search attempts to find up to 10 terms which are the closest
-matches for your search term.  It does this even if the search terms are not
-a strong match, so this is a simple way to observe whether data has loaded.
-
-![Vector search results](vector-search.png)
+{% include deployment/workbench/vector-search.md %}
 
 ### Look at knowledge graph
 
-Click on one of the Vector Search results terms on the left-hand-side.
-This shows relationships in the graph from the knowledge graph linking to
-that term.
-
-![Relationships view](relationships.png)
-
-You can then click on the *Graph view* button to go to a 3D view of the
-discovered relationships.
+{% include deployment/workbench/knowledge-graph.md %}
 
 ### Query with Graph RAG
 
-1. Navigate to *Assistant* tab
-2. Change the Assistant mode to GraphRAG
-3. Enter your question (e.g., "What is this document about?")
-4. You will see the answer to your question after a short period
+{% include deployment/workbench/graph-rag-query.md %}
 
 ## Shutting down
 

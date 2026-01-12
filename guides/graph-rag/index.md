@@ -1,6 +1,6 @@
 ---
 title: Graph RAG
-nav_order: 10
+nav_order: 2
 parent: How-to Guides
 grand_parent: TrustGraph Documentation
 review_date: 2026-08-01

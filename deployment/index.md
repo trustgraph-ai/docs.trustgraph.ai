@@ -8,7 +8,7 @@ review_date: 2025-12-29
 
 # Deployment
 
-{% include guide-category-section.html
+{% include guide/guide-category-section.html
    category_name="Deployment decisions"
    section_title="Deployment decisions"
    parent_page="Deployment"
@@ -20,7 +20,7 @@ review_date: 2025-12-29
    label_bg_color="rgba(6, 182, 212, 0.2)"
 %}
 
-{% include guide-category-section.html
+{% include guide/guide-category-section.html
    category_name="Standalone deployment"
    section_title="Standalone deployment"
    parent_page="Deployment"
@@ -32,7 +32,7 @@ review_date: 2025-12-29
    label_bg_color="rgba(72, 187, 120, 0.2)"
 %}
 
-{% include guide-category-section.html
+{% include guide/guide-category-section.html
    category_name="Global cloud"
    section_title="Global cloud"
    parent_page="Deployment"
@@ -44,7 +44,7 @@ review_date: 2025-12-29
    label_bg_color="rgba(159, 122, 234, 0.2)"
 %}
 
-{% include guide-category-section.html
+{% include guide/guide-category-section.html
    category_name="European Cloud Providers"
    section_title="European Cloud Providers"
    parent_page="Deployment"
@@ -56,7 +56,7 @@ review_date: 2025-12-29
    label_bg_color="rgba(74, 158, 255, 0.2)"
 %}
 
-{% include guide-category-section.html
+{% include guide/guide-category-section.html
    category_name="Data centre"
    section_title="Data centre"
    parent_page="Deployment"

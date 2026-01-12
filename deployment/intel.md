@@ -1,8 +1,7 @@
 ---
 title: Intel GPU
-nav_order: 3
+nav_order: 12
 parent: Deployment
-grand_parent: TrustGraph Documentation
 review_date: 2025-12-02
 guide_category:
   - Data centre
@@ -16,6 +15,9 @@ guide_labels:
   - Intel
   - GPU
   - High-Performance
+todo: true
+todo_notes: This is a holding page.  Work on Intel GPU integration is ongoing.
+  Come discuss on the Discord if you're exploring using this as a baseline.
 ---
 
 # Intel Gaudi Cloud Deployment

@@ -20,138 +20,488 @@ guide_labels:
 
 # Scaleway Deployment
 
-Deploy TrustGraph on Scaleway using Kubernetes Kapsule and Scaleway's European cloud infrastructure.
+{% capture requirements %}
+<ul style="margin: 0; padding-left: 20px;">
+<li>Scaleway account with API access (see below for setup)</li>
+<li>Pulumi installed locally</li>
+<li>kubectl command-line tool</li>
+<li>Python 3.11+ for CLI tools</li>
+<li>Basic command-line and Kubernetes familiarity</li>
+</ul>
+{% endcapture %}
+
+{% include guide/guide-intro-box.html
+   description=page.guide_description
+   difficulty=page.guide_difficulty
+   duration=page.guide_time
+   you_will_need=requirements
+   goal="Deploy a production-ready TrustGraph environment on Scaleway Kubernetes with GDPR-compliant European infrastructure using Infrastructure as Code."
+%}
 
 ## Overview
 
-TrustGraph provides a complete Scaleway deployment solution using **Pulumi** (Infrastructure as Code) that automatically provisions and configures a Kubernetes cluster with Scaleway's Generative AI services for a production-ready TrustGraph deployment.
+This guide walks you through deploying TrustGraph on Scaleway's Kubernetes Kapsule service using Pulumi (Infrastructure as Code). The deployment automatically provisions a production-ready Kubernetes cluster integrated with Scaleway's Generative AI services.
 
-## Why Choose Scaleway?
+**Pulumi** is an open-source Infrastructure as Code tool that uses general-purpose programming languages (TypeScript/JavaScript in this case) to define cloud infrastructure. Unlike manual deployments, Pulumi provides:
+- Reproducible, version-controlled infrastructure
+- Testable and retryable deployments
+- Automatic resource dependency management
+- Simple rollback capabilities
 
-Scaleway offers unique advantages for TrustGraph deployments:
+Once deployed, you'll have a complete TrustGraph stack running on European infrastructure with:
+- Kubernetes Kapsule cluster (2-node pool, configurable)
+- Scaleway Generative AI integration (Mistral Nemo Instruct)
+- Complete monitoring with Grafana and Prometheus
+- Web workbench for document processing and Graph RAG
+- Secure secrets management
 
-### 🇪🇺 **European Data Sovereignty**
-- **GDPR Compliance**: Full compliance with European data protection regulations
-- **EU-based Infrastructure**: All data remains within European Union boundaries
-- **Data Residency**: Meet strict data localization requirements for European organizations
-- **Privacy by Design**: Built-in privacy protections and transparent data handling
+{: .note }
+> **Why Scaleway for TrustGraph?**
+>
+> Scaleway offers unique advantages for European organizations:
+> - **GDPR Compliance & EU Data Residency**: All data remains within European Union boundaries
+> - **Cost-Effective**: Transparent, competitive pricing without hidden costs
+> - **European AI**: Scaleway Gen AI provides access to models like Mistral with EU processing
+> - **Developer-Friendly**: Simple APIs, strong open-source support, sustainable computing
+>
+> Ideal for organizations requiring strict data localization or GDPR compliance.
 
-### 💰 **Cost-Effective Cloud Computing**
-- **Competitive Pricing**: Transparent, affordable pricing model
-- **No Hidden Costs**: Predictable billing with no surprise charges
-- **Resource Efficiency**: Optimized infrastructure for better price-performance
+## Getting ready
 
-### 🚀 **Developer-Friendly Platform**
-- **Simple APIs**: Easy-to-use cloud services and APIs
-- **Open Source Commitment**: Strong support for open-source technologies
-- **European Innovation**: European cloud provider with focus on developer experience
-- **Sustainable Computing**: Commitment to environmental responsibility
+### Scaleway Account
 
-### 🛡️ **Enterprise Security**
-- **ISO Certifications**: Multiple security and quality certifications
-- **Network Security**: Advanced DDoS protection and network isolation
-- **Compliance Ready**: SOC 2, ISO 27001, and other enterprise certifications
+You'll need a Scaleway account with API access. If you don't have one:
 
-## What You Get
+1. Sign up at [https://console.scaleway.com/](https://console.scaleway.com/)
+2. Complete account verification
+3. Note your Organization ID and Project ID from the Scaleway console
 
-The Scaleway deployment includes:
+To create API credentials:
 
-- **Kubernetes Kapsule cluster** with 2-node pool
-- **IAM application and policies** with Generative AI access
-- **Complete TrustGraph stack** deployed and configured
-- **Mistral Nemo Instruct** endpoint integration
-- **Scaleway Gen AI services** integration
-- **Secrets management** for secure configuration
-- **Monitoring and observability** with Grafana
-- **Web workbench** for document processing and Graph RAG
+1. Navigate to **IAM** → **API Keys** in the Scaleway console
+2. Click **Generate API Key**
+3. Save the **Access Key** and **Secret Key** securely
+4. You'll also need your **Organization ID** and **Project ID** (found in Project Settings)
 
-## Deployment Method
+### Python
 
-The deployment uses **Pulumi**, an Infrastructure as Code tool that:
+{% include deployment/python-requirement.md %}
 
-- Has an open-source license
-- Uses general-purpose programming languages (TypeScript/JavaScript)
-- Provides testable infrastructure code
-- Offers retryable deployments
-- Supports local or cloud state management
+### Pulumi
 
-## Architecture
+{% include deployment/pulumi-install.md %}
 
-**Kubernetes Platform**: Scaleway Kubernetes Kapsule
-**Node Configuration**: 2 nodes (configurable)
-**AI Integration**: Scaleway Generative AI services
-**Default Model**: Mistral Nemo Instruct
-**Network**: Scaleway VPC with managed networking
-**Storage**: Scaleway Block Storage with automatic provisioning
-**AI Service**: Scaleway Gen AI with API key authentication
+### kubectl
 
-## Quick Process Overview
+{% include deployment/kubectl-install.md %}
 
-1. **Install Pulumi** and dependencies
-2. **Create Scaleway API key** in console
-3. **Configure environment variables** (SCW_ACCESS_KEY, SCW_SECRET_KEY, etc.)
-4. **Customize configuration** in `Pulumi.STACKNAME.yaml`
-5. **Deploy** with `pulumi up`
-6. **Access services** via port-forwarding
+### Node.js
 
-## Configuration Requirements
+{% include deployment/nodejs-install.md %}
 
-Required Scaleway environment variables:
+### Scaleway Generative AI
+
+The deployment uses Scaleway's Generative AI service with **Mistral Nemo Instruct** as the default model. The deployment automatically configures this integration, but you should verify Generative AI is available in your Scaleway account and region.
+
+Scaleway Gen AI provides European-based AI processing, which is ideal for GDPR compliance and data residency requirements.
+
+## Prepare the deployment
+
+### Get the Pulumi code
+
+Clone the TrustGraph Scaleway Pulumi repository:
 
 ```bash
-export SCW_ACCESS_KEY=your_access_key
-export SCW_SECRET_KEY=your_secret_key
-export SCW_DEFAULT_ORGANIZATION_ID=your_org_id
-export SCW_DEFAULT_PROJECT_ID=your_project_id
+git clone https://github.com/trustgraph-ai/pulumi-trustgraph-scaleway.git
+cd pulumi-trustgraph-scaleway/pulumi
 ```
 
-## Access Points
+### Install dependencies
 
-Once deployed, you'll have access to:
+Install the Node.js dependencies for the Pulumi project:
 
-- **TrustGraph API**: Port 8088
-- **Web Workbench**: Port 8888 (document processing, Graph RAG)
-- **Grafana Monitoring**: Port 3000
+```bash
+npm install
+```
 
-## Scaleway AI Integration
+### Configure Scaleway credentials
 
-The deployment includes Scaleway Generative AI integration with:
+Set the required Scaleway environment variables using the credentials you created earlier:
 
-- **Default Model**: Mistral Nemo Instruct
-- **Alternative Models**: Other models available through Scaleway Gen AI
-- **API Access**: Secure API key-based authentication
-- **European AI**: AI processing within EU boundaries
+```bash
+export SCW_ACCESS_KEY="your_access_key_here"
+export SCW_SECRET_KEY="your_secret_key_here"
+export SCW_DEFAULT_ORGANIZATION_ID="your_org_id_here"
+export SCW_DEFAULT_PROJECT_ID="your_project_id_here"
+```
 
-## Complete Documentation
+### Configure Pulumi state
 
-For detailed step-by-step instructions, configuration options, and troubleshooting, visit:
+{% include deployment/pulumi-configure-state.md %}
 
-**[TrustGraph Scaleway Deployment Guide](https://github.com/trustgraph-ai/pulumi-trustgraph-scaleway)**
+### Create a Pulumi stack
 
-The repository contains:
-- Complete Pulumi deployment code
-- Kubernetes Kapsule configuration
-- Scaleway Gen AI integration setup
-- Detailed setup instructions
-- Troubleshooting guides
-- Customization options
+{% include deployment/pulumi-create-stack.md %}
 
-## Use Cases
+### Configure the stack
 
-Scaleway deployment is ideal for:
+Apply settings for region, and environment name.  The environment
+name is used to construct resource names, so is important if you deploy
+multiple stacks:
 
-- **European Organizations**: Requiring EU data residency
-- **GDPR Compliance**: Strict data protection requirements
-- **Cost-Conscious Deployments**: Budget-friendly cloud solutions
-- **Open Source Advocates**: Supporting European open-source innovation
-- **Sustainable Computing**: Environmentally responsible cloud infrastructure
+```sh
+pulumi config set region fr-par
+pulumi config set environment prod
+```
+
+At the time of writing available regions are:
+- `fr-par` (Paris)
+- `nl-ams` (Amsterdam)
+- `pl-waw` (Warsaw)
+
+Refer to the repository's README for more details.
+
+## Deploy with Pulumi
+
+### Preview the deployment
+
+Before deploying, preview what Pulumi will create:
+
+```bash
+pulumi preview
+```
+
+This shows all the resources that will be created:
+- Kubernetes Kapsule cluster
+- Node pool with specified instance types
+- IAM application with Gen AI permissions
+- Kubernetes secrets for API keys and configuration
+- TrustGraph deployments, services, and config maps
+
+Review the output to ensure everything looks correct.
+
+### Deploy the infrastructure
+
+Deploy the complete TrustGraph stack:
+
+```bash
+pulumi up
+```
+
+Pulumi will ask for confirmation before proceeding. Type `yes` to continue.
+
+The deployment typically takes 8 - 12 minutes and progresses through these
+stages:
+
+1. **Creating Kubernetes cluster** (5-7 minutes)
+   - Provisions Kapsule cluster
+   - Creates node pool
+   - Configures networking
+
+2. **Configuring IAM and secrets** (1-2 minutes)
+   - Creates IAM application
+   - Sets up API key access
+   - Creates Kubernetes secrets
+
+3. **Deploying TrustGraph** (4-6 minutes)
+   - Applies Kubernetes manifests
+   - Deploys all TrustGraph services
+   - Starts pods and initializes services
+
+You'll see output like:
+
+```
+Updating (dev)
+     Type                                Name                     Status
+ +   pulumi:pulumi:Stack                 trustgraph-scaleway-dev  created
+ +   ├─ pulumi:providers:scaleway        scaleway-provider        created
+ +   ├─ scaleway:network:PrivateNetwork  private-network          created
+ +   ├─ scaleway:kubernetes:Cluster      cluster                  created
+ +   ├─ scaleway:kubernetes:Pool         node-pool                created
+ +   ├─ scaleway:iam:ApiKey              api-key                  created
+ +   ├─ kubernetes:yaml/v2:ConfigGroup   resources                created
+ +   ├─ pulumi:providers:kubernetes      k8sProvider              created
+ +   ├─ scaleway:iam:Application         application              created
+ +   ├─ kubernetes:core/v1:Secret        mcp-server-secret        created
+ +   ├─ kubernetes:core/v1:Secret        gateway-secret           created
+ +   ├─ kubernetes:core/v1:Secret        ai-secret                created
+ +   └─ scaleway:iam:Policy              policy                   created
+
+Resources:
+    + 13 created
+
+Duration: 8m32s
+```
+
+### Configure and verify kubectl access
+
+{% include kubernetes/configure-kubectl-access.md %}
+
+### Check pod status
+
+{% include kubernetes/check-pod-status.md %}
+
+## Access services via port-forwarding
+
+{% include kubernetes/port-forwarding.md %}
+
+## Install CLI tools
+
+{% include deployment/install-cli-tools.md %}
+
+## Startup period
+
+It can take 2-3 minutes for all services to stabilize after deployment. Services like Pulsar and Cassandra need time to initialize properly.
+
+### Verify system health
+
+{% include deployment/application-localhost/verify-system-health.md %}
+
+If everything appears to be working, the following parts of the deployment
+guide are a whistle-stop tour through various parts of the system.
+
+## Test LLM access
+
+{% include deployment/application-localhost/test-llm-access.md %}
+
+## Load sample documents
+
+{% include deployment/application-localhost/load-sample-documents.md %}
+
+## Workbench
+
+{% include deployment/application-localhost/workbench.md %}
+
+## Monitoring dashboard
+
+{% include deployment/application-localhost/monitoring-dashboard.md %}
+
+## Check the LLM is working
+
+{% include deployment/workbench/check-llm-working.md %}
+
+## Working with a document
+
+### Load a document
+
+{% include deployment/workbench/load-document.md %}
+
+### Use Vector search
+
+{% include deployment/workbench/vector-search.md %}
+
+### Look at knowledge graph
+
+{% include deployment/workbench/knowledge-graph.md %}
+
+### Query with Graph RAG
+
+{% include deployment/workbench/graph-rag-query.md %}
+
+## Troubleshooting
+
+### Deployment Issues
+
+<details>
+<summary>Pulumi deployment fails</summary>
+<div markdown="1">
+
+*Diagnosis:*
+
+Check the Pulumi error output for specific failure messages. Common issues include:
+
+```bash
+# View detailed error information
+pulumi stack --show-urns
+pulumi logs
+```
+
+*Resolution:*
+
+- **Authentication errors**: Verify your Scaleway credentials are set correctly (`SCW_ACCESS_KEY`, `SCW_SECRET_KEY`, etc.)
+- **Quota limits**: Check your Scaleway account hasn't hit resource quotas (Kapsule clusters, nodes, etc.)
+- **Region availability**: Ensure Kubernetes Kapsule is available in your selected region
+- **Permissions**: Verify your Scaleway API key has permissions to create Kubernetes clusters and IAM resources
+
+</div>
+</details>
+
+<details>
+<summary>Pods stuck in Pending state</summary>
+<div markdown="1">
+
+*Diagnosis:*
+
+```bash
+kubectl -n trustgraph get pods | grep Pending
+kubectl -n trustgraph describe pod <pod-name>
+```
+
+Look for scheduling failures or resource constraints in the describe output.
+
+*Resolution:*
+
+- **Insufficient resources**: Increase node count or node type in your Pulumi configuration
+- **PersistentVolume issues**: Check PV/PVC status with `kubectl -n trustgraph get pv,pvc`
+- **Node issues**: Check node status with `kubectl get nodes`
+
+</div>
+</details>
+
+<details>
+<summary>Scaleway Gen AI integration not working</summary>
+<div markdown="1">
+
+*Diagnosis:*
+
+Test LLM connectivity:
+
+```bash
+tg-invoke-llm '' 'What is 2+2'
+```
+
+A timeout or error indicates Gen AI configuration issues. Check the `text-completion` pod logs:
+
+```bash
+kubectl -n trustgraph logs -l app=text-completion
+```
+
+*Resolution:*
+
+- Verify Scaleway Gen AI is available in your region and project
+- Check that IAM application has Generative AI permissions
+- Ensure the Gen AI API key secret was created correctly by Pulumi
+- Review Pulumi outputs to confirm Gen AI configuration: `pulumi stack output`
+
+</div>
+</details>
+
+<details>
+<summary>Port-forwarding connection issues</summary>
+<div markdown="1">
+
+*Diagnosis:*
+
+Port-forward commands fail or connections time out.
+
+*Resolution:*
+
+- Verify `KUBECONFIG` environment variable is set correctly
+- Check that the target service exists: `kubectl -n trustgraph get svc`
+- Ensure no other process is using the port (e.g., port 8088, 8888, or 3000)
+- Try restarting the port-forward with verbose logging: `kubectl port-forward -v=6 ...`
+
+</div>
+</details>
+
+### Service Failure
+
+<details>
+<summary>Pods in CrashLoopBackOff</summary>
+<div markdown="1">
+
+*Diagnosis:*
+
+```bash
+# Find crashing pods
+kubectl -n trustgraph get pods | grep CrashLoopBackOff
+
+# View logs from crashed container
+kubectl -n trustgraph logs <pod-name> --previous
+```
+
+*Resolution:*
+
+Check the logs to identify why the container is crashing. Common causes:
+- Application errors (configuration issues)
+- Missing dependencies (ensure all required services are running)
+- Incorrect secrets or environment variables
+- Resource limits too low
+
+</div>
+</details>
+
+<details>
+<summary>Service not responding</summary>
+<div markdown="1">
+
+*Diagnosis:*
+
+Check service and pod status:
+
+```bash
+kubectl -n trustgraph get svc
+kubectl -n trustgraph get pods
+kubectl -n trustgraph logs <pod-name>
+```
+
+*Resolution:*
+
+- Verify the pod is running and ready
+- Check pod logs for errors
+- Ensure port-forwarding is active for the service
+- Use `tg-verify-system-status` to check overall system health
+
+</div>
+</details>
+
+## Shutting down
+
+### Clean shutdown
+
+When you're finished with your TrustGraph deployment, clean up all resources:
+
+```bash
+pulumi destroy
+```
+
+Pulumi will show you all the resources that will be deleted and ask for confirmation. Type `yes` to proceed.
+
+The destruction process typically takes **5-10 minutes** and removes:
+- All TrustGraph Kubernetes resources
+- The Kubernetes Kapsule cluster
+- Node pools
+- IAM applications and API keys
+- All associated networking and storage
+
+{: .warning }
+> **Cost Warning**: Scaleway charges for running Kubernetes clusters and nodes. Make sure to destroy your deployment when you're not using it to avoid unnecessary costs.
+
+### Verify cleanup
+
+After `pulumi destroy` completes, verify all resources are removed:
+
+```bash
+# Check Pulumi stack status
+pulumi stack
+
+# Verify no resources remain
+pulumi stack --show-urns
+```
+
+You can also check the Scaleway console to ensure the Kapsule cluster and associated resources are deleted.
+
+### Delete the Pulumi stack
+
+If you're completely done with this deployment, you can remove the Pulumi stack:
+
+```bash
+pulumi stack rm dev
+```
+
+This removes the stack's state but doesn't affect any cloud resources (use `pulumi destroy` first).
 
 ## Next Steps
 
-After deployment, you can:
-- Load documents through the web workbench
-- Test Graph RAG queries with Mistral models
-- Monitor processing through Grafana
-- Scale the cluster as needed
-- Integrate with other Scaleway services
-- Ensure GDPR compliance for your AI workflows
+Now that you have TrustGraph running on Scaleway:
+
+- **Guides**: See [Guides](../guides) for things you can do with your running TrustGraph
+- **Scale the cluster**: Modify your Pulumi configuration to add more nodes or change node types
+- **Integrate with Scaleway services**: Connect to Scaleway Object Storage, databases, or other services
+- **GDPR compliance**: Ensure your document processing workflows meet data protection requirements
+- **Production hardening**: Review the [GitHub repository](https://github.com/trustgraph-ai/pulumi-trustgraph-scaleway) for advanced configuration options
+
+{: .note }
+> **Additional Resources**
+>
+> For Pulumi-specific configuration details, customization options, and contributing to the deployment code, visit the [TrustGraph Scaleway Pulumi Repository](https://github.com/trustgraph-ai/pulumi-trustgraph-scaleway)

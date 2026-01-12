@@ -1,6 +1,6 @@
 ---
 title: Document RAG
-nav_order: 12
+nav_order: 4
 parent: How-to Guides
 grand_parent: TrustGraph Documentation
 review_date: 2026-08-01

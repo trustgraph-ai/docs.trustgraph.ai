@@ -31,7 +31,7 @@ guide_labels:
 </ul>
 {% endcapture %}
 
-{% include guide-intro-box.html
+{% include guide/guide-intro-box.html
    description=page.guide_description
    difficulty=page.guide_difficulty
    duration=page.guide_time
@@ -90,32 +90,7 @@ but it has not been tested.
 
 ### Python
 
-You need to have Python 3 installed to run the command-line tools. You
-should use a newer version, Python 3.11 or later.
-
-<details>
-
-<summary>Specific guidance for MacOS</summary>
-
-<div markdown="1">
-MacOS X-Code is the usual way to get developer tools on your Macbook. Note
-that X-Code doesn't track later Python versions (Python 3.9)? If you're
-on MacOS you should consider using Homebrew to install Python3, and
-making sure that the Homebrew version of Python takes priority over
-the default OS version. You can run the `python` command to see what
-version of Python you have installed as the default.
-</div>
-
-<div markdown="1">
-```
-Python 3.14.2 (main, Dec  5 2025, 00:00:00) [GCC 15.2.1 20251111 (Red
-Hat 15.2.1-4)] on linux
-Type "help", "copyright", "credits" or "license" for more information.
->>>
-```
-</div>
-
-</details>
+{% include deployment/python-requirement.md %}
 
 ### Minikube and kubectl
 
@@ -134,7 +109,7 @@ driver has been well supported for a while.
 
 ### Large Language Model
 
-{% include llm-providers-overview.md %}
+{% include llm/llm-providers-overview.md %}
 
 ### A word on networking and self-hosting
 
@@ -329,7 +304,7 @@ yq '.items[] | select(.kind == "Namespace")' resources.yaml | \
 Depending on which LLM you selected, you need to create a Kubernetes secret
 with your credentials or configuration.
 
-{% include llm-configuration-kubernetes-secrets.md %}
+{% include llm/llm-configuration-kubernetes-secrets.md %}
 
 ### Configure security settings
 
@@ -613,79 +588,25 @@ logs.
 
 ## Check the LLM is working
 
-Back in the workbench, select the *Assistant* tab.
-
-In the top line next to the *Assistant* word change the mode to *Basic LLM*.
-
-Enter a question in the prompt box at the bottom of the tab and press
-*Send*. If everything works, after a short period you should see
-a response to your query.
-
-![Simple LLM usage](llm-interaction.png)
-
-If LLM interactions are not working, this needs to be diagnosed and fixed
-prior to continuing. You should check the logs to see if there are errors:
-
-```bash
-# Check logs for text-completion service
-kubectl -n trustgraph logs -l app=text-completion
-
-# Or use Grafana logs dashboard if available
-```
+{% include deployment/workbench/check-llm-working.md %}
 
 ## Working with a document
 
 ### Load a document
 
-Back in the workbench:
-
-1. Navigate to the Library page
-2. In the upper right-hand corner, there is a dark/light mode widget.
-   To its left, is a selector widget. Ensure the top and bottom lines say
-   "default". If not click on the widget and change.
-2. On the library tab, select a document (e.g., "Beyond State Vigilance")
-3. Click Submit on the action bar
-4. Choose a processing flow (use Default processing flow)
-5. Click Submit to process
-
-Beyond State Vigilance is a relatively short document, so a good one to
-start with.
+{% include deployment/workbench/load-document.md %}
 
 ### Use Vector search
 
-Select the *Vector Search* tab. Enter a string e.g. "document" in the search
-bar, and hit RETURN. The search term doesn't matter a great deal. If
-information has started to load, you should see some search results.
-
-The vector search attempts to find up to 10 terms which are the closest
-matches for your search term. It does this even if the search terms are not
-a strong match, so this is a simple way to observe whether data has loaded.
-
-![Vector search results](vector-search.png)
+{% include deployment/workbench/vector-search.md %}
 
 ### Look at knowledge graph
 
-Click on one of the Vector Search results terms on the left-hand-side.
-This shows relationships in the graph from the knowledge graph linking to
-that term.
-
-![Relationships view](relationships.png)
-
-You can then click on the *Graph view* button to go to a 3D view of the
-discovered relationships.
+{% include deployment/workbench/knowledge-graph.md %}
 
 ### Query with Graph RAG
 
-1. Navigate to *Assistant* tab
-2. Change the Assistant mode to GraphRAG
-3. Enter your question (e.g., "What is this document about?")
-4. You will see the answer to your question after a short period
-
-You can also test GraphRAG from the command line:
-
-```bash
-tg-invoke-graph-rag -q "What is this document about?"
-```
+{% include deployment/workbench/graph-rag-query.md %}
 
 ## Troubleshooting
 
