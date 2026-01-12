@@ -9,14 +9,12 @@ guide_category:
 guide_category_order: 2
 guide_description: Learn to use TrustGraph command-line tools for document processing and knowledge graph operations
 guide_difficulty: beginner
-guide_time: 15 min
+guide_time: 5 min
 guide_emoji: 💻
 guide_banner: /../cli.jpg
 guide_labels:
   - CLI
   - Command-line
-todo: true
-todo_notes: This is just a placeholder.
 ---
 
 # Getting started with TrustGraph command-line tools
@@ -99,3 +97,37 @@ not need to be specified.
 If an API gateway key is provisioned when the system is deployed, this needs
 to be specified with command-line tools in order to authenticate.  If no
 gateway key is provided, then no token needs to be provided.
+
+## Example commands
+
+Here are a few key commands to get started:
+
+**View running flows:**
+```bash
+tg-show-flows
+```
+
+Shows all active processing flows with their configurations.
+
+**List documents in the library:**
+```bash
+tg-show-library-documents
+```
+
+Displays all documents that have been added to the library.
+
+**Query the LLM directly:**
+```bash
+tg-invoke-llm "You are a helpful assistant" "What is 2+2?"
+```
+
+Sends a direct request to the LLM.
+
+**Query using Graph RAG:**
+```bash
+tg-invoke-graph-rag -q "Tell me about cats"
+```
+
+Retrieves relevant knowledge graph information to answer questions.
+
+For detailed documentation on these and many more commands, see [Command-line document management](document-management-cli).

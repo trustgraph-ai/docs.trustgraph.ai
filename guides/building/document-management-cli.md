@@ -22,9 +22,7 @@ todo_notes: This is just a placeholder.
 
 # Document management with the command-line
 
-## Command-line tools by category
-
-### Flows
+## Flows
 
 Flows are persistent processing workflows that run continuously, monitoring
 queues and processing data as it arrives. Each flow is launched from a flow
@@ -127,7 +125,7 @@ Example - delete a flow class:
 tg-delete-flow-class -n old-flow-class
 ```
 
-### Document library
+## Document library
 
 The document library provides organized storage for documents with metadata. Documents added to the library can be processed by library processing flows.
 
@@ -187,7 +185,7 @@ Example output:
 +-------+---------------------------------+
 ```
 
-### Collections
+## Collections
 
 Collections provide logical grouping for documents and knowledge graphs. Each user can have multiple collections to organize different projects or data domains.
 
@@ -238,7 +236,7 @@ Skip confirmation prompt:
 tg-delete-collection my-research -y
 ```
 
-### Document library processing
+## Document library processing
 
 To process a document in TrustGraph, first add it to the library, then submit it for processing. Processing records track which documents have been submitted to flows for processing.
 
@@ -282,7 +280,7 @@ tg-start-library-processing \
 tg-stop-library-processing --id "cats-processing-2026-01"
 ```
 
-### Querying and retrieval
+## Querying and retrieval
 
 TrustGraph provides multiple ways to query and retrieve information using LLMs and RAG techniques.
 
