@@ -131,7 +131,7 @@ These settings are on the *Settings* tab under *Resources*.
 
 ### Large Language Model
 
-{% include llm-providers-overview.md %}
+{% include llm/llm-providers-overview.md %}
 
 ### A word on networking and self-hosting
 
@@ -276,7 +276,7 @@ pip install trustgraph-cli==1.8.9
 Depending on which LLM you selected, there are some configuration settings
 you need to prepare:
 
-{% include llm-configuration-details-compose.md %}
+{% include llm/llm-configuration-details-compose.md %}
 
 ## Configure security settings
 

@@ -134,7 +134,7 @@ driver has been well supported for a while.
 
 ### Large Language Model
 
-{% include llm-providers-overview.md %}
+{% include llm/llm-providers-overview.md %}
 
 ### A word on networking and self-hosting
 
@@ -329,7 +329,7 @@ yq '.items[] | select(.kind == "Namespace")' resources.yaml | \
 Depending on which LLM you selected, you need to create a Kubernetes secret
 with your credentials or configuration.
 
-{% include llm-configuration-kubernetes-secrets.md %}
+{% include llm/llm-configuration-kubernetes-secrets.md %}
 
 ### Configure security settings
 
