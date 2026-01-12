@@ -382,36 +382,24 @@ Output:
 `tg-invoke-prompt` uses predefined prompt templates with variable substitution.
 
 ```bash
-tg-invoke-prompt question text="What are the main themes?" question="Summarize them"
+tg-invoke-prompt question question="What is a fish?"
 ```
 
 Template variables replace `{{key}}` placeholders in the prompt template.
-
-**Query using Document RAG:**
-
-`tg-invoke-document-rag` retrieves relevant document chunks and uses them to answer questions.
-
-```bash
-tg-invoke-document-rag -q "What does the document say about cats?"
-```
-
-Optional arguments:
-- `-d, --doc-limit` - Maximum documents to retrieve (default: 10)
-- `-C, --collection` - Collection to query (default: `default`)
-
-Example output:
-```
-The document states that cats have the species name Felis catus. They are
-also referred to as domestic cats or house cats. Cats are small domesticated
-carnivorous mammals...
-```
 
 **Query using Graph RAG:**
 
 `tg-invoke-graph-rag` retrieves relevant knowledge graph entities and relationships to answer questions.
 
 ```bash
-tg-invoke-graph-rag -q "What are the relationships between entities?"
+tg-invoke-graph-rag -q "Tell me what the document says about cats?"
+```
+
+Example output:
+```
+The document states that cats have the species name Felis catus. They are
+also referred to as domestic cats or house cats. Cats are small domesticated
+carnivorous mammals.
 ```
 
 Optional arguments:
@@ -425,7 +413,7 @@ Optional arguments:
 `tg-invoke-agent` uses an agentic system that can reason and use tools to answer questions.
 
 ```bash
-tg-invoke-agent -q "Research and summarize the key findings"
+tg-invoke-agent -v -q "Research and summarize the key findings"
 ```
 
 Optional arguments:
@@ -433,6 +421,23 @@ Optional arguments:
 - `-s, --state` - Agent initial state
 - `-g, --group` - Tool groups available to agent
 - `-v, --verbose` - Show agent thinking and observations
+
+Example verbose output:
+
+```
+❓ What is the latin name for a cat?
+
+🤔  The user is asking for the Latin name of a cat. This is a factual question 
+🤔  that can be answered by querying a knowledge base.
+
+💡  Felis catus
+
+🤔  The user is asking for the latin name of a cat. I have already used the 
+🤔  "Knowledge query" tool and received the answer "Felis catus". I have 
+🤔  sufficient information to answer the question.
+
+The latin name for a cat is Felis catus.
+```
 
 **Other query commands:**
 
