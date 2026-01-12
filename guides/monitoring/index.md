@@ -22,8 +22,6 @@ guide_labels:
 {% capture requirements %}
 <ul style="margin: 0; padding-left: 20px;">
 <li>A running TrustGraph deployment</li>
-<li>Access to Grafana (port 3000)</li>
-<li>Access to Prometheus (port 9090)</li>
 </ul>
 {% endcapture %}
 
