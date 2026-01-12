@@ -90,32 +90,7 @@ but it has not been tested.
 
 ### Python
 
-You need to have Python 3 installed to run the command-line tools. You
-should use a newer version, Python 3.11 or later.
-
-<details>
-
-<summary>Specific guidance for MacOS</summary>
-
-<div markdown="1">
-MacOS X-Code is the usual way to get developer tools on your Macbook. Note
-that X-Code doesn't track later Python versions (Python 3.9)? If you're
-on MacOS you should consider using Homebrew to install Python3, and
-making sure that the Homebrew version of Python takes priority over
-the default OS version. You can run the `python` command to see what
-version of Python you have installed as the default.
-</div>
-
-<div markdown="1">
-```
-Python 3.14.2 (main, Dec  5 2025, 00:00:00) [GCC 15.2.1 20251111 (Red
-Hat 15.2.1-4)] on linux
-Type "help", "copyright", "credits" or "license" for more information.
->>>
-```
-</div>
-
-</details>
+{% include deployment/python-requirement.md %}
 
 ### Minikube and kubectl
 
