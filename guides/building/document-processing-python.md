@@ -87,6 +87,80 @@ print("Document added to library")
 - `tags` - List of tags for organization
 - `metadata` - Optional list of `Triple` objects for additional RDF metadata
 
+## Adding Metadata with Triples
+
+Metadata is stored as RDF triples (subject-predicate-object statements) in the knowledge graph. Use `Triple` objects to add structured metadata:
+
+```python
+from trustgraph.api import Api
+from trustgraph.api.types import Triple
+from trustgraph.knowledge import Uri, Literal
+
+# Create API client and get library service
+api = Api(url='http://localhost:8088/')
+library = api.library()
+
+# Read document content
+with open('research-paper.pdf', 'rb') as f:
+    document_content = f.read()
+
+# Document URI (used as subject in metadata triples)
+doc_id = "https://example.com/papers/research-2026"
+
+# Create metadata triples
+# Triple components can be Uri (entities/relationships) or Literal (values)
+metadata = [
+    # Author information
+    Triple(
+        s=Uri(doc_id),
+        p=Uri("http://purl.org/dc/terms/creator"),
+        o=Literal("Dr. Jane Smith")
+    ),
+    # Publication date
+    Triple(
+        s=Uri(doc_id),
+        p=Uri("http://purl.org/dc/terms/date"),
+        o=Literal("2026-01-15")
+    ),
+    # Subject/topic
+    Triple(
+        s=Uri(doc_id),
+        p=Uri("http://purl.org/dc/terms/subject"),
+        o=Literal("Machine Learning")
+    ),
+    # Related document (using Uri for object)
+    Triple(
+        s=Uri(doc_id),
+        p=Uri("http://purl.org/dc/terms/relation"),
+        o=Uri("https://example.com/papers/related-work-2025")
+    ),
+]
+
+# Add document with metadata
+library.add_document(
+    document=document_content,
+    id=doc_id,
+    user="trustgraph",
+    title="Research Paper on ML Techniques",
+    comments="2026 research paper about machine learning",
+    kind="application/pdf",
+    tags=["research", "ml", "2026"],
+    metadata=metadata
+)
+
+print("Document added with RDF metadata")
+```
+
+**Understanding Triple components:**
+- **Subject (`s`)** - Usually the document URI (what the metadata describes)
+- **Predicate (`p`)** - The relationship or property (should be a URI from a vocabulary like Dublin Core)
+- **Object (`o`)** - The value (can be a `Literal` for text/numbers or `Uri` for linked entities)
+
+Common metadata vocabularies:
+- Dublin Core: `http://purl.org/dc/terms/` (creator, date, subject, etc.)
+- Schema.org: `http://schema.org/` (author, datePublished, keywords, etc.)
+- Custom vocabularies: Use your own URI namespace for domain-specific metadata
+
 ## Starting Document Processing
 
 After adding a document to the library, submit it for processing:
