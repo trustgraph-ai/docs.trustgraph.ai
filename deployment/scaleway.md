@@ -249,13 +249,13 @@ Duration: 8m32s
 
 {% include deployment/install-cli-tools.md %}
 
-## Verify startup
+## Startup period
 
 It can take 2-3 minutes for all services to stabilize after deployment. Services like Pulsar and Cassandra need time to initialize properly.
 
 ### Verify system health
 
-{% include kubernetes/verify-system-health.md %}
+{% include deployment/application-localhost/verify-system-health.md %}
 
 ## Test LLM access
 
