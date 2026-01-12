@@ -317,36 +317,20 @@ Duration: 8m32s
 
 ### Configure kubectl access
 
-After deployment completes, configure kubectl to access your new cluster:
+After deployment completes, a configuration file permitting access to the
+Kubernetes cluster is written to kube.cfg.  This file should be treated as
+a secret as it contains access keys for the Kubernetes cluster.
 
-```bash
-# Export the kubeconfig
-pulumi stack output kubeconfig --show-secrets > kubeconfig.yaml
+Check you can access the cluster:
 
-# Set KUBECONFIG environment variable
-export KUBECONFIG=$(pwd)/kubeconfig.yaml
+```sh
+export KUBECONFIG=$(pwd)/kube.cfg
 
 # Verify access
 kubectl get nodes
 ```
 
 You should see your Scaleway Kapsule nodes listed as `Ready`.
-
-## Install CLI tools
-
-Now install the TrustGraph command-line tools. These tools help you interact with TrustGraph, load documents, and verify the system.
-
-Create a Python virtual environment and install the CLI:
-
-```bash
-python3 -m venv env
-source env/bin/activate  # On Windows: env\Scripts\activate
-pip install trustgraph-cli
-```
-
-## Verify startup
-
-It can take 2-3 minutes for all services to stabilize after deployment. Services like Pulsar and Cassandra need time to initialize properly.
 
 ### Check pod status
 
@@ -369,7 +353,61 @@ workbench-ui-5fc6d59899-8rczf               1/1     Running     0          5m
 ...
 ```
 
-All pods should show `Running` status. Some init pods (names ending in `-init`) may show `Completed` status - this is normal.
+All pods should show `Running` status. Some init pods (names ending in `-init`) may fail or be shown `Completed` status - this is normal, their job is
+to initialise cluster resources and then exit.
+
+## Access services via port-forwarding
+
+Since the Kubernetes cluster is running on Scaleway, you'll need to set up port-forwarding to access TrustGraph services from your local machine.
+
+**Open three separate terminal windows** and run these commands (keep them running):
+
+**Terminal 1 - API Gateway:**
+
+```bash
+export KUBECONFIG=$(pwd)/kubeconfig.yaml
+kubectl -n trustgraph port-forward svc/api-gateway 8088:8088
+```
+
+**Terminal 2 - Workbench UI:**
+
+```bash
+export KUBECONFIG=$(pwd)/kubeconfig.yaml
+kubectl -n trustgraph port-forward svc/workbench-ui 8888:8888
+```
+
+**Terminal 3 - Grafana:**
+
+```bash
+export KUBECONFIG=$(pwd)/kubeconfig.yaml
+kubectl -n trustgraph port-forward svc/grafana 3000:3000
+```
+
+With these port-forwards running, you can access:
+
+- **TrustGraph API**: [http://localhost:8088](http://localhost:8088)
+- **Web Workbench**: [http://localhost:8888](http://localhost:8888)
+- **Grafana Monitoring**: [http://localhost:3000](http://localhost:3000)
+
+{: .note }
+Keep these terminal windows open while you're working with TrustGraph. If you close them, you'll lose access to the services.
+
+## Install CLI tools
+
+Now install the TrustGraph command-line tools. These tools help you
+interact with TrustGraph, load documents, and verify the system.
+
+Create a Python virtual environment and install the CLI:
+
+```bash
+python3 -m venv env
+source env/bin/activate  # On Windows: env\Scripts\activate
+pip install trustgraph-cli
+```
+
+## Verify startup
+
+It can take 2-3 minutes for all services to stabilize after deployment. Services like Pulsar and Cassandra need time to initialize properly.
 
 ### Verify system health
 
@@ -418,42 +456,6 @@ Checks failed: 0/8
 
 ✓ System is healthy!
 ```
-
-## Access services via port-forwarding
-
-Since the Kubernetes cluster is running on Scaleway, you'll need to set up port-forwarding to access TrustGraph services from your local machine.
-
-**Open three separate terminal windows** and run these commands (keep them running):
-
-**Terminal 1 - API Gateway:**
-
-```bash
-export KUBECONFIG=$(pwd)/kubeconfig.yaml
-kubectl -n trustgraph port-forward svc/api-gateway 8088:8088
-```
-
-**Terminal 2 - Workbench UI:**
-
-```bash
-export KUBECONFIG=$(pwd)/kubeconfig.yaml
-kubectl -n trustgraph port-forward svc/workbench-ui 8888:8888
-```
-
-**Terminal 3 - Grafana:**
-
-```bash
-export KUBECONFIG=$(pwd)/kubeconfig.yaml
-kubectl -n trustgraph port-forward svc/grafana 3000:3000
-```
-
-With these port-forwards running, you can access:
-
-- **TrustGraph API**: [http://localhost:8088](http://localhost:8088)
-- **Web Workbench**: [http://localhost:8888](http://localhost:8888)
-- **Grafana Monitoring**: [http://localhost:3000](http://localhost:3000)
-
-{: .note }
-Keep these terminal windows open while you're working with TrustGraph. If you close them, you'll lose access to the services.
 
 ## Test LLM access
 
