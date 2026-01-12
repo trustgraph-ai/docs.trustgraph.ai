@@ -9,14 +9,12 @@ guide_category:
 guide_category_order: 4
 guide_description: Use the TrustGraph Python API to build custom applications and integrations
 guide_difficulty: intermediate
-guide_time: 30 min
+guide_time: 10 min
 guide_emoji: 🐍
 guide_banner: /../python.jpg
 guide_labels:
   - Python
   - API
-todo: true
-todo_notes: This is just a placeholder.
 ---
 
 # Building with the Python API
@@ -206,3 +204,50 @@ This pattern demonstrates:
 2. Using `ConfigKey` to specify what to retrieve (type="prompt", key="template.question")
 3. Parsing the JSON response
 4. Accessing the prompt text from the returned data
+
+## Example: Query Triples from Knowledge Graph
+
+This example demonstrates the flow-specific service pattern by querying triples from the knowledge graph:
+
+```python
+from trustgraph.api import Api
+
+# Create API client
+api = Api(url='http://localhost:8088/')
+
+# Access a specific flow using the flow-specific service pattern
+# api.flow() returns a Flow service
+# .id('default') selects the flow instance to use
+flow = api.flow().id('default')
+
+# Query triples from the knowledge graph
+# This fetches subject-predicate-object triples stored in the graph
+# limit=10 restricts the result to 10 triples
+triples = flow.triples_query(limit=10)
+
+# Display the results
+print(f"Retrieved {len(triples)} triples:")
+for triple in triples:
+    # Each triple has s (subject), p (predicate), o (object) attributes
+    # These can be Uri or Literal objects
+    print(f"  {triple.s} -> {triple.p} -> {triple.o}")
+```
+
+This demonstrates the flow-specific service pattern where operations are scoped to a particular flow instance. You can also filter triples by subject, predicate, or object:
+
+```python
+from trustgraph.api import Api
+from trustgraph.knowledge import Uri
+
+api = Api(url='http://localhost:8088/')
+flow = api.flow().id('default')
+
+# Query triples with a specific subject
+# Uri() wraps URIs used in the knowledge graph
+subject_uri = Uri("https://trustgraph.ai/docs/cats")
+triples = flow.triples_query(s=subject_uri, limit=10)
+
+print(f"Triples with subject {subject_uri}:")
+for triple in triples:
+    print(f"  {triple.p} -> {triple.o}")
+```
