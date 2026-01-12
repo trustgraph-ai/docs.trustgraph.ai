@@ -69,14 +69,16 @@ poetry add trustgraph-cli@1.8.10
 
 ## Command-line tools by category
 
-### Document loading
+### Flows
 
-- `tg-load-pdf` - Load PDF documents
-- `tg-load-text` - Load text documents
-- `tg-load-knowledge` - Load knowledge from various formats
-- `tg-load-structured-data` - Load structured data
-- `tg-load-turtle` - Load RDF/Turtle format
-- `tg-load-sample-documents` - Load sample documents for testing
+- `tg-show-flows` - List flows
+- `tg-show-flow-state` - Show flow state
+- `tg-start-flow` - Start a flow
+- `tg-stop-flow` - Stop a flow
+- `tg-show-flow-classes` - List flow classes
+- `tg-get-flow-class` - Get flow class details
+- `tg-put-flow-class` - Update flow class
+- `tg-delete-flow-class` - Delete flow class
 
 ### Document library management
 
@@ -86,6 +88,16 @@ poetry add trustgraph-cli@1.8.10
 - `tg-show-library-processing` - Show library processing status
 - `tg-start-library-processing` - Start processing library documents
 - `tg-stop-library-processing` - Stop library processing
+
+### Getting started
+
+- `tg-load-sample-documents` - Load sample documents for testing
+
+### System monitoring
+
+- `tg-verify-system-status` - Verify system health
+- `tg-show-processor-state` - Show processor state
+- `tg-show-parameter-types` - List parameter types
 
 ### Querying and retrieval
 
@@ -135,17 +147,6 @@ poetry add trustgraph-cli@1.8.10
 - `tg-show-prompts` - List prompts
 - `tg-set-prompt` - Configure a prompt
 
-### Flows
-
-- `tg-show-flows` - List flows
-- `tg-show-flow-state` - Show flow state
-- `tg-start-flow` - Start a flow
-- `tg-stop-flow` - Stop a flow
-- `tg-show-flow-classes` - List flow classes
-- `tg-get-flow-class` - Get flow class details
-- `tg-put-flow-class` - Update flow class
-- `tg-delete-flow-class` - Delete flow class
-
 ### Configuration
 
 - `tg-show-config` - Display configuration
@@ -159,12 +160,6 @@ poetry add trustgraph-cli@1.8.10
 - `tg-show-token-costs` - Display token costs
 - `tg-show-token-rate` - Show token rate
 - `tg-set-token-costs` - Configure token costs
-
-### System monitoring
-
-- `tg-verify-system-status` - Verify system health
-- `tg-show-processor-state` - Show processor state
-- `tg-show-parameter-types` - List parameter types
 
 ### Initialization and utilities
 
