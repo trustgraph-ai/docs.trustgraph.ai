@@ -21,7 +21,7 @@ guide_labels:
 
 **Decision guide to help you select the right deployment method for your needs**
 
-{% include decision-section-start.html
+{% include decisions/decision-section-start.html
    border_color="#48bb78"
    bg_color="#1e3a2a"
    emoji="🚀"
@@ -41,7 +41,7 @@ guide_labels:
 <li>20GB disk space</li>
 {% endcapture %}
 
-{% include decision-option-card.html
+{% include decisions/decision-option-card.html
    border_color="#48bb78"
    bg_color="#0d2118"
    text_color="#d4f4dd"
@@ -67,7 +67,7 @@ guide_labels:
 <li>50GB disk space</li>
 {% endcapture %}
 
-{% include decision-option-card.html
+{% include decisions/decision-option-card.html
    border_color="#48bb78"
    bg_color="#0d2118"
    text_color="#d4f4dd"
@@ -81,9 +81,9 @@ guide_labels:
    button_text="#0d2118"
 %}
 
-{% include decision-section-end.html %}
+{% include decisions/decision-section-end.html %}
 
-{% include decision-section-start.html
+{% include decisions/decision-section-start.html
    border_color="#4a9eff"
    bg_color="#1e2a3a"
    emoji="🇪🇺"
@@ -103,7 +103,7 @@ guide_labels:
 <li>Anti-DDoS included</li>
 {% endcapture %}
 
-{% include decision-option-card.html
+{% include decisions/decision-option-card.html
    border_color="#4a9eff"
    bg_color="#0d1621"
    text_color="#e8f4fd"
@@ -129,7 +129,7 @@ guide_labels:
 <li>Mistral AI integration</li>
 {% endcapture %}
 
-{% include decision-option-card.html
+{% include decisions/decision-option-card.html
    border_color="#4a9eff"
    bg_color="#0d1621"
    text_color="#e8f4fd"
@@ -143,14 +143,14 @@ guide_labels:
    button_text="#0d1621"
 %}
 
-{% include decision-section-end.html
+{% include decisions/decision-section-end.html
    info_label="💡 Data Sovereignty"
    info_text="Both providers ensure your data remains within EU boundaries, meeting strict European data protection regulations including GDPR. This is essential for organizations handling EU citizen data or operating under EU regulatory frameworks."
    info_bg="rgba(74, 158, 255, 0.1)"
    info_border="#4a9eff"
 %}
 
-{% include decision-section-start.html
+{% include decisions/decision-section-start.html
    border_color="#9f7aea"
    bg_color="#2d2642"
    emoji="☁️"
@@ -170,7 +170,7 @@ guide_labels:
 <li>Auto-scaling support</li>
 {% endcapture %}
 
-{% include decision-option-card.html
+{% include decisions/decision-option-card.html
    border_color="#9f7aea"
    bg_color="#1a1529"
    text_color="#e9d5ff"
@@ -196,7 +196,7 @@ guide_labels:
 <li>Managed Kubernetes</li>
 {% endcapture %}
 
-{% include decision-option-card.html
+{% include decisions/decision-option-card.html
    border_color="#9f7aea"
    bg_color="#1a1529"
    text_color="#e9d5ff"
@@ -222,7 +222,7 @@ guide_labels:
 <li>Free credits available</li>
 {% endcapture %}
 
-{% include decision-option-card.html
+{% include decisions/decision-option-card.html
    border_color="#9f7aea"
    bg_color="#1a1529"
    text_color="#e9d5ff"
@@ -236,14 +236,14 @@ guide_labels:
    button_text="#1a1529"
 %}
 
-{% include decision-section-end.html
+{% include decisions/decision-section-end.html
    info_label="💡 Enterprise Features"
    info_text="All global cloud providers offer high availability, auto-scaling, enterprise support, and comprehensive managed services. Choose based on your existing cloud commitments and AI service preferences."
    info_bg="rgba(159, 122, 234, 0.1)"
    info_border="#9f7aea"
 %}
 
-{% include decision-section-start.html
+{% include decisions/decision-section-start.html
    border_color="#f59e0b"
    bg_color="#3a2e1e"
    emoji="🏢"
@@ -263,7 +263,7 @@ guide_labels:
 <li>vLLM and TGI servers</li>
 {% endcapture %}
 
-{% include decision-option-card.html
+{% include decisions/decision-option-card.html
    border_color="#f59e0b"
    bg_color="#221a10"
    text_color="#fef3c7"
@@ -277,7 +277,7 @@ guide_labels:
    button_text="#221a10"
 %}
 
-{% include decision-section-end.html
+{% include decisions/decision-section-end.html
    info_label="💡 Self-Hosting Benefits"
    info_text="Complete control over your data and infrastructure, no vendor lock-in, and the ability to optimize for your specific hardware. Ideal for organizations with strict data governance requirements or specialized performance needs."
    info_bg="rgba(245, 158, 11, 0.1)"
