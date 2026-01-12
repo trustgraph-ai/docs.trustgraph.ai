@@ -53,6 +53,10 @@ TrustGraph provides three TypeScript/JavaScript libraries for different use case
 
 The core TypeScript client for TrustGraph, built on WebSockets with minimal dependencies.
 
+**Links:**
+- [GitHub Repository](https://github.com/trustgraph-ai/trustgraph-client)
+- [npm Package](https://www.npmjs.com/package/trustgraph-client)
+
 **Key features:**
 - Pure TypeScript with full type safety
 - WebSocket-based for streaming and non-streaming operations
@@ -121,6 +125,10 @@ The client can be used in:
 ## trustgraph-react-provider
 
 A React Context provider that makes the TrustGraph client available throughout your component tree.
+
+**Links:**
+- [GitHub Repository](https://github.com/trustgraph-ai/trustgraph-react-provider)
+- [npm Package](https://www.npmjs.com/package/trustgraph-react-provider)
 
 **Key features:**
 - Wraps `trustgraph-client` with React Context
@@ -201,6 +209,10 @@ Use this when:
 ## trustgraph-react-state
 
 The most React-friendly library, providing hooks built on Tanstack Query for automatic state management and caching.
+
+**Links:**
+- [GitHub Repository](https://github.com/trustgraph-ai/trustgraph-react-state)
+- [npm Package](https://www.npmjs.com/package/trustgraph-react-state)
 
 **Key features:**
 - React hooks for all TrustGraph operations
