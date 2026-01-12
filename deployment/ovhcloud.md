@@ -135,7 +135,7 @@ Available models include:
 
 For detailed step-by-step instructions, configuration options, and troubleshooting, visit:
 
-**[TrustGraph OVHcloud Deployment Guide](https://github.com/trustgraph-ai/ovhcloud)**
+**[TrustGraph OVHcloud Deployment Guide](https://github.com/trustgraph-ai/pulumi-trustgraph-ovhcloud)**
 
 The repository contains:
 - Complete Pulumi deployment code
