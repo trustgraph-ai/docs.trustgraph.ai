@@ -267,11 +267,45 @@ Example output:
 
 ### Document library processing
 
-Manage processing of library documents:
+To process a document in TrustGraph, first add it to the library, then submit it for processing. Processing records track which documents have been submitted to flows for processing.
 
-- `tg-show-library-processing` - Show library processing status
-- `tg-start-library-processing` - Start processing library documents
-- `tg-stop-library-processing` - Stop library processing
+**Show processing status:**
+
+`tg-show-library-processing` displays all active processing records.
+
+```bash
+tg-show-library-processing
+```
+
+**Start processing:**
+
+`tg-start-library-processing` submits a library document for processing through a flow.
+
+Required arguments:
+- `-d, --document-id` - Document identifier (from library)
+- `--id, --processing-id` - Processing record identifier
+
+Optional arguments:
+- `-i, --flow-id` - Flow to use for processing (default: `default`)
+- `--collection` - Collection name (default: `default`)
+- `--tags` - Tags for processing (comma-separated)
+
+Example - process the cats document:
+```bash
+tg-start-library-processing \
+  -d "https://trustgraph.ai/docs/cats" \
+  --id "cats-processing-2026-01" \
+  -i default \
+  --collection default
+```
+
+**Stop processing:**
+
+`tg-stop-library-processing` removes a processing record. Note that this only removes the record - it does not stop in-flight processing (reserved for future functionality).
+
+```bash
+tg-stop-library-processing --id "cats-processing-2026-01"
+```
 
 ### Getting started
 
