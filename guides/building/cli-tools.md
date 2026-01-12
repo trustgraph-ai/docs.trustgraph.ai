@@ -362,14 +362,83 @@ tg-stop-library-processing --id "cats-processing-2026-01"
 
 ### Querying and retrieval
 
-- `tg-invoke-llm` - Invoke LLM directly
-- `tg-invoke-prompt` - Execute a prompt
-- `tg-invoke-document-rag` - Query using Document RAG
-- `tg-invoke-graph-rag` - Query using Graph RAG
+TrustGraph provides multiple ways to query and retrieve information using LLMs and RAG techniques.
+
+**Invoke LLM directly:**
+
+`tg-invoke-llm` sends a direct request to the LLM with system and user prompts.
+
+```bash
+tg-invoke-llm "You are a helpful assistant" "What is 2+2?"
+```
+
+Output:
+```
+2 + 2 = 4
+```
+
+**Execute a prompt template:**
+
+`tg-invoke-prompt` uses predefined prompt templates with variable substitution.
+
+```bash
+tg-invoke-prompt question text="What are the main themes?" question="Summarize them"
+```
+
+Template variables replace `{{key}}` placeholders in the prompt template.
+
+**Query using Document RAG:**
+
+`tg-invoke-document-rag` retrieves relevant document chunks and uses them to answer questions.
+
+```bash
+tg-invoke-document-rag -q "What does the document say about cats?"
+```
+
+Optional arguments:
+- `-d, --doc-limit` - Maximum documents to retrieve (default: 10)
+- `-C, --collection` - Collection to query (default: `default`)
+
+Example output:
+```
+The document states that cats have the species name Felis catus. They are
+also referred to as domestic cats or house cats. Cats are small domesticated
+carnivorous mammals...
+```
+
+**Query using Graph RAG:**
+
+`tg-invoke-graph-rag` retrieves relevant knowledge graph entities and relationships to answer questions.
+
+```bash
+tg-invoke-graph-rag -q "What are the relationships between entities?"
+```
+
+Optional arguments:
+- `-e, --entity-limit` - Maximum entities to retrieve (default: 50)
+- `--triple-limit` - Maximum triples to retrieve (default: 30)
+- `-s, --max-subgraph-size` - Maximum subgraph size (default: 150)
+- `-p, --max-path-length` - Maximum path length (default: 2)
+
+**Invoke an agent:**
+
+`tg-invoke-agent` uses an agentic system that can reason and use tools to answer questions.
+
+```bash
+tg-invoke-agent -q "Research and summarize the key findings"
+```
+
+Optional arguments:
+- `-l, --plan` - Agent plan
+- `-s, --state` - Agent initial state
+- `-g, --group` - Tool groups available to agent
+- `-v, --verbose` - Show agent thinking and observations
+
+**Other query commands:**
+
 - `tg-invoke-nlp-query` - Execute NLP query
 - `tg-invoke-objects-query` - Query objects
 - `tg-invoke-structured-query` - Execute structured query
-- `tg-invoke-agent` - Invoke an agent
 
 ### Getting started
 
