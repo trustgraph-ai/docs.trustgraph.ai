@@ -71,14 +71,88 @@ poetry add trustgraph-cli@1.8.10
 
 ### Flows
 
-- `tg-show-flows` - List flows
-- `tg-show-flow-state` - Show flow state
-- `tg-start-flow` - Start a flow
-- `tg-stop-flow` - Stop a flow
-- `tg-show-flow-classes` - List flow classes
-- `tg-get-flow-class` - Get flow class details
-- `tg-put-flow-class` - Update flow class
-- `tg-delete-flow-class` - Delete flow class
+Flows are persistent processing workflows that run continuously, monitoring
+queues and processing data as it arrives. Each flow is launched from a flow
+class definition, which provides the blueprint for the flow.
+
+**Discovering available flow classes:**
+
+Use `tg-show-flow-classes` to see what flow classes are available:
+
+```
++-------------+-----------------------------------------------------------------------------------------------------------+
+| name        | everything                                                                                                |
+| description | GraphRAG, DocumentRAG, structured data + knowledge cores                                                  |
+| tags        | document-rag, graph-rag, knowledge-extraction, structured-data, kgcore                                    |
+| parameters  | llm-model: LLM model [llm-model (default: gemini-2.5-flash-lite)]                                         |
+|             |   llm-rag-model: LLM model for RAG [llm-model (default: gemini-2.5-flash-lite)]                           |
+|             |   llm-temperature: LLM temperature [llm-temperature (default: 0.3)]                                       |
+|             |   llm-rag-temperature: LLM temperature for RAG [llm-temperature (default: 0.3)]                           |
+|             |   embeddings-model: Embeddings model [embeddings-model (default: sentence-transformers/all-MiniLM-L6-v2)] |
+|             |   chunk-size: Chunk size [chunk-size (default: 2000)]                                                     |
+|             |   chunk-overlap: Chunk overlap [chunk-overlap (default: 50)]                                              |
++-------------+-----------------------------------------------------------------------------------------------------------+
+
++-------------+-----------------------------------------------------------------------------------------------------------+
+| name        | graph-rag                                                                                                 |
+| description | GraphRAG only                                                                                             |
+| tags        | graph-rag, knowledge-extraction                                                                           |
+| parameters  | llm-model: LLM model [llm-model (default: gemini-2.5-flash-lite)]                                         |
+|             |   llm-rag-model: LLM model for RAG [llm-model (default: gemini-2.5-flash-lite)]                           |
+|             |   llm-temperature: LLM temperature [llm-temperature (default: 0.3)]                                       |
+|             |   llm-rag-temperature: LLM temperature for RAG [llm-temperature (default: 0.3)]                           |
+|             |   embeddings-model: Embeddings model [embeddings-model (default: sentence-transformers/all-MiniLM-L6-v2)] |
+|             |   chunk-size: Chunk size [chunk-size (default: 2000)]                                                     |
+|             |   chunk-overlap: Chunk overlap [chunk-overlap (default: 50)]                                              |
++-------------+-----------------------------------------------------------------------------------------------------------+
+```
+
+Flow classes define different processing capabilities - choose the one that matches your needs.
+
+**Managing flow instances:**
+- `tg-show-flows` - List running flow instances
+- `tg-show-flow-state -i <flow-id>` - View flow execution state and status
+- `tg-start-flow -n <flow-class> -i <flow-id> -d <description>` - Start a flow instance from a flow class
+- `tg-stop-flow -i <flow-id>` - Stop a running flow instance
+
+Example output from `tg-show-flows`:
+```
++------------+----------------------------------------------------------------------+
+| id         | default                                                              |
+| class      | everything                                                           |
+| desc       | Default processing flow                                              |
+| parameters | • LLM model: Gemini 2.5 Flash Lite                                   |
+|            | • LLM model for RAG: Gemini 2.5 Flash Lite (controlled by llm-model) |
+|            | • LLM temperature: 0.300                                             |
+|            | • LLM temperature for RAG: 0.300                                     |
+|            | • Embeddings model: all-MiniLM-L6-v2                                 |
+|            | • Chunk size: 2000                                                   |
+|            | • Chunk overlap: 50                                                  |
+| queue      | document-load: persistent://tg/flow/document-load:default            |
+|            | text-load: persistent://tg/flow/text-document-load:default           |
++------------+----------------------------------------------------------------------+
+```
+
+Example - start a document processing flow:
+```bash
+tg-start-flow -n everything -i my-doc-flow -d "My document processing flow"
+```
+
+Example - start a flow with parameters:
+```bash
+tg-start-flow -n everything -i my-flow -d "Custom flow" \
+  --param llm-model=gpt-4 --param temperature=0.7
+```
+
+Example - stop a running flow:
+```bash
+tg-stop-flow -i my-doc-flow
+```
+
+**Managing flow definitions:**
+- `tg-get-flow-class <flow-class>` - Retrieve flow class configuration
+- `tg-put-flow-class <flow-class> <config-file>` - Create or update a flow class definition
+- `tg-delete-flow-class <flow-class>` - Remove a flow class definition
 
 ### Document library management
 
