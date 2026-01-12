@@ -1,4 +1,5 @@
 ---
+published: false
 title: Adding your own processing
 nav_order: 2.9
 parent: How-to Guides
