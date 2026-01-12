@@ -257,6 +257,9 @@ It can take 2-3 minutes for all services to stabilize after deployment. Services
 
 {% include deployment/application-localhost/verify-system-health.md %}
 
+If everything appears to be working, the following parts of the deployment
+guide are a whistle-stop tour through various parts of the system.
+
 ## Test LLM access
 
 {% include deployment/application-localhost/test-llm-access.md %}
