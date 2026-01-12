@@ -93,32 +93,11 @@ To create API credentials:
 
 ### kubectl
 
-Install kubectl to manage your Kubernetes cluster:
-
-- **Linux**: [Install kubectl on Linux](https://kubernetes.io/docs/tasks/tools/install-kubectl-linux/)
-- **MacOS**: `brew install kubectl`
-- **Windows**: [Install kubectl on Windows](https://kubernetes.io/docs/tasks/tools/install-kubectl-windows/)
-
-Verify installation:
-
-```bash
-kubectl version --client
-```
+{% include deployment/kubectl-install.md %}
 
 ### Node.js
 
-The Pulumi deployment code uses TypeScript/JavaScript, so you'll need Node.js installed:
-
-- **Download**: [nodejs.org](https://nodejs.org/) (LTS version recommended)
-- **Linux**: `sudo apt install nodejs npm` (Ubuntu/Debian) or `sudo dnf install nodejs` (Fedora)
-- **MacOS**: `brew install node`
-
-Verify installation:
-
-```bash
-node --version
-npm --version
-```
+{% include deployment/nodejs-install.md %}
 
 ### Scaleway Generative AI
 
