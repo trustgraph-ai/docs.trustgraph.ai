@@ -58,7 +58,8 @@ version numbers.
 
 ## Python Requirements
 
-All packages require Python 3.8 or higher and are licensed under GPLv3+.
+All packages require Python {{site.data.software.python-min-version}} or
+higher and are licensed under GPLv3+.
 
 ## Architecture
 

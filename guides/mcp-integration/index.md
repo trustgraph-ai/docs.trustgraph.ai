@@ -23,8 +23,8 @@ guide_labels:
 {% capture requirements %}
 <ul style="margin: 0; padding-left: 20px;">
 <li>TrustGraph deployed (<a href="../../getting-started/installation">Installation Guide</a>)</li>
-<li>TrustGraph 1.1+ (MCP introduced in 1.1)</li>
-<li>Python 3.8+ for MCP server development</li>
+<li>TrustGraph 1.6+</li>
+<li>Python {{site.data.software.python-min-version}}+ for MCP server development</li>
 <li>Understanding of agent workflows</li>
 </ul>
 {% endcapture %}
