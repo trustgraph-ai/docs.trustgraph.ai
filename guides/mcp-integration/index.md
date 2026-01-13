@@ -11,7 +11,7 @@ guide_description: Integrate Model Context Protocol servers to extend agent work
 guide_difficulty: intermediate
 guide_time: 60 min
 guide_emoji: 🔌
-guide_banner: mcp-integration.jpg
+guide_banner: ../guides/mcp-integration.jpg
 guide_labels:
   - MCP
   - Agents

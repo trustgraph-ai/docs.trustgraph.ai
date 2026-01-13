@@ -11,7 +11,7 @@ guide_description: Create a simple web application using TrustGraph with React a
 guide_difficulty: intermediate
 guide_time: 45 min
 guide_emoji: ⚛️
-guide_banner: /../react.jpg
+guide_banner: react.jpg
 guide_labels:
   - React
   - TypeScript

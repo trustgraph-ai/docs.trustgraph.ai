@@ -12,7 +12,7 @@ guide_description: Configure prompts, tools, and system settings using advanced 
 guide_difficulty: advanced
 guide_time: 45 min
 guide_emoji: ⚙️
-guide_banner: /../cli-config.jpg
+guide_banner: cli-config.jpg
 guide_labels:
   - CLI
   - Configuration

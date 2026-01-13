@@ -11,7 +11,7 @@ guide_description: Managing documents with command-line tools
 guide_difficulty: intermediate
 guide_time: 20 min
 guide_emoji: 📄
-guide_banner: /../cli-docs.jpg
+guide_banner: cli-docs.jpg
 guide_labels:
   - CLI
   - Documents
