@@ -11,7 +11,7 @@ guide_description: Submit and manage documents for processing using the Python A
 guide_difficulty: intermediate
 guide_time: 15 min
 guide_emoji: 📄
-guide_banner: python-doc-api.jpg
+guide_banner: ../python-doc-api.jpg
 guide_labels:
   - Python
   - Documents

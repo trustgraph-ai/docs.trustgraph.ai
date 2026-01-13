@@ -3,7 +3,7 @@
 <h2>{{ include.section_title }}</h2>
 
 <div style="display: flex; flex-wrap: wrap; gap: 10px; margin-top: 10px;">
-{% assign pages_filtered = site.pages | sort: "guide_category_order" %}
+{% assign pages_filtered = site.pages | where: "grand_parent", include.parent_page | sort: "guide_category_order" %}
 {% for guide in pages_filtered %}
 {% if guide.guide_category contains include.category_name %}
 <div style="border: 1px solid {{ include.card_border_color }}; background-color: {{ include.card_bg_color }}; padding: 0; border-radius: 4px; flex: 1 1 200px; overflow: hidden;">
