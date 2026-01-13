@@ -25,7 +25,7 @@ guide_labels:
 <li>AWS account with access to Bedrock (see below for setup)</li>
 <li>AWS CLI installed and configured</li>
 <li>Pulumi installed locally</li>
-<li>Python 3.11+ for CLI tools</li>
+<li>Python {{site.data.software.python-min-version}}+ for CLI tools</li>
 <li>Basic command-line familiarity</li>
 </ul>
 {% endcapture %}

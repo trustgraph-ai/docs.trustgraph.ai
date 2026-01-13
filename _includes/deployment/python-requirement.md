@@ -1,4 +1,4 @@
-You need Python 3.11 or later installed for the TrustGraph CLI tools.
+You need Python {{site.data.software.python-min-version}} or later installed for the TrustGraph CLI tools.
 
 <details>
 <summary>Check your Python version</summary>

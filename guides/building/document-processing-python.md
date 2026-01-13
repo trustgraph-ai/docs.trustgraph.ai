@@ -23,7 +23,7 @@ guide_labels:
 {% capture requirements %}
 <ul style="margin: 0; padding-left: 20px;">
 <li>A running TrustGraph deployment</li>
-<li>Python 3.11 or higher</li>
+<li>Python {{site.data.software.python-min-version}} or higher</li>
 <li>TrustGraph Python package installed (<code>trustgraph-base</code>)</li>
 <li>A running flow for document processing</li>
 </ul>

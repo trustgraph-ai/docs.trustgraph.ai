@@ -65,7 +65,7 @@ technology.
 Before starting this guide, ensure you have:
 
 - A running TrustGraph instance (see [Installation Guide](../../getting-started/installation))
-- Python 3.8 or later with a working development environment
+- Python {{site.data.software.python-min-version}} or later with a working development environment
 - Basic familiarity with Python programming
 - The TrustGraph CLI tools installed (`pip install trustgraph-cli`)
 
