@@ -11,7 +11,7 @@ guide_description: Learn to use TrustGraph command-line tools for document proce
 guide_difficulty: beginner
 guide_time: 5 min
 guide_emoji: 💻
-guide_banner: ../cli.jpg
+guide_banner: /../cli.jpg
 guide_labels:
   - CLI
   - Command-line

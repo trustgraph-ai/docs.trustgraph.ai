@@ -11,7 +11,7 @@ guide_description: Overview of resources and capabilities available for builders
 guide_difficulty: beginner
 guide_time: 5 min
 guide_emoji: 🔨
-guide_banner: ../intro.jpg
+guide_banner: /../intro.jpg
 guide_labels:
   - Introduction
   - Resources
