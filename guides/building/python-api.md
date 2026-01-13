@@ -11,7 +11,7 @@ guide_description: Use the TrustGraph Python API to build custom applications an
 guide_difficulty: intermediate
 guide_time: 10 min
 guide_emoji: 🐍
-guide_banner: /../python.jpg
+guide_banner: ../python.jpg
 guide_labels:
   - Python
   - API
