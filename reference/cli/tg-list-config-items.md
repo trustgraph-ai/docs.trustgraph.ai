@@ -32,7 +32,7 @@ Configuration items include:
 | `-u`, `--url URL` | TrustGraph API URL | `http://localhost:8088/` |
 | `--format FORMAT` | Output format: `table`, `json`, `list` | `table` |
 | `--filter PATTERN` | Filter items by pattern (regex) | None |
-| `--category CATEGORY` | Filter by category: `flows`, `prompts`, `costs`, `settings` | All |
+| `--category CATEGORY` | Filter by category: `flow`, `prompt`, `token-cost`, `settings` | All |
 | `-h`, `--help` | Show help message | - |
 
 ## Output Formats
@@ -47,12 +47,12 @@ $ tg-list-config-items
 +---------------------------+----------+----------------------------------------+
 | Key                       | Category | Description                            |
 +---------------------------+----------+----------------------------------------+
-| flows.default             | flows    | Default processing flow configuration  |
-| flows.production          | flows    | Production flow configuration          |
-| prompts.system            | prompts  | System prompt template                 |
-| prompts.graph-rag         | prompts  | Graph RAG prompt template             |
-| token-costs.gpt-4         | costs    | GPT-4 token pricing                  |
-| token-costs.claude-3      | costs    | Claude 3 token pricing                |
+| flow.default              | flow     | Default processing flow configuration  |
+| flow.production           | flow     | Production flow configuration          |
+| prompt.system             | prompt   | System prompt template                 |
+| prompt.graph-rag          | prompt   | Graph RAG prompt template             |
+| token-cost.gpt-4          | cost     | GPT-4 token pricing                  |
+| token-cost.claude-3       | cost     | Claude 3 token pricing                |
 | settings.max-tokens       | settings | Maximum tokens per request            |
 | settings.temperature      | settings | Default temperature setting           |
 +---------------------------+----------+----------------------------------------+
@@ -65,12 +65,12 @@ Simple list of configuration keys:
 ```bash
 $ tg-list-config-items --format list
 
-flows.default
-flows.production
-prompts.system
-prompts.graph-rag
-token-costs.gpt-4
-token-costs.claude-3
+flow.default
+flow.production
+prompt.system
+prompt.graph-rag
+token-cost.gpt-4
+token-cost.claude-3
 settings.max-tokens
 settings.temperature
 ```
@@ -85,15 +85,15 @@ $ tg-list-config-items --format json
 {
   "config_items": [
     {
-      "key": "flows.default",
-      "category": "flows",
+      "key": "flow.default",
+      "category": "flow",
       "description": "Default processing flow configuration",
       "modified": "2024-01-15T10:30:00Z",
       "version": 3
     },
     {
-      "key": "prompts.system",
-      "category": "prompts",
+      "key": "prompt.system",
+      "category": "prompt",
       "description": "System prompt template",
       "modified": "2024-01-10T14:20:00Z",
       "version": 1
@@ -119,13 +119,13 @@ tg-list-config-items --format list
 
 ```bash
 # Filter by pattern
-tg-list-config-items --filter "flows.*"
+tg-list-config-items --filter "flow.*"
 
 # Filter by category
-tg-list-config-items --category prompts
+tg-list-config-items --category prompt
 
 # Complex regex filter
-tg-list-config-items --filter "^(flows|prompts)\..*"
+tg-list-config-items --filter "^(flow|prompt)\..*"
 ```
 
 ### Export and Processing
@@ -158,19 +158,19 @@ done
 
 ## Configuration Categories
 
-### Flows
+### Flow
 Flow-related configurations:
-- `flows.<flow-id>` - Individual flow definitions
-- `flow-blueprintes.<blueprint-name>` - Flow blueprint templates
+- `flow.<flow-id>` - Individual flow definitions
+- `flow-blueprint.<blueprint-name>` - Flow blueprint templates
 
-### Prompts
+### Prompt
 AI prompt templates:
-- `prompts.system` - System-wide prompts
-- `prompts.<service>` - Service-specific prompts
+- `prompt.system` - System-wide prompts
+- `prompt.<service>` - Service-specific prompts
 
-### Token Costs
+### Token Cost
 Model pricing configurations:
-- `token-costs.<model>` - Per-model token costs
+- `token-cost.<model>` - Per-model token costs
 
 ### Settings
 General system settings:
@@ -186,7 +186,7 @@ The `--filter` option accepts regular expressions:
 
 ```bash
 # All flow configurations
-tg-list-config-items --filter "^flows\."
+tg-list-config-items --filter "^flow\."
 
 # Items containing 'rag'
 tg-list-config-items --filter ".*rag.*"

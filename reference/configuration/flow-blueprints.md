@@ -1,33 +1,33 @@
 ---
-title: Flow Classes
+title: Flow Blueprints
 parent: Configuration
 grand_parent: Reference
 nav_order: 1
-permalink: /reference/configuration/flow-classes
+permalink: /reference/configuration/flow-blueprints
 review_date: 2026-08-01
 ---
 
-# Flow Class Configuration
+# Flow Blueprint Configuration
 
-Flow classes define complete dataflow pattern templates in TrustGraph. When instantiated, they create interconnected networks of processors that handle data ingestion, processing, storage, and querying as a unified system.
+Flow blueprints define complete dataflow pattern templates in TrustGraph. When instantiated, they create interconnected networks of processors that handle data ingestion, processing, storage, and querying as a unified system.
 
 ## Overview
 
-A flow class serves as a blueprint for creating flow instances. Each flow class defines:
-- **Shared services** that are used by all flow instances of the same class
+A flow blueprint serves as a template for creating flow instances. Each flow blueprint defines:
+- **Shared services** that are used by all flow instances of the same blueprint
 - **Flow-specific processors** that are unique to each flow instance
 - **Interfaces** that define how external systems interact with the flow
 - **Queue patterns** that route messages between processors
 
-Flow classes are stored in TrustGraph's configuration system with the configuration type `flow-classes` and are managed through dedicated CLI commands.
+Flow blueprints are stored in TrustGraph's configuration system with the configuration type `flow` and are managed through dedicated CLI commands.
 
 ## Structure
 
-Every flow class definition has four main sections:
+Every flow blueprint definition has four main sections:
 
 ### 1. Class Section
 
-Defines shared service processors that are instantiated once per flow class. These processors handle requests from all flow instances of this class.
+Defines shared service processors that are instantiated once per flow blueprint. These processors handle requests from all flow instances of this blueprint.
 
 ```json
 {
@@ -45,7 +45,7 @@ Defines shared service processors that are instantiated once per flow class. The
 ```
 
 **Characteristics:**
-- Shared across all flow instances of the same class
+- Shared across all flow instances of the same blueprint
 - Typically expensive or stateless services (LLMs, embedding models)
 - Use `{class}` template variable for queue naming
 - Examples: `embeddings:{class}`, `text-completion:{class}`, `graph-rag:{class}`
@@ -125,15 +125,15 @@ Additional information about the flow class:
 
 ## Parameters
 
-**New in v1.4**: Flow classes can define configurable parameters that allow customization of flow behavior without modifying the flow class definition. Parameters enable users to select different LLM models, adjust processing settings, and control flow behavior when starting flow instances.
+**New in v1.4**: Flow blueprints can define configurable parameters that allow customization of flow behavior without modifying the flow blueprint definition. Parameters enable users to select different LLM models, adjust processing settings, and control flow behavior when starting flow instances.
 
 ### Parameter Definition Schema
 
-Parameters are defined in the flow class definition using this structure:
+Parameters are defined in the flow blueprint definition using this structure:
 
 ```json
 {
-  "description": "Flow class description",
+  "description": "Flow blueprint description",
   "tags": ["tag1", "tag2"],
   "parameters": {
     "param-name": {
@@ -270,7 +270,7 @@ When `controlled-by` is specified:
 
 ### Parameter Types
 
-Parameter types are centrally defined in the configuration system with type `parameter-types`. Each parameter type specifies:
+Parameter types are centrally defined in the configuration system with type `parameter-type`. Each parameter type specifies:
 
 - **Data type**: string, number, integer, boolean, array, object
 - **Default value**: Value used when not specified by user
@@ -316,7 +316,7 @@ Results in:
 
 ### Using Parameters in Flow Definitions
 
-Parameters can be referenced in flow class definitions using the `{param:name}` syntax. This allows queue names, processor configurations, and other settings to be parameterized.
+Parameters can be referenced in flow blueprint definitions using the `{param:name}` syntax. This allows queue names, processor configurations, and other settings to be parameterized.
 
 **Example:**
 ```json
@@ -360,15 +360,15 @@ Processors are responsible for converting string values to appropriate types bas
 
 ### Benefits of Parameters
 
-1. **Flexibility**: Customize flow behavior without modifying flow classes
-2. **Reusability**: Single flow class supports multiple configurations
+1. **Flexibility**: Customize flow behavior without modifying flow blueprints
+2. **Reusability**: Single flow blueprint supports multiple configurations
 3. **Consistency**: Centralized parameter type definitions ensure validation
-4. **Discoverability**: Users can see available parameters with `tg-show-flow-classes`
+4. **Discoverability**: Users can see available parameters with `tg-show-flow-blueprints`
 5. **Documentation**: Parameter types include descriptions and constraints
 
 ## Template Variables
 
-Flow class definitions use template variables that are replaced when flow instances are created:
+Flow blueprint definitions use template variables that are replaced when flow instances are created:
 
 ### {id}
 - **Purpose**: Creates isolated resources for each flow instance
@@ -376,7 +376,7 @@ Flow class definitions use template variables that are replaced when flow instan
 - **Example**: `persistent://tg/flow/chunk-load:{id}` becomes `persistent://tg/flow/chunk-load:customer-A-flow`
 
 ### {class}
-- **Purpose**: Creates shared resources across flows of the same class
+- **Purpose**: Creates shared resources across flows of the same blueprint
 - **Usage**: Shared services and expensive processors
 - **Example**: `non-persistent://tg/request/embeddings:{class}` becomes `non-persistent://tg/request/embeddings:standard-rag`
 
@@ -428,7 +428,7 @@ non-persistent://tg/response/<topic>:{class}
 
 ## Complete Example
 
-Here's a simplified flow class definition for a standard RAG pipeline:
+Here's a simplified flow blueprint definition for a standard RAG pipeline:
 
 ```json
 {
@@ -477,11 +477,11 @@ Here's a simplified flow class definition for a standard RAG pipeline:
 
 ## Flow Instantiation
 
-When a flow instance is created from this class:
+When a flow instance is created from this blueprint:
 
 **Given:**
 - Flow Instance ID: `customer-A-flow`
-- Flow Class: `standard-rag`
+- Flow Blueprint: `standard-rag`
 
 **Template Expansions:**
 - `persistent://tg/flow/chunk-load:{id}` → `persistent://tg/flow/chunk-load:customer-A-flow`
@@ -494,7 +494,7 @@ When a flow instance is created from this class:
 
 ## Dataflow Architecture
 
-Flow classes create unified dataflows where:
+Flow blueprints create unified dataflows where:
 
 1. **Document Processing Pipeline**: Flows from ingestion through transformation to storage
 2. **Query Services**: Integrated processors that query the same data stores and services
@@ -514,7 +514,7 @@ All processors (both `{id}` and `{class}`) work together as a cohesive dataflow 
 - Prevents data mixing between different flows
 
 ### Scalability
-- Can instantiate multiple flows from the same template
+- Can instantiate multiple flows from the same blueprint
 - Horizontal scaling by adding more flow instances
 
 ### Modularity
@@ -547,7 +547,7 @@ All processors (both `{id}` and `{class}`) work together as a cohesive dataflow 
 - Include template variables in queue names for proper isolation
 
 ### Service Sharing
-- Share expensive services (LLMs, embeddings) at the class level
+- Share expensive services (LLMs, embeddings) at the blueprint level
 - Keep data processing isolated at the flow level
 
 ### Interface Design
@@ -562,9 +562,9 @@ All processors (both `{id}` and `{class}`) work together as a cohesive dataflow 
 
 ## See Also
 
-- [tg-put-flow-class](../cli/tg-put-flow-class) - Create or update flow classes
-- [tg-get-flow-class](../cli/tg-get-flow-class) - Retrieve flow class definitions
-- [tg-show-flow-classes](../cli/tg-show-flow-classes) - List available flow classes and parameters
+- [tg-put-flow-blueprint](../cli/tg-put-flow-blueprint) - Create or update flow blueprints
+- [tg-get-flow-blueprint](../cli/tg-get-flow-blueprint) - Retrieve flow blueprint definitions
+- [tg-show-flow-blueprints](../cli/tg-show-flow-blueprints) - List available flow blueprints and parameters
 - [tg-start-flow](../cli/tg-start-flow) - Start flows with parameter values
 - [tg-show-parameter-types](../cli/tg-show-parameter-types) - View parameter type definitions
 - [Parameter Types](parameters) - Parameter type configuration reference

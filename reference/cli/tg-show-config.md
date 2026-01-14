@@ -47,7 +47,7 @@ The command outputs the configuration version followed by the complete configura
 ```
 Version: 42
 {
-    "flows": {
+    "flow": {
         "default": {
             "blueprint-name": "document-rag+graph-rag",
             "description": "Default processing flow",
@@ -65,11 +65,11 @@ Version: 42
             }
         }
     },
-    "prompts": {
+    "prompt": {
         "system": "You are a helpful AI assistant...",
         "graph-rag": "Answer the question using the provided context..."
     },
-    "token-costs": {
+    "token-cost": {
         "gpt-4": {
             "prompt": 0.03,
             "completion": 0.06
@@ -82,16 +82,16 @@ Version: 42
 ## Configuration Sections
 
 ### Flow Definitions
-Flow configurations showing:
+Flow configurations (under `"flow"` key) showing:
 - **blueprint-name**: The flow blueprint being used
-- **description**: Human-readable flow description  
+- **description**: Human-readable flow description
 - **interfaces**: Pulsar queue names for each service
 
 ### Prompt Templates
-System and service-specific prompt templates used by AI services.
+System and service-specific prompt templates (under `"prompt"` key) used by AI services.
 
 ### Token Costs
-Model pricing information for cost tracking and billing.
+Model pricing information (under `"token-cost"` key) for cost tracking and billing.
 
 ### Service Settings
 Various service-specific configuration parameters.
@@ -101,7 +101,7 @@ Various service-specific configuration parameters.
 The configuration output is essential for discovering Pulsar queue names:
 
 ### Flow-Hosted Services
-Look in the `flows` section under `interfaces`:
+Look in the `flow` section under `interfaces`:
 
 ```json
 "graph-rag": {

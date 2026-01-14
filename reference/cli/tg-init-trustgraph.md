@@ -110,7 +110,7 @@ The configuration should be provided as JSON with this structure:
       "response-type": "text"
     }
   },
-  "token-costs": {
+  "token-cost": {
     "gpt-4": {
       "input_price": 0.00003,
       "output_price": 0.00006
@@ -210,7 +210,7 @@ load_ai_config() {
         "response-type": "json"
       }
     },
-    "token-costs": {
+    "token-cost": {
       "gpt-4": {"input_price": 0.00003, "output_price": 0.00006},
       "claude-3-sonnet": {"input_price": 0.000003, "output_price": 0.000015}
     }

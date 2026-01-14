@@ -99,7 +99,7 @@ TrustGraph APIs consistently use **kebab-case** for field names in JSON payloads
 Examples:
 - `document-metadata` (not `document_metadata` or `documentMetadata`)
 - `flow-id` (not `flow_id` or `flowId`)
-- `class-name` (not `class_name` or `className`)
+- `blueprint-name` (not `blueprint_name` or `blueprintName`)
 
 ### RDF Triple Representation
 

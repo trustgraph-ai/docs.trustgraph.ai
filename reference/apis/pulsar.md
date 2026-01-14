@@ -306,7 +306,7 @@ When querying for flow information with `get-flow`, the response includes the `p
 
 For more information about flow parameters:
 - [Parameter Types Configuration](../configuration/parameters) - Parameter type definitions
-- [Flow Class Configuration](../configuration/flow-classes) - Using parameters in flow classes
+- [Flow Blueprint Configuration](../configuration/flow-blueprints) - Using parameters in flow blueprints
 - [Flow API](api-flow) - Flow management API including parameters
 - [tg-start-flow](../cli/tg-start-flow) - Starting flows with parameters via CLI
 
