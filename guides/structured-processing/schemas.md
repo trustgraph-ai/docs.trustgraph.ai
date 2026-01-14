@@ -41,7 +41,7 @@ integrated query tools.
 Before starting this guide, ensure you have:
 
 - A running TrustGraph instance version 1.3 or later (see [Installation Guide](../../getting-started/installation))
-- Python 3.8 or later with the TrustGraph CLI tools installed (`pip install trustgraph-cli`)
+- Python {{site.data.software.python-min-version}} or later with the TrustGraph CLI tools installed (`pip install trustgraph-cli`)
 - Sample documents or structured data files to process
 
 ## Defining a Schema

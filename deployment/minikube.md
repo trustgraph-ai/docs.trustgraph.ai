@@ -25,7 +25,7 @@ guide_labels:
 <li>Machine with 14.5GB RAM and 9 virtual CPUs / threads available for TrustGraph to use - a 16GB laptop is going to be too limited</li>
 <li>Minikube installed and configured</li>
 <li>kubectl command-line tool</li>
-<li>Python 3.11+ for CLI tools</li>
+<li>Python {{site.data.software.python-min-version}}+ for CLI tools</li>
 <li>Access to an LLM (cloud service like VertexAI, AWS Bedrock, or local with Ollama)</li>
 <li>Basic command-line and basic Minikube familiarity</li>
 </ul>

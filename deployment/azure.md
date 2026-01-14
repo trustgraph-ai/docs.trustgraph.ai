@@ -26,7 +26,7 @@ guide_labels:
 <li>Azure CLI installed and configured</li>
 <li>Pulumi installed locally</li>
 <li>kubectl command-line tool</li>
-<li>Python 3.11+ for CLI tools</li>
+<li>Python {{site.data.software.python-min-version}}+ for CLI tools</li>
 <li>Basic command-line and Kubernetes familiarity</li>
 </ul>
 {% endcapture %}

@@ -11,7 +11,7 @@ guide_description: Integrate Model Context Protocol servers to extend agent work
 guide_difficulty: intermediate
 guide_time: 60 min
 guide_emoji: 🔌
-guide_banner: mcp-integration.jpg
+guide_banner: ../guides/mcp-integration.jpg
 guide_labels:
   - MCP
   - Agents
@@ -23,8 +23,8 @@ guide_labels:
 {% capture requirements %}
 <ul style="margin: 0; padding-left: 20px;">
 <li>TrustGraph deployed (<a href="../../getting-started/installation">Installation Guide</a>)</li>
-<li>TrustGraph 1.1+ (MCP introduced in 1.1)</li>
-<li>Python 3.8+ for MCP server development</li>
+<li>TrustGraph 1.6+</li>
+<li>Python {{site.data.software.python-min-version}}+ for MCP server development</li>
 <li>Understanding of agent workflows</li>
 </ul>
 {% endcapture %}
@@ -65,7 +65,7 @@ technology.
 Before starting this guide, ensure you have:
 
 - A running TrustGraph instance (see [Installation Guide](../../getting-started/installation))
-- Python 3.8 or later with a working development environment
+- Python {{site.data.software.python-min-version}} or later with a working development environment
 - Basic familiarity with Python programming
 - The TrustGraph CLI tools installed (`pip install trustgraph-cli`)
 

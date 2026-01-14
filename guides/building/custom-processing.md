@@ -12,7 +12,7 @@ guide_description: Extend TrustGraph with custom processing components and workf
 guide_difficulty: advanced
 guide_time: 1 hr
 guide_emoji: ⚙️
-guide_banner: /../processing.jpg
+guide_banner: ../processing.jpg
 guide_labels:
   - Custom Processing
   - Extensions
@@ -25,7 +25,7 @@ todo_notes: This is under construction
 {% capture requirements %}
 <ul style="margin: 0; padding-left: 20px;">
 <li>A running TrustGraph deployment</li>
-<li>Python 3.11 or higher</li>
+<li>Python {{site.data.software.python-min-version}} or higher</li>
 <li>Understanding of TrustGraph architecture</li>
 <li>Familiarity with async Python</li>
 </ul>
