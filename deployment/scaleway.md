@@ -11,7 +11,7 @@ guide_description: Cost-effective Kubernetes deployment with GDPR compliance and
 guide_difficulty: intermediate
 guide_time: 1 - 2 hr
 guide_emoji: 🇫🇷
-guide_banner: /../scaleway.jpg
+guide_banner: scaleway.jpg
 guide_labels:
   - Kubernetes
   - Europe

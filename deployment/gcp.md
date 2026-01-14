@@ -11,7 +11,7 @@ guide_description: Production GKE deployment with VertexAI Gemini integration an
 guide_difficulty: intermediate
 guide_time: 2 - 4 hr
 guide_emoji: ☁️
-guide_banner: /../gcp.jpg
+guide_banner: gcp.jpg
 guide_labels:
   - GCP
   - Kubernetes

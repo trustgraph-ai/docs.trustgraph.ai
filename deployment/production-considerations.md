@@ -10,7 +10,7 @@ guide_description: Essential considerations and best practices for security, per
 guide_difficulty: advanced
 guide_time: 20 min
 guide_emoji: 🏭
-guide_banner: /../production.jpg
+guide_banner: production.jpg
 guide_labels:
   - Production
   - Best Practices

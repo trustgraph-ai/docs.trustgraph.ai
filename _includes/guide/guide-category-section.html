@@ -3,13 +3,18 @@
 <h2>{{ include.section_title }}</h2>
 
 <div style="display: flex; flex-wrap: wrap; gap: 10px; margin-top: 10px;">
-{% assign pages_filtered = site.pages | where: "grand_parent", include.parent_page | sort: "guide_category_order" %}
+{% assign pages_filtered = site.pages | sort: "guide_category_order" %}
 {% for guide in pages_filtered %}
 {% if guide.guide_category contains include.category_name %}
 <div style="border: 1px solid {{ include.card_border_color }}; background-color: {{ include.card_bg_color }}; padding: 0; border-radius: 4px; flex: 1 1 200px; overflow: hidden;">
 <a href="{{ guide.url }}" style="text-decoration: none; color: inherit; display: block;">
 {% if guide.guide_banner %}
-<div style="width: 100%; height: 180px; background-image: url('{{ guide.url | split: '/' | pop | join: '/' }}/{{ guide.guide_banner }}'); background-size: cover; background-position: center; position: relative;">
+{% if guide.url contains 'index.html' %}
+  {% assign banner_base = guide.url | replace: 'index.html', '' %}
+{% else %}
+  {% assign banner_base = guide.url | split: '/' | pop | join: '/' | append: '/' %}
+{% endif %}
+<div style="width: 100%; height: 180px; background-image: url('{{ banner_base }}{{ guide.guide_banner }}'); background-size: cover; background-position: center; position: relative;">
 <div style="position: absolute; bottom: 0; left: 0; right: 0; background: linear-gradient(to top, rgba(0,0,0,0.85), rgba(0,0,0,0.4)); padding: 15px;">
 <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 5px;">
 {% if guide.guide_emoji %}<span style="font-size: 2em; filter: drop-shadow(2px 2px 4px rgba(0,0,0,0.8));">{{ guide.guide_emoji }}</span>{% endif %}

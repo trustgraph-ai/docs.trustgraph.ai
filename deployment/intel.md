@@ -10,7 +10,7 @@ guide_description: High-performance AI deployment with Intel Gaudi and GPU accel
 guide_difficulty: advanced
 guide_time: 5 - 10 hr
 guide_emoji: 🚀
-guide_banner: /../gaudi.jpg
+guide_banner: gaudi.jpg
 guide_labels:
   - Intel
   - GPU

@@ -1,5 +1,4 @@
 ---
-published: false
 title: Adding your own processing
 nav_order: 9
 parent: Building with TrustGraph

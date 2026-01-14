@@ -9,7 +9,7 @@ guide_description: Security characteristics and considerations for different dep
 guide_difficulty: intermediate
 guide_time: 15 min
 guide_emoji: 🔐
-guide_banner: /../security-considerations.jpg
+guide_banner: security-considerations.jpg
 guide_labels:
   - Security
   - Best Practices

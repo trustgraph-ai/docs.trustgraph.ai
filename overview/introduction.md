@@ -10,7 +10,7 @@ guide_description: What is TrustGraph and how does it transform AI agents into c
 guide_difficulty: beginner
 guide_time: 15 min
 guide_emoji: 🎯
-guide_banner: /../introduction.jpg
+guide_banner: introduction.jpg
 guide_labels:
   - GraphRAG
   - Knowledge Graphs

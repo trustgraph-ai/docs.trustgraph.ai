@@ -11,7 +11,7 @@ guide_description: Easiest way to get TrustGraph running locally with Docker or 
 guide_difficulty: beginner
 guide_time: 10 - 15 min
 guide_emoji: 🐳
-guide_banner: /../podman.png
+guide_banner: podman.png
 guide_labels:
   - Docker
   - Local
