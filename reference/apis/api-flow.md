@@ -6,7 +6,7 @@ review_date: 2025-12-03
 
 # TrustGraph Flow API
 
-This API provides workflow management for TrustGraph components. It manages flow classes 
+This API provides workflow management for TrustGraph components. It manages flow blueprintes 
 (workflow templates) and flow instances (active running workflows) that orchestrate 
 complex data processing pipelines.
 
@@ -16,8 +16,8 @@ complex data processing pipelines.
 
 The request contains the following fields:
 - `operation`: The operation to perform (see operations below)
-- `class-name`: Flow class name (for class operations and start-flow)
-- `class-definition`: Flow class definition JSON (for put-class)
+- `blueprint-name`: Flow blueprint name (for class operations and start-flow)
+- `blueprint-definition`: Flow blueprint definition JSON (for put-blueprint)
 - `description`: Flow description (for start-flow)
 - `flow-id`: Flow instance ID (for flow instance operations)
 - `parameters`: Map of parameter name to value (for start-flow, new in v1.4)
@@ -25,9 +25,9 @@ The request contains the following fields:
 ### Response
 
 The response contains the following fields:
-- `class-names`: Array of flow class names (returned by list-classes)
+- `blueprint-names`: Array of flow blueprint names (returned by list-blueprints)
 - `flow-ids`: Array of active flow IDs (returned by list-flows)
-- `class-definition`: Flow class definition JSON (returned by get-class)
+- `blueprint-definition`: Flow blueprint definition JSON (returned by get-blueprint)
 - `flow`: Flow instance JSON (returned by get-flow)
 - `description`: Flow description (returned by get-flow)
 - `parameters`: Map of parameter name to value (returned by get-flow, new in v1.4)
@@ -42,14 +42,14 @@ The response contains the following fields:
 Request:
 ```json
 {
-    "operation": "list-classes"
+    "operation": "list-blueprints"
 }
 ```
 
 Response:
 ```json
 {
-    "class-names": ["pdf-processor", "text-analyzer", "knowledge-extractor"]
+    "blueprint-names": ["pdf-processor", "text-analyzer", "knowledge-extractor"]
 }
 ```
 
@@ -58,15 +58,15 @@ Response:
 Request:
 ```json
 {
-    "operation": "get-class",
-    "class-name": "pdf-processor"
+    "operation": "get-blueprint",
+    "blueprint-name": "pdf-processor"
 }
 ```
 
 Response:
 ```json
 {
-    "class-definition": "{\"interfaces\": {\"text-completion\": {\"request\": \"persistent://tg/request/text-completion\", \"response\": \"persistent://tg/response/text-completion\"}}, \"description\": \"PDF processing workflow\"}"
+    "blueprint-definition": "{\"interfaces\": {\"text-completion\": {\"request\": \"persistent://tg/request/text-completion\", \"response\": \"persistent://tg/response/text-completion\"}}, \"description\": \"PDF processing workflow\"}"
 }
 ```
 
@@ -75,9 +75,9 @@ Response:
 Request:
 ```json
 {
-    "operation": "put-class",
-    "class-name": "pdf-processor",
-    "class-definition": "{\"interfaces\": {\"text-completion\": {\"request\": \"persistent://tg/request/text-completion\", \"response\": \"persistent://tg/response/text-completion\"}}, \"description\": \"PDF processing workflow\"}"
+    "operation": "put-blueprint",
+    "blueprint-name": "pdf-processor",
+    "blueprint-definition": "{\"interfaces\": {\"text-completion\": {\"request\": \"persistent://tg/request/text-completion\", \"response\": \"persistent://tg/response/text-completion\"}}, \"description\": \"PDF processing workflow\"}"
 }
 ```
 
@@ -91,8 +91,8 @@ Response:
 Request:
 ```json
 {
-    "operation": "delete-class",
-    "class-name": "pdf-processor"
+    "operation": "delete-blueprint",
+    "blueprint-name": "pdf-processor"
 }
 ```
 
@@ -147,7 +147,7 @@ Request:
 ```json
 {
     "operation": "start-flow",
-    "class-name": "pdf-processor",
+    "blueprint-name": "pdf-processor",
     "flow-id": "flow-123",
     "description": "Processing document batch 1"
 }
@@ -157,7 +157,7 @@ Request:
 ```json
 {
     "operation": "start-flow",
-    "class-name": "pdf-processor",
+    "blueprint-name": "pdf-processor",
     "flow-id": "flow-123",
     "description": "Processing document batch 1",
     "parameters": {
@@ -205,7 +205,7 @@ Request:
     "id": "unique-request-id",
     "service": "flow",
     "request": {
-        "operation": "list-classes"
+        "operation": "list-blueprints"
     }
 }
 ```
@@ -215,7 +215,7 @@ Response:
 {
     "id": "unique-request-id",
     "response": {
-        "class-names": ["pdf-processor", "text-analyzer"]
+        "blueprint-names": ["pdf-processor", "text-analyzer"]
     },
     "complete": true
 }
@@ -248,10 +248,10 @@ from trustgraph.api.flow import FlowClient
 
 client = FlowClient()
 
-# List all flow classes
+# List all flow blueprintes
 classes = await client.list_classes()
 
-# Get a flow class definition
+# Get a flow blueprint definition
 definition = await client.get_class("pdf-processor")
 
 # Start a flow instance
@@ -275,7 +275,7 @@ await client.stop_flow("flow-123")
 ## Features
 
 - **Flow Classes**: Templates that define workflow structure and interfaces
-- **Flow Instances**: Active running workflows based on flow classes
+- **Flow Instances**: Active running workflows based on flow blueprintes
 - **Configurable Parameters**: Customize flow behavior with parameters (new in v1.4)
 - **Dynamic Management**: Flows can be started/stopped dynamically
 - **Template Processing**: Uses template replacement for customizing flow instances

@@ -57,10 +57,10 @@ Most CLI commands support these common options:
 - [`tg-show-flow-state`](tg-show-flow-state) - Show current flow states
 
 **Flow Class Management:**
-- [`tg-put-flow-class`](tg-put-flow-class) - Upload/update flow class definition
-- [`tg-get-flow-class`](tg-get-flow-class) - Retrieve flow class definition
-- [`tg-delete-flow-class`](tg-delete-flow-class) - Remove flow class definition
-- [`tg-show-flow-classes`](tg-show-flow-classes) - List available flow classes
+- [`tg-put-flow-blueprint`](tg-put-flow-blueprint) - Upload/update flow class definition
+- [`tg-get-flow-blueprint`](tg-get-flow-blueprint) - Retrieve flow class definition
+- [`tg-delete-flow-blueprint`](tg-delete-flow-blueprint) - Remove flow class definition
+- [`tg-show-flow-blueprints`](tg-show-flow-blueprints) - List available flow classes
 
 ### Knowledge Graph Management
 
@@ -159,7 +159,7 @@ tg-show-graph --limit 100
 ### Flow Management
 ```bash
 # Show available flow classes
-tg-show-flow-classes
+tg-show-flow-blueprints
 
 # Show running flows
 tg-show-flows

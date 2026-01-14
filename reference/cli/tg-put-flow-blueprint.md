@@ -1,31 +1,31 @@
 ---
-title: tg-put-flow-class
+title: tg-put-flow-blueprint
 parent: CLI
 review_date: 2026-05-20
 ---
 
-# tg-put-flow-class
+# tg-put-flow-blueprint
 
-Uploads or updates a flow class definition in TrustGraph.
+Uploads or updates a flow blueprint definition in TrustGraph.
 
 ## Synopsis
 
 ```bash
-tg-put-flow-class -n CLASS_NAME -c CONFIG_JSON [options]
+tg-put-flow-blueprint -n CLASS_NAME -c CONFIG_JSON [options]
 ```
 
 ## Description
 
-The `tg-put-flow-class` command creates or updates a flow class definition in TrustGraph. Flow classes are templates that define processing pipeline configurations, service interfaces, and resource requirements. These classes are used by `tg-start-flow` to create running flow instances.
+The `tg-put-flow-blueprint` command creates or updates a flow blueprint definition in TrustGraph. Flow blueprintes are templates that define processing pipeline configurations, service interfaces, and resource requirements. These classes are used by `tg-start-flow` to create running flow instances.
 
-Flow classes define the structure and capabilities of processing flows, including which services are available and how they connect to Pulsar queues.
+Flow blueprintes define the structure and capabilities of processing flows, including which services are available and how they connect to Pulsar queues.
 
 ## Options
 
 ### Required Arguments
 
-- `-n, --class-name CLASS_NAME`: Name for the flow class
-- `-c, --config CONFIG_JSON`: Flow class configuration as raw JSON string
+- `-n, --blueprint-name CLASS_NAME`: Name for the flow blueprint
+- `-c, --config CONFIG_JSON`: Flow blueprint configuration as raw JSON string
 
 ### Optional Arguments
 
@@ -35,14 +35,14 @@ Flow classes define the structure and capabilities of processing flows, includin
 
 ### Basic Flow Class Creation
 ```bash
-tg-put-flow-class \
+tg-put-flow-blueprint \
   -n "simple-processing" \
   -c '{"description": "Simple text processing flow", "interfaces": {"text-completion": {"request": "non-persistent://tg/request/text-completion:simple", "response": "non-persistent://tg/response/text-completion:simple"}}}'
 ```
 
 ### Document Processing Flow Class
 ```bash
-tg-put-flow-class \
+tg-put-flow-blueprint \
   -n "document-analysis" \
   -c '{
     "description": "Document analysis and RAG processing",
@@ -86,14 +86,14 @@ cat > research-flow.json << 'EOF'
 }
 EOF
 
-# Upload the flow class
-tg-put-flow-class -n "research-analysis" -c "$(cat research-flow.json)"
+# Upload the flow blueprint
+tg-put-flow-blueprint -n "research-analysis" -c "$(cat research-flow.json)"
 ```
 
 ### Update Existing Flow Class
 ```bash
-# Modify existing flow class by adding new service
-tg-put-flow-class \
+# Modify existing flow blueprint by adding new service
+tg-put-flow-blueprint \
   -n "existing-flow" \
   -c '{
     "description": "Updated flow with new capabilities",
@@ -117,7 +117,7 @@ tg-put-flow-class \
 #### Description
 ```json
 {
-  "description": "Human-readable description of the flow class"
+  "description": "Human-readable description of the flow blueprint"
 }
 ```
 
@@ -188,7 +188,7 @@ persistent://tg/flow/{service}:{flow-identifier}
 
 ### Comprehensive Flow Class
 ```bash
-tg-put-flow-class \
+tg-put-flow-blueprint \
   -n "full-processing-pipeline" \
   -c '{
     "description": "Complete document processing and analysis pipeline",
@@ -240,11 +240,11 @@ tg-put-flow-class \
 Successful upload typically produces no output:
 
 ```bash
-# Upload flow class (no output expected)
-tg-put-flow-class -n "my-flow" -c '{"description": "test", "interfaces": {}}'
+# Upload flow blueprint (no output expected)
+tg-put-flow-blueprint -n "my-flow" -c '{"description": "test", "interfaces": {}}'
 
 # Verify upload
-tg-show-flow-classes | grep "my-flow"
+tg-show-flow-blueprintes | grep "my-flow"
 ```
 
 ## Error Handling
@@ -284,25 +284,25 @@ echo "$config" | jq . > /dev/null && echo "Valid JSON" || echo "Invalid JSON"
 
 ### Flow Class Verification
 ```bash
-# After uploading, verify the flow class exists
-tg-show-flow-classes | grep "my-flow-class"
+# After uploading, verify the flow blueprint exists
+tg-show-flow-blueprintes | grep "my-flow-blueprint"
 
-# Get the flow class definition to verify content
-tg-get-flow-class -n "my-flow-class"
+# Get the flow blueprint definition to verify content
+tg-get-flow-blueprint -n "my-flow-blueprint"
 ```
 
 ## Flow Class Lifecycle
 
 ### Development Workflow
 ```bash
-# 1. Create flow class
-tg-put-flow-class -n "dev-flow" -c "$dev_config"
+# 1. Create flow blueprint
+tg-put-flow-blueprint -n "dev-flow" -c "$dev_config"
 
 # 2. Test with flow instance
 tg-start-flow -n "dev-flow" -i "test-instance" -d "Testing"
 
-# 3. Update flow class as needed
-tg-put-flow-class -n "dev-flow" -c "$updated_config"
+# 3. Update flow blueprint as needed
+tg-put-flow-blueprint -n "dev-flow" -c "$updated_config"
 
 # 4. Restart flow instance with updates
 tg-stop-flow -i "test-instance"
@@ -315,49 +315,49 @@ tg-start-flow -n "dev-flow" -i "test-instance" -d "Testing updated"
 
 ## Related Commands
 
-- [`tg-get-flow-class`](tg-get-flow-class) - Retrieve flow class definitions
-- [`tg-show-flow-classes`](tg-show-flow-classes) - List available flow classes
-- [`tg-delete-flow-class`](tg-delete-flow-class) - Remove flow class definitions
+- [`tg-get-flow-blueprint`](tg-get-flow-blueprint) - Retrieve flow blueprint definitions
+- [`tg-show-flow-blueprintes`](tg-show-flow-blueprintes) - List available flow blueprintes
+- [`tg-delete-flow-blueprint`](tg-delete-flow-blueprint) - Remove flow blueprint definitions
 - [`tg-start-flow`](tg-start-flow) - Create flow instances from classes
 
 ## API Integration
 
-This command uses the [Flow API](../apis/api-flow) with the `put-class` operation to store flow class definitions.
+This command uses the [Flow API](../apis/api-flow) with the `put-blueprint` operation to store flow blueprint definitions.
 
 ## Use Cases
 
 ### Custom Processing Pipelines
 ```bash
 # Create specialized medical analysis flow
-tg-put-flow-class -n "medical-nlp" -c "$medical_config"
+tg-put-flow-blueprint -n "medical-nlp" -c "$medical_config"
 ```
 
 ### Development Environments
 ```bash
 # Create lightweight development flow
-tg-put-flow-class -n "dev-minimal" -c "$minimal_config"
+tg-put-flow-blueprint -n "dev-minimal" -c "$minimal_config"
 ```
 
 ### Production Deployments
 ```bash
 # Create robust production flow with all services
-tg-put-flow-class -n "production-full" -c "$production_config"
+tg-put-flow-blueprint -n "production-full" -c "$production_config"
 ```
 
 ### Domain-Specific Workflows
 ```bash
 # Create legal document analysis flow
-tg-put-flow-class -n "legal-analysis" -c "$legal_config"
+tg-put-flow-blueprint -n "legal-analysis" -c "$legal_config"
 ```
 
 ## Best Practices
 
-1. **Descriptive Names**: Use clear, descriptive flow class names
+1. **Descriptive Names**: Use clear, descriptive flow blueprint names
 2. **Comprehensive Descriptions**: Include detailed descriptions of flow capabilities
 3. **Consistent Naming**: Follow consistent queue naming conventions
-4. **Version Control**: Store flow class configurations in version control
-5. **Testing**: Test flow classes thoroughly before production use
-6. **Documentation**: Document flow class purposes and requirements
+4. **Version Control**: Store flow blueprint configurations in version control
+5. **Testing**: Test flow blueprintes thoroughly before production use
+6. **Documentation**: Document flow blueprint purposes and requirements
 
 ## Template Examples
 

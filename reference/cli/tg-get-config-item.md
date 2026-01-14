@@ -41,7 +41,7 @@ $ tg-get-config-item -k flows.default
 {
   "key": "flows.default",
   "value": {
-    "class-name": "document-rag+graph-rag",
+    "blueprint-name": "document-rag+graph-rag",
     "description": "Default processing flow",
     "interfaces": {
       "agent": {
@@ -160,8 +160,8 @@ tg-get-config-item -k flows.default
 # Get specific flow
 tg-get-config-item -k flows.production
 
-# Get flow class definition
-tg-get-config-item -k flow-classes.document-rag
+# Get flow blueprint definition
+tg-get-config-item -k flow-blueprintes.document-rag
 ```
 
 ### Prompt Templates

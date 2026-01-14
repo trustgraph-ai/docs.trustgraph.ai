@@ -48,7 +48,7 @@ TrustGraph's processing architecture is built around **processors** that consume
 **Key concepts:**
 - **Processors** - Python classes that handle data transformation
 - **Schemas** - Pulsar message formats defining data structures
-- **Flow classes** - JSON configurations wiring processors together
+- **Flow blueprintes** - JSON configurations wiring processors together
 - **Prompts** - LLM instructions for extraction and transformation
 
 **Example use cases:**
@@ -62,8 +62,8 @@ TrustGraph's processing architecture is built around **processors** that consume
 A custom processing pipeline consists of three components:
 
 1. **Processors** - Transform data (e.g., `cyber-extract`, `stix-load`)
-2. **Flow class** - Defines how processors connect via queues
-3. **Initialization** - Sets up prompts and flow classes at startup
+2. **Flow blueprint** - Defines how processors connect via queues
+3. **Initialization** - Sets up prompts and flow blueprintes at startup
 
 ```
 Document → cyber-extract → STIX → stix-load → Triples + Entities → Graph
@@ -309,9 +309,9 @@ Text:
 
 ## Step 5: Create Flow Class Definition
 
-Flow classes wire processors together via queues.
+Flow blueprintes wire processors together via queues.
 
-Create `stix-flow-class.json`:
+Create `stix-flow-blueprint.json`:
 
 ```json
 {
@@ -353,7 +353,7 @@ Create `stix-flow-class.json`:
 
 ## Step 6: Create Initialization Script
 
-Initialize prompts and flow class at startup.
+Initialize prompts and flow blueprint at startup.
 
 Create `init_cyberthreat.py`:
 
@@ -381,8 +381,8 @@ def initialize():
             value=json.dumps(prompt_data)
         )
 
-    # Load flow class
-    with open("stix-flow-class.json") as f:
+    # Load flow blueprint
+    with open("stix-flow-blueprint.json") as f:
         flow_class = json.load(f)
 
     api.flow().put_class(
@@ -482,7 +482,7 @@ docker-compose up -d
 Wait for initialization:
 
 ```bash
-tg-show-flow-classes
+tg-show-flow-blueprintes
 ```
 
 Start a flow instance:

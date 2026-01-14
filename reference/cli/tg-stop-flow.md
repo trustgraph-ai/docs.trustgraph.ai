@@ -177,7 +177,7 @@ done
 - [`tg-start-flow`](tg-start-flow) - Start a new flow instance
 - [`tg-show-flows`](tg-show-flows) - List active flows
 - [`tg-show-flow-state`](tg-show-flow-state) - Check detailed flow status
-- [`tg-show-flow-classes`](tg-show-flow-classes) - List available flow classes
+- [`tg-show-flow-blueprintes`](tg-show-flow-blueprintes) - List available flow blueprintes
 
 ## API Integration
 

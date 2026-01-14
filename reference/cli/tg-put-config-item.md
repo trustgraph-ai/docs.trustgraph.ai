@@ -104,7 +104,7 @@ tg-put-config-item -k settings.timeout -v 60
 # Create flow configuration file
 cat > new-flow.json << EOF
 {
-  "class-name": "custom-flow",
+  "blueprint-name": "custom-flow",
   "description": "Custom processing flow",
   "interfaces": {
     "agent": {

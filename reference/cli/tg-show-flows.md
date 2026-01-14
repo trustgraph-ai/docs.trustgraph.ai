@@ -117,8 +117,8 @@ Use this command to discover available services and their queue names:
 
 ### Flow-Hosted Request/Response
 ```
-non-persistent://tg/request/{service}:{flow-class}
-non-persistent://tg/response/{service}:{flow-class}
+non-persistent://tg/request/{service}:{flow-blueprint}
+non-persistent://tg/response/{service}:{flow-blueprint}
 ```
 
 ### Flow-Hosted Fire-and-Forget
@@ -172,7 +172,7 @@ If a flow has no configurable parameters, the parameters field is omitted from t
 
 - [`tg-start-flow`](tg-start-flow) - Start a new flow instance with parameters
 - [`tg-stop-flow`](tg-stop-flow) - Stop a running flow
-- [`tg-show-flow-classes`](tg-show-flow-classes) - List available flow classes and their parameters
+- [`tg-show-flow-blueprintes`](tg-show-flow-blueprintes) - List available flow blueprintes and their parameters
 - [`tg-show-parameter-types`](tg-show-parameter-types) - View parameter type definitions
 - [`tg-show-flow-state`](tg-show-flow-state) - Show detailed flow status
 - [`tg-show-config`](tg-show-config) - Show complete system configuration
@@ -224,7 +224,7 @@ tg-show-flows | grep "graph-rag request"
 
 ### Flow Information
 - **id**: Unique flow instance identifier
-- **class**: Flow class name used to create the instance
+- **class**: Flow blueprint name used to create the instance
 - **desc**: Human-readable flow description
 - **parameters**: Configured parameter values with descriptions (new in v1.4)
 - **queue**: Service interfaces and their Pulsar queue names
@@ -235,7 +235,7 @@ Queue names indicate:
 - **Tenant**: Usually `tg`
 - **Namespace**: `request`, `response`, or `flow`
 - **Service**: The specific service name
-- **Flow Identifier**: Either flow class or flow ID
+- **Flow Identifier**: Either flow blueprint or flow ID
 
 ## Best Practices
 

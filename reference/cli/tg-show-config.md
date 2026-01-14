@@ -49,7 +49,7 @@ Version: 42
 {
     "flows": {
         "default": {
-            "class-name": "document-rag+graph-rag",
+            "blueprint-name": "document-rag+graph-rag",
             "description": "Default processing flow",
             "interfaces": {
                 "agent": {
@@ -83,7 +83,7 @@ Version: 42
 
 ### Flow Definitions
 Flow configurations showing:
-- **class-name**: The flow class being used
+- **blueprint-name**: The flow blueprint being used
 - **description**: Human-readable flow description  
 - **interfaces**: Pulsar queue names for each service
 
@@ -137,7 +137,7 @@ Exception: Unauthorized
 
 ## Related Commands
 
-- [`tg-put-flow-class`](tg-put-flow-class) - Update flow class definitions
+- [`tg-put-flow-blueprint`](tg-put-flow-blueprint) - Update flow blueprint definitions
 - [`tg-show-flows`](tg-show-flows) - List active flows
 - [`tg-set-prompt`](tg-set-prompt) - Configure prompt templates
 - [`tg-set-token-costs`](tg-set-token-costs) - Configure token costs

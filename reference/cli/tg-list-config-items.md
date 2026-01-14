@@ -161,7 +161,7 @@ done
 ### Flows
 Flow-related configurations:
 - `flows.<flow-id>` - Individual flow definitions
-- `flow-classes.<class-name>` - Flow class templates
+- `flow-blueprintes.<blueprint-name>` - Flow blueprint templates
 
 ### Prompts
 AI prompt templates:

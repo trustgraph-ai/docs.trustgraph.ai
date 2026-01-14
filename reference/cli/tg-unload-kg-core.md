@@ -337,5 +337,5 @@ tg-load-kg-core --id "essential-core" --flow-id "slow-flow"
 
 # Or restart the flow
 tg-stop-flow -i "slow-flow"
-tg-start-flow -n "flow-class" -i "slow-flow" -d "Restarted flow"
+tg-start-flow -n "flow-blueprint" -i "slow-flow" -d "Restarted flow"
 ```

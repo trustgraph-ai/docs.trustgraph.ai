@@ -210,7 +210,7 @@ tg-start-flow -n document-rag -i doc-rag -d "Document RAG"
 
 - Go to the 'Flows' page
 - Click 'Create'
-- Select the flow class 'Document RAG'
+- Select the flow blueprint 'Document RAG'
 - Set the ID: doc-rag
 - Set the description: Document RAG
 - Click 'Create'

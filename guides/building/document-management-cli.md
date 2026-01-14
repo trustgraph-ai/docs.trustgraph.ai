@@ -54,9 +54,9 @@ Flows are persistent processing workflows that run continuously, monitoring
 queues and processing data as it arrives. Each flow is launched from a flow
 class definition, which provides the blueprint for the flow.
 
-**Discovering available flow classes:**
+**Discovering available flow blueprintes:**
 
-Use `tg-show-flow-classes` to see what flow classes are available:
+Use `tg-show-flow-blueprintes` to see what flow blueprintes are available:
 
 ```
 +-------------+-----------------------------------------------------------------------------------------------------------+
@@ -86,12 +86,12 @@ Use `tg-show-flow-classes` to see what flow classes are available:
 +-------------+-----------------------------------------------------------------------------------------------------------+
 ```
 
-Flow classes define different processing capabilities - choose the one that matches your needs.
+Flow blueprintes define different processing capabilities - choose the one that matches your needs.
 
 **Managing flow instances:**
 - `tg-show-flows` - List running flow instances
 - `tg-show-flow-state -i <flow-id>` - View flow execution state and status
-- `tg-start-flow -n <flow-class> -i <flow-id> -d <description>` - Start a flow instance from a flow class
+- `tg-start-flow -n <flow-blueprint> -i <flow-id> -d <description>` - Start a flow instance from a flow blueprint
 - `tg-stop-flow -i <flow-id>` - Stop a running flow instance
 
 Example output from `tg-show-flows`:
@@ -130,25 +130,25 @@ tg-stop-flow -i my-doc-flow
 
 **Managing flow definitions:**
 
-Flow class definitions are JSON configurations that specify the processing components, parameters, and queue routing for flows.
+Flow blueprint definitions are JSON configurations that specify the processing components, parameters, and queue routing for flows.
 
-- `tg-get-flow-class -n <flow-class>` - Retrieve flow class configuration as JSON
-- `tg-put-flow-class -n <flow-class> -c '<json>'` - Create or update a flow class definition
-- `tg-delete-flow-class -n <flow-class>` - Remove a flow class definition
+- `tg-get-flow-blueprint -n <flow-blueprint>` - Retrieve flow blueprint configuration as JSON
+- `tg-put-flow-blueprint -n <flow-blueprint> -c '<json>'` - Create or update a flow blueprint definition
+- `tg-delete-flow-blueprint -n <flow-blueprint>` - Remove a flow blueprint definition
 
-Example - export a flow class definition:
+Example - export a flow blueprint definition:
 ```bash
-tg-get-flow-class -n everything > everything-flow.json
+tg-get-flow-blueprint -n everything > everything-flow.json
 ```
 
-Example - create or update a flow class:
+Example - create or update a flow blueprint:
 ```bash
-tg-put-flow-class -n my-custom-flow -c "$(cat my-flow-definition.json)"
+tg-put-flow-blueprint -n my-custom-flow -c "$(cat my-flow-definition.json)"
 ```
 
-Example - delete a flow class:
+Example - delete a flow blueprint:
 ```bash
-tg-delete-flow-class -n old-flow-class
+tg-delete-flow-blueprint -n old-flow-blueprint
 ```
 
 ## Document library

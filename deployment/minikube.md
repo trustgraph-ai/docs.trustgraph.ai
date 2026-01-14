@@ -485,7 +485,7 @@ Phase 2: Core Services
 [00:22] ⏳ Checking Flow Classes... (attempt 4)
 [00:35] ⏳ Checking Flow Classes... (attempt 5)
 [00:38] ⏳ Checking Flow Classes... (attempt 6)
-[00:38] ✓ Flow Classes: Found 9 flow class(es)
+[00:38] ✓ Flow Classes: Found 9 flow blueprint(es)
 [00:38] ⏳ Checking Flows...
 [00:38] ✓ Flows: Flow manager responding (1 flow(s))
 [00:38] ⏳ Checking Prompts...

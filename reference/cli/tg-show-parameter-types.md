@@ -6,7 +6,7 @@ review_date: 2026-04-26
 
 # tg-show-parameter-types
 
-Shows all defined parameter types used in flow classes.
+Shows all defined parameter types used in flow blueprintes.
 
 ## Synopsis
 
@@ -16,9 +16,9 @@ tg-show-parameter-types [options]
 
 ## Description
 
-The `tg-show-parameter-types` command displays all parameter type definitions configured in TrustGraph. Parameter types define the schema and constraints for parameters that can be used in flow class definitions, including data types, default values, valid enums, and validation rules.
+The `tg-show-parameter-types` command displays all parameter type definitions configured in TrustGraph. Parameter types define the schema and constraints for parameters that can be used in flow blueprint definitions, including data types, default values, valid enums, and validation rules.
 
-Parameter types provide a centralized way to define reusable parameter schemas that ensure consistency across flow classes.
+Parameter types provide a centralized way to define reusable parameter schemas that ensure consistency across flow blueprintes.
 
 ## Options
 
@@ -180,7 +180,7 @@ Parameter types are stored in the configuration system with type `parameter-type
 
 ## Related Commands
 
-- [`tg-show-flow-classes`](tg-show-flow-classes) - Show flow classes and their parameters
+- [`tg-show-flow-blueprintes`](tg-show-flow-blueprintes) - Show flow blueprintes and their parameters
 - [`tg-start-flow`](tg-start-flow) - Start a flow with parameter values
 - [`tg-show-flows`](tg-show-flows) - Show active flows and their parameter settings
 - [`tg-put-config-item`](tg-put-config-item) - Create or update parameter type definitions
@@ -203,7 +203,7 @@ tg-put-config-item -t parameter-types -k custom-param -v '{"type": "string", "de
 
 ## Parameter Usage in Flow Classes
 
-Flow classes reference parameter types in their definitions:
+Flow blueprintes reference parameter types in their definitions:
 
 ```json
 {
@@ -244,5 +244,5 @@ tg-start-flow -n document-processor -i my-flow -d "Processing" \
 ## See Also
 
 - [Parameter Configuration Reference](../configuration/parameters) - Detailed parameter type schema
-- [Flow Class Configuration](../configuration/flow-classes) - Using parameters in flow classes
+- [Flow Class Configuration](../configuration/flow-blueprintes) - Using parameters in flow blueprintes
 - [Config API](../apis/api-config) - Managing parameter type definitions
