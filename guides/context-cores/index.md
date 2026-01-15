@@ -1,5 +1,5 @@
 ---
-title: Introduction to Context Cores
+title: Working with Context Cores
 parent: Common knowledge management tasks
 grand_parent: How-to Guides
 nav_order: 5
@@ -320,8 +320,6 @@ First, ensure the Knowledge Cores screen is enabled in Settings:
 - Find **Knowledge Cores** in the feature list
 - Make sure it is enabled (checked)
 
-#### View the Core
-
 Once the feature is enabled, you'll see **Knowledge Cores** in the sidebar:
 
 - Select **Knowledge Cores** from the sidebar
@@ -353,6 +351,117 @@ This displays all available cores with their metadata:
 ```
 https://trustgraph.ai/doc/readme-cats
 ```
+
+### Step 8: Download the Knowledge Core
+
+Once processing is complete, you can download the core as a file for storage or sharing.
+
+#### Workbench
+
+To download a core from the Workbench:
+
+- Make sure you are on the **Knowledge Cores** page
+- Find the core in the table (i.e. the README.cats core)
+- Select the core in the table by clicking the row
+- Click the download button/icon for that core at the bottom of the screen
+- The core will download as a file (typically with `.core` extension)
+- Save the file to your local system
+
+<img src="download-core.png" alt="Download knowledge core"/>
+
+The downloaded file contains:
+- All knowledge graph edges and relationships
+- Graph schema information
+- Graph embeddings
+- Metadata about the core
+
+This file can be shared with others, stored in version control, or uploaded
+to different TrustGraph instances.
+
+#### Command-line
+
+To download a core using the CLI, you need the core ID from the previous step:
+
+```bash
+tg-get-kg-core \
+  --id https://trustgraph.ai/doc/readme-cats \
+  --output readme-cats.core
+```
+
+It will report some record counts.  These are batch counts - these are
+counts of record batches, so don't be too concerned if the numbers appear
+small.
+
+```
+Got: 2 triple, 1 GE messages.
+```
+
+This saves the core to the specified file. You can verify the download:
+
+```bash
+ls -lh readme-cats.core
+```
+
+The file contains the complete knowledge core in msgpack format.  This can
+be dumped out in JSON format.  The file format is somewhat internal to
+TrustGraph so don't be too concerned if it doesn't make sense.
+
+```
+tg-dump-msgpack -i readme-cats.core
+```
+
+### Step 9: Upload the Knowledge Core
+
+Now that you have a core file, you can upload it to make it available in the knowledge management service. Once uploaded, the core is not "online" for retrieval but available to be loaded into retrieval stores.
+
+#### Workbench
+
+To upload a core file using the Workbench:
+
+- Go to the **Knowledge Cores** page
+- Click the **Upload** button
+- Enter a unique ID for the core, enter `https://trustgraph.ai/doc/cats-copy`
+- Select the core file you previously downloaded (i.e. `readme-cats.core`)
+- The core will be uploaded to the knowledge management service
+- Once complete, the core appears in the Knowledge Cores table
+
+You should now have two identical copies of the core.
+
+<img src="upload-core.png" alt="Upload knowledge core"/>
+
+After uploading, the core is stored in the system but not yet available for querying. You'll need to load it (Step 10) to make it available for GraphRAG queries.
+
+<img src="knowledge-cores-2.png" alt="Upload knowledge core"/>
+
+#### Command-line
+
+To upload a core using the CLI:
+
+```bash
+tg-put-kg-core \
+  --id https://trustgraph.ai/doc/readme-cats \
+  --input readme-cats.core
+```
+
+The command will report progress as it uploads:
+
+```
+Sent: 2 triple, 1 GE messages.
+```
+
+Verify the core was uploaded by listing all cores:
+
+```bash
+tg-show-kg-cores
+```
+
+You should see your uploaded core in the list:
+
+```
+https://trustgraph.ai/doc/readme-cats
+```
+
+**Note:** Uploading a core makes it available in the knowledge management service, but doesn't automatically load it into retrieval stores. The core is "online" but not yet queryable.
 
 ### API Integration
 
