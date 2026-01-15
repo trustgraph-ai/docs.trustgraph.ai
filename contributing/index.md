@@ -12,6 +12,7 @@ Welcome! We're glad you're interested in contributing to TrustGraph. This sectio
 ## How to Contribute
 
 - **[Contributing Guidelines](contributing)** - How to contribute code, documentation, and more
+- **[Documentation Guidelines](documentation-guidelines)** - Standards for writing documentation
 - **[Code of Conduct](code-of-conduct)** - Community standards and expectations
 - **[Developer's Guide](developer)** - Set up your development environment
 - **[Development Guide](development-guide)** - Development workflows and best practices

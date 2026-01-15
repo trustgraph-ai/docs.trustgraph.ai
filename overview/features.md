@@ -10,7 +10,7 @@ guide_description: Complete overview of TrustGraph features and platform capabil
 guide_difficulty: beginner
 guide_time: 15 min
 guide_emoji: ⚡
-guide_banner: /../features.jpg
+guide_banner: features.jpg
 guide_labels:
   - Features
   - Capabilities

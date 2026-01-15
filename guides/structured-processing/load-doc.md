@@ -116,7 +116,7 @@ tg-add-library-document cities_data.pdf \
 Use the Workbench to create a new flow on the Flows page.
 
 Select 'Create', give your flow an ID e.g. `object-extraction` and
-select the `object-extract` flow class.  Give it a helpful description
+select the `object-extract` flow blueprint.  Give it a helpful description
 e.g. `Object extraction`.
 
 ## Step 3: Launch Document Processing

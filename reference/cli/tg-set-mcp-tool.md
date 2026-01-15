@@ -6,178 +6,70 @@ review_date: 2026-05-31
 
 # tg-set-mcp-tool
 
+Configures and registers MCP (Model Context Protocol) tools in TrustGraph.
+
 ## Synopsis
 
-```
-tg-set-mcp-tool [OPTIONS] --id ID --tool-url URL
+```bash
+tg-set-mcp-tool --id ID --tool-url URL [options]
 ```
 
 ## Description
 
-The `tg-set-mcp-tool` command configures and registers MCP (Model Context Protocol) tools in the TrustGraph system. MCP tools are external services that follow the Model Context Protocol specification and can be integrated with TrustGraph agents.
-
-This command stores MCP tool configurations in the 'mcp' configuration group with:
-- **id**: Unique identifier for the tool
-- **remote-name**: Name used by the MCP server (defaults to id if not specified)
-- **url**: MCP server endpoint URL
-
-Once configured, MCP tools can be referenced by agent tools using the 'mcp-tool' type via the `tg-set-tool` command.
+The `tg-set-mcp-tool` command configures MCP tool connections that can be integrated with TrustGraph agents. MCP tools are external services following the Model Context Protocol specification.
 
 ## Options
 
-- `-u, --api-url URL`
-  - TrustGraph API URL to connect to
-  - Default: `http://localhost:8088/` (or `TRUSTGRAPH_URL` environment variable)
-  - Should point to a running TrustGraph API instance
+### Required Arguments
 
-- `-i, --id ID`
-  - **Required**: Unique identifier for the MCP tool
-  - Used to reference the tool in agent configurations
-  - Must be unique within the MCP tool namespace
+| Option | Description |
+|--------|-------------|
+| `--id ID` | Unique identifier for the MCP tool |
+| `--tool-url URL` | MCP server endpoint URL |
 
-- `-r, --remote-name NAME`
-  - Optional: Name used by the MCP server
-  - Defaults to the value of `--id` if not specified
-  - Useful when the MCP server expects a different name than the local identifier
+### Optional Arguments
 
-- `--tool-url URL`
-  - **Required**: MCP server endpoint URL
-  - Should point to a running MCP server that implements the Model Context Protocol
-  - Must be a valid HTTP/HTTPS URL
-
-- `-h, --help`
-  - Show help message and exit
+| Option | Default | Description |
+|--------|---------|-------------|
+| `-u, --api-url URL` | `$TRUSTGRAPH_URL` or `http://localhost:8088/` | TrustGraph API URL |
+| `-t, --token TOKEN` | `$TRUSTGRAPH_TOKEN` | Authentication token |
+| `-r, --remote-name NAME` | Same as `--id` | Name used by the MCP server |
 
 ## Examples
 
-### Basic MCP Tool Configuration
-
-Register a weather MCP tool:
+### Configure MCP Tool
 ```bash
 tg-set-mcp-tool --id weather --tool-url "http://localhost:3000/weather"
 ```
 
-### MCP Tool with Custom Remote Name
-
-Register a calculator tool with a different remote name:
+### With Remote Name
 ```bash
-tg-set-mcp-tool --id calculator --remote-name calc-service --tool-url "http://mcp-tools.example.com/calc"
+tg-set-mcp-tool \
+  --id calc \
+  --tool-url "http://mcp-server:3000/calculator" \
+  --remote-name "calculator-service"
 ```
 
-### Custom API URL
-
-Configure MCP tool on a specific TrustGraph instance:
+### Using Custom API
 ```bash
-tg-set-mcp-tool -u http://trustgraph.example.com:8088/ \
-  --id file-reader --tool-url "http://localhost:4000/files"
+tg-set-mcp-tool \
+  --id search \
+  --tool-url "http://search-mcp:3000" \
+  -u http://production:8088/
 ```
 
-### Remote MCP Server
+## Environment Variables
 
-Configure tool pointing to a remote MCP server:
-```bash
-tg-set-mcp-tool --id search-engine \
-  --tool-url "https://mcp-services.example.com/search" \
-  --remote-name web-search
-```
-
-## Integration with Agent Tools
-
-After configuring an MCP tool, it can be used by agents through the `tg-set-tool` command:
-
-```bash
-# First, configure the MCP tool
-tg-set-mcp-tool --id weather --tool-url "http://localhost:3000/weather"
-
-# Then, create an agent tool that uses the MCP tool
-tg-set-tool --id weather-lookup --name "Weather Lookup" \
-  --type mcp-tool --mcp-tool weather \
-  --description "Get weather information for a location" \
-  --argument location:string:"Location to query" \
-  --argument units:string:"Temperature units (C/F)"
-```
-
-## Configuration Storage
-
-MCP tool configurations are stored in the TrustGraph configuration system under the 'mcp' type with the following JSON structure:
-
-```json
-{
-  "remote-name": "weather-service",
-  "url": "http://localhost:3000/weather"
-}
-```
-
-## MCP Protocol Requirements
-
-The MCP tool URL should point to a server that implements the Model Context Protocol specification. The server should:
-
-1. Accept HTTP POST requests with MCP-compliant message format
-2. Return responses in the expected MCP format
-3. Handle authentication and authorization as needed
-4. Provide proper error handling and status codes
-
-## Error Handling
-
-The command handles various error conditions:
-
-- **Invalid URL format**: If the tool URL is malformed
-- **API connection errors**: If the TrustGraph API is unavailable
-- **Authentication errors**: If API access is denied
-- **Configuration errors**: If the tool configuration cannot be stored
-
-Common error scenarios:
-```bash
-# Invalid tool URL
-tg-set-mcp-tool --id test --tool-url "not-a-valid-url"
-# Output: Exception: [URL validation error]
-
-# API not available
-tg-set-mcp-tool --id test --tool-url "http://localhost:3000" -u http://invalid-host:8088/
-# Output: Exception: [Connection error details]
-
-# Missing required arguments
-tg-set-mcp-tool --id test
-# Output: Exception: Must specify --tool-url for MCP tool
-```
-
-## Verification
-
-After configuring an MCP tool, verify it was stored correctly:
-
-```bash
-# List all MCP tools
-tg-show-mcp-tools
-
-# Check if specific tool exists
-tg-show-mcp-tools | grep -A 5 "weather"
-```
-
-## Best Practices
-
-1. **Use descriptive IDs**: Choose clear, descriptive identifiers for MCP tools
-2. **Test connectivity**: Verify the MCP server is accessible before configuration
-3. **Document tools**: Keep track of MCP tool purposes and configurations
-4. **Monitor health**: Regularly check that MCP servers are responding correctly
-5. **Version control**: Track MCP tool configuration changes
-
-## Security Considerations
-
-- Ensure MCP server URLs use HTTPS in production environments
-- Validate that MCP servers implement proper authentication
-- Review MCP tool permissions and capabilities
-- Monitor MCP tool usage and access patterns
+- `TRUSTGRAPH_URL`: Default API URL
+- `TRUSTGRAPH_TOKEN`: Default authentication token
 
 ## Related Commands
 
-- [`tg-show-mcp-tools`](tg-show-mcp-tools) - Display configured MCP tools
-- [`tg-delete-mcp-tool`](tg-delete-mcp-tool) - Remove MCP tool configuration
-- [`tg-invoke-mcp-tool`](tg-invoke-mcp-tool) - Test MCP tool functionality
-- [`tg-set-tool`](tg-set-tool) - Configure agent tools that use MCP tools
-- [`tg-show-tools`](tg-show-tools) - Display all agent tools
+- [`tg-show-mcp-tools`](tg-show-mcp-tools) - List MCP tool configurations
+- [`tg-delete-mcp-tool`](tg-delete-mcp-tool) - Remove MCP tool
+- [`tg-invoke-mcp-tool`](tg-invoke-mcp-tool) - Test MCP tools
+- [`tg-set-tool`](tg-set-tool) - Configure agent tools that reference MCP tools
 
-## See Also
+## API Integration
 
-- Model Context Protocol Specification
-- TrustGraph Agent Tool Configuration
-- MCP Integration Guide
+This command uses the Configuration API to store MCP tool definitions in the 'mcp' configuration group.

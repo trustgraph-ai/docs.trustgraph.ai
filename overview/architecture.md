@@ -10,7 +10,7 @@ guide_description: System design, component relationships, data flow, and integr
 guide_difficulty: advanced
 guide_time: 30 min
 guide_emoji: 🏗️
-guide_banner: /../architecture.jpg
+guide_banner: architecture.jpg
 guide_labels:
   - Architecture
   - Components

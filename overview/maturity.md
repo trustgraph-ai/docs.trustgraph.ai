@@ -10,7 +10,7 @@ guide_description: Production readiness, feature stability, and deployment statu
 guide_difficulty: beginner
 guide_time: 10 min
 guide_emoji: 📊
-guide_banner: /../maturity.jpg
+guide_banner: maturity.jpg
 guide_labels:
   - Production
   - Stability

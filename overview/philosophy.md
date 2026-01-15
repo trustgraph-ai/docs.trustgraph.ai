@@ -10,7 +10,7 @@ guide_description: Design principles and philosophy behind TrustGraph's approach
 guide_difficulty: beginner
 guide_time: 10 min
 guide_emoji: 💭
-guide_banner: /../philosophy.jpg
+guide_banner: philosophy.jpg
 guide_labels:
   - Design
   - Principles

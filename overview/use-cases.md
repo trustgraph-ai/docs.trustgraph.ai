@@ -10,7 +10,7 @@ guide_description: Real-world applications from enterprise search to intelligent
 guide_difficulty: beginner
 guide_time: 15 min
 guide_emoji: 💼
-guide_banner: /../use-cases.jpg
+guide_banner: use-cases.jpg
 guide_labels:
   - Enterprise
   - Applications

@@ -10,7 +10,7 @@ guide_description: Decision guide to help you select the right deployment method
 guide_difficulty: beginner
 guide_time: 10 min
 guide_emoji: 🤔
-guide_banner: /../choosing-deployment.jpg
+guide_banner: choosing-deployment.jpg
 guide_labels:
   - Planning
   - Decision Guide

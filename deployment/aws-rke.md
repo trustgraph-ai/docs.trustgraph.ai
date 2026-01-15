@@ -11,7 +11,7 @@ guide_description: Production-ready RKE2 Kubernetes cluster on AWS with Bedrock 
 guide_difficulty: advanced
 guide_time: 2 - 5 hr
 guide_emoji: ☁️
-guide_banner: /../rke.png
+guide_banner: rke.png
 guide_labels:
   - AWS
   - Kubernetes

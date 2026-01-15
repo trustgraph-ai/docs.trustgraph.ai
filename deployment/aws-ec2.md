@@ -11,7 +11,7 @@ guide_description: Single AWS EC2 instance with Podman for development, testing,
 guide_difficulty: advanced
 guide_time: 2 - 5 hr
 guide_emoji: 🖥️
-guide_banner: /../aws-ec2.png
+guide_banner: aws-ec2.png
 guide_labels:
   - AWS
   - Podman

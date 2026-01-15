@@ -200,7 +200,7 @@ tg-start-flow -n graph-rag -i graph-rag -d "Graph RAG"
 
 - Go to the 'Flows' page
 - Click 'Create'
-- Select the flow class 'Graph RAG'
+- Select the flow blueprint 'Graph RAG'
 - Set the ID: graph-rag
 - Set the description: Graph RAG
 - Click 'Create'

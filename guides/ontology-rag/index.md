@@ -298,7 +298,7 @@ tg-start-flow -n onto-rag -i onto-rag -d "Ontology RAG"
 
 - Go to the 'Flows' page
 - Click 'Create'
-- Select the flow class 'Ontology RAG Only'
+- Select the flow blueprint 'Ontology RAG Only'
 - Set the ID: onto-rag
 - Set the description: Ontology RAG
 - Click 'Create'
