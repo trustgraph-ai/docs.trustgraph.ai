@@ -11,7 +11,7 @@ guide_description: Extract structured data using schemas and ontologies to defin
 guide_difficulty: intermediate
 guide_time: 45 min
 guide_emoji: 📋
-guide_banner: ontology-rag.png
+guide_banner: banner.jpg
 guide_labels:
   - RAG
   - Ontology

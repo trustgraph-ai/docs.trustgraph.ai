@@ -11,7 +11,7 @@ guide_description: Query documents using vector embeddings and semantic similari
 guide_difficulty: beginner
 guide_time: 30 min
 guide_emoji: 📄
-guide_banner: document-rag.png
+guide_banner: banner.jpg
 guide_labels:
   - RAG
   - Vector Search
