@@ -8,12 +8,12 @@ review_date: 2026-08-01
 
 # Reference Documentation
 
-**Technical specifications, API docs, and command references**
+This section contains technical reference materials for TrustGraph APIs, CLI commands, and specifications.
 
-## Quick Links
+**Getting started?** Visit [Overview](../overview/) or [How-to Guides](../guides/) instead.
 
 - [REST API Documentation](rest/) - HTTP API endpoints and specifications
-- [WebSocket API Documentation](websocket/) - WebSocket API specifications
+- [WebSocket API Documentation](websocket/) - WebSocket API reference
 - [CLI Reference](cli/) - Command-line interface reference
 - [SDL Reference](sdl) - Schema Definition Language specification
 - [Container Architecture](containers) - Docker container specifications
