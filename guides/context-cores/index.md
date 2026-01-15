@@ -10,7 +10,7 @@ guide_category_order: 4
 guide_description: Learn how to use cores to manage specialized knowledge domains and context
 guide_difficulty: intermediate
 guide_banner: banner.jpg
-guide_time: 10 min
+guide_time: 20 min
 guide_emoji: 🤖
 guide_labels:
   - Knowledge Cores
@@ -43,14 +43,32 @@ Context cores (also called knowledge cores) are a way of packaging the output of
 - **Knowledge graph schema information describing the nature of entities**
 - **Graph embeddings mapping graph entities to semantic vector space**
 
-<img style="max-width: 600px" src="context-cores.png" alt="Context core operations"/>
+<img src="context-cores.png" alt="Context core operations"/>
 
 Think of knowledge cores as self-contained "knowledge packages" that can be loaded, switched, and managed independently.
 
 ## How are they used
 
 Here's how cores are used:
-- In TrustGraph, if you run a flow with 
+- **Creation**: In TrustGraph, when you run a flow with core
+  extraction enabled, the information which goes into stores for
+  retrieval algorithms is also maintained as a context core in the
+  knowledge-management service.  There is one context core per
+  document processed.
+- **Download**: Once the processing has finished, the core can be downloaded
+  using the Workbench, CLI or APIs.  The core exists as a file which can be
+  stored or disk or shared with people.
+- **Upload**: The core file can be presented to a TrustGraph to be reload
+  to be loaded back into the knowledge-management service.  At this point
+  the information held in the core is online, but not retrievable.
+- **Load**: Loading a knowledge core transfers the information to stores,
+  in a form which is retrievable i.e. you can ask questions using GraphRAG.
+
+You can think of cores as having 3 states:
+- **Offline**: The information exists in a core file
+- **Online**: Loaded into the knowledge management core store
+- **Loaded**: Loaded into retrieval stores, ready for GraphRAG and agent
+  knowledge tasks.
 
 ## Why Use Knowledge Cores?
 
@@ -60,50 +78,7 @@ Knowledge cores help you:
 - **Improve RAG accuracy** - Queries use only relevant ontologies and context
 - **Switch contexts easily** - Load different knowledge cores for different use cases
 - **Share knowledge packages** - Export and import complete knowledge domains
-
-## Common Use Cases
-
-### Domain-Specific Applications
-
-When building applications for specific industries or fields:
-
-- Medical diagnosis systems using medical ontologies
-- Legal research tools with legal terminology
-- Scientific research platforms with domain-specific taxonomies
-
-### Multi-Tenant Systems
-
-When serving multiple clients with different knowledge needs:
-
-- Each client gets their own knowledge core
-- Data isolation between tenants
-- Customized ontologies per client
-
-### Development and Testing
-
-When developing and testing knowledge-based systems:
-
-- Production knowledge core for live data
-- Development core for testing new ontologies
-- Staging core for validation
-
-## Key Concepts
-
-### Core Isolation
-
-Each knowledge core maintains separate:
-- Graph storage (triples)
-- Vector embeddings
-- Ontology definitions
-- Configuration settings
-
-### Core Identification
-
-Knowledge cores are identified by a unique name. When making API calls, you specify which core to use.
-
-### Default Core
-
-If no core is specified, TrustGraph uses the "default" core. Most single-application deployments only need the default core.
+- **Control sharing** - knowledge cores can be handled differently depending on their sensitivity
 
 ## Managing Knowledge Cores
 
