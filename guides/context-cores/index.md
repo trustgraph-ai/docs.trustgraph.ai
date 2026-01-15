@@ -152,7 +152,7 @@ We'll create an 'intelligence' collection:
 #### Command-line
 
 ```
-tg-set-collection -n Intelligence -d 'Intelligence analysis' intelligence
+tg-set-collection -n Cats -d 'Cat information' cats
 ```
 
 #### Workbench
@@ -160,9 +160,9 @@ tg-set-collection -n Intelligence -d 'Intelligence analysis' intelligence
 - Go to the 'Library' page
 - Select the 'Collections' tab
 - Click 'Create Collection'
-- Set the ID: intelligence
-- Set the name: Intelligence
-- Set the description to: Intelligence analysis
+- Set the ID: cats
+- Set the name: Cats
+- Set the description to: Cat information
 - Click 'Submit'
 
 ### Step 3: Create the Flow
@@ -170,7 +170,13 @@ tg-set-collection -n Intelligence -d 'Intelligence analysis' intelligence
 A flow describes the collection of processing operations.  We're going
 to create a single flow for Graph RAG processing.
 
-We'll create a 'graph-rag' flow:
+To create context cores, you need to be running a flow which contains the
+**kg-store** processor.  The system ships two flow blueprints that
+contain core creation: `everything` and `document-rag+graph-rag+kgcore`.
+The system starts up with a single flow `default` based on the `everything`
+blueprint, so that flow is able to do core building.
+
+We'll create a `core-building` flow.
 
 #### Command-line
 
@@ -178,16 +184,29 @@ This command allows you to add parameters for LLM model, temperature etc.
 but we're just going to use the defaults:
 
 ```
-tg-start-flow -n graph-rag -i graph-rag -d "Graph RAG"
+tg-start-flow -n document-rag+graph-rag+kgcore -i core-building -d "Core building"
 ```
 
 #### Workbench
 
+Let's take a detour via the **Flow blueprints** page.  Go to the
+**Settings** page, and make sure **Flow blueprints** is selected on the
+feature list.
+
+Select **Flow blueprints** on the sidebar, and you'll see the
+blueprints table.  Blueprints provide processing patterns.
+
+<img src="flow-blueprints.png" alt="Flow blueprints table"/>
+
+The two flows `everything` and `document-rag+graph-rag+kgcore` have
+core creation in the description.
+
+To launch a flow:
 - Go to the 'Flows' page
 - Click 'Create'
-- Select the flow blueprint 'Graph RAG'
-- Set the ID: graph-rag
-- Set the description: Graph RAG
+- Select the flow blueprint 'GraphRAG + DocumentRAG + knowledge core creation'
+- Set the ID: core-building
+- Set the description: Core building
 - Click 'Create'
 
 ### Step 4: Submit the Document for Processing
@@ -197,17 +216,17 @@ This pushes the document into the flow input.
 #### Command-line
 
 This command submits the document for processing.  You need to specify
-the flow ID (`graph-rag`) and the document ID which was used when the
+the flow ID (`core-building`) and the document ID which was used when the
 document was added to the library in step 1.  The collection ID is
 that which was used to create the collection.
 Processing objects need an ID, and you can make up any string:
 
 ```
 tg-start-library-processing \
-    --flow-id graph-rag \
-    --document-id https://trustgraph.ai/doc/phantom-cargo \
-    --collection intelligence \
-    --processing-id urn:processing-02
+    --flow-id core-building \
+    --document-id https://trustgraph.ai/doc/readme-cats \
+    --collection cats \
+    --processing-id urn:processing-03
 ```
 
 #### Workbench
