@@ -237,16 +237,14 @@ top left.
 <img src="selection.png" alt="Selection widget"/>
 
 Click that to open the collection/flow selector, and select the
-Intelligence collection, and Graph RAG, both of which you created earlier.
-
-<img src="collection-selected.png" alt="Selection dialogue"/>
+Cats collection, and core-building, both of which you created earlier.
 
 You are ready to submit the document:
 
 - Go to the 'Library' page
-- Select the PHANTOM CARGO document so that the tick box is selected
+- Select the README.cats document so that the tick box is selected
 - Click 'Submit' at the bottom of the page
-- Change the Processing flow to GraphRAG
+- Change the Processing flow to **Core building**
 - Click Submit
 
 ### Step 5: Monitoring
