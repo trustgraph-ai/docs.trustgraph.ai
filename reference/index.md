@@ -12,14 +12,17 @@ This section contains technical reference materials for TrustGraph APIs, CLI com
 
 **Getting started?** Visit [Overview](../overview/) or [How-to Guides](../guides/) instead.
 
-- [REST API Documentation](rest/) - HTTP API endpoints and specifications
-- [WebSocket API Documentation](websocket/) - WebSocket API reference
-- [CLI Reference](cli/) - Command-line interface reference
-- [SDL Reference](sdl) - Schema Definition Language specification
-- [Container Architecture](containers) - Docker container specifications
-- [Build Custom Processors](extending) - Extend TrustGraph functionality
-- [Python Libraries](python-packages) - Python package documentation
-- [Configuration](configuration/) - System configuration reference
-- [Release Notes](changelog/) - Version history and changes
-- [Getting Help](../contributing/getting-help) - Support and community resources
-- [How-to Guides](../guides/) - Step-by-step guides for building with TrustGraph
+| Reference | Description |
+|-----------|-------------|
+| [REST API Documentation](apis/rest.html) | HTTP API endpoints and specifications |
+| [WebSocket API Documentation](apis/websocket.html) | WebSocket API reference |
+| [CLI Reference](cli/) | Reference for all command-line utilities |
+| [SDL Reference](sdl) | Schema Definition Language specification |
+| [Container architecture](containers) | Lists the docker/podman containers which make up the TrustGraph container distribution |
+| [Build Custom Processors](extending) | Extend TrustGraph functionality by adding custom processing |
+| [Python Libraries](python-packages) | Lists the Python packages which make up the TrustGraph package distribution |
+| [Configuration](configuration/) | Reference for all the configurable parts of a TrustGraph system |
+| [TrustGraph Release Notes](changelog/trustgraph) | TrustGraph version history and changes |
+| [Workbench Release Notes](changelog/workbench) | Workbench version history and changes |
+| [Getting Help](../contributing/getting-help) | Support and community resources |
+| [How-to Guides](../guides/) | Step-by-step guides for building with TrustGraph |
