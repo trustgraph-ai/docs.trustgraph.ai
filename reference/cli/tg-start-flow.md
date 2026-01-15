@@ -16,37 +16,40 @@ tg-start-flow -n CLASS_NAME -i FLOW_ID -d DESCRIPTION [options]
 
 ## Description
 
-The `tg-start-flow` command creates and starts a new processing flow instance based on a predefined flow blueprint. Flow blueprintes define the processing pipeline configuration, while flow instances are running implementations of those classes with specific identifiers.
+The `tg-start-flow` command creates and starts a new processing flow instance based on a predefined flow blueprint. Flow blueprints define the processing pipeline configuration, while flow instances are running implementations with specific identifiers.
 
-Once started, a flow provides endpoints for document processing, knowledge queries, and other TrustGraph services through its configured interfaces.
-
-**New in v1.4**: Flows can now be customized with configurable parameters that control LLM models, chunking behavior, and other processing settings.
+**New in v1.4**: Flows can be customized with configurable parameters that control LLM models, chunking behavior, and other processing settings.
 
 ## Options
 
 ### Required Arguments
 
-- `-n, --blueprint-name CLASS_NAME`: Name of the flow blueprint to instantiate
-- `-i, --flow-id FLOW_ID`: Unique identifier for the new flow instance
-- `-d, --description DESCRIPTION`: Human-readable description of the flow
+| Option | Description |
+|--------|-------------|
+| `-n, --blueprint-name CLASS` | Name of the flow blueprint to instantiate |
+| `-i, --flow-id FLOW_ID` | Unique identifier for the new flow instance |
+| `-d, --description DESC` | Human-readable description of the flow |
 
 ### Optional Arguments
 
-- `-u, --api-url URL`: TrustGraph API URL (default: `$TRUSTGRAPH_URL` or `http://localhost:8088/`)
+| Option | Default | Description |
+|--------|---------|-------------|
+| `-u, --api-url URL` | `$TRUSTGRAPH_URL` or `http://localhost:8088/` | TrustGraph API URL |
+| `-t, --token TOKEN` | `$TRUSTGRAPH_TOKEN` | Authentication token |
 
 ### Flow Parameters (New in v1.4)
 
-Parameters can be provided in three ways:
+| Option | Description |
+|--------|-------------|
+| `-p, --parameters JSON` | Flow parameters as JSON string |
+| `--parameters-file FILE` | Path to JSON file containing flow parameters |
+| `--param KEY=VALUE` | Individual parameter (can be used multiple times) |
 
-- `-p, --parameters JSON`: Flow parameters as JSON string (e.g., `'{"model": "gpt-4", "temp": "0.7"}'`)
-- `--parameters-file FILE`: Path to JSON file containing flow parameters
-- `--param KEY=VALUE`: Individual parameter as key=value pair (can be used multiple times)
-
-**Note**: All parameter values are stored as strings internally, regardless of their input format.
+**Note**: All parameter values are stored as strings internally.
 
 ## Examples
 
-### Start Basic Document Processing Flow
+### Start Basic Flow
 ```bash
 tg-start-flow \
   -n "document-rag+graph-rag" \
@@ -54,221 +57,46 @@ tg-start-flow \
   -d "Research document processing pipeline"
 ```
 
-### Start Custom Flow Class
+### Start with Parameters
+```bash
+tg-start-flow \
+  -n "document-rag+graph-rag" \
+  -i "custom-flow" \
+  -d "Custom flow with parameters" \
+  --param model=gpt-4 \
+  --param temperature=0.7 \
+  --param chunk-size=512
+```
+
+### Using Parameters File
 ```bash
 tg-start-flow \
   -n "medical-analysis" \
-  -i "medical-research-2024" \
-  -d "Medical research analysis for 2024 studies"
+  -i "medical-flow" \
+  -d "Medical document analysis" \
+  --parameters-file flow-config.json
 ```
 
-### Using Custom API URL
+### Using JSON Parameters
 ```bash
 tg-start-flow \
   -n "document-processing" \
-  -i "production-flow" \
-  -d "Production document processing" \
-  -u http://production:8088/
+  -i "prod-flow" \
+  -d "Production flow" \
+  -p '{"model": "gpt-4", "temp": "0.7"}'
 ```
-
-### Start Flow with Parameters (New in v1.4)
-
-#### Using Key=Value Pairs
-```bash
-tg-start-flow \
-  -n "document-rag+graph-rag" \
-  -i "custom-flow" \
-  -d "Customized processing with Claude" \
-  --param model=claude-3-opus \
-  --param temperature=0.5 \
-  --param chunk-size=2000
-```
-
-#### Using JSON String
-```bash
-tg-start-flow \
-  -n "document-rag+graph-rag" \
-  -i "custom-flow" \
-  -d "Customized processing" \
-  -p '{"model": "gpt-4", "temperature": "0.7", "chunk-size": "1500"}'
-```
-
-#### Using JSON File
-```bash
-# Create parameters file
-cat > flow-params.json <<EOF
-{
-  "model": "gpt-4",
-  "temperature": "0.7",
-  "chunk-size": "1500",
-  "embedding-model": "text-embedding-3-large"
-}
-EOF
-
-# Start flow with parameters file
-tg-start-flow \
-  -n "document-rag+graph-rag" \
-  -i "custom-flow" \
-  -d "Customized processing" \
-  --parameters-file flow-params.json
-```
-
-## Prerequisites
-
-### Flow Class Must Exist
-Before starting a flow, the flow blueprint must be available in the system:
-
-```bash
-# Check available flow blueprintes
-tg-show-flow-blueprintes
-
-# Upload a flow blueprint if needed
-tg-put-flow-blueprint -n "my-class" -f flow-definition.json
-```
-
-### System Requirements
-- TrustGraph API gateway must be running
-- Required processing components must be available
-- Sufficient system resources for the flow's processing needs
-
-## Flow Lifecycle
-
-1. **Flow Class Definition**: Flow blueprintes define processing pipelines
-2. **Flow Instance Creation**: `tg-start-flow` creates a running instance
-3. **Service Availability**: Flow provides configured service endpoints
-4. **Processing**: Documents and queries can be processed through the flow
-5. **Flow Termination**: Use `tg-stop-flow` to stop the instance
-
-## Error Handling
-
-### Flow Class Not Found
-```bash
-Exception: Flow blueprint 'invalid-class' not found
-```
-**Solution**: Check available flow blueprintes with `tg-show-flow-blueprintes` and ensure the class name is correct.
-
-### Flow ID Already Exists
-```bash
-Exception: Flow ID 'my-flow' already exists
-```
-**Solution**: Choose a different flow ID or stop the existing flow with `tg-stop-flow`.
-
-### Connection Errors
-```bash
-Exception: Connection refused
-```
-**Solution**: Verify the API URL and ensure TrustGraph is running.
-
-### Resource Errors
-```bash
-Exception: Insufficient resources to start flow
-```
-**Solution**: Check system resources and ensure required processing components are available.
-
-## Output
-
-On successful flow creation:
-```bash
-Flow 'research-flow' started successfully using class 'document-rag+graph-rag'
-```
-
-## Flow Configuration
-
-Once started, flows provide service interfaces based on their class definition. Common interfaces include:
-
-### Request/Response Services
-- **agent**: Interactive Q&A service
-- **graph-rag**: Graph-based retrieval augmented generation
-- **document-rag**: Document-based retrieval augmented generation
-- **text-completion**: LLM text completion
-- **embeddings**: Text embedding generation
-- **triples**: Knowledge graph queries
-
-### Fire-and-Forget Services
-- **text-load**: Text document loading
-- **document-load**: Document file loading
-- **triples-store**: Knowledge graph storage
 
 ## Environment Variables
 
 - `TRUSTGRAPH_URL`: Default API URL
-
-## Flow Parameters
-
-Flow parameters allow customization of flow behavior without modifying flow blueprint definitions. Common configurable parameters include:
-
-- **model**: LLM model selection (e.g., `gpt-4`, `claude-3-opus`, `mistral-large`)
-- **rag-model**: Separate model for RAG queries
-- **temperature**: LLM temperature for response randomness (0.0-2.0)
-- **chunk-size**: Text chunking size in characters
-- **embedding-model**: Model for generating embeddings
-
-### Parameter Defaults
-
-If parameters are not specified, flows use defaults from parameter type definitions. Use `tg-show-parameter-types` to view available parameters and their defaults.
-
-### Viewing Parameters for Flow Classes
-
-```bash
-# See what parameters a flow blueprint accepts
-tg-show-flow-blueprintes
-
-# View parameter type definitions
-tg-show-parameter-types
-```
+- `TRUSTGRAPH_TOKEN`: Default authentication token
 
 ## Related Commands
 
 - [`tg-stop-flow`](tg-stop-flow) - Stop a running flow
-- [`tg-show-flows`](tg-show-flows) - List active flows and their parameter settings
-- [`tg-show-flow-blueprintes`](tg-show-flow-blueprintes) - List available flow blueprintes and parameters
-- [`tg-show-parameter-types`](tg-show-parameter-types) - View parameter type definitions
-- [`tg-put-flow-blueprint`](tg-put-flow-blueprint) - Upload/update flow blueprint definitions
-- [`tg-show-flow-state`](tg-show-flow-state) - Check flow status
+- [`tg-show-flows`](tg-show-flows) - List all running flows
+- [`tg-show-flow-blueprints`](tg-show-flow-blueprints) - List available blueprints
 
 ## API Integration
 
-This command uses the [Flow API](../apis/api-flow) with the `start-flow` operation to create and start flow instances.
-
-## Use Cases
-
-### Development Environment
-```bash
-tg-start-flow \
-  -n "dev-pipeline" \
-  -i "dev-$(date +%Y%m%d)" \
-  -d "Development testing flow for $(date)"
-```
-
-### Research Projects
-```bash
-tg-start-flow \
-  -n "research-analysis" \
-  -i "climate-study" \
-  -d "Climate change research document analysis"
-```
-
-### Production Processing
-```bash
-tg-start-flow \
-  -n "production-pipeline" \
-  -i "prod-primary" \
-  -d "Primary production document processing pipeline"
-```
-
-### Specialized Processing
-```bash
-tg-start-flow \
-  -n "medical-nlp" \
-  -i "medical-trials" \
-  -d "Medical trial document analysis and extraction"
-```
-
-## Best Practices
-
-1. **Descriptive IDs**: Use meaningful flow IDs that indicate purpose and scope
-2. **Clear Descriptions**: Provide detailed descriptions for flow tracking
-3. **Resource Planning**: Ensure adequate resources before starting flows
-4. **Monitoring**: Use `tg-show-flows` to monitor active flows
-5. **Cleanup**: Stop unused flows to free up resources
-6. **Documentation**: Document flow purposes and configurations for team use
+This command uses the Flow Management API to create and start flow instances from blueprint definitions.
