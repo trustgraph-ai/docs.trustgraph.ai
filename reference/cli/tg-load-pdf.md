@@ -16,11 +16,11 @@ tg-load-pdf [options] file1.pdf [file2.pdf ...]
 
 ## Description
 
-The `tg-load-pdf` command loads PDF documents into TrustGraph by directing them to the PDF decoder service. The command extracts content, generates document metadata, and makes the documents available for processing by other TrustGraph services.
+The `tg-load-pdf` command is a low-level operation that loads PDF documents directly into the processing input queue. The command extracts content, generates document metadata, and makes the documents available for processing by other TrustGraph services.
 
 Each PDF is assigned a unique identifier based on its content hash, and comprehensive metadata can be attached including copyright information, publication details, and keywords.
 
-**Note**: Consider using `tg-add-library-document` followed by `tg-start-library-processing` for more comprehensive document management.
+**Note**: This command pushes documents straight into the processing input queue, bypassing the librarian service. Users are advised to use `tg-add-library-document` instead, which provides better document management, tracking, and processing control through the librarian service.
 
 ## Options
 
