@@ -18,6 +18,8 @@ tg-init-trustgraph [options]
 
 The `tg-init-trustgraph` command initializes the Apache Pulsar messaging system with the required tenant, namespaces, policies, and configuration needed for TrustGraph operation. This is a foundational setup command that must be run before TrustGraph can operate properly.
 
+**Note**: This command is intended for system initialization and deployment automation. End users should not need to run this command directly - it is typically executed during initial system setup or by deployment scripts.
+
 ## Options
 
 ### Optional Arguments
@@ -76,10 +78,6 @@ Each namespace is configured with appropriate retention policies for TrustGraph 
 ## Notes
 
 This command is typically run once during initial TrustGraph deployment. Re-running the command is safe and will update existing configurations without data loss.
-
-## Related Commands
-
-- [`tg-init-pulsar-manager`](tg-init-pulsar-manager) - Initialize Pulsar Manager
 
 ## API Integration
 
