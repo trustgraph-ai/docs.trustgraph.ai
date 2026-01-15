@@ -291,125 +291,70 @@ and cleared quickly.
 It can take many minutes or hours to process large documents or large document
 sets using GraphRAG extraction.
 
-### Step 6: Retrieval
+### Step 6: Check something is loaded
 
-Retrieval in Graph RAG consists of mapping the question to a set of candidate
-graph entities, and then following graph edges to create a subgraph, which
-is used as context with the LLM.
-
-#### Command-line
-
-```
-tg-invoke-graph-rag \
-    -f graph-rag -C intelligence \
-    -q 'What intelligence resources were using during the PHANTOM CARGO operation?'
-```
-
-Which should return a result like:
-
-```
-The intelligence resources used during the PHANTOM CARGO operation were:
-* SIGINT
-* MASINT
-* Electro-Optical HUMINT
-* FININT
-* AIS
-* synthetic aperture radar (SAR)
-* GPS coordinates
-```
+We'll check that the vector store has something loaded.
 
 #### Workbench
 
-- Ensure the correct collection and flow are selected in the selection widget
-- Navigate to the 'Assistant' page
-- Select 'Graph RAG' assistant
-- Enter the question: What intelligence resources were using during the PHANTOM CARGO operation?
-- Press 'Send' and wait for the answer
-
-### Step 7: Explore the knowledge graph
-
-The Workbench provides access to some more tools you can play with.
-
 - Select Vector search
-- The search box enter 'optical'
+- The search box enter 'cats'
 - Click 'Send'
 
 This executes a search in the vector store for graph entities which are listed
 along with the graph node description and the vector similarity score.
 The exact view may vary depending on the LLM model you are using and the
-entities discovered by it.
+entities discovered by it.  If you get some results it shows that
+loading has started.  If not, you'll need to work out why nothing loaded.
 
-<img src="vector-results.png" alt="Vector results table"/>
+### Step 7: View the Knowledge Core
 
-This is a list of graph nodes.  Clicking on an item moves to a node
-exploration view, showing graph nodes related to the selected node.
-Clicking on CSO-class optical reconnaissance satellite shows
-relationships:
+Now let's verify the context core has been created by viewing it in the Knowledge Cores screen.
 
-<img src="relationships.png" alt="Relationships view"/>
+#### Workbench
 
-Each row is a graph edge, on the left-hand side is the subject of the
-graph node, the middle term shows the predicate (relationship), and the
-right-hand side is the object (end node) of the relationship.
-On this view you can navigate from the graph node show to other nodes by
-clicking on the details.  Clicking on the 'subject of' relationship
-shows a long list of all 'subject of' relationships which is a common term.
+First, ensure the Knowledge Cores screen is enabled in Settings:
 
-<img src="relationships2.png" alt="Relationships view"/>
+- Go to the **Settings** page
+- Look at the **Features** section
+- Find **Knowledge Cores** in the feature list
+- Make sure it is enabled (checked)
 
-The 'subject of' relationship links discovered entities to the document
-from which they were taken.  The right-hand side entities represent the
-PHANTOM CARGO document itself.  Clicking that shows relationships, including
-a 'has type' showing that 'PHANTOM CARGO' is a 'digital document'.
+#### View the Core
 
-<img src="relationships3.png" alt="Relationships view"/>
+Once the feature is enabled, you'll see **Knowledge Cores** in the sidebar:
 
-Once you have an interesting node, you can click 'Graph view' to switch to
-a 3D graph view.  This is navigable.  Clicking a node shows a panel on the
-right-hand side allowing you to see node properties, along with controls
-to navigate relationships.  This adds further nodes to the graph.
+- Select **Knowledge Cores** from the sidebar
+- You should see a table listing the cores that have been created
+- Look for a core corresponding to your document (README.cats)
+- The table shows core ID, creation time, size, and status
 
-<img src="3d.png" alt="3D graph view"/>
+<img src="knowledge-cores.png" alt="Knowledge Cores screen"/>
 
-You can rotate the graph and navigate 3D space using the mouse /
-pointer controls.
+The core ID is derived from the document ID. If the core appears in the list, it means:
+- The flow successfully processed the document
+- The kg-store processor created the core
+- The core is now available for download or loading
 
-## GraphRAG vs. Other Approaches
+**Note:** knowledge cores are listed as soon as they start building.  You
+should check Grafana to determine when processing of a document has
+completed.
 
-| Aspect | Document RAG | Graph RAG | Ontology RAG |
-|--------|--------------|-----------|--------------|
-| **Retrieval** | Vector similarity | Graph relationships | Schema-based |
-| **Context** | Isolated chunks | Connected entities | Connected objects, properties and types |
-| **Best for** | Semantic search | Complex relationships | Complex relationships + precise types |
-| **Setup** | Simple | Simple | Complex |
-| **Speed** | Fast | Medium | Medium |
+#### Command-line
 
-**Use multiple approaches**: The processing flow defines the extraction
-and retrieval mechanisms, so you can use multiple approaches on the same
-data.
+You can also list cores using the CLI:
 
-## Next Steps
+```bash
+tg-show-kg-cores
+```
 
-### Explore Other RAG Types
+This displays all available cores with their metadata:
 
-- **[Ontology RAG](../ontology-rag)** - Use structured schemas for extraction
-
-### Advanced Features
-
-- **[Structured Processing](../structured-processing/)** - Extract typed objects
-- **[Agent Extraction](../agent-extraction)** - AI-powered extraction workflows
-- **[Object Extraction](../object-extraction)** - Domain-specific extraction
+```
+https://trustgraph.ai/doc/readme-cats
+```
 
 ### API Integration
 
-- **[Graph RAG API](../../reference/apis/api-graph-rag)** - API reference
-- **[CLI Reference](../../reference/cli/)** - Command-line tools
-- **[Examples](../../examples/)** - Code samples
-
-## Related Resources
-
-- **[Core Concepts](../../getting-started/concepts)** - Understanding embeddings and chunks
-- **[Vector Search](../../getting-started/concepts#vector-embeddings)** - How semantic search works
-- **[Deployment](../../deployment/)** - Scaling for production
-- **[Troubleshooting](../../deployment/troubleshooting)** - Common issues
+FIXME: Mention APIs
 
