@@ -16,6 +16,7 @@ This section contains technical reference materials for TrustGraph APIs, CLI com
 |-----------|-------------|
 | [REST API Documentation](apis/rest.html) | HTTP API endpoints and specifications |
 | [WebSocket API Documentation](apis/websocket.html) | WebSocket API reference |
+| [Python API Reference](apis/python) | Python library API documentation |
 | [CLI Reference](cli/) | Reference for all command-line utilities |
 | [SDL Reference](sdl) | Schema Definition Language specification |
 | [Container architecture](containers) | Lists the docker/podman containers which make up the TrustGraph container distribution |
