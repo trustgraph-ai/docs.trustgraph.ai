@@ -9,7 +9,7 @@ guide_category:
 guide_category_order: 0
 guide_description: Learn the fundamentals of knowledge graphs, triples, and RDF concepts
 guide_difficulty: beginner
-guide_banner: knowledge-graphs.jpg
+guide_banner: banner.jpg
 guide_time: 5 min
 guide_emoji: 🧠
 guide_labels:

@@ -7,11 +7,11 @@ review_date: 2026-08-01
 guide_category:
   - Common knowledge management tasks
 guide_category_order: 3
-guide_description: Query documents using vector embeddings and semantic similarity search
+guide_description: Query documents using vector embeddings and semantic similarity search using the Workbench
 guide_difficulty: beginner
-guide_time: 30 min
+guide_time: 20 min
 guide_emoji: 📄
-guide_banner: document-rag.png
+guide_banner: banner.jpg
 guide_labels:
   - RAG
   - Vector Search
@@ -115,45 +115,6 @@ which you can download at this URL:
 
 [https://raw.githubusercontent.com/trustgraph-ai/example-data/refs/heads/main/tracking/operation-phantom-cargo.md](https://raw.githubusercontent.com/trustgraph-ai/example-data/refs/heads/main/tracking/operation-phantom-cargo.md).
 
-You can load the document either through the command-line, or using the
-Workbench
-
-#### Command-line
-
-You can download the document:
-```
-wget -O phantom-cargo.md https://raw.githubusercontent.com/trustgraph-ai/example-data/refs/heads/main/tracking/operation-phantom-cargo.md
-```
-
-And use a command-line utility to load the document into the TrustGraph
-library:
-
-```
-tg-add-library-document \
-  --name "PHANTOM CARGO" \
-  --description "Intelligence report: Operation PHANTOM CARGO" \
-  --tags 'maritime,intelligence,cargo,grey arms' \
-  --id https://trustgraph.ai/doc/phantom-cargo \
-  --kind text/plain \
-  phantom-cargo.md
-```
-
-You can then see the document in the library:
-
-```
-$ tg-show-library-documents
-+-------+----------------------------------------------+
-| id    | https://trustgraph.ai/doc/phantom-cargo      |
-| time  | 2025-11-22 11:05:05                          |
-| title | PHANTOM CARGO                                |
-| kind  | text/plain                                   |
-| note  | Intelligence report: Operation PHANTOM CARGO |
-| tags  | maritime, intelligence, cargo, grey arms     |
-+-------+----------------------------------------------+
-```
-
-#### Workbench
-
 - Download [the document](https://raw.githubusercontent.com/trustgraph-ai/example-data/refs/heads/main/tracking/operation-phantom-cargo.md)
 - Go the 'Library' page
 - Click 'Upload documents'
@@ -174,14 +135,6 @@ into a single unit.  Retrieval operations operate across a single collection.
 
 We'll create an 'intelligence' collection:
 
-#### Command-line
-
-```
-tg-set-collection -n Intelligence -d 'Intelligence analysis' intelligence
-```
-
-#### Workbench
-
 - Go to the 'Library' page
 - Select the 'Collections' tab
 - Click 'Create Collection'
@@ -197,17 +150,6 @@ to create a single flow for Document RAG processing.
 
 We'll create a 'doc-rag' flow:
 
-#### Command-line
-
-This command allows you to add parameters for LLM model, temperature etc.
-but we're just going to use the defaults:
-
-```
-tg-start-flow -n document-rag -i doc-rag -d "Document RAG"
-```
-
-#### Workbench
-
 - Go to the 'Flows' page
 - Click 'Create'
 - Select the flow blueprint 'Document RAG'
@@ -218,24 +160,6 @@ tg-start-flow -n document-rag -i doc-rag -d "Document RAG"
 ### Step 4: Submit the Document for Processing
 
 This pushes the document into the flow input.
-
-#### Command-line
-
-This command submits the document for processing.  You need to specify
-the flow ID (`doc-rag`) and the document ID which was used when the
-document was added to the library in step 1.  The collection ID is
-that which was used to create the collection.
-Processing objects need an ID, and you can make up any string:
-
-```
-tg-start-library-processing \
-    --flow-id doc-rag \
-    --document-id https://trustgraph.ai/doc/phantom-cargo \
-    --collection intelligence \
-    --processing-id urn:processing-01
-```
-
-#### Workbench
 
 There is a selection widget top right of the screen with an database icon
 top left.
@@ -270,60 +194,11 @@ and cleared quickly.
 
 ### Step 6: Retrieval
 
-Presently, there is no Document RAG support in the workbench.
+Presently, there is no Document RAG query interface in the Workbench.
 
-#### Command-line
+For querying Document RAG using the command line, see the [Document RAG CLI Guide](../document-rag-cli/#step-6-query-with-document-rag).
 
-```
-tg-invoke-document-rag \
-    -f doc-rag -C intelligence \
-    -q 'What is the PHANTOM CARGO report about?'
-```
-
-Which should return a result like:
-
-```
-The PHANTOM CARGO report is about an operation that detected unusual shipping
-patterns involving a Dubai-based freight company, Meridian Logistics LLC. This
-company was moving containerized "agricultural equipment" on irregular
-schedules with inconsistent documentation between Limassol (Cyprus), Durban
-(South Africa), and Batumi (Georgia). The operation aimed to uncover a
-suspected arms trafficking network operating under the guise of legitimate
-trade, circumventing sanctions.
-```
-
-Retrieval in Document RAG consists of selecting some chunks based on semantic
-similarity to the question.  In this case, for a small report on a single
-topic, which produces a very small number of chunks.  The retrieval process is
-very likely to select all the chunks, and so the retrieval is going to be
-effective.
-
-An interesting experiment you might want to try is to try loading other
-documents into the collection, and using more complex questions - you should
-see Document RAG begin to become ineffective very quickly.
-
-The question:
-```
-tg-invoke-document-rag -f doc-rag -C intelligence -q 'Which organisation operated agents which observed the warehouse?'
-```
-provides the answer:
-```
-An AISE officer operating under commercial cover in Cyprus was tasked to
-establish visual observation of Meridian's warehouse facility.
-```
-
-But once more documents are loaded, the context gets overwhelmed with
-irrelevant chunks:
-
-```
-The provided context does not specify which organization operated the agents
-who observed the warehouse. It only mentions that an asset, a disgruntled
-Meridian logistics coordinator in Cyprus, provided pre-encrypted shipping
-schedules.
-```
-
-Document RAG is useful for small amounts of data
-and quick demos but not useful for more complex scenarios.
+The CLI guide also includes examples demonstrating Document RAG's limitations with complex queries and multiple documents.
 
 ## Document RAG vs. Other Approaches
 
@@ -341,26 +216,16 @@ data.
 
 ## Next Steps
 
+### Using the CLI
+
+For command-line workflows, see the [Document RAG CLI Guide](../document-rag-cli/).
+
 ### Explore Other RAG Types
 
-- **[Graph RAG](../graph-rag)** - Leverage knowledge graph relationships
-- **[Ontology RAG](../ontology-rag)** - Use structured schemas for extraction
-
-### Advanced Features
-
-- **[Structured Processing](../structured-processing/)** - Extract typed objects
-- **[Agent Extraction](../agent-extraction)** - AI-powered extraction workflows
-- **[Object Extraction](../object-extraction)** - Domain-specific extraction
-
-### API Integration
-
-- **[Document RAG API](../../reference/apis/api-document-rag)** - API reference
-- **[CLI Reference](../../reference/cli/)** - Command-line tools
-- **[Examples](../../examples/)** - Code samples
+- **[Graph RAG](../graph-rag/)** - Leverage knowledge graph relationships
+- **[Ontology RAG](../ontology-rag/)** - Use structured schemas for extraction
 
 ## Related Resources
 
 - **[Core Concepts](../../getting-started/concepts)** - Understanding embeddings and chunks
 - **[Vector Search](../../getting-started/concepts#vector-embeddings)** - How semantic search works
-- **[Deployment](../../deployment/)** - Scaling for production
-- **[Troubleshooting](../../deployment/troubleshooting)** - Common issues

@@ -7,11 +7,11 @@ review_date: 2026-08-01
 guide_category:
   - Common knowledge management tasks
 guide_category_order: 2
-guide_description: Extract structured data using schemas and ontologies to define relationships and types
+guide_description: Extract structured data using schemas and ontologies to define relationships and types using the Workbench
 guide_difficulty: intermediate
-guide_time: 45 min
+guide_time: 35 min
 guide_emoji: 📋
-guide_banner: ontology-rag.png
+guide_banner: banner.jpg
 guide_labels:
   - RAG
   - Ontology
@@ -106,45 +106,6 @@ which you can download at this URL:
 
 [https://raw.githubusercontent.com/trustgraph-ai/example-data/refs/heads/main/tracking/operation-phantom-cargo.md](https://raw.githubusercontent.com/trustgraph-ai/example-data/refs/heads/main/tracking/operation-phantom-cargo.md).
 
-You can load the document either through the command-line, or using the
-Workbench
-
-#### Command-line
-
-You can download the document:
-```
-wget -O phantom-cargo.md https://raw.githubusercontent.com/trustgraph-ai/example-data/refs/heads/main/tracking/operation-phantom-cargo.md
-```
-
-And use a command-line utility to load the document into the TrustGraph
-library:
-
-```
-tg-add-library-document \
-  --name "PHANTOM CARGO" \
-  --description "Intelligence report: Operation PHANTOM CARGO" \
-  --tags 'maritime,intelligence,cargo,grey arms' \
-  --id https://trustgraph.ai/doc/phantom-cargo \
-  --kind text/plain \
-  phantom-cargo.md
-```
-
-You can then see the document in the library:
-
-```
-$ tg-show-library-documents
-+-------+----------------------------------------------+
-| id    | https://trustgraph.ai/doc/phantom-cargo      |
-| time  | 2025-11-22 11:05:05                          |
-| title | PHANTOM CARGO                                |
-| kind  | text/plain                                   |
-| note  | Intelligence report: Operation PHANTOM CARGO |
-| tags  | maritime, intelligence, cargo, grey arms     |
-+-------+----------------------------------------------+
-```
-
-#### Workbench
-
 - Download [the document](https://raw.githubusercontent.com/trustgraph-ai/example-data/refs/heads/main/tracking/operation-phantom-cargo.md)
 - Go the 'Library' page
 - Click 'Upload documents'
@@ -211,29 +172,7 @@ TrustGraph stores ontologies as an internal JSON format which is not
 standard but closely follows the OWL Ontology structure.
 
 You can create an ontology using the Workbench Ontology editor.  This is
-able to import a standard OWL ontology.  Once loaded, you can use the
-configuration API or CLI tools to save and load the ontology in its
-imported format.
-
-#### Command-line
-
-Download the ontology in internal JSON format at the following URL:
-
-[https://raw.githubusercontent.com/trustgraph-ai/example-data/refs/heads/main/tracking/ssn-ontology.json](https://raw.githubusercontent.com/trustgraph-ai/example-data/refs/heads/main/tracking/ssn-ontology.json)
-
-e.g.
-
-```
-wget -O ssn-ontology.json https://raw.githubusercontent.com/trustgraph-ai/example-data/refs/heads/main/tracking/ssn-ontology.json
-```
-
-and then install to TrustGraph:
-
-```
-cat ssn-ontology.json | tg-put-config-item --type ontology --key ssn --stdin
-```
-
-#### Workbench
+able to import a standard OWL ontology.
 
 Download the ontology in standard Turtle format at the following URL:
 
@@ -262,14 +201,6 @@ into a single unit.  Retrieval operations operate across a single collection.
 
 We'll create an 'intelligence' collection:
 
-#### Command-line
-
-```
-tg-set-collection -n Intelligence -d 'Intelligence analysis' intelligence
-```
-
-#### Workbench
-
 - Go to the 'Library' page
 - Select the 'Collections' tab
 - Click 'Create Collection'
@@ -285,17 +216,6 @@ to create a single flow for Ontology RAG processing.
 
 We'll create a 'onto-rag' flow:
 
-#### Command-line
-
-This command allows you to add parameters for LLM model, temperature etc.
-but we're just going to use the defaults:
-
-```
-tg-start-flow -n onto-rag -i onto-rag -d "Ontology RAG"
-```
-
-#### Workbench
-
 - Go to the 'Flows' page
 - Click 'Create'
 - Select the flow blueprint 'Ontology RAG Only'
@@ -306,24 +226,6 @@ tg-start-flow -n onto-rag -i onto-rag -d "Ontology RAG"
 ### Step 5: Submit the Document for Processing
 
 This pushes the document into the flow input.
-
-#### Command-line
-
-This command submits the document for processing.  You need to specify
-the flow ID (`onto-rag`) and the document ID which was used when the
-document was added to the library in step 1.  The collection ID is
-that which was used to create the collection.
-Processing objects need an ID, and you can make up any string:
-
-```
-tg-start-library-processing \
-    --flow-id onto-rag \
-    --document-id https://trustgraph.ai/doc/phantom-cargo \
-    --collection intelligence \
-    --processing-id urn:processing-03
-```
-
-#### Workbench
 
 There is a selection widget top right of the screen with an database icon
 top left.
@@ -394,40 +296,6 @@ sets using Ontology RAG extraction.
 Retrieval in Graph RAG consists of mapping the question to a set of candidate
 graph entities, and then following graph edges to create a subgraph, which
 is used as context with the LLM.
-
-#### Command-line
-
-]$ tg-invoke-graph-rag     -f onto-rag -C intelligence --max-path-length 5 -q 'Write a report about the intelligence gained from optical satellite sensors'
-Based on the provided knowledge statements, here's a report about intelligence gained from optical satellite sensors:
-
-Optical satellite sensors are utilized for various intelligence gathering purposes. For instance, "satellite systems photography" is an "Observation" made by "satellite systems" and can be deployed for "port facilities photography" and "port facility surveillance." The "Maxar WorldView-3 commercial satellite tasking (0.31m resolution)" is an example of an optical sensor that has been used to observe "Satellite imagery of Durban Port." This imagery can observe features like "durban-port" and has a specific valid time.
-
-Furthermore, "CSO-class optical reconnaissance satellite" is classified as a "Sensor or Observer," indicating its role in intelligence collection. "IMINT" (Imagery Intelligence) is also categorized as a "Sensor or Observer," which is often derived from optical satellite imagery.
-
-The intelligence gained from these optical sensors can be related to various aspects, such as observing "port facilities" and conducting "port facility surveillance."
-
-
-
-```
-tg-invoke-graph-rag \
-    -f onto-rag -C intelligence \
-    -q 'What intelligence resources were using during the PHANTOM CARGO operation?'
-```
-
-Which should return a result like:
-
-```
-The intelligence resources used during the PHANTOM CARGO operation were:
-* SIGINT
-* MASINT
-* Electro-Optical HUMINT
-* FININT
-* AIS
-* synthetic aperture radar (SAR)
-* GPS coordinates
-```
-
-#### Workbench
 
 - Ensure the correct collection and flow are selected in the selection widget
 - Navigate to the 'Assistant' page
@@ -532,15 +400,12 @@ data.
 - **[Agent Extraction](../agent-extraction)** - AI-powered extraction workflows
 - **[Object Extraction](../object-extraction)** - Domain-specific extraction
 
-### API Integration
+### Using the CLI
 
-- **[Graph RAG API](../../reference/apis/api-graph-rag)** - API reference
-- **[CLI Reference](../../reference/cli/)** - Command-line tools
-- **[Examples](../../examples/)** - Code samples
+For command-line workflows, see the [Ontology RAG CLI Guide](../ontology-rag-cli/).
 
 ## Related Resources
 
+- **[Graph RAG](../graph-rag/)** - Schema-free knowledge extraction
+- **[Working with Context Cores](../context-cores/)** - Package and share knowledge
 - **[Core Concepts](../../getting-started/concepts)** - Understanding embeddings and chunks
-- **[Vector Search](../../getting-started/concepts#vector-embeddings)** - How semantic search works
-- **[Deployment](../../deployment/)** - Scaling for production
-- **[Troubleshooting](../../deployment/troubleshooting)** - Common issues
