@@ -173,29 +173,7 @@ TrustGraph stores ontologies as an internal JSON format which is not
 standard but closely follows the OWL Ontology structure.
 
 You can create an ontology using the Workbench Ontology editor.  This is
-able to import a standard OWL ontology.  Once loaded, you can use the
-configuration API or CLI tools to save and load the ontology in its
-imported format.
-
-#### Command-line
-
-Download the ontology in internal JSON format at the following URL:
-
-[https://raw.githubusercontent.com/trustgraph-ai/example-data/refs/heads/main/tracking/ssn-ontology.json](https://raw.githubusercontent.com/trustgraph-ai/example-data/refs/heads/main/tracking/ssn-ontology.json)
-
-e.g.
-
-```
-wget -O ssn-ontology.json https://raw.githubusercontent.com/trustgraph-ai/example-data/refs/heads/main/tracking/ssn-ontology.json
-```
-
-and then install to TrustGraph:
-
-```
-cat ssn-ontology.json | tg-put-config-item --type ontology --key ssn --stdin
-```
-
-#### Workbench
+able to import a standard OWL ontology.
 
 Download the ontology in standard Turtle format at the following URL:
 
