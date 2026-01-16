@@ -7,10 +7,10 @@ review_date: 2026-06-01
 guide_category:
   - Common knowledge management tasks
 guide_category_order: 4
-guide_description: Learn how to use cores to manage specialized knowledge domains and context
+guide_description: Learn how to use cores to manage specialized knowledge domains and context using the Workbench
 guide_difficulty: intermediate
 guide_banner: banner.jpg
-guide_time: 20 min
+guide_time: 25 min
 guide_emoji: 🤖
 guide_labels:
   - Knowledge Cores
@@ -90,44 +90,7 @@ small amount of data to get going.  Fetch the text by visiting this URL:
 
 [https://raw.githubusercontent.com/trustgraph-ai/example-data/refs/heads/main/cats/README.cats](https://raw.githubusercontent.com/trustgraph-ai/example-data/refs/heads/main/cats/README.cats)
 
-You can load the document either through the command-line, or using the
-Workbench
-
-#### Command-line
-
-You can download the document:
-```
-wget -O README.cats https://raw.githubusercontent.com/trustgraph-ai/example-data/refs/heads/main/cats/README.cats
-```
-
-And use a command-line utility to load the document into the TrustGraph
-library:
-
-```
-tg-add-library-document \
-  --name "README.cats" \
-  --description "Brief description of cats" \
-  --tags cats,animals \
-  --id https://trustgraph.ai/doc/readme-cats \
-  --kind text/plain \
-  README.cats
-```
-
-You can then see the document in the library:
-
-```
-$ tg-show-library-documents
-+-------+---------------------------------------+
-| id    | https://trustgraph.ai/doc/readme-cats |
-| time  | 2026-01-15 19:50:49                   |
-| title | README.cats                           |
-| kind  | text/plain                            |
-| note  | Brief description of cats             |
-| tags  | cats, animals                         |
-+-------+---------------------------------------+
-```
-
-#### Workbench
+Upload the document using the Workbench:
 
 - Download [the document](https://raw.githubusercontent.com/trustgraph-ai/example-data/refs/heads/main/tracking/operation-phantom-cargo.md)
 - Go the 'Library' page
@@ -147,15 +110,7 @@ $ tg-show-library-documents
 A collection is used to organise a set of related documents or data sources
 into a single unit.  Retrieval operations operate across a single collection.
 
-We'll create an 'intelligence' collection:
-
-#### Command-line
-
-```
-tg-set-collection -n Cats -d 'Cat information' cats
-```
-
-#### Workbench
+We'll create a 'cats' collection:
 
 - Go to the 'Library' page
 - Select the 'Collections' tab
@@ -177,17 +132,6 @@ The system starts up with a single flow `default` based on the `everything`
 blueprint, so that flow is able to do core building.
 
 We'll create a `core-building` flow.
-
-#### Command-line
-
-This command allows you to add parameters for LLM model, temperature etc.
-but we're just going to use the defaults:
-
-```
-tg-start-flow -n document-rag+graph-rag+kgcore -i core-building -d "Core building"
-```
-
-#### Workbench
 
 Let's take a detour via the **Flow blueprints** page.  Go to the
 **Settings** page, and make sure **Flow blueprints** is selected on the
@@ -547,15 +491,14 @@ You should receive a response based on the knowledge extracted from the README.c
 
 **Note:** The core is now "loaded" - the knowledge is available in retrieval stores and can be queried using GraphRAG operations.
 
-### API Integration
+### Using the CLI
 
-All knowledge core operations demonstrated in this guide are available through the Knowledge Management API.  For complete API documentation, see the [REST API Reference](../../reference/apis/rest.html).
+For command-line workflows, see the [Working with Context Cores CLI Guide](../context-cores-cli/).
 
-**Related CLI commands:**
-- [`tg-show-kg-cores`](../../reference/cli/tg-show-kg-cores) - List all knowledge cores
-- [`tg-get-kg-core`](../../reference/cli/tg-get-kg-core) - Download a knowledge core
-- [`tg-put-kg-core`](../../reference/cli/tg-put-kg-core) - Upload a knowledge core
-- [`tg-load-kg-core`](../../reference/cli/tg-load-kg-core) - Load a core into retrieval stores
+## Related Resources
+
+- **[Graph RAG](../graph-rag/)** - Build knowledge graphs from documents
+- **[Ontology RAG](../ontology-rag/)** - Use structured schemas for extraction
 
 
 

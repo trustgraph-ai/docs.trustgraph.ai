@@ -16,7 +16,6 @@ guide_labels:
   - RAG
   - Ontology
   - Schema
-  - Workbench
 ---
 
 # Ontology RAG Guide

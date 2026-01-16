@@ -130,122 +130,33 @@ Verify the download:
 ```bash
 ls -lh readme-cats.core
 ```
-tg-dump-msgpack -i readme-cats.core
-```
 
-### Step 9: Upload the Knowledge Core
+### Step 8: Upload the Knowledge Core
 
-Now that you have a core file, you can upload it to make it available in the knowledge management service. Once uploaded, the core is not "online" for retrieval but available to be loaded into retrieval stores.
-
-#### Workbench
-
-To upload a core file using the Workbench:
-
-- Go to the **Knowledge Cores** page
-- Click the **Upload** button
-- Enter a unique ID for the core, enter `https://trustgraph.ai/doc/cats-copy`
-- Select the core file you previously downloaded (i.e. `readme-cats.core`)
-- The core will be uploaded to the knowledge management service
-- Once complete, the core appears in the Knowledge Cores table
-
-You should now have two identical copies of the core.
-
-<img src="upload-core.png" alt="Upload knowledge core"/>
-
-After uploading, the core is stored in the system but not yet available for querying. You'll need to load it (Step 10) to make it available for GraphRAG queries.
-
-<img src="knowledge-cores-2.png" alt="Upload knowledge core"/>
-
-#### Command-line
-
-To upload a core using the CLI:
+Upload the core to another TrustGraph instance (or the same one with a different ID):
 
 ```bash
 tg-put-kg-core \
-  --id https://trustgraph.ai/doc/readme-cats \
+  --id https://trustgraph.ai/doc/cats-copy \
   --input readme-cats.core
 ```
 
-The command will report progress as it uploads:
+Output:
 
 ```
 Put: 2 triple, 1 GE messages.
 ```
 
-Verify the core was uploaded by listing all cores:
+### Step 9: Load the Knowledge Core for Retrieval
 
-```bash
-tg-show-kg-cores
-```
-
-You should see your uploaded core in the list:
-
-```
-https://trustgraph.ai/doc/readme-cats
-https://trustgraph.ai/doc/cats-copy
-```
-
-**Note:** Uploading a core makes it available in the knowledge
-management service, but doesn't automatically load it into retrieval
-stores. The core is "online" but not yet queryable.
-
-### Step 10: Load the Knowledge Core for Retrieval
-
-The final step is to load the core into retrieval stores, making it available for GraphRAG queries. To do this, you need to create a collection and load the core into it.
-
-#### Workbench
-
-First, create a new empty collection:
-
-- Go to the **Library** page
-- Select the **Collections** tab
-- Click **Create Collection**
-- Set the ID: `cats-copy`
-- Set the name: `Cats Copy`
-- Set the description: `Loaded from knowledge core`
-- Click **Submit**
-
-Now select the collection:
-
-- Use the collection/flow selector (top right with database icon)
-- Select the **cats-copy** collection
-
-Confirm that the collection returns no results:
-
-- Select Vector Search
-- The search box enter 'cats'
-- Click 'Send'
-- You should see no results
-
-Load the core:
-
-- Go to the **Knowledge Cores** page
-- Find the core you uploaded (e.g., `https://trustgraph.ai/doc/cats-copy`)
-- Select the core by clicking the row
-- Click the **Load** button at the bottom of the screen
-- Select the **Core building** flow and press Load.
-- The core will be loaded into the retrieval stores
-
-The load may take time.
-
-<img src="load-core.png" alt="Load knowledge core"/>
-
-Once loaded, the knowledge from the core is now available for GraphRAG queries in the `cats-copy` collection.
-
-#### Command-line
-
-Create a new collection:
+Create a new collection and load the core into it:
 
 ```bash
 tg-set-collection \
   -n "Cats Copy" \
   -d "Loaded from knowledge core" \
   cats-copy
-```
 
-Load the core into the collection:
-
-```bash
 tg-load-kg-core \
   --id https://trustgraph.ai/doc/cats-copy \
   --collection cats-copy
@@ -270,15 +181,20 @@ You should receive a response based on the knowledge extracted from the README.c
 
 **Note:** The core is now "loaded" - the knowledge is available in retrieval stores and can be queried using GraphRAG operations.
 
-### API Integration
+## Next Steps
 
-All knowledge core operations demonstrated in this guide are available through the Knowledge Management API.  For complete API documentation, see the [REST API Reference](../../reference/apis/rest.html).
+### Related CLI Commands
 
-**Related CLI commands:**
 - [`tg-show-kg-cores`](../../reference/cli/tg-show-kg-cores) - List all knowledge cores
 - [`tg-get-kg-core`](../../reference/cli/tg-get-kg-core) - Download a knowledge core
 - [`tg-put-kg-core`](../../reference/cli/tg-put-kg-core) - Upload a knowledge core
 - [`tg-load-kg-core`](../../reference/cli/tg-load-kg-core) - Load a core into retrieval stores
+
+### Other Guides
+
+- **[Working with Context Cores (Workbench)](../context-cores/)** - Visual walkthrough with detailed explanations
+- **[Graph RAG](../graph-rag/)** - Build knowledge graphs from documents
+- **[Ontology RAG](../ontology-rag/)** - Use structured schemas for extraction
 
 
 

@@ -16,7 +16,6 @@ guide_labels:
   - RAG
   - Knowledge Graph
   - Semantic Search
-  - Workbench
 ---
 
 # Graph RAG Guide

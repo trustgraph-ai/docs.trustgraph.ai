@@ -16,7 +16,6 @@ guide_labels:
   - RAG
   - Vector Search
   - Embeddings
-  - Workbench
 ---
 
 # Document RAG Guide
