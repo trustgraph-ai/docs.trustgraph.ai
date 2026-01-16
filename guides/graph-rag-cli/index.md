@@ -1,22 +1,21 @@
 ---
-title: Graph RAG
+title: Graph RAG using CLI
 nav_order: 2
-parent: Common knowledge management tasks
+parent: Advanced knowledge management
 grand_parent: How-to Guides
 review_date: 2026-08-01
 guide_category:
-  - Common knowledge management tasks
+  - Advanced knowledge management
 guide_category_order: 1
-guide_description: Query documents using automatically extracted entities and their relationships in a knowledge graph using the Workbench
-guide_difficulty: beginner
-guide_time: 20 min
+guide_description: Query documents using automatically extracted entities and their relationships in a knowledge graph
+guide_difficulty: intermediate
+guide_time: 30 min
 guide_emoji: 🕸️
 guide_banner: banner.jpg
 guide_labels:
   - RAG
   - Knowledge Graph
   - Semantic Search
-  - Workbench
 ---
 
 # Graph RAG Guide
@@ -106,6 +105,45 @@ which you can download at this URL:
 
 [https://raw.githubusercontent.com/trustgraph-ai/example-data/refs/heads/main/tracking/operation-phantom-cargo.md](https://raw.githubusercontent.com/trustgraph-ai/example-data/refs/heads/main/tracking/operation-phantom-cargo.md).
 
+You can load the document either through the command-line, or using the
+Workbench
+
+#### Command-line
+
+You can download the document:
+```
+wget -O phantom-cargo.md https://raw.githubusercontent.com/trustgraph-ai/example-data/refs/heads/main/tracking/operation-phantom-cargo.md
+```
+
+And use a command-line utility to load the document into the TrustGraph
+library:
+
+```
+tg-add-library-document \
+  --name "PHANTOM CARGO" \
+  --description "Intelligence report: Operation PHANTOM CARGO" \
+  --tags 'maritime,intelligence,cargo,grey arms' \
+  --id https://trustgraph.ai/doc/phantom-cargo \
+  --kind text/plain \
+  phantom-cargo.md
+```
+
+You can then see the document in the library:
+
+```
+$ tg-show-library-documents
++-------+----------------------------------------------+
+| id    | https://trustgraph.ai/doc/phantom-cargo      |
+| time  | 2025-11-22 11:05:05                          |
+| title | PHANTOM CARGO                                |
+| kind  | text/plain                                   |
+| note  | Intelligence report: Operation PHANTOM CARGO |
+| tags  | maritime, intelligence, cargo, grey arms     |
++-------+----------------------------------------------+
+```
+
+#### Workbench
+
 - Download [the document](https://raw.githubusercontent.com/trustgraph-ai/example-data/refs/heads/main/tracking/operation-phantom-cargo.md)
 - Go the 'Library' page
 - Click 'Upload documents'
@@ -126,6 +164,14 @@ into a single unit.  Retrieval operations operate across a single collection.
 
 We'll create an 'intelligence' collection:
 
+#### Command-line
+
+```
+tg-set-collection -n Intelligence -d 'Intelligence analysis' intelligence
+```
+
+#### Workbench
+
 - Go to the 'Library' page
 - Select the 'Collections' tab
 - Click 'Create Collection'
@@ -141,6 +187,17 @@ to create a single flow for Graph RAG processing.
 
 We'll create a 'graph-rag' flow:
 
+#### Command-line
+
+This command allows you to add parameters for LLM model, temperature etc.
+but we're just going to use the defaults:
+
+```
+tg-start-flow -n graph-rag -i graph-rag -d "Graph RAG"
+```
+
+#### Workbench
+
 - Go to the 'Flows' page
 - Click 'Create'
 - Select the flow blueprint 'Graph RAG'
@@ -151,6 +208,24 @@ We'll create a 'graph-rag' flow:
 ### Step 4: Submit the Document for Processing
 
 This pushes the document into the flow input.
+
+#### Command-line
+
+This command submits the document for processing.  You need to specify
+the flow ID (`graph-rag`) and the document ID which was used when the
+document was added to the library in step 1.  The collection ID is
+that which was used to create the collection.
+Processing objects need an ID, and you can make up any string:
+
+```
+tg-start-library-processing \
+    --flow-id graph-rag \
+    --document-id https://trustgraph.ai/doc/phantom-cargo \
+    --collection intelligence \
+    --processing-id urn:processing-02
+```
+
+#### Workbench
 
 There is a selection widget top right of the screen with an database icon
 top left.
@@ -219,6 +294,29 @@ sets using GraphRAG extraction.
 Retrieval in Graph RAG consists of mapping the question to a set of candidate
 graph entities, and then following graph edges to create a subgraph, which
 is used as context with the LLM.
+
+#### Command-line
+
+```
+tg-invoke-graph-rag \
+    -f graph-rag -C intelligence \
+    -q 'What intelligence resources were using during the PHANTOM CARGO operation?'
+```
+
+Which should return a result like:
+
+```
+The intelligence resources used during the PHANTOM CARGO operation were:
+* SIGINT
+* MASINT
+* Electro-Optical HUMINT
+* FININT
+* AIS
+* synthetic aperture radar (SAR)
+* GPS coordinates
+```
+
+#### Workbench
 
 - Ensure the correct collection and flow are selected in the selection widget
 - Navigate to the 'Assistant' page
@@ -300,9 +398,11 @@ data.
 - **[Agent Extraction](../agent-extraction)** - AI-powered extraction workflows
 - **[Object Extraction](../object-extraction)** - Domain-specific extraction
 
-### Using the CLI
+### API Integration
 
-For command-line workflows, see the [Graph RAG CLI Guide](../graph-rag-cli/).
+- **[Graph RAG API](../../reference/apis/api-graph-rag)** - API reference
+- **[CLI Reference](../../reference/cli/)** - Command-line tools
+- **[Examples](../../examples/)** - Code samples
 
 ## Related Resources
 
