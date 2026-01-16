@@ -157,24 +157,6 @@ To launch a flow:
 
 This pushes the document into the flow input.
 
-#### Command-line
-
-This command submits the document for processing.  You need to specify
-the flow ID (`core-building`) and the document ID which was used when the
-document was added to the library in step 1.  The collection ID is
-that which was used to create the collection.
-Processing objects need an ID, and you can make up any string:
-
-```
-tg-start-library-processing \
-    --flow-id core-building \
-    --document-id https://trustgraph.ai/doc/readme-cats \
-    --collection cats \
-    --processing-id urn:processing-03
-```
-
-#### Workbench
-
 There is a selection widget top right of the screen with an database icon
 top left.
 
@@ -282,20 +264,6 @@ The core ID is derived from the document ID. If the core appears in the list, it
 should check Grafana to determine when processing of a document has
 completed.
 
-#### Command-line
-
-You can also list cores using the CLI:
-
-```bash
-tg-show-kg-cores
-```
-
-This displays all available cores with their metadata:
-
-```
-https://trustgraph.ai/doc/readme-cats
-```
-
 ### Step 8: Download the Knowledge Core
 
 Once processing is complete, you can download the core as a file for storage or sharing.
@@ -322,38 +290,6 @@ The downloaded file contains:
 This file can be shared with others, stored in version control, or uploaded
 to different TrustGraph instances.
 
-#### Command-line
-
-To download a core using the CLI, you need the core ID from the previous step:
-
-```bash
-tg-get-kg-core \
-  --id https://trustgraph.ai/doc/readme-cats \
-  --output readme-cats.core
-```
-
-It will report some record counts.  These are batch counts - these are
-counts of record batches, so don't be too concerned if the numbers appear
-small.
-
-```
-Got: 2 triple, 1 GE messages.
-```
-
-This saves the core to the specified file. You can verify the download:
-
-```bash
-ls -lh readme-cats.core
-```
-
-The file contains the complete knowledge core in msgpack format.  This can
-be dumped out in JSON format.  The file format is somewhat internal to
-TrustGraph so don't be too concerned if it doesn't make sense.
-
-```
-tg-dump-msgpack -i readme-cats.core
-```
-
 ### Step 9: Upload the Knowledge Core
 
 Now that you have a core file, you can upload it to make it available in the knowledge management service. Once uploaded, the core is not "online" for retrieval but available to be loaded into retrieval stores.
@@ -376,35 +312,6 @@ You should now have two identical copies of the core.
 After uploading, the core is stored in the system but not yet available for querying. You'll need to load it (Step 10) to make it available for GraphRAG queries.
 
 <img src="knowledge-cores-2.png" alt="Upload knowledge core"/>
-
-#### Command-line
-
-To upload a core using the CLI:
-
-```bash
-tg-put-kg-core \
-  --id https://trustgraph.ai/doc/readme-cats \
-  --input readme-cats.core
-```
-
-The command will report progress as it uploads:
-
-```
-Put: 2 triple, 1 GE messages.
-```
-
-Verify the core was uploaded by listing all cores:
-
-```bash
-tg-show-kg-cores
-```
-
-You should see your uploaded core in the list:
-
-```
-https://trustgraph.ai/doc/readme-cats
-https://trustgraph.ai/doc/cats-copy
-```
 
 **Note:** Uploading a core makes it available in the knowledge
 management service, but doesn't automatically load it into retrieval
@@ -452,44 +359,6 @@ The load may take time.
 <img src="load-core.png" alt="Load knowledge core"/>
 
 Once loaded, the knowledge from the core is now available for GraphRAG queries in the `cats-copy` collection.
-
-#### Command-line
-
-Create a new collection:
-
-```bash
-tg-set-collection \
-  -n "Cats Copy" \
-  -d "Loaded from knowledge core" \
-  cats-copy
-```
-
-Load the core into the collection:
-
-```bash
-tg-load-kg-core \
-  --id https://trustgraph.ai/doc/cats-copy \
-  --collection cats-copy
-```
-
-The command will report progress as it loads the core:
-
-```
-Loading core into retrieval stores...
-Loaded: 2 triple batches, 1 GE batches.
-```
-
-Verify the core is loaded by performing a GraphRAG query:
-
-```bash
-tg-invoke-graph-rag \
-  -q "What do you know about cats?" \
-  -C cats-copy
-```
-
-You should receive a response based on the knowledge extracted from the README.cats document.
-
-**Note:** The core is now "loaded" - the knowledge is available in retrieval stores and can be queried using GraphRAG operations.
 
 ### Using the CLI
 
