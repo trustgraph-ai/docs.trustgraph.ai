@@ -11,7 +11,7 @@ guide_description: Monitor TrustGraph deployments using Prometheus and Grafana
 guide_difficulty: intermediate
 guide_time: 30 min
 guide_emoji: 📈
-guide_banner: monitoring.jpg
+guide_banner: banner.jpg
 guide_labels:
   - Monitoring
   - Metrics

@@ -9,7 +9,7 @@ guide_category:
 guide_category_order: 2
 guide_description: Extract structured data using schemas and ontologies to define relationships and types using the Workbench
 guide_difficulty: intermediate
-guide_time: 35 min
+guide_time: 15 min
 guide_emoji: 📋
 guide_banner: banner.jpg
 guide_labels:

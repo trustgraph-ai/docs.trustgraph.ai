@@ -10,7 +10,7 @@ guide_category_order: 4
 guide_description: Learn how to use cores to manage specialized knowledge domains and context using the Workbench
 guide_difficulty: intermediate
 guide_banner: banner.jpg
-guide_time: 25 min
+guide_time: 15 min
 guide_emoji: 🤖
 guide_labels:
   - Knowledge Cores
