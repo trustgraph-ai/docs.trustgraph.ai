@@ -446,7 +446,7 @@ tg-put-kg-core \
 The command will report progress as it uploads:
 
 ```
-Sent: 2 triple, 1 GE messages.
+Put: 2 triple, 1 GE messages.
 ```
 
 Verify the core was uploaded by listing all cores:
@@ -459,11 +459,103 @@ You should see your uploaded core in the list:
 
 ```
 https://trustgraph.ai/doc/readme-cats
+https://trustgraph.ai/doc/cats-copy
 ```
 
-**Note:** Uploading a core makes it available in the knowledge management service, but doesn't automatically load it into retrieval stores. The core is "online" but not yet queryable.
+**Note:** Uploading a core makes it available in the knowledge
+management service, but doesn't automatically load it into retrieval
+stores. The core is "online" but not yet queryable.
+
+### Step 10: Load the Knowledge Core for Retrieval
+
+The final step is to load the core into retrieval stores, making it available for GraphRAG queries. To do this, you need to create a collection and load the core into it.
+
+#### Workbench
+
+First, create a new empty collection:
+
+- Go to the **Library** page
+- Select the **Collections** tab
+- Click **Create Collection**
+- Set the ID: `cats-copy`
+- Set the name: `Cats Copy`
+- Set the description: `Loaded from knowledge core`
+- Click **Submit**
+
+Now select the collection:
+
+- Use the collection/flow selector (top right with database icon)
+- Select the **cats-copy** collection
+
+Confirm that the collection returns no results:
+
+- Select Vector Search
+- The search box enter 'cats'
+- Click 'Send'
+- You should see no results
+
+Load the core:
+
+- Go to the **Knowledge Cores** page
+- Find the core you uploaded (e.g., `https://trustgraph.ai/doc/cats-copy`)
+- Select the core by clicking the row
+- Click the **Load** button at the bottom of the screen
+- Select the **Core building** flow and press Load.
+- The core will be loaded into the retrieval stores
+
+The load may take time.
+
+<img src="load-core.png" alt="Load knowledge core"/>
+
+Once loaded, the knowledge from the core is now available for GraphRAG queries in the `cats-copy` collection.
+
+#### Command-line
+
+Create a new collection:
+
+```bash
+tg-set-collection \
+  -n "Cats Copy" \
+  -d "Loaded from knowledge core" \
+  cats-copy
+```
+
+Load the core into the collection:
+
+```bash
+tg-load-kg-core \
+  --id https://trustgraph.ai/doc/cats-copy \
+  --collection cats-copy
+```
+
+The command will report progress as it loads the core:
+
+```
+Loading core into retrieval stores...
+Loaded: 2 triple batches, 1 GE batches.
+```
+
+Verify the core is loaded by performing a GraphRAG query:
+
+```bash
+tg-invoke-graph-rag \
+  -q "What do you know about cats?" \
+  -C cats-copy
+```
+
+You should receive a response based on the knowledge extracted from the README.cats document.
+
+**Note:** The core is now "loaded" - the knowledge is available in retrieval stores and can be queried using GraphRAG operations.
 
 ### API Integration
 
-FIXME: Mention APIs
+All knowledge core operations demonstrated in this guide are available through the Knowledge Management API.  For complete API documentation, see the [REST API Reference](../../reference/apis/rest.html).
+
+**Related CLI commands:**
+- [`tg-show-kg-cores`](../../reference/cli/tg-show-kg-cores) - List all knowledge cores
+- [`tg-get-kg-core`](../../reference/cli/tg-get-kg-core) - Download a knowledge core
+- [`tg-put-kg-core`](../../reference/cli/tg-put-kg-core) - Upload a knowledge core
+- [`tg-load-kg-core`](../../reference/cli/tg-load-kg-core) - Load a core into retrieval stores
+
+
 
