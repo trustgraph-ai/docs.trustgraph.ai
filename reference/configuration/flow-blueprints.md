@@ -25,20 +25,20 @@ Flow blueprints are stored in TrustGraph's configuration system with the configu
 
 Every flow blueprint definition has four main sections:
 
-### 1. Class Section
+### 1. Blueprint Section
 
 Defines shared service processors that are instantiated once per flow blueprint. These processors handle requests from all flow instances of this blueprint.
 
 ```json
 {
-  "class": {
-    "embeddings:{class}": {
-      "request": "non-persistent://tg/request/embeddings:{class}",
-      "response": "non-persistent://tg/response/embeddings:{class}"
+  "blueprint": {
+    "embeddings:{blueprint}": {
+      "request": "non-persistent://tg/request/embeddings:{blueprint}",
+      "response": "non-persistent://tg/response/embeddings:{blueprint}"
     },
-    "text-completion:{class}": {
-      "request": "non-persistent://tg/request/text-completion:{class}",
-      "response": "non-persistent://tg/response/text-completion:{class}"
+    "text-completion:{blueprint}": {
+      "request": "non-persistent://tg/request/text-completion:{blueprint}",
+      "response": "non-persistent://tg/response/text-completion:{blueprint}"
     }
   }
 }
@@ -47,8 +47,8 @@ Defines shared service processors that are instantiated once per flow blueprint.
 **Characteristics:**
 - Shared across all flow instances of the same blueprint
 - Typically expensive or stateless services (LLMs, embedding models)
-- Use `{class}` template variable for queue naming
-- Examples: `embeddings:{class}`, `text-completion:{class}`, `graph-rag:{class}`
+- Use `{blueprint}` template variable for queue naming
+- Examples: `embeddings:{blueprint}`, `text-completion:{blueprint}`, `graph-rag:{blueprint}`
 
 ### 2. Flow Section
 
@@ -96,12 +96,12 @@ Interfaces can take two forms:
 {
   "interfaces": {
     "embeddings": {
-      "request": "non-persistent://tg/request/embeddings:{class}",
-      "response": "non-persistent://tg/response/embeddings:{class}"
+      "request": "non-persistent://tg/request/embeddings:{blueprint}",
+      "response": "non-persistent://tg/response/embeddings:{blueprint}"
     },
     "text-completion": {
-      "request": "non-persistent://tg/request/text-completion:{class}",
-      "response": "non-persistent://tg/response/text-completion:{class}"
+      "request": "non-persistent://tg/request/text-completion:{blueprint}",
+      "response": "non-persistent://tg/response/text-completion:{blueprint}"
     }
   }
 }
@@ -114,7 +114,7 @@ Interfaces can take two forms:
 
 ### 4. Metadata
 
-Additional information about the flow class:
+Additional information about the flow blueprint:
 
 ```json
 {
@@ -143,7 +143,7 @@ Parameters are defined in the flow blueprint definition using this structure:
       "controlled-by": "other-param-name"
     }
   },
-  "class": { ... },
+  "blueprint": { ... },
   "flow": { ... },
   "interfaces": { ... }
 }
@@ -262,7 +262,7 @@ When `controlled-by` is specified:
       "order": 5
     }
   },
-  "class": { ... },
+  "blueprint": { ... },
   "flow": { ... },
   "interfaces": { ... }
 }
@@ -327,10 +327,10 @@ Parameters can be referenced in flow blueprint definitions using the `{param:nam
       "order": 1
     }
   },
-  "class": {
-    "text-completion:{class}": {
-      "request": "non-persistent://tg/request/text-completion:{class}",
-      "response": "non-persistent://tg/response/text-completion:{class}",
+  "blueprint": {
+    "text-completion:{blueprint}": {
+      "request": "non-persistent://tg/request/text-completion:{blueprint}",
+      "response": "non-persistent://tg/response/text-completion:{blueprint}",
       "config": {
         "model": "{param:model}"
       }
@@ -375,14 +375,14 @@ Flow blueprint definitions use template variables that are replaced when flow in
 - **Usage**: Flow-specific processors and data pathways
 - **Example**: `persistent://tg/flow/chunk-load:{id}` becomes `persistent://tg/flow/chunk-load:customer-A-flow`
 
-### {class}
+### {blueprint}
 - **Purpose**: Creates shared resources across flows of the same blueprint
 - **Usage**: Shared services and expensive processors
-- **Example**: `non-persistent://tg/request/embeddings:{class}` becomes `non-persistent://tg/request/embeddings:standard-rag`
+- **Example**: `non-persistent://tg/request/embeddings:{blueprint}` becomes `non-persistent://tg/request/embeddings:standard-rag`
 
 ## Queue Patterns
 
-Flow classes use Apache Pulsar for messaging. Queue names follow the Pulsar format:
+Flow blueprints use Apache Pulsar for messaging. Queue names follow the Pulsar format:
 
 ```
 <persistence>://<tenant>/<namespace>/<topic>
@@ -395,7 +395,7 @@ Flow classes use Apache Pulsar for messaging. Queue names follow the Pulsar form
 | **persistence** | Pulsar persistence mode | `persistent`, `non-persistent` |
 | **tenant** | Organization identifier | `tg` (TrustGraph) |
 | **namespace** | Messaging pattern | `flow`, `request`, `response` |
-| **topic** | Queue/topic name | `chunk-load:{id}`, `embeddings:{class}` |
+| **topic** | Queue/topic name | `chunk-load:{id}`, `embeddings:{blueprint}` |
 
 ### Persistent Queues
 
@@ -416,15 +416,15 @@ persistent://tg/flow/<topic>:{id}
 Used for request/response messaging patterns:
 
 ```
-non-persistent://tg/request/<topic>:{class}
-non-persistent://tg/response/<topic>:{class}
+non-persistent://tg/request/<topic>:{blueprint}
+non-persistent://tg/response/<topic>:{blueprint}
 ```
 
 **Characteristics:**
 - Ephemeral, not persisted to disk
 - Lower latency, suitable for RPC-style communication
 - Used for shared services like embeddings and LLM calls
-- Examples: `non-persistent://tg/request/embeddings:{class}`, `non-persistent://tg/response/text-completion:{class}`
+- Examples: `non-persistent://tg/request/embeddings:{blueprint}`, `non-persistent://tg/response/text-completion:{blueprint}`
 
 ## Complete Example
 
@@ -435,14 +435,14 @@ Here's a simplified flow blueprint definition for a standard RAG pipeline:
   "description": "Standard RAG pipeline with document processing and query capabilities",
   "tags": ["rag", "document-processing", "embeddings"],
   
-  "class": {
-    "embeddings:{class}": {
-      "request": "non-persistent://tg/request/embeddings:{class}",
-      "response": "non-persistent://tg/response/embeddings:{class}"
+  "blueprint": {
+    "embeddings:{blueprint}": {
+      "request": "non-persistent://tg/request/embeddings:{blueprint}",
+      "response": "non-persistent://tg/response/embeddings:{blueprint}"
     },
-    "text-completion:{class}": {
-      "request": "non-persistent://tg/request/text-completion:{class}",
-      "response": "non-persistent://tg/response/text-completion:{class}"
+    "text-completion:{blueprint}": {
+      "request": "non-persistent://tg/request/text-completion:{blueprint}",
+      "response": "non-persistent://tg/response/text-completion:{blueprint}"
     }
   },
   
@@ -464,12 +464,12 @@ Here's a simplified flow blueprint definition for a standard RAG pipeline:
   "interfaces": {
     "document-load": "persistent://tg/flow/document-load:{id}",
     "embeddings": {
-      "request": "non-persistent://tg/request/embeddings:{class}",
-      "response": "non-persistent://tg/response/embeddings:{class}"
+      "request": "non-persistent://tg/request/embeddings:{blueprint}",
+      "response": "non-persistent://tg/response/embeddings:{blueprint}"
     },
     "text-completion": {
-      "request": "non-persistent://tg/request/text-completion:{class}",
-      "response": "non-persistent://tg/response/text-completion:{class}"
+      "request": "non-persistent://tg/request/text-completion:{blueprint}",
+      "response": "non-persistent://tg/response/text-completion:{blueprint}"
     }
   }
 }
@@ -485,7 +485,7 @@ When a flow instance is created from this blueprint:
 
 **Template Expansions:**
 - `persistent://tg/flow/chunk-load:{id}` → `persistent://tg/flow/chunk-load:customer-A-flow`
-- `non-persistent://tg/request/embeddings:{class}` → `non-persistent://tg/request/embeddings:standard-rag`
+- `non-persistent://tg/request/embeddings:{blueprint}` → `non-persistent://tg/request/embeddings:standard-rag`
 
 **Result:**
 - Isolated document processing pipeline for `customer-A-flow`
@@ -501,7 +501,7 @@ Flow blueprints create unified dataflows where:
 3. **Shared Services**: Centralized processors that all flows can utilize
 4. **Storage Writers**: Persist processed data to appropriate stores
 
-All processors (both `{id}` and `{class}`) work together as a cohesive dataflow graph, not as separate systems.
+All processors (both `{id}` and `{blueprint}`) work together as a cohesive dataflow graph, not as separate systems.
 
 ## Benefits
 
@@ -557,7 +557,7 @@ All processors (both `{id}` and `{class}`) work together as a cohesive dataflow 
 
 ### Template Variables
 - Use `{id}` for flow-specific resources
-- Use `{class}` for shared resources
+- Use `{blueprint}` for shared resources
 - Be consistent with naming conventions
 
 ## See Also
