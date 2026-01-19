@@ -31,31 +31,67 @@ understand relationships and context.
 
 ## What Makes TrustGraph Different?
 
-### Context Graph Technologies
+<div class="feature-cards" markdown="0">
 
-- Context Graph Factory - Transforms fragmented data into interconnected "Context Graphs" rather than relying on simple vector search, enabling superior reasoning through graph-based context
-- Reduced AI hallucinations - Grounds LLMs with accurate, contextual information through intelligent context grounding rather than just retrieval
-- Context Cores - Reusable, modular context bases that can be dynamically loaded and removed at runtime
-- GraphRAG integration - Combines knowledge graphs with vector search for enhanced retrieval-augmented generation
+<div class="feature-card">
+<div class="feature-card-heading" style="background-image: url('feature-context-graph.jpg');">
+<div class="feature-icon">🧠</div>
+<h3>Context Graph Technologies</h3>
+</div>
+<div class="feature-card-content">
+<ul>
+<li><strong>Context Graph Factory</strong> — Transforms fragmented data into interconnected "Context Graphs" rather than relying on simple vector search, enabling superior reasoning through graph-based context</li>
+<li><strong>Reduced AI hallucinations</strong> — Grounds LLMs with accurate, contextual information through intelligent context grounding rather than just retrieval</li>
+<li><strong>Context Cores</strong> — Reusable, modular context bases that can be dynamically loaded and removed at runtime</li>
+<li><strong>GraphRAG integration</strong> — Combines knowledge graphs with vector search for enhanced retrieval-augmented generation</li>
+</ul>
+</div>
+</div>
 
-### Deployment & Architecture
+<div class="feature-card">
+<div class="feature-card-heading" style="background-image: url('feature-deployment.jpg');">
+<div class="feature-icon">🚀</div>
+<h3>Deployment & Architecture</h3>
+</div>
+<div class="feature-card-content">
+<ul>
+<li><strong>Single-command deployment</strong> — Launch entire agentic infrastructure with <code>docker compose up -d</code></li>
+<li><strong>Fully containerized & modular</strong> — Transparent, open-source design with end-to-end context management</li>
+<li><strong>Run anywhere</strong> — Local, on-premise, or multi-cloud (AWS, Azure, GCP, OVHcloud, Scaleway, Kubernetes)</li>
+</ul>
+</div>
+</div>
 
-Single-command deployment — Launch entire agentic infrastructure with docker compose up -d
-Fully containerized & modular — Transparent, open-source design with end-to-end context management
-Run anywhere — Local, on-premise, or multi-cloud (AWS, Azure, GCP, OVHcloud, Scaleway, Kubernetes)
+<div class="feature-card">
+<div class="feature-card-heading" style="background-image: url('feature-integrations.jpg');">
+<div class="feature-icon">🔌</div>
+<h3>Flexibility & Integrations</h3>
+</div>
+<div class="feature-card-content">
+<ul>
+<li><strong>40+ LLM providers</strong> — Works with Anthropic, OpenAI, Google VertexAI, AWS Bedrock, and more</li>
+<li><strong>Multiple graph store options</strong> — Neo4j, Apache Cassandra, Memgraph, FalkorDB</li>
+<li><strong>Multiple vector DB options</strong> — Qdrant, Pinecone, Milvus</li>
+<li><strong>MCP interoperability</strong> — Native Model Context Protocol integration for external tool connections</li>
+</ul>
+</div>
+</div>
 
-### Flexibility & Integrations
+<div class="feature-card">
+<div class="feature-card-heading" style="background-image: url('feature-enterprise.jpg');">
+<div class="feature-icon">🏢</div>
+<h3>Enterprise Features</h3>
+</div>
+<div class="feature-card-content">
+<ul>
+<li><strong>Data sovereignty</strong> — Keep data in your chosen region or on-premise</li>
+<li><strong>Native multi-tenancy</strong> — Isolated namespaces with security boundaries per tenant</li>
+<li><strong>Open source transparency</strong> — Full source code access for security audits</li>
+</ul>
+</div>
+</div>
 
-40+ LLM providers — Works with Anthropic, OpenAI, Google VertexAI, AWS Bedrock, and more
-Multiple graph store options — Neo4j, Apache Cassandra, Memgraph, FalkorDB
-Multiple vector DB options — Qdrant, Pinecone, Milvus
-MCP (Model Context Protocol) interoperability — Native integration for external tool connections
-
-Enterprise Features:
-
-Data sovereignty — Keep data in your chosen region or on-premise
-Native multi-tenancy — Isolated namespaces with security boundaries per tenant
-Open source transparency — Full source code access for security audits
+</div>
 
 
 

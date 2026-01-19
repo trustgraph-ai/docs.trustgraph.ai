@@ -147,6 +147,146 @@ pre {
   overflow-y: auto;
 }
 
+// Feature Cards - horizontal layout with heading left, content right
+.feature-cards {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  margin: 2rem 0;
+}
+
+.feature-card {
+  display: flex;
+  flex-direction: row;
+  border: 1px solid var(--border-color, #e1e4e8);
+  border-radius: 8px;
+  overflow: hidden;
+  background: var(--body-background-color, #fff);
+
+  @media (max-width: 768px) {
+    flex-direction: column;
+  }
+}
+
+.feature-card-heading {
+  flex: 0 0 280px;
+  padding: 1.5rem;
+  background: var(--sidebar-color, #f5f6fa);
+  border-right: 1px solid var(--border-color, #e1e4e8);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  position: relative;
+  background-size: cover;
+  background-position: center;
+
+  // Dark overlay for background images
+  &[style*="background-image"]::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.55);
+    z-index: 1;
+  }
+
+  // Ensure content sits above overlay
+  &[style*="background-image"] > * {
+    position: relative;
+    z-index: 2;
+  }
+
+  // White text when background image is present
+  &[style*="background-image"] h3 {
+    color: #fff;
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+  }
+
+  &[style*="background-image"] .feature-icon {
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+  }
+
+  @media (max-width: 768px) {
+    flex: none;
+    min-height: 120px;
+    border-right: none;
+    border-bottom: 1px solid var(--border-color, #e1e4e8);
+  }
+
+  h3 {
+    margin: 0 0 0.25rem 0;
+    font-size: 1.1rem;
+    color: var(--heading-color, #27262b);
+  }
+
+  .feature-icon {
+    font-size: 2rem;
+    margin-bottom: 0.5rem;
+  }
+}
+
+.feature-card-content {
+  flex: 1;
+  padding: 1.25rem 1.5rem;
+
+  ul {
+    margin: 0;
+    padding-left: 1.25rem;
+
+    li {
+      margin-bottom: 0.5rem;
+      line-height: 1.5;
+
+      &:last-child {
+        margin-bottom: 0;
+      }
+    }
+  }
+
+  p {
+    margin: 0 0 0.75rem 0;
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+}
+
+// Dark mode support for feature cards
+[data-theme="dark"] {
+  .feature-card {
+    border-color: #373b41;
+    background: #0d1117;
+  }
+
+  .feature-card-heading {
+    background: #161b22;
+    border-color: #373b41;
+
+    h3 {
+      color: #e6edf3;
+    }
+  }
+}
+
+@media (prefers-color-scheme: dark) {
+  .feature-card {
+    border-color: #373b41;
+    background: #0d1117;
+  }
+
+  .feature-card-heading {
+    background: #161b22;
+    border-color: #373b41;
+
+    h3 {
+      color: #e6edf3;
+    }
+  }
+}
+
 details {
 
   border: 1px solid var(--border-color, #e1e4e8);
