@@ -8,7 +8,7 @@ guide_category:
 guide_category_order: 1
 guide_description: What is TrustGraph and how does it transform AI agents into contextually-aware systems?
 guide_difficulty: beginner
-guide_time: 15 min
+guide_time: 5 min
 guide_emoji: 🎯
 guide_banner: introduction.jpg
 guide_labels:
@@ -19,46 +19,53 @@ guide_labels:
 
 # Introduction to TrustGraph
 
-TrustGraph is an **Open Source Agent Intelligence Platform** that transforms AI agents from simple task executors into intelligent, contextually-aware systems. Unlike traditional AI approaches that work with isolated data points, TrustGraph creates interconnected knowledge structures that enable agents to understand relationships and context.
+TrustGraph is an **Open Source Agent Intelligence Platform** that transforms
+AI agents from simple task executors into intelligent, contextually-aware
+systems. Unlike traditional AI approaches that work with isolated data points,
+TrustGraph creates interconnected knowledge structures that enable agents to
+understand relationships and context.
+
+
+
+
 
 ## What Makes TrustGraph Different?
 
-### Traditional AI Approaches
-- Work with isolated documents or data points
-- Limited contextual understanding
-- Prone to hallucinations when information is fragmented
-- Struggle to understand how different facts relate
+### Context Graph Technologies
 
-### TrustGraph's Approach
-- Creates interconnected knowledge graphs
-- Understands relationships between entities
-- Grounds responses in structured knowledge
-- Provides transparent reasoning paths
+- Context Graph Factory - Transforms fragmented data into interconnected "Context Graphs" rather than relying on simple vector search, enabling superior reasoning through graph-based context
+- Reduced AI hallucinations - Grounds LLMs with accurate, contextual information through intelligent context grounding rather than just retrieval
+- Context Cores - Reusable, modular context bases that can be dynamically loaded and removed at runtime
+- GraphRAG integration - Combines knowledge graphs with vector search for enhanced retrieval-augmented generation
 
-## Core Technologies
+### Deployment & Architecture
 
-### Knowledge Graphs
+Single-command deployment — Launch entire agentic infrastructure with docker compose up -d
+Fully containerized & modular — Transparent, open-source design with end-to-end context management
+Run anywhere — Local, on-premise, or multi-cloud (AWS, Azure, GCP, OVHcloud, Scaleway, Kubernetes)
 
-**Knowledge Graphs** are the foundation of TrustGraph's intelligence. They represent information as interconnected networks of entities and relationships, rather than isolated documents or data points.
+### Flexibility & Integrations
 
-- **Entities**: People, places, concepts, or objects in your data
-- **Relationships**: How entities connect and relate to each other
-- **Context**: The meaning that emerges from understanding these connections
+40+ LLM providers — Works with Anthropic, OpenAI, Google VertexAI, AWS Bedrock, and more
+Multiple graph store options — Neo4j, Apache Cassandra, Memgraph, FalkorDB
+Multiple vector DB options — Qdrant, Pinecone, Milvus
+MCP (Model Context Protocol) interoperability — Native integration for external tool connections
 
-### GraphRAG (Graph Retrieval-Augmented Generation)
+Enterprise Features:
 
-**GraphRAG** is TrustGraph's advanced approach to information retrieval that goes beyond traditional RAG systems:
+Data sovereignty — Keep data in your chosen region or on-premise
+Native multi-tenancy — Isolated namespaces with security boundaries per tenant
+Open source transparency — Full source code access for security audits
 
-**Traditional RAG:**
-- Retrieves similar documents based on vector similarity
-- Works with isolated pieces of information
-- Limited contextual understanding
 
-**GraphRAG:**
-- Understands relationships between different pieces of information
-- Retrieves contextually relevant knowledge based on graph structure
-- Provides more accurate, nuanced responses
-- Significantly reduces AI hallucinations
+
+
+
+
+## Stuff needs to be edited
+
+
+
 
 ### Knowledge Packages
 
