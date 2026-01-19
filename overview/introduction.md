@@ -13,7 +13,7 @@ guide_emoji: 🎯
 guide_banner: introduction.jpg
 guide_labels:
   - GraphRAG
-  - Knowledge Graphs
+  - Context Graphs
   - Core Concepts
 ---
 
@@ -91,51 +91,37 @@ understand relationships and context.
 </div>
 </div>
 
+<div class="feature-card">
+<div class="feature-card-heading" style="background-image: url('feature-openness.jpg');">
+<div class="feature-icon">🔓</div>
+<h3>Openness</h3>
+</div>
+<div class="feature-card-content">
+<ul>
+<li><strong>Fully open source</strong> — Complete source code available under permissive licensing with no proprietary components</li>
+<li><strong>Transparent development</strong> — Public roadmap, open issue tracking, and community-driven feature development</li>
+<li><strong>Auditable design</strong> — Full visibility into architecture decisions, data flows, and processing pipelines</li>
+</ul>
+</div>
 </div>
 
+</div>
 
+## Details
 
+### Knowledge Representation
 
+TrustGraph uses graph technology and decades' worth of knowledge
+representation to power GraphRAG and Ontology RAG. This is a core part
+of how contexts are extracted, stored, and formed into contexts for LLMs
+to process.
 
+### Context Cores
 
-## Stuff needs to be edited
-
-
-
-
-### Knowledge Packages
-
-**Knowledge Packages** combine the best of both worlds:
-- **Knowledge Graphs**: For structured relationships and context
-- **Vector Embeddings**: For semantic similarity search
-- **Unified Access**: Single interface for complex knowledge retrieval
-
-This hybrid approach enables both precise relationship-based queries and flexible semantic search.
-
-## Structured Query Processing
-
-TrustGraph provides powerful capabilities for working with structured data extracted from documents:
-
-### NLP Query
-
-Converts natural language questions into structured GraphQL queries:
-- Transform "Show me all products over $100" into precise database queries
-- Generate GraphQL from conversational language
-- Support complex filtering and aggregation requests
-
-### Object Storage
-
-Manages structured entities extracted from unstructured text:
-- Store products, customers, financials as queryable objects
-- Maintain schema validation and relationships
-- Enable rapid structured data analysis
-
-### Structured Query
-
-Executes queries against extracted structured data:
-- Query objects extracted from documents using natural language
-- Execute GraphQL queries directly against your data
-- Return results in multiple formats (JSON, CSV, tables)
+This is the name we give to a file which encapsulates all of the knowledge
+gained from context extraction.  In this form, the cores are easy to store
+offline, share and reload.  Context cores load into the stores in 1% of the
+time taken to create the original knowledge.
 
 ## AI Agent Intelligence
 
@@ -182,23 +168,6 @@ Connects with existing enterprise infrastructure:
 - **LLM Integration**: Works with multiple AI models
 - **Data Connectors**: Integrates with databases, documents, APIs
 - **API Gateway**: Provides unified access to all capabilities
-
-## How TrustGraph Works
-
-### 1. Knowledge Ingestion
-```
-Documents → Entity Extraction → Relationship Discovery → Knowledge Graph
-```
-
-### 2. Query Processing
-```
-User Question → GraphRAG → Contextual Retrieval → AI Response
-```
-
-### 3. Continuous Learning
-```
-New Data → Graph Updates → Enhanced Knowledge → Better Responses
-```
 
 ## Key Benefits
 
