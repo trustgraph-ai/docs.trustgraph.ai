@@ -8,10 +8,35 @@ review_date: 2026-01-15
 
 # Changelog - Workbench UI
 
-## v1.4.1 (2025-12-04)
+## v1.5.5 (2026-01-19) - released in TrustGraph 1.8
+
+### Enhancements
+- **Nomenclature Update** (#115): Renamed "flow class" to "flow blueprint"
+  throughout the UI for consistency with backend terminology.
+- **Light/Dark Mode Fixes** (#121): Fixed color modes in flow blueprint
+  viewer and ontology editor for proper theming support.
+
+### Bug Fixes
+- **WebSocket Proxy Auth** (#112): Fixed gateway authentication error by
+  passing query string through websocket proxy.
+- **GraphRAG Client** (#113): Updated dependencies to pull in GraphRAG
+  client fix.
+- **Graph View** (#114): Fixed graph view issues by rolling back problematic
+  dependencies while keeping TrustGraph deps current; also fixed critical
+  vulnerability.
+- **Flow Blueprint Issues** (#117, #118): Fixed flow blueprint layout and URL
+  routing issues.
+- **Dialog List** (#119): Fixed dialog list fault.
+- **Knowledge Core Loading** (#120): Fixed load kg-core ignoring collection
+  parameter.
+
+---
+
+## v1.4.1 (2025-12-04) - released in TrustGraph 1.6
 
 ### Features
-- **Stream LLM Interactions** (#110): Added streaming support for LLM interactions for real-time response display.
+- **Stream LLM Interactions** (#110): Added streaming support for LLM
+  interactions for real-time response display.
 
 ### Enhancements
 - **Agent Dialog UI** (#111): Improved agent dialog by collapsing agent thinking and observation messages for a cleaner interface.

@@ -3,10 +3,65 @@ title: Changelog - TrustGraph
 nav_order: 1
 parent: Reference
 grand_parent: TrustGraph Documentation
-review_date: 2026-02-01
+review_date: 2027-01-01
 ---
 
 # Changelog
+
+## v1.8 (2026-01-19)
+
+### Major Features
+- **API Documentation** (#612, #613, #614): Comprehensive API specifications
+  and documentation:
+  - REST API OpenAPI specification with full endpoint coverage
+  - WebSocket AsyncAPI specification for real-time interactions
+  - Python API documentation with auto-generation tooling
+  - Removed legacy hand-written API documentation in favor of generated specs
+- **Messaging Fabric Plugins** (#592): Plugin architecture for messaging fabric
+  enabling alternative messaging backends:
+  - Technology-neutral schema expressions for transport abstraction
+  - Backend abstraction layer for pub/sub operations
+  - Enables future support for messaging systems beyond Pulsar
+  - Schema strictness improvements uncovered and fixed incorrect schema usage
+
+### Improvements
+- **Generic S3 Storage Support** (#594): Librarian blob storage refactored for
+  S3-compatible stores:
+  - MinIO-specific options changed to generic S3 parameters
+  - Added region and SSL configuration options
+  - Integrated with Garage - the configuration portal delivers integrated
+    Garage
+- **Storage Management Cleanup** (#595): Addressed legacy issues in storage
+  management:
+  - Removed legacy storage management code
+  - Fixed deletion of last collection edge case
+  - Storage processors now ignore data for deleted collections
+- **URL Normalization** (#617): Gateway URLs now work with or without trailing
+  slashes
+
+### Bug Fixes
+- **Configuration Fixes** (#616, #609, #611, #610): Multiple config-related
+  fixes:
+  - Fixed flows/flow key issue in config service
+  - Fixed config inconsistency issues
+  - Fixed flow loading problems
+  - Fixed load-doc command issues
+- **Streaming Fixes** (#607, #608, #602, #599): Resolved streaming-related
+  issues:
+  - Fixed non-streaming RAG problems
+  - Fixed agent streaming tool failure
+  - Fixed various streaming API issues
+- **Schema Fixes** (#598, #596): Schema message improvements:
+  - Fixed doc embedding schema messages
+  - Fixed optionality in objects-query schema
+- **Collection Management** (#597): Fixed collection existence test logic
+- **Dependencies** (#606): Added missing trustgraph-base dependency
+
+### Testing
+- **Streaming Tests** (#600, #601): Added comprehensive streaming tests and
+  fixed async test warnings
+
+---
 
 ## v1.7 (2025-12-23)
 
