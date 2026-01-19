@@ -13,7 +13,7 @@ Reference documentation for TrustGraph configuration file formats and data struc
 ## Configuration Types
 
 ### Flow Configuration
-- **[Flow Classes](flow-classes)** - Define dataflow pattern templates and processor networks
+- **[Flow Blueprints](flow-blueprints)** - Define dataflow pattern templates and processor networks
 
 ### Data Configuration
 - **Structure Descriptor Language (SDL)** - For structured data import (see [SDL Reference](../sdl))
@@ -32,12 +32,6 @@ TrustGraph uses various configuration schemas to define:
 These configuration files are typically stored in JSON format and can be managed through the CLI tools or the web interface.
 
 ## Common Patterns
-
-### Template Variables
-Many configuration schemas support template variables for dynamic naming:
-- `{id}` - Replaced with instance identifiers
-- `{class}` - Replaced with class names
-- `{collection}` - Replaced with collection names
 
 ### JSON Schema Validation
 Configuration files are validated against JSON schemas to ensure correctness before deployment.
