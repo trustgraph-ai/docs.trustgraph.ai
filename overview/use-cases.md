@@ -8,7 +8,7 @@ guide_category:
 guide_category_order: 1
 guide_description: Real-world applications from enterprise search to intelligent agents and decision support
 guide_difficulty: beginner
-guide_time: 15 min
+guide_time: 5 min
 guide_emoji: 💼
 guide_banner: use-cases.jpg
 guide_labels:
@@ -19,69 +19,147 @@ guide_labels:
 
 # Use Cases
 
-Discover how TrustGraph can be applied to solve real-world AI and knowledge management challenges.
+Discover how TrustGraph transforms AI capabilities across industries by combining knowledge graphs with intelligent agents.
 
-## Enterprise Applications
+<div class="use-case-grid" markdown="0">
 
-### Knowledge Management
-Transform scattered enterprise documentation, databases, and institutional knowledge into interconnected knowledge graphs. Enable AI agents to provide contextual answers that understand how different pieces of information relate to each other.
+<div class="use-case-card">
+<div class="use-case-header">
+<span class="use-case-icon">📚</span>
+<h3>Enterprise Knowledge Management</h3>
+</div>
+<div class="use-case-content">
+<ul>
+<li>Transform scattered enterprise documentation, databases, and institutional knowledge into interconnected knowledge graphs</li>
+<li>Enable AI agents to provide contextual answers that understand how different pieces of information relate to each other</li>
+<li>Unify fragmented organizational knowledge into coherent, queryable systems</li>
+</ul>
+</div>
+</div>
 
-### Customer Support Intelligence
-Build AI agents that understand the full context of customer interactions, product relationships, and support history. Provide more accurate and contextually relevant support responses.
+<div class="use-case-card">
+<div class="use-case-header">
+<span class="use-case-icon">🎧</span>
+<h3>Customer Support & Service</h3>
+</div>
+<div class="use-case-content">
+<ul>
+<li>Build AI agents that understand the full context of customer interactions, product relationships, and support history</li>
+<li>Provide more accurate and contextually relevant support responses</li>
+<li>Connect customer data across touchpoints for unified service experiences</li>
+</ul>
+</div>
+</div>
 
-### Research & Development
-Create knowledge graphs from research papers, patent databases, and internal R&D documentation. Enable AI agents to identify connections between different research areas and suggest novel approaches.
+<div class="use-case-card">
+<div class="use-case-header">
+<span class="use-case-icon">🔬</span>
+<h3>Research & Development</h3>
+</div>
+<div class="use-case-content">
+<ul>
+<li>Create knowledge graphs from research papers, patent databases, and internal R&D documentation</li>
+<li>Enable AI agents to identify connections between different research areas and suggest novel approaches</li>
+<li>Build AI-powered research assistants with isolated "research-flow" pipelines</li>
+</ul>
+</div>
+</div>
 
-### Regulatory Compliance
-Map complex regulatory requirements and their relationships to business processes. Enable AI agents to provide contextual compliance guidance that understands how different regulations interconnect.
+<div class="use-case-card">
+<div class="use-case-header">
+<span class="use-case-icon">⚖️</span>
+<h3>Regulatory Compliance & Legal</h3>
+</div>
+<div class="use-case-content">
+<ul>
+<li>Map complex regulatory requirements and their relationships to business processes</li>
+<li>Enable AI agents to provide contextual compliance guidance that understands how different regulations interconnect</li>
+<li>Process legislation with graph embeddings for legal AI tools</li>
+</ul>
+<span class="use-case-highlight">Real-world: UK legislation with 140,000+ graph embeddings</span>
+</div>
+</div>
 
-### Supply Chain Intelligence
-Model complex supply chain relationships and dependencies. Enable AI agents to provide insights about supply chain risks and opportunities based on interconnected data.
+<div class="use-case-card">
+<div class="use-case-header">
+<span class="use-case-icon">📊</span>
+<h3>Financial Analysis & Risk</h3>
+</div>
+<div class="use-case-content">
+<ul>
+<li>Connect financial data, market information, and business intelligence into comprehensive knowledge graphs</li>
+<li>Enable AI agents to perform more sophisticated financial analysis and risk assessment</li>
+<li>Model complex interdependencies between market factors and business outcomes</li>
+</ul>
+</div>
+</div>
 
-### Financial Analysis
-Connect financial data, market information, and business intelligence into comprehensive knowledge graphs. Enable AI agents to perform more sophisticated financial analysis and risk assessment.
+<div class="use-case-card">
+<div class="use-case-header">
+<span class="use-case-icon">📄</span>
+<h3>Advanced Document Intelligence</h3>
+</div>
+<div class="use-case-content">
+<ul>
+<li>Go beyond simple document retrieval to understand how documents relate to each other</li>
+<li>AI agents can provide answers that span multiple documents and understand contextual relationships</li>
+<li>Graph-anchored retrieval surfaces causal and related knowledge automatically</li>
+</ul>
+</div>
+</div>
 
-## Common Scenarios
+<div class="use-case-card">
+<div class="use-case-header">
+<span class="use-case-icon">🎯</span>
+<h3>Strategic Decision Support</h3>
+</div>
+<div class="use-case-content">
+<ul>
+<li>Build AI agents that can reason about complex business decisions by understanding the relationships between different factors, stakeholders, and outcomes</li>
+<li>Create knowledge graphs that connect market data, competitor information, and industry trends</li>
+</ul>
+</div>
+</div>
 
-### Intelligent Document Processing
-Go beyond simple document retrieval to understand how documents relate to each other. AI agents can provide answers that span multiple documents and understand contextual relationships.
+<div class="use-case-card">
+<div class="use-case-header">
+<span class="use-case-icon">🧠</span>
+<h3>Expert Knowledge Capture</h3>
+</div>
+<div class="use-case-content">
+<ul>
+<li>Capture and formalize expert knowledge in knowledge graphs before it's lost to attrition</li>
+<li>Enable AI agents to provide expert-level guidance while maintaining transparency about the reasoning process</li>
+<li>Preserve institutional knowledge in queryable, relationship-aware formats</li>
+</ul>
+</div>
+</div>
 
-### Decision Support Systems
-Build AI agents that can reason about complex business decisions by understanding the relationships between different factors, stakeholders, and outcomes.
+<div class="use-case-card">
+<div class="use-case-header">
+<span class="use-case-icon">🏢</span>
+<h3>Multi-Team Enterprise Deployment</h3>
+</div>
+<div class="use-case-content">
+<ul>
+<li>Different teams can use TrustGraph on the same infrastructure, each with their own dedicated message streams</li>
+<li>Support multiple concurrent AI agent workflows in one cluster—whether for different teams, customers, or use cases</li>
+<li>Native multi-tenancy with isolated namespaces and security boundaries</li>
+</ul>
+</div>
+</div>
 
-### Competitive Intelligence
-Create knowledge graphs that connect market data, competitor information, and industry trends. Enable AI agents to provide strategic insights based on comprehensive relationship understanding.
+</div>
 
-### Expert Systems
-Capture and formalize expert knowledge in knowledge graphs. Enable AI agents to provide expert-level guidance while maintaining transparency about the reasoning process.
+## Why Graph-Based Context Matters
 
-### Data Integration & Unification
-Break down data silos by creating unified knowledge graphs that connect information across different systems and departments.
+Traditional RAG approaches rely on vector similarity alone, which can miss critical relationships between pieces of information. TrustGraph's GraphRAG approach:
 
-## Implementation Patterns
+- **Surfaces causal relationships** — Understand not just what's similar, but what's connected
+- **Enables multi-hop reasoning** — Follow chains of relationships to find relevant context
+- **Reduces hallucinations** — Ground responses in verified knowledge structures
+- **Provides transparency** — Clear audit trails from question to answer
 
-### GraphRAG Implementation
-Implement Graph Retrieval-Augmented Generation to improve AI response quality by leveraging relationship understanding rather than simple document similarity.
+## Getting Started
 
-### Multi-Source Knowledge Integration
-Combine data from multiple sources (databases, documents, APIs) into coherent knowledge graphs that preserve relationships and context.
-
-### Incremental Knowledge Building
-Start with core knowledge domains and gradually expand knowledge graphs as more data becomes available and new relationships are discovered.
-
-### Contextual AI Agent Development
-Build AI agents that understand not just what information exists, but how different pieces of information connect and influence each other.
-
-## Success Factors
-
-### Data Quality & Relationships
-Success depends on identifying and accurately modeling the relationships between different data entities.
-
-### Iterative Development
-Knowledge graphs improve over time as more data is processed and relationships are refined.
-
-### Domain Expertise
-Combining domain expertise with TrustGraph's technology ensures that knowledge graphs accurately represent real-world relationships.
-
-### Integration Strategy
-Successful implementations integrate TrustGraph with existing tools and workflows rather than requiring complete system replacement.
+Ready to explore these use cases? Start with our [Quickstart Guide](../getting-started) to deploy TrustGraph and begin building knowledge-powered AI agents.

@@ -8,7 +8,7 @@ guide_category:
 guide_category_order: 3
 guide_description: Cybersecurity foundations, privacy protections, and enterprise security roadmap
 guide_difficulty: intermediate
-guide_time: 10 min
+guide_time: 5 min
 guide_emoji: 🔒
 guide_banner: security.jpg
 guide_labels:
