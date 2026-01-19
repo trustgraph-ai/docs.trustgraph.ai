@@ -8,7 +8,7 @@ guide_category:
 guide_category_order: 1
 guide_description: Understanding Graph RAG, Document RAG, and other retrieval strategies
 guide_difficulty: intermediate
-guide_time: 20 min
+guide_time: 3 min
 guide_emoji: 🔍
 guide_banner: retrieval.jpg
 guide_labels:

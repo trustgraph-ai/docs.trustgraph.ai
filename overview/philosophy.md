@@ -8,7 +8,7 @@ guide_category:
 guide_category_order: 2
 guide_description: Design principles and philosophy behind TrustGraph's approach to AI agent intelligence
 guide_difficulty: beginner
-guide_time: 10 min
+guide_time: 3 min
 guide_emoji: 💭
 guide_banner: philosophy.jpg
 guide_labels:

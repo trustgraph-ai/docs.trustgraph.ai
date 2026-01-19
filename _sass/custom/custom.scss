@@ -541,17 +541,146 @@ pre {
   }
 }
 
+// Feature sections with category headers and feature items
+.feature-section {
+  margin: 2.5rem 0;
+}
+
+.feature-section-header {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 1.25rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 2px solid var(--link-color, #7c4dff);
+
+  .feature-section-icon {
+    font-size: 1.75rem;
+    line-height: 1;
+  }
+
+  h2 {
+    margin: 0;
+    font-size: 1.35rem;
+    color: var(--heading-color, #27262b);
+  }
+}
+
+.feature-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1rem;
+}
+
+.feature-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+  padding: 1rem;
+  background: var(--sidebar-color, #f8f9fa);
+  border-radius: 8px;
+  transition: background 0.2s ease;
+
+  &:hover {
+    background: var(--body-background-color, #fff);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+  }
+
+  .feature-item-icon {
+    font-size: 1.25rem;
+    line-height: 1;
+    flex-shrink: 0;
+    margin-top: 0.1rem;
+  }
+
+  .feature-item-content {
+    flex: 1;
+
+    strong {
+      display: block;
+      margin-bottom: 0.25rem;
+      font-size: 0.95rem;
+      color: var(--heading-color, #27262b);
+    }
+
+    span {
+      font-size: 0.875rem;
+      color: var(--body-text-color, #5c5c5c);
+      line-height: 1.45;
+    }
+  }
+}
+
+// Dark mode for feature sections
+[data-theme="dark"] {
+  .feature-section-header {
+    border-color: #9d7bff;
+
+    h2 {
+      color: #e6edf3;
+    }
+  }
+
+  .feature-item {
+    background: #161b22;
+
+    &:hover {
+      background: #1c2128;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+    }
+
+    .feature-item-content {
+      strong {
+        color: #e6edf3;
+      }
+
+      span {
+        color: #a0a0a0;
+      }
+    }
+  }
+}
+
+@media (prefers-color-scheme: dark) {
+  .feature-section-header {
+    border-color: #9d7bff;
+
+    h2 {
+      color: #e6edf3;
+    }
+  }
+
+  .feature-item {
+    background: #161b22;
+
+    &:hover {
+      background: #1c2128;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+    }
+
+    .feature-item-content {
+      strong {
+        color: #e6edf3;
+      }
+
+      span {
+        color: #a0a0a0;
+      }
+    }
+  }
+}
+
 details {
 
   border: 1px solid var(--border-color, #e1e4e8);
   border-radius: 6px;
   padding: 0.75rem 1rem;
   margin: 1rem 0;
-  
+
   summary {
     cursor: pointer;
     font-weight: 500;
-    
+
     &:hover {
       color: var(--link-color, #0366d6);
     }

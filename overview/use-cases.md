@@ -8,7 +8,7 @@ guide_category:
 guide_category_order: 1
 guide_description: Real-world applications from enterprise search to intelligent agents and decision support
 guide_difficulty: beginner
-guide_time: 15 min
+guide_time: 5 min
 guide_emoji: 💼
 guide_banner: use-cases.jpg
 guide_labels:
