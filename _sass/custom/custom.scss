@@ -177,8 +177,14 @@ pre {
   flex-direction: column;
   justify-content: center;
   position: relative;
-  background-size: cover;
-  background-position: center;
+  background-size: contain !important;
+  background-position: center !important;
+  background-repeat: no-repeat !important;
+
+  // When background image is present, use dark background for gaps
+  &[style*="background-image"] {
+    background-color: #1a1a2e;
+  }
 
   // Dark overlay for background images
   &[style*="background-image"]::before {
@@ -188,7 +194,7 @@ pre {
     left: 0;
     right: 0;
     bottom: 0;
-    background: rgba(0, 0, 0, 0.55);
+    background: rgba(0, 0, 0, 0.45);
     z-index: 1;
   }
 
