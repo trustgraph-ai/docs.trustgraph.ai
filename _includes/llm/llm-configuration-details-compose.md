@@ -111,11 +111,11 @@ If running LMStudio locally, configure the URL to point to your LMStudio server.
 LMStudio typically runs on port 1234:
 
 ```
-export LMSTUDIO_URL=http://your-server-host:1234
+export LMSTUDIO_URL=http://your-server-host:1234/
 ```
 
 If running on the same host as your containers, use `host.containers.internal`
-as the hostname (e.g., `http://host.containers.internal:1234`).
+as the hostname (e.g., `http://host.containers.internal:1234/`).
 
 See also: [Container networking and self-hosted models](container-networking)
 </div>
