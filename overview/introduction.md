@@ -107,7 +107,7 @@ understand relationships and context.
 
 </div>
 
-## Details
+## Deep Dive
 
 ### Knowledge Representation
 
@@ -123,51 +123,10 @@ gained from context extraction.  In this form, the cores are easy to store
 offline, share and reload.  Context cores load into the stores in 1% of the
 time taken to create the original knowledge.
 
-## AI Agent Intelligence
+### Extensible
 
-TrustGraph enables AI agents to:
-- **Reason about relationships**: Understand how different facts connect
-- **Provide contextual responses**: Draw insights from interconnected knowledge
-- **Reduce hallucinations**: Ground responses in structured knowledge
-- **Learn continuously**: Build and refine knowledge over time
-
-## Architecture Overview
-
-### Knowledge Graph Builder
-
-Extracts entities and relationships from your enterprise data:
-- **Document Processing**: Analyzes text, PDFs, and other formats
-- **Entity Extraction**: Identifies key concepts and objects
-- **Relationship Mapping**: Discovers how entities connect
-- **Graph Construction**: Builds interconnected knowledge structures
-
-### Vector Embedding Engine
-
-Creates semantic representations of knowledge elements:
-- **Semantic Encoding**: Converts text into mathematical representations
-- **Similarity Mapping**: Enables finding related concepts
-- **Hybrid Search**: Combines with graph structure for powerful queries
-
-### GraphRAG Processor
-
-Combines graph and vector search for contextual retrieval:
-- **Relationship-Aware Retrieval**: Finds information based on connections
-- **Context Assembly**: Builds comprehensive context for AI responses
-- **Multi-Hop Reasoning**: Follows relationship chains for deeper insights
-
-### AI Agent Runtime
-
-Executes intelligent agents with access to knowledge graphs:
-- **Contextual Understanding**: Agents know how information relates
-- **Grounded Responses**: Answers based on structured knowledge
-- **Transparent Reasoning**: Clear path from question to answer
-
-### Integration Layer
-
-Connects with existing enterprise infrastructure:
-- **LLM Integration**: Works with multiple AI models
-- **Data Connectors**: Integrates with databases, documents, APIs
-- **API Gateway**: Provides unified access to all capabilities
+All of TrustGraph is built using open APIs which can be 3rd-party extended
+so you can add your own custom, private capabilities.
 
 ## Key Benefits
 
