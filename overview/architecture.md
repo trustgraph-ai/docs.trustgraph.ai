@@ -8,7 +8,7 @@ guide_category:
 guide_category_order: 2
 guide_description: System design, component relationships, data flow, and integration points
 guide_difficulty: advanced
-guide_time: 5 min
+guide_time: 15 min
 guide_emoji: 🏗️
 guide_banner: architecture.jpg
 guide_labels:
@@ -130,4 +130,27 @@ TrustGraph is designed to accommodate new processing modules. Two primary use ca
 This is achieved by building processors that conform to the pub/sub conventions — Python base classes handle the heavy lifting — and defining flow blueprints that integrate the new processing into a flow.
 
 See [Extending](../reference/extending/) for guidance on building custom processors.
+
+### LLM Integration
+
+TrustGraph treats LLMs as external services accessed through pluggable adapters. The system is provider-agnostic — you choose which LLM providers to use based on your requirements, costs, and data sovereignty needs.
+
+LLMs are invoked for text completion — generating responses, extracting entities and relationships, and other reasoning tasks. A dedicated `text-completion` processor handles LLM communication, abstracting provider differences from the rest of the system.
+
+Supported providers include Anthropic, OpenAI, Google VertexAI, AWS Bedrock, Azure OpenAI, Ollama, and others — over 12 in total. This separation means you can switch providers or run multiple providers simultaneously without changing your processing flows.
+
+### Embeddings
+
+Embeddings convert text into vector representations for semantic search. A dedicated `embeddings` processor generates vectors that are stored in the vector store and used to find semantically similar content.
+
+Embedding models are configured separately from LLMs — you can use provider-hosted embedding services or run local models. This allows you to optimise for cost, latency, or data privacy independently of your LLM choices.
+
+### Agent Runtime
+
+The agent infrastructure is built around a recurrent architecture — agent workflow iterations loop messages back into the agent manager rather than following a linear path. This design enables:
+
+- **Parallel agent interactions** — Multiple agent workflows can proceed concurrently without blocking each other
+- **Resilient execution** — If an agent manager fails and restarts, the workflow continues from the failure point rather than starting from scratch
+
+TrustGraph supports the ReAct (Reasoning + Acting) pattern, where agents iteratively reason about a task, select tools, observe results, and continue until the task is complete. Agents can invoke multiple tools including TrustGraph's built-in capabilities (knowledge queries, graph traversal) and external tools via [MCP integration](../guides/mcp-integration/).
 
