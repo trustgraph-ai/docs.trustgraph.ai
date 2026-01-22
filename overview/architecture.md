@@ -39,7 +39,7 @@ TrustGraph follows a modular, microservices-based architecture built on an event
 
 ### Core Components
 
-- **Knowledge Graph Builder** — Extracts entities and relationships from enterprise data to construct [Knowledge Cores](../concepts/knowledge-cores)
+- **Knowledge Graph Builder** — Extracts entities and relationships from enterprise data to construct [Knowledge Cores](../guides/context-cores/)
 - **Vector Embedding Engine** — Creates semantic embeddings that enable similarity search as entry points into the graph
 - **GraphRAG Processor** — Combines graph traversal with vector search for multi-hop contextual retrieval
 - **AI Agent Runtime** — Executes agents and tools with access to Knowledge Cores and external systems
@@ -70,7 +70,7 @@ Supported backends include Qdrant, Milvus, and Pinecone. See [Maturity](maturity
 
 ### Knowledge Cores
 
-Combines graph and vector storage into unified [Knowledge Cores](../concepts/knowledge-cores) — the deployable unit that provides both structured relationships and semantic search capabilities. Knowledge Cores can be loaded, unloaded, and versioned independently at runtime.
+Combines graph and vector storage into unified [Knowledge Cores](../guides/context-cores/) — the deployable unit that provides both structured relationships and semantic search capabilities. Knowledge Cores can be loaded, unloaded, and versioned independently at runtime.
 
 ## Processing & Reasoning Layer
 
@@ -84,11 +84,11 @@ Constructs relationship maps that capture how entities connect and influence eac
 
 ### GraphRAG Processing
 
-Implements [Graph Retrieval-Augmented Generation](../concepts/graphrag) that leverages both graph structure and vector similarity for enhanced context retrieval.
+Implements [Graph Retrieval-Augmented Generation](../guides/graph-rag/) that leverages both graph structure and vector similarity for enhanced context retrieval.
 
 ### AI Agent Orchestration
 
-Manages execution of AI agents with access to shared Knowledge Cores, tool invocation via [MCP](../concepts/mcp), and workflow state management.
+Manages execution of AI agents with access to shared Knowledge Cores, tool invocation via [MCP](../guides/mcp-integration/), and workflow state management.
 
 ## Integration Layer
 
