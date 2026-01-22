@@ -1,7 +1,7 @@
 ---
 title: tg-show-flows
 parent: CLI
-review_date: 2026-02-16
+review_date: 2026-06-16
 ---
 
 # tg-show-flows

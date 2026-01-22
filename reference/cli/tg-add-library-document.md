@@ -1,7 +1,7 @@
 ---
 title: tg-add-library-document
 parent: CLI
-review_date: 2025-11-30
+review_date: 2026-11-30
 ---
 
 # tg-add-library-document

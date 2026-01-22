@@ -2,7 +2,7 @@
 title: Python packages
 nav_order: 4
 parent: Reference
-review_date: 2026-02-01
+review_date: 2026-06-01
 ---
 
 # Python Packages

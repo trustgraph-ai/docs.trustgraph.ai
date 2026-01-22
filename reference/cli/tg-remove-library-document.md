@@ -1,7 +1,7 @@
 ---
 title: tg-remove-library-document
 parent: CLI
-review_date: 2025-12-04
+review_date: 2026-12-04
 ---
 
 # tg-remove-library-document

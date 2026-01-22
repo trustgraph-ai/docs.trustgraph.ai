@@ -3,7 +3,7 @@ title: Azure AKS
 nav_order: 5
 parent: Deployment
 grand_parent: TrustGraph Documentation
-review_date: 2026-02-21
+review_date: 2026-06-21
 guide_category:
   - Global cloud
 guide_category_order: 2

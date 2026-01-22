@@ -2,7 +2,7 @@
 title: Structured data load from a document
 parent: Structured data processing
 nav_order: 2
-review_date: 2026-02-01
+review_date: 2026-06-01
 ---
 
 # Structured Data Load from a Document

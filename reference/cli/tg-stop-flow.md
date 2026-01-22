@@ -1,7 +1,7 @@
 ---
 title: tg-stop-flow
 parent: CLI
-review_date: 2025-12-27
+review_date: 2026-12-27
 ---
 
 # tg-stop-flow

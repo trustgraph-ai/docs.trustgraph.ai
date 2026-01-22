@@ -1,7 +1,7 @@
 ---
 title: tg-show-config
 parent: CLI
-review_date: 2026-02-01
+review_date: 2026-06-01
 ---
 
 # tg-show-config

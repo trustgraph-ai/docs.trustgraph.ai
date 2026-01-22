@@ -3,7 +3,7 @@ title: CLI
 nav_order: 1
 has_children: true
 parent: Reference
-review_date: 2025-12-07
+review_date: 2026-12-07
 ---
 
 # TrustGraph CLI Documentation

@@ -3,7 +3,7 @@ title: Agent Extraction Process
 parent: Guides
 nav_order: 7
 permalink: /guides/agent-extraction
-review_date: 2026-02-01
+review_date: 2026-06-01
 ---
 
 # Agent Extraction Process

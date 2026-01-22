@@ -1,7 +1,7 @@
 ---
 title: tg-delete-tool
 parent: CLI
-review_date: 2025-12-30
+review_date: 2026-12-30
 ---
 
 # tg-delete-tool

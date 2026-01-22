@@ -1,7 +1,7 @@
 ---
 title: tg-load-knowledge
 parent: CLI
-review_date: 2026-01-26
+review_date: 2026-09-26
 ---
 
 # tg-load-knowledge
