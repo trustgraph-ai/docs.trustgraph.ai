@@ -19,147 +19,247 @@ guide_labels:
 
 # Use Cases
 
-Discover how TrustGraph transforms AI capabilities across industries by combining knowledge graphs with intelligent agents.
+Discover how TrustGraph transforms AI capabilities by connecting knowledge into reasoning-ready graphs.
 
-<div class="use-case-grid" markdown="0">
-
-<div class="use-case-card">
-<div class="use-case-header">
-<span class="use-case-icon">📚</span>
-<h3>Enterprise Knowledge Management</h3>
+<div class="feature-section" markdown="0">
+<div class="feature-section-header">
+<span class="feature-section-icon">🏢</span>
+<h2>Enterprise Knowledge & Ops</h2>
 </div>
-<div class="use-case-content">
-<ul>
-<li>Transform scattered enterprise documentation, databases, and institutional knowledge into interconnected knowledge graphs</li>
-<li>Enable AI agents to provide contextual answers that understand how different pieces of information relate to each other</li>
-<li>Unify fragmented organizational knowledge into coherent, queryable systems</li>
-</ul>
-</div>
-</div>
+<div class="use-case-grid">
 
 <div class="use-case-card">
 <div class="use-case-header">
-<span class="use-case-icon">🎧</span>
-<h3>Customer Support & Service</h3>
+<span class="use-case-icon">🌐</span>
+<h3>Unified Enterprise Knowledge Hub</h3>
 </div>
 <div class="use-case-content">
+<p>Aggregate wikis, PDFs, tickets, emails, and databases into a single knowledge graph so agents can answer questions that span multiple systems.</p>
 <ul>
-<li>Build AI agents that understand the full context of customer interactions, product relationships, and support history</li>
-<li>Provide more accurate and contextually relevant support responses</li>
-<li>Connect customer data across touchpoints for unified service experiences</li>
+<li>Use graph-anchored retrieval to reduce hallucinations and show reasoning paths back to specific entities</li>
+<li>Break down data silos by connecting fragmented information across your organization</li>
 </ul>
+<span class="use-case-highlight">"What's the impact of deprecating Service X on Customer Y?"</span>
 </div>
 </div>
 
 <div class="use-case-card">
 <div class="use-case-header">
-<span class="use-case-icon">🔬</span>
-<h3>Research & Development</h3>
+<span class="use-case-icon">🤖</span>
+<h3>Context-Aware Internal Assistant</h3>
 </div>
 <div class="use-case-content">
+<p>Build an internal AI assistant that understands org structure, systems, projects, and owners—not just text snippets.</p>
 <ul>
-<li>Create knowledge graphs from research papers, patent databases, and internal R&D documentation</li>
-<li>Enable AI agents to identify connections between different research areas and suggest novel approaches</li>
-<li>Build AI-powered research assistants with isolated "research-flow" pipelines</li>
+<li>Let agents traverse relationships (teams → services → incidents → SLAs) for richer answers</li>
+<li>Provide more actionable responses than standard enterprise search</li>
 </ul>
+<span class="use-case-highlight">"Who owns the payment service and what incidents has it had this quarter?"</span>
 </div>
 </div>
 
-<div class="use-case-card">
-<div class="use-case-header">
-<span class="use-case-icon">⚖️</span>
-<h3>Regulatory Compliance & Legal</h3>
-</div>
-<div class="use-case-content">
-<ul>
-<li>Map complex regulatory requirements and their relationships to business processes</li>
-<li>Enable AI agents to provide contextual compliance guidance that understands how different regulations interconnect</li>
-<li>Process legislation with graph embeddings for legal AI tools</li>
-</ul>
-<span class="use-case-highlight">Real-world: UK legislation with 140,000+ graph embeddings</span>
 </div>
 </div>
 
-<div class="use-case-card">
-<div class="use-case-header">
-<span class="use-case-icon">📊</span>
-<h3>Financial Analysis & Risk</h3>
+<div class="feature-section" markdown="0">
+<div class="feature-section-header">
+<span class="feature-section-icon">🏗️</span>
+<h2>Platform & Multi-Tenant Scenarios</h2>
 </div>
-<div class="use-case-content">
-<ul>
-<li>Connect financial data, market information, and business intelligence into comprehensive knowledge graphs</li>
-<li>Enable AI agents to perform more sophisticated financial analysis and risk assessment</li>
-<li>Model complex interdependencies between market factors and business outcomes</li>
-</ul>
-</div>
-</div>
+<div class="use-case-grid">
 
 <div class="use-case-card">
 <div class="use-case-header">
-<span class="use-case-icon">📄</span>
-<h3>Advanced Document Intelligence</h3>
+<span class="use-case-icon">🔌</span>
+<h3>Agent Platform for SaaS Vendors</h3>
 </div>
 <div class="use-case-content">
+<p>Let SaaS vendors embed TrustGraph as the "knowledge layer" for their own agents, with per-tenant knowledge cores and strict isolation.</p>
 <ul>
-<li>Go beyond simple document retrieval to understand how documents relate to each other</li>
-<li>AI agents can provide answers that span multiple documents and understand contextual relationships</li>
-<li>Graph-anchored retrieval surfaces causal and related knowledge automatically</li>
+<li>Run multiple agent workflows (support, analytics, recommendations) in parallel on one cluster</li>
+<li>Native multi-tenancy with isolated namespaces and security boundaries</li>
 </ul>
-</div>
-</div>
-
-<div class="use-case-card">
-<div class="use-case-header">
-<span class="use-case-icon">🎯</span>
-<h3>Strategic Decision Support</h3>
-</div>
-<div class="use-case-content">
-<ul>
-<li>Build AI agents that can reason about complex business decisions by understanding the relationships between different factors, stakeholders, and outcomes</li>
-<li>Create knowledge graphs that connect market data, competitor information, and industry trends</li>
-</ul>
+<span class="use-case-highlight">Each customer gets their own knowledge core with zero cross-contamination</span>
 </div>
 </div>
 
 <div class="use-case-card">
 <div class="use-case-header">
 <span class="use-case-icon">🧠</span>
-<h3>Expert Knowledge Capture</h3>
+<h3>Institutional Knowledge Preservation</h3>
 </div>
 <div class="use-case-content">
+<p>Capture and structure expert knowledge into graphs before attrition, enabling "expert agents" that outlive staff changes.</p>
 <ul>
-<li>Capture and formalize expert knowledge in knowledge graphs before it's lost to attrition</li>
-<li>Enable AI agents to provide expert-level guidance while maintaining transparency about the reasoning process</li>
-<li>Preserve institutional knowledge in queryable, relationship-aware formats</li>
+<li>Provide transparent reasoning over preserved knowledge</li>
+<li>Build trust with non-technical stakeholders through auditable responses</li>
 </ul>
+<span class="use-case-highlight">"Based on patterns from 15 years of incident data and 3 senior engineers' documented decisions..."</span>
+</div>
+</div>
+
+</div>
+</div>
+
+<div class="feature-section" markdown="0">
+<div class="feature-section-header">
+<span class="feature-section-icon">🎧</span>
+<h2>Customer-Facing Support & CX</h2>
+</div>
+<div class="use-case-grid">
+
+<div class="use-case-card">
+<div class="use-case-header">
+<span class="use-case-icon">💬</span>
+<h3>Graph-Powered Support Copilot</h3>
+</div>
+<div class="use-case-content">
+<p>Connect product docs, incident postmortems, release notes, and customer history into a support knowledge graph for precise, context-aware responses.</p>
+<ul>
+<li>Use the graph to explain "why" an answer is given</li>
+<li>Link workarounds to affected versions and impacted customers automatically</li>
+</ul>
+<span class="use-case-highlight">"This issue affects versions 2.3–2.5 and 47 customers on those builds"</span>
 </div>
 </div>
 
 <div class="use-case-card">
 <div class="use-case-header">
-<span class="use-case-icon">🏢</span>
-<h3>Multi-Team Enterprise Deployment</h3>
+<span class="use-case-icon">👤</span>
+<h3>Customer 360 Reasoning Agent</h3>
 </div>
 <div class="use-case-content">
+<p>Build agents that reason over customers, contracts, tickets, usage metrics, and entitlements as connected entities.</p>
 <ul>
-<li>Different teams can use TrustGraph on the same infrastructure, each with their own dedicated message streams</li>
-<li>Support multiple concurrent AI agent workflows in one cluster—whether for different teams, customers, or use cases</li>
-<li>Native multi-tenancy with isolated namespaces and security boundaries</li>
+<li>Answer complex multi-hop questions about customer relationships</li>
+<li>Identify at-risk accounts by traversing support history, usage patterns, and contract terms</li>
 </ul>
+<span class="use-case-highlight">"Which strategic customers are at churn risk due to unresolved P1 issues linked to recent architectural changes?"</span>
 </div>
 </div>
 
+</div>
+</div>
+
+<div class="feature-section" markdown="0">
+<div class="feature-section-header">
+<span class="feature-section-icon">🔐</span>
+<h2>Security, Risk & Compliance</h2>
+</div>
+<div class="use-case-grid">
+
+<div class="use-case-card">
+<div class="use-case-header">
+<span class="use-case-icon">🛡️</span>
+<h3>SecOps Graph Intelligence</h3>
+</div>
+<div class="use-case-content">
+<p>Use knowledge cores to represent users, hosts, alerts, detections, and threat intel across tenants, then let agents correlate them to uncover security vulnerabilities.</p>
+<ul>
+<li>Connect disparate security signals into unified threat graphs</li>
+<li>Enable analysts to ask natural language questions about security posture</li>
+</ul>
+<span class="use-case-highlight">"Which hosts with admin access have anomalous login patterns linked to known threat actors?"</span>
+</div>
+</div>
+
+<div class="use-case-card">
+<div class="use-case-header">
+<span class="use-case-icon">⚖️</span>
+<h3>Regulatory & Control Mapping</h3>
+</div>
+<div class="use-case-content">
+<p>Model regulations, policies, controls, systems, and evidence as a graph so agents can map compliance obligations to your infrastructure.</p>
+<ul>
+<li>Use graph embeddings to support legal workflows like mapping new legislation to existing obligations</li>
+<li>Identify compliance gaps automatically when regulations change</li>
+</ul>
+<span class="use-case-highlight">"Which controls and assets are impacted by this new regulation section?"</span>
+</div>
+</div>
+
+<div class="use-case-card">
+<div class="use-case-header">
+<span class="use-case-icon">📋</span>
+<h3>Security Questionnaire Responder</h3>
+</div>
+<div class="use-case-content">
+<p>Build a questionnaire/RFP responder over a graph of policies, controls, architecture diagrams, and audit evidence.</p>
+<ul>
+<li>Reduce hallucinations by grounding answers in your actual security posture</li>
+<li>Show exactly which artifacts and relationships support each answer</li>
+</ul>
+<span class="use-case-highlight">"Answer supported by: SOC2 Report §4.2, Architecture Diagram v3, Encryption Policy Rev.12"</span>
+</div>
+</div>
+
+</div>
+</div>
+
+<div class="feature-section" markdown="0">
+<div class="feature-section-header">
+<span class="feature-section-icon">📊</span>
+<h2>Finance, Strategy & Research</h2>
+</div>
+<div class="use-case-grid">
+
+<div class="use-case-card">
+<div class="use-case-header">
+<span class="use-case-icon">💼</span>
+<h3>Corporate Finance & M&A Copilot</h3>
+</div>
+<div class="use-case-content">
+<p>Represent companies, deals, financial statements, covenants, and scenarios as a graph so agents can explore complex "what if" questions.</p>
+<ul>
+<li>Support target screening, synergy analysis, and risk assessment</li>
+<li>Traverse relationships instead of reading isolated files</li>
+</ul>
+<span class="use-case-highlight">"What are the covenant implications if we acquire Company X given our current debt structure?"</span>
+</div>
+</div>
+
+<div class="use-case-card">
+<div class="use-case-header">
+<span class="use-case-icon">📈</span>
+<h3>Market & Competitive Intelligence</h3>
+</div>
+<div class="use-case-content">
+<p>Connect market data, competitors, product lines, customers, and news for agents that reason about trends and strategic options.</p>
+<ul>
+<li>Identify competitive threats by connecting product launches, partnerships, and market movements</li>
+<li>Enable strategic planning with relationship-aware analysis</li>
+</ul>
+<span class="use-case-highlight">"Which competitors are encroaching on our top segments given recent feature launches and partnerships?"</span>
+</div>
+</div>
+
+<div class="use-case-card">
+<div class="use-case-header">
+<span class="use-case-icon">🔬</span>
+<h3>R&D and Knowledge Discovery</h3>
+</div>
+<div class="use-case-content">
+<p>Turn research papers, patents, and lab notes into a research knowledge graph where agents identify non-obvious links across projects.</p>
+<ul>
+<li>Run "research-flow" pipelines in isolated namespaces so teams can experiment safely</li>
+<li>Discover connections between methods, findings, and applications</li>
+</ul>
+<span class="use-case-highlight">"Which techniques from Project A could accelerate the blocked work in Project B?"</span>
+</div>
+</div>
+
+</div>
 </div>
 
 ## Why Graph-Based Context Matters
 
-Traditional RAG approaches rely on vector similarity alone, which can miss critical relationships between pieces of information. TrustGraph's GraphRAG approach:
+Traditional RAG approaches rely on vector similarity alone, which can miss critical relationships. TrustGraph's GraphRAG approach:
 
-- **Surfaces causal relationships** — Understand not just what's similar, but what's connected
-- **Enables multi-hop reasoning** — Follow chains of relationships to find relevant context
+- **Shows reasoning paths** — Trace answers back to specific entities and relationships
+- **Enables multi-hop questions** — Answer queries that require traversing multiple connections
 - **Reduces hallucinations** — Ground responses in verified knowledge structures
-- **Provides transparency** — Clear audit trails from question to answer
+- **Supports complex queries** — Handle "what if" scenarios and impact analysis that span systems
 
 ## Getting Started
 
-Ready to explore these use cases? Start with our [Quickstart Guide](../getting-started) to deploy TrustGraph and begin building knowledge-powered AI agents.
+Ready to build knowledge-powered agents? Start with our [Quickstart Guide](../getting-started) to deploy TrustGraph and begin connecting your enterprise knowledge.
