@@ -25,6 +25,8 @@ Learn about TrustGraph's system architecture and design principles for building 
 
 TrustGraph is a knowledge and agent substrate that sits alongside your existing data sources and LLM providers — not a monolithic application. It transforms your enterprise data into structured knowledge that agents can reason over, while you retain full control over where data lives and which models you use.
 
+The architecture builds on proven patterns from the knowledge graph and semantic web ecosystem, making concepts familiar to teams with experience in enterprise knowledge management.
+
 **At a glance**: Ingestion & Processing → Knowledge Storage → Agent Runtime → Integration Layer
 
 ### High-Level Architecture
