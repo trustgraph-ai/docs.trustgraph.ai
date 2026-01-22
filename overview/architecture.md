@@ -25,8 +25,8 @@ Learn about TrustGraph's system architecture and design principles for building 
 
 ### High-Level Architecture
 
-<a href="TG-platform-diagram.svg">
-  <img src="TG-platform-diagram.svg" alt="TrustGraph architecture">
+<a href="arch-diagram.png">
+  <img src="arch-diagram.png" alt="TrustGraph architecture">
 </a>
 
 TrustGraph follows a modular, microservices-based architecture that enables scalable knowledge graph construction and AI agent deployment. The platform is designed to integrate with existing enterprise infrastructure while providing advanced knowledge processing capabilities.
