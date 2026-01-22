@@ -1,7 +1,7 @@
 ---
 title: tg-delete-collection
 parent: CLI
-review_date: 2026-01-19
+review_date: 2026-09-19
 ---
 
 # tg-delete-collection

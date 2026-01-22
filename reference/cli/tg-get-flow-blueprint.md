@@ -1,7 +1,7 @@
 ---
 title: tg-get-flow-blueprint
 parent: CLI
-review_date: 2025-12-24
+review_date: 2026-12-24
 ---
 
 # tg-get-flow-blueprint

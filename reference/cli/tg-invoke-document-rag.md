@@ -1,7 +1,7 @@
 ---
 title: tg-invoke-document-rag
 parent: CLI
-review_date: 2026-01-01
+review_date: 2026-09-01
 ---
 
 # tg-invoke-document-rag
