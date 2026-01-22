@@ -168,4 +168,4 @@ guide_labels:
 
 ## Contact
 
-For enterprise inquiries, visit [knownext.io](https://knownext.io) or join the [TrustGraph Discord](https://discord.gg/sQkVqqPB) to discuss your requirements.
+For enterprise inquiries, email [sales@knownext.io](mailto:sales@knownext.io), visit [knownext.io](https://knownext.io), or join the [TrustGraph Discord](https://discord.gg/sQkVqqPB) to discuss your requirements.
