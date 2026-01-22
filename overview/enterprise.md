@@ -83,7 +83,7 @@ guide_labels:
 <div class="feature-item">
 <span class="feature-item-icon">⚙️</span>
 <div class="feature-item-content">
-<strong>Tailored Pulumi/Terraform Modules</strong>
+<strong>Tailored Deployment Automation</strong>
 <span>Infrastructure-as-code packages customized for your cloud provider, security policies, and compliance requirements</span>
 </div>
 </div>
@@ -95,10 +95,10 @@ guide_labels:
 </div>
 </div>
 <div class="feature-item">
-<span class="feature-item-icon">📚</span>
+<span class="feature-item-icon">🔄</span>
 <div class="feature-item-content">
-<strong>Runbooks & Documentation</strong>
-<span>Custom operational documentation, deployment guides, and troubleshooting procedures for your team</span>
+<strong>Continuous Compatibility Testing</strong>
+<span>Your custom deployment package included in our regular e2e test pipeline, ensuring you stay current with the latest TrustGraph releases</span>
 </div>
 </div>
 </div>
