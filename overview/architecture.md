@@ -97,3 +97,37 @@ See [Deployment](../deployment/) for platform-specific guides.
 
 The core TrustGraph system is built into [Python packages](../reference/python-packages) published on PyPI. The build pipeline then packages these into [container images](../reference/containers) published to Docker Hub. Deployment engineers typically work with deployment packages that describe how the system is deployed, rather than interacting directly with Python packages or container images.
 
+### Interacting with the System
+
+The **api-gateway** processor bridges between external clients and the Pulsar messaging world. It exposes two interfaces:
+
+- **REST API** — Standard HTTP requests for simple integrations
+- **WebSocket API** — Multiplexes multiple requests over a single connection, better suited for async workloads and higher request concurrency
+
+Both interfaces support approximately 95% of the same functionality.
+
+Client libraries are available for building applications:
+
+- **Python API** — Connects to either the REST or WebSocket interface
+- **TypeScript API** — Connects to either the REST or WebSocket interface
+
+The **Workbench UI** is a sample application that exercises much of TrustGraph's functionality using the TypeScript API. It includes a built-in WebSocket proxy, allowing browser requests to route through the Workbench to the api-gateway — only the Workbench UI port needs to be exposed.
+
+It is also possible to interact with the system directly via **Pulsar queues**, but this is generally not recommended for external clients:
+
+- The REST/WebSocket APIs and SDKs are much easier to use
+- Pulsar adds complex dependencies for simple client applications
+- Understanding the Pulsar queue topology is complex; the api-gateway abstracts this away
+- The Pulsar network is best considered an internal implementation detail — direct Pulsar access is intended for deploying components inside TrustGraph, not for external integrations
+
+### Extending the Processing
+
+TrustGraph is designed to accommodate new processing modules. Two primary use cases:
+
+- **Contributing to TrustGraph** — Developers can contribute new processors to the open-source project, extending capabilities for the whole community
+- **Private/domain-specific processing** — Organisations can add custom processors for proprietary workflows or domain-specific logic that isn't intended to be shared
+
+This is achieved by building processors that conform to the pub/sub conventions — Python base classes handle the heavy lifting — and defining flow blueprints that integrate the new processing into a flow.
+
+See [Extending](../reference/extending/) for guidance on building custom processors.
+
