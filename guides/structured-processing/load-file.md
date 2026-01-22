@@ -2,7 +2,7 @@
 title: Structure data load from a data file
 parent: Structured data processing
 nav_order: 3
-review_date: 2026-02-01
+review_date: 2026-06-01
 ---
 
 # Structured Data Load from a File

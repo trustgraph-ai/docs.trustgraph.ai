@@ -1,7 +1,7 @@
 ---
 title: tg-save-doc-embeds
 parent: CLI
-review_date: 2026-02-05
+review_date: 2026-06-05
 ---
 
 # tg-save-doc-embeds

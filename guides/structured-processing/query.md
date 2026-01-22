@@ -2,7 +2,7 @@
 title: Querying structured data
 parent: Structured data processing
 nav_order: 4
-review_date: 2026-02-01
+review_date: 2026-06-01
 ---
 
 # Querying Structured Data

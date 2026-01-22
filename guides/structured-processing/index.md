@@ -3,7 +3,7 @@ title: Structured data processing
 parent: Advanced knowledge management
 grand_parent: How-to Guides
 nav_order: 7
-review_date: 2026-02-01
+review_date: 2026-06-01
 guide_category:
   - Advanced knowledge management
 guide_category_order: 1

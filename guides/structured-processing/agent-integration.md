@@ -2,7 +2,7 @@
 title: Agent integration
 parent: Structured data processing
 nav_order: 5
-review_date: 2026-02-01
+review_date: 2026-06-01
 ---
 
 # Agent Integration with Structured Queries

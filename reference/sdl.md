@@ -3,7 +3,7 @@ title: Structure Descriptor Language (SDL)
 parent: Reference
 nav_order: 6
 permalink: /reference/sdl
-review_date: 2026-02-01
+review_date: 2026-06-01
 ---
 
 # Structure Descriptor Language (SDL)

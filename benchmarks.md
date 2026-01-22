@@ -2,7 +2,7 @@
 title: Benchmarks
 nav_order: 7
 parent: TrustGraph Documentation
-review_date: 2026-02-01
+review_date: 2026-06-01
 ---
 
 # Benchmarks
