@@ -164,11 +164,15 @@ The Pulsar messaging backbone provides built-in resilience. Messages are persist
 
 ### Scaling
 
-TrustGraph scales horizontally. Ingestion, processing, and query paths can be scaled independently by adding more processor instances. Pulsar handles load distribution across instances automatically. Typical bottlenecks are LLM API rate limits during extraction and graph database throughput during heavy query loads — both can be addressed by scaling the relevant components or upgrading backend capacity.
+TrustGraph scales horizontally. Ingestion, processing, and query paths can be scaled independently by adding more processor instances. Pulsar handles load distribution across instances automatically.
+
+Some processors support a **concurrency** setting — a lightweight scaling option where a single processor handles multiple independent threads. This is particularly useful for processors like `text-completion` that aren't CPU-intensive but spend most of their time waiting for LLM responses. Without concurrency, scaling such processors would require factors of 500x or more to achieve good throughput.
+
+Typical bottlenecks are LLM API rate limits during extraction and graph database throughput during heavy query loads — both can be addressed by scaling the relevant components or upgrading backend capacity.
 
 ### Multi-Tenancy
 
-Multi-tenancy is achieved through Context Cores — each tenant gets their own core(s) with complete data isolation. The processing infrastructure is shared, but knowledge remains strictly separated. Resource quotas and access controls can be applied per-core to manage capacity and security boundaries.
+Multi-tenancy features include separate user and collection processing, allowing different users or datasets to be handled independently. Separate flows keep different data logically isolated — each tenant's data moves through its own processing pipeline without mixing with others.
 
 ### Deployment Configuration
 
