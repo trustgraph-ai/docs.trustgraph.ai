@@ -21,13 +21,68 @@ guide_labels:
 
 Learn about TrustGraph's system architecture and design principles for building intelligent AI agent platforms.
 
-## Executive Summary
+## In a nutshell
 
-- **Resilient, Scalable Dataflow** — Event-driven architecture with auto-recovery and independent scaling
-- **Full Self-Hosting** — Deploy on your own infrastructure, no cloud dependency required
-- **12+ LLM Providers** — No vendor lock-in (Anthropic, OpenAI, AWS Bedrock, Azure, Ollama, etc.)
-- **Multi-Tenancy** — Isolated data pipelines per user or collection
-- **Fully Open** — Open source, open architecture, Apache 2 license
+<div class="feature-section" markdown="0">
+<div class="feature-list">
+<div class="feature-item">
+<span class="feature-item-icon">⚡</span>
+<div class="feature-item-content">
+<strong>Resilient, Scalable Dataflow</strong>
+<span>Event-driven architecture with auto-recovery and independent scaling</span>
+</div>
+</div>
+<div class="feature-item">
+<span class="feature-item-icon">🏠</span>
+<div class="feature-item-content">
+<strong>Full Self-Hosting</strong>
+<span>Deploy on your own infrastructure, no cloud dependency required</span>
+</div>
+</div>
+<div class="feature-item">
+<span class="feature-item-icon">🧠</span>
+<div class="feature-item-content">
+<strong>12+ LLM Providers</strong>
+<span>No vendor lock-in (Anthropic, OpenAI, AWS Bedrock, Azure, Ollama, etc.)</span>
+</div>
+</div>
+<div class="feature-item">
+<span class="feature-item-icon">👥</span>
+<div class="feature-item-content">
+<strong>Multi-Tenancy</strong>
+<span>Isolated data pipelines per user or collection</span>
+</div>
+</div>
+<div class="feature-item">
+<span class="feature-item-icon">🔓</span>
+<div class="feature-item-content">
+<strong>Fully Open</strong>
+<span>Open source, open architecture, Apache 2 license</span>
+</div>
+</div>
+<div class="feature-item">
+<span class="feature-item-icon">📦</span>
+<div class="feature-item-content">
+<strong>Context Cores</strong>
+<span>Isolated, versionable knowledge bases you can load/unload at runtime</span>
+</div>
+</div>
+<div class="feature-item">
+<span class="feature-item-icon">📊</span>
+<div class="feature-item-content">
+<strong>Production Observability</strong>
+<span>Built-in Grafana & Loki for monitoring and logs</span>
+</div>
+</div>
+<div class="feature-item">
+<span class="feature-item-icon">🤖</span>
+<div class="feature-item-content">
+<strong>Agentic AI Runtime</strong>
+<span>ReAct pattern with parallel workflows and MCP tool integration</span>
+</div>
+</div>
+</div>
+</div>
 
 ## System Overview
 
