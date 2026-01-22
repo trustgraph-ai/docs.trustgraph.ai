@@ -229,57 +229,50 @@ This page summarizes the maturity and test coverage of TrustGraph features, inte
 <tr>
 <th>Repository</th>
 <th>Scope</th>
-<th>Unit</th>
-<th>Integration</th>
-<th>Scale/Load</th>
-<th>E2E</th>
+<th>Testing</th>
 <th>CI Pipeline</th>
 </tr>
 </thead>
 <tbody>
 <tr>
 <td><a href="https://github.com/trustgraph-ai/trustgraph">trustgraph</a></td>
-<td>Core system functionality and contracts</td>
-<td>✅</td>
-<td>✅</td>
-<td>❌</td>
-<td>✅</td>
-<td><a href="https://github.com/trustgraph-ai/trustgraph/actions/workflows/pull-request.yaml">pipeline</a></td>
+<td>
+Core system functionality and contracts<br/>
+~1500 unit tests<br/>
+~250 integration tests<br/>
+~100 contract tests
+</td>
+<td>✅ unit<br/>✅ integration<br/>✅ e2e</td>
+<td><a href="https://github.com/trustgraph-ai/trustgraph/actions">pipeline</a></td>
+</tr>
+<tr>
+<td><a href="https://github.com/trustgraph-ai/workbench-ui">workbench-ui</a></td>
+<td>Workbench UI demonstrator application</td>
+<td>✅ unit<br/>✅ integration</td>
+<td><a href="https://github.com/trustgraph-ai/workbench-ui/actions">pipeline</a></td>
 </tr>
 <tr>
 <td><a href="https://github.com/trustgraph-ai/trustgraph-templates">trustgraph-templates</a></td>
-<td>Deployment configurations build correctly</td>
-<td>✅</td>
-<td>✅</td>
-<td>❌</td>
-<td>✅</td>
-<td><a href="https://github.com/trustgraph-ai/trustgraph-templates/actions/workflows/pull-request.yaml">pipeline</a></td>
+<td>Verification that deployment configurations build correctly and contain the correct features</td>
+<td>✅ unit<br/>✅ integration<br/>✅ e2e</td>
+<td><a href="https://github.com/trustgraph-ai/trustgraph-templates/actions">pipeline</a></td>
 </tr>
 <tr>
 <td><a href="https://github.com/trustgraph-ai/simple-config-ui">config UI</a></td>
 <td>Configuration UI</td>
-<td>❌</td>
-<td>❌</td>
-<td>❌</td>
-<td>❌</td>
-<td>—</td>
+<td></td>
+<td><a href="https://github.com/trustgraph-ai/simple-config-ui/actions">pipeline</a></td>
 </tr>
 <tr>
 <td><a href="https://github.com/trustgraph-ai/pulumi-trustgraph-scaleway">Scaleway</a></td>
 <td>Cloud resources deployed as expected</td>
-<td>✅</td>
-<td>✅</td>
-<td>❌</td>
-<td>✅</td>
-<td><a href="https://github.com/trustgraph-ai/pulumi-trustgraph-scaleway/actions/workflows/pull-request.yaml">pipeline</a></td>
+<td>✅ unit<br/>✅ integration<br/>✅ e2e<br/>✅ security</td>
+<td><a href="https://github.com/trustgraph-ai/pulumi-trustgraph-scaleway/actions">pipeline</a></td>
 </tr>
 <tr>
 <td><a href="https://github.com/trustgraph-ai/pulumi-trustgraph-ovhcloud">OVHcloud</a></td>
 <td>Cloud resources deployed as expected</td>
-<td>✅</td>
-<td>✅</td>
-<td>❌</td>
-<td>✅</td>
+<td>✅ unit<br/>✅ integration<br/>✅ e2e<br/>✅ security</td>
 <td><a href="https://github.com/trustgraph-ai/pulumi-trustgraph-ovhcloud/actions/workflows/pull-request.yaml">pipeline</a></td>
 </tr>
 </tbody>
@@ -287,12 +280,9 @@ This page summarizes the maturity and test coverage of TrustGraph features, inte
 
 ---
 
-## Notes & Caveats
+## Notes
 
-- **Version-specific**: Maturity statuses reflect capabilities as of the current release. Features marked "Production-ready in v1.4" were stabilized in that version.
 - **Bleeding edge**: Newest features may not yet have full test coverage; check the changelog for details.
-- **Scale testing**: Load and scale testing is not currently part of the automated test suite. Contact us if you need guidance on high-volume deployments.
-- **Updates**: This page is updated as new releases pass testing gates.
 
 ## Questions?
 
