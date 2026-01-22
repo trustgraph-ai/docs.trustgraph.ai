@@ -21,7 +21,3 @@ Welcome! We're glad you're interested in contributing.
    accent_color="#48bb78"
    label_bg_color="rgba(72, 187, 120, 0.2)"
 %}
-
-## Other Resources
-
-- **[Code of Conduct](code-of-conduct)** — Community standards and expectations
