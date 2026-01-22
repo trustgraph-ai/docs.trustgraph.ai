@@ -62,117 +62,38 @@ TrustGraph consists of many independent **processors** — small, focused servic
 
 This architecture allows the system to run many configurable dataflows simultaneously, adapting processing pipelines to different use cases without code changes.
 
-### Core Components
+### Processing Chains in Action
 
-- **Knowledge Graph Builder** — Extracts entities and relationships from enterprise data to construct [Knowledge Cores](../guides/context-cores/)
-- **Vector Embedding Engine** — Creates semantic embeddings that enable similarity search as entry points into the graph
-- **GraphRAG Processor** — Combines graph traversal with vector search for multi-hop contextual retrieval
-- **AI Agent Runtime** — Executes agents and tools with access to Knowledge Cores and external systems
-- **Integration Layer** — Connects with external LLMs, databases, and enterprise systems through pluggable adapters
+The following examples show how processors chain together to perform tasks. Processors interact in two ways: **flow** interactions use fire-and-forget messaging where data moves from one processor to the next without waiting for acknowledgement — this powers processing chains. **Request/response** interactions place a request and wait for a response (which may be an error) — this is used when a result is needed before proceeding.
 
-### Data Flow
+**Knowledge extraction from documents:**
 
-1. **Ingestion** — Raw data enters from various sources (e.g. product docs from Confluence, tickets from Jira)
-2. **Processing** — Entity extraction, relationship identification, and graph construction
-3. **Embedding** — Vector representation of knowledge elements for semantic search
-4. **Storage** — Persistent storage in graph and vector databases as a Knowledge Core
-5. **Query** — Agents query Knowledge Cores via GraphRAG for contextual information
-6. **Response** — Grounded responses with reasoning paths traced back to source entities
+```
+pdf-decoder → chunker → kg-extract-relationships → triple-store
+```
 
-## Storage Layer
+A PDF is decoded to text, split into chunks, entities and relationships are extracted by an LLM, and the resulting triples are written to the graph store.
 
-### Knowledge Graph Storage
+**GraphRAG query:**
 
-TrustGraph supports multiple graph database backends as pluggable storage. Stores entities, relationships, and metadata in optimized graph structures.
+```
+api-gateway → graph-rag → prompt → text-completion
+```
 
-Supported backends include Cassandra, Neo4j, Memgraph, and FalkorDB. See [Maturity](maturity) for production recommendations.
+A query arrives at the API gateway, GraphRAG retrieves relevant context from the knowledge graph, a prompt is constructed with the context, and the LLM generates a grounded response.
 
-### Vector Database Integration
+*Note: Both examples are simplified illustrations of single flows within more complex pipelines. The extraction example omits graph embeddings and other extraction processes. The GraphRAG example omits the knowledge graph traversal steps that occur between retrieval and prompt construction.*
 
-Integrates with vector databases for semantic similarity search and hybrid retrieval. Embeddings link to graph entities, enabling vector search to serve as entry points for graph traversal.
+### Platform
 
-Supported backends include Qdrant, Milvus, and Pinecone. See [Maturity](maturity) for production recommendations.
+TrustGraph supports two deployment models:
 
-### Knowledge Cores
+- **Podman / Docker** — Deploy using `podman-compose` or `docker-compose` for development, evaluation, and smaller-scale production workloads
+- **Kubernetes** — Deploy on managed Kubernetes services (GKE, AKS, EKS) or self-managed clusters (Scaleway, OVHcloud, on-premises) for production-scale deployments
 
-Combines graph and vector storage into unified [Knowledge Cores](../guides/context-cores/) — the deployable unit that provides both structured relationships and semantic search capabilities. Knowledge Cores can be loaded, unloaded, and versioned independently at runtime.
+See [Deployment](../deployment/) for platform-specific guides.
 
-## Processing & Reasoning Layer
+### Software Packaging
 
-### Entity Extraction Engine
+The core TrustGraph system is built into [Python packages](../reference/python-packages) published on PyPI. The build pipeline then packages these into [container images](../reference/containers) published to Docker Hub. Deployment engineers typically work with deployment packages that describe how the system is deployed, rather than interacting directly with Python packages or container images.
 
-Uses NLP pipelines including entity recognition and relationship extraction to identify entities, relationships, and concepts from unstructured data.
-
-### Relationship Mapping
-
-Constructs relationship maps that capture how entities connect and influence each other, enabling multi-hop reasoning across your knowledge base.
-
-### GraphRAG Processing
-
-Implements [Graph Retrieval-Augmented Generation](../guides/graph-rag/) that leverages both graph structure and vector similarity for enhanced context retrieval.
-
-### AI Agent Orchestration
-
-Manages execution of AI agents with access to shared Knowledge Cores, tool invocation via [MCP](../guides/mcp-integration/), and workflow state management.
-
-## Integration Layer
-
-### LLM Integration
-
-Supports 40+ LLM providers through standardized interfaces, including Anthropic, OpenAI, Google VertexAI, AWS Bedrock, Azure OpenAI, and Ollama.
-
-### Enterprise Data Connectors
-
-Built-in connectors for common enterprise systems including databases, document management systems, and APIs.
-
-### API Gateway
-
-Provides unified access to all TrustGraph capabilities through REST APIs, GraphQL, and WebSocket connections.
-
-## Deployment & Operations
-
-### Containerized Deployment
-
-Fully containerized using Docker with Kubernetes orchestration for scalable, cloud-native deployments.
-
-### Microservices Design
-
-Modular architecture allows independent scaling of different components based on workload requirements.
-
-### Multi-Cloud Support
-
-Runs on any cloud platform (AWS, Azure, GCP, Scaleway, OVHcloud) or on-premises infrastructure. See [Maturity](maturity) for deployment status by platform.
-
-### Observability
-
-- **Metrics** — Prometheus endpoints on all services with pre-built Grafana dashboards
-- **Logging** — Structured logs compatible with standard aggregators
-- **Cost tracking** — LLM API usage and token consumption metrics
-
-## Security & Multi-Tenancy
-
-### Access Control
-
-API gateway provides the integration point for authentication and authorization. TrustGraph does not include built-in user/token management — integrate with your existing identity provider.
-
-### Multi-Tenancy
-
-Logical isolation through Knowledge Core namespaces, per-namespace resource quotas, and configuration isolation. Tenants share infrastructure while data remains strictly separated.
-
-### Compliance
-
-Audit logging, data encryption at rest and in transit, and support for air-gapped deployments for data sovereignty requirements.
-
-## Scalability & Performance
-
-### Horizontal Scaling
-
-Ingestion, processing, and query paths scale independently based on workload demands.
-
-### Resilient Processing
-
-The Pulsar streaming backbone provides message replay, persistence, and backpressure handling. Services recover state after restarts without data loss.
-
-### Caching & Optimization
-
-Query result caching and optimized graph traversal ensure fast response times even with large Knowledge Cores.
