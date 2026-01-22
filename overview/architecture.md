@@ -37,6 +37,31 @@ The architecture builds on proven patterns from the knowledge graph and semantic
 
 TrustGraph follows a modular, microservices-based architecture built on an event-driven streaming backbone (Apache Pulsar). Components communicate asynchronously, enabling independent scaling and resilient operation.
 
+### Infrastructure
+
+- **Apache Pulsar** — The messaging backbone that underpins all system communication. Every service communicates through Pulsar, enabling decoupled scaling, message replay, and resilient operation
+- **Cassandra** — Stores system metadata, processing state, and operational data
+- **Garage** — S3-compatible object storage for source documents and artifacts
+- **Grafana & Loki** — Monitoring dashboards and log aggregation for observability
+
+### Knowledge Infrastructure
+
+TrustGraph uses pluggable backends for knowledge storage:
+
+- **Graph store** — Stores entities and relationships. Options: Cassandra, Neo4j, Memgraph, FalkorDB
+- **Vector store** — Stores embeddings for semantic search. Options: Qdrant, Milvus
+- **Structure store** — Stores structured data extracts. Options: Cassandra
+
+### Service Architecture
+
+TrustGraph consists of many independent **processors** — small, focused services that each perform a specific task (parsing documents, extracting entities, generating embeddings, etc.). Processors communicate exclusively through Pulsar, making the system loosely coupled and independently scalable.
+
+- **Processors** — Individual services that subscribe to input queues, perform work, and publish to output queues
+- **Flows** — Running dataflow pipelines that chain processors together to accomplish complex tasks
+- **Flow blueprints** — Reusable templates that define which processors to invoke and how data moves between them
+
+This architecture allows the system to run many configurable dataflows simultaneously, adapting processing pipelines to different use cases without code changes.
+
 ### Core Components
 
 - **Knowledge Graph Builder** — Extracts entities and relationships from enterprise data to construct [Knowledge Cores](../guides/context-cores/)
