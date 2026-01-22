@@ -176,7 +176,8 @@ Multi-tenancy features include separate user and collection processing, allowing
 
 ### Deployment Configuration
 
-TrustGraph deployments are generated using a template engine that assembles the required components based on your configuration choices (LLM provider, storage backends, enabled features). This produces deployment manifests for your target platform.
+TrustGraph deployments are generated using a template engine that assembles the required components based on your configuration choices (LLM provider, storage backends, enabled features). This produces deployment manifests for your target platform.  This provides for many configuration options beyond those that
+you might see in the configuration portal.
 
 For cloud deployments, complete Infrastructure-as-Code configurations are available in Pulumi. Pulumi's code-based approach enables security testing of deployment configurations prior to deployment — policies can validate that infrastructure meets security requirements before any resources are created.
 
