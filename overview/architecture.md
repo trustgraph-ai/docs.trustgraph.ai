@@ -21,6 +21,14 @@ guide_labels:
 
 Learn about TrustGraph's system architecture and design principles for building intelligent AI agent platforms.
 
+## Executive Summary
+
+- **Resilient, Scalable Dataflow** — Event-driven architecture with auto-recovery and independent scaling
+- **Full Self-Hosting** — Deploy on your own infrastructure, no cloud dependency required
+- **12+ LLM Providers** — No vendor lock-in (Anthropic, OpenAI, AWS Bedrock, Azure, Ollama, etc.)
+- **Multi-Tenancy** — Isolated data pipelines per user or collection
+- **Fully Open** — Open source, open architecture, Apache 2 license
+
 ## System Overview
 
 TrustGraph is a knowledge and agent substrate that sits alongside your existing data sources and LLM providers — not a monolithic application. It transforms your enterprise data into structured knowledge that agents can reason over, while you retain full control over where data lives and which models you use.
