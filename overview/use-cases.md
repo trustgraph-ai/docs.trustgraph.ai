@@ -63,6 +63,46 @@ Discover how TrustGraph transforms AI capabilities by connecting knowledge into 
 
 <div class="feature-section" markdown="0">
 <div class="feature-section-header">
+<span class="feature-section-icon">🏗️</span>
+<h2>Platform & Multi-Tenant Scenarios</h2>
+</div>
+<div class="use-case-grid">
+
+<div class="use-case-card">
+<div class="use-case-header">
+<span class="use-case-icon">🔌</span>
+<h3>Agent Platform for SaaS Vendors</h3>
+</div>
+<div class="use-case-content">
+<p>Let SaaS vendors embed TrustGraph as the "knowledge layer" for their own agents, with per-tenant knowledge cores and strict isolation.</p>
+<ul>
+<li>Run multiple agent workflows (support, analytics, recommendations) in parallel on one cluster</li>
+<li>Native multi-tenancy with isolated namespaces and security boundaries</li>
+</ul>
+<span class="use-case-highlight">Each customer gets their own knowledge core with zero cross-contamination</span>
+</div>
+</div>
+
+<div class="use-case-card">
+<div class="use-case-header">
+<span class="use-case-icon">🧠</span>
+<h3>Institutional Knowledge Preservation</h3>
+</div>
+<div class="use-case-content">
+<p>Capture and structure expert knowledge into graphs before attrition, enabling "expert agents" that outlive staff changes.</p>
+<ul>
+<li>Provide transparent reasoning over preserved knowledge</li>
+<li>Build trust with non-technical stakeholders through auditable responses</li>
+</ul>
+<span class="use-case-highlight">"Based on patterns from 15 years of incident data and 3 senior engineers' documented decisions..."</span>
+</div>
+</div>
+
+</div>
+</div>
+
+<div class="feature-section" markdown="0">
+<div class="feature-section-header">
 <span class="feature-section-icon">🎧</span>
 <h2>Customer-Facing Support & CX</h2>
 </div>
@@ -205,46 +245,6 @@ Discover how TrustGraph transforms AI capabilities by connecting knowledge into 
 <li>Discover connections between methods, findings, and applications</li>
 </ul>
 <span class="use-case-highlight">"Which techniques from Project A could accelerate the blocked work in Project B?"</span>
-</div>
-</div>
-
-</div>
-</div>
-
-<div class="feature-section" markdown="0">
-<div class="feature-section-header">
-<span class="feature-section-icon">🏗️</span>
-<h2>Platform & Multi-Tenant Scenarios</h2>
-</div>
-<div class="use-case-grid">
-
-<div class="use-case-card">
-<div class="use-case-header">
-<span class="use-case-icon">🔌</span>
-<h3>Agent Platform for SaaS Vendors</h3>
-</div>
-<div class="use-case-content">
-<p>Let SaaS vendors embed TrustGraph as the "knowledge layer" for their own agents, with per-tenant knowledge cores and strict isolation.</p>
-<ul>
-<li>Run multiple agent workflows (support, analytics, recommendations) in parallel on one cluster</li>
-<li>Native multi-tenancy with isolated namespaces and security boundaries</li>
-</ul>
-<span class="use-case-highlight">Each customer gets their own knowledge core with zero cross-contamination</span>
-</div>
-</div>
-
-<div class="use-case-card">
-<div class="use-case-header">
-<span class="use-case-icon">🧠</span>
-<h3>Institutional Knowledge Preservation</h3>
-</div>
-<div class="use-case-content">
-<p>Capture and structure expert knowledge into graphs before attrition, enabling "expert agents" that outlive staff changes.</p>
-<ul>
-<li>Provide transparent reasoning over preserved knowledge</li>
-<li>Build trust with non-technical stakeholders through auditable responses</li>
-</ul>
-<span class="use-case-highlight">"Based on patterns from 15 years of incident data and 3 senior engineers' documented decisions..."</span>
 </div>
 </div>
 
