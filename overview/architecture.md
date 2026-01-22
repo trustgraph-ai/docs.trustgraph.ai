@@ -154,3 +154,27 @@ The agent infrastructure is built around a recurrent architecture — agent work
 
 TrustGraph supports the ReAct (Reasoning + Acting) pattern, where agents iteratively reason about a task, select tools, observe results, and continue until the task is complete. Agents can invoke multiple tools including TrustGraph's built-in capabilities (knowledge queries, graph traversal) and external tools via [MCP integration](../guides/mcp-integration/).
 
+### Context Cores
+
+Context Cores are the unit of knowledge isolation in TrustGraph. Each core contains its own graph data, vector embeddings, and structured extracts — logically separated from other cores. Cores can be loaded, unloaded, and versioned independently at runtime, allowing you to manage multiple knowledge bases within a single deployment.
+
+### Resilience
+
+The Pulsar messaging backbone provides built-in resilience. Messages are persisted and can be replayed if a processor fails. Processors are designed to be idempotent where possible, so reprocessing a message produces the same result. This means the system recovers gracefully from failures — restarting a failed component continues processing from where it left off rather than requiring a full restart.
+
+### Scaling
+
+TrustGraph scales horizontally. Ingestion, processing, and query paths can be scaled independently by adding more processor instances. Pulsar handles load distribution across instances automatically. Typical bottlenecks are LLM API rate limits during extraction and graph database throughput during heavy query loads — both can be addressed by scaling the relevant components or upgrading backend capacity.
+
+### Multi-Tenancy
+
+Multi-tenancy is achieved through Context Cores — each tenant gets their own core(s) with complete data isolation. The processing infrastructure is shared, but knowledge remains strictly separated. Resource quotas and access controls can be applied per-core to manage capacity and security boundaries.
+
+### Deployment Configuration
+
+TrustGraph deployments are generated using a template engine that assembles the required components based on your configuration choices (LLM provider, storage backends, enabled features). This produces deployment manifests for your target platform.
+
+For cloud deployments, complete Infrastructure-as-Code configurations are available in Pulumi. Pulumi's code-based approach enables security testing of deployment configurations prior to deployment — policies can validate that infrastructure meets security requirements before any resources are created.
+
+See [Deployment](../deployment/) for platform-specific guides and configuration options.
+
