@@ -5,6 +5,7 @@ nav_order: 5
 review_date: 2026-08-01
 guide_category:
   - Contributing
+guide_banner: support.jpg
 guide_category_order: 5
 guide_description: Community support, documentation, and useful links for contributors
 guide_difficulty: beginner

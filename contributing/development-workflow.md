@@ -5,6 +5,7 @@ nav_order: 3
 review_date: 2026-08-01
 guide_category:
   - Contributing
+guide_banner: development.jpg
 guide_category_order: 3
 guide_description: Git practices, working with AI assistants, and development best practices
 guide_difficulty: intermediate

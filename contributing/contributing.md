@@ -5,6 +5,7 @@ nav_order: 1
 review_date: 2026-08-01
 guide_category:
   - Contributing
+guide_banner: contributing.jpg
 guide_category_order: 1
 guide_description: How to contribute code, documentation, and ideas to TrustGraph
 guide_difficulty: beginner

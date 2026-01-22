@@ -5,6 +5,7 @@ nav_order: 2
 review_date: 2026-08-01
 guide_category:
   - Contributing
+guide_banner: beginning.jpg
 guide_category_order: 2
 guide_description: First-time developer guide — run, build, modify, and test TrustGraph locally
 guide_difficulty: intermediate
