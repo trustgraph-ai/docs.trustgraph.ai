@@ -48,4 +48,6 @@ View the agreement: [Contributor License Agreement](https://github.com/trustgrap
 
 ## Questions?
 
-Join us on [Discord](https://discord.gg/sQMwkRz5GX) — we're happy to help.
+Join us on [Discord](https://discord.gg/sQMwkRz5GX),
+jump in the #contributing channel.
+We're happy to help.

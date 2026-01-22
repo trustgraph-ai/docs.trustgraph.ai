@@ -23,10 +23,10 @@ This guide walks first-time developers through running TrustGraph, building from
 
 ## Prerequisites
 
-- **Python 3.12** (3.13 has compatibility issues with cassandra-driver)
+- **Python 3.13** (3.14 may work)
 - **Docker** or **Podman** with Compose
-- **Make**
 - **Git**
+- Other development tools as needed
 
 ## Step 1: Run TrustGraph
 
@@ -57,11 +57,11 @@ source env/bin/activate
 
 ## Step 3: Build the Packages
 
-Update package versions to match your release branch, then build:
+Update package versions to match your release branch, then build.
+Replace 1.8.0 with the *exact* version of TrustGraph you are running.
 
 ```bash
 make update-package-versions VERSION=1.8.0
-make packages VERSION=1.8.0
 ```
 
 This creates Python packages under `dist/`. Install them to your environment:
@@ -75,7 +75,7 @@ pip install ./trustgraph-flow
 Verify the CLI works:
 
 ```bash
-tg --help
+tg-show-processor-state --help
 ```
 
 ## Step 4: Build the Containers
@@ -90,10 +90,11 @@ This builds all TrustGraph containers with your local code. Use the same version
 
 ## Step 5: Launch Your Local Build
 
-Stop any running TrustGraph instance and relaunch with your locally-built containers:
+Stop any running TrustGraph instance and relaunch with your
+locally-built containers.  This performs a complete wipe and restart:
 
 ```bash
-docker-compose down
+docker-compose down -v -t 0
 docker-compose up -d
 ```
 
@@ -101,7 +102,8 @@ Verify the system starts correctly and the Workbench UI is accessible.
 
 ## Step 6: Make a Change
 
-Let's make a simple change to verify the build-test cycle works. We'll modify a log message in a processor.
+Let's make a simple change to verify the build-test cycle works. We'll
+modify a log message in a processor.
 
 Edit a file — for example, add a log line to a processor's startup:
 
@@ -112,7 +114,8 @@ log.info("Hello from my local build!")
 
 ## Step 7: Rebuild and Test
 
-You don't need to rebuild everything. Rebuild just the affected container:
+You don't need to rebuild everything. If you affected only the
+base and flow containers, you can rebuild the subset:
 
 ```bash
 make some-containers VERSION=1.8.0 CONTAINERS="flow"
