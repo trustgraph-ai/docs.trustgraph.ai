@@ -54,6 +54,9 @@ AI coding assistants (Claude, Qwen, etc.) can accelerate development, but work b
 - **Keep it modular** — Well-defined classes and modules reduce the need for the assistant to "know everything" at once
 - **Catch them early** — Assistants can go off-track when confused; redirect before they waste time
 - **Know the codebase** — Understand existing patterns to prevent assistants from reinventing solved problems
+- **Workbench** - The file `CODEBOT-INSTRUCTIONS.md` should be read by the AI
+  code assistant - UI toolkits seem to be more troublesome, and that file
+  contains useful hints.
 
 ### Suggested Process
 
@@ -66,13 +69,18 @@ AI coding assistants (Claude, Qwen, etc.) can accelerate development, but work b
 
 ### Package Reinstalls
 
-AI assistants may forget that packages need reinstalling after code changes. Since `pip install -e` doesn't work well with TrustGraph's namespace packages, manually run:
+AI assistants may forget that packages need reinstalling after code
+changes. Since `pip install -e` doesn't work well with TrustGraph's namespace
+packages, manually run:
 
 ```bash
 pip install ./trustgraph-base
 pip install ./trustgraph-flow
 # etc.
 ```
+
+We generally tell the AI assistant not install/uninstall pages to keep
+the test environment sane.
 
 ## Best Practices
 

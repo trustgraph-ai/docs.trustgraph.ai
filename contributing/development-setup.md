@@ -166,10 +166,3 @@ See `TEST_STRATEGY.md` in the repository for the full testing approach.
 - Check [Contributing Guidelines](contributing) before submitting a PR
 - Join **#contributing** on [Discord](https://discord.gg/sQMwkRz5GX) for help
 
-## Troubleshooting
-
-**Package install issues**: Reinstall packages after code changes — `pip install -e` doesn't work well with the namespace package structure.
-
-**Container not updating**: Ensure the version number matches between your build and `docker-compose.yaml`.
-
-**Python 3.13 errors**: Use Python 3.12 — cassandra-driver has compatibility issues with 3.13.
