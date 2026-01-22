@@ -23,86 +23,129 @@ Learn about TrustGraph's system architecture and design principles for building 
 
 ## System Overview
 
+TrustGraph is a knowledge and agent substrate that sits alongside your existing data sources and LLM providers — not a monolithic application. It transforms your enterprise data into structured knowledge that agents can reason over, while you retain full control over where data lives and which models you use.
+
+**At a glance**: Ingestion & Processing → Knowledge Storage → Agent Runtime → Integration Layer
+
 ### High-Level Architecture
 
 <a href="arch-diagram.png">
   <img src="arch-diagram.png" alt="TrustGraph architecture">
 </a>
 
-TrustGraph follows a modular, microservices-based architecture that enables scalable knowledge graph construction and AI agent deployment. The platform is designed to integrate with existing enterprise infrastructure while providing advanced knowledge processing capabilities.
+TrustGraph follows a modular, microservices-based architecture built on an event-driven streaming backbone (Apache Pulsar). Components communicate asynchronously, enabling independent scaling and resilient operation.
 
 ### Core Components
-- **Knowledge Graph Builder**: Extracts entities and relationships from enterprise data
-- **Vector Embedding Engine**: Creates semantic embeddings for knowledge elements
-- **GraphRAG Processor**: Combines graph and vector search for contextual retrieval
-- **AI Agent Runtime**: Executes intelligent agents with access to knowledge graphs
-- **Integration Layer**: Connects with external LLMs, databases, and enterprise systems
+
+- **Knowledge Graph Builder** — Extracts entities and relationships from enterprise data to construct [Knowledge Cores](../concepts/knowledge-cores)
+- **Vector Embedding Engine** — Creates semantic embeddings that enable similarity search as entry points into the graph
+- **GraphRAG Processor** — Combines graph traversal with vector search for multi-hop contextual retrieval
+- **AI Agent Runtime** — Executes agents and tools with access to Knowledge Cores and external systems
+- **Integration Layer** — Connects with external LLMs, databases, and enterprise systems through pluggable adapters
 
 ### Data Flow
-1. **Ingestion**: Raw data from various sources (documents, databases, APIs)
-2. **Processing**: Entity extraction, relationship identification, and graph construction
-3. **Embedding**: Vector representation of knowledge elements
-4. **Storage**: Persistent storage in graph and vector databases
-5. **Query**: AI agents query knowledge graphs for contextual information
-6. **Response**: Contextually-aware responses based on relationship understanding
+
+1. **Ingestion** — Raw data enters from various sources (e.g. product docs from Confluence, tickets from Jira)
+2. **Processing** — Entity extraction, relationship identification, and graph construction
+3. **Embedding** — Vector representation of knowledge elements for semantic search
+4. **Storage** — Persistent storage in graph and vector databases as a Knowledge Core
+5. **Query** — Agents query Knowledge Cores via GraphRAG for contextual information
+6. **Response** — Grounded responses with reasoning paths traced back to source entities
 
 ## Storage Layer
 
 ### Knowledge Graph Storage
-Supports multiple graph database backends including Neo4j, ArangoDB, and others. Stores entities, relationships, and metadata in optimized graph structures.
+
+TrustGraph supports multiple graph database backends as pluggable storage. Stores entities, relationships, and metadata in optimized graph structures.
+
+Supported backends include Cassandra, Neo4j, Memgraph, and FalkorDB. See [Maturity](maturity) for production recommendations.
 
 ### Vector Database Integration
-Integrates with popular vector databases like Pinecone, Weaviate, and Chroma for semantic similarity search and hybrid retrieval.
 
-### Knowledge Packages
-Combines graph and vector storage into unified "Knowledge Packages" that provide both structured relationships and semantic search capabilities.
+Integrates with vector databases for semantic similarity search and hybrid retrieval. Embeddings link to graph entities, enabling vector search to serve as entry points for graph traversal.
 
-## Processing Layer
+Supported backends include Qdrant, Milvus, and Pinecone. See [Maturity](maturity) for production recommendations.
+
+### Knowledge Cores
+
+Combines graph and vector storage into unified [Knowledge Cores](../concepts/knowledge-cores) — the deployable unit that provides both structured relationships and semantic search capabilities. Knowledge Cores can be loaded, unloaded, and versioned independently at runtime.
+
+## Processing & Reasoning Layer
 
 ### Entity Extraction Engine
-Uses advanced NLP techniques to identify entities, relationships, and concepts from unstructured data sources.
+
+Uses NLP pipelines including entity recognition and relationship extraction to identify entities, relationships, and concepts from unstructured data.
 
 ### Relationship Mapping
-Builds sophisticated relationship maps that understand how different entities connect and influence each other.
+
+Constructs relationship maps that capture how entities connect and influence each other, enabling multi-hop reasoning across your knowledge base.
 
 ### GraphRAG Processing
-Implements Graph Retrieval-Augmented Generation that leverages both graph structure and vector similarity for enhanced context retrieval.
+
+Implements [Graph Retrieval-Augmented Generation](../concepts/graphrag) that leverages both graph structure and vector similarity for enhanced context retrieval.
 
 ### AI Agent Orchestration
-Manages the execution of multiple AI agents with access to shared knowledge graphs and contextual information.
+
+Manages execution of AI agents with access to shared Knowledge Cores, tool invocation via [MCP](../concepts/mcp), and workflow state management.
 
 ## Integration Layer
 
 ### LLM Integration
-Supports multiple Large Language Models through standardized interfaces, enabling organizations to use their preferred models.
+
+Supports 40+ LLM providers through standardized interfaces, including Anthropic, OpenAI, Google VertexAI, AWS Bedrock, Azure OpenAI, and Ollama.
 
 ### Enterprise Data Connectors
+
 Built-in connectors for common enterprise systems including databases, document management systems, and APIs.
 
 ### API Gateway
+
 Provides unified access to all TrustGraph capabilities through REST APIs, GraphQL, and WebSocket connections.
 
-## Deployment Architecture
+## Deployment & Operations
 
 ### Containerized Deployment
+
 Fully containerized using Docker with Kubernetes orchestration for scalable, cloud-native deployments.
 
 ### Microservices Design
+
 Modular architecture allows independent scaling of different components based on workload requirements.
 
 ### Multi-Cloud Support
-Designed to run on any cloud platform or on-premises infrastructure with consistent performance and capabilities.
 
-### Security & Compliance
-Built-in security features including data encryption, access controls, and audit logging to meet enterprise security requirements.
+Runs on any cloud platform (AWS, Azure, GCP, Scaleway, OVHcloud) or on-premises infrastructure. See [Maturity](maturity) for deployment status by platform.
+
+### Observability
+
+- **Metrics** — Prometheus endpoints on all services with pre-built Grafana dashboards
+- **Logging** — Structured logs compatible with standard aggregators
+- **Cost tracking** — LLM API usage and token consumption metrics
+
+## Security & Multi-Tenancy
+
+### Access Control
+
+API gateway provides the integration point for authentication and authorization. TrustGraph does not include built-in user/token management — integrate with your existing identity provider.
+
+### Multi-Tenancy
+
+Logical isolation through Knowledge Core namespaces, per-namespace resource quotas, and configuration isolation. Tenants share infrastructure while data remains strictly separated.
+
+### Compliance
+
+Audit logging, data encryption at rest and in transit, and support for air-gapped deployments for data sovereignty requirements.
 
 ## Scalability & Performance
 
 ### Horizontal Scaling
-Components can be scaled independently based on demand, from knowledge graph construction to AI agent execution.
 
-### Distributed Processing
-Supports distributed processing for large-scale knowledge graph construction and complex query processing.
+Ingestion, processing, and query paths scale independently based on workload demands.
+
+### Resilient Processing
+
+The Pulsar streaming backbone provides message replay, persistence, and backpressure handling. Services recover state after restarts without data loss.
 
 ### Caching & Optimization
-Intelligent caching strategies and query optimization ensure fast response times even with large knowledge graphs.
+
+Query result caching and optimized graph traversal ensure fast response times even with large Knowledge Cores.
