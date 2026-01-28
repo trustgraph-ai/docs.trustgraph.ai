@@ -168,6 +168,16 @@ for personal use; commercial use requires a paid licence.
 
 **Best for:** Users who prefer a GUI, experimentation, non-technical users
 
+### Quick Reference
+
+| Tool | GPU Support | Model Format | Best For |
+|------|-------------|--------------|----------|
+| Ollama | NVIDIA, AMD, Metal | GGUF | Getting started |
+| llama.cpp | NVIDIA, AMD, Metal, Vulkan | GGUF | Lightweight, portable |
+| vLLM | NVIDIA, AMD | Safetensors | Production, high throughput |
+| TGI | NVIDIA, Intel | Safetensors | Production, HuggingFace |
+| LM Studio | NVIDIA, AMD, Metal | GGUF | GUI, experimentation |
+
 ## Hosting Considerations
 
 ### GPU support
