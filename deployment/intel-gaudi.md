@@ -18,6 +18,7 @@ guide_labels:
 todo: true
 todo_notes: This is a holding page.  Work on Intel GPU integration is ongoing.
   Come discuss on the Discord if you're exploring using this as a baseline.
+published: false
 ---
 
 # Intel Gaudi Cloud Deployment
