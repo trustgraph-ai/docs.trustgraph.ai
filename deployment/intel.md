@@ -5,7 +5,7 @@ parent: Deployment
 review_date: 2025-12-02
 guide_category:
   - Data centre
-guide_category_order: 1
+guide_category_order: 3
 guide_description: High-performance AI deployment with Intel Gaudi and GPU accelerators for large models
 guide_difficulty: advanced
 guide_time: 5 - 10 hr
