@@ -52,6 +52,8 @@ This guide focuses on the last two approaches - running models yourself rather t
 
 Rented GPU infrastructure gives you most of these benefits without the upfront hardware investment. True self-hosting on owned hardware makes sense when you have consistent, long-term workloads where the capital cost pays off.
 
+Most users run quantized models to reduce memory requirements. Quantization (Q4, Q8, etc.) compresses model weights, allowing larger models to fit on consumer GPUs with modest VRAM. All the tools covered in this guide support quantized models.
+
 ## GPU Options
 
 Running LLMs efficiently requires GPU acceleration. Here are the main options:
@@ -95,21 +97,15 @@ This section covers the most accessible options for running LLMs locally. All of
 
 ### Ollama
 
-The easiest way to get started. Ollama is a lightweight tool that handles model downloads, GPU detection, and serving - all through a simple interface. It manages the complexity of model formats and GPU configuration for you. Available for Linux, macOS, and Windows.
+The easiest way to get started. Ollama is a lightweight tool that handles model downloads, GPU detection, and serving - all through a simple interface. It manages the complexity of model formats and GPU configuration for you. Available for Linux, macOS, and Windows. Uses GGUF model format. MIT licence.
 
 **Best for:** Getting started quickly, simple setups, learning
-
-### LM Studio
-
-A desktop application with a graphical interface. You can browse and download models from a built-in catalogue, adjust parameters like temperature and context length, and run a local server - all without touching the command line. Free for personal use; commercial use requires a paid licence.
-
-**Best for:** Users who prefer a GUI, experimentation, non-technical users
 
 ### llama.cpp / llamafile / llama-server
 
 These are related projects built on the same foundation. **llama.cpp** is a C++ library that runs LLMs efficiently with minimal dependencies. **llamafile** packages a model and the runtime into a single executable - download one file and run it, nothing to install. **llama-server** is an HTTP server that exposes an OpenAI-compatible API.
 
-The llama.cpp ecosystem is lightweight and portable. It works on CPU (slower but no GPU required) or GPU (fast). A good choice when you want something minimal with few dependencies.
+The llama.cpp ecosystem is lightweight and portable. It works on CPU (slower but no GPU required) or GPU (fast). A good choice when you want something minimal with few dependencies. Uses GGUF model format. MIT licence.
 
 **Best for:** Lightweight deployments, CPU fallback, maximum portability
 
@@ -117,15 +113,21 @@ The llama.cpp ecosystem is lightweight and portable. It works on CPU (slower but
 
 A high-performance inference server built for production workloads. vLLM implements optimisations like continuous batching (processing multiple requests efficiently) and PagedAttention (better memory management) to maximise throughput. If you need to serve many concurrent users or process high volumes, vLLM is designed for that.
 
-Supports NVIDIA and AMD GPUs.
+Supports NVIDIA and AMD GPUs. Uses safetensors/Hugging Face model format. Apache 2.0 licence.
 
 **Best for:** Production deployments, high throughput, concurrent users
 
 ### Text Generation Inference (TGI)
 
-Hugging Face's production inference server. Similar goals to vLLM - optimised for throughput and low latency. Tight integration with the Hugging Face model hub makes it easy to deploy models hosted there. Supports NVIDIA and Intel GPUs.
+Hugging Face's production inference server. Similar goals to vLLM - optimised for throughput and low latency. Tight integration with the Hugging Face model hub makes it easy to deploy models hosted there. Supports NVIDIA and Intel GPUs. Uses safetensors/Hugging Face model format. Apache 2.0 licence.
 
 **Best for:** Hugging Face ecosystem, production deployments, Intel hardware
+
+### LM Studio
+
+A desktop application with a graphical interface. You can browse and download models from a built-in catalogue, adjust parameters like temperature and context length, and run a local server - all without touching the command line. Uses GGUF model format. Free for personal use; commercial use requires a paid licence.
+
+**Best for:** Users who prefer a GUI, experimentation, non-technical users
 
 ## Next Steps
 
