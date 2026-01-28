@@ -28,25 +28,32 @@ guide_labels:
 
 ## Running Your Own Models
 
+Model-as-a-service providers would have you
+believe that only the largest, most expensive models will deliver results.
+In practice, self-hosted models can be highly productive for many workloads,
+and running your own infrastructure is a great way to ensure you aren't
+over-specifying your AI operation. 
+
 There are three broad approaches to running LLMs:
 
-{: .important style="border-left-color: #286f20;" }
+{: .highlight }
 > **Cloud LLM APIs** (OpenAI, Anthropic, Google, etc.) - You send prompts to
 > a provider's API and pay per token. Simple to use, but your data is
 > processed on their servers and costs scale with usage.
 
-{: .important style="border-left-color: #286f20;" }
+{: .highlight }
 > **Rented GPU infrastructure** - You rent GPU time from providers like
 > RunPod, Lambda Labs, or cloud GPU instances. You run the model yourself,
 > controlling the software stack, but on hardware you don't own. Costs are
 > typically hourly or monthly.
 
-{: .important style="border-left-color: #286f20;" }
+{: .highlight }
 > **Self-hosting on your own hardware** - You own the GPUs and run everything
 > on-premises. The cost model is capital expenditure on equipment plus
 > electricity, rather than ongoing rental or per-total fees.
 
-This guide focuses on the last two approaches - running models yourself rather than using hosted APIs. The key benefits:
+This guide focuses on the last two approaches - running models yourself
+rather than using hosted APIs. The key benefits:
 
 - **Data control** - your prompts and documents stay on infrastructure you control
 - **Predictable costs** - no per-token charges; costs are fixed (owned hardware) or time-based (rented)
