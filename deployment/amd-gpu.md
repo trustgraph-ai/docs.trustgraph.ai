@@ -5,6 +5,7 @@ parent: Deployment
 review_date: 2026-01-28
 guide_category:
   - Data centre
+guide_banner: amd-gpu.jpg
 guide_category_order: 2
 guide_description: Self-hosting TrustGraph with vLLM on AMD GPU accelerators
 guide_difficulty: advanced
