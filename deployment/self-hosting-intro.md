@@ -30,11 +30,21 @@ guide_labels:
 
 There are three broad approaches to running LLMs:
 
-**Cloud LLM APIs** (OpenAI, Anthropic, Google, etc.) - You send prompts to a provider's API and pay per token. Simple to use, but your data is processed on their servers and costs scale with usage.
+{: .important style="border-left-color: #286f20;" }
+> **Cloud LLM APIs** (OpenAI, Anthropic, Google, etc.) - You send prompts to
+> a provider's API and pay per token. Simple to use, but your data is
+> processed on their servers and costs scale with usage.
 
-**Rented GPU infrastructure** - You rent GPU time from providers like RunPod, Lambda Labs, or cloud GPU instances. You run the model yourself, controlling the software stack, but on hardware you don't own. Costs are typically hourly or monthly.
+{: .important style="border-left-color: #286f20;" }
+> **Rented GPU infrastructure** - You rent GPU time from providers like
+> RunPod, Lambda Labs, or cloud GPU instances. You run the model yourself,
+> controlling the software stack, but on hardware you don't own. Costs are
+> typically hourly or monthly.
 
-**Self-hosting on your own hardware** - You own the GPUs and run everything on-premises. The cost model is capital expenditure on equipment plus electricity, rather than ongoing rental or per-token fees.
+{: .important style="border-left-color: #286f20;" }
+> **Self-hosting on your own hardware** - You own the GPUs and run everything
+> on-premises. The cost model is capital expenditure on equipment plus
+> electricity, rather than ongoing rental or per-total fees.
 
 This guide focuses on the last two approaches - running models yourself rather than using hosted APIs. The key benefits:
 
