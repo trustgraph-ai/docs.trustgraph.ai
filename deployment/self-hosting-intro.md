@@ -15,8 +15,6 @@ guide_emoji: 🏠
 guide_labels:
   - Self-Hosting
   - Introduction
-todo: true
-todo_notes: Placeholder page - content to be added.
 ---
 
 # Introduction to Self-Hosting
