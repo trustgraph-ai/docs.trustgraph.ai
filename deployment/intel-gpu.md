@@ -1,30 +1,29 @@
 ---
-title: AMD GPU
+title: Intel GPU
 nav_order: 11
 parent: Deployment
 review_date: 2026-01-28
 guide_category:
   - Data centre
-guide_banner: amd-gpu.jpg
+guide_banner: intel-ai.jpg
 guide_category_order: 2
-guide_description: Self-hosting TrustGraph with vLLM on AMD GPU accelerators
+guide_description: Self-hosting TrustGraph with vLLM on Intel GPU accelerators
 guide_difficulty: advanced
 guide_time: 2 - 4 hr
 guide_emoji: 🔴
 guide_labels:
-  - AMD
   - GPU
   - vLLM
+  - Intel Arc
 todo: true
 todo_notes: Placeholder page - content to be added.
-published: false
 ---
 
-# Self-Hosting with vLLM and AMD GPU
+# Self-Hosting with vLLM and Intel GPU
 
 {% capture requirements %}
 <ul style="margin: 0; padding-left: 20px;">
-<li>AMD GPU with ROCm support (e.g., RX 7900 XTX, MI series)</li>
+<li>Intel GPU with ??? support (e.g., Intel Arc B60)</li>
 <li>ROCm drivers installed</li>
 <li>Docker or Podman with GPU passthrough configured</li>
 <li>Python {{site.data.software.python-min-version}}+ for CLI tools</li>
@@ -37,6 +36,6 @@ published: false
    difficulty=page.guide_difficulty
    duration=page.guide_time
    you_will_need=requirements
-   goal="Deploy TrustGraph with vLLM running on AMD GPU hardware for high-performance local inference."
+   goal="Deploy TrustGraph with vLLM running on Intel GPU hardware for high-performance local inference."
 %}
 
