@@ -7,7 +7,8 @@ guide_category:
   - Data centre
 guide_banner: self-hosted-gpu.jpg
 guide_category_order: 1
-guide_description: Overview of GPU options and self-hosting software for running TrustGraph locally
+guide_description: Overview of GPU options and self-hosting software for
+  running TrustGraph locally
 guide_difficulty: beginner
 guide_time: 10 min
 guide_emoji: 🏠
@@ -20,17 +21,10 @@ todo_notes: Placeholder page - content to be added.
 
 # Introduction to Self-Hosting
 
-{% capture requirements %}
-<ul style="margin: 0; padding-left: 20px;">
-<li>No prerequisites - this is an overview guide</li>
-</ul>
-{% endcapture %}
-
 {% include guide/guide-intro-box.html
    description=page.guide_description
    difficulty=page.guide_difficulty
    duration=page.guide_time
-   you_will_need=requirements
    goal="Get an overview of GPU options for self-hosting and understand the landscape of accessible self-hosting software."
 %}
 
@@ -93,49 +87,78 @@ Tensor Processing Units are Google's custom AI accelerators. Available through G
 
 ## Self-Hosting Software
 
-This section covers the most accessible options for running LLMs locally. All of these can serve models via an OpenAI-compatible API, which TrustGraph can connect to.
+This section covers the most accessible options for running LLMs
+locally. TrustGraph has direct integrations for Ollama, vLLM, llama.cpp, TGI,
+and LM Studio. TrustGraph also supports the OpenAI API, which is commonly
+exposed by other self-hosting tools - so if your preferred option isn't
+listed, there's a good chance it likely still works.
 
 ### Ollama
 
-The easiest way to get started. Ollama is a lightweight tool that handles model downloads, GPU detection, and serving - all through a simple interface. It manages the complexity of model formats and GPU configuration for you. Available for Linux, macOS, and Windows. Supports NVIDIA, AMD (ROCm), and Apple Metal GPUs. Uses GGUF model format. MIT licence.
+The easiest way to get started. Ollama is a lightweight tool that handles
+model downloads, GPU detection, and serving - all through a simple
+interface. It manages the complexity of model formats and GPU configuration
+for you. Available for Linux, macOS, and Windows. Supports NVIDIA, AMD (ROCm),
+and Apple Metal GPUs. Uses GGUF model format. MIT licence.
 
 **Best for:** Getting started quickly, simple setups, learning
 
 ### llama.cpp / llamafile / llama-server
 
-These are related projects built on the same foundation. **llama.cpp** is a C++ library that runs LLMs efficiently with minimal dependencies. **llamafile** packages a model and the runtime into a single executable - download one file and run it, nothing to install. **llama-server** is an HTTP server that exposes an OpenAI-compatible API.
+These are related projects built on the same foundation. **llama.cpp** is a
+C++ library that runs LLMs efficiently with minimal
+dependencies. **llamafile** packages a model and the runtime into a single
+executable - download one file and run it, nothing to
+install. **llama-server** is an HTTP server that exposes an OpenAI-compatible
+API.
 
-The llama.cpp ecosystem is lightweight and portable. It works on CPU (slower but no GPU required) or GPU (fast). A good choice when you want something minimal with few dependencies. Has the broadest GPU support: NVIDIA, AMD (ROCm), Apple Metal, and Vulkan for other GPUs. Uses GGUF model format. MIT licence.
+The llama.cpp ecosystem is lightweight and portable. It works on CPU (slower
+but no GPU required) or GPU (fast). A good choice when you want something
+minimal with few dependencies. Has the broadest GPU support: NVIDIA, AMD
+(ROCm), Apple Metal, and Vulkan for other GPUs. Uses GGUF model format. MIT
+licence.
 
 **Best for:** Lightweight deployments, CPU fallback, maximum portability
 
 ### vLLM
 
-A high-performance inference server built for production workloads. vLLM implements optimisations like continuous batching (processing multiple requests efficiently) and PagedAttention (better memory management) to maximise throughput. If you need to serve many concurrent users or process high volumes, vLLM is designed for that.
+A high-performance inference server built for production workloads. vLLM
+implements optimisations like continuous batching (processing multiple
+requests efficiently) and PagedAttention (better memory management) to
+maximise throughput. If you need to serve many concurrent users or process
+high volumes, vLLM is designed for that.
 
-NVIDIA support is in the main distribution. AMD/ROCm support was tracked as a fork but is being merged into the main distribution. Intel support is available via Intel-maintained forks. Uses safetensors/Hugging Face model format. Apache 2.0 licence.
+NVIDIA support is in the main distribution. AMD/ROCm support was tracked as a
+fork but is being merged into the main distribution. Intel support is
+available via Intel-maintained forks. Uses safetensors/Hugging Face model
+format. Apache 2.0 licence.
 
 **Best for:** Production deployments, high throughput, concurrent users
 
 ### Text Generation Inference (TGI)
 
-Hugging Face's production inference server. Similar goals to vLLM - optimised for throughput and low latency. Tight integration with the Hugging Face model hub makes it easy to deploy models hosted there. NVIDIA support in the main distribution; Intel GPU support via Intel's contributions. Uses safetensors/Hugging Face model format. Apache 2.0 licence.
+Hugging Face's production inference server. Similar goals to vLLM - optimised
+for throughput and low latency. Tight integration with the Hugging Face model
+hub makes it easy to deploy models hosted there. NVIDIA support in the main
+distribution; Intel GPU support via Intel's contributions. Uses
+safetensors/Hugging Face model format. Apache 2.0 licence.
 
 **Best for:** Hugging Face ecosystem, production deployments, Intel hardware
 
 ### LM Studio
 
-A desktop application with a graphical interface. You can browse and download models from a built-in catalogue, adjust parameters like temperature and context length, and run a local server - all without touching the command line. Supports NVIDIA, AMD, and Apple Metal GPUs. Uses GGUF model format. Free for personal use; commercial use requires a paid licence.
+A desktop application with a graphical interface. You can browse and download
+models from a built-in catalogue, adjust parameters like temperature and
+context length, and run a local server - all without touching the command
+line. Supports NVIDIA, AMD, and Apple Metal GPUs. Uses GGUF model format. Free
+for personal use; commercial use requires a paid licence.
 
 **Best for:** Users who prefer a GUI, experimentation, non-technical users
 
 ### A note on performance
 
-Performance of self-hosted inference is heavily affected by GPU-specific optimisations. vLLM and TGI have the most mature support for these optimisations, which is why they're the preferred choice for production deployments.
+Performance of self-hosted inference is heavily affected by GPU-specific
+optimisations. vLLM and TGI have the most mature support for these
+optimisations, which is why they're the preferred choice for production
+deployments.
 
-## Next Steps
-
-The following guides in this section walk through specific self-hosting setups:
-
-- [AMD GPU](amd-gpu.html) - Self-hosting with vLLM on AMD hardware
-- [Intel GPU](intel.html) - Deployment on Intel Gaudi systems
