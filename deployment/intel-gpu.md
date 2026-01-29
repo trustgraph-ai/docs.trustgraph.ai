@@ -118,3 +118,55 @@ podman pull docker.io/openvino/model_server:latest-gpu
    content2=podman_pull
 %}
 
+### Run the OpenVINO container
+
+First, set your Hugging Face token as an environment variable:
+
+```bash
+export HF_TOKEN=your-huggingface-token
+```
+
+Then launch the OpenVINO model server container:
+
+{% capture docker_run %}
+```bash
+docker run --user $(id -u):$(id -g) -d \
+  --device /dev/dri \
+  --group-add=$(stat -c "%g" /dev/dri/render* | head -n 1) \
+  --rm -p 7000:7000 \
+  -v $(pwd)/models:/models:rw \
+  -e HF_TOKEN=$HF_TOKEN \
+  docker.io/openvino/model_server:latest-gpu \
+      --source_model llmware/mistral-nemo-instruct-2407-ov \
+      --model_repository_path models \
+      --task text_generation \
+      --rest_port 7000 \
+      --target_device GPU \
+      --cache_size 2
+```
+{% endcapture %}
+
+{% capture podman_run %}
+```bash
+podman run --user $(id -u):$(id -g) -d \
+  --device /dev/dri \
+  --group-add=$(stat -c "%g" /dev/dri/render* | head -n 1) \
+  --rm -p 7000:7000 \
+  -v $(pwd)/models:/models:rw \
+  -e HF_TOKEN=$HF_TOKEN \
+  docker.io/openvino/model_server:latest-gpu \
+      --source_model llmware/mistral-nemo-instruct-2407-ov \
+      --model_repository_path models \
+      --task text_generation \
+      --rest_port 7000 \
+      --target_device GPU \
+      --cache_size 2
+```
+{% endcapture %}
+
+{% include code_tabs.html
+   tabs="Docker,Podman"
+   content1=docker_run
+   content2=podman_run
+%}
+
