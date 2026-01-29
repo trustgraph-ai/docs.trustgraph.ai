@@ -118,6 +118,34 @@ podman pull docker.io/openvino/model_server:latest-gpu
    content2=podman_pull
 %}
 
+### Verify GPU is accessible
+
+Before running the model server, verify that your Intel GPU is visible to the
+system.
+
+First, check that the GPU render devices are present:
+
+```bash
+ls -l /dev/dri/render*
+```
+
+You should see one or more render device files, for example:
+
+```
+crw-rw----+ 1 root render 226, 128 Jan 29 10:00 /dev/dri/renderD128
+```
+
+You can also use `xpu-smi` to check GPU status and statistics:
+
+```bash
+xpu-smi discovery
+xpu-smi stats -d 0
+```
+
+The `discovery` command lists available Intel GPUs, and `stats -d 0` shows
+statistics for device 0. If these commands are not available, you may need
+to install the Intel GPU tools package.
+
 ### Run the OpenVINO container
 
 First, set your Hugging Face token as an environment variable:
@@ -169,4 +197,35 @@ podman run --user $(id -u):$(id -g) -d \
    content1=docker_run
    content2=podman_run
 %}
+
+### Verify OpenVINO is running
+
+The first time you run the container, it will download the model from
+Hugging Face which can take several minutes depending on your connection speed.
+
+You can check the container logs to monitor progress:
+
+{% capture docker_logs %}
+```bash
+docker logs -f <container-id>
+```
+{% endcapture %}
+
+{% capture podman_logs %}
+```bash
+podman logs -f <container-id>
+```
+{% endcapture %}
+
+{% include code_tabs.html
+   tabs="Docker,Podman"
+   content1=docker_logs
+   content2=podman_logs
+%}
+
+Once the server is ready, you can verify it is responding by querying the API:
+
+```bash
+curl http://localhost:7000/v3/models
+```
 
