@@ -28,15 +28,32 @@ guide_labels:
 
 ## Running Your Own Models
 
+Model-as-a-service providers would have you
+believe that only the largest, most expensive models will deliver results.
+In practice, self-hosted models can be highly productive for many workloads,
+and running your own infrastructure is a great way to ensure you aren't
+over-specifying your AI operation. 
+
 There are three broad approaches to running LLMs:
 
-**Cloud LLM APIs** (OpenAI, Anthropic, Google, etc.) - You send prompts to a provider's API and pay per token. Simple to use, but your data is processed on their servers and costs scale with usage.
+{: .highlight }
+> **Cloud LLM APIs** (OpenAI, Anthropic, Google, etc.) - You send prompts to
+> a provider's API and pay per token. Simple to use, but your data is
+> processed on their servers and costs scale with usage.
 
-**Rented GPU infrastructure** - You rent GPU time from providers like RunPod, Lambda Labs, or cloud GPU instances. You run the model yourself, controlling the software stack, but on hardware you don't own. Costs are typically hourly or monthly.
+{: .highlight }
+> **Rented GPU infrastructure** - You rent GPU time from providers like
+> RunPod, Lambda Labs, or cloud GPU instances. You run the model yourself,
+> controlling the software stack, but on hardware you don't own. Costs are
+> typically hourly or monthly.
 
-**Self-hosting on your own hardware** - You own the GPUs and run everything on-premises. The cost model is capital expenditure on equipment plus electricity, rather than ongoing rental or per-token fees.
+{: .highlight }
+> **Self-hosting on your own hardware** - You own the GPUs and run everything
+> on-premises. The cost model is capital expenditure on equipment plus
+> electricity, rather than ongoing rental or per-total fees.
 
-This guide focuses on the last two approaches - running models yourself rather than using hosted APIs. The key benefits:
+This guide focuses on the last two approaches - running models yourself
+rather than using hosted APIs. The key benefits:
 
 - **Data control** - your prompts and documents stay on infrastructure you control
 - **Predictable costs** - no per-token charges; costs are fixed (owned hardware) or time-based (rented)
@@ -44,7 +61,13 @@ This guide focuses on the last two approaches - running models yourself rather t
 
 Rented GPU infrastructure gives you most of these benefits without the upfront hardware investment. True self-hosting on owned hardware makes sense when you have consistent, long-term workloads where the capital cost pays off.
 
-Most users run quantized models to reduce memory requirements. Quantization (Q4, Q8, etc.) compresses model weights, allowing larger models to fit on consumer GPUs with modest VRAM. All the tools covered in this guide support quantized models.
+{: .note }
+> **Quantization**
+>
+> Most users run quantized models to reduce memory requirements. Quantization
+> (Q4, Q8, etc.) compresses model weights, allowing larger models to fit on
+> consumer GPUs with modest VRAM. All the tools covered in this guide support
+> quantized models.
 
 ## GPU Options
 
@@ -76,6 +99,11 @@ support is maturing, with TGI and other inference servers now supporting Arc.
 
 Intel's Gaudi accelerators are a separate, specialist option for data centre deployments - purpose-built for AI but not widely available outside cloud services.
 
+{: .note }
+> Before buying equipment, explore reviews and recommendations on Reddit's
+> r/LocalLLaMA and r/selfhosted communities - they're excellent resources for
+> real-world performance data and hardware advice.
+
 ### Google TPUs
 
 Tensor Processing Units are Google's custom AI accelerators. Available through Google Cloud or as Edge TPUs for embedded use. Not typically used for on-premises self-hosting.
@@ -85,11 +113,15 @@ Tensor Processing Units are Google's custom AI accelerators. Available through G
 
 ## Self-Hosting Software
 
-This section covers the most accessible options for running LLMs
-locally. TrustGraph has direct integrations for Ollama, vLLM, llama.cpp, TGI,
-and LM Studio. TrustGraph also supports the OpenAI API, which is commonly
-exposed by other self-hosting tools - so if your preferred option isn't
-listed, there's a good chance it likely still works.
+This section covers the most accessible options for running LLMs locally.
+
+{: .note }
+> **TrustGraph Integrations**
+>
+> TrustGraph has direct integrations for Ollama, vLLM, llama.cpp, TGI, and LM
+> Studio. TrustGraph also supports the OpenAI API, which is commonly exposed
+> by other self-hosting tools - so if your preferred option isn't listed,
+> there's a good chance it will still work.
 
 ### Ollama
 
@@ -153,10 +185,49 @@ for personal use; commercial use requires a paid licence.
 
 **Best for:** Users who prefer a GUI, experimentation, non-technical users
 
-### A note on performance
+### Quick Reference
 
-Performance of self-hosted inference is heavily affected by GPU-specific
-optimisations. vLLM and TGI have the most mature support for these
-optimisations, which is why they're the preferred choice for production
-deployments.
+| Tool | GPU Support | Model Format | Best For |
+|------|-------------|--------------|----------|
+| Ollama | NVIDIA, AMD, Metal | GGUF | Getting started |
+| llama.cpp | NVIDIA, AMD, Metal, Vulkan | GGUF | Lightweight, portable |
+| vLLM | NVIDIA, AMD | Safetensors | Production, high throughput |
+| TGI | NVIDIA, Intel | Safetensors | Production, HuggingFace |
+| LM Studio | NVIDIA, AMD, Metal | GGUF | GUI, experimentation |
+
+## Hosting Considerations
+
+### GPU support
+
+GPU support in LLM software is a fast-moving area. Platform support
+varies greatly by manufacturer and by product.  A tool that didn't
+support your GPU last month might support it now - you'll need to keep
+track of support offerings from manufacturers.
+
+You should check current compatibility before making hardware
+decisions. Documentation can lag behind reality, so look for recent GitHub
+issues, release notes, and community discussions.
+
+Support for a particular piece of hardware needs alignment of GPU hardware,
+firmware/drivers, and hosting software.  You'll generally find that GPU
+support is a more frustrating experience than tracking pure software products.
+
+{: .note }
+> **Performance**
+>
+> Performance of self-hosted inference is heavily affected by GPU-specific
+> optimisations. vLLM and TGI have the most mature support for these
+> optimisations, which is why they're the preferred choice for production
+> deployments.
+
+### Kubernetes
+
+It is possible to host LLMs on Kubernetes, but this adds further complexity.
+Deployers need to understand how to grant GPU privileges to containers -
+this involves device plugins, resource requests, and node selectors that
+vary by GPU vendor. Additionally, GPU support often depends on
+manufacturer-provided Kubernetes container runtimes (such as NVIDIA's
+container toolkit). This creates another layer to track: you need alignment
+between your GPU hardware, drivers, the container runtime, and your chosen
+LLM hosting software. Each component can introduce compatibility issues.
 

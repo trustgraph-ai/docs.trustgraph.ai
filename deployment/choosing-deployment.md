@@ -4,7 +4,7 @@ nav_order: 1
 parent: Deployment
 review_date: 2027-01-08
 guide_category:
-  - Deployment decisions
+  - Deployment fundamentals
 guide_category_order: 1
 guide_description: Decision guide to help you select the right deployment method for your needs
 guide_difficulty: beginner

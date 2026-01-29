@@ -85,6 +85,10 @@ callouts:
   note:
     title: Note
     color: yellow
+  highlight:
+    color: grey-lt
+  important:
+    color: blue
 
 # Exclude files and directories from Jekyll build
 exclude:
