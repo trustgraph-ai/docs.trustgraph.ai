@@ -132,19 +132,53 @@ ls -l /dev/dri/render*
 You should see one or more render device files, for example:
 
 ```
-crw-rw----+ 1 root render 226, 128 Jan 29 10:00 /dev/dri/renderD128
+crw-rw---- 1 root render 226, 128 Jan 29 13:18 /dev/dri/renderD128
 ```
 
 You can also use `xpu-smi` to check GPU status and statistics:
 
 ```bash
 xpu-smi discovery
+```
+
+This lists available Intel GPUs. You should see output similar to:
+
+```
++-----------+--------------------------------------------------------------------------------------+
+| Device ID | Device Information                                                                   |
++-----------+--------------------------------------------------------------------------------------+
+| 0         | Device Name: Intel(R) Arc(TM) Pro B60 Graphics                                       |
+|           | Vendor Name: Intel(R) Corporation                                                    |
+|           | SOC UUID: 00000000-0000-002c-0000-0000e2118086                                       |
+|           | PCI BDF Address: 0000:2c:00.0                                                        |
+|           | DRM Device: /dev/dri/card1                                                           |
+|           | Function Type: physical                                                              |
++-----------+--------------------------------------------------------------------------------------+
+```
+
+To view statistics for device 0:
+
+```bash
 xpu-smi stats -d 0
 ```
 
-The `discovery` command lists available Intel GPUs, and `stats -d 0` shows
-statistics for device 0. If these commands are not available, you may need
-to install the Intel GPU tools package.
+For example, to check memory usage:
+
+```bash
+xpu-smi stats -d 0 | grep -E 'Memory'
+```
+
+```
+| GPU Memory Temperature (C)  | 32                                                                 |
+| GPU Memory Read (kB/s)      | 6420                                                               |
+| GPU Memory Write (kB/s)     | 1136                                                               |
+| GPU Memory Bandwidth (%)    | 0                                                                  |
+| GPU Memory Used (MiB)       | 230                                                                |
+| GPU Memory Util (%)         | 1                                                                  |
+```
+
+If these commands are not available, you may need to install the Intel GPU
+tools package.
 
 ### Run the OpenVINO container
 
@@ -228,4 +262,21 @@ Once the server is ready, you can verify it is responding by querying the API:
 ```bash
 curl http://localhost:7000/v3/models
 ```
+
+### Deploy TrustGraph
+
+With the OpenVINO model server running, you can now deploy TrustGraph by
+following the [Docker/Podman Compose deployment guide](compose).
+
+When configuring TrustGraph:
+
+1. Select the **OpenAI** integration for the LLM
+2. Before launching, set the OpenAI base URL to point to your OpenVINO server:
+
+```bash
+export OPENAI_BASE_URL=http://localhost:7000/v3
+```
+
+Then continue with the rest of the compose deployment guide to launch
+TrustGraph.
 
