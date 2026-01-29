@@ -9,8 +9,8 @@ review_date: 2026-12-29
 # Deployment
 
 {% include guide/guide-category-section.html
-   category_name="Deployment decisions"
-   section_title="Deployment decisions"
+   category_name="Deployment fundamentals"
+   section_title="Deployment fundamentals"
    parent_page="Deployment"
    border_color="#06b6d4"
    bg_color="#1e3a3f"
