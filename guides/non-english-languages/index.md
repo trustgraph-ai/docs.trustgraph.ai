@@ -106,8 +106,21 @@ contain mixed-language content.
 Now when you load a document through a graph-building process, the graph
 will be built in your preferred language.
 
+You can verify this by using vector search to find entities in the graph:
+
 <img src="vector-search.png" alt="Vector search using Japanese script"/>
+
+The graph explorer will show entities and relationships in your target
+language:
 
 <img src="graph.png" alt="Context graph containing Japanese script"/>
 
+An example GraphRAG output:
+
 <img src="conversation.png" alt="GraphRAG invocation using Japanese script"/>
+
+## Note on embeddings
+
+Language performance is somewhat affected by the chosen embeddings model. If
+you find that retrieval is not performing well, try different embeddings
+models—some have better multilingual support than others.
