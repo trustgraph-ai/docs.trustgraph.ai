@@ -47,12 +47,28 @@ The `tg-start-flow` command creates and starts a new processing flow instance ba
 
 **Note**: All parameter values are stored as strings internally.
 
+Flow blueprints are free to define any parameters they need. The
+standard flow blueprints provided by TrustGraph (`everything`,
+`structured`, `ontology`) support the following parameters:
+
+| Parameter | Description | Notes |
+|-----------|-------------|-------|
+| `llm-model` | LLM model to use | |
+| `llm-rag-model` | LLM model for RAG operations | Optional, falls back to `llm-model` if not specified |
+| `llm-temperature` | LLM temperature | |
+| `llm-rag-temperature` | LLM temperature for RAG operations | Optional, falls back to `llm-temperature` if not specified |
+| `embeddings-model` | Embeddings model | |
+| `chunk-size` | Document chunk size | |
+| `chunk-overlap` | Document chunk overlap | |
+
+All parameters have usable defaults if not specified.
+
 ## Examples
 
 ### Start Basic Flow
 ```bash
 tg-start-flow \
-  -n "document-rag+graph-rag" \
+  -n "everything" \
   -i "research-flow" \
   -d "Research document processing pipeline"
 ```
@@ -60,30 +76,30 @@ tg-start-flow \
 ### Start with Parameters
 ```bash
 tg-start-flow \
-  -n "document-rag+graph-rag" \
+  -n "everything" \
   -i "custom-flow" \
   -d "Custom flow with parameters" \
-  --param model=gpt-4 \
-  --param temperature=0.7 \
+  --param llm-model=claude-sonnet-4-20250514 \
+  --param llm-temperature=0.7 \
   --param chunk-size=512
 ```
 
 ### Using Parameters File
 ```bash
 tg-start-flow \
-  -n "medical-analysis" \
-  -i "medical-flow" \
-  -d "Medical document analysis" \
+  -n "ontology" \
+  -i "ontology-flow" \
+  -d "Ontology RAG processing" \
   --parameters-file flow-config.json
 ```
 
 ### Using JSON Parameters
 ```bash
 tg-start-flow \
-  -n "document-processing" \
+  -n "structured" \
   -i "prod-flow" \
-  -d "Production flow" \
-  -p '{"model": "gpt-4", "temp": "0.7"}'
+  -d "Structured data extraction" \
+  -p '{"llm-model": "claude-sonnet-4-20250514", "llm-temperature": "0.7"}'
 ```
 
 ## Environment Variables
