@@ -3,6 +3,18 @@ title: Storage
 nav_order: 1
 parent: Architecture
 grand_parent: Overview
+guide_category:
+  - How does it work?
+guide_category_order: 2
+guide_description: Graph store, vector store, row store, and object store architecture
+guide_difficulty: intermediate
+guide_time: 4 min
+guide_emoji: "\U0001F4BE"
+guide_banner: storage.jpg
+guide_labels:
+  - Storage
+  - Architecture
+  - Technical
 ---
 
 # Storage

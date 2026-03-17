@@ -10,6 +10,11 @@ has_children: true
 
 TrustGraph is an open-source Agent Intelligence Platform that transforms AI agents from simple task executors into contextually-aware systems. By combining knowledge graphs with vector embeddings, TrustGraph enables AI agents to understand relationships, reduce hallucinations, and provide more accurate responses.
 
+{: .note }
+> ⚡ **From knowledge graphs to a full context backend for AI agents**
+> 
+> [Read about](overview/trustgraph-2-changes) the TrustGraph 2.1
+
 ## Choose Your Path
 
 <div style="display: flex; flex-wrap: wrap; gap: 15px; margin: 20px 0;">
@@ -53,6 +58,14 @@ TrustGraph is an open-source Agent Intelligence Platform that transforms AI agen
    border_color="#48bb78"
    title="Features"
    description="Complete overview of TrustGraph features and platform capabilities"
+%}
+{% include pathways/journey-card.html
+   url="overview/explainability"
+   text_color="#d4f4dd"
+   bg_color="#0d2118"
+   border_color="#48bb78"
+   title="Explainability"
+   description="How TrustGraph traces answers back to their sources"
 %}
 {% include pathways/journey-card.html
    url="overview/use-cases"
