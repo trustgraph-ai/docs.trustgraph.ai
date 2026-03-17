@@ -2,6 +2,7 @@
 title: Architecture
 nav_order: 2
 parent: Overview
+has_children: true
 review_date: 2026-08-01
 guide_category:
   - How does it work?
