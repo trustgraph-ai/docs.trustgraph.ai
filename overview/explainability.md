@@ -71,12 +71,16 @@ traces — all through the same API.
 <img src="context-graph.png">
 
 This diagram shows how the three layers of TrustGraph's data model
-connect together:
+connect together.  Nodes in the graph store are shown in green, blue, and
+yellow.  The dark orange boxes represent content stored in an **object
+store** (the raw text of documents, pages, chunks, and answers) rather
+than in the graph — the orange arrows show how graph nodes reference
+their corresponding object-store content.
 
 - **Extraction Provenance** (left, green) — tracks how knowledge entered
   the system.  A Document is broken into Pages, which are split into
-  Chunks.  Orange arrows link each node to its text content (the original
-  PDF, page text, chunk text).
+  Chunks.  Each of these graph nodes references its text content in the
+  object store (the original PDF, page text, chunk text).
 - **Knowledge Graph** (bottom right, blue) — the core entities and
   relationships extracted from chunks.  In this example, *Fred is a cat*
   with *stripey markings*, and *Hope is also a cat*.  The dashed line from
@@ -85,7 +89,8 @@ connect together:
   path when a query is answered.  A Question flows through Exploration
   and Focus stages to produce an Answer.  The blue highlight shows which
   knowledge graph edges were selected during the Focus stage, and dashed
-  lines connect those edges back to the retrieval trace.
+  lines connect those edges back to the retrieval trace.  The question
+  text and answer text are stored in the object store.
 
 The key insight is that all three layers are queryable through the same
 graph store.  Given an answer, you can follow the retrieval trace to see
