@@ -13,7 +13,7 @@ TrustGraph is an open-source Agent Intelligence Platform that transforms AI agen
 {: .note }
 > ⚡ **From knowledge graphs to a full context backend for AI agents**
 > 
-> [Read about](overview/trustgraph-2-changes) the TrustGraph 2.1
+> [Read about](overview/trustgraph-2-changes) what's changed in TrustGraph 2.1
 
 ## Choose Your Path
 
