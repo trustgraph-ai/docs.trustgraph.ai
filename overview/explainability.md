@@ -66,6 +66,32 @@ same interfaces.  You can query the default graph for knowledge, the
 source graph for provenance, or the retrieval graph for reasoning
 traces — all through the same API.
 
+## Context Graph
+
+<img src="context-graph.png">
+
+This diagram shows how the three layers of TrustGraph's data model
+connect together:
+
+- **Extraction Provenance** (left, green) — tracks how knowledge entered
+  the system.  A Document is broken into Pages, which are split into
+  Chunks.  Orange arrows link each node to its text content (the original
+  PDF, page text, chunk text).
+- **Knowledge Graph** (bottom right, blue) — the core entities and
+  relationships extracted from chunks.  In this example, *Fred is a cat*
+  with *stripey markings*, and *Hope is also a cat*.  The dashed line from
+  a Chunk to the knowledge graph shows where extracted facts originated.
+- **Retrieval Explainability** (top right, yellow) — traces the reasoning
+  path when a query is answered.  A Question flows through Exploration
+  and Focus stages to produce an Answer.  The blue highlight shows which
+  knowledge graph edges were selected during the Focus stage, and dashed
+  lines connect those edges back to the retrieval trace.
+
+The key insight is that all three layers are queryable through the same
+graph store.  Given an answer, you can follow the retrieval trace to see
+which edges were used, then follow the extraction provenance to find the
+source document and chunk — a complete audit trail from answer to source.
+
 ## Extraction Provenance
 
 Extraction provenance tracks **how knowledge entered the system**.  When
