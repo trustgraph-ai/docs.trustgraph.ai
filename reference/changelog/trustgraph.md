@@ -8,6 +8,130 @@ review_date: 2027-01-01
 
 # Changelog
 
+## v2.1 (2026-03-17)
+
+### Major Features
+- **Explainability & Provenance** (#655, #661, #677, #682, #688, #689, #693,
+  #694, #697, #698): End-to-end explainability across the entire pipeline:
+  - **Extract-time provenance**: Document processing now emits PROV-O triples
+    tracing the lineage from documents through pages, chunks, and extracted
+    edges using `prov:wasDerivedFrom` relationships
+  - **Query-time explainability**: GraphRAG, DocumentRAG, and Agent queries
+    record full reasoning traces (question, grounding, exploration, focus,
+    synthesis stages) into a dedicated `urn:graph:retrieval` named graph
+  - **Named graphs**: Knowledge is now stored across named graphs — default
+    graph for facts, `urn:graph:source` for extraction provenance,
+    `urn:graph:retrieval` for query-time explainability
+  - **Subgraph provenance**: Extracted subgraphs are tracked with provenance
+    linking edges back to their source chunks and documents
+  - New CLI tools: `tg-list-explain-traces`, `tg-show-explain-trace`,
+    `tg-show-extraction-provenance`
+  - Explainability modes added to `tg-invoke-graph-rag`,
+    `tg-invoke-document-rag`, and `tg-invoke-agent` with inline provenance
+    event display
+- **Value to Term Schema Redesign** (#622): Breaking redesign of the core
+  wire format from `Value` (`{"v": ..., "e": true}`) to typed `Term` format:
+  - IRIs: `{"t": "i", "i": "http://..."}`
+  - Literals: `{"t": "l", "v": "text", "d": "datatype", "l": "lang"}`
+  - Quoted triples (RDF-star): `{"t": "r", "r": {"s": ..., "p": ..., "o": ...}}`
+  - Blank nodes: `{"t": "b", "d": "identifier"}`
+  - Updated all processing pipelines, Cassandra indexes, serialization,
+    and tests
+- **Tool Services** (#655, #656, #658): Dynamically pluggable tool
+  implementations for agent frameworks:
+  - Base class for creating custom tool services
+  - Tool service client for the ReAct agent to discover and invoke tools
+    at runtime
+  - Tools can be deployed independently and registered dynamically
+- **Batch Embeddings** (#668, #669, #670, #671, #672, #681): Embeddings
+  service redesigned for batch processing:
+  - `embed()` now accepts a list of texts instead of a single text
+  - Updated all embeddings providers (FastEmbed, Ollama, etc.)
+  - Embeddings API now returns similarity scores
+  - New CLI tools: `tg-invoke-embeddings`, `tg-invoke-graph-embeddings`,
+    `tg-invoke-document-embeddings`, `tg-invoke-row-embeddings`
+
+### Improvements
+- **Incremental / Large Document Loading** (#659, #660): Multipart upload
+  support for large documents:
+  - S3 multipart upload with streaming retrieval
+  - Upload session tracking in Cassandra with 24-hour TTL
+  - New REST endpoint `GET /api/v1/document-stream` for streaming document
+    content
+  - New CLI tool: `tg-get-document-content`
+- **Entity-Centric Graph** (#633): Redesigned graph schema for entity-centric
+  storage and querying
+- **Structured Data Enhancements** (#645, #646): Multi-index table support
+  for structured data, removing need for manual Cassandra table modifications:
+  - Row embeddings APIs exposed through gateway
+  - New `row-embeddings-query` tool type for semantic search on structured
+    data indexes
+- **Streaming Triples** (#676): Streaming triple queries with configurable
+  batch sizes for lower time-to-first-result and reduced memory overhead:
+  - `tg-show-graph` updated with `--limit`, `--batch-size`, `--graph` filter,
+    and `--show-graph` options
+- **Graph Query CLI** (#679): New `tg-query-graph` tool for selective pattern
+  matching on the triple store (by subject, predicate, object, graph) with
+  auto-detection of value types
+- **RDF-star Support in Turtle Export** (#676): `tg-graph-to-turtle` now
+  handles quoted triples and named graph filtering
+- **Enhanced GraphRAG Pipeline** (#691, #697): 4-stage GraphRAG pipeline
+  with query concurrency and DocumentRAG grounding
+- **Prompts JSONL Format** (#619): Support for JSONL format in prompt
+  definitions
+- **Entity Context Enhancement** (#629): Entity term now output alongside
+  its definition in entity contexts
+- **Terminology Rename** (#682): Clarified naming throughout — "provenance"
+  callbacks/IDs renamed to "explain" for clarity
+
+### Bug Fixes
+- **Cassandra Schema and Graph Filter Semantics** (#680): Fixed Cassandra
+  schema for named graph support and corrected graph filter semantics
+- **Subscriber Queue Clogging** (#642): Fixed unexpected messages causing
+  subscriber queue clogging
+- **Google AI Studio** (#641, #639, #640): Fixed Google AI Studio integration,
+  moved to VertexAI package to simplify dependencies
+- **VertexAI SDK Migration** (#632): Migrated from deprecated Google GenAI
+  library to the `google-genai` SDK
+- **LLM Metrics** (#631): Fixed metric label issues across LLM providers
+- **Azure LLM Model** (#657): Fixed model parameter usage in Azure LLM
+  integration
+- **Ontology URI Issue** (#637): Fixed ontology URI handling
+- **Entity/Triple Batch Size Limits** (#635): Added batch size limits to
+  prevent oversized requests
+- **Pipeline Metadata ID Overwrite** (#686): Fixed metadata `id` field being
+  overwritten at each processing stage
+- **Null Embeddings Protection** (#627): Added guard against null embeddings
+- **Graph Embeddings Service Identifier** (#648): Fixed mismatching
+  `ge-query` / `graph-embeddings-query` service identifiers
+- **Rate Limiting** (#638): Use `ClientError` and status code to correctly
+  detect 429 rate-limit errors
+- **Mistral SDK** (#687): Locked `mistralai` to `<2.0.0` to avoid a breaking
+  change
+- **KG Extraction** (#695): Removed `schema:subjectOf` edges from knowledge
+  graph extraction
+
+### Breaking Changes
+- **Value to Term wire format**: All API clients must update to the new Term
+  format (see Major Features above)
+- **`tg-invoke-objects-query` renamed** to `tg-invoke-rows-query`; gateway
+  service key changed from `objects` to `rows`
+- **`tg-load-pdf` and `tg-load-text` removed**: Document loading is now
+  handled through the library/processing pipeline
+- **Metadata field**: `metadata.metadata` (subgraph) replaced by
+  `metadata.root` (simple value) in export/import serialization
+- **Embeddings fields**: `vectors` (plural) became `vector` (singular);
+  document embeddings now reference `chunk_id` instead of inline `chunk` text
+
+### Infrastructure / Technical
+- **Tech Specs**: Added technical specifications for agent explainability,
+  tool services, graph contexts, extraction dataflow, and structured data
+  multi-index
+- **Testing** (#647, #663, #666, #696): Updated and expanded test suite for
+  new Term schema, explainability, provenance, and embeddings interfaces
+
+---
+
 ## v1.8 (2026-01-19)
 
 ### Major Features
