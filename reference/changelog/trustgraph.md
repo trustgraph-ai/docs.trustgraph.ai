@@ -122,6 +122,10 @@ review_date: 2027-01-01
   `metadata.root` (simple value) in export/import serialization
 - **Embeddings fields**: `vectors` (plural) became `vector` (singular);
   document embeddings now reference `chunk_id` instead of inline `chunk` text
+- **Graph store**: Only Cassandra is currently implemented as a graph store
+  backend. Neo4j and Memgraph support is not available in this release.
+- **Vector store**: Only Qdrant is currently implemented as a vector store
+  backend. Milvus support is not available in this release.
 
 ### Infrastructure / Technical
 - **Tech Specs**: Added technical specifications for agent explainability,
