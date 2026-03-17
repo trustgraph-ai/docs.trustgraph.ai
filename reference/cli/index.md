@@ -73,15 +73,14 @@ Most CLI commands support these common options:
 - [`tg-show-kg-cores`](tg-show-kg-cores) - List available knowledge cores
 
 **Graph Data Operations:**
-- [`tg-show-graph`](tg-show-graph) - Display graph triples/edges
-- [`tg-graph-to-turtle`](tg-graph-to-turtle) - Export graph to Turtle format
+- [`tg-show-graph`](tg-show-graph) - Dump graph triples (streaming)
+- [`tg-query-graph`](tg-query-graph) - Pattern-matching graph queries
+- [`tg-graph-to-turtle`](tg-graph-to-turtle) - Export graph to Turtle format (RDF-star)
 - [`tg-load-turtle`](tg-load-turtle) - Import RDF triples from Turtle files
 
 ### Document Processing & Library Management
 
 **Document Loading:**
-- [`tg-load-pdf`](tg-load-pdf) - Load PDF documents into processing
-- [`tg-load-text`](tg-load-text) - Load text documents into processing
 - [`tg-load-sample-documents`](tg-load-sample-documents) - Load sample documents for testing
 
 **Library Management:**
@@ -91,6 +90,7 @@ Most CLI commands support these common options:
 - [`tg-start-library-processing`](tg-start-library-processing) - Start processing library documents
 - [`tg-stop-library-processing`](tg-stop-library-processing) - Stop library document processing
 - [`tg-show-library-processing`](tg-show-library-processing) - Show library processing status
+- [`tg-get-document-content`](tg-get-document-content) - Retrieve document content by ID
 
 **Document Embeddings:**
 - [`tg-load-doc-embeds`](tg-load-doc-embeds) - Load document embeddings
@@ -106,9 +106,16 @@ Most CLI commands support these common options:
 - [`tg-invoke-graph-rag`](tg-invoke-graph-rag) - Graph-based RAG queries
 - [`tg-invoke-nlp-query`](tg-invoke-nlp-query) - Convert natural language to GraphQL
 - [`tg-invoke-structured-query`](tg-invoke-structured-query) - Execute queries against structured data
+- [`tg-invoke-rows-query`](tg-invoke-rows-query) - Query structured data rows
+
+**Embeddings:**
+- [`tg-invoke-embeddings`](tg-invoke-embeddings) - Convert text to vector embeddings
+- [`tg-invoke-graph-embeddings`](tg-invoke-graph-embeddings) - Search graph entities by similarity
+- [`tg-invoke-document-embeddings`](tg-invoke-document-embeddings) - Search document chunks by similarity
+- [`tg-invoke-row-embeddings`](tg-invoke-row-embeddings) - Search structured data rows by similarity
 
 **Agent Tool Management:**
-- [`tg-set-tool`](tg-set-tool) - Configure agent tools (knowledge-query, text-completion, mcp-tool, prompt)
+- [`tg-set-tool`](tg-set-tool) - Configure agent tools (knowledge-query, structured-query, row-embeddings-query, text-completion, mcp-tool, prompt)
 - [`tg-show-tools`](tg-show-tools) - List available agent tools
 - [`tg-delete-tool`](tg-delete-tool) - Remove agent tool configurations
 
@@ -121,6 +128,12 @@ Most CLI commands support these common options:
 **Prompt Management:**
 - [`tg-set-prompt`](tg-set-prompt) - Configure prompt templates
 - [`tg-show-prompts`](tg-show-prompts) - List configured prompts
+
+### Explainability & Provenance
+
+- [`tg-list-explain-traces`](tg-list-explain-traces) - List explainability sessions (GraphRAG, DocRAG, Agent)
+- [`tg-show-explain-trace`](tg-show-explain-trace) - Show full reasoning trace for a session
+- [`tg-show-extraction-provenance`](tg-show-extraction-provenance) - Show document extraction provenance hierarchy
 
 ### System Monitoring & Debugging
 
@@ -137,11 +150,12 @@ Most CLI commands support these common options:
 # Start a flow
 tg-start-flow --flow-id my-flow --blueprint-name document-processing
 
-# Load a document
-tg-load-text --flow-id my-flow --text "Your document content" --title "Test Document"
+# Add a document to the library and process it
+tg-add-library-document -f my-flow document.pdf
+tg-start-library-processing -f my-flow
 
 # Query the knowledge
-tg-invoke-graph-rag --flow-id my-flow --query "What is the document about?"
+tg-invoke-graph-rag -f my-flow -q "What is the document about?"
 ```
 
 ### Knowledge Management

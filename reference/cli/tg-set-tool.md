@@ -23,6 +23,8 @@ The `tg-set-tool` command creates or updates agent tool configurations. Tools de
 | Type | Description | Required Parameter |
 |------|-------------|-------------------|
 | `knowledge-query` | Query knowledge bases and graph data | `--collection` |
+| `structured-query` | Query structured data using natural language | `--collection` |
+| `row-embeddings-query` | Semantic search on structured data indexes | `--schema-name`, `--collection` |
 | `text-completion` | Text generation services | None |
 | `mcp-tool` | Reference to MCP (Model Context Protocol) tools | `--mcp-tool` |
 | `prompt` | Prompt template execution | `--template` |
@@ -43,8 +45,11 @@ The `tg-set-tool` command creates or updates agent tool configurations. Tools de
 | Option | Required For | Description |
 |--------|-------------|-------------|
 | `--mcp-tool ID` | `mcp-tool` | MCP tool configuration ID |
-| `--collection NAME` | `knowledge-query` | Knowledge collection to query |
+| `--collection NAME` | `knowledge-query`, `structured-query`, `row-embeddings-query` | Collection to query |
 | `--template ID` | `prompt` | Prompt template ID |
+| `--schema-name NAME` | `row-embeddings-query` | Schema name to search within |
+| `--index-name NAME` | `row-embeddings-query` (optional) | Index to filter search |
+| `--limit N` | `row-embeddings-query` (optional) | Maximum results (default: 10) |
 
 ### Optional Arguments
 
@@ -89,6 +94,15 @@ tg-set-tool --id text-generator --name "Text Generator" \
   --description "Generate text content based on prompts" \
   --argument prompt:string:"Text prompt for generation" \
   --argument max_length:number:"Maximum length of generated text"
+```
+
+### Row Embeddings Query Tool
+```bash
+tg-set-tool --id customer_search --name find_customer \
+  --type row-embeddings-query \
+  --description "Find customers by name using semantic search" \
+  --schema-name customers --collection sales \
+  --index-name full_name --limit 20
 ```
 
 ### Prompt Template Tool

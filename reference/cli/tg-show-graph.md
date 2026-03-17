@@ -1,12 +1,12 @@
 ---
 title: tg-show-graph
 parent: CLI
-review_date: 2026-03-28
+review_date: 2027-01-01
 ---
 
 # tg-show-graph
 
-Displays knowledge graph triples (edges) from TrustGraph.
+Dumps knowledge graph triples using streaming.
 
 ## Synopsis
 
@@ -16,59 +16,42 @@ tg-show-graph [options]
 
 ## Description
 
-The `tg-show-graph` command queries the knowledge graph and displays up to 10,000 triples (subject-predicate-object relationships) in human-readable format. Useful for exploring knowledge graph contents and understanding entity relationships.
+Queries the knowledge graph and streams triples in human-readable format. Supports filtering by named graph and configurable limits and batch sizes.
+
+Named graphs:
+- Default graph (no filter): Core knowledge facts
+- `urn:graph:source`: Extraction provenance (document/chunk sources)
+- `urn:graph:retrieval`: Query-time explainability traces
 
 ## Options
 
-### Optional Arguments
-
 | Option | Default | Description |
 |--------|---------|-------------|
-| `-u, --api-url URL` | `$TRUSTGRAPH_URL` or `http://localhost:8088/` | TrustGraph API URL |
+| `-u, --api-url URL` | `$TRUSTGRAPH_URL` or `http://localhost:8088/` | API URL |
 | `-t, --token TOKEN` | `$TRUSTGRAPH_TOKEN` | Authentication token |
-| `-f, --flow-id FLOW` | `default` | Flow ID to query |
+| `-f, --flow-id FLOW` | `default` | Flow ID |
 | `-U, --user USER` | `trustgraph` | User identifier |
 | `-C, --collection COLLECTION` | `default` | Collection identifier |
+| `-l, --limit N` | `10000` | Maximum triples to return |
+| `-b, --batch-size N` | `20` | Triples per streaming batch |
+| `-g, --graph GRAPH` | None | Filter by named graph. Use `""` for default graph only. |
+| `--show-graph` | false | Show named graph column in output |
 
 ## Examples
 
-### Display All Graph Triples
 ```bash
+# Dump all triples
 tg-show-graph
+
+# Show provenance triples only
+tg-show-graph -g "urn:graph:source"
+
+# Show all triples with graph column
+tg-show-graph --show-graph
+
+# Default graph only (core facts)
+tg-show-graph -g ""
 ```
-
-### Query Specific Flow
-```bash
-tg-show-graph -f research-flow
-```
-
-### Query User's Collection
-```bash
-tg-show-graph -U researcher -C medical-papers
-```
-
-### Using Custom API URL
-```bash
-tg-show-graph -u http://production:8088/
-```
-
-## Output Format
-
-Triples are displayed in subject-predicate-object format:
-
-```
-<Person1> <hasName> "John Doe"
-<Person1> <worksAt> <Organization1>
-<Organization1> <hasName> "Acme Corporation"
-<Document1> <createdBy> <Person1>
-<Document1> <hasTitle> "Research Report"
-```
-
-### Triple Components
-
-- **Subject**: Entity the statement is about (URI in angle brackets)
-- **Predicate**: Relationship or property (URI in angle brackets)
-- **Object**: Value or target entity (URI or literal in quotes)
 
 ## Environment Variables
 
@@ -77,10 +60,6 @@ Triples are displayed in subject-predicate-object format:
 
 ## Related Commands
 
-- [`tg-load-kg-core`](tg-load-kg-core) - Load knowledge core into flow
-- [`tg-invoke-graph-rag`](tg-invoke-graph-rag) - Query knowledge graph
-- [`tg-show-kg-cores`](tg-show-kg-cores) - List available knowledge cores
-
-## API Integration
-
-This command uses the Knowledge API to retrieve RDF triples from the active knowledge graph.
+- [`tg-query-graph`](tg-query-graph) - Selective pattern-matching queries
+- [`tg-graph-to-turtle`](tg-graph-to-turtle) - Export graph to Turtle format
+- [`tg-invoke-graph-rag`](tg-invoke-graph-rag) - Graph RAG queries

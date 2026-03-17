@@ -5,7 +5,7 @@ parent: Overview
 review_date: 2026-08-01
 guide_category:
   - How does it work?
-guide_category_order: 3
+guide_category_order: 5
 guide_description: Complete overview of TrustGraph features and platform capabilities
 guide_difficulty: beginner
 guide_time: 5 min

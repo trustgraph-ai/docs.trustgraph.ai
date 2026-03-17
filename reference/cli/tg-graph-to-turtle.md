@@ -1,12 +1,12 @@
 ---
 title: tg-graph-to-turtle
 parent: CLI
-review_date: 2026-09-30
+review_date: 2027-01-01
 ---
 
 # tg-graph-to-turtle
 
-Exports knowledge graph data to Turtle (TTL) format for backup, analysis, or migration.
+Exports knowledge graph data to Turtle format with RDF-star support.
 
 ## Synopsis
 
@@ -16,58 +16,32 @@ tg-graph-to-turtle [options]
 
 ## Description
 
-The `tg-graph-to-turtle` command connects to TrustGraph's triple query service and exports graph triples in Turtle format. This is useful for creating backups, analyzing graph structure, migrating data, or integrating with external RDF tools.
-
-The command queries up to 10,000 triples and outputs them in standard Turtle format to stdout, while also saving to an `output.ttl` file.
+Streams triples from the knowledge graph and outputs them in Turtle format to stdout. Supports RDF-star quoted triples, typed literals, and language-tagged literals.
 
 ## Options
 
-### Optional Arguments
-
 | Option | Default | Description |
 |--------|---------|-------------|
-| `-u, --api-url URL` | `$TRUSTGRAPH_URL` or `http://localhost:8088/` | TrustGraph API URL |
+| `-u, --api-url URL` | `$TRUSTGRAPH_URL` or `http://localhost:8088/` | API URL |
 | `-t, --token TOKEN` | `$TRUSTGRAPH_TOKEN` | Authentication token |
-| `-f, --flow-id ID` | `default` | Flow instance ID to use |
-| `-U, --user USER` | `trustgraph` | User ID for data scope |
+| `-f, --flow-id ID` | `default` | Flow ID |
+| `-U, --user USER` | `trustgraph` | User identifier |
 | `-C, --collection COLLECTION` | `default` | Collection to export |
+| `-l, --limit N` | `10000` | Maximum triples |
+| `-b, --batch-size N` | `20` | Triples per streaming batch |
 
 ## Examples
 
-### Basic Export
 ```bash
+# Export to stdout
 tg-graph-to-turtle
-```
 
-### Export to File
-```bash
+# Export to file
 tg-graph-to-turtle > knowledge-graph.ttl
+
+# Export specific collection
+tg-graph-to-turtle -C research-data > research.ttl
 ```
-
-### Export Specific Collection
-```bash
-tg-graph-to-turtle -C "research-data" > research-graph.ttl
-```
-
-## Output Format
-
-The command generates Turtle format with proper RDF syntax:
-
-```turtle
-@prefix ns1: <http://example.org/> .
-@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
-@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
-
-ns1:Person rdf:type rdfs:Class .
-ns1:john rdf:type ns1:Person ;
-         ns1:name "John Doe" ;
-         ns1:age "30" .
-```
-
-### Output Destinations
-
-1. **stdout**: Standard output for piping or display
-2. **output.ttl**: Automatically created file in current directory
 
 ## Environment Variables
 
@@ -76,10 +50,7 @@ ns1:john rdf:type ns1:Person ;
 
 ## Related Commands
 
+- [`tg-show-graph`](tg-show-graph) - Display graph triples
+- [`tg-query-graph`](tg-query-graph) - Selective graph queries
+- [`tg-load-turtle`](tg-load-turtle) - Import Turtle files
 - [`tg-load-knowledge`](tg-load-knowledge) - Load knowledge into graph
-- [`tg-dump-msgpack`](tg-dump-msgpack) - Dump MessagePack files
-- [`tg-show-graph`](tg-show-graph) - Display graph information
-
-## API Integration
-
-This command uses the [Triples Query API](../apis/api-triples-query) to retrieve graph data.

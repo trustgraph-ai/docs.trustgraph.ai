@@ -45,6 +45,7 @@ tg-show-tools -u http://production:8088/
 |------|-------------|
 | `knowledge-query` | Query knowledge graph data |
 | `structured-query` | Query structured data using natural language |
+| `row-embeddings-query` | Semantic search on structured data indexes |
 | `text-completion` | Text generation and completion |
 | `mcp-tool` | References to MCP tools |
 | `prompt` | Execute prompt templates |

@@ -1,12 +1,12 @@
 ---
 title: tg-invoke-agent
 parent: CLI
-review_date: 2026-05-14
+review_date: 2027-01-01
 ---
 
 # tg-invoke-agent
 
-Uses the agent service to answer questions via interactive WebSocket connection.
+Answers questions using the ReAct agent via WebSocket.
 
 ## Synopsis
 
@@ -16,7 +16,7 @@ tg-invoke-agent -q "your question" [options]
 
 ## Description
 
-The `tg-invoke-agent` command provides an interactive interface to TrustGraph's agent service via WebSocket. The agent uses available tools and knowledge sources to answer questions, optionally showing its thinking process in verbose mode.
+Provides an interactive interface to TrustGraph's ReAct agent. The agent uses configured tools and knowledge sources to answer questions. Supports verbose mode to show thinking/observation steps, and explainability mode to capture provenance events.
 
 ## Options
 
@@ -30,46 +30,40 @@ The `tg-invoke-agent` command provides an interactive interface to TrustGraph's 
 
 | Option | Default | Description |
 |--------|---------|-------------|
-| `-u, --url URL` | `$TRUSTGRAPH_URL` or `ws://localhost:8088/` | TrustGraph API URL (WebSocket) |
+| `-u, --url URL` | `$TRUSTGRAPH_URL` or `http://localhost:8088/` | API URL |
 | `-t, --token TOKEN` | `$TRUSTGRAPH_TOKEN` | Authentication token |
-| `-f, --flow-id FLOW` | `default` | Flow ID to use |
+| `-f, --flow-id FLOW` | `default` | Flow ID |
 | `-U, --user USER` | `trustgraph` | User identifier |
 | `-C, --collection COLLECTION` | `default` | Collection identifier |
 | `-l, --plan PLAN` | None | Agent plan specification |
 | `-s, --state STATE` | None | Agent initial state |
-| `-v, --verbose` | false | Show agent's thinking process and observations |
+| `-g, --group GROUP [GROUP ...]` | None | Agent tool groups |
+| `-v, --verbose` | false | Show thinking process and observations |
+| `--no-streaming` | false | Disable streaming |
+| `-x, --explainable` | false | Show provenance events: Session, Iterations, Conclusion |
+| `--debug` | false | Show debug output |
 
 ## Examples
 
-### Basic Agent Query
 ```bash
+# Basic query
 tg-invoke-agent -q "What is the capital of France?"
-```
 
-### With Verbose Mode
-```bash
-tg-invoke-agent -q "Explain quantum computing" -v
-```
+# Verbose with explainability
+tg-invoke-agent -v -x -q "Explain quantum computing"
 
-### Specific Flow and Collection
-```bash
-tg-invoke-agent \
-  -q "What research papers discuss AI ethics?" \
-  -f research-flow \
-  -C academic-papers
+# With tool group filter
+tg-invoke-agent -q "Search for AI papers" -g knowledge read-only
 ```
 
 ## Environment Variables
 
-- `TRUSTGRAPH_URL`: Default API URL (automatically converted to WebSocket format)
+- `TRUSTGRAPH_URL`: Default API URL
 - `TRUSTGRAPH_TOKEN`: Default authentication token
 
 ## Related Commands
 
-- [`tg-invoke-llm`](tg-invoke-llm) - Direct LLM text completion
 - [`tg-invoke-graph-rag`](tg-invoke-graph-rag) - Graph RAG queries
 - [`tg-set-tool`](tg-set-tool) - Configure agent tools
-
-## API Integration
-
-This command uses the Agent API via WebSocket connection for real-time interactive question answering.
+- [`tg-show-tools`](tg-show-tools) - List configured tools
+- [`tg-show-explain-trace`](tg-show-explain-trace) - Review full explainability traces
