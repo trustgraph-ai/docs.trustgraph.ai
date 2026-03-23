@@ -288,6 +288,33 @@ type:cat
     rdfs:label "cat" .
 ```
 
+## TrustGraph's graph store
+
+TrustGraph's graph store extends beyond basic triples with two additional
+capabilities:
+
+### Named graphs (quads)
+
+TrustGraph supports named graphs, which means that every triple is
+associated with a graph identifier.  This makes each statement a quad:
+subject, predicate, object, and graph.  Named graphs allow triples to be
+organised into distinct collections - for example, separating knowledge
+graph content from retrieval provenance data, or isolating data by user
+and collection.
+
+### Reification
+
+TrustGraph supports RDF reification, which allows edges to point at other
+edges.  In RDF terms, a triple can itself be treated as a resource and
+become the subject or object of further triples.  This is used extensively
+in TrustGraph for provenance tracking - for instance, recording which
+source document a particular knowledge graph edge was derived from, or
+attaching confidence scores and extraction metadata to individual facts.
+
+## Knowledge graph vs. context graph
+
+{% include knowledge-context-graph-definitions.md %}
+
 ## Going further
 
 The RDF technologies and standards are big and very powerful for knowledge
