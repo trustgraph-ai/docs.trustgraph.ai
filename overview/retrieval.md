@@ -23,13 +23,18 @@ TrustGraph supports multiple retrieval strategies to provide context to LLM
 queries. The approach you choose has a significant impact on the quality
 and accuracy of responses.
 
-## Graph RAG
+## Explainable GraphRAG
 
-This is where we started in 2023.  Graph RAG is TrustGraph's flagship
+This is where we started in 2023.  GraphRAG is TrustGraph's flagship
 retrieval mechanism. Rather than treating documents as opaque text blobs,
-Graph RAG extracts structured knowledge and stores it in a knowledge graph
+GraphRAG extracts structured knowledge and stores it in a knowledge graph
 alongside vector embeddings of entities.  TrustGraph engineers were working
 on GraphRAG before it was 'cool'.
+
+TrustGraph's implementation goes well beyond basic GraphRAG.  The retrieval
+pipeline incorporates LLM-driven concept extraction, relevance scoring,
+edge reasoning, document provenance tracing, and full explainability -
+making it a truly explainable GraphRAG system.
 
 ### Overview
 
@@ -53,17 +58,42 @@ The ingestion pipeline processes documents through several stages:
 
 ### Retrieval
 
-When a question is asked, the retrieval process works as follows:
+When a question is asked, the explainable GraphRAG retrieval pipeline works
+through the following stages:
 
-1. **Question embedding**: The question is converted to a vector embedding
-2. **Vector query**: The embedding is used to find semantically relevant nodes in the vector store
-3. **Graph traversal**: Starting from relevant nodes, the knowledge graph is traversed to extract a contextual subgraph
-4. **LLM invocation**: The knowledge subgraph provides structured context to the LLM, which generates the answer
+1. **Concept extraction**: An LLM analyses the question and breaks it down
+   into key concepts, providing more nuanced search terms than raw query
+   embedding alone
+2. **Concept embedding**: The extracted concepts are converted to vector
+   embeddings for semantic search
+3. **Entity retrieval**: For each concept, the graph embeddings store is
+   queried to find semantically relevant entities, with deduplication across
+   concepts
+4. **Subgraph exploration**: Starting from the retrieved entities, the
+   knowledge graph is traversed in batches to a configurable depth,
+   collecting a subgraph of related entities and relationships
+5. **Semantic pre-filtering**: If the explored subgraph is large, edge
+   descriptions are embedded and scored by cosine similarity to the query
+   concepts, trimming the subgraph to a manageable size
+6. **LLM edge scoring**: An LLM assigns relevance scores to each edge in
+   the subgraph, selecting the most pertinent relationships for the query
+7. **Edge reasoning**: An LLM provides explanations for why each selected
+   edge is relevant to the question, building a reasoning map
+8. **Document tracing**: Selected edges are traced back through provenance
+   chains to their source documents, enabling full attribution
+9. **Answer synthesis**: The scored edges, reasoning, and source document
+   metadata are provided to an LLM which generates the final answer
+10. **Explainability**: Throughout the pipeline, provenance triples are
+    emitted recording the question, extracted concepts, graph exploration,
+    edge selection with reasoning, and the synthesised answer - providing a
+    complete audit trail for every retrieval
 
-This approach provides precise, relationship-aware context rather than
-raw text snippets.
+Steps 7 and 8 run concurrently for efficiency.
 
-<img src="retrieval-graph-rag-retrieval.png">
+This approach provides precise, relationship-aware context with full
+explainability and source attribution, rather than raw text snippets.
+
+<img src="retrieval-explainable-graph-rag-retrieval.png">
 
 ## Ontology RAG
 
