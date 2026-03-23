@@ -99,9 +99,7 @@ events are reported to stderr as each pipeline stage completes:
 
 The answer then follows, grounded in the selected edges.
 
-Use `--debug` for additional diagnostic output if events are missing.
-
-## Step 2: List Past Sessions
+## Step 2: List existing explainability traces
 
 All explainability traces are persistent.  List them with:
 
@@ -119,9 +117,6 @@ urn:trustgraph:question:x9y8z7...       Agent     Summarise the intelligence fin
 urn:trustgraph:question:p5q6r7...       DocRAG    What is the timeline of events?                 2026-03-17T14:20:00Z
 ```
 
-Use `--format json` for machine-readable output, or `--limit` to
-control how many sessions are shown.
-
 ## Step 3: View a Full Trace
 
 Pick a session ID from the listing and view its complete trace:
@@ -132,18 +127,7 @@ tg-show-explain-trace \
   "urn:trustgraph:question:a1b2c3..."
 ```
 
-This displays the same stages you saw inline, but formatted for
-review — question, grounding concepts, exploration statistics,
-focused edges with reasoning, and the synthesised answer.
-
-For JSON output (useful for scripting or analysis):
-
-```bash
-tg-show-explain-trace \
-  --format json \
-  -C intelligence \
-  "urn:trustgraph:question:a1b2c3..."
-```
+This displays the same stages you saw inline., but formatted for
 
 ## Step 4: Trace Edges to Source Documents
 
@@ -158,17 +142,39 @@ tg-show-explain-trace \
 ```
 
 For each focused edge, this traces the reified triple through
-`urn:graph:source` and displays the chain:
+`urn:graph:source` and displays the provenance chain and content
+identifier:
 
 ```
-  Edge: (Viktor Sorokin, orchestrated, Operation Phantom Cargo)
-    Reason: Directly identifies a key entity and their role...
-    Provenance: Subgraph abc... -> Chunk def... -> Page 3 -> PHANTOM CARGO
+  20. (clothing, definition, clothing)
+      Reasoning: Defines 'clothing' which is related to 'fine clothes'.
+      Source: https://trustgraph.ai/subgraph/2c356884-fef9-4998-bb69-8b546a67b6a1 -> Chunk 2 -> Page 157 -> A Concise Dictionary of Old Icelandic
+      Content: urn:chunk:7ed8e3b6-4202-47eb-92bc-c1a4f2d232e9
 ```
 
-This tells you exactly which text in which document produced each fact.
+The **Source** line traces the edge back through the subgraph, chunk,
+page, and document it was extracted from.  The **Content** line provides
+the content identifier for the chunk text.
 
-## Step 5: View Extraction Provenance Directly
+## Step 5: View Chunk Content
+
+Use the content identifier from step 4 to retrieve the actual chunk
+text that the edge was extracted from:
+
+```bash
+tg-get-document-content urn:chunk:7ed8e3b6-4202-47eb-92bc-c1a4f2d232e9
+```
+
+```
+-t œkr , a. headstrong, stubborn; -úðigr ,
+a. staunch, firm o f mind ; -úðliga , adv.
+firmly; -úðligr , adv. = -úðigr;-vingr , a.
+```
+
+This completes the audit trail from answer to source text — you can see
+exactly which chunk of text produced each fact used in the answer.
+
+## Step 6: View Extraction Provenance Directly
 
 To see the full extraction hierarchy for a specific document, use
 `tg-show-extraction-provenance`:
@@ -206,7 +212,7 @@ tg-show-extraction-provenance \
 
 Use `--format json` for machine-readable output.
 
-## Step 6: Query Provenance Data Directly
+## Step 7: Query Provenance Data Directly
 
 Since all explainability data is stored as standard RDF triples in named
 graphs, you can query it directly using `tg-show-graph` and

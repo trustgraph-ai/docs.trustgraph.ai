@@ -23,13 +23,22 @@ TrustGraph supports multiple retrieval strategies to provide context to LLM
 queries. The approach you choose has a significant impact on the quality
 and accuracy of responses.
 
-## Graph RAG
+## Knowledge graph vs. context graph
 
-This is where we started in 2023.  Graph RAG is TrustGraph's flagship
+{% include knowledge-context-graph-definitions.md %}
+
+## Explainable GraphRAG
+
+This is where we started in 2023.  GraphRAG is TrustGraph's flagship
 retrieval mechanism. Rather than treating documents as opaque text blobs,
-Graph RAG extracts structured knowledge and stores it in a knowledge graph
+GraphRAG extracts structured knowledge and stores it in a knowledge graph
 alongside vector embeddings of entities.  TrustGraph engineers were working
 on GraphRAG before it was 'cool'.
+
+TrustGraph's implementation goes well beyond basic GraphRAG.  The retrieval
+pipeline incorporates LLM-driven concept extraction, relevance scoring,
+edge reasoning, document provenance tracing, and full explainability -
+making it a truly explainable GraphRAG system.
 
 ### Overview
 
@@ -53,17 +62,42 @@ The ingestion pipeline processes documents through several stages:
 
 ### Retrieval
 
-When a question is asked, the retrieval process works as follows:
+When a question is asked, the explainable GraphRAG retrieval pipeline works
+through the following stages:
 
-1. **Question embedding**: The question is converted to a vector embedding
-2. **Vector query**: The embedding is used to find semantically relevant nodes in the vector store
-3. **Graph traversal**: Starting from relevant nodes, the knowledge graph is traversed to extract a contextual subgraph
-4. **LLM invocation**: The knowledge subgraph provides structured context to the LLM, which generates the answer
+1. **Concept extraction**: An LLM analyses the question and breaks it down
+   into key concepts, providing more nuanced search terms than raw query
+   embedding alone
+2. **Concept embedding**: The extracted concepts are converted to vector
+   embeddings for semantic search
+3. **Entity retrieval**: For each concept, the graph embeddings store is
+   queried to find semantically relevant entities, with deduplication across
+   concepts
+4. **Subgraph exploration**: Starting from the retrieved entities, the
+   knowledge graph is traversed in batches to a configurable depth,
+   collecting a subgraph of related entities and relationships
+5. **Semantic pre-filtering**: If the explored subgraph is large, edge
+   descriptions are embedded and scored by cosine similarity to the query
+   concepts, trimming the subgraph to a manageable size
+6. **LLM edge scoring**: An LLM assigns relevance scores to each edge in
+   the subgraph, selecting the most pertinent relationships for the query
+7. **Edge reasoning**: An LLM provides explanations for why each selected
+   edge is relevant to the question, building a reasoning map
+8. **Document tracing**: Selected edges are traced back through provenance
+   chains to their source documents, enabling full attribution
+9. **Answer synthesis**: The scored edges, reasoning, and source document
+   metadata are provided to an LLM which generates the final answer
+10. **Explainability**: Throughout the pipeline, provenance triples are
+    emitted recording the question, extracted concepts, graph exploration,
+    edge selection with reasoning, and the synthesised answer - providing a
+    complete audit trail for every retrieval
 
-This approach provides precise, relationship-aware context rather than
-raw text snippets.
+Steps 7 and 8 run concurrently for efficiency.
 
-<img src="retrieval-graph-rag-retrieval.png">
+This approach provides precise, relationship-aware context with full
+explainability and source attribution, rather than raw text snippets.
+
+<img src="retrieval-explainable-graph-rag-retrieval.png">
 
 ## Ontology RAG
 
@@ -125,25 +159,50 @@ Herculean task, so you would stick with GraphRAG for this.
 When this technique is widely adopted by all the AI frameworks, remember
 TrustGraph was pioneering this capability in 2025!  😀
 
-## Document RAG
+## Explainable Document RAG
 
 Document RAG is the traditional approach that dominated early RAG
-implementations circa 2020. It remains available in TrustGraph for
-completeness, but represents a significantly less sophisticated approach
-compared to Graph RAG.
+implementations circa 2020. While conceptually simpler than GraphRAG,
+TrustGraph's implementation enhances the basic approach with LLM-driven
+concept extraction for grounding and full explainability tracking, making
+it an explainable Document RAG system.
 
-The process is straightforward: document chunks are embedded directly and
-stored in a vector database. At query time, similar chunks are retrieved
-based on embedding similarity and passed to the LLM as context.
+### Ingestion
+
+The ingestion pipeline for explainable Document RAG is straightforward: document chunks
+are embedded directly and stored in a vector database.
 
 <img src="retrieval-doc-rag.png">
 
-While simple to implement, Document RAG has fundamental limitations:
+### Retrieval
+
+When a question is asked, the explainable Document RAG retrieval pipeline works through
+the following stages:
+
+1. **Concept extraction**: An LLM analyses the question and extracts key
+   concepts, grounding the search in meaningful terms rather than relying on
+   raw query embedding
+2. **Concept embedding**: The extracted concepts are converted to vector
+   embeddings
+3. **Chunk retrieval**: For each concept, the document embeddings store is
+   queried to find semantically relevant chunks, with deduplication across
+   concepts to avoid repetition
+4. **Answer synthesis**: The retrieved chunks and the original query are
+   provided to an LLM which generates the final answer, with support for
+   streaming responses
+5. **Explainability**: Provenance triples are emitted at each stage -
+   recording the question, extracted concepts (grounding), retrieved chunks
+   (exploration), and the synthesised answer - providing a complete audit
+   trail
+
+### Comparison with GraphRAG
+
+While explainable Document RAG now benefits from concept extraction and explainability,
+it still has inherent limitations compared to GraphRAG:
 
 - **No relationship awareness**: Retrieved chunks are isolated text fragments with no understanding of how concepts relate to each other
 - **Context window pollution**: Raw text chunks consume token budget inefficiently compared to structured knowledge
-- **Semantic drift**: Embedding similarity often retrieves superficially related content rather than genuinely relevant information
 - **Poor multi-hop reasoning**: Questions requiring synthesis across multiple facts perform poorly when context is fragmented text
 
-For most use cases, Graph RAG or Ontology RAG will deliver substantially
-better results.
+For most use cases, explainable GraphRAG or Ontology RAG will deliver
+substantially better results.

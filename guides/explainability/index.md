@@ -9,7 +9,7 @@ guide_category:
 guide_category_order: 3
 guide_description: Trace GraphRAG answers back to their sources using the Workbench
 guide_difficulty: beginner
-guide_time: 15 min
+guide_time: 3 min
 guide_emoji: "\U0001F50D"
 guide_banner: banner.jpg
 guide_labels:
@@ -36,144 +36,38 @@ guide_labels:
    goal="Run an explainable GraphRAG query, review the reasoning trace, and trace selected edges back to source documents."
 %}
 
-**Understand how TrustGraph arrives at its answers**
+Explainability in TrustGraph is always on.  Every query records a full
+reasoning trace in the context graph automatically.  It's down to the
+application to decide what to show the user and how to interpret the
+explainability data.  The Workbench provides a built-in view, but any
+application built on TrustGraph can query the same data.
 
-This guide walks through the explainability features using a GraphRAG
-query as the example.  You'll see how TrustGraph records each stage of
-the reasoning process and how you can trace facts back to the documents
-they came from.
+## Step 1: Run a Query
 
-**New to explainability?** Read the
-[Explainability overview](../../overview/explainability) first to
-understand the concepts.
+In the Workbench, navigate to the **Assistant** page.  Make sure
+**Graph RAG** is selected as the retrieval strategy.
 
-## Prerequisites
-
-This guide assumes you've already loaded and processed a document using
-Graph RAG.  If you haven't done that yet, follow the
-[Graph RAG guide](../graph-rag/) first.
-
-## What You'll Learn
-
-1. Running a GraphRAG query with explainability enabled
-2. Reviewing the reasoning trace (question, grounding, exploration,
-   focus, synthesis)
-3. Understanding why specific edges were selected
-4. Tracing edges back to source documents
-5. Browsing past explainability sessions
-
-## Step 1: Run an Explainable Query
-
-In the Workbench, navigate to the **Graph RAG** query page.
-
-Enter a question and enable the **Explainability** toggle before
-submitting the query.
-
-<!-- placeholder: screenshot of the Workbench Graph RAG query page
-     with the Explainability toggle enabled and a question entered -->
-
-The answer will stream as normal, but behind the scenes TrustGraph
-records the full reasoning trace.
+Enter a question and submit the query.  The answer will stream back,
+and TrustGraph records the full reasoning trace.
 
 ## Step 2: View the Reasoning Trace
 
-After the query completes, navigate to the **Explainability** page in
-the Workbench.
+Once the answer appears, expand the **How I found this answer** section
+to see the explainability trace inline.
 
-You'll see a list of all recorded sessions.  Find your query — it will
-show the question text, type (GraphRAG), and timestamp.
+<img src="explainability-query.png">
 
-<!-- placeholder: screenshot of the Workbench explainability sessions
-     list showing several recorded queries with their types and
-     timestamps -->
+The trace shows key stages of the reasoning pipeline:
 
-Click on a session to view its full trace.
+- **Query** — the original question
+- **Exploration** — how many edges were traversed in the knowledge graph
+- **Selected Evidence** — the edges chosen as most relevant, shown as
+  subject → predicate → object triples, each with the LLM's reasoning
+  for why it was selected
 
-## Step 3: Review the GraphRAG Trace
-
-The trace view shows each stage of the reasoning pipeline:
-
-### Question
-
-The original query and when it was submitted.
-
-<!-- placeholder: screenshot of the Question section of the trace view,
-     showing the query text and timestamp -->
-
-### Grounding
-
-The concepts extracted from your question that were used to seed the
-graph search.  These are the terms TrustGraph used to find entry points
-into the knowledge graph.
-
-<!-- placeholder: screenshot of the Grounding section showing a list
-     of extracted concepts -->
-
-### Exploration
-
-The graph traversal results: which entities were found as starting
-points, and how many edges were explored.
-
-<!-- placeholder: screenshot of the Exploration section showing seed
-     entities and edge count -->
-
-### Focus
-
-This is the most important stage.  It shows which edges were selected
-from the explored subgraph, and *why* each edge was chosen.
-
-The LLM provides reasoning for each selection, explaining why it
-considered that fact relevant to answering your question.
-
-<!-- placeholder: screenshot of the Focus section showing selected
-     edges as (subject, predicate, object) triples with the LLM's
-     reasoning text alongside each one -->
-
-### Synthesis
-
-The final generated answer, along with a reference to the document
-context that was assembled for the LLM.
-
-<!-- placeholder: screenshot of the Synthesis section showing the
-     generated answer -->
-
-## Step 4: Trace Back to Source Documents
-
-From the Focus stage, you can trace any selected edge back to its
-source document.  This uses the extraction provenance stored in the
-`urn:graph:source` named graph.
-
-Select an edge and choose **Show provenance**.  TrustGraph will show
-the chain:
-
-> **Selected edge** → Subgraph → Chunk → Page → **Source document**
-
-<!-- placeholder: screenshot of the provenance view showing the
-     chain from a selected edge back through chunk and page to the
-     original document, with the chunk text visible -->
-
-This tells you exactly which text in which document produced the fact
-that TrustGraph used to answer your question.
-
-## Step 5: Browse Past Sessions
-
-All explainability traces are persistent.  You can return to the
-Explainability page at any time to review past queries — useful for
-auditing, debugging, or understanding how the system's answers relate
-to the underlying knowledge.
-
-Sessions are listed with their type (GraphRAG, DocRAG, or Agent), the
-question text, and timestamp.
-
-## Summary
-
-In this guide you:
-
-- Ran a GraphRAG query with explainability enabled
-- Reviewed the 5-stage reasoning trace
-- Examined why specific edges were selected
-- Traced a fact back to its source document
-- Browsed past explainability sessions
+All explainability traces are persistent.  The
+[Explainability using CLI](../explainability-cli/) guide shows how to
+list and review past explainability sessions using command-line tools.
 
 ## Next Steps
 
