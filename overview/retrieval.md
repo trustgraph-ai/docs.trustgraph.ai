@@ -155,25 +155,50 @@ Herculean task, so you would stick with GraphRAG for this.
 When this technique is widely adopted by all the AI frameworks, remember
 TrustGraph was pioneering this capability in 2025!  😀
 
-## Document RAG
+## Explainable Document RAG
 
 Document RAG is the traditional approach that dominated early RAG
-implementations circa 2020. It remains available in TrustGraph for
-completeness, but represents a significantly less sophisticated approach
-compared to Graph RAG.
+implementations circa 2020. While conceptually simpler than GraphRAG,
+TrustGraph's implementation enhances the basic approach with LLM-driven
+concept extraction for grounding and full explainability tracking, making
+it an explainable Document RAG system.
 
-The process is straightforward: document chunks are embedded directly and
-stored in a vector database. At query time, similar chunks are retrieved
-based on embedding similarity and passed to the LLM as context.
+### Ingestion
+
+The ingestion pipeline for explainable Document RAG is straightforward: document chunks
+are embedded directly and stored in a vector database.
 
 <img src="retrieval-doc-rag.png">
 
-While simple to implement, Document RAG has fundamental limitations:
+### Retrieval
+
+When a question is asked, the explainable Document RAG retrieval pipeline works through
+the following stages:
+
+1. **Concept extraction**: An LLM analyses the question and extracts key
+   concepts, grounding the search in meaningful terms rather than relying on
+   raw query embedding
+2. **Concept embedding**: The extracted concepts are converted to vector
+   embeddings
+3. **Chunk retrieval**: For each concept, the document embeddings store is
+   queried to find semantically relevant chunks, with deduplication across
+   concepts to avoid repetition
+4. **Answer synthesis**: The retrieved chunks and the original query are
+   provided to an LLM which generates the final answer, with support for
+   streaming responses
+5. **Explainability**: Provenance triples are emitted at each stage -
+   recording the question, extracted concepts (grounding), retrieved chunks
+   (exploration), and the synthesised answer - providing a complete audit
+   trail
+
+### Comparison with GraphRAG
+
+While explainable Document RAG now benefits from concept extraction and explainability,
+it still has inherent limitations compared to GraphRAG:
 
 - **No relationship awareness**: Retrieved chunks are isolated text fragments with no understanding of how concepts relate to each other
 - **Context window pollution**: Raw text chunks consume token budget inefficiently compared to structured knowledge
-- **Semantic drift**: Embedding similarity often retrieves superficially related content rather than genuinely relevant information
 - **Poor multi-hop reasoning**: Questions requiring synthesis across multiple facts perform poorly when context is fragmented text
 
-For most use cases, Graph RAG or Ontology RAG will deliver substantially
-better results.
+For most use cases, explainable GraphRAG or Ontology RAG will deliver
+substantially better results.
