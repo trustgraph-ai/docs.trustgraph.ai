@@ -8,6 +8,23 @@ review_date: 2027-01-15
 
 # Changelog - Workbench UI
 
+## v1.7.2 (2026-03-10) - released in TrustGraph 2.1
+
+### Features
+- **Explainability Panel** (#129): Added explainability panel to Assistant
+  chat for viewing reasoning traces and provenance.
+- **Row Embedding Support** (#126): Added row embedding support.
+- **TrustGraph 2.0 API** (#122): Updated to TrustGraph v2.0 API.
+
+### Maintenance
+- **Refactored Rows/Objects** (#125): Refactored rows and objects handling.
+- **TrustGraph 2.1 Updates** (#127): Updated for TrustGraph 2.1
+  compatibility.
+- **Client Updates** (#123, #124, #128): Bumped @trustgraph/client
+  dependency and updated package-lock.
+
+---
+
 ## v1.5.5 (2026-01-19) - released in TrustGraph 1.8
 
 ### Enhancements
