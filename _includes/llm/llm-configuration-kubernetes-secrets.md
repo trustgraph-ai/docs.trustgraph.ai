@@ -8,13 +8,29 @@ There are 2 hosted model options for Azure:
 
 TrustGraph's *Azure* integration is for MLS. *Azure OpenAI* is for CS.
 
-To use Azure, you need to know your model endpoint and the token granted for the endpoint.
+To use Azure MLS, you need to know your model endpoint and the token granted
+for the endpoint.
 
-Create the Kubernetes secret with your Azure credentials:
+Create the Kubernetes secret with your Azure MLS credentials:
 ```bash
 kubectl -n trustgraph create secret generic azure-credentials \
     --from-literal="azure-endpoint=https://ENDPOINT.API.HOST.GOES.HERE/" \
     --from-literal="azure-token=TOKEN-GOES-HERE"
+```
+
+To use Azure OpenAI (CS), you also need the API version and model name.
+The endpoint is typically of the form
+`https://CUSTOM_NAME.cognitiveservices.azure.com/`. The API version
+defaults to `2024-12-01-preview` if not specified. The model name
+is the name of the model deployment (e.g. `gpt-4o-mini`).
+
+Create the Kubernetes secret with your Azure OpenAI credentials:
+```bash
+kubectl -n trustgraph create secret generic azure-credentials \
+    --from-literal="azure-endpoint=https://ENDPOINT.API.HOST.GOES.HERE/" \
+    --from-literal="azure-token=TOKEN-GOES-HERE" \
+    --from-literal="azure-api-version=API-VERSION-GOES-HERE" \
+    --from-literal="azure-model=MODEL-NAME-GOES-HERE"
 ```
 </div>
 </details>

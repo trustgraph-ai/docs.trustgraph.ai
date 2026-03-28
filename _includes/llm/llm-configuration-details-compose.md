@@ -15,11 +15,19 @@ export AZURE_ENDPOINT=https://ENDPOINT.API.HOST.GOES.HERE/
 export AZURE_TOKEN=TOKEN-GOES-HERE
 ```
 If you are using the *Azure OpenAI* / CS integration, you should make sure
-you know your model endpoint, the token and configure them thus:
+you know your model endpoint, the token, the API version and the model name,
+and configure them thus:
 ```
 export AZURE_ENDPOINT=https://ENDPOINT.API.HOST.GOES.HERE/
 export AZURE_TOKEN=TOKEN-GOES-HERE
+export AZURE_API_VERSION=API-VERSION-GOES-HERE
+export AZURE_MODEL=MODEL-NAME-GOES-HERE
 ```
+
+The endpoint is typically of the form
+`https://CUSTOM_NAME.cognitiveservices.azure.com/`. The API version
+defaults to `2024-12-01-preview` if not specified. The model name
+is the name of the model deployment (e.g. `gpt-4o-mini`).
 </div>
 </details>
 
