@@ -45,7 +45,7 @@
 <ul>
 <li>agent, text-completion, prompt, document-rag, graph-rag</li>
 <li>embeddings, graph-embeddings, document-embeddings</li>
-<li>triples, rows, nlp-query, structured-query, structured-diag, row-embeddings</li>
+<li>triples, rows, nlp-query, structured-query, sparql-query, structured-diag, row-embeddings</li>
 <li>text-load, document-load, mcp-tool</li>
 </ul>
 <h2 id="schema-reuse">Schema Reuse</h2>
@@ -91,7 +91,7 @@ Include as query parameter: ws://localhost:8088/api/v1/socket?token=</p>
   "info": {
     "title": "TrustGraph WebSocket API",
     "version": "2.1",
-    "description": "WebSocket API for TrustGraph - providing multiplexed, asynchronous access to all services.\n\n## Overview\n\nThe WebSocket API provides access to all TrustGraph services over a single persistent connection:\n- **Multiplexed**: Multiple concurrent requests with ID-based correlation\n- **Asynchronous**: Non-blocking request/response pattern\n- **Efficient**: Lower overhead than HTTP REST\n- **Streaming**: Real-time progressive responses\n\n## Protocol Summary\n\nAll messages are JSON with:\n- `id`: Client-generated unique identifier for request/response correlation\n- `service`: Service identifier (e.g., \"config\", \"agent\", \"document-rag\")\n- `flow`: Optional flow ID for flow-hosted services\n- `request`/`response`: Service-specific payload (identical to REST API schemas)\n- `error`: Error information on failure\n\n## Service Types\n\n**Global Services** (no `flow` parameter):\n- config, flow, librarian, knowledge, collection-management\n\n**Flow-Hosted Services** (require `flow` parameter):\n- agent, text-completion, prompt, document-rag, graph-rag\n- embeddings, graph-embeddings, document-embeddings\n- triples, rows, nlp-query, structured-query, structured-diag, row-embeddings\n- text-load, document-load, mcp-tool\n\n## Schema Reuse\n\nRequest and response payloads use identical schemas to the REST API.\nSee OpenAPI specification for detailed schema documentation.\n",
+    "description": "WebSocket API for TrustGraph - providing multiplexed, asynchronous access to all services.\n\n## Overview\n\nThe WebSocket API provides access to all TrustGraph services over a single persistent connection:\n- **Multiplexed**: Multiple concurrent requests with ID-based correlation\n- **Asynchronous**: Non-blocking request/response pattern\n- **Efficient**: Lower overhead than HTTP REST\n- **Streaming**: Real-time progressive responses\n\n## Protocol Summary\n\nAll messages are JSON with:\n- `id`: Client-generated unique identifier for request/response correlation\n- `service`: Service identifier (e.g., \"config\", \"agent\", \"document-rag\")\n- `flow`: Optional flow ID for flow-hosted services\n- `request`/`response`: Service-specific payload (identical to REST API schemas)\n- `error`: Error information on failure\n\n## Service Types\n\n**Global Services** (no `flow` parameter):\n- config, flow, librarian, knowledge, collection-management\n\n**Flow-Hosted Services** (require `flow` parameter):\n- agent, text-completion, prompt, document-rag, graph-rag\n- embeddings, graph-embeddings, document-embeddings\n- triples, rows, nlp-query, structured-query, sparql-query, structured-diag, row-embeddings\n- text-load, document-load, mcp-tool\n\n## Schema Reuse\n\nRequest and response payloads use identical schemas to the REST API.\nSee OpenAPI specification for detailed schema documentation.\n",
     "contact": {
       "name": "TrustGraph Project",
       "url": "https://trustgraph.ai"
@@ -424,7 +424,7 @@ Include as query parameter: ws://localhost:8088/api/v1/socket?token=</p>
                   },
                   "request": {
                     "type": "object",
-                    "description": "Librarian service request for document library management.\n\nOperations: add-document, remove-document, list-documents,\nstart-processing, stop-processing, list-processing\n",
+                    "description": "Librarian service request for document library management.\n\nOperations: add-document, remove-document, list-documents,\nget-document-metadata, stream-document, add-child-document,\nlist-children, begin-upload, upload-chunk, complete-upload,\nabort-upload, get-upload-status, list-uploads,\nstart-processing, stop-processing, list-processing\n",
                     "required": [
                       "operation"
                     ],
@@ -435,11 +435,22 @@ Include as query parameter: ws://localhost:8088/api/v1/socket?token=</p>
                           "add-document",
                           "remove-document",
                           "list-documents",
+                          "get-document-metadata",
+                          "get-document-content",
+                          "stream-document",
+                          "add-child-document",
+                          "list-children",
+                          "begin-upload",
+                          "upload-chunk",
+                          "complete-upload",
+                          "abort-upload",
+                          "get-upload-status",
+                          "list-uploads",
                           "start-processing",
                           "stop-processing",
                           "list-processing"
                         ],
-                        "description": "Library operation:\n- `add-document`: Add document to library\n- `remove-document`: Remove document from library\n- `list-documents`: List documents in library\n- `start-processing`: Start processing library documents\n- `stop-processing`: Stop library processing\n- `list-processing`: List processing status\n",
+                        "description": "Library operation:\n- `add-document`: Add document to library\n- `remove-document`: Remove document from library\n- `list-documents`: List documents in library\n- `get-document-metadata`: Get document metadata\n- `get-document-content`: Get full document content in a single response.\n  **Deprecated** — use `stream-document` instead. Fails for documents\n  exceeding the broker's max message size.\n- `stream-document`: Stream document content in chunks. Each response\n  includes `chunk_index` and `is_final`. Preferred over `get-document-content`\n  for all document sizes.\n- `add-child-document`: Add a child document (e.g. page, chunk)\n- `list-children`: List child documents of a parent\n- `begin-upload`: Start a chunked upload session\n- `upload-chunk`: Upload a chunk of data\n- `complete-upload`: Finalize a chunked upload\n- `abort-upload`: Cancel a chunked upload\n- `get-upload-status`: Check upload progress\n- `list-uploads`: List active upload sessions\n- `start-processing`: Start processing library documents\n- `stop-processing`: Stop library processing\n- `list-processing`: List processing status\n",
                         "x-parser-schema-id": "<anonymous-schema-32>"
                       },
                       "flow": {
@@ -2451,8 +2462,7 @@ Include as query parameter: ws://localhost:8088/api/v1/socket?token=</p>
                     "properties": {
                       "text": {
                         "type": "string",
-                        "description": "Text content (base64 encoded)",
-                        "format": "byte",
+                        "description": "Text content, either raw text or base64 encoded for compatibility with older clients",
                         "example": "VGhpcyBpcyB0aGUgZG9jdW1lbnQgdGV4dC4uLg==",
                         "x-parser-schema-id": "<anonymous-schema-269>"
                       },
@@ -2588,6 +2598,79 @@ Include as query parameter: ws://localhost:8088/api/v1/socket?token=</p>
                   }
                 ],
                 "x-parser-schema-id": "<anonymous-schema-275>"
+              },
+              {
+                "type": "object",
+                "description": "WebSocket request for sparql-query service (flow-hosted service)",
+                "required": [
+                  "id",
+                  "service",
+                  "flow",
+                  "request"
+                ],
+                "properties": {
+                  "id": {
+                    "type": "string",
+                    "description": "Unique request identifier",
+                    "x-parser-schema-id": "<anonymous-schema-286>"
+                  },
+                  "service": {
+                    "type": "string",
+                    "const": "sparql-query",
+                    "description": "Service identifier for sparql-query service",
+                    "x-parser-schema-id": "<anonymous-schema-287>"
+                  },
+                  "flow": {
+                    "type": "string",
+                    "description": "Flow ID",
+                    "x-parser-schema-id": "<anonymous-schema-288>"
+                  },
+                  "request": {
+                    "type": "object",
+                    "required": [
+                      "query"
+                    ],
+                    "properties": {
+                      "query": {
+                        "type": "string",
+                        "description": "SPARQL 1.1 query string",
+                        "x-parser-schema-id": "<anonymous-schema-290>"
+                      },
+                      "user": {
+                        "type": "string",
+                        "default": "trustgraph",
+                        "description": "User/keyspace identifier",
+                        "x-parser-schema-id": "<anonymous-schema-291>"
+                      },
+                      "collection": {
+                        "type": "string",
+                        "default": "default",
+                        "description": "Collection identifier",
+                        "x-parser-schema-id": "<anonymous-schema-292>"
+                      },
+                      "limit": {
+                        "type": "integer",
+                        "default": 10000,
+                        "description": "Safety limit on number of results",
+                        "x-parser-schema-id": "<anonymous-schema-293>"
+                      }
+                    },
+                    "x-parser-schema-id": "<anonymous-schema-289>"
+                  }
+                },
+                "examples": [
+                  {
+                    "id": "req-1",
+                    "service": "sparql-query",
+                    "flow": "my-flow",
+                    "request": {
+                      "query": "SELECT ?s ?p ?o WHERE { ?s ?p ?o } LIMIT 10",
+                      "user": "trustgraph",
+                      "collection": "default"
+                    }
+                  }
+                ],
+                "x-parser-schema-id": "<anonymous-schema-285>"
               }
             ],
             "x-parser-schema-id": "<anonymous-schema-1>"
@@ -2641,7 +2724,7 @@ Include as query parameter: ws://localhost:8088/api/v1/socket?token=</p>
                   "req-123",
                   "request-abc-456"
                 ],
-                "x-parser-schema-id": "<anonymous-schema-286>"
+                "x-parser-schema-id": "<anonymous-schema-295>"
               },
               "response": {
                 "type": "object",
@@ -2660,10 +2743,10 @@ Include as query parameter: ws://localhost:8088/api/v1/socket?token=</p>
                     "end-of-stream": false
                   }
                 ],
-                "x-parser-schema-id": "<anonymous-schema-287>"
+                "x-parser-schema-id": "<anonymous-schema-296>"
               }
             },
-            "x-parser-schema-id": "<anonymous-schema-285>"
+            "x-parser-schema-id": "<anonymous-schema-294>"
           },
           "examples": [
             {
@@ -2715,7 +2798,7 @@ Include as query parameter: ws://localhost:8088/api/v1/socket?token=</p>
                   "req-123",
                   "request-abc-456"
                 ],
-                "x-parser-schema-id": "<anonymous-schema-289>"
+                "x-parser-schema-id": "<anonymous-schema-298>"
               },
               "error": {
                 "type": "object",
@@ -2733,7 +2816,7 @@ Include as query parameter: ws://localhost:8088/api/v1/socket?token=</p>
                       "service-error",
                       "timeout"
                     ],
-                    "x-parser-schema-id": "<anonymous-schema-291>"
+                    "x-parser-schema-id": "<anonymous-schema-300>"
                   },
                   "message": {
                     "type": "string",
@@ -2743,13 +2826,13 @@ Include as query parameter: ws://localhost:8088/api/v1/socket?token=</p>
                       "Service timeout",
                       "Invalid request format"
                     ],
-                    "x-parser-schema-id": "<anonymous-schema-292>"
+                    "x-parser-schema-id": "<anonymous-schema-301>"
                   }
                 },
-                "x-parser-schema-id": "<anonymous-schema-290>"
+                "x-parser-schema-id": "<anonymous-schema-299>"
               }
             },
-            "x-parser-schema-id": "<anonymous-schema-288>"
+            "x-parser-schema-id": "<anonymous-schema-297>"
           },
           "examples": [
             {
@@ -2815,9 +2898,10 @@ Include as query parameter: ws://localhost:8088/api/v1/socket?token=</p>
             "$ref:$.channels.socket.messages.request.payload.oneOf[18]",
             "$ref:$.channels.socket.messages.request.payload.oneOf[19]",
             "$ref:$.channels.socket.messages.request.payload.oneOf[20]",
-            "$ref:$.channels.socket.messages.request.payload.oneOf[21]"
+            "$ref:$.channels.socket.messages.request.payload.oneOf[21]",
+            "$ref:$.channels.socket.messages.request.payload.oneOf[22]"
           ],
-          "x-parser-schema-id": "<anonymous-schema-293>"
+          "x-parser-schema-id": "<anonymous-schema-302>"
         },
         "examples": [
           {
@@ -2935,7 +3019,7 @@ Include as query parameter: ws://localhost:8088/api/v1/socket?token=</p>
               "request-abc-456",
               "b5f8d9a2-4c3e-11ef-9c8a-0242ac120002"
             ],
-            "x-parser-schema-id": "<anonymous-schema-294>"
+            "x-parser-schema-id": "<anonymous-schema-303>"
           },
           "service": {
             "type": "string",
@@ -2945,7 +3029,7 @@ Include as query parameter: ws://localhost:8088/api/v1/socket?token=</p>
               "agent",
               "document-rag"
             ],
-            "x-parser-schema-id": "<anonymous-schema-295>"
+            "x-parser-schema-id": "<anonymous-schema-304>"
           },
           "flow": {
             "type": "string",
@@ -2954,7 +3038,7 @@ Include as query parameter: ws://localhost:8088/api/v1/socket?token=</p>
               "my-flow",
               "production-flow"
             ],
-            "x-parser-schema-id": "<anonymous-schema-296>"
+            "x-parser-schema-id": "<anonymous-schema-305>"
           },
           "request": {
             "type": "object",
@@ -2970,7 +3054,7 @@ Include as query parameter: ws://localhost:8088/api/v1/socket?token=</p>
                 "system-prompt": "You are a helpful assistant"
               }
             ],
-            "x-parser-schema-id": "<anonymous-schema-297>"
+            "x-parser-schema-id": "<anonymous-schema-306>"
           }
         },
         "x-parser-schema-id": "RequestEnvelope"
@@ -2990,7 +3074,7 @@ Include as query parameter: ws://localhost:8088/api/v1/socket?token=</p>
               "req-123",
               "request-abc-456"
             ],
-            "x-parser-schema-id": "<anonymous-schema-298>"
+            "x-parser-schema-id": "<anonymous-schema-307>"
           },
           "response": {
             "type": "object",
@@ -3009,7 +3093,7 @@ Include as query parameter: ws://localhost:8088/api/v1/socket?token=</p>
                 "end-of-stream": false
               }
             ],
-            "x-parser-schema-id": "<anonymous-schema-299>"
+            "x-parser-schema-id": "<anonymous-schema-308>"
           }
         },
         "x-parser-schema-id": "ResponseEnvelope"
@@ -3029,7 +3113,7 @@ Include as query parameter: ws://localhost:8088/api/v1/socket?token=</p>
               "req-123",
               "request-abc-456"
             ],
-            "x-parser-schema-id": "<anonymous-schema-300>"
+            "x-parser-schema-id": "<anonymous-schema-309>"
           },
           "error": {
             "type": "object",
@@ -3047,7 +3131,7 @@ Include as query parameter: ws://localhost:8088/api/v1/socket?token=</p>
                   "service-error",
                   "timeout"
                 ],
-                "x-parser-schema-id": "<anonymous-schema-302>"
+                "x-parser-schema-id": "<anonymous-schema-311>"
               },
               "message": {
                 "type": "string",
@@ -3057,10 +3141,10 @@ Include as query parameter: ws://localhost:8088/api/v1/socket?token=</p>
                   "Service timeout",
                   "Invalid request format"
                 ],
-                "x-parser-schema-id": "<anonymous-schema-303>"
+                "x-parser-schema-id": "<anonymous-schema-312>"
               }
             },
-            "x-parser-schema-id": "<anonymous-schema-301>"
+            "x-parser-schema-id": "<anonymous-schema-310>"
           }
         },
         "x-parser-schema-id": "ErrorEnvelope"
