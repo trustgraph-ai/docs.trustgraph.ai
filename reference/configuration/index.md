@@ -15,6 +15,10 @@ Reference documentation for TrustGraph configuration file formats and data struc
 ### Flow Configuration
 - **[Flow Blueprints](flow-blueprints)** - Define dataflow pattern templates and processor networks
 
+### Agent Configuration
+- **[Agent Patterns](agent-patterns)** - Define agent execution strategies (ReAct, plan-then-execute, supervisor)
+- **[Agent Task Types](agent-task-types)** - Define task categories with framing prompts and pattern constraints
+
 ### Data Configuration
 - **Structure Descriptor Language (SDL)** - For structured data import (see [SDL Reference](../sdl))
 
