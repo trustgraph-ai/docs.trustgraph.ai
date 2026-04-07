@@ -40,6 +40,7 @@ version numbers.
 | `trustgraph-embeddings-hf` | HuggingFace embeddings support | `torch`, `transformers`, `sentence-transformers`, `huggingface-hub` | `embeddings-hf` |
 | `trustgraph-bedrock` | AWS Bedrock integration | `boto3` | `text-completion-bedrock` |
 | `trustgraph-vertexai` | Google Vertex AI integration | `google-cloud-aiplatform` | `text-completion-vertexai` |
+| `trustgraph-unstructured` | Universal multi-format document decoder | `unstructured[csv,docx,epub,md,odt,pdf,pptx,rst,rtf,tsv,xlsx]`, `python-magic` | `universal-decoder` |
 | `trustgraph-ocr` | OCR processing capabilities | `boto3`, `pdf2image`, `pytesseract` | `pdf-ocr` |
 | `trustgraph-mcp` | Model Context Protocol server | `mcp`, `websockets` | `mcp-server` |
 

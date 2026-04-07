@@ -23,6 +23,7 @@ version numbers.
 | **trustgraph-flow** | Main processing container containing the bulk of TrustGraph's capabilities | • Multi-provider AI integration (OpenAI, Anthropic, Cohere, Mistral, Google Generative AI, Ollama)<br>• LangChain ecosystem with complete text processing<br>• Database support (Milvus, Neo4j, FalkorDB, Cassandra)<br>• RDF/Semantic web capabilities<br>• Document processing and analysis | Core container for most TrustGraph workflows. Deploy when you need full AI processing capabilities, document handling, or database integration. |
 | **trustgraph-mcp** | Model Context Protocol (MCP) server functionality | • MCP server implementation<br>• WebSocket-based communication<br>• Lightweight protocol handling | Deploy when you need MCP server capabilities for model context management and protocol-based communication. |
 | **trustgraph-hf** | Hugging Face model processing with local ML inference | • PyTorch support (CPU-optimized)<br>• Hugging Face integration (Transformers, sentence transformers, embeddings)<br>• Local ML inference without external API calls<br>• Pre-loaded models (all-MiniLM-L6-v2) | Deploy when you need local ML model inference, text embeddings, or want to avoid external API dependencies for certain AI tasks. |
+| **trustgraph-unstructured** | Universal document decoder with multi-format support | • Powered by the `unstructured` library<br>• Supports DOCX, XLSX, PPTX, HTML, Markdown, CSV, RTF, ODT, EPUB and more<br>• Tables preserved as HTML markup<br>• Configurable section grouping strategies | Deploy when you need to process a wide range of document formats beyond PDF. All decoders share the `document-decoder` ident and are interchangeable. |
 | **trustgraph-ocr** | Optical Character Recognition and document processing | • Tesseract OCR for text extraction from images<br>• PDF processing with Poppler utilities<br>• Complete document processing pipeline | Deploy when you need to process scanned documents, extract text from images, or handle PDF document analysis. |
 | **trustgraph-bedrock** | AWS Bedrock AI services integration | • AWS Bedrock model access<br>• Cloud-based AI inference<br>• Lightweight AWS-specific integration | Deploy when using AWS Bedrock as your AI provider. Provides dedicated integration without the overhead of other AI providers. |
 | **trustgraph-vertexai** | Google Vertex AI integration | • Google Cloud Vertex AI model access<br>• Cloud-based AI inference<br>• Google AI Platform SDK integration | Deploy when using Google Vertex AI as your AI provider. Provides dedicated integration for Google's AI/ML platform. |
@@ -51,6 +52,7 @@ All containers share common patterns:
 - `trustgraph-mcp` for MCP protocol suppport
 
 **Document Processing**:
+- Add `trustgraph-unstructured` for universal multi-format document decoding
 - Add `trustgraph-ocr` for document OCR with Tesseract
 
 **Local ML Processing**:
@@ -67,6 +69,7 @@ All containers share common patterns:
 trustgraph-base (foundation)
 ├── trustgraph-flow (most of the capability is here)
 ├── trustgraph-hf (HuggingFace, local ML, transformers model)
+├── trustgraph-unstructured (universal document decoder)
 ├── trustgraph-ocr (tesseract)
 ├── trustgraph-bedrock (AWS Bedrock)
 └── trustgraph-vertexai (Google AI with VertexAI libraries)
