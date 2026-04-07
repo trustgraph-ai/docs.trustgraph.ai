@@ -205,4 +205,4 @@ All CLI commands provide:
 
 - [TrustGraph API Documentation](../apis/README)
 - [TrustGraph WebSocket Guide](../apis/websocket)
-- [TrustGraph Pulsar Guide](../apis/pulsar)
+- [TrustGraph Pub/Sub Messaging](../apis/pulsar)

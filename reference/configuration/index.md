@@ -26,7 +26,7 @@ Reference documentation for TrustGraph configuration file formats and data struc
 - **Structure Descriptor Language (SDL)** - For structured data import (see [SDL Reference](../sdl))
 
 ### System Configuration
-- **Pulsar Configuration** - Message queue and topic configuration (see [Pulsar API](../apis/pulsar))
+- **Pub/Sub Messaging** - Message queue and topic configuration (see [Pub/Sub Messaging](../apis/pulsar))
 
 ## Overview
 

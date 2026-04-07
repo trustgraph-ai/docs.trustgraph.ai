@@ -1,327 +1,156 @@
 ---
-title: About Pulsar
+title: Pub/Sub Messaging
 nav_order: 1
 parent: APIs
-review_date: 2026-06-08
+review_date: 2027-01-01
 ---
 
-# TrustGraph Pulsar API
+# Pub/Sub Messaging
 
-Apache Pulsar is the underlying message queue system used by TrustGraph for inter-component communication. Understanding Pulsar queue names is essential for direct integration with TrustGraph services.
+TrustGraph components communicate via a pub/sub messaging fabric. The
+messaging layer is abstracted behind a backend-neutral interface,
+allowing different messaging systems to be used without changing
+application code.
 
-## Overview
+## Supported Backends
 
-TrustGraph uses two types of APIs with different queue naming patterns:
+| Backend | Selection | Status |
+|---------|-----------|--------|
+| Apache Pulsar | `PUBSUB_BACKEND=pulsar` (default) | Production |
+| RabbitMQ | `PUBSUB_BACKEND=rabbitmq` | Production |
 
-1. **Global Services**: Fixed queue names, not dependent on flows
-2. **Flow-Hosted Services**: Dynamic queue names that depend on the specific flow configuration
+The backend is selected via the `PUBSUB_BACKEND` environment variable
+or the `--pubsub-backend` CLI argument.
 
-## Global Services (Fixed Queue Names)
+## Queue Naming
 
-These services run independently and have fixed Pulsar queue names:
+TrustGraph uses a generic queue naming format that is independent of the
+underlying messaging backend:
 
-### Config API
-- **Request Queue**: `non-persistent://tg/request/config`
-- **Response Queue**: `non-persistent://tg/response/config`
-- **Push Queue**: `persistent://tg/config/config`
+```
+<class>:<namespace>:<topic>
+```
 
-### Flow API
-- **Request Queue**: `non-persistent://tg/request/flow`
-- **Response Queue**: `non-persistent://tg/response/flow`
-- **Request Schema**: `trustgraph.schema.FlowRequest`
-- **Response Schema**: `trustgraph.schema.FlowResponse`
+| Component | Description | Examples |
+|-----------|-------------|----------|
+| `class` | Determines operational characteristics (persistence, TTL) | `flow`, `request`, `response` |
+| `namespace` | Deployment isolation prefix | `tg` |
+| `topic` | Logical queue name | `config`, `graph-rag`, `text-completion` |
 
-**New in v1.4**: The `FlowRequest` schema includes a `parameters` field for configuring flow instances. See [Flow Parameters](#flow-parameters) below.
+### Queue Classes
 
-### Knowledge API
-- **Request Queue**: `non-persistent://tg/request/knowledge`
-- **Response Queue**: `non-persistent://tg/response/knowledge`
+| Class | Characteristics | Usage |
+|-------|-----------------|-------|
+| `flow` | Persistent processing pipeline queue | Data processing, document chunking, config push signals |
+| `request` | Non-persistent, short TTL | Service request messages |
+| `response` | Non-persistent, short TTL | Service response messages |
 
-### Librarian API
-- **Request Queue**: `non-persistent://tg/request/librarian`
-- **Response Queue**: `non-persistent://tg/response/librarian`
+### Examples
 
-## Flow-Hosted Services (Dynamic Queue Names)
+```
+request:tg:config          # Config service requests
+response:tg:config         # Config service responses
+flow:tg:text-document-load # Document loading pipeline
+request:tg:graph-rag       # Graph RAG requests
+response:tg:graph-rag      # Graph RAG responses
+```
 
-These services are hosted within specific flows and have queue names that depend on the flow configuration:
+Each backend maps these generic queue names to its own native
+addressing scheme. Application code works only with the generic format.
 
-- Agent API
-- Document RAG API
-- Graph RAG API
-- Text Completion API
-- Prompt API
-- Embeddings API
-- Graph Embeddings API
-- Triples Query API
-- Text Load API
-- Document Load API
+## Service Types
+
+TrustGraph uses two categories of service with different queue patterns:
+
+### Global Services
+
+Fixed queue names, not dependent on flows:
+
+| Service | Request Queue | Response Queue |
+|---------|---------------|----------------|
+| Config | `request:tg:config` | `response:tg:config` |
+| Flow | `request:tg:flow` | `response:tg:flow` |
+| Knowledge | `request:tg:knowledge` | `response:tg:knowledge` |
+| Librarian | `request:tg:librarian` | `response:tg:librarian` |
+| Collection Management | `request:tg:collection-management` | `response:tg:collection-management` |
+
+### Flow-Hosted Services
+
+Queue names that incorporate the flow identifier:
+
+- Agent, Graph RAG, Document RAG, Text Completion, Prompt
+- Embeddings, Graph Embeddings, Document Embeddings
+- Triples, SPARQL Query, Row Embeddings, NLP Query, Structured Query
+- Text Load, Document Load, MCP Tool
 
 ## Discovering Flow-Hosted Queue Names
 
-To find the queue names for flow-hosted services, you need to query the flow configuration using the Config API.
-
-### Method 1: Using the Config API
-
-Query for the flow configuration:
-
-**Request:**
-```json
-{
-    "operation": "get",
-    "keys": [
-        {
-            "type": "flows",
-            "key": "your-flow-name"
-        }
-    ]
-}
-```
-
-**Response:**
-The response will contain a flow definition with an "interfaces" object that lists all queue names.
-
-### Method 2: Using the CLI
-
-Use the TrustGraph CLI to dump the configuration:
+Flow-hosted service queue names are determined by the flow configuration.
+Use the CLI to inspect them:
 
 ```bash
-tg-show-config
+tg-show-flows
 ```
+
+Or query the config service for a specific flow's interface definitions.
 
 ## Flow Interface Types
 
-Flow configurations define two types of service interfaces:
-
-### 1. Request/Response Interfaces
+### Request/Response Interfaces
 
 Services that accept a request and return a response:
 
 ```json
 {
     "graph-rag": {
-        "request": "non-persistent://tg/request/graph-rag:document-rag+graph-rag",
-        "response": "non-persistent://tg/response/graph-rag:document-rag+graph-rag"
+        "request": "request:tg:graph-rag",
+        "response": "response:tg:graph-rag"
     }
 }
 ```
 
-**Examples**: agent, document-rag, graph-rag, text-completion, prompt, embeddings, graph-embeddings, triples
+### Fire-and-Forget Interfaces
 
-### 2. Fire-and-Forget Interfaces  
-
-Services that accept data but don't return a response:
+Services that accept data without returning a response:
 
 ```json
 {
-    "text-load": "persistent://tg/flow/text-document-load:default"
+    "text-load": "flow:tg:text-document-load"
 }
 ```
 
-**Examples**: text-load, document-load, triples-store, graph-embeddings-store, document-embeddings-store, entity-contexts-load
+## Backend Configuration
 
-## Example Flow Configuration
+### Pulsar
 
-Here's an example of a complete flow configuration showing queue names:
+| Environment Variable | Default | Description |
+|---------------------|---------|-------------|
+| `PULSAR_HOST` | `pulsar://pulsar:6650` | Pulsar broker URL |
+| `PULSAR_API_KEY` | (none) | API key for authentication |
 
-```json
-{
-    "class-name": "document-rag+graph-rag",
-    "description": "Default processing flow", 
-    "interfaces": {
-        "agent": {
-            "request": "non-persistent://tg/request/agent:default",
-            "response": "non-persistent://tg/response/agent:default"
-        },
-        "document-rag": {
-            "request": "non-persistent://tg/request/document-rag:document-rag+graph-rag",
-            "response": "non-persistent://tg/response/document-rag:document-rag+graph-rag"
-        },
-        "graph-rag": {
-            "request": "non-persistent://tg/request/graph-rag:document-rag+graph-rag", 
-            "response": "non-persistent://tg/response/graph-rag:document-rag+graph-rag"
-        },
-        "text-completion": {
-            "request": "non-persistent://tg/request/text-completion:document-rag+graph-rag",
-            "response": "non-persistent://tg/response/text-completion:document-rag+graph-rag"
-        },
-        "embeddings": {
-            "request": "non-persistent://tg/request/embeddings:document-rag+graph-rag",
-            "response": "non-persistent://tg/response/embeddings:document-rag+graph-rag"
-        },
-        "triples": {
-            "request": "non-persistent://tg/request/triples:document-rag+graph-rag",
-            "response": "non-persistent://tg/response/triples:document-rag+graph-rag"
-        },
-        "text-load": "persistent://tg/flow/text-document-load:default",
-        "document-load": "persistent://tg/flow/document-load:default",
-        "triples-store": "persistent://tg/flow/triples-store:default",
-        "graph-embeddings-store": "persistent://tg/flow/graph-embeddings-store:default"
-    }
-}
-```
+### RabbitMQ
 
-## Queue Naming Patterns
-
-### Global Services
-- **Pattern**: `{persistence}://tg/{namespace}/{service-name}`
-- **Example**: `non-persistent://tg/request/config`
-
-### Flow-Hosted Request/Response
-- **Pattern**: `{persistence}://tg/{namespace}/{service-name}:{flow-identifier}`
-- **Example**: `non-persistent://tg/request/graph-rag:document-rag+graph-rag`
-
-### Flow-Hosted Fire-and-Forget
-- **Pattern**: `{persistence}://tg/flow/{service-name}:{flow-identifier}`
-- **Example**: `persistent://tg/flow/text-document-load:default`
-
-## Persistence Types
-
-- **non-persistent**: Messages are not persisted to disk, faster but less reliable
-- **persistent**: Messages are persisted to disk, slower but more reliable
-
-## Practical Usage
-
-### Python Example
-
-```python
-import pulsar
-from trustgraph.schema import ConfigRequest, ConfigResponse
-
-# Connect to Pulsar
-client = pulsar.Client('pulsar://localhost:6650')
-
-# Create producer for config requests
-producer = client.create_producer(
-    'non-persistent://tg/request/config',
-    schema=pulsar.schema.AvroSchema(ConfigRequest)
-)
-
-# Create consumer for config responses  
-consumer = client.subscribe(
-    'non-persistent://tg/response/config',
-    subscription_name='my-subscription',
-    schema=pulsar.schema.AvroSchema(ConfigResponse)
-)
-
-# Send request
-request = ConfigRequest(operation='list-classes')
-producer.send(request)
-
-# Receive response
-response = consumer.receive()
-print(response.value())
-```
-
-### Flow Service Example
-
-```python
-# First, get the flow configuration to find queue names
-config_request = ConfigRequest(
-    operation='get',
-    keys=[ConfigKey(type='flows', key='my-flow')]
-)
-
-# Use the returned interface information to determine queue names
-# Then connect to the appropriate queues for the service you need
-```
-
-## Flow Parameters
-
-**New in v1.4**: Flow instances can be configured with parameters that customize their behavior. Parameters are passed when starting flows and stored with the flow instance.
-
-### FlowRequest Schema
-
-The `trustgraph.schema.FlowRequest` schema includes a `parameters` field:
-
-```python
-class FlowRequest(Record):
-    operation = String()           # Operation to perform (e.g., "start-flow")
-    class_name = String()          # Flow class name
-    flow_id = String()             # Flow instance ID
-    description = String()         # Flow description
-    parameters = Map(String())     # Parameter name -> value map (new in v1.4)
-    class_definition = String()    # Flow class definition JSON
-```
-
-### Parameters Field
-
-The `parameters` field is a `Map(String())` in the Pulsar schema:
-- **Type**: Map with string keys and string values
-- **Keys**: Parameter names (e.g., `"model"`, `"temperature"`, `"chunk-size"`)
-- **Values**: Parameter values as strings (e.g., `"gpt-4"`, `"0.7"`, `"1500"`)
-
-All parameter values are stored as strings internally, regardless of the parameter type. Processors are responsible for converting string values to appropriate types based on parameter type definitions.
-
-### Example with Parameters
-
-Starting a flow with parameters via Pulsar:
-
-```python
-import pulsar
-from trustgraph.schema import FlowRequest, FlowResponse
-
-# Connect to Pulsar
-client = pulsar.Client('pulsar://localhost:6650')
-
-# Create producer for flow requests
-producer = client.create_producer(
-    'non-persistent://tg/request/flow',
-    schema=pulsar.schema.AvroSchema(FlowRequest)
-)
-
-# Start flow with parameters
-request = FlowRequest(
-    operation='start-flow',
-    class_name='document-rag+graph-rag',
-    flow_id='my-custom-flow',
-    description='Custom processing flow',
-    parameters={
-        'model': 'claude-3-opus',
-        'temperature': '0.5',
-        'chunk-size': '2000'
-    }
-)
-
-producer.send(request)
-```
-
-### FlowResponse Schema
-
-The `trustgraph.schema.FlowResponse` schema includes parameters in flow information:
-
-```python
-class FlowResponse(Record):
-    class_names = Array(String())  # List of flow class names
-    flow_ids = Array(String())     # List of flow instance IDs
-    class_definition = String()    # Flow class definition JSON
-    flow = String()                # Flow instance JSON
-    description = String()         # Flow description
-    parameters = Map(String())     # Parameter settings (new in v1.4)
-    error = String()               # Error information
-```
-
-When querying for flow information with `get-flow`, the response includes the `parameters` map showing the current parameter settings for that flow instance.
-
-### Parameter Documentation
-
-For more information about flow parameters:
-- [Parameter Types Configuration](../configuration/parameters) - Parameter type definitions
-- [Flow Blueprint Configuration](../configuration/flow-blueprints) - Using parameters in flow blueprints
-- [Flow API](api-flow) - Flow management API including parameters
-- [tg-start-flow](../cli/tg-start-flow) - Starting flows with parameters via CLI
+| Environment Variable | Default | Description |
+|---------------------|---------|-------------|
+| `RABBITMQ_HOST` | `rabbitmq` | RabbitMQ hostname |
+| `RABBITMQ_PORT` | `5672` | RabbitMQ port |
+| `RABBITMQ_USERNAME` | `guest` | Authentication username |
+| `RABBITMQ_PASSWORD` | `guest` | Authentication password |
+| `RABBITMQ_VHOST` | `/` | Virtual host |
 
 ## Best Practices
 
-1. **Query Flow Configuration**: Always query the current flow configuration to get accurate queue names
-2. **Handle Dynamic Names**: Flow-hosted service queue names can change when flows are reconfigured
-3. **Choose Appropriate Persistence**: Use persistent queues for critical data, non-persistent for performance
-4. **Schema Validation**: Use the appropriate Pulsar schema for each service
-5. **Error Handling**: Implement proper error handling for queue connection and message failures
-6. **Parameter Values**: Remember that all parameter values are strings in the Pulsar schema
+1. **Use the Python SDK or REST/WebSocket APIs** for application
+   integration rather than connecting to the messaging fabric directly
+2. **Query flow configuration** to discover queue names for flow-hosted
+   services — do not hard-code them
+3. **Choose the appropriate backend** for your deployment: Pulsar for
+   large-scale deployments, RabbitMQ for lower resource requirements
 
-## Security Considerations
+## See Also
 
-- Pulsar access should be restricted in production environments
-- Use appropriate authentication and authorization mechanisms
-- Monitor queue access and message patterns for security anomalies
-- Consider encryption for sensitive data in messages
+- [REST API](rest) - REST API reference
+- [WebSocket API](websocket) - WebSocket API reference
+- [Python API](python) - Python SDK reference
+- [Flow Blueprints](../configuration/flow-blueprints) - Flow configuration
+- [Parameter Types](../configuration/parameters) - Flow parameter definitions
