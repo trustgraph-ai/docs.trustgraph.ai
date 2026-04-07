@@ -8,6 +8,120 @@ review_date: 2027-01-01
 
 # Changelog
 
+## v2.2 (2026-04-07)
+
+### Major Features
+- **Agent Orchestrator** (#739, #743, #744, #745, #746, #747, #748, #750):
+  Multi-pattern agent orchestrator with LLM-based meta-routing to select the
+  appropriate execution pattern per request:
+  - **Plan-then-Execute**: LLM generates a plan of steps, executes each
+    sequentially, and synthesises results
+  - **Supervisor**: Decomposes a question into sub-agent goals, fans out
+    to parallel sub-agents, aggregates findings into a synthesis
+  - **ReAct**: Existing iterative reasoning pattern (unchanged)
+  - Full explainability provenance for all patterns with new RDF types
+    (Decomposition, Finding, Plan, StepResult, Synthesis) and predicates
+    (`tg:subagentGoal`, `tg:planStep`)
+  - Analysis split into Analysis+ToolUse and Observation for finer-grained
+    DAG provenance; `message_id` wired on all streaming answer chunks
+  - CLI support for pattern selection:
+    `tg-invoke-agent -p supervisor|plan-then-execute|react`
+- **RabbitMQ Pub/Sub Backend** (#751, #752, #765): Pub/sub abstraction
+  decoupled from Pulsar with RabbitMQ as an alternative backend,
+  demonstrating independence from any single messaging fabric. RabbitMQ
+  was selected for its significantly lower resource requirements compared
+  to Pulsar. Support for additional fabrics such as Kafka is planned for
+  a subsequent release.
+  - Selectable via `PUBSUB_BACKEND=rabbitmq` environment variable
+  - Topic exchange architecture with shared and exclusive consumer queues
+  - Translator rename: `to_pulsar`/`from_pulsar` → `encode`/`decode`
+    across 55+ files
+  - Queue naming format changed to `CLASS:TOPICSPACE:TOPIC`
+  - Subscriber resilience: automatic consumer recreation after connection
+    failure
+  - Thread-safe consumer model with dedicated thread pools for pika
+- **SPARQL Query Service** (#754, #755): Backend-agnostic SPARQL 1.1 query
+  service:
+  - Parses SPARQL queries using rdflib, decomposes into triple pattern
+    lookups via existing pub/sub interface
+  - Supports BGP, JOIN, OPTIONAL, UNION, FILTER, BIND, VALUES, GROUP BY,
+    ORDER BY, LIMIT/OFFSET, DISTINCT, and aggregates
+  - Batching and streaming support for large result sets
+  - Gateway integration, Python SDK method (`FlowInstance.sparql_query`),
+    and CLI command (`tg-invoke-sparql-query`)
+- **Universal Document Decoder** (#705): Multi-format document processing
+  using the `unstructured` library:
+  - Supports DOCX, XLSX, PPTX, HTML, Markdown, CSV, RTF, ODT, EPUB and
+    more through a single service
+  - Tables preserved as HTML markup; images stored in librarian
+  - Configurable section grouping strategies (whole-document, heading,
+    element-type, count, size)
+  - All decoders now share the `document-decoder` ident for
+    interchangeability
+
+### Improvements
+- **Inline Explainability Triples** (#763): Provenance triples now included
+  directly in explain messages from GraphRAG, DocumentRAG, and Agent
+  services, eliminating follow-up knowledge graph queries for
+  explainability details
+- **Config Push Notify Pattern** (#760): Replaced stateful pub/sub config
+  broadcast with lightweight notify signal containing only version number
+  and affected config types
+- **Persistent WebSocket Connections** (#723): Single persistent connection
+  with request multiplexing replaces per-request WebSocket connections,
+  eliminating repeated TCP+WS handshakes. CLI tools converted to
+  concurrent WebSocket requests
+- **Auto-pull Ollama Models** (#757): Ollama provider automatically pulls
+  missing models on first use
+- **MCP Gateway Auth** (#721): `GATEWAY_SECRET` environment variable
+  support for MCP server to API gateway authentication
+- **Chunk Content ID in Explain Traces** (#708): `tg-show-explain-trace`
+  now displays chunk URIs with `--show-provenance` for easy source text
+  retrieval via `tg-get-document-content`
+- **Prompt Queue Monitoring** (#737): New `tg-monitor-prompts` CLI tool
+  for subscribing to prompt request/response queues with correlation and
+  timing summaries
+
+### Bug Fixes
+- **Dispatcher Race Condition** (#715): Fixed duplicate dispatcher creation
+  under concurrent coroutines causing dropped responses and permanent UI
+  spinners
+- **WebSocket Error Responses** (#726): Fixed missing request IDs in
+  websocket multiplexer error responses causing client hangs on failed
+  requests
+- **OpenAI Compatibility** (#727): Use `max_completion_tokens` instead of
+  deprecated `max_tokens` for newer OpenAI/Azure models; added
+  `AZURE_API_VERSION` environment variable override
+- **Missing Auth Header** (#724): Fixed `verify_system_status` processor
+  check not including authorization header when gateway auth is enabled
+- **Gateway Text Load** (#729): Accept raw UTF-8 text in `text-load`
+  endpoint
+- **Stray Log Messages** (#706): Removed spurious warnings from librarian
+  responses arriving on shared response queues
+- **Consumer Poll Timeout**: Reduced consumer poll timeout from 2000ms to
+  100ms for improved responsiveness
+
+### Breaking Changes
+- **Pub/sub queue naming**: Queue format changed from topic-based to
+  `CLASS:TOPICSPACE:TOPIC`; translator methods renamed from
+  `to_pulsar`/`from_pulsar` to `encode`/`decode`
+- **Agent schema**: Orchestration fields added (correlation, sub-agents,
+  plan steps); legacy response fields (`answer`, `thought`,
+  `observation`) removed
+- **Config push schema**: `ConfigPush` now contains a `types` list instead
+  of the full config dict; `state` queue class replaced by `flow` class
+
+### Infrastructure / Technical
+- **Testing** (#745, #749, #750): 96+ orchestrator tests covering
+  aggregation, provenance, routing, explainability parsing, DAG structure,
+  and callback message IDs
+- **CLA Workflow** (#716, #722): Contributor License Agreement process
+  via GitHub action
+- **Pulsar Check Skipped** (#753): `tg-verify-system-status` no longer
+  requires Pulsar when using alternative pub/sub backends
+
+---
+
 ## v2.1 (2026-03-17)
 
 ### Major Features
