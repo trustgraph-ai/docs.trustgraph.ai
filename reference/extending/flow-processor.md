@@ -15,7 +15,7 @@ FlowProcessor builds on AsyncProcessor by adding:
 - Configuration-driven consumer/producer setup
 - Declarative specifications for message routing
 - Integration with flow-based processing pipelines
-- Automatic Pulsar queue management
+- Automatic pub/sub queue management
 
 ## When to Use FlowProcessor
 

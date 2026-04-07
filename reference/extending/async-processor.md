@@ -11,7 +11,7 @@ The `AsyncProcessor` class provides a foundation for building TrustGraph service
 ## Overview
 
 AsyncProcessor handles core service infrastructure including:
-- Pulsar client connections and message handling
+- Pub/sub backend connections and message handling
 - Configuration management and updates
 - Task group management for async operations
 - Metrics collection and monitoring
@@ -42,17 +42,17 @@ class YourService(AsyncProcessor):
         # Set up your consumers and producers
         self.request_consumer = Consumer(
             taskgroup=self.taskgroup,
-            client=self.pulsar_client,
+            backend=self.pubsub,
             flow=None,
-            topic="your-request-queue",
+            topic="request:tg:your-service",
             subscriber=self.id,
             schema=YourRequestSchema,
             handler=self.on_request,
         )
         
         self.response_producer = Producer(
-            client=self.pulsar_client,
-            topic="your-response-queue", 
+            backend=self.pubsub,
+            topic="response:tg:your-service", 
             schema=YourResponseSchema,
         )
 ```
@@ -117,23 +117,28 @@ if __name__ == "__main__":
 
 ## Configuration Management
 
-AsyncProcessor automatically subscribes to configuration updates. You can register handlers for configuration changes:
+AsyncProcessor automatically subscribes to configuration updates. You can register handlers for configuration changes, optionally filtering by config type:
 
 ```python
 def __init__(self, **params):
     super().__init__(**params)
     
-    # Register for configuration updates
-    self.register_config_handler(self.on_config_change)
+    # Register for specific config types
+    self.register_config_handler(
+        self.on_config_change,
+        types=["tool", "tool-service"]
+    )
 
 async def on_config_change(self, config, version):
     """Handle configuration updates"""
     print(f"Config version {version} received")
     
     # Process configuration changes
-    if "your-service-config" in config:
-        self.update_settings(config["your-service-config"])
+    if "tool" in config:
+        self.update_tools(config["tool"])
 ```
+
+The `types` parameter is a list of config type strings. The handler is only called when a config update affects one of those types. If `types` is omitted or `None`, the handler is called for all config updates.
 
 ## Real-World Example: Knowledge Service
 
@@ -148,7 +153,7 @@ class Processor(AsyncProcessor):
         # Set up request/response handling
         self.knowledge_request_consumer = Consumer(
             taskgroup=self.taskgroup,
-            client=self.pulsar_client,
+            backend=self.pubsub,
             flow=None,
             topic=knowledge_request_queue,
             subscriber=id,
@@ -157,7 +162,7 @@ class Processor(AsyncProcessor):
         )
         
         self.knowledge_response_producer = Producer(
-            client=self.pulsar_client,
+            backend=self.pubsub,
             topic=knowledge_response_queue,
             schema=KnowledgeResponse,
         )
@@ -187,7 +192,7 @@ Metrics are automatically collected for:
 All async operations are managed within a task group, ensuring proper cleanup and coordinated shutdown.
 
 ### Configuration Subscription
-Services automatically receive configuration updates through the Pulsar configuration queue, with configurable handlers for processing changes.
+Services automatically receive configuration updates through the pub/sub configuration queue, with configurable handlers that can be filtered by config type.
 
 ## Best Practices
 
