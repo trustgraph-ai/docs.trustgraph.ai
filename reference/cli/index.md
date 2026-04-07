@@ -107,6 +107,7 @@ Most CLI commands support these common options:
 - [`tg-invoke-nlp-query`](tg-invoke-nlp-query) - Convert natural language to GraphQL
 - [`tg-invoke-structured-query`](tg-invoke-structured-query) - Execute queries against structured data
 - [`tg-invoke-rows-query`](tg-invoke-rows-query) - Query structured data rows
+- [`tg-invoke-sparql-query`](tg-invoke-sparql-query) - Execute SPARQL queries against the knowledge graph
 
 **Embeddings:**
 - [`tg-invoke-embeddings`](tg-invoke-embeddings) - Convert text to vector embeddings
