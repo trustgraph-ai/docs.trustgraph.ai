@@ -15,6 +15,9 @@ Reference documentation for TrustGraph configuration file formats and data struc
 ### Flow Configuration
 - **[Flow Blueprints](flow-blueprints)** - Define dataflow pattern templates and processor networks
 
+### General Configuration
+- **[Config Types](config-types)** - Reference for all general config types (token-cost, tool, prompt, mcp, collection, interface-description, tool-service)
+
 ### Agent Configuration
 - **[Agent Patterns](agent-patterns)** - Define agent execution strategies (ReAct, plan-then-execute, supervisor)
 - **[Agent Task Types](agent-task-types)** - Define task categories with framing prompts and pattern constraints
