@@ -235,7 +235,7 @@ for later review.  This means you can:
 
 To see explainability in practice:
 
-- **[Explainability guide](../guides/explainability/)** — walkthrough
+- **[Explainability at a glance](../guides/explainability/)** — walkthrough
   using the Workbench
 - **[Explainability using CLI](../guides/explainability-cli/)** —
   walkthrough using command-line tools

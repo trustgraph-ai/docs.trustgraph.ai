@@ -37,7 +37,7 @@ guide_labels:
 %}
 
 This guide covers the same explainability workflow as the
-[Explainability guide](../explainability/), but using command-line tools
+[Explainability at a glance](../explainability/) guide, but using command-line tools
 instead of the Workbench.
 
 **New to explainability?** Read the

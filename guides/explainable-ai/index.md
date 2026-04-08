@@ -195,7 +195,7 @@ depending on your needs:
 
 - **Workbench** — the built-in web interface shows reasoning traces inline
   with answers.  See the
-  [Explainability at a glance](../explainability/) guide.
+  [Explainability at a glance](../explainability/) guide..
 - **CLI tools** — command-line tools for running explainable queries,
   listing past traces, and inspecting provenance chains.  See the
   [Explainability using CLI](../explainability-cli/) guide.
