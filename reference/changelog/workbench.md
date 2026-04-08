@@ -8,6 +8,15 @@ review_date: 2027-01-15
 
 # Changelog - Workbench UI
 
+## v1.8.1 (2026-04-08) - released in TrustGraph 2.2
+
+### Enhancements
+- **Agent Explainability** (#132, #133): Enhanced agent explainability with
+  embedded explain triples, source text preview, grounding events timeline,
+  and improved source drawer.
+
+---
+
 ## v1.7.2 (2026-03-10) - released in TrustGraph 2.1
 
 ### Features
