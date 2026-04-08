@@ -1,5 +1,5 @@
 ---
-title: Explainability
+title: Explainability at a glance
 nav_order: 4
 parent: Common knowledge management tasks
 grand_parent: How-to Guides
@@ -7,7 +7,7 @@ review_date: 2027-01-01
 guide_category:
   - Common knowledge management tasks
 guide_category_order: 3
-guide_description: Trace GraphRAG answers back to their sources using the Workbench
+guide_description: See how TrustGraph traces answers back to their sources using the Workbench
 guide_difficulty: beginner
 guide_time: 3 min
 guide_emoji: "\U0001F50D"
@@ -18,7 +18,7 @@ guide_labels:
   - GraphRAG
 ---
 
-# Explainability Guide
+# Explainability at a Glance
 
 {% capture requirements %}
 <ul style="margin: 0; padding-left: 20px;">
