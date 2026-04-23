@@ -8,6 +8,120 @@ review_date: 2027-01-01
 
 # Changelog
 
+## v2.3 (2026-04-23)
+
+### Major Features
+- **Processor Groups** (#808, #810): Dev-time wrapper and runtime support
+  for grouping related processors into managed units:
+  - New `proc-group` dev tool with group definitions for control,
+    embeddings, ingest, llm, rag, and storage tiers
+  - Better logging and concurrency within the group runtime, with
+    async Cassandra table helpers to reduce contention in storage and
+    query paths
+  - Processor groups are now the standard deployment shape produced by
+    the configuration builder for TrustGraph 2.3: a small number of
+    groupings replace the previous one-container-per-processor layout,
+    saving roughly 1.5–2.5 GB of memory per installation
+- **RabbitMQ Available in Configuration Builder** (#827, #779): RabbitMQ
+  is now a selectable pub/sub fabric in the configuration builder for
+  TrustGraph 2.3 deployments. Choosing RabbitMQ over Pulsar saves up to
+  1 GB of memory per installation, in addition to the savings from
+  processor groups above
+- **Flow Service Lifecycle Management** (#822): Reliability and scalability
+  upgrade for the pub/sub layer. Flow-scoped queue lifecycle is now owned
+  by a dedicated flow service, decoupled from the config service:
+  - Active flow keys restructured so queues are created and torn down in
+    step with flow start/stop
+  - RabbitMQ and Pulsar backends extended with lifecycle hooks; consumers,
+    producers, and subscribers now bind through a shared backend interface
+  - Eliminates queue leakage and stale bindings across flow restarts,
+    improving stability under churn and scaling to many concurrent flows
+- **Kafka Pub/Sub Backend** (#830, #833, #834) *(experimental, not for
+  production use)*: Third fabric alongside Pulsar and RabbitMQ,
+  demonstrating further independence from any single messaging system.
+  Topics map 1:1 to Kafka topics, subscriptions map to consumer groups,
+  response/notify uses unique consumer groups with correlation-ID
+  filtering, and topic lifecycle is managed via `AdminClient` with
+  class-based retention. Requires significant integration testing before
+  production consideration.
+- **Multi-architecture Container Builds** (#798, #801, #802, #805):
+  All containers now published as multi-arch manifests covering both
+  `amd64` and `arm64`, with ARM builds running on native ARM runners
+  for speed. HuggingFace processor moved to Python 3.12 to unblock
+  ARM64 support.
+
+### Improvements
+- **Reliable RabbitMQ Messaging** (#827, #779): RabbitMQ backend
+  refactored to use one fanout exchange per topic instead of a shared
+  topic exchange, eliminating cross-topic interference and fixing a
+  request/response race condition. Chunker flow-API drift also
+  resolved. RabbitMQ is now suitable as a robust production backend.
+- **Agent Explainability Instrumentation** (#795, #796): Deeper
+  instrumentation across the agent orchestrator and ReAct pattern,
+  with envelope field naming unified across agent, GraphRAG, and
+  DocumentRAG. New `provenance` helper module centralises RDF
+  namespace and URI construction, and TrustGraph ontology published
+  as a Turtle file (`specs/ontology/trustgraph.ttl`)
+- **LLM Token Usage Exposure** (#782): Input/output token counts now
+  propagate from all LLM providers through the prompt client, flow API,
+  and socket clients to callers, enabling per-request cost tracking in
+  agent, GraphRAG, DocumentRAG, and prompt services
+- **Standardised LLM Rate-Limiting** (#835): Consistent rate-limit and
+  exception handling across Cohere, Mistral, OpenAI, and vLLM providers,
+  backed by a shared contract test suite
+- **Domain and Range Validation** (#825): Triple extraction now validates
+  extracted edges against ontology domain/range constraints, rejecting
+  triples that violate the schema
+- **S3 Retry with Backoff** (#829): Librarian blob operations retry with
+  exponential backoff on transient S3 errors, improving resilience of
+  large-document and multipart workflows
+- **Deferred Optional SDK Imports** (#828, #831): Provider modules defer
+  optional SDK imports to runtime, so a missing optional dependency no
+  longer prevents the rest of the platform from starting
+- **SPARQL CLI Error Reporting** (#794): `tg-invoke-sparql-query`
+  surfaces service-side errors to the CLI instead of masking them
+- **Pulsar Healthcheck Removed** (#809): `tg-verify-system-health` no
+  longer requires Pulsar, matching the move to pluggable fabrics
+
+### Bug Fixes
+- **Flow-svc ConfigClient Restart** (#843): ConfigClient subscriptions
+  now use unique UUID-based names, avoiding Pulsar `ConsumerBusy` errors
+  when flow-svc restarts
+- **API Gateway Dispatcher Eviction** (#841): Cached dispatchers are
+  evicted when their flow stops, preventing stale references after flow
+  lifecycle transitions
+- **Ontology Extractor PromptResult** (#842): Read `.objects` (plural)
+  rather than `.object` from `PromptResult`, fixing silent extraction
+  failures
+- **Library Queue Lifecycle** (#838): Library service queue setup/teardown
+  corrected to match the new flow lifecycle model
+- **Schema Migration Tail** (#777): Fixed trailing issues in the
+  Metadata/EntityEmbeddings schema migration with regression tests to
+  prevent reoccurrence
+- **Deprecated datetime/asyncio APIs** (#816, #819): Replaced
+  `datetime.utcnow()` with timezone-aware `datetime.now(timezone.utc)`
+  and `asyncio.iscoroutinefunction` with `inspect.iscoroutinefunction`
+  to remove deprecation warnings on recent Python versions
+- **Deferred Import Test Patching** (#831): Fixed module-level names so
+  tests can patch provider modules that use deferred imports
+- **Prometheus Registry Pollution** (#806): Test suite no longer leaks
+  metric registrations across tests; default metric registration removed
+  to keep unit tests hermetic
+
+### Infrastructure / Technical
+- **Tech Specs Reorganisation** (#836): Tech-specs directory restructured
+  for clarity; new specs added for flow-service queue lifecycle and
+  active flow key restructure (#822)
+- **Type Hints and Docstrings** (#803, #812, #817): Public functions in
+  `trustgraph/base` fully type-hinted; docstrings added to public classes
+- **Base Helper Module Tests** (#797): New unit test coverage for base
+  helper modules
+- **CI Pipeline Fixes** (#799, #800, #805): Qemu setup repaired, ARM
+  container builds moved to ARM runners, multi-platform manifest build
+  pipeline stabilised
+
+---
+
 ## v2.2 (2026-04-07)
 
 ### Major Features
