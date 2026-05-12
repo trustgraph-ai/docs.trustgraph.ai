@@ -291,7 +291,7 @@ data.
 
 ### Explore Other RAG Types
 
-- **[Ontology RAG](../ontology-rag)** - Use structured schemas for extraction
+- **[Ontology RAG](../ontology-rag/)** - Use structured schemas for extraction
 
 ### Advanced Features
 

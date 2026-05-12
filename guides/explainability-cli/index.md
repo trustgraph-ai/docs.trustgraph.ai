@@ -24,7 +24,7 @@ guide_labels:
 {% capture requirements %}
 <ul style="margin: 0; padding-left: 20px;">
 <li>TrustGraph deployed (<a href="../getting-started/quickstart">Quick Start</a>)</li>
-<li>A document already loaded and processed with Graph RAG (see <a href="../graph-rag-cli">Graph RAG CLI guide</a>)</li>
+<li>A document already loaded and processed with Graph RAG (see <a href="../graph-rag-cli/">Graph RAG CLI guide</a>)</li>
 </ul>
 {% endcapture %}
 

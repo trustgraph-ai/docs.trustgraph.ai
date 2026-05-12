@@ -40,7 +40,7 @@ guide_labels:
 
 Ontology RAG is a technique which uses automated extraction of relationships
 from unstructured text, which is stored in a knowledge graph.
-It is similar to [GraphRAG](../graph-rag).
+It is similar to [GraphRAG](../graph-rag/).
 
 Ontology RAG uses an ontology, which is a form of schema, defining the
 semantic meaning of language concepts.
@@ -82,8 +82,8 @@ The pros and cons of this approach:
 - Working with specialist knowledge such as cybersecurity or intelligence
 
 ⚠️ **Consider alternatives when**:
-- Simple keyword search on small data is sufficient → Use [Document RAG](../document-rag)
-- Ontology defintion will be too complex → Use [GraphRAG](../graph-rag)
+- Simple keyword search on small data is sufficient → Use [Document RAG](../document-rag/)
+- Ontology defintion will be too complex → Use [GraphRAG](../graph-rag/)
 
 ## Prerequisites
 
@@ -392,7 +392,7 @@ data.
 
 ### Explore Other RAG Types
 
-- **[GraphRAG](../graph-rag)** - Schema-free automated knowledge extraction
+- **[GraphRAG](../graph-rag/)** - Schema-free automated knowledge extraction
 
 ### Advanced Features
 
