@@ -27,7 +27,7 @@ object store.
 
 Before starting this guide, ensure you have:
 
-- A running TrustGraph instance version 1.3 or later (see [Installation Guide](../../getting-started/installation))
+- A running TrustGraph instance version 1.3 or later (see [Installation Guide](../../deployment/compose))
 - Python 3.10 with the TrustGraph CLI tools installed (`pip install trustgraph-cli`)
 - Sample documents or structured data files to process
 

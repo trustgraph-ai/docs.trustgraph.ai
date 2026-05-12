@@ -37,7 +37,7 @@ graphs:
 All three graphs are queryable through the same interfaces.  This
 separation keeps provenance and explainability metadata out of the
 knowledge graph used for retrieval, while still making it accessible
-for auditing and analysis.  See [Explainability](../explainability/)
+for auditing and analysis.  See [Explainability](explainability)
 for a detailed walkthrough of how these graphs connect.
 
 ### Entity-Centric Graph

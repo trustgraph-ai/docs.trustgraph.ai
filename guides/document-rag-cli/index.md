@@ -126,4 +126,4 @@ patterns involving a Dubai-based freight company, Meridian Logistics LLC...
 - **[Document RAG (Workbench)](../document-rag/)** - Full walkthrough with concepts and limitations
 - **[Graph RAG](../graph-rag/)** - Leverage knowledge graph relationships
 - **[Ontology RAG](../ontology-rag/)** - Use structured schemas for extraction
-- **[Troubleshooting](../../deployment/troubleshooting)** - Common issues
+- **[Monitoring](../monitoring/)** - Monitoring and diagnostics

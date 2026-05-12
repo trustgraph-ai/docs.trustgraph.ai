@@ -59,7 +59,7 @@ stopped reading the literature after the first paper.
 {: .note }
 > Document RAG is the most basic information retrieval flow. It can prove
 > useful for some limited cases, but you should consider
-> [GraphRAG](graph-rag) or [Ontology RAG](ontology-rag) for real-world
+> [GraphRAG](../graph-rag/) or [Ontology RAG](../ontology-rag/) for real-world
 > information retrieval use-cases.
 
 ## What is Document RAG?
@@ -88,11 +88,11 @@ The pros and cons of this approach:
 
 ⚠️ **Consider alternatives when**:
 - You need to understand relationships between entities
-  → Use [Graph RAG](graph-rag)
+  → Use [Graph RAG](../graph-rag/)
 - You need structured schema-based extraction
-  → Use [Ontology RAG](ontology-rag)
+  → Use [Ontology RAG](../ontology-rag/)
 - Answers require connecting information across documents
-  → Use [Graph RAG](graph-rag)
+  → Use [Graph RAG](../graph-rag/)
 
 ## Prerequisites
 

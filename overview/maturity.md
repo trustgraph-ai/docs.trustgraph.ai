@@ -286,4 +286,4 @@ Core system functionality and contracts<br/>
 
 ## Questions?
 
-For questions about production readiness or specific deployment scenarios, join the [TrustGraph Discord](https://discord.gg/sQkVqqPB) or see [Getting Help](../contributing/getting-help).
+For questions about production readiness or specific deployment scenarios, join the [TrustGraph Discord](https://discord.gg/sQkVqqPB) or see [Getting Help](../contributing/help-and-resources).

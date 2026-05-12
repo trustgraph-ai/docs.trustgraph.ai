@@ -22,7 +22,7 @@ guide_labels:
 
 {% capture requirements %}
 <ul style="margin: 0; padding-left: 20px;">
-<li>TrustGraph deployed (<a href="../../getting-started/installation">Installation Guide</a>)</li>
+<li>TrustGraph deployed (<a href="../../deployment/compose">Installation Guide</a>)</li>
 <li>TrustGraph 1.6+</li>
 <li>Python {{site.data.software.python-min-version}}+ for MCP server development</li>
 <li>Understanding of agent workflows</li>
@@ -64,7 +64,7 @@ technology.
 
 Before starting this guide, ensure you have:
 
-- A running TrustGraph instance (see [Installation Guide](../../getting-started/installation))
+- A running TrustGraph instance (see [Installation Guide](../../deployment/compose))
 - Python {{site.data.software.python-min-version}} or later with a working development environment
 - Basic familiarity with Python programming
 - The TrustGraph CLI tools installed (`pip install trustgraph-cli`)
@@ -81,7 +81,7 @@ We'll then configure TrustGraph to use these tools and demonstrate how an agent 
 
 ## Step 1: Set Up TrustGraph
 
-If you haven't already, deploy TrustGraph using one of the methods described in the [Installation Guide](../../getting-started/installation).
+If you haven't already, deploy TrustGraph using one of the methods described in the [Installation Guide](../../deployment/compose).
 
 For this tutorial, we recommend loading a small sample document to enable knowledge-based queries alongside MCP tools:
 
@@ -680,7 +680,6 @@ tg-set-tool --id <tool_name> --name "Tool Name" --type mcp-tool --mcp-tool <tool
 ## Next Steps
 
 - Explore creating custom MCP tools for your specific use cases
-- Learn about [securing MCP deployments](../security/)
 - Integrate with external APIs and services
 - Build complex agent workflows using multiple tools
 
@@ -699,6 +698,4 @@ tg-set-tool --id <tool_name> --name "Tool Name" --type mcp-tool --mcp-tool <tool
 ### Additional Resources
 
 - [MCP Protocol Specification](https://github.com/anthropics/mcp)
-- [TrustGraph Agent Documentation](../../reference/apis/api-agent)
 - [TrustGraph CLI Reference](../../reference/cli/)
-- [Advanced Agent Workflows](../../advanced/custom-algorithms)

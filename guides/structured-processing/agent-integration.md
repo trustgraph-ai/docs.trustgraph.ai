@@ -246,5 +246,3 @@ tg-invoke-agent -f obj-ex -q \
 - [Structured data processing overview](.)
 - [Load from a data file](load-file)
 - [Querying structured data](query)
-- [Agent API](../../reference/apis/api-agent)
-- [Structured Query API](../../reference/apis/api-structured-query)

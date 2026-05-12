@@ -28,7 +28,7 @@ This guide walks through defining extraction schemas, loading structured data, p
 
 Before starting this guide, ensure you have:
 
-- A running TrustGraph instance version 1.3 or later (see [Installation Guide](../../getting-started/installation))
+- A running TrustGraph instance version 1.3 or later (see [Installation Guide](../../deployment/compose))
 - Python 3.10 or later with the TrustGraph CLI tools installed (`pip install trustgraph-cli`)
 - Sample documents or structured data files to process
 
@@ -239,6 +239,5 @@ tg-invoke-structured-query -f obj-ex \
 
 - [tg-invoke-structured-query](../../reference/cli/tg-invoke-structured-query) - Execute GraphQL queries
 - [tg-invoke-nlp-query](../../reference/cli/tg-invoke-nlp-query) - Convert natural language to GraphQL
-- [tg-invoke-objects-query](../../reference/cli/tg-invoke-objects-query) - Query objects in collections
 - [TrustGraph CLI Reference](../../reference/cli/) - Complete CLI documentation
 

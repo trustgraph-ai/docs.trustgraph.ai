@@ -36,7 +36,6 @@ Most CLI commands support these common options:
 
 **System Setup:**
 - [`tg-init-trustgraph`](tg-init-trustgraph) - Initialize Pulsar with TrustGraph configuration
-- [`tg-init-pulsar-manager`](tg-init-pulsar-manager) - Initialize Pulsar manager setup
 - [`tg-show-config`](tg-show-config) - Display current system configuration
 
 **Token Management:**
@@ -76,7 +75,6 @@ Most CLI commands support these common options:
 - [`tg-show-graph`](tg-show-graph) - Dump graph triples (streaming)
 - [`tg-query-graph`](tg-query-graph) - Pattern-matching graph queries
 - [`tg-graph-to-turtle`](tg-graph-to-turtle) - Export graph to Turtle format (RDF-star)
-- [`tg-load-turtle`](tg-load-turtle) - Import RDF triples from Turtle files
 
 ### Document Processing & Library Management
 
@@ -203,6 +201,5 @@ All CLI commands provide:
 
 ## Related Documentation
 
-- [TrustGraph API Documentation](../apis/README)
-- [TrustGraph WebSocket Guide](../apis/websocket)
+- [TrustGraph WebSocket Guide](../apis/websocket.html)
 - [TrustGraph Pub/Sub Messaging](../apis/pulsar)
