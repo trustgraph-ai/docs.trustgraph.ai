@@ -116,4 +116,3 @@ We love hearing how contributors use AI assistants and other tools. Join us on [
 
 - [Getting Started with Development](development-setup) — Set up your environment
 - [Contributing Guidelines](contributing) — PR process and CLA
-- [Documentation Guidelines](documentation-guidelines) — Standards for docs contributions

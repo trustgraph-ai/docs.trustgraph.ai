@@ -28,7 +28,7 @@ The best starting point is to reach out on the **#contributing** channel on [Dis
 
 1. **Discuss** — Share your idea on Discord #contributing to get early feedback
 2. **Fork & branch** — Create a branch from the latest `release/vX.Y` branch
-3. **Develop** — Make your changes (see [Development Setup](development-guide) and [Development Workflow](developer))
+3. **Develop** — Make your changes (see [Development Setup](development-setup) and [Development Workflow](development-workflow))
 4. **Submit PR** — Push your branch and create a pull request
 5. **Sign CLA** — The PR bot will prompt you to sign our Contributor License Agreement (one-time)
 6. **Review** — We'll review and work with you to get it merged
