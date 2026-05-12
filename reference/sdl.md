@@ -649,6 +649,6 @@ All errors are logged to the specified error output file with details:
 
 ## See Also
 
-- [tg-load-structured-data](../cli/tg-load-structured-data) - Command-line tool for using SDL
+- [tg-load-structured-data](cli/tg-load-structured-data) - Command-line tool for using SDL
 - [Structured Data Processing](../guides/structured-processing/) - Tutorial on working with structured data
-- [Object Storage API](../apis/api-object-storage) - API for managing structured objects
+

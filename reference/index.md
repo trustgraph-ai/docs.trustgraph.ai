@@ -25,5 +25,5 @@ This section contains technical reference materials for TrustGraph APIs, CLI com
 | [Configuration](configuration/) | Reference for all the configurable parts of a TrustGraph system |
 | [TrustGraph Release Notes](changelog/trustgraph) | TrustGraph version history and changes |
 | [Workbench Release Notes](changelog/workbench) | Workbench version history and changes |
-| [Getting Help](../contributing/getting-help) | Support and community resources |
+| [Getting Help](../contributing/help-and-resources) | Support and community resources |
 | [How-to Guides](../guides/) | Step-by-step guides for building with TrustGraph |

@@ -70,4 +70,4 @@ Use [`tg-show-library-processing`](tg-show-library-processing) to view current p
 
 ## API Integration
 
-This command uses the [Library API](../apis/api-librarian) to remove processing records.
+

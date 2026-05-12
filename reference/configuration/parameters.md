@@ -510,8 +510,6 @@ tg-delete-config-item -t parameter-types -k old-param
 
 ## See Also
 
-- [Flow Class Configuration](flow-classes) - Using parameters in flow classes
+
 - [tg-show-parameter-types](../cli/tg-show-parameter-types) - View parameter types
 - [tg-start-flow](../cli/tg-start-flow) - Start flows with parameter values
-- [tg-show-flow-classes](../cli/tg-show-flow-classes) - View flow class parameters
-- [Config API](../apis/api-config) - Manage parameter type definitions

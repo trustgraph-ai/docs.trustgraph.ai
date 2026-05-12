@@ -306,4 +306,4 @@ async def stop_flow(self, flow_name):
 
 - [AsyncProcessor](async-processor) - For global services
 - [Configuration Management](../configuration) - How configuration works
-- [Flow Architecture](../flows) - Understanding TrustGraph flows
+
