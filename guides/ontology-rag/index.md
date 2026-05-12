@@ -22,8 +22,8 @@ guide_labels:
 
 {% capture requirements %}
 <ul style="margin: 0; padding-left: 20px;">
-<li>TrustGraph deployed (<a href="../getting-started/quickstart">Quick Start</a>)</li>
-<li>Understanding of <a href="../getting-started/concepts">Core Concepts</a></li>
+<li>TrustGraph deployed (<a href="../../deployment/compose">Installation Guide</a>)</li>
+<li>Understanding of <a href="../../getting-started">Core Concepts</a></li>
 <li>Familiarity with ontologies and schemas</li>
 </ul>
 {% endcapture %}
@@ -88,8 +88,8 @@ The pros and cons of this approach:
 ## Prerequisites
 
 Before starting:
-- ✅ TrustGraph deployed ([Quick Start](../getting-started/quickstart))
-- ✅ Understanding of [Core Concepts](../getting-started/concepts)
+- ✅ TrustGraph deployed ([Installation Guide](../../deployment/compose))
+- ✅ Understanding of [Core Concepts](../../getting-started))
 
 ## Step-by-Step Guide
 
@@ -408,4 +408,4 @@ For command-line workflows, see the [Ontology RAG CLI Guide](../ontology-rag-cli
 
 - **[Graph RAG](../graph-rag/)** - Schema-free knowledge extraction
 - **[Working with Context Cores](../context-cores/)** - Package and share knowledge
-- **[Core Concepts](../../getting-started/concepts)** - Understanding embeddings and chunks
+- **[Getting Started](../../getting-started)** - Introduction to TrustGraph

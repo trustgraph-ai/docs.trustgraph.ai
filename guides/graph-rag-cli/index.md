@@ -22,7 +22,7 @@ guide_labels:
 
 {% capture requirements %}
 <ul style="margin: 0; padding-left: 20px;">
-<li>TrustGraph deployed (<a href="../getting-started/quickstart">Quick Start</a>)</li>
+<li>TrustGraph deployed (<a href="../../deployment/compose">Installation Guide</a>)</li>
 <li>Familiarity with Graph RAG concepts</li>
 </ul>
 {% endcapture %}
