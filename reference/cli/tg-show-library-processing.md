@@ -83,4 +83,4 @@ No processing objects.
 
 ## API Integration
 
-This command uses the [Library API](../apis/api-librarian) to retrieve processing records.
+

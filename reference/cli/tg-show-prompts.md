@@ -83,4 +83,4 @@ For each template, the output shows:
 
 ## API Integration
 
-This command uses the [Configuration API](../apis/api-config) to retrieve prompt configurations.
+

@@ -55,4 +55,4 @@ tg-delete-flow-blueprint -n "old-processing-flow"
 
 ## API Integration
 
-This command uses the [Flow Blueprint API](../apis/api-flow-blueprint) to delete blueprint definitions.
+

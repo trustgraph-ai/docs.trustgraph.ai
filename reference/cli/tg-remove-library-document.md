@@ -65,4 +65,4 @@ Use [`tg-show-library-documents`](tg-show-library-documents) to list documents a
 
 ## API Integration
 
-This command uses the [Library API](../apis/api-librarian) to remove documents from the library.
+

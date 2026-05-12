@@ -86,4 +86,4 @@ The command loads the following sample documents:
 
 ## API Integration
 
-This command uses the [Library API](../apis/api-librarian) to add documents and associated metadata.
+

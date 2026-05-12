@@ -51,4 +51,4 @@ The command displays blueprints in a formatted table showing name, description, 
 
 ## API Integration
 
-This command uses the [Flow Blueprint API](../apis/api-flow-blueprint) to list blueprints.
+
