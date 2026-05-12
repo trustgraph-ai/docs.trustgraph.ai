@@ -75,4 +75,4 @@ Models with incomplete cost configuration show `-` for missing values.
 
 ## API Integration
 
-This command uses the [Configuration API](../apis/api-config) to retrieve token cost information.
+

@@ -94,4 +94,4 @@ Different document types (PDF, text, images, structured data) may trigger differ
 
 ## API Integration
 
-This command uses the [Library API](../apis/api-librarian) to initiate document processing workflows.
+

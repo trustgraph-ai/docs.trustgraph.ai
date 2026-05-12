@@ -15,7 +15,7 @@ Items are managed with the
 [`tg-put-config-item`](../cli/tg-put-config-item),
 [`tg-get-config-item`](../cli/tg-get-config-item),
 [`tg-list-config-items`](../cli/tg-list-config-items), and
-[`tg-delete-config-item`](../cli/tg-delete-config-item) CLI commands
+ CLI commands
 (some types also have dedicated CLI tools).
 
 This page documents the general-purpose config types. For agent-specific

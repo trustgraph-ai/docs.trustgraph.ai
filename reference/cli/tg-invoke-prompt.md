@@ -96,4 +96,4 @@ Variables can contain:
 
 ## API Integration
 
-This command uses the [Prompt API](../apis/api-prompt) to execute prompt templates with variable substitution.
+

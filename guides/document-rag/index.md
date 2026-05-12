@@ -22,8 +22,8 @@ guide_labels:
 
 {% capture requirements %}
 <ul style="margin: 0; padding-left: 20px;">
-<li>TrustGraph deployed (<a href="../getting-started/quickstart">Quick Start</a>)</li>
-<li>Understanding of <a href="../getting-started/concepts">Core Concepts</a></li>
+<li>TrustGraph deployed (<a href="../../deployment/compose">Installation Guide</a>)</li>
+<li>Understanding of <a href="../../getting-started">Core Concepts</a></li>
 </ul>
 {% endcapture %}
 
@@ -59,7 +59,7 @@ stopped reading the literature after the first paper.
 {: .note }
 > Document RAG is the most basic information retrieval flow. It can prove
 > useful for some limited cases, but you should consider
-> [GraphRAG](graph-rag) or [Ontology RAG](ontology-rag) for real-world
+> [GraphRAG](../graph-rag/) or [Ontology RAG](../ontology-rag/) for real-world
 > information retrieval use-cases.
 
 ## What is Document RAG?
@@ -88,17 +88,17 @@ The pros and cons of this approach:
 
 ⚠️ **Consider alternatives when**:
 - You need to understand relationships between entities
-  → Use [Graph RAG](graph-rag)
+  → Use [Graph RAG](../graph-rag/)
 - You need structured schema-based extraction
-  → Use [Ontology RAG](ontology-rag)
+  → Use [Ontology RAG](../ontology-rag/)
 - Answers require connecting information across documents
-  → Use [Graph RAG](graph-rag)
+  → Use [Graph RAG](../graph-rag/)
 
 ## Prerequisites
 
 Before starting:
-- ✅ TrustGraph deployed ([Quick Start](../getting-started/quickstart))
-- ✅ Understanding of [Core Concepts](../getting-started/concepts)
+- ✅ TrustGraph deployed ([Installation Guide](../../deployment/compose))
+- ✅ Understanding of [Core Concepts](../../getting-started))
 
 ## Step-by-Step Guide
 
@@ -227,5 +227,4 @@ For command-line workflows, see the [Document RAG CLI Guide](../document-rag-cli
 
 ## Related Resources
 
-- **[Core Concepts](../../getting-started/concepts)** - Understanding embeddings and chunks
-- **[Vector Search](../../getting-started/concepts#vector-embeddings)** - How semantic search works
+- **[Getting Started](../../getting-started)** - Introduction to TrustGraph

@@ -569,4 +569,4 @@ All processors (both `{id}` and `{blueprint}`) work together as a cohesive dataf
 - [tg-show-parameter-types](../cli/tg-show-parameter-types) - View parameter type definitions
 - [Parameter Types](parameters) - Parameter type configuration reference
 - [Flow Processor Reference](../extending/flow-processor) - Building custom processors
-- [Pulsar Configuration](pulsar) - Message queue configuration
+

@@ -424,6 +424,3 @@ except ExtractionError as e:
 ## See Also
 
 - [Object Extraction Process](object-extraction) - Detailed object extraction
-- [Agent API](../reference/apis/api-agent) - Agent API reference
-- [Structured Query Integration](structured-query-integration) - Query extracted data
-- [Object Storage API](../reference/apis/api-object-storage) - Store extracted objects

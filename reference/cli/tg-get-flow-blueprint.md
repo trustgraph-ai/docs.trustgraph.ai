@@ -58,4 +58,4 @@ tg-get-flow-blueprint -n "production-flow" > production-flow-backup.json
 
 ## API Integration
 
-This command uses the [Flow Blueprint API](../apis/api-flow-blueprint) to retrieve blueprint definitions.
+

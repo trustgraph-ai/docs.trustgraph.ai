@@ -100,8 +100,8 @@ Components:
 
 - [`tg-load-doc-embeds`](tg-load-doc-embeds) - Load document embeddings
 - [`tg-dump-msgpack`](tg-dump-msgpack) - Inspect MessagePack files
-- [`tg-save-graph-embeds`](tg-save-graph-embeds) - Save graph embeddings
+
 
 ## API Integration
 
-This command uses the [Document Embeddings Export API](../apis/api-document-embeddings) to stream embeddings data.
+

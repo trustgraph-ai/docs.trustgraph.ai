@@ -205,4 +205,4 @@ Services automatically receive configuration updates through the pub/sub configu
 ## See Also
 
 - [FlowProcessor](flow-processor) - For flow-aware services
-- [Service Architecture](../architecture) - Overall service design patterns
+

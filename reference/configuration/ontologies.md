@@ -271,7 +271,7 @@ Ontologies are used with Ontology RAG flow classes. When creating a flow, specif
 tg-start-flow -n onto-rag -i my-flow -d "Ontology RAG with custom ontology"
 ```
 
-The flow class determines which ontology is applied during knowledge extraction. See [Flow Classes](flow-classes) for configuration details.
+The flow class determines which ontology is applied during knowledge extraction.
 
 ## Complete Example
 
@@ -364,6 +364,6 @@ Here's a minimal but complete ontology for tracking observations:
 - [tg-put-config-item](../cli/tg-put-config-item) - Create and update ontologies
 - [tg-get-config-item](../cli/tg-get-config-item) - Retrieve ontology definitions
 - [tg-list-config-items](../cli/tg-list-config-items) - List all ontologies
-- [Flow Classes](flow-classes) - Configure flows to use ontologies
+
 - [Schemas](schemas) - Structured data schemas (different from ontologies)
 

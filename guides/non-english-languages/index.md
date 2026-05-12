@@ -24,8 +24,8 @@ guide_labels:
 
 {% capture requirements %}
 <ul style="margin: 0; padding-left: 20px;">
-<li>TrustGraph deployed (<a href="../getting-started/quickstart">Quick Start</a>)</li>
-<li>Understanding of <a href="../getting-started/concepts">Core Concepts</a></li>
+<li>TrustGraph deployed (<a href="../../deployment/compose">Installation Guide</a>)</li>
+<li>Understanding of <a href="../../getting-started">Core Concepts</a></li>
 <li>An LLM with proficiency in your target language</li>
 </ul>
 {% endcapture %}

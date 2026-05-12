@@ -1,7 +1,7 @@
 ---
 title: Benchmarks
-nav_order: 7
-parent: TrustGraph Documentation
+nav_order: 100
+parent: Reference
 review_date: 2026-06-01
 ---
 

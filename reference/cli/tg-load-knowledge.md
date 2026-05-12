@@ -91,4 +91,4 @@ The command uses WebSocket connections for efficient batch processing and includ
 
 ## API Integration
 
-This command uses the [Knowledge Load API](../apis/api-knowledge) via WebSocket for efficient batch triple loading.
+

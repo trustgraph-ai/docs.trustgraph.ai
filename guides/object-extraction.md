@@ -616,6 +616,3 @@ except ExtractionError as e:
 ## See Also
 
 - [Agent Extraction Process](agent-extraction) - Comprehensive extraction workflows
-- [Object Storage API](../reference/apis/api-object-storage) - Storage and retrieval
-- [Structured Query Integration](structured-query-integration) - Query extracted objects
-- [Schema Management](../reference/extending/schemas) - Define and manage schemas

@@ -149,8 +149,8 @@ Services that accept data without returning a response:
 
 ## See Also
 
-- [REST API](rest) - REST API reference
-- [WebSocket API](websocket) - WebSocket API reference
+- [REST API](rest.html) - REST API reference
+- [WebSocket API](websocket.html) - WebSocket API reference
 - [Python API](python) - Python SDK reference
 - [Flow Blueprints](../configuration/flow-blueprints) - Flow configuration
 - [Parameter Types](../configuration/parameters) - Flow parameter definitions

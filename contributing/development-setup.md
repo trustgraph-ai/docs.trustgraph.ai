@@ -162,7 +162,7 @@ See `TEST_STRATEGY.md` in the repository for the full testing approach.
 
 ## Next Steps
 
-- Read [Development Workflow](developer) for git practices and working with AI assistants
+- Read [Development Workflow](development-workflow) for git practices and working with AI assistants
 - Check [Contributing Guidelines](contributing) before submitting a PR
 - Join **#contributing** on [Discord](https://discord.gg/sQMwkRz5GX) for help
 

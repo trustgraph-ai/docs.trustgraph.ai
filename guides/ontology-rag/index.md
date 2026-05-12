@@ -22,8 +22,8 @@ guide_labels:
 
 {% capture requirements %}
 <ul style="margin: 0; padding-left: 20px;">
-<li>TrustGraph deployed (<a href="../getting-started/quickstart">Quick Start</a>)</li>
-<li>Understanding of <a href="../getting-started/concepts">Core Concepts</a></li>
+<li>TrustGraph deployed (<a href="../../deployment/compose">Installation Guide</a>)</li>
+<li>Understanding of <a href="../../getting-started">Core Concepts</a></li>
 <li>Familiarity with ontologies and schemas</li>
 </ul>
 {% endcapture %}
@@ -40,7 +40,7 @@ guide_labels:
 
 Ontology RAG is a technique which uses automated extraction of relationships
 from unstructured text, which is stored in a knowledge graph.
-It is similar to [GraphRAG](../graph-rag).
+It is similar to [GraphRAG](../graph-rag/).
 
 Ontology RAG uses an ontology, which is a form of schema, defining the
 semantic meaning of language concepts.
@@ -82,14 +82,14 @@ The pros and cons of this approach:
 - Working with specialist knowledge such as cybersecurity or intelligence
 
 ⚠️ **Consider alternatives when**:
-- Simple keyword search on small data is sufficient → Use [Document RAG](../document-rag)
-- Ontology defintion will be too complex → Use [GraphRAG](../graph-rag)
+- Simple keyword search on small data is sufficient → Use [Document RAG](../document-rag/)
+- Ontology defintion will be too complex → Use [GraphRAG](../graph-rag/)
 
 ## Prerequisites
 
 Before starting:
-- ✅ TrustGraph deployed ([Quick Start](../getting-started/quickstart))
-- ✅ Understanding of [Core Concepts](../getting-started/concepts)
+- ✅ TrustGraph deployed ([Installation Guide](../../deployment/compose))
+- ✅ Understanding of [Core Concepts](../../getting-started))
 
 ## Step-by-Step Guide
 
@@ -392,7 +392,7 @@ data.
 
 ### Explore Other RAG Types
 
-- **[GraphRAG](../graph-rag)** - Schema-free automated knowledge extraction
+- **[GraphRAG](../graph-rag/)** - Schema-free automated knowledge extraction
 
 ### Advanced Features
 
@@ -408,4 +408,4 @@ For command-line workflows, see the [Ontology RAG CLI Guide](../ontology-rag-cli
 
 - **[Graph RAG](../graph-rag/)** - Schema-free knowledge extraction
 - **[Working with Context Cores](../context-cores/)** - Package and share knowledge
-- **[Core Concepts](../../getting-started/concepts)** - Understanding embeddings and chunks
+- **[Getting Started](../../getting-started)** - Introduction to TrustGraph

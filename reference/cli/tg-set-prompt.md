@@ -93,4 +93,4 @@ Templates use `{{variable}}` syntax for placeholders that are replaced when the 
 
 ## API Integration
 
-This command uses the [Configuration API](../apis/api-config) to store prompt configurations.
+

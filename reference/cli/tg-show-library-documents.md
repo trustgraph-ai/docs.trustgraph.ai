@@ -83,4 +83,4 @@ No documents.
 
 ## API Integration
 
-This command uses the [Library API](../apis/api-librarian) to retrieve document metadata.
+

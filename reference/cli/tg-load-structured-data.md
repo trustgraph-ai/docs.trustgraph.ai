@@ -168,9 +168,9 @@ You can generate descriptors automatically or create them manually for complex m
 ## Related Commands
 
 - [`tg-load-knowledge`](tg-load-knowledge) - Load RDF triples
-- [`tg-load-pdf`](tg-load-pdf) - Load PDF documents
+
 - [`tg-show-parameter-types`](tg-show-parameter-types) - View available schemas
 
 ## API Integration
 
-This command uses the [Structured Data Load API](../apis/api-text-load) and [NLP Query API](../apis/api-nlp-query) for schema discovery and data transformation.
+

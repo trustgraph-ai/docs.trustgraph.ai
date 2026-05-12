@@ -85,7 +85,7 @@ tg-invoke-structured-query \
 
 ## Related Commands
 
-- [`tg-invoke-objects-query`](tg-invoke-objects-query) - Query objects with filters
+
 - [`tg-load-structured-data`](tg-load-structured-data) - Import structured data
 
 ## API Integration

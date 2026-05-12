@@ -23,7 +23,7 @@ guide_labels:
 
 {% capture requirements %}
 <ul style="margin: 0; padding-left: 20px;">
-<li>TrustGraph deployed (<a href="../getting-started/quickstart">Quick Start</a>)</li>
+<li>TrustGraph deployed (<a href="../../deployment/compose">Installation Guide</a>)</li>
 <li>Familiarity with Document RAG concepts</li>
 </ul>
 {% endcapture %}
@@ -126,4 +126,4 @@ patterns involving a Dubai-based freight company, Meridian Logistics LLC...
 - **[Document RAG (Workbench)](../document-rag/)** - Full walkthrough with concepts and limitations
 - **[Graph RAG](../graph-rag/)** - Leverage knowledge graph relationships
 - **[Ontology RAG](../ontology-rag/)** - Use structured schemas for extraction
-- **[Troubleshooting](../../deployment/troubleshooting)** - Common issues
+- **[Monitoring](../monitoring/)** - Monitoring and diagnostics

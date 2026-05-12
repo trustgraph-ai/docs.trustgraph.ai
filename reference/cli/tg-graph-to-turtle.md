@@ -52,5 +52,5 @@ tg-graph-to-turtle -C research-data > research.ttl
 
 - [`tg-show-graph`](tg-show-graph) - Display graph triples
 - [`tg-query-graph`](tg-query-graph) - Selective graph queries
-- [`tg-load-turtle`](tg-load-turtle) - Import Turtle files
+
 - [`tg-load-knowledge`](tg-load-knowledge) - Load knowledge into graph

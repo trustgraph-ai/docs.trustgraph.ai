@@ -149,5 +149,5 @@ Open-source architecture prevents vendor lock-in and enables customization.
 
 - **Understand the Platform**: Read [Architecture](architecture) for technical details
 - **See Use Cases**: Explore [Use Cases](use-cases) for applications
-- **Get Started**: Try the [Quickstart Guide](../getting-started/quickstart)
+- **Get Started**: Try the [Getting Started Guide](../getting-started)
 - **Deploy**: Review [Deployment Options](../deployment/) for your environment

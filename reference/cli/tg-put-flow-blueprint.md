@@ -79,4 +79,4 @@ Flow blueprint configurations are JSON objects defining:
 
 ## API Integration
 
-This command uses the [Flow Blueprint API](../apis/api-flow-blueprint) to store blueprint definitions.
+

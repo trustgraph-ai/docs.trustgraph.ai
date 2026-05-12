@@ -64,4 +64,4 @@ tg-set-token-costs --model "llama-2-7b" -i 0.0 -o 0.0
 
 ## API Integration
 
-This command uses the [Configuration API](../apis/api-config) to store token cost configuration.
+

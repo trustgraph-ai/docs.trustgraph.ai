@@ -90,4 +90,4 @@ The command queries the metrics system to determine processor health. A processo
 
 ## API Integration
 
-This command uses the [Metrics API](../apis/api-metrics) to retrieve processor state information.
+
