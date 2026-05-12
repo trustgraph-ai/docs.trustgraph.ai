@@ -22,8 +22,8 @@ guide_labels:
 
 {% capture requirements %}
 <ul style="margin: 0; padding-left: 20px;">
-<li>TrustGraph deployed (<a href="../getting-started/quickstart">Quick Start</a>)</li>
-<li>Understanding of <a href="../getting-started/concepts">Core Concepts</a></li>
+<li>TrustGraph deployed (<a href="../../deployment/compose">Installation Guide</a>)</li>
+<li>Understanding of <a href="../../getting-started">Core Concepts</a></li>
 </ul>
 {% endcapture %}
 
@@ -97,8 +97,8 @@ The pros and cons of this approach:
 ## Prerequisites
 
 Before starting:
-- ✅ TrustGraph deployed ([Quick Start](../getting-started/quickstart))
-- ✅ Understanding of [Core Concepts](../getting-started/concepts)
+- ✅ TrustGraph deployed ([Installation Guide](../../deployment/compose))
+- ✅ Understanding of [Core Concepts](../../getting-started))
 
 ## Step-by-Step Guide
 
@@ -227,5 +227,4 @@ For command-line workflows, see the [Document RAG CLI Guide](../document-rag-cli
 
 ## Related Resources
 
-- **[Core Concepts](../../getting-started/concepts)** - Understanding embeddings and chunks
-- **[Vector Search](../../getting-started/concepts#vector-embeddings)** - How semantic search works
+- **[Getting Started](../../getting-started)** - Introduction to TrustGraph
