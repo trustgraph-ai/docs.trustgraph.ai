@@ -1,7 +1,7 @@
 ---
 title: tg-show-parameter-types
 parent: CLI
-review_date: 2026-04-26
+review_date: 2027-05-21
 ---
 
 # tg-show-parameter-types

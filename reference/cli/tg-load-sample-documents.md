@@ -1,7 +1,7 @@
 ---
 title: tg-load-sample-documents
 parent: CLI
-review_date: 2026-05-15
+review_date: 2027-05-21
 ---
 
 # tg-load-sample-documents
@@ -28,7 +28,7 @@ The command downloads documents from public sources and adds them to the library
 |--------|---------|-------------|
 | `-u, --url URL` | `$TRUSTGRAPH_URL` or `http://localhost:8088/` | TrustGraph API URL |
 | `-t, --token TOKEN` | `$TRUSTGRAPH_TOKEN` | Authentication token |
-| `-U, --user USER` | `trustgraph` | User ID for document ownership |
+| `-w, --workspace WORKSPACE` | `$TRUSTGRAPH_WORKSPACE` or `default` | Workspace identifier |
 
 ## Examples
 
@@ -37,9 +37,9 @@ The command downloads documents from public sources and adds them to the library
 tg-load-sample-documents
 ```
 
-### Load with Custom User
+### Load with Custom Workspace
 ```bash
-tg-load-sample-documents -U "demo-user"
+tg-load-sample-documents -w "demo-user"
 ```
 
 ## Sample Documents
@@ -77,6 +77,7 @@ The command loads the following sample documents:
 
 - `TRUSTGRAPH_URL`: Default API URL
 - `TRUSTGRAPH_TOKEN`: Default authentication token
+- `TRUSTGRAPH_WORKSPACE`: Default workspace identifier
 
 ## Related Commands
 

@@ -1,7 +1,7 @@
 ---
 title: tg-list-collections
 parent: CLI
-review_date: 2026-12-20
+review_date: 2027-05-21
 ---
 
 # tg-list-collections
@@ -26,7 +26,7 @@ The `tg-list-collections` command displays all collections associated with a use
 |--------|---------|-------------|
 | `-u, --api-url URL` | `$TRUSTGRAPH_URL` or `http://localhost:8088/` | TrustGraph API URL |
 | `-t, --token TOKEN` | `$TRUSTGRAPH_TOKEN` | Authentication token |
-| `-U, --user USER` | `trustgraph` | User ID |
+| `-w, --workspace WORKSPACE` | `$TRUSTGRAPH_WORKSPACE` or `default` | Workspace identifier |
 | `-T, --tag-filter TAG` | None | Filter by tags (can specify multiple times) |
 
 ## Examples
@@ -36,9 +36,9 @@ The `tg-list-collections` command displays all collections associated with a use
 tg-list-collections
 ```
 
-### List for Specific User
+### List for Specific Workspace
 ```bash
-tg-list-collections -U alice
+tg-list-collections -w alice
 ```
 
 ### Filter by Tag
@@ -55,6 +55,7 @@ tg-list-collections -T research -T academic
 
 - `TRUSTGRAPH_URL`: Default API URL
 - `TRUSTGRAPH_TOKEN`: Default authentication token
+- `TRUSTGRAPH_WORKSPACE`: Default workspace identifier
 
 ## Related Commands
 

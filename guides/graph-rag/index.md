@@ -3,7 +3,7 @@ title: Graph RAG
 nav_order: 2
 parent: Common knowledge management tasks
 grand_parent: How-to Guides
-review_date: 2026-08-01
+review_date: 2026-11-01
 guide_category:
   - Common knowledge management tasks
 guide_category_order: 1
@@ -106,74 +106,52 @@ which you can download at this URL:
 [https://raw.githubusercontent.com/trustgraph-ai/example-data/refs/heads/main/tracking/operation-phantom-cargo.md](https://raw.githubusercontent.com/trustgraph-ai/example-data/refs/heads/main/tracking/operation-phantom-cargo.md).
 
 - Download [the document](https://raw.githubusercontent.com/trustgraph-ai/example-data/refs/heads/main/tracking/operation-phantom-cargo.md)
-- Go the 'Library' page
-- Click 'Upload documents'
-- Set the title: PHANTOM CARGO
-- Set the Comments to: Intelligence report: Operation PHANTOM CARGO
-- Set keywords: maritime, intelligence, cargo, grey arms
-- Select 'Text' for the upload operation
-- Click 'Select text files'
-- Add the document you just downloaded
-- Click Submit
+- Go to the Workflows page and click **+ Add Document**
+- A new dialogue appears — click the filename button and select the
+  file you downloaded.  The MIME type field should fill in automatically.
+- Set the Title: Operation PHANTOM CARGO
+- Set the Description to: Intelligence report: Operation PHANTOM CARGO
+- Add tags: phantom cargo, intelligence, maritime, shipping
+- Click **Upload**
 
-<img src="load-document.png" alt="Load document dialogue"/>
+<img src="upload-document.png" alt="Upload document dialogue"/>
 
-### Step 2: Create a Collection
+The document shows upload progress.  On upload completing, the new
+document outline changes to a solid line.
 
-A collection is used to organise a set of related documents or data sources
-into a single unit.  Retrieval operations operate across a single collection.
+### Step 2: Submit the Document for Processing
 
-We'll create an 'intelligence' collection:
+Once the document is uploaded, click **Submit for Processing** on the
+document detail panel.  A 3-step wizard appears to select a flow and
+collection.
 
-- Go to the 'Library' page
-- Select the 'Collections' tab
-- Click 'Create Collection'
-- Set the ID: intelligence
-- Set the name: Intelligence
-- Set the description to: Intelligence analysis
-- Click 'Submit'
+**Select a flow:** Choose which processing flow to use.  You can select
+an existing flow or start a new one.  For this guide, select **default**.
 
-### Step 3: Create the Flow
+<img src="select-flow.png" alt="Select flow dialogue"/>
 
-A flow describes the collection of processing operations.  We're going
-to create a single flow for Graph RAG processing.
+**Select a collection:** Choose which collection the results should be
+stored in.  You can select an existing collection or create a new one.
+For this guide, select **default**.
 
-We'll create a 'graph-rag' flow:
+<img src="select-collection.png" alt="Select collection dialogue"/>
 
-- Go to the 'Flows' page
-- Click 'Create'
-- Select the flow blueprint 'Graph RAG'
-- Set the ID: graph-rag
-- Set the description: Graph RAG
-- Click 'Create'
+**Confirm:** Review the document, flow and collection selections, then
+click **Submit for Processing**.
 
-### Step 4: Submit the Document for Processing
+<img src="confirm-processing.png" alt="Confirm processing dialogue"/>
 
-This pushes the document into the flow input.
+The main page reconfigures to show the document with its processing
+pipelines — documents on the left, flows in the middle, and storage
+destinations on the right.
 
-There is a selection widget top right of the screen with an database icon
-top left.
-
-<img src="selection.png" alt="Selection widget"/>
-
-Click that to open the collection/flow selector, and select the
-Intelligence collection, and Graph RAG, both of which you created earlier.
-
-<img src="collection-selected.png" alt="Selection dialogue"/>
-
-You are ready to submit the document:
-
-- Go to the 'Library' page
-- Select the PHANTOM CARGO document so that the tick box is selected
-- Click 'Submit' at the bottom of the page
-- Change the Processing flow to GraphRAG
-- Click Submit
+<img src="document-processing.png" alt="Document processing pipelines"/>
 
 ### Step 5: Monitoring
 
 If you want to see the document loading, you can go to Grafana at
-[`http://localhost:3000`](http://localhost:3000).  The default
-login user is admin, password admin.  Grafana is configured with a single
+[`http://localhost:3000`](http://localhost:3000).  Login with username `admin` and the password you set in
+`GF_SECURITY_ADMIN_PASSWORD`.  Grafana is configured with a single
 dashboard.  Some useful things to monitor are:
 
 The pub/sub backlog.  You can monitor the size of queues in Pulsar.
@@ -213,65 +191,56 @@ and cleared quickly.
 It can take many minutes or hours to process large documents or large document
 sets using GraphRAG extraction.
 
-### Step 6: Retrieval
+### Step 6: Query with Graph RAG
 
-Retrieval in Graph RAG consists of mapping the question to a set of candidate
-graph entities, and then following graph edges to create a subgraph, which
-is used as context with the LLM.
+From the Workflows page, select **Graph RAG Query**.  This console has
+full Explainable AI enabled, which helps to understand and diagnose
+retrieval.
 
-- Ensure the correct collection and flow are selected in the selection widget
-- Navigate to the 'Assistant' page
-- Select 'Graph RAG' assistant
-- Enter the question: What intelligence resources were using during the PHANTOM CARGO operation?
-- Press 'Send' and wait for the answer
+Enter the question: What intelligence resources were using during the
+PHANTOM CARGO operation?  After a short while you should see a response.
+
+<img src="graph-rag-query.png" alt="Graph RAG query result"/>
+
+On the left-hand side you see the answer to the query.  The bottom right
+part of the screen shows the various explainability events, starting from
+the question:
+
+- **Grounding** — where retrieval selects key concepts for discovery
+- **Exploration** — where graph nodes are selected for analytics
+- **Focus** — where the system decides on a core set of graph edges to
+  resolve the question
+- **Synthesis** — where this is processed to provide an answer
+
+The **Focus** event may be of particular interest as you can trace graph
+edges all the way back to the source documents.  For example, the graph
+edge *(pattern-matching algorithm → flagged AIS data against → 847
+million historical AIS records)* has a link to source below which, when
+followed, shows the original source text.
+
+<img src="graph-rag-source.png" alt="Source tracing from graph edge"/>
 
 ### Step 7: Explore the knowledge graph
 
-The Workbench provides access to some more tools you can play with.
+From the Workflows page, select **Graph Explorer**.  This shows what's
+in the knowledge graph with tools for viewing and searching.
 
-- Select Vector search
-- The search box enter 'optical'
-- Click 'Send'
+The graph can be easier to see in 3D — click the **3D** button above
+the graph view.
 
-This executes a search in the vector store for graph entities which are listed
-along with the graph node description and the vector similarity score.
-The exact view may vary depending on the LLM model you are using and the
-entities discovered by it.
+If you click a node, it will be highlighted along with its related
+edges.  A side panel also appears showing node properties and
+highlighted links that allow you to navigate to related nodes.
 
-<img src="vector-results.png" alt="Vector results table"/>
+On the top left is a **Search** button which opens a search dialog.
+You can enter text for a similarity search against nodes in the graph.
+Matching nodes are listed and can be selected, which adds them to the
+graph along with their neighbours.
 
-This is a list of graph nodes.  Clicking on an item moves to a node
-exploration view, showing graph nodes related to the selected node.
-Clicking on CSO-class optical reconnaissance satellite shows
-relationships:
+<img src="graph-explorer.png" alt="Graph Explorer with search results and node detail"/>
 
-<img src="relationships.png" alt="Relationships view"/>
-
-Each row is a graph edge, on the left-hand side is the subject of the
-graph node, the middle term shows the predicate (relationship), and the
-right-hand side is the object (end node) of the relationship.
-On this view you can navigate from the graph node show to other nodes by
-clicking on the details.  Clicking on the 'subject of' relationship
-shows a long list of all 'subject of' relationships which is a common term.
-
-<img src="relationships2.png" alt="Relationships view"/>
-
-The 'subject of' relationship links discovered entities to the document
-from which they were taken.  The right-hand side entities represent the
-PHANTOM CARGO document itself.  Clicking that shows relationships, including
-a 'has type' showing that 'PHANTOM CARGO' is a 'digital document'.
-
-<img src="relationships3.png" alt="Relationships view"/>
-
-Once you have an interesting node, you can click 'Graph view' to switch to
-a 3D graph view.  This is navigable.  Clicking a node shows a panel on the
-right-hand side allowing you to see node properties, along with controls
-to navigate relationships.  This adds further nodes to the graph.
-
-<img src="3d.png" alt="3D graph view"/>
-
-You can rotate the graph and navigate 3D space using the mouse /
-pointer controls.
+There is also a **Clear** button which resets the graph back to an
+empty state.
 
 ## GraphRAG vs. Other Approaches
 

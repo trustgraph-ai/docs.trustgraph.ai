@@ -1,5 +1,15 @@
-Click on one of the Vector Search result terms on the left-hand side. This shows relationships in the graph from the knowledge graph linking to that term.
+From the Workflows page, select **Graph Explorer**. This shows what's in the knowledge graph with tools for viewing and searching.
 
-![Relationships view](relationships.png)
+![Graph Explorer](graph-explorer.png)
 
-You can then click on the *Graph view* button to go to a 3D view of the discovered relationships.
+The graph can be easier to see in 3D — click the **3D** button above the graph view.
+
+If you click a node, it will be highlighted along with its related edges. A side panel also appears showing node properties and highlighted links that allow you to navigate to related nodes.
+
+![Node detail panel](graph-node-detail.png)
+
+On the top left is a **Search** button which opens a search dialog. You can enter text for a similarity search against nodes in the graph. Matching nodes are listed and can be selected, which adds them to the graph along with their neighbours.
+
+![Graph search](graph-search.png)
+
+There is also a **Clear** button which resets the graph back to an empty state.

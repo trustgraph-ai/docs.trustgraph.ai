@@ -3,7 +3,7 @@ title: OVHcloud
 nav_order: 4.5
 parent: Deployment
 grand_parent: TrustGraph Documentation
-review_date: 2026-06-02
+review_date: 2026-11-01
 guide_category:
   - European Cloud Providers
 guide_category_order: 1
@@ -247,6 +247,20 @@ You should see your OVHcloud Managed Kubernetes nodes listed as `Ready`.
 
 {% include deployment/install-cli-tools.md %}
 
+Set the IAM bootstrap token so that CLI tools can authenticate:
+
+```bash
+export TRUSTGRAPH_TOKEN=$(pulumi stack output iamToken --show-secrets)
+```
+
+## Grafana access
+
+Login to Grafana with username `admin` and the password from:
+
+```bash
+pulumi stack output grafanaPassword --show-secrets
+```
+
 ## Startup period
 
 It can take 2-3 minutes for all services to stabilize after deployment. Services like Pulsar and Cassandra need time to initialize properly.
@@ -294,10 +308,6 @@ This confirms that TrustGraph can successfully communicate with OVHcloud's AI En
 ### Load a document
 
 {% include deployment/workbench/load-document.md %}
-
-### Use Vector search
-
-{% include deployment/workbench/vector-search.md %}
 
 ### Look at knowledge graph
 

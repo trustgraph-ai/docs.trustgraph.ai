@@ -1,7 +1,7 @@
 ---
 title: tg-invoke-row-embeddings
 parent: CLI
-review_date: 2027-01-01
+review_date: 2027-05-21
 ---
 
 # tg-invoke-row-embeddings
@@ -34,7 +34,7 @@ Searches for structured data rows similar to the query text using vector embeddi
 | `-u, --url URL` | `$TRUSTGRAPH_URL` or `http://localhost:8088/` | API URL |
 | `-t, --token TOKEN` | `$TRUSTGRAPH_TOKEN` | Authentication token |
 | `-f, --flow-id ID` | `default` | Flow ID |
-| `-U, --user USER` | `trustgraph` | User identifier |
+| `-w, --workspace WORKSPACE` | `$TRUSTGRAPH_WORKSPACE` or `default` | Workspace identifier |
 | `-c, --collection COLL` | `default` | Collection identifier |
 | `-i, --index-name NAME` | None | Index name to filter search |
 | `-l, --limit N` | `10` | Maximum results |
@@ -51,6 +51,7 @@ tg-invoke-row-embeddings -s products -i description -l 5 "wireless headphones"
 
 - `TRUSTGRAPH_URL`: Default API URL
 - `TRUSTGRAPH_TOKEN`: Default authentication token
+- `TRUSTGRAPH_WORKSPACE`: Default workspace identifier
 
 ## Related Commands
 

@@ -3,7 +3,7 @@ title: Explainability using CLI
 nav_order: 4
 parent: Advanced knowledge management
 grand_parent: How-to Guides
-review_date: 2027-01-01
+review_date: 2026-11-01
 guide_category:
   - Advanced knowledge management
 guide_category_order: 3
@@ -36,9 +36,8 @@ guide_labels:
    goal="Run explainable GraphRAG queries from the CLI, review reasoning traces, and trace edges back to source documents."
 %}
 
-This guide covers the same explainability workflow as the
-[Explainability at a glance](../explainability/) guide, but using command-line tools
-instead of the Workbench.
+This guide covers explainability using command-line tools instead of the
+Workbench.
 
 **New to explainability?** Read the
 [Explainability overview](../../overview/explainability) first to
@@ -50,6 +49,14 @@ This guide demonstrates:
 - Viewing full reasoning traces
 - Tracing edges back to source documents
 - Querying provenance data directly
+
+## Authentication
+
+All CLI commands require a valid authentication token:
+
+```bash
+export TRUSTGRAPH_TOKEN="tg_my-secret-token"
+```
 
 ## Step 1: Run an Explainable GraphRAG Query
 

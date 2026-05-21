@@ -1,7 +1,7 @@
 ---
 title: tg-load-doc-embeds
 parent: CLI
-review_date: 2026-12-30
+review_date: 2027-05-21
 ---
 
 # tg-load-doc-embeds
@@ -36,7 +36,7 @@ The command reads document embedding data and streams it to TrustGraph's documen
 | `-t, --token TOKEN` | `$TRUSTGRAPH_TOKEN` | Authentication token |
 | `-f, --flow-id ID` | `default` | Flow instance ID to use |
 | `--format FORMAT` | `msgpack` | Input format - `msgpack` or `json` |
-| `--user USER` | (from input) | Override user ID from input data |
+| `--workspace WORKSPACE` | (from input) | Override workspace from input data |
 | `--collection COLLECTION` | (from input) | Override collection ID from input data |
 
 ## Examples
@@ -94,6 +94,7 @@ Components:
 
 - `TRUSTGRAPH_API`: Default API URL
 - `TRUSTGRAPH_TOKEN`: Default authentication token
+- `TRUSTGRAPH_WORKSPACE`: Default workspace identifier
 
 ## Related Commands
 

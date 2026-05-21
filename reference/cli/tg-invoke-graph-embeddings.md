@@ -1,7 +1,7 @@
 ---
 title: tg-invoke-graph-embeddings
 parent: CLI
-review_date: 2027-01-01
+review_date: 2027-05-21
 ---
 
 # tg-invoke-graph-embeddings
@@ -33,7 +33,7 @@ Searches for graph entities similar to the query text using vector embeddings. R
 | `-u, --url URL` | `$TRUSTGRAPH_URL` or `http://localhost:8088/` | API URL |
 | `-t, --token TOKEN` | `$TRUSTGRAPH_TOKEN` | Authentication token |
 | `-f, --flow-id ID` | `default` | Flow ID |
-| `-U, --user USER` | `trustgraph` | User identifier |
+| `-w, --workspace WORKSPACE` | `$TRUSTGRAPH_WORKSPACE` or `default` | Workspace identifier |
 | `-c, --collection COLL` | `default` | Collection identifier |
 | `-l, --limit N` | `10` | Maximum results |
 
@@ -49,6 +49,7 @@ tg-invoke-graph-embeddings -l 20 -C research "neural networks"
 
 - `TRUSTGRAPH_URL`: Default API URL
 - `TRUSTGRAPH_TOKEN`: Default authentication token
+- `TRUSTGRAPH_WORKSPACE`: Default workspace identifier
 
 ## Related Commands
 

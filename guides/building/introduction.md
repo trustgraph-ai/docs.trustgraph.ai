@@ -15,6 +15,8 @@ guide_banner: intro.jpg
 guide_labels:
   - Introduction
   - Resources
+todo: true
+todo_notes: Needs updating to cover both Pulsar and RabbitMQ as supported pub/sub backends — explain the differences and when you might choose one over the other
 ---
 
 # Introduction to building with TrustGraph

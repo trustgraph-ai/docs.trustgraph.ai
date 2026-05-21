@@ -1,7 +1,7 @@
 ---
 title: tg-show-library-processing
 parent: CLI
-review_date: 2026-03-12
+review_date: 2027-05-21
 ---
 
 # tg-show-library-processing
@@ -25,7 +25,7 @@ The `tg-show-library-processing` command lists all library document processing r
 | Option | Default | Description |
 |--------|---------|-------------|
 | `-u, --api-url URL` | `$TRUSTGRAPH_URL` or `http://localhost:8088/` | TrustGraph API URL |
-| `-U, --user USER` | `trustgraph` | User ID to filter processing records |
+| `-w, --workspace WORKSPACE` | `$TRUSTGRAPH_WORKSPACE` or `default` | Workspace identifier |
 | `-t, --token TOKEN` | `$TRUSTGRAPH_TOKEN` | Authentication token |
 
 ## Examples
@@ -35,9 +35,9 @@ The `tg-show-library-processing` command lists all library document processing r
 tg-show-library-processing
 ```
 
-### Show Processing for Specific User
+### Show Processing for Specific Workspace
 ```bash
-tg-show-library-processing -U "research-team"
+tg-show-library-processing -w "research-team"
 ```
 
 ## Output Format
@@ -73,6 +73,7 @@ No processing objects.
 
 - `TRUSTGRAPH_URL`: Default API URL
 - `TRUSTGRAPH_TOKEN`: Default authentication token
+- `TRUSTGRAPH_WORKSPACE`: Default workspace identifier
 
 ## Related Commands
 

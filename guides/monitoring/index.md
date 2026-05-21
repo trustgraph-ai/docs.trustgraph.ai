@@ -3,7 +3,7 @@ title: Monitoring
 parent: Managing operations
 grand_parent: How-to Guides
 nav_order: 1
-review_date: 2026-04-17
+review_date: 2026-11-01
 guide_category:
   - Managing operations
 guide_category_order: 1
@@ -49,7 +49,9 @@ TrustGraph deployments include a complete observability stack for monitoring sys
 TrustGraph components expose metrics and logs automatically. The monitoring stack currently captures:
 - All TrustGraph processing components (flows, queues, processors)
 - API gateway request/response metrics
-- Pulsar message queue statistics
+- Pub/sub message queue statistics (TrustGraph supports multiple pub/sub
+  systems e.g. Pulsar and RabbitMQ, but the monitoring looks roughly the
+  same)
 - System resource usage
 
 **Note:** Infrastructure components (Cassandra, Pulsar, etc.) are not yet integrated into the monitoring stack but may be added in future releases.
@@ -60,9 +62,9 @@ Grafana provides the primary interface for viewing metrics and logs.
 
 Access Grafana at `http://localhost:3000` (or your deployment hostname).
 
-Default credentials:
-- Username: `admin`
-- Password: `admin`
+Login with username `admin` and the password you set in
+`GF_SECURITY_ADMIN_PASSWORD` (or retrieved from `pulumi stack output`
+for cloud deployments).
 
 ![Grafana overview screen](overview.jpg)
 

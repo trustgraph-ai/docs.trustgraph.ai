@@ -1,7 +1,7 @@
 ---
 title: tg-stop-library-processing
 parent: CLI
-review_date: 2026-05-24
+review_date: 2027-05-21
 ---
 
 # tg-stop-library-processing
@@ -35,7 +35,7 @@ The processing ID must be a URI. While the value isn't presently used, a future 
 | Option | Default | Description |
 |--------|---------|-------------|
 | `-u, --api-url URL` | `$TRUSTGRAPH_URL` or `http://localhost:8088/` | TrustGraph API URL |
-| `-U, --user USER` | `trustgraph` | User ID |
+| `-w, --workspace WORKSPACE` | `$TRUSTGRAPH_WORKSPACE` or `default` | Workspace identifier |
 | `-t, --token TOKEN` | `$TRUSTGRAPH_TOKEN` | Authentication token |
 
 ## Examples
@@ -45,9 +45,9 @@ The processing ID must be a URI. While the value isn't presently used, a future 
 tg-stop-library-processing --id "urn:trustgraph:processing:123456789"
 ```
 
-### Remove with Custom User
+### Remove with Custom Workspace
 ```bash
-tg-stop-library-processing --id "urn:trustgraph:processing:research-001" -U "research-team"
+tg-stop-library-processing --id "urn:trustgraph:processing:research-001" -w "research-team"
 ```
 
 ## Notes
@@ -60,6 +60,7 @@ Use [`tg-show-library-processing`](tg-show-library-processing) to view current p
 
 - `TRUSTGRAPH_URL`: Default API URL
 - `TRUSTGRAPH_TOKEN`: Default authentication token
+- `TRUSTGRAPH_WORKSPACE`: Default workspace identifier
 
 ## Related Commands
 

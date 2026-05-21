@@ -1,7 +1,7 @@
 ---
 title: tg-invoke-agent
 parent: CLI
-review_date: 2027-01-01
+review_date: 2027-05-21
 ---
 
 # tg-invoke-agent
@@ -33,7 +33,7 @@ Provides an interactive interface to TrustGraph's ReAct agent. The agent uses co
 | `-u, --url URL` | `$TRUSTGRAPH_URL` or `http://localhost:8088/` | API URL |
 | `-t, --token TOKEN` | `$TRUSTGRAPH_TOKEN` | Authentication token |
 | `-f, --flow-id FLOW` | `default` | Flow ID |
-| `-U, --user USER` | `trustgraph` | User identifier |
+| `-w, --workspace WORKSPACE` | `$TRUSTGRAPH_WORKSPACE` or `default` | Workspace identifier |
 | `-C, --collection COLLECTION` | `default` | Collection identifier |
 | `-l, --plan PLAN` | None | Agent plan specification |
 | `-s, --state STATE` | None | Agent initial state |
@@ -60,6 +60,7 @@ tg-invoke-agent -q "Search for AI papers" -g knowledge read-only
 
 - `TRUSTGRAPH_URL`: Default API URL
 - `TRUSTGRAPH_TOKEN`: Default authentication token
+- `TRUSTGRAPH_WORKSPACE`: Default workspace identifier
 
 ## Related Commands
 

@@ -3,7 +3,7 @@ title: Working with Context Cores using CLI
 parent: Advanced knowledge management
 grand_parent: How-to Guides
 nav_order: 5
-review_date: 2026-06-01
+review_date: 2026-11-01
 guide_category:
   - Advanced knowledge management
 guide_category_order: 4
@@ -44,6 +44,14 @@ This guide demonstrates:
 - Downloading cores via CLI
 - Uploading cores to other instances
 - Loading cores into retrieval stores
+
+## Authentication
+
+All CLI commands require a valid authentication token:
+
+```bash
+export TRUSTGRAPH_TOKEN="tg_my-secret-token"
+```
 
 ## Step-by-Step Guide
 

@@ -1,7 +1,7 @@
 ---
 title: tg-set-mcp-tool
 parent: CLI
-review_date: 2026-05-31
+review_date: 2027-05-21
 ---
 
 # tg-set-mcp-tool

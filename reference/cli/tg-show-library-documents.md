@@ -1,7 +1,7 @@
 ---
 title: tg-show-library-documents
 parent: CLI
-review_date: 2026-09-24
+review_date: 2027-05-21
 ---
 
 # tg-show-library-documents
@@ -25,7 +25,7 @@ The `tg-show-library-documents` command displays all documents currently stored 
 | Option | Default | Description |
 |--------|---------|-------------|
 | `-u, --api-url URL` | `$TRUSTGRAPH_URL` or `http://localhost:8088/` | TrustGraph API URL |
-| `-U, --user USER` | `trustgraph` | User ID to filter documents |
+| `-w, --workspace WORKSPACE` | `$TRUSTGRAPH_WORKSPACE` or `default` | Workspace identifier |
 | `-t, --token TOKEN` | `$TRUSTGRAPH_TOKEN` | Authentication token |
 
 ## Examples
@@ -35,9 +35,9 @@ The `tg-show-library-documents` command displays all documents currently stored 
 tg-show-library-documents
 ```
 
-### List Documents for Specific User
+### List Documents for Specific Workspace
 ```bash
-tg-show-library-documents -U "research-team"
+tg-show-library-documents -w "research-team"
 ```
 
 ## Output Format
@@ -73,6 +73,7 @@ No documents.
 
 - `TRUSTGRAPH_URL`: Default API URL
 - `TRUSTGRAPH_TOKEN`: Default authentication token
+- `TRUSTGRAPH_WORKSPACE`: Default workspace identifier
 
 ## Related Commands
 

@@ -1,7 +1,7 @@
 ---
 title: tg-start-flow
 parent: CLI
-review_date: 2026-03-16
+review_date: 2027-05-21
 ---
 
 # tg-start-flow

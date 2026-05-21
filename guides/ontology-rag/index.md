@@ -3,7 +3,7 @@ title: Ontology RAG
 nav_order: 3
 parent: Common knowledge management tasks
 grand_parent: How-to Guides
-review_date: 2026-08-01
+review_date: 2026-11-01
 guide_category:
   - Common knowledge management tasks
 guide_category_order: 2
@@ -93,33 +93,7 @@ Before starting:
 
 ## Step-by-Step Guide
 
-### Step 1: Load Your Document
-
-TrustGraph supports multiple document formats:
-- PDF files (`.pdf`)
-- Text files (`.txt`)
-- Markdown (`.md`)
-- HTML (`.html`)
-
-We're going to start by using a fictional maritime tracking report
-which you can download at this URL:
-
-[https://raw.githubusercontent.com/trustgraph-ai/example-data/refs/heads/main/tracking/operation-phantom-cargo.md](https://raw.githubusercontent.com/trustgraph-ai/example-data/refs/heads/main/tracking/operation-phantom-cargo.md).
-
-- Download [the document](https://raw.githubusercontent.com/trustgraph-ai/example-data/refs/heads/main/tracking/operation-phantom-cargo.md)
-- Go the 'Library' page
-- Click 'Upload documents'
-- Set the title: PHANTOM CARGO
-- Set the Comments to: Intelligence report: Operation PHANTOM CARGO
-- Set keywords: maritime, intelligence, cargo, grey arms
-- Select 'Text' for the upload operation
-- Click 'Select text files'
-- Add the document you just downloaded
-- Click Submit
-
-<img src="load-document.png" alt="Load document dialogue"/>
-
-### Step 2: Load the Ontology
+### Step 1: Load the Ontology
 
 The ontology we're going to use is the SSN with SOSA extensions.  This is a
 standard ontology family defined by the W3C.
@@ -180,78 +154,93 @@ Download the ontology in standard Turtle format at the following URL:
 
 Then load the ontology:
 
-- On the workbench, go to the settings page, and in the Feature Switches
-  section, ensure 'Ontology Editor' is enabled
-- Go to the Ontologies page
-- Click 'Import Ontology'
-- Click the 'Select File' section, and select the ontology you just
-  downloaded
-- At the bottom of the dialog click 'Import'
+- On the Workflows page, select **Ontology Management**
+- Click **Import OWL/Turtle...** at the bottom of the panel
+- Select the ontology file you just downloaded
 
 At this point you should be looking at a structured view of the ontology.
-You can explore the structure of the ontology in this editor.  The ontology
-contains classes, properties and datatypes.
+The ontology editor can be used to explore and add information to an
+existing ontology.  The ontology contains classes, properties and
+datatypes.
 
 <img src="ssn-ontology.png" alt="SSN ontology in ontology editor"/>
 
-### Step 3: Create a Collection
+OWL (Web Ontology Language) ontologies are formal descriptions of
+concepts and their relationships within a domain.  They define classes
+(types of things), properties (relationships between things), and
+constraints on how those relate.  A full treatment of OWL ontologies
+is beyond the scope of this guide.
 
-A collection is used to organise a set of related documents or data sources
-into a single unit.  Retrieval operations operate across a single collection.
+If you want to create your own ontologies, your favourite LLM (e.g.
+Claude or Gemini) can help move from a discussion of the information
+space to drafting OWL ontologies.  Make sure to capture them in Turtle
+format, and tell the LLM to use `rdfs:label` and `rdf:description` on
+all ontology elements — this is needed to power TrustGraph's ontology
+extraction pipeline.
 
-We'll create an 'intelligence' collection:
+### Step 2: Load Your Document
 
-- Go to the 'Library' page
-- Select the 'Collections' tab
-- Click 'Create Collection'
-- Set the ID: intelligence
-- Set the name: Intelligence
-- Set the description to: Intelligence analysis
-- Click 'Submit'
+TrustGraph supports multiple document formats:
+- PDF files (`.pdf`)
+- Text files (`.txt`)
+- Markdown (`.md`)
+- HTML (`.html`)
 
-### Step 4: Create the Flow
+We're going to start by using a fictional maritime tracking report
+which you can download at this URL:
 
-A flow describes the collection of processing operations.  We're going
-to create a single flow for Ontology RAG processing.
+[https://raw.githubusercontent.com/trustgraph-ai/example-data/refs/heads/main/tracking/operation-phantom-cargo.md](https://raw.githubusercontent.com/trustgraph-ai/example-data/refs/heads/main/tracking/operation-phantom-cargo.md).
 
-We'll create a 'onto-rag' flow:
+- Download [the document](https://raw.githubusercontent.com/trustgraph-ai/example-data/refs/heads/main/tracking/operation-phantom-cargo.md)
+- Go to the Workflows page and click **+ Add Document**
+- A new dialogue appears — click the filename button and select the
+  file you downloaded.  The MIME type field should fill in automatically.
+- Set the Title: Operation PHANTOM CARGO
+- Set the Description to: Intelligence report: Operation PHANTOM CARGO
+- Add tags: phantom cargo, intelligence, maritime, shipping
+- Click **Upload**
 
-- Go to the 'Flows' page
-- Click 'Create'
-- Select the flow blueprint 'Ontology RAG Only'
-- Set the ID: onto-rag
-- Set the description: Ontology RAG
-- Click 'Create'
+The document shows upload progress.  On upload completing, the new
+document outline changes to a solid line.
 
-### Step 5: Submit the Document for Processing
+### Step 3: Submit the Document for Processing
 
-This pushes the document into the flow input.
+Once the document is uploaded, click **Submit for Processing** on the
+document detail panel.  A 3-step wizard appears to select a flow and
+collection.
 
-There is a selection widget top right of the screen with an database icon
-top left.
+**Select a flow:** For Ontology RAG we need to start a new flow.  The
+wizard shows available flow blueprints:
 
-<img src="selection.png" alt="Selection widget"/>
+<img src="select-flow-blueprint.png" alt="Flow blueprint selection"/>
 
-Click that to open the collection/flow selector, and select the
-Intelligence collection, and Graph RAG, both of which you created earlier.
+Select the **ontology** blueprint.  Set the Flow ID to `onto-rag` and
+the Description to `Ontology RAG`.  You can also select the LLM model
+to use and adjust advanced parameters.
 
-<img src="collection-selected.png" alt="Selection dialogue"/>
+<img src="select-flow-ontology.png" alt="Ontology flow configuration"/>
 
-You are ready to submit the document:
+**Select a collection:** Choose which collection the results should be
+stored in.  For this guide, select **default**.
 
-- Go to the 'Library' page
-- Select the PHANTOM CARGO document so that the tick box is selected
-- Click 'Submit' at the bottom of the page
-- Change the Processing flow to Ontology RAG
-- Click Submit
+**Confirm:** Review the document, flow and collection selections.  Note
+that it shows the new flow will be created using the ontology blueprint.
+Click **Submit for Processing**.
 
-From hereon, everything is very similar to GraphRAG.
+<img src="confirm-processing.png" alt="Confirm processing dialogue"/>
+
+The main page reconfigures to show the document with its processing
+pipelines.  Note that Ontology RAG produces a KG (Ontology) store and
+a Context Core — unlike the default flow, there is no Chunk Store
+because Ontology RAG does not run Document RAG processing.
+
+<img src="document-processing.png" alt="Ontology RAG processing pipelines"/>
 
 ### Step 6: Monitoring
 
 If you want to see the document loading, you can go to Grafana at
-[`http://localhost:3000`](http://localhost:3000).  The default
-login user is admin, password admin.  Grafana is configured with a single
+[`http://localhost:3000`](http://localhost:3000).  Login with username `admin` and the password you set in
+`GF_SECURITY_ADMIN_PASSWORD`.  Grafana is configured with a single
 dashboard.  Some useful things to monitor are:
 
 The pub/sub backlog.  You can monitor the size of queues in Pulsar.
@@ -291,65 +280,85 @@ and cleared quickly.
 It can take many minutes or hours to process large documents or large document
 sets using Ontology RAG extraction.
 
-### Step 7: Retrieval
+### Step 7: Context Graph
 
-Retrieval in Graph RAG consists of mapping the question to a set of candidate
-graph entities, and then following graph edges to create a subgraph, which
-is used as context with the LLM.
+From the Workflows page, select **Context Graph**.  This is similar to
+the Graph Explorer but takes advantage of the richer type information
+in an ontology-based knowledge graph by clustering nodes around their
+ontology types.  Because the graph has much more type information,
+the Context Graph provides a powerful way to visualise and navigate the
+structured knowledge.
 
-- Ensure the correct collection and flow are selected in the selection widget
-- Navigate to the 'Assistant' page
-- Select 'Graph RAG' assistant
-- Enter the question: What intelligence resources were using during the PHANTOM CARGO operation?
-- Press 'Send' and wait for the answer
+Clicking a node highlights it and its related edges, and opens a detail
+panel on the right showing node properties and navigation links.
 
-### Step 8: Explore the knowledge graph
+<img src="context-graph.png" alt="Context Graph viewer"/>
 
-The Workbench provides access to some more tools you can play with.
+<img src="context-graph-detail.png" alt="Context Graph with node selected"/>
 
-- Select Vector search
-- The search box enter 'optical'
-- Click 'Send'
+### Ontology Viewer
 
-This executes a search in the vector store for graph entities which are listed
-along with the graph node description and the vector similarity score.
-The exact view may vary depending on the LLM model you are using and the
-entities discovered by it.
+From the Workflows page, select **Ontology Viewer**.  This displays the
+ontology types as cards with their extracted instances listed beneath
+them.  This is another way to explore the ontology-based knowledge graph,
+showing how extracted entities have been classified against the ontology
+types.
 
-<img src="vector-results.png" alt="Vector results table"/>
+Note that this view relies on ontology processing having completed —
+it is not enough to have loaded an ontology.  Without ontology
+processing there will be no instances to display.
 
-This is a list of graph nodes.  Clicking on an item moves to a node
-exploration view, showing graph nodes related to the selected node.
-Clicking on CSO-class optical reconnaissance satellite shows
-relationships:
+<img src="ontology-viewer.png" alt="Ontology Viewer showing types and instances"/>
 
-<img src="relationships.png" alt="Relationships view"/>
+### Step 8: Query with Graph RAG
 
-Each row is a graph edge, on the left-hand side is the subject of the
-graph node, the middle term shows the predicate (relationship), and the
-right-hand side is the object (end node) of the relationship.
-On this view you can navigate from the graph node show to other nodes by
-clicking on the details.  Clicking on the 'subject of' relationship
-shows a long list of all 'subject of' relationships which is a common term.
+From the Workflows page, select **Graph RAG Query**.  This console has
+full Explainable AI enabled, which helps to understand and diagnose
+retrieval.
 
-<img src="relationships2.png" alt="Relationships view"/>
+Enter the question: What intelligence resources were using during the
+PHANTOM CARGO operation?  After a short while you should see a response.
 
-The 'subject of' relationship links discovered entities to the document
-from which they were taken.  The right-hand side entities represent the
-PHANTOM CARGO document itself.  Clicking that shows relationships, including
-a 'has type' showing that 'PHANTOM CARGO' is a 'digital document'.
+<img src="onto-rag-query.png" alt="Ontology RAG query result"/>
 
-<img src="relationships3.png" alt="Relationships view"/>
+On the left-hand side you see the answer to the query.  The bottom right
+part of the screen shows the various explainability events, starting from
+the question:
 
-Once you have an interesting node, you can click 'Graph view' to switch to
-a 3D graph view.  This is navigable.  Clicking a node shows a panel on the
-right-hand side allowing you to see node properties, along with controls
-to navigate relationships.  This adds further nodes to the graph.
+- **Grounding** — where retrieval selects key concepts for discovery
+- **Exploration** — where graph nodes are selected for analytics
+- **Focus** — where the system decides on a core set of graph edges to
+  resolve the question
+- **Synthesis** — where this is processed to provide an answer
 
-<img src="3d.png" alt="3D graph view"/>
+The **Focus** event may be of particular interest as you can trace graph
+edges all the way back to the source documents.
 
-You can rotate the graph and navigate 3D space using the mouse /
-pointer controls.
+### Step 9: Explore the knowledge graph
+
+From the Workflows page, select **Graph Explorer**.  This shows what's
+in the knowledge graph with tools for viewing and searching.
+
+The graph can be easier to see in 3D — click the **3D** button above
+the graph view.
+
+If you click a node, it will be highlighted along with its related
+edges.  A side panel also appears showing node properties and
+highlighted links that allow you to navigate to related nodes.
+
+On the top left is a **Search** button which opens a search dialog.
+You can enter text for a similarity search against nodes in the graph.
+Matching nodes are listed and can be selected, which adds them to the
+graph along with their neighbours.
+
+Ontology RAG provides a much richer set of connections in the graph
+compared to schema-free Graph RAG, so expect to see more consistency
+and more inter-connected paths in the knowledge graph explorer.
+
+<img src="graph-explorer.png" alt="Graph Explorer with ontology-based knowledge graph"/>
+
+There is also a **Clear** button which resets the graph back to an
+empty state.
 
 ## Further exploration
 
@@ -371,8 +380,6 @@ to extract knowledge in a particularly precise manner.  For complex use-cases
 this means that the knowledge going into retrieval contexts is packed with
 the right information to answer the question.  This is a major advantage
 for complex information analysis use-cases.
-
-<img src="onto-rag-result.png" alt="Ontology rag result"/>
 
 ## Ontology RAG vs. Other Approaches
 

@@ -1,7 +1,7 @@
 ---
 title: tg-get-kg-core
 parent: CLI
-review_date: 2026-03-21
+review_date: 2027-05-21
 ---
 
 # tg-get-kg-core
@@ -33,7 +33,7 @@ The `tg-get-kg-core` command retrieves a stored knowledge core from TrustGraph a
 |--------|---------|-------------|
 | `-u, --url URL` | `$TRUSTGRAPH_URL` or `ws://localhost:8088/` | TrustGraph API URL (WebSocket) |
 | `-t, --token TOKEN` | `$TRUSTGRAPH_TOKEN` | Authentication token |
-| `-U, --user USER` | `trustgraph` | User identifier |
+| `-w, --workspace WORKSPACE` | `$TRUSTGRAPH_WORKSPACE` or `default` | Workspace identifier |
 
 ## Examples
 
@@ -55,13 +55,13 @@ tg-get-kg-core --id "large-core" -o large-core.msgpack
 gzip large-core.msgpack
 ```
 
-### Custom User and API
+### Custom Workspace and API
 ```bash
 tg-get-kg-core \
   --id "remote-core" \
   -o remote-backup.msgpack \
   -u ws://production:8088/ \
-  -U medical-team
+  -w medical-team
 ```
 
 ## Output Format
@@ -77,6 +77,7 @@ The MessagePack file contains two types of messages:
 
 - `TRUSTGRAPH_URL`: Default API URL (automatically converted to WebSocket format)
 - `TRUSTGRAPH_TOKEN`: Default authentication token
+- `TRUSTGRAPH_WORKSPACE`: Default workspace identifier
 
 ## Related Commands
 

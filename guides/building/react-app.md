@@ -16,6 +16,8 @@ guide_labels:
   - React
   - TypeScript
   - Web App
+todo: true
+todo_notes: Needs updating for the new authentication model — add TRUSTGRAPH_TOKEN setup, replace user parameter with workspace, and update all code examples to use the token-based API
 ---
 
 # Building with React and TypeScript

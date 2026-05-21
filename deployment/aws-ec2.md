@@ -3,7 +3,7 @@ title: AWS EC2 Single Instance
 nav_order: 7
 parent: Deployment
 grand_parent: TrustGraph Documentation
-review_date: 2026-04-20
+review_date: 2026-11-01
 guide_category:
   - Standalone deployment
 guide_category_order: 3
@@ -50,7 +50,7 @@ This guide walks you through deploying TrustGraph on a single AWS EC2 instance u
 
 Once deployed, you'll have a complete TrustGraph stack running on AWS infrastructure with:
 - Single EC2 instance (t3.2xlarge, configurable)
-- AWS Bedrock integration (Claude 3.5 Haiku)
+- AWS Bedrock integration (Claude, Llama, Mistral, DeepSeek, Amazon Nova and more)
 - Complete monitoring with Grafana and Prometheus
 - Web workbench for document processing and Graph RAG
 - Secure IAM role-based authentication
@@ -103,8 +103,8 @@ AWS Bedrock requires explicit model access enablement:
 3. Go to **Model access** in the left navigation
 4. Click **Manage model access**
 5. Enable access to:
-   - **Anthropic Claude 3.5 Haiku** (recommended default)
-   - **Mistral Nemo Instruct** (optional alternative)
+   - **Anthropic Claude Haiku 4.5** (recommended default)
+   - **Meta Llama 4**, **Mistral Large 3**, **DeepSeek-R1**, **Amazon Nova** (optional alternatives)
    - Other models as desired
 6. Click **Save changes**
 
@@ -236,7 +236,7 @@ Apply settings for instance type and AWS Bedrock model:
 
 ```bash
 pulumi config set instanceType t3.2xlarge
-pulumi config set bedrockModel anthropic.claude-3-5-haiku-20241022-v1:0
+pulumi config set bedrockModel global.anthropic.claude-haiku-4-5-20251001-v1:0
 ```
 
 Available instance types:
@@ -245,10 +245,31 @@ Available instance types:
 - `m5.2xlarge` - 8 vCPUs, 32 GB RAM (better performance)
 - `m5.4xlarge` - 16 vCPUs, 64 GB RAM (high performance)
 
-Available Bedrock models:
-- `anthropic.claude-3-5-haiku-20241022-v1:0` (fast, cost-effective)
-- `anthropic.claude-3-5-sonnet-20241022-v2:0` (advanced reasoning)
-- `mistral.mistral-nemo-instruct-2407-v1:0` (alternative)
+Available Bedrock models (selection):
+
+**Anthropic Claude**:
+- `global.anthropic.claude-opus-4-6-v1` (maximum intelligence)
+- `global.anthropic.claude-opus-4-5-20251101-v1:0` (frontier coding + agents)
+- `global.anthropic.claude-sonnet-4-5-20250929-v1:0` (complex agents + coding)
+- `global.anthropic.claude-haiku-4-5-20251001-v1:0` (fastest with near-frontier intelligence)
+- `global.anthropic.claude-sonnet-4-20250514-v1:0` (Sonnet 4.0)
+
+**Meta Llama**:
+- `us.meta.llama4-maverick-17b-instruct-v1:0` (128 experts, 400B params, multimodal)
+- `us.meta.llama4-scout-17b-instruct-v1:0` (16 experts, 3.5M context)
+- `us.meta.llama3-3-70b-instruct-v1:0` (Llama 3.3 70B Instruct)
+
+**Mistral AI**:
+- `us.mistral.mistral-large-2511-v1:0` (flagship text, 128K context)
+- `us.mistral.magistral-small-2506-v1:0` (reasoning, cost-effective)
+
+**DeepSeek**:
+- `us.deepseek.r1-v1:0` (reasoning)
+
+**Amazon Nova**:
+- `us.amazon.nova-pro-v1:0` (multimodal, balanced)
+- `us.amazon.nova-lite-v1:0` (fast, multimodal)
+- `us.amazon.nova-micro-v1:0` (text-only, cheapest)
 
 Refer to the repository's README for additional configuration options.
 
@@ -316,8 +337,18 @@ Key outputs:
 - `instanceIp` - Public IP address of the EC2 instance
 - `sshCommand` - Command to SSH to the instance
 - `privateKey` - SSH private key (saved to `ssh-private.key`)
+- `iamToken` - Auto-generated IAM bootstrap token
+- `grafanaPassword` - Auto-generated Grafana admin password
 
 The SSH private key is automatically saved to `ssh-private.key` in the current directory.
+
+The IAM bootstrap token and Grafana admin password are auto-generated
+by Pulumi. Retrieve them with:
+
+```bash
+pulumi stack output iamToken --show-secrets
+pulumi stack output grafanaPassword --show-secrets
+```
 
 ### Set SSH key permissions
 
@@ -357,6 +388,20 @@ All containers should show `Up` status. If some containers are still starting, w
 
 {% include deployment/install-cli-tools.md %}
 
+Set the IAM bootstrap token so that CLI tools can authenticate:
+
+```bash
+export TRUSTGRAPH_TOKEN=$(pulumi stack output iamToken --show-secrets -C pulumi)
+```
+
+## Grafana access
+
+Login to Grafana with username `admin` and the password from:
+
+```bash
+pulumi stack output grafanaPassword --show-secrets -C pulumi
+```
+
 ## Startup period
 
 It can take 2-3 minutes for all services to stabilize after deployment. Services like Pulsar and Cassandra need time to initialize properly.
@@ -394,10 +439,6 @@ This confirms that TrustGraph can successfully communicate with AWS Bedrock serv
 ### Load a document
 
 {% include deployment/workbench/load-document.md %}
-
-### Use Vector search
-
-{% include deployment/workbench/vector-search.md %}
 
 ### Look at knowledge graph
 
@@ -759,7 +800,7 @@ The EC2 instance uses an IAM role with Bedrock permissions. The role follows lea
 Now that you have TrustGraph running on AWS EC2:
 
 - **Guides**: See [Guides](../guides) for things you can do with your running TrustGraph
-- **Experiment with models**: Try different Bedrock models (Claude Sonnet, Mistral, etc.)
+- **Experiment with models**: Try different Bedrock models (Claude, Llama, Mistral, DeepSeek, Amazon Nova, etc.)
 - **Scale up**: Upgrade instance type for better performance
 - **Production migration**: When ready, migrate to [AWS RKE deployment](aws-rke) for production use
 - **Customize containers**: Modify Podman Compose configuration for your needs

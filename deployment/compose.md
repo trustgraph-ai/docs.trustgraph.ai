@@ -3,7 +3,7 @@ title: Docker / Podman Compose
 nav_order: 1
 parent: Deployment
 grand_parent: TrustGraph Documentation
-review_date: 2026-03-20
+review_date: 2026-11-01
 guide_category:
   - Standalone deployment
 guide_category_order: 1
@@ -102,7 +102,7 @@ read [WSL networking and self-hosted models](wsl-networking).
 Use the
 [TrustGraph Configuration Builder](https://config-ui.demo.trustgraph.ai/)
 to generate your deployment configuration.  By default, the configurator
-selects the newest stable deployment.  To be compatible with this installation guide, you should make sure to use a version later than 1.8.9.
+selects the newest stable deployment.  To be compatible with this installation guide, you should make sure to use version 2.4 or later.
 
 {: .note }
 Remember the version number it is set up to deploy, you will need to know that to install CLI tools!
@@ -212,13 +212,13 @@ sudo chcon -Rt svirt_sandbox_file_t garage/ loki/ grafana/ prometheus/ trustgrap
 You need to have access to TrustGraph client tools.  In the terminal
 window you created above, install a virtual environment, and the
 TrustGraph CLI tools.  Make sure the version number of the CLI tools
-matches the version you chose to build a configuration for earlier.
-i.e. replace `1.8.9` with the version you used earlier.
+matches the version you chose to build a configuration for earlier,
+e.g. replace `2.4.29` with the version you used earlier.
 
 ```sh
 python3 -m venv env
 . env/bin/activate
-pip install trustgraph-cli==1.8.9
+pip install trustgraph-cli==2.4.29
 ```
 
 ## Configure LLM settings
@@ -230,19 +230,25 @@ you need to prepare:
 
 ## Configure security settings
 
-For this local deployment, set the following security variables to
-empty strings to disable authentication:
+On first cold start, TrustGraph creates a security account with an API token
+initialised from the `IAM_BOOTSTRAP_TOKEN` environment variable. This value
+is only used for the initial cold start — once the system is running, you
+can add accounts and change API tokens through the workbench.
+
+The `IAM_BOOTSTRAP_TOKEN` must have a `tg_` prefix so that it is recognised
+as a valid API key.
+
+The Grafana admin account password is set from the
+`GF_SECURITY_ADMIN_PASSWORD` environment variable.
+
+Set these before launching TrustGraph:
 
 ```sh
-export MCP_SERVER_SECRET=""
-export GATEWAY_SECRET=""
+export IAM_BOOTSTRAP_TOKEN="tg_my-secret-token"
+export GF_SECURITY_ADMIN_PASSWORD="my-grafana-password"
 ```
 
-The `MCP_SERVER_SECRET` protects the MCP server with a secret but is not fully
-implemented yet. The `GATEWAY_SECRET` provides single-secret protection for the
-gateway API, which does not currently support comprehensive API security. For a
-local non-networked deployment, it is safe to disable authentication by setting
-these to empty strings.
+Replace the values above with your own secrets.
 
 ## Launch TrustGraph
 
@@ -263,6 +269,14 @@ podman-compose -f docker-compose.yaml up -d
    content1=docker
    content2=podman
 %}
+
+### Authenticate CLI tools
+
+All CLI access requires `TRUSTGRAPH_TOKEN` to be set to a valid API token:
+
+```bash
+export TRUSTGRAPH_TOKEN="${IAM_BOOTSTRAP_TOKEN}"
+```
 
 ### Startup period
 
@@ -286,6 +300,11 @@ guide are a whistle-stop tour through various parts of the system.
 
 {% include deployment/application-localhost/workbench.md %}
 
+## Grafana access
+
+Login to Grafana with username `admin` and the password you set in
+`GF_SECURITY_ADMIN_PASSWORD` earlier.
+
 ## Monitoring dashboard
 
 {% include deployment/application-localhost/monitoring-dashboard.md %}
@@ -299,10 +318,6 @@ guide are a whistle-stop tour through various parts of the system.
 ### Load a document
 
 {% include deployment/workbench/load-document.md %}
-
-### Use Vector search
-
-{% include deployment/workbench/vector-search.md %}
 
 ### Look at knowledge graph
 
@@ -546,8 +561,8 @@ podman logs -f <container-name>
 %}
 
 Alternatively, view aggregated logs in the Grafana dashboard at
-[http://localhost:3000/](http://localhost:3000/) (default credentials:
-admin/admin). The Logs dashboard shows all TrustGraph container logs in one place.
+[http://localhost:3000/](http://localhost:3000/) (login with username
+`admin` and the password you set in `GF_SECURITY_ADMIN_PASSWORD`). The Logs dashboard shows all TrustGraph container logs in one place.
 
 *Resolution:*
 

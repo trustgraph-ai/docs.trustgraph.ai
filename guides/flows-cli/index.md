@@ -3,7 +3,7 @@ title: Managing Flows using CLI
 parent: Advanced knowledge management
 grand_parent: How-to Guides
 nav_order: 5
-review_date: 2026-06-01
+review_date: 2026-11-01
 guide_category:
   - Advanced knowledge management
 guide_category_order: 5
@@ -45,6 +45,14 @@ This guide demonstrates:
 - Creating flows from blueprints
 - Starting and stopping flows
 - Viewing flow configuration
+
+## Authentication
+
+All CLI commands require a valid authentication token:
+
+```bash
+export TRUSTGRAPH_TOKEN="tg_my-secret-token"
+```
 
 ## Step-by-Step Guide
 
@@ -279,15 +287,7 @@ View details of a specific flow blueprint:
 tg-get-flow-blueprint -n graph-rag
 ```
 
-This dumps out the flow blueprint in JSON form.
-
-Output:
-
-```
-Flow 'my-graph-rag' stopped
-```
-
-**Note:** Stopping a flow prevents new documents from being processed by it, but doesn't delete the flow configuration.
+This outputs the flow blueprint definition in JSON form.
 
 ## Next Steps
 

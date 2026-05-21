@@ -3,7 +3,7 @@ title: Document processing with Python API
 nav_order: 5
 parent: Building with TrustGraph
 grand_parent: How-to Guides
-review_date: 2026-08-01
+review_date: 2026-11-01
 guide_category:
   - Building with TrustGraph
 guide_category_order: 5
@@ -51,10 +51,14 @@ The library service (`api.library()`) provides methods for both steps.
 Use `add_document()` to upload a document with metadata:
 
 ```python
+import os
 from trustgraph.api import Api
 
 # Create API client and get library service
-api = Api(url='http://localhost:8088/')
+api = Api(
+    url='http://localhost:8088/',
+    token=os.getenv('TRUSTGRAPH_TOKEN'),
+)
 library = api.library()
 
 # Read document content
@@ -66,12 +70,11 @@ with open('my-document.txt', 'rb') as f:
 library.add_document(
     document=document_content,
     id="https://example.com/docs/my-document",
-    user="trustgraph",
     title="My Document",
     comments="A sample document about cats",
     kind="text/plain",
     tags=["sample", "cats"],
-    metadata=None  # Optional: list of Triple objects for additional metadata
+    metadata=None,
 )
 
 print("Document added to library")
@@ -80,7 +83,6 @@ print("Document added to library")
 **Key parameters:**
 - `document` - Document content as bytes
 - `id` - Document URI (must be a URI, used as entity identifier in knowledge graph)
-- `user` - User ID (default: "trustgraph")
 - `title` - Human-readable document title
 - `comments` - Description or notes about the document
 - `kind` - MIME type (e.g., "text/plain", "application/pdf")
@@ -92,12 +94,16 @@ print("Document added to library")
 Metadata is stored as RDF triples (subject-predicate-object statements) in the knowledge graph. Use `Triple` objects to add structured metadata:
 
 ```python
+import os
 from trustgraph.api import Api
 from trustgraph.api.types import Triple
 from trustgraph.knowledge import Uri, Literal
 
 # Create API client and get library service
-api = Api(url='http://localhost:8088/')
+api = Api(
+    url='http://localhost:8088/',
+    token=os.getenv('TRUSTGRAPH_TOKEN'),
+)
 library = api.library()
 
 # Read document content
@@ -140,12 +146,11 @@ metadata = [
 library.add_document(
     document=document_content,
     id=doc_id,
-    user="trustgraph",
     title="Research Paper on ML Techniques",
     comments="2026 research paper about machine learning",
     kind="application/pdf",
     tags=["research", "ml", "2026"],
-    metadata=metadata
+    metadata=metadata,
 )
 
 print("Document added with RDF metadata")
@@ -166,10 +171,14 @@ Common metadata vocabularies:
 After adding a document to the library, submit it for processing:
 
 ```python
+import os
 from trustgraph.api import Api
 
 # Create API client and get library service
-api = Api(url='http://localhost:8088/')
+api = Api(
+    url='http://localhost:8088/',
+    token=os.getenv('TRUSTGRAPH_TOKEN'),
+)
 library = api.library()
 
 # Start processing
@@ -178,9 +187,8 @@ library.start_processing(
     id="https://example.com/processing/my-document-2026-01",
     document_id="https://example.com/docs/my-document",
     flow="default",
-    user="trustgraph",
     collection="default",
-    tags=["processing", "2026"]
+    tags=["processing", "2026"],
 )
 
 print("Document submitted for processing")
@@ -190,7 +198,6 @@ print("Document submitted for processing")
 - `id` - Processing record URI (must be unique)
 - `document_id` - Document URI from library (must match the document's id)
 - `flow` - Flow ID to use for processing (default: "default")
-- `user` - User ID (default: "trustgraph")
 - `collection` - Collection name for storing results (default: "default")
 - `tags` - Tags for organizing processing records
 
@@ -199,6 +206,7 @@ print("Document submitted for processing")
 This example shows the complete workflow:
 
 ```python
+import os
 from trustgraph.api import Api
 
 # Configuration
@@ -208,7 +216,10 @@ DOCUMENT_ID = "https://example.com/docs/my-document"
 PROCESSING_ID = "https://example.com/processing/my-document-2026-01"
 
 # Create API client and get library service
-api = Api(url=API_URL)
+api = Api(
+    url=API_URL,
+    token=os.getenv('TRUSTGRAPH_TOKEN'),
+)
 library = api.library()
 
 # Step 1: Read document content
@@ -219,26 +230,22 @@ with open(DOCUMENT_PATH, 'rb') as f:
 library.add_document(
     document=document_content,
     id=DOCUMENT_ID,
-    user="trustgraph",
     title="My Document",
     comments="A sample document for processing",
     kind="text/plain",
-    tags=["sample", "2026"]
+    tags=["sample", "2026"],
 )
-print(f"✓ Document added to library: {DOCUMENT_ID}")
+print(f"Document added to library: {DOCUMENT_ID}")
 
 # Step 3: Submit for processing
 library.start_processing(
     id=PROCESSING_ID,
     document_id=DOCUMENT_ID,
     flow="default",
-    user="trustgraph",
     collection="default",
-    tags=["processing"]
+    tags=["processing"],
 )
-print(f"✓ Processing started: {PROCESSING_ID}")
-print(f"  Flow: default")
-print(f"  Collection: default")
+print(f"Processing started: {PROCESSING_ID}")
 ```
 
 ## Listing Documents and Processing Records
@@ -246,28 +253,32 @@ print(f"  Collection: default")
 View documents in the library and active processing records:
 
 ```python
+import os
 from trustgraph.api import Api
 
-api = Api(url='http://localhost:8088/')
+api = Api(
+    url='http://localhost:8088/',
+    token=os.getenv('TRUSTGRAPH_TOKEN'),
+)
 library = api.library()
 
-# List all documents for a user
-documents = library.get_documents(user="trustgraph")
+# List all documents in the workspace
+documents = library.get_documents()
 
 print(f"Found {len(documents)} documents:")
 for doc in documents:
-    print(f"  • {doc.title}")
+    print(f"  {doc.title}")
     print(f"    ID: {doc.id}")
     print(f"    Type: {doc.kind}")
     print(f"    Tags: {', '.join(doc.tags)}")
     print()
 
 # List all processing records
-processing_records = library.get_processings(user="trustgraph")
+processing_records = library.get_processings()
 
 print(f"Found {len(processing_records)} processing records:")
 for proc in processing_records:
-    print(f"  • Processing ID: {proc.id}")
+    print(f"  Processing ID: {proc.id}")
     print(f"    Document: {proc.document_id}")
     print(f"    Flow: {proc.flow}")
     print(f"    Collection: {proc.collection}")
@@ -279,22 +290,24 @@ for proc in processing_records:
 Clean up documents and processing records when no longer needed:
 
 ```python
+import os
 from trustgraph.api import Api
 
-api = Api(url='http://localhost:8088/')
+api = Api(
+    url='http://localhost:8088/',
+    token=os.getenv('TRUSTGRAPH_TOKEN'),
+)
 library = api.library()
 
 # Stop processing (remove processing record)
 library.stop_processing(
     id="https://example.com/processing/my-document-2026-01",
-    user="trustgraph"
 )
 print("Processing record removed")
 
 # Remove document from library
 library.remove_document(
-    user="trustgraph",
-    id="https://example.com/docs/my-document"
+    id="https://example.com/docs/my-document",
 )
 print("Document removed from library")
 ```

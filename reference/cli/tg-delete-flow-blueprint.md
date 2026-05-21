@@ -1,7 +1,7 @@
 ---
 title: tg-delete-flow-blueprint
 parent: CLI
-review_date: 2026-05-01
+review_date: 2027-05-21
 ---
 
 # tg-delete-flow-blueprint

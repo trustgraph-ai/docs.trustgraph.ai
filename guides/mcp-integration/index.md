@@ -16,6 +16,8 @@ guide_labels:
   - MCP
   - Agents
   - Integration
+todo: true
+todo_notes: Needs a complete rewrite — the MCP landscape has changed significantly. Update for the new tool services architecture, new Workbench agent consoles, and current MCP integration patterns
 ---
 
 # MCP Integration

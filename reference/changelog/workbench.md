@@ -1,12 +1,17 @@
 ---
 title: Changelog - Workbench
-nav_order: 2
+nav_order: 3
 parent: Reference
 grand_parent: TrustGraph Documentation
 review_date: 2027-01-15
 ---
 
 # Changelog - Workbench UI
+
+{: .warning }
+The Workbench UI has been deprecated and is no longer included in
+TrustGraph as of v2.4. It has been replaced by
+[TrustGraph UI](trustgraph-ui).
 
 ## v1.8.1 (2026-04-08) - released in TrustGraph 2.2
 

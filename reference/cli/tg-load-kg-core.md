@@ -1,7 +1,7 @@
 ---
 title: tg-load-kg-core
 parent: CLI
-review_date: 2026-05-15
+review_date: 2027-05-21
 ---
 
 # tg-load-kg-core
@@ -32,7 +32,7 @@ The `tg-load-kg-core` command loads a previously stored knowledge core into an a
 |--------|---------|-------------|
 | `-u, --api-url URL` | `$TRUSTGRAPH_URL` or `http://localhost:8088/` | TrustGraph API URL |
 | `-t, --token TOKEN` | `$TRUSTGRAPH_TOKEN` | Authentication token |
-| `-U, --user USER` | `trustgraph` | User identifier |
+| `-w, --workspace WORKSPACE` | `$TRUSTGRAPH_WORKSPACE` or `default` | Workspace identifier |
 | `-f, --flow-id FLOW` | `default` | Flow ID to load knowledge into |
 | `-c, --collection COLLECTION` | `default` | Collection identifier |
 
@@ -48,7 +48,7 @@ tg-load-kg-core --id "research-knowledge-v1"
 tg-load-kg-core \
   --id "medical-knowledge" \
   --flow-id "medical-analysis" \
-  --user researcher
+  --workspace researcher
 ```
 
 ### Load with Custom Collection
@@ -71,6 +71,7 @@ tg-load-kg-core \
 
 - `TRUSTGRAPH_URL`: Default API URL
 - `TRUSTGRAPH_TOKEN`: Default authentication token
+- `TRUSTGRAPH_WORKSPACE`: Default workspace identifier
 
 ## Related Commands
 

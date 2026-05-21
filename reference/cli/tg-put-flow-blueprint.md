@@ -1,7 +1,7 @@
 ---
 title: tg-put-flow-blueprint
 parent: CLI
-review_date: 2026-05-20
+review_date: 2027-05-21
 ---
 
 # tg-put-flow-blueprint

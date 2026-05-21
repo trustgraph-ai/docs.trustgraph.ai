@@ -1,7 +1,7 @@
 ---
 title: tg-show-explain-trace
 parent: CLI
-review_date: 2027-01-01
+review_date: 2027-05-21
 ---
 
 # tg-show-explain-trace
@@ -39,7 +39,7 @@ With `--show-provenance`, traces selected edges back to their source documents v
 | `-u, --api-url URL` | `$TRUSTGRAPH_URL` or `http://localhost:8088/` | API URL |
 | `-t, --token TOKEN` | `$TRUSTGRAPH_TOKEN` | Authentication token |
 | `-f, --flow-id ID` | `default` | Flow ID |
-| `-U, --user USER` | `trustgraph` | User identifier |
+| `-w, --workspace WORKSPACE` | `$TRUSTGRAPH_WORKSPACE` or `default` | Workspace identifier |
 | `-C, --collection COLL` | `default` | Collection identifier |
 | `--max-answer N` | `500` | Max characters for answer display |
 | `--show-provenance` | false | Trace edges back to source documents |
@@ -59,6 +59,7 @@ tg-show-explain-trace --format json "urn:trustgraph:agent:abc123"
 
 - `TRUSTGRAPH_URL`: Default API URL
 - `TRUSTGRAPH_TOKEN`: Default authentication token
+- `TRUSTGRAPH_WORKSPACE`: Default workspace identifier
 
 ## Related Commands
 

@@ -15,6 +15,9 @@ guide_emoji: 🏠
 guide_labels:
   - Self-Hosting
   - Introduction
+todo: true
+todo_notes: Review for security recommendations, network configuration, and anything else self-hosters need to know — especially around authentication setup, firewall rules, and production hardening
+  to know?
 ---
 
 # Introduction to Self-Hosting

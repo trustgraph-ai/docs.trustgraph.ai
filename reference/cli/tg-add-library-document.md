@@ -1,7 +1,7 @@
 ---
 title: tg-add-library-document
 parent: CLI
-review_date: 2026-11-30
+review_date: 2027-05-21
 ---
 
 # tg-add-library-document
@@ -34,7 +34,7 @@ Documents added to the library can later be processed using `tg-start-library-pr
 |--------|---------|-------------|
 | `-u, --url URL` | `$TRUSTGRAPH_URL` or `http://localhost:8088/` | TrustGraph API URL |
 | `-t, --token TOKEN` | `$TRUSTGRAPH_TOKEN` | Authentication token |
-| `-U, --user USER` | `trustgraph` | User identifier |
+| `-w, --workspace WORKSPACE` | `$TRUSTGRAPH_WORKSPACE` or `default` | Workspace identifier |
 
 ### Document Metadata
 
@@ -107,6 +107,7 @@ tg-add-library-document \
 
 - `TRUSTGRAPH_URL`: Default API URL
 - `TRUSTGRAPH_TOKEN`: Default authentication token
+- `TRUSTGRAPH_WORKSPACE`: Default workspace identifier
 
 ## Related Commands
 

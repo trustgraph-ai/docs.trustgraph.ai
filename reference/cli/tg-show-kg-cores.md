@@ -1,7 +1,7 @@
 ---
 title: tg-show-kg-cores
 parent: CLI
-review_date: 2026-05-07
+review_date: 2027-05-21
 ---
 
 # tg-show-kg-cores
@@ -26,7 +26,7 @@ The `tg-show-kg-cores` command lists all knowledge cores available for a specifi
 |--------|---------|-------------|
 | `-u, --api-url URL` | `$TRUSTGRAPH_URL` or `http://localhost:8088/` | TrustGraph API URL |
 | `-t, --token TOKEN` | `$TRUSTGRAPH_TOKEN` | Authentication token |
-| `-U, --user USER` | `trustgraph` | User identifier |
+| `-w, --workspace WORKSPACE` | `$TRUSTGRAPH_WORKSPACE` or `default` | Workspace identifier |
 
 ## Examples
 
@@ -35,9 +35,9 @@ The `tg-show-kg-cores` command lists all knowledge cores available for a specifi
 tg-show-kg-cores
 ```
 
-### List Cores for Specific User
+### List Cores for Specific Workspace
 ```bash
-tg-show-kg-cores -U researcher
+tg-show-kg-cores -w researcher
 ```
 
 ### Using Custom API URL
@@ -49,6 +49,7 @@ tg-show-kg-cores -u http://production:8088/
 
 - `TRUSTGRAPH_URL`: Default API URL
 - `TRUSTGRAPH_TOKEN`: Default authentication token
+- `TRUSTGRAPH_WORKSPACE`: Default workspace identifier
 
 ## Related Commands
 

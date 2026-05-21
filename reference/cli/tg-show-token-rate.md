@@ -1,7 +1,7 @@
 ---
 title: tg-show-token-rate
 parent: CLI
-review_date: 2026-12-05
+review_date: 2027-05-21
 ---
 
 # tg-show-token-rate

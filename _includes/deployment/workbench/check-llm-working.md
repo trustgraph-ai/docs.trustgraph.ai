@@ -1,9 +1,19 @@
-Back in the workbench, select the *Assistant* tab.
+If the `tg-invoke-llm` command worked earlier, you can skip this section. Otherwise, this is a quick way to verify LLM access through the workbench while introducing the prompt management workflow.
 
-In the top line next to the *Assistant* word, change the mode to *Basic LLM*.
+From the Workflows page, select **Prompt Management**. This screen is where all the prompt templates live. You can edit existing templates and construct your own.
 
-Enter a question in the prompt box at the bottom of the tab and press *Send*. If everything works, after a short period you should see a response to your query.
+To run a simple test, find the **question** prompt in the list on the left and select it. The template is straightforward — just `{% raw %}{{question}}{% endraw %}` — which means the `question` variable is fed directly to the LLM.
 
-![Simple LLM usage](llm-interaction.png)
+On the right-hand side, change the **TEST** box from `{}` to:
+
+```json
+{"question": "What is 2 + 2?"}
+```
+
+Click **Run**. You should see the answer to your question appear below.
+
+![Prompt test with question template](prompt-test.png)
+
+If you want to experiment with prompts, try adding "Please provide a detailed explanation" to the prompt template, click **Save**, and run the test again to see a different response.
 
 If LLM interactions are not working, check the Grafana logs dashboard for errors in the `text-completion` service.

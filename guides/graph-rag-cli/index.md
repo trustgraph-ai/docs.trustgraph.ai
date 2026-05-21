@@ -3,7 +3,7 @@ title: Graph RAG using CLI
 nav_order: 2
 parent: Advanced knowledge management
 grand_parent: How-to Guides
-review_date: 2026-08-01
+review_date: 2026-11-01
 guide_category:
   - Advanced knowledge management
 guide_category_order: 1
@@ -45,6 +45,14 @@ This guide demonstrates:
 - Submitting documents for processing
 - Querying with Graph RAG
 - Monitoring processing
+
+## Authentication
+
+All CLI commands require a valid authentication token:
+
+```bash
+export TRUSTGRAPH_TOKEN="tg_my-secret-token"
+```
 
 ## Step-by-Step Guide
 

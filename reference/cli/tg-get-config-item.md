@@ -1,7 +1,7 @@
 ---
 title: tg-get-config-item
 parent: CLI
-review_date: 2026-12-27
+review_date: 2027-05-21
 ---
 
 # tg-get-config-item

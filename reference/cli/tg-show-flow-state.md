@@ -1,7 +1,7 @@
 ---
 title: tg-show-flow-state
 parent: CLI
-review_date: 2026-03-23
+review_date: 2027-05-21
 ---
 
 # tg-show-flow-state
