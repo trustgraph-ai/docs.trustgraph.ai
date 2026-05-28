@@ -1,7 +1,7 @@
 ---
 title: tg-load-structured-data
 parent: CLI
-review_date: 2026-05-23
+review_date: 2027-05-21
 ---
 
 # tg-load-structured-data
@@ -56,7 +56,7 @@ The `tg-load-structured-data` command loads structured data files into TrustGrap
 | `-u, --url URL` | TrustGraph API URL (default: `$TRUSTGRAPH_URL` or `http://localhost:8088/`) |
 | `-t, --token TOKEN` | Authentication token (default: `$TRUSTGRAPH_TOKEN`) |
 | `-f, --flow-id ID` | Flow instance ID (default: `default`) |
-| `-U, --user USER` | User ID (default: `trustgraph`) |
+| `-w, --workspace WORKSPACE` | Workspace (default: `$TRUSTGRAPH_WORKSPACE` or `default`) |
 | `-C, --collection COLLECTION` | Collection to assign data (default: `default`) |
 
 ### Mode-Specific Options
@@ -164,6 +164,7 @@ You can generate descriptors automatically or create them manually for complex m
 
 - `TRUSTGRAPH_URL`: Default API URL
 - `TRUSTGRAPH_TOKEN`: Default authentication token
+- `TRUSTGRAPH_WORKSPACE`: Default workspace identifier
 
 ## Related Commands
 

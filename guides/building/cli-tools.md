@@ -15,6 +15,8 @@ guide_banner: cli.jpg
 guide_labels:
   - CLI
   - Command-line
+todo: true
+todo_notes: Needs updating for the new authentication model — add TRUSTGRAPH_TOKEN setup, cover API keys and workspace selection, and update all examples to use token-based access
 ---
 
 # Getting started with TrustGraph command-line tools

@@ -1,7 +1,7 @@
 ---
 title: tg-start-library-processing
 parent: CLI
-review_date: 2026-12-23
+review_date: 2027-05-21
 ---
 
 # tg-start-library-processing
@@ -34,7 +34,7 @@ The processing ID must be a URI. While the value isn't presently used, a future 
 | Option | Default | Description |
 |--------|---------|-------------|
 | `-u, --api-url URL` | `$TRUSTGRAPH_URL` or `http://localhost:8088/` | TrustGraph API URL |
-| `-U, --user USER` | `trustgraph` | User ID for processing context |
+| `-w, --workspace WORKSPACE` | `$TRUSTGRAPH_WORKSPACE` or `default` | Workspace identifier |
 | `-t, --token TOKEN` | `$TRUSTGRAPH_TOKEN` | Authentication token |
 | `-i, --flow-id ID` | `default` | Flow instance to use for processing |
 | `--collection COLLECTION` | `default` | Collection to assign processed data |
@@ -64,7 +64,7 @@ tg-start-library-processing \
   -d "doc_technical_manual" \
   --id "urn:trustgraph:processing:manual-001" \
   -i "document-analysis-flow" \
-  -U "technical-team" \
+  -w "technical-team" \
   --collection "technical-docs"
 ```
 
@@ -84,6 +84,7 @@ Different document types (PDF, text, images, structured data) may trigger differ
 
 - `TRUSTGRAPH_URL`: Default API URL
 - `TRUSTGRAPH_TOKEN`: Default authentication token
+- `TRUSTGRAPH_WORKSPACE`: Default workspace identifier
 
 ## Related Commands
 

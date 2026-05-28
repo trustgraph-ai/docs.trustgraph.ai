@@ -26,7 +26,8 @@ pip install trustgraph-cli
 Most CLI commands support these common options:
 
 - `-u, --api-url URL`: TrustGraph API URL (default: `$TRUSTGRAPH_URL` or `http://localhost:8088/`)
-- `-U, --user USER`: User identifier (default: `trustgraph`)
+- `-t, --token TOKEN`: Authentication token (default: `$TRUSTGRAPH_TOKEN`)
+- `-w, --workspace WORKSPACE`: Workspace identifier (default: `$TRUSTGRAPH_WORKSPACE` or `default`)
 - `-C, --collection COLLECTION`: Collection identifier (default: `default`)
 - `-f, --flow-id FLOW`: Flow identifier (default: `default`)
 
@@ -71,10 +72,15 @@ Most CLI commands support these common options:
 - [`tg-unload-kg-core`](tg-unload-kg-core) - Unload knowledge core from processing
 - [`tg-show-kg-cores`](tg-show-kg-cores) - List available knowledge cores
 
+**Document Embeddings Core Operations:**
+- [`tg-get-de-core`](tg-get-de-core) - Fetch document embeddings core to local file
+- [`tg-put-de-core`](tg-put-de-core) - Load document embeddings core from local file
+
 **Graph Data Operations:**
 - [`tg-show-graph`](tg-show-graph) - Dump graph triples (streaming)
 - [`tg-query-graph`](tg-query-graph) - Pattern-matching graph queries
 - [`tg-graph-to-turtle`](tg-graph-to-turtle) - Export graph to Turtle format (RDF-star)
+- [`tg-load-turtle`](tg-load-turtle) - Import triples from Turtle files
 
 ### Document Processing & Library Management
 
@@ -134,13 +140,42 @@ Most CLI commands support these common options:
 - [`tg-show-explain-trace`](tg-show-explain-trace) - Show full reasoning trace for a session
 - [`tg-show-extraction-provenance`](tg-show-extraction-provenance) - Show document extraction provenance hierarchy
 
+### Identity & Access Management (IAM)
+
+**Bootstrap & Authentication:**
+- [`tg-bootstrap-iam`](tg-bootstrap-iam) - Bootstrap the IAM service and obtain the initial admin API key
+- [`tg-login`](tg-login) - Log in with username and password to obtain a JWT
+- [`tg-whoami`](tg-whoami) - Show the authenticated caller's own user record
+- [`tg-change-password`](tg-change-password) - Change your own password
+
+**User Management:**
+- [`tg-create-user`](tg-create-user) - Create a user in the caller's workspace
+- [`tg-list-users`](tg-list-users) - List users in the caller's workspace
+- [`tg-update-user`](tg-update-user) - Update a user's profile fields
+- [`tg-disable-user`](tg-disable-user) - Disable a user and revoke their API keys
+- [`tg-enable-user`](tg-enable-user) - Re-enable a previously disabled user
+- [`tg-delete-user`](tg-delete-user) - Delete a user permanently
+- [`tg-reset-password`](tg-reset-password) - Admin: reset another user's password
+
+**API Key Management:**
+- [`tg-create-api-key`](tg-create-api-key) - Create an API key for a user
+- [`tg-list-api-keys`](tg-list-api-keys) - List API keys for a user
+- [`tg-revoke-api-key`](tg-revoke-api-key) - Revoke an API key
+
+**Workspace Management:**
+- [`tg-list-workspaces`](tg-list-workspaces) - List workspaces (admin)
+- [`tg-create-workspace`](tg-create-workspace) - Create a workspace (admin)
+
 ### System Monitoring & Debugging
 
 **System Status:**
+- [`tg-verify-system-status`](tg-verify-system-status) - Verify system health with comprehensive checks
 - [`tg-show-processor-state`](tg-show-processor-state) - Show processing component states
 
-**Debugging:**
+**Debugging & Monitoring:**
 - [`tg-dump-msgpack`](tg-dump-msgpack) - Dump MessagePack data for debugging
+- [`tg-dump-queues`](tg-dump-queues) - Monitor multiple pub/sub queues for debugging
+- [`tg-monitor-prompts`](tg-monitor-prompts) - Monitor prompt request/response queues with timing
 
 ## Quick Start Examples
 
@@ -184,7 +219,8 @@ tg-stop-flow --flow-id my-flow
 ## Environment Variables
 
 - `TRUSTGRAPH_URL`: Default API URL for all commands
-- `TRUSTGRAPH_USER`: Default user identifier
+- `TRUSTGRAPH_TOKEN`: Authentication token
+- `TRUSTGRAPH_WORKSPACE`: Default workspace identifier
 - `TRUSTGRAPH_COLLECTION`: Default collection identifier
 
 ## Authentication

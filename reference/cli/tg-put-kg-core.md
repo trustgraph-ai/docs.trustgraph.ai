@@ -1,7 +1,7 @@
 ---
 title: tg-put-kg-core
 parent: CLI
-review_date: 2026-05-26
+review_date: 2027-05-21
 ---
 
 # tg-put-kg-core
@@ -33,7 +33,7 @@ The `tg-put-kg-core` command loads a knowledge core from a MessagePack file and 
 |--------|---------|-------------|
 | `-u, --url URL` | `$TRUSTGRAPH_URL` or `ws://localhost:8088/` | TrustGraph API URL (WebSocket) |
 | `-t, --token TOKEN` | `$TRUSTGRAPH_TOKEN` | Authentication token |
-| `-U, --user USER` | `trustgraph` | User identifier |
+| `-w, --workspace WORKSPACE` | `$TRUSTGRAPH_WORKSPACE` or `default` | Workspace identifier |
 
 ## Examples
 
@@ -42,12 +42,12 @@ The `tg-put-kg-core` command loads a knowledge core from a MessagePack file and 
 tg-put-kg-core --id "research-core-v1" -i knowledge.msgpack
 ```
 
-### With Custom User
+### With Custom Workspace
 ```bash
 tg-put-kg-core \
   --id "medical-knowledge" \
   -i medical-data.msgpack \
-  -U researcher
+  -w researcher
 ```
 
 ### Using Custom API
@@ -70,6 +70,7 @@ Files are typically created using `tg-get-kg-core` or external knowledge process
 
 - `TRUSTGRAPH_URL`: Default API URL (automatically converted to WebSocket format)
 - `TRUSTGRAPH_TOKEN`: Default authentication token
+- `TRUSTGRAPH_WORKSPACE`: Default workspace identifier
 
 ## Related Commands
 

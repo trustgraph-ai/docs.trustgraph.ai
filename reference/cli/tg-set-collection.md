@@ -1,7 +1,7 @@
 ---
 title: tg-set-collection
 parent: CLI
-review_date: 2026-03-07
+review_date: 2027-05-21
 ---
 
 # tg-set-collection
@@ -32,7 +32,7 @@ The `tg-set-collection` command creates a new collection or updates metadata of 
 |--------|---------|-------------|
 | `-u, --api-url URL` | `$TRUSTGRAPH_URL` or `http://localhost:8088/` | TrustGraph API URL |
 | `-t, --token TOKEN` | `$TRUSTGRAPH_TOKEN` | Authentication token |
-| `-U, --user USER` | `trustgraph` | User ID |
+| `-w, --workspace WORKSPACE` | `$TRUSTGRAPH_WORKSPACE` or `default` | Workspace identifier |
 | `-n, --name NAME` | None | Human-readable collection name |
 | `-d, --description DESC` | None | Detailed description |
 | `-T, --tag TAG` | None | Collection tag (can specify multiple times) |
@@ -52,15 +52,16 @@ tg-set-collection research-2024 \
 tg-set-collection existing-collection -d "Updated description"
 ```
 
-### Create Collection for Specific User
+### Create Collection for Specific Workspace
 ```bash
-tg-set-collection medical-data -U researcher -n "Medical Research Data"
+tg-set-collection medical-data -w researcher -n "Medical Research Data"
 ```
 
 ## Environment Variables
 
 - `TRUSTGRAPH_URL`: Default API URL
 - `TRUSTGRAPH_TOKEN`: Default authentication token
+- `TRUSTGRAPH_WORKSPACE`: Default workspace identifier
 
 ## Related Commands
 

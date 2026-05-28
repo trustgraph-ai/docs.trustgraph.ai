@@ -1,7 +1,7 @@
 ---
 title: tg-graph-to-turtle
 parent: CLI
-review_date: 2027-01-01
+review_date: 2027-05-21
 ---
 
 # tg-graph-to-turtle
@@ -25,7 +25,7 @@ Streams triples from the knowledge graph and outputs them in Turtle format to st
 | `-u, --api-url URL` | `$TRUSTGRAPH_URL` or `http://localhost:8088/` | API URL |
 | `-t, --token TOKEN` | `$TRUSTGRAPH_TOKEN` | Authentication token |
 | `-f, --flow-id ID` | `default` | Flow ID |
-| `-U, --user USER` | `trustgraph` | User identifier |
+| `-w, --workspace WORKSPACE` | `$TRUSTGRAPH_WORKSPACE` or `default` | Workspace identifier |
 | `-C, --collection COLLECTION` | `default` | Collection to export |
 | `-l, --limit N` | `10000` | Maximum triples |
 | `-b, --batch-size N` | `20` | Triples per streaming batch |
@@ -47,6 +47,7 @@ tg-graph-to-turtle -C research-data > research.ttl
 
 - `TRUSTGRAPH_URL`: Default API URL
 - `TRUSTGRAPH_TOKEN`: Default authentication token
+- `TRUSTGRAPH_WORKSPACE`: Default workspace identifier
 
 ## Related Commands
 

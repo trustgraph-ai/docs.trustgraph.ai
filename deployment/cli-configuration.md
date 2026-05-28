@@ -2,7 +2,7 @@
 title: CLI Configuration Tool
 nav_order: 2
 parent: Deployment
-review_date: 2026-01-29
+review_date: 2026-11-01
 guide_category:
   - Deployment fundamentals
 guide_category_order: 2
@@ -79,11 +79,11 @@ The tool guides you through a series of questions to configure your deployment:
 
 ```
 ◆  Which TrustGraph version?
-│  ○ TrustGraph 2.0
+│  ● TrustGraph 2.4 (IAM & data separation through workspaces)
+│  ○ TrustGraph 2.3 (Recommended)
+│  ○ TrustGraph 2.2
+│  ○ TrustGraph 2.1
 │  ○ TrustGraph 1.9
-│  ● TrustGraph 1.8 (Recommended)
-│  ○ TrustGraph 1.7
-│  ○ TrustGraph 1.6
 ```
 
 Use the latest stable version (selected by default) unless you want to
@@ -231,13 +231,25 @@ engine, select **Yes** to reveal the options:
 - **HuggingFace sentence-transformers** - Access to a wider range of embedding models
 - **Ollama** - Use Ollama for embeddings if you're already running it for your LLM
 
+### 10. MCP Server
+
+```
+◆  Enable MCP server?
+│  ● Yes / ○ No
+```
+
+This controls whether an MCP server is launched as part of the deployment,
+allowing external tools and agents to connect *to* TrustGraph as an MCP
+service. This is different from TrustGraph connecting to other MCP services
+as a client.
+
 ## Configuration Summary
 
 After answering all questions, the tool displays a summary of your selections:
 
 ```
 ●  Configuration Summary:
-│    Which TrustGraph version? TrustGraph 1.8
+│    Which TrustGraph version? TrustGraph 2.4
 │    Which platform? Docker Compose
 │    Which graph store? Apache Cassandra
 │    Which vector database? Qdrant

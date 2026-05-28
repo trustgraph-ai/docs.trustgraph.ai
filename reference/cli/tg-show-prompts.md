@@ -1,7 +1,7 @@
 ---
 title: tg-show-prompts
 parent: CLI
-review_date: 2026-05-16
+review_date: 2027-05-21
 ---
 
 # tg-show-prompts

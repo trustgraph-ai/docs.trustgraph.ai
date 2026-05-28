@@ -1,7 +1,7 @@
 ---
 title: tg-show-graph
 parent: CLI
-review_date: 2027-01-01
+review_date: 2027-05-21
 ---
 
 # tg-show-graph
@@ -30,7 +30,7 @@ Named graphs:
 | `-u, --api-url URL` | `$TRUSTGRAPH_URL` or `http://localhost:8088/` | API URL |
 | `-t, --token TOKEN` | `$TRUSTGRAPH_TOKEN` | Authentication token |
 | `-f, --flow-id FLOW` | `default` | Flow ID |
-| `-U, --user USER` | `trustgraph` | User identifier |
+| `-w, --workspace WORKSPACE` | `$TRUSTGRAPH_WORKSPACE` or `default` | Workspace identifier |
 | `-C, --collection COLLECTION` | `default` | Collection identifier |
 | `-l, --limit N` | `10000` | Maximum triples to return |
 | `-b, --batch-size N` | `20` | Triples per streaming batch |
@@ -57,6 +57,7 @@ tg-show-graph -g ""
 
 - `TRUSTGRAPH_URL`: Default API URL
 - `TRUSTGRAPH_TOKEN`: Default authentication token
+- `TRUSTGRAPH_WORKSPACE`: Default workspace identifier
 
 ## Related Commands
 

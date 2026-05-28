@@ -1,7 +1,7 @@
 ---
 title: tg-delete-collection
 parent: CLI
-review_date: 2026-09-19
+review_date: 2027-05-21
 ---
 
 # tg-delete-collection
@@ -34,7 +34,7 @@ The `tg-delete-collection` command permanently deletes a collection and all asso
 |--------|---------|-------------|
 | `-u, --api-url URL` | `$TRUSTGRAPH_URL` or `http://localhost:8088/` | TrustGraph API URL |
 | `-t, --token TOKEN` | `$TRUSTGRAPH_TOKEN` | Authentication token |
-| `-U, --user USER` | `trustgraph` | User ID |
+| `-w, --workspace WORKSPACE` | `$TRUSTGRAPH_WORKSPACE` or `default` | Workspace identifier |
 | `-y, --yes` | false | Skip confirmation prompt |
 
 ## Examples
@@ -49,15 +49,16 @@ tg-delete-collection old-research
 tg-delete-collection old-research -y
 ```
 
-### Delete with Specific User
+### Delete with Specific Workspace
 ```bash
-tg-delete-collection test-data -U developer -y
+tg-delete-collection test-data -w developer -y
 ```
 
 ## Environment Variables
 
 - `TRUSTGRAPH_URL`: Default API URL
 - `TRUSTGRAPH_TOKEN`: Default authentication token
+- `TRUSTGRAPH_WORKSPACE`: Default workspace identifier
 
 ## Related Commands
 

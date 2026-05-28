@@ -1,7 +1,7 @@
 ---
 title: tg-get-document-content
 parent: CLI
-review_date: 2027-01-01
+review_date: 2027-05-21
 ---
 
 # tg-get-document-content
@@ -32,7 +32,7 @@ Fetches the raw content of a document stored in the library. Can output to a fil
 |--------|---------|-------------|
 | `-u, --api-url URL` | `$TRUSTGRAPH_URL` or `http://localhost:8088/` | API URL |
 | `-t, --token TOKEN` | `$TRUSTGRAPH_TOKEN` | Authentication token |
-| `-U, --user USER` | `trustgraph` | User identifier |
+| `-w, --workspace WORKSPACE` | `$TRUSTGRAPH_WORKSPACE` or `default` | Workspace identifier |
 | `-o, --output FILE` | stdout | Output file path |
 
 ## Examples
@@ -49,6 +49,7 @@ tg-get-document-content -o document.pdf "urn:trustgraph:doc:abc123"
 
 - `TRUSTGRAPH_URL`: Default API URL
 - `TRUSTGRAPH_TOKEN`: Default authentication token
+- `TRUSTGRAPH_WORKSPACE`: Default workspace identifier
 
 ## Related Commands
 

@@ -1,7 +1,7 @@
 ---
 title: tg-invoke-sparql-query
 parent: CLI
-review_date: 2027-01-01
+review_date: 2027-05-21
 ---
 
 # tg-invoke-sparql-query
@@ -35,7 +35,7 @@ Executes a SPARQL 1.1 query against the knowledge graph via the SPARQL query ser
 | `-u, --url URL` | `$TRUSTGRAPH_URL` or `http://localhost:8088/` | API URL |
 | `-t, --token TOKEN` | `$TRUSTGRAPH_TOKEN` | Authentication token |
 | `-f, --flow-id FLOW` | `default` | Flow ID |
-| `-U, --user USER` | `trustgraph` | User identifier |
+| `-w, --workspace WORKSPACE` | `$TRUSTGRAPH_WORKSPACE` or `default` | Workspace identifier |
 | `-C, --collection COLLECTION` | `default` | Collection identifier |
 | `-l, --limit N` | `10000` | Maximum number of results |
 | `-b, --batch-size N` | `20` | Streaming batch size |
@@ -75,6 +75,7 @@ tg-invoke-sparql-query -f my-flow -C my-collection -q "SELECT ?s WHERE { ?s ?p ?
 
 - `TRUSTGRAPH_URL`: Default API URL
 - `TRUSTGRAPH_TOKEN`: Default authentication token
+- `TRUSTGRAPH_WORKSPACE`: Default workspace identifier
 
 ## Related Commands
 

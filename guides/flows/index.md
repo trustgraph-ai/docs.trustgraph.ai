@@ -16,6 +16,8 @@ guide_labels:
   - Flows
   - Pipelines
   - Processing
+todo: true
+todo_notes: Review against the new Workbench UX — check that flow terminology, screenshots, and step-by-step instructions match the current Workflows page and flow management experience
 ---
 
 # Introduction to Flows

@@ -1,7 +1,7 @@
 ---
 title: tg-invoke-embeddings
 parent: CLI
-review_date: 2027-01-01
+review_date: 2027-05-21
 ---
 
 # tg-invoke-embeddings

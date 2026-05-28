@@ -16,7 +16,7 @@ guide_labels:
   - Best Practices
   - Enterprise
 todo: true
-todo_notes: This is a holding page.
+todo_notes: This is currently a placeholder — needs fleshing out with real-world production guidance covering scaling, resource sizing, high availability, backup strategies, and operational monitoring
 ---
 
 # Production Considerations

@@ -1,7 +1,7 @@
 ---
 title: tg-delete-mcp-tool
 parent: CLI
-review_date: 2026-09-01
+review_date: 2027-05-21
 ---
 
 # tg-delete-mcp-tool

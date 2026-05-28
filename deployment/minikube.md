@@ -3,7 +3,7 @@ title: Minikube
 nav_order: 2
 parent: Deployment
 grand_parent: TrustGraph Documentation
-review_date: 2026-05-17
+review_date: 2026-11-01
 guide_category:
   - Standalone deployment
 guide_category_order: 2
@@ -255,13 +255,13 @@ unzip ~/Downloads/deploy.zip .
 You need to have access to TrustGraph client tools. In the terminal
 window you created above, install a virtual environment, and the
 TrustGraph CLI tools. Make sure the version number of the CLI tools
-matches the version you chose to build a configuration for earlier.
-i.e. replace `1.8.9` with the version you used earlier.
+matches the version you chose to build a configuration for earlier,
+e.g. replace `2.4.29` with the version you used earlier.
 
 ```sh
 python3 -m venv env
 . env/bin/activate
-pip install trustgraph-cli==1.8.9
+pip install trustgraph-cli==2.4.29
 ```
 
 ## Deploy TrustGraph
@@ -308,22 +308,22 @@ with your credentials or configuration.
 
 ### Configure security settings
 
-First, create the security secrets. For this local deployment, we set these to
-empty strings to disable authentication:
+Create the security secrets for IAM and Grafana. On first cold start,
+TrustGraph creates a security account with an API token initialised from
+the IAM bootstrap token. This value is only used for the initial cold
+start — once the system is running, you can add accounts and change API
+tokens through the workbench. The token must have a `tg_` prefix so that
+it is recognised as a valid API key.
 
 ```bash
-kubectl -n trustgraph create secret generic gateway-secret \
-    --from-literal=gateway-secret=""
+kubectl -n trustgraph create secret generic iam-bootstrap-token \
+    --from-literal=iam-bootstrap-token="tg_my-secret-token"
 
-kubectl -n trustgraph create secret generic mcp-server-secret \
-    --from-literal=mcp-server-secret=""
+kubectl -n trustgraph create secret generic grafana-admin-password \
+    --from-literal=grafana-admin-password="my-grafana-password"
 ```
 
-The `mcp-server-secret` protects the MCP server with a secret but is not fully
-implemented yet. The `gateway-secret` provides single-secret protection for
-the gateway API, which does not currently support comprehensive API
-security. For a local non-networked deployment, it is safe to disable
-authentication by setting these to empty strings.
+Replace the values above with your own secrets.
 
 ### Finish configuration
 
@@ -438,6 +438,15 @@ and will not be accessible outside of your host.
 Keep this terminal window open. The LoadBalancer must remain
 running for cluster communications to be accessible from 'outside' the
 cluster.
+
+### Authenticate CLI tools
+
+All CLI access requires `TRUSTGRAPH_TOKEN` to be set to a valid API token.
+Use the IAM bootstrap token you configured earlier:
+
+```bash
+export TRUSTGRAPH_TOKEN="tg_my-secret-token"
+```
 
 ### Verify startup
 
@@ -558,11 +567,12 @@ IP address above, would like:
 http://192.168.39.34:8888
 ```
 
-By default, there are no credentials.
+You will see a login page. Select the **API Key** tab and enter the IAM
+bootstrap token you configured earlier, then click **Connect**.
 
-You should be able to navigate to the Flows tab, and see a single
-*default* flow running. The guide will return to the workbench to load
-a document.
+After logging in, you should see the Workflows page showing the available
+workflows. At the top right of the screen is a **Workflows** button which
+brings you back to this page from anywhere in the workbench.
 
 ## Monitoring dashboard
 
@@ -573,9 +583,8 @@ looks like this:
 http://192.168.39.34:3000
 ```
 
-**Default credentials:**
-- Username: `admin`
-- Password: `admin`
+Login with username `admin` and the password you set in
+the `grafana-admin-password` secret earlier.
 
 All TrustGraph components collect metrics using Prometheus and make these
 available using this Grafana workbench. The Grafana deployment is
@@ -595,10 +604,6 @@ logs.
 ### Load a document
 
 {% include deployment/workbench/load-document.md %}
-
-### Use Vector search
-
-{% include deployment/workbench/vector-search.md %}
 
 ### Look at knowledge graph
 

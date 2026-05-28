@@ -1,7 +1,7 @@
 ---
 title: tg-set-prompt
 parent: CLI
-review_date: 2026-09-14
+review_date: 2027-05-21
 ---
 
 # tg-set-prompt

@@ -1,7 +1,7 @@
 ---
 title: tg-invoke-graph-rag
 parent: CLI
-review_date: 2027-01-01
+review_date: 2027-05-21
 ---
 
 # tg-invoke-graph-rag
@@ -33,7 +33,7 @@ Performs graph-based Retrieval Augmented Generation (RAG) to answer questions us
 | `-u, --url URL` | `$TRUSTGRAPH_URL` or `http://localhost:8088/` | API URL |
 | `-t, --token TOKEN` | `$TRUSTGRAPH_TOKEN` | Authentication token |
 | `-f, --flow-id FLOW` | `default` | Flow ID |
-| `-U, --user USER` | `trustgraph` | User identifier |
+| `-w, --workspace WORKSPACE` | `$TRUSTGRAPH_WORKSPACE` or `default` | Workspace identifier |
 | `-C, --collection COLLECTION` | `default` | Collection identifier |
 
 ### Graph Search Parameters
@@ -70,6 +70,7 @@ tg-invoke-graph-rag -q "What connections exist?" -e 100 --triple-limit 50
 
 - `TRUSTGRAPH_URL`: Default API URL
 - `TRUSTGRAPH_TOKEN`: Default authentication token
+- `TRUSTGRAPH_WORKSPACE`: Default workspace identifier
 
 ## Related Commands
 

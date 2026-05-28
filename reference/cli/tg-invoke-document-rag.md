@@ -1,7 +1,7 @@
 ---
 title: tg-invoke-document-rag
 parent: CLI
-review_date: 2027-01-01
+review_date: 2027-05-21
 ---
 
 # tg-invoke-document-rag
@@ -33,7 +33,7 @@ Answers questions by retrieving relevant document chunks and generating response
 | `-u, --url URL` | `$TRUSTGRAPH_URL` or `http://localhost:8088/` | API URL |
 | `-t, --token TOKEN` | `$TRUSTGRAPH_TOKEN` | Authentication token |
 | `-f, --flow-id ID` | `default` | Flow ID |
-| `-U, --user USER` | `trustgraph` | User identifier |
+| `-w, --workspace WORKSPACE` | `$TRUSTGRAPH_WORKSPACE` or `default` | Workspace identifier |
 | `-C, --collection COLLECTION` | `default` | Collection identifier |
 | `-d, --doc-limit N` | `10` | Maximum documents to retrieve |
 | `--no-streaming` | false | Disable streaming |
@@ -57,6 +57,7 @@ tg-invoke-document-rag -q "How do I configure SSL?" -d 5
 
 - `TRUSTGRAPH_URL`: Default API URL
 - `TRUSTGRAPH_TOKEN`: Default authentication token
+- `TRUSTGRAPH_WORKSPACE`: Default workspace identifier
 
 ## Related Commands
 

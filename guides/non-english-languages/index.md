@@ -3,7 +3,7 @@ title: Working with non-English languages
 nav_order: 10
 parent: Common knowledge management tasks
 grand_parent: How-to Guides
-review_date: 2026-08-01
+review_date: 2026-11-01
 guide_category:
   - Common knowledge management tasks
 guide_category_order: 10
@@ -70,34 +70,37 @@ limitations.
 ### Step 2: Locate the graph extraction prompts
 
 The prompts used during knowledge extraction control the language of the
-output graph. To modify them:
-
-- Open the Workbench
-- Navigate to the **Prompts** page
+output graph.  From the Workflows page, select **Prompt Management** and
+switch to the **Workbench** view.
 
 Find these two prompts which are used to build context graphs:
 - **extract-definitions** - Extracts entity definitions from text
 - **extract-relationships** - Extracts relationships between entities
 
+Click on **extract-definitions** to open it in the editor.  You can test
+the prompt using the Test panel on the right — enter a value for the
+`text` variable and click **Run** to see the output.
+
+<img src="prompt-before.png" alt="Extract definitions prompt with English output"/>
+
 ### Step 3: Modify the prompts for your target language
 
 We've found that adding instructions to output in a specific language works
-well. The easiest approach is to use an AI chatbot to help edit the prompts:
+well.  The easiest approach is to use an AI chatbot to help edit the
+prompts:
 
-<img src="modify-prompt.png" alt="AI chatbot modifying the prompts"/>
-
-1. Click on a prompt (e.g. **extract-definitions**) to open the editor
-2. Copy the prompt text
-3. Paste it into your preferred AI chatbot with a request like:
+1. Copy the prompt text
+2. Paste it into your preferred AI chatbot with a request like:
 
    > Can you look at this prompt and change it so that it emits Japanese
    > language? Anything non-Japanese should be translated.
 
-4. Copy the modified prompt back into the prompt editor
-5. Click **Save**
+3. Paste the modified prompt back into the prompt editor
+4. Click **Save**
+5. Click **Run** to verify the output is now in your target language
 6. Repeat for the **extract-relationships** prompt
 
-<img src="update-prompt.png" alt="Updating the prompt in the TrustGraph workbench"/>
+<img src="prompt-after.png" alt="Extract definitions prompt translated to Japanese with Japanese output"/>
 
 This approach ensures that all extracted entities, definitions, and
 relationships are in your target language, even if the source documents
@@ -106,18 +109,14 @@ contain mixed-language content.
 Now when you load a document through a graph-building process, the graph
 will be built in your preferred language.
 
-You can verify this by using vector search to find entities in the graph:
-
-<img src="vector-search.png" alt="Vector search using Japanese script"/>
-
-The graph explorer will show entities and relationships in your target
+The Graph Explorer will show entities and relationships in your target
 language:
 
-<img src="graph.png" alt="Context graph containing Japanese script"/>
+<img src="graph.png" alt="Graph Explorer with Japanese language entities"/>
 
-An example GraphRAG output:
+Graph RAG queries and responses also work in your target language:
 
-<img src="conversation.png" alt="GraphRAG invocation using Japanese script"/>
+<img src="graph-rag-query.png" alt="Graph RAG query and response in Japanese"/>
 
 ## Note on embeddings
 

@@ -1,7 +1,7 @@
 ---
 title: tg-load-knowledge
 parent: CLI
-review_date: 2026-09-26
+review_date: 2027-05-21
 ---
 
 # tg-load-knowledge
@@ -34,7 +34,7 @@ The `tg-load-knowledge` command loads RDF triples from Turtle (TTL) format files
 | `-u, --api-url URL` | `$TRUSTGRAPH_URL` or `ws://localhost:8088/` | TrustGraph API URL (WebSocket) |
 | `-t, --token TOKEN` | `$TRUSTGRAPH_TOKEN` | Authentication token |
 | `-f, --flow-id ID` | `default` | Flow instance ID to use |
-| `-U, --user USER` | `trustgraph` | User ID for triple ownership |
+| `-w, --workspace WORKSPACE` | `$TRUSTGRAPH_WORKSPACE` or `default` | Workspace identifier |
 | `-C, --collection COLLECTION` | `default` | Collection to assign triples |
 
 ## Examples
@@ -82,6 +82,7 @@ The command uses WebSocket connections for efficient batch processing and includ
 
 - `TRUSTGRAPH_URL`: Default API URL
 - `TRUSTGRAPH_TOKEN`: Default authentication token
+- `TRUSTGRAPH_WORKSPACE`: Default workspace identifier
 
 ## Related Commands
 

@@ -1,7 +1,7 @@
 ---
 title: tg-show-processor-state
 parent: CLI
-review_date: 2026-12-07
+review_date: 2027-05-21
 ---
 
 # tg-show-processor-state

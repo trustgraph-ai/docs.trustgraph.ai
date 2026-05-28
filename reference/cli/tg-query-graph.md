@@ -1,7 +1,7 @@
 ---
 title: tg-query-graph
 parent: CLI
-review_date: 2027-01-01
+review_date: 2027-05-21
 ---
 
 # tg-query-graph
@@ -65,7 +65,7 @@ Build object as a quoted triple using explicit fields (alternative to `-o "<<s p
 | `-u, --api-url URL` | `$TRUSTGRAPH_URL` or `http://localhost:8088/` | API URL |
 | `-t, --token TOKEN` | `$TRUSTGRAPH_TOKEN` | Authentication token |
 | `-f, --flow-id ID` | `default` | Flow ID |
-| `-U, --user USER` | `trustgraph` | User identifier |
+| `-w, --workspace WORKSPACE` | `$TRUSTGRAPH_WORKSPACE` or `default` | Workspace identifier |
 | `-C, --collection COLL` | `default` | Collection identifier |
 | `-l, --limit N` | `1000` | Maximum results |
 | `-b, --batch-size N` | `20` | Streaming batch size |
@@ -93,6 +93,7 @@ tg-query-graph -g "urn:graph:source" --format json
 
 - `TRUSTGRAPH_URL`: Default API URL
 - `TRUSTGRAPH_TOKEN`: Default authentication token
+- `TRUSTGRAPH_WORKSPACE`: Default workspace identifier
 
 ## Related Commands
 

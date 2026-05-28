@@ -3,10 +3,180 @@ title: Changelog - TrustGraph
 nav_order: 1
 parent: Reference
 grand_parent: TrustGraph Documentation
-review_date: 2027-01-01
+review_date: 2027-05-21
 ---
 
 # Changelog
+
+## v2.4 (2026-05-21)
+
+### Major Features
+- **Workspace-Based Multi-Tenancy** (#840): `workspace` replaces `user`
+  as the isolation boundary for config, flows, library, and knowledge
+  data:
+  - All API schemas, CLI tools, and SDK methods drop the `user` field;
+    workspace provides the same separation at the trusted
+    `flow.workspace` layer instead of client-supplied message fields
+  - Config, librarian, knowledge, and collection management operations
+    scoped by workspace
+  - Flow service uses closure-based topic cleanup on flow stop, with
+    template analysis to distinguish per-flow, per-blueprint,
+    per-workspace, and global topics — fixes a bug where stopping a flow
+    could destroy the global librarian exchange
+  - RabbitMQ backend adds heartbeat and blocked-connection timeout to
+    catch dead connections
+  - Data ownership model and IAM tech specs document the
+    workspace/collection/flow hierarchy
+- **IAM Service and Gateway Authentication** (#849, #851, #853, #855):
+  Full identity and access management layer with authentication,
+  authorisation, and capability-based access control:
+  - JWT-based authentication with Ed25519 signing keys and API key
+    support
+  - Pluggable IAM regime via an authenticate/authorise contract,
+    allowing alternative IAM implementations
+  - Gateway auth middleware enforces capabilities on every request
+  - Self-service user management: password changes, API key
+    creation/revocation
+  - Workspace CRUD with optional workspace filters
+  - Mux service routing for workspace-scoped request dispatch
+  - Bootstrap mode and token can be sourced from environment variables
+  - New CLI tools: `tg-bootstrap-iam`, `tg-login`, `tg-create-user`,
+    `tg-list-users`, `tg-disable-user`, `tg-enable-user`,
+    `tg-delete-user`, `tg-change-password`, `tg-reset-password`,
+    `tg-create-api-key`, `tg-list-api-keys`, `tg-revoke-api-key`,
+    `tg-create-workspace`, `tg-list-workspaces`
+- **Pluggable Bootstrap Framework** (#847, #863): Generic, long-running
+  bootstrap processor that converges a deployment to its configured
+  initial state, replacing the previous one-shot `tg-init-trustgraph`
+  container:
+  - Ordered initialisers with per-initialiser completion state stored in
+    a reserved `__system__` workspace
+  - Core initialisers: PulsarTopology, TemplateSeed, WorkspaceInit,
+    DefaultFlowStart
+  - Adaptive cadence: ~5s on gate failure, ~15s while converging, ~300s
+    in steady state
+  - Failure isolation — one initialiser's exception does not block others
+  - Enterprise/third-party initialisers plug in via fully-qualified
+    dotted class paths with no core code change
+- **No-Auth IAM Regime** (#933): Lightweight `no-auth-svc` that permits
+  all access unconditionally — no database, no bootstrap, no signing
+  keys. Deploy in place of `iam-svc` for development, demos, and
+  single-user setups. The gateway uses a new `authenticate-anonymous`
+  operation to stay regime-agnostic: `iam-svc` rejects anonymous auth,
+  `no-auth-svc` grants it with a configurable default user and workspace
+- **Per-Workspace Queue Routing** (#862, #865): Workspace identity
+  determined by queue infrastructure instead of message body fields,
+  closing a privilege-escalation vector where a caller could spoof
+  workspace in the request payload:
+  - New `WorkspaceProcessor` base class discovers workspaces from config,
+    creates per-workspace consumers, and manages consumer lifecycle on
+    workspace create/delete events
+  - Per-flow librarian clients via `LibrarianSpec`, giving each flow its
+    own librarian tied to workspace-scoped request/response queues
+  - Per-workspace response producers for config, flow, librarian, and
+    knowledge services
+
+### Improvements
+- **Async-Safe Cassandra and Qdrant I/O** (#916): All Cassandra triples
+  services rewritten with async methods and `asyncio.Lock` replacing
+  `threading.local`; all six Qdrant services wrapped in
+  `asyncio.to_thread`; rows services protected with locks against
+  concurrent mutation
+- **Ontology Selector and Domain/Range Enforcement** (#929, #848):
+  Aligned similarity threshold defaults, added bypass mode for small
+  ontologies, and enforced domain/range constraints in `TripleConverter`
+  with subclass hierarchy support
+- **Document Embeddings Core Lifecycle** (#913): Full list/get/put/
+  delete/load operations for document embeddings cores across schema,
+  translator, Cassandra table store, knowledge manager, gateway, REST
+  API, socket client, and CLI (`tg-get-de-core`, `tg-put-de-core`)
+- **Gateway Timeout Propagation** (#931): The `--timeout` flag is now
+  propagated to per-service dispatchers instead of being ignored in
+  favour of a hard-coded 120s value
+- **Configurable Cassandra Replication Factor** (#887): New
+  `CASSANDRA_REPLICATION_FACTOR` environment variable and
+  `--cassandra-replication-factor` CLI argument threaded through all
+  table store constructors
+- **API Gateway Error Reporting** (#845): Connection failures return
+  502 Bad Gateway naming the upstream URL; other exceptions include the
+  message in the body and log with stack traces
+- **CLI Auth Migration** (#913): `get_kg_core` and `put_kg_core` CLI
+  tools migrated to `Api`/`SocketClient` with first-frame auth;
+  ~600 lines of dead raw websocket code removed
+
+### Bug Fixes
+- **Pulsar Message Loss on Flow Restart** (#938): `consumer.close()`
+  replaces `consumer.unsubscribe()` so the subscription cursor survives
+  restarts; subscription cleanup moved to `delete_topic()` where it
+  belongs
+- **Stale Producers on Flow Stop** (#930): `Flow.stop()` now explicitly
+  stops all producers, preventing orphaned connections to non-persistent
+  Pulsar topics that caused 120s timeouts after flow restart
+- **IAM Bootstrap Atomicity** (#935): Fixed half-done bootstrap state by
+  using signing key existence (the last thing written) as the completion
+  check, and running pre-service initialisers before opening pub/sub
+  connections
+- **Cassandra Pagination** (#921): `async_execute` only materialised the
+  first result page; fixed to iterate all pages via `asyncio.to_thread`
+- **Library API Round-Trip** (#928): Fixed 5 cascading bugs preventing
+  `get_documents` → `update_document` from working (missing title
+  tolerance, attribute access, datetime serialisation, empty response
+  handling, dual ID keys)
+- **Ontology Extractor Silent Failure** (#842): Read `.objects` (plural)
+  instead of `.object` from JSONL `PromptResult`, fixing a v2.3
+  regression where ontology extraction silently produced zero triples
+- **API Gateway Dispatcher Eviction** (#841): Cached dispatchers are
+  now evicted and stopped when their flow stops, preventing stale
+  bindings that caused responses to be silently dropped after flow
+  restart
+- **SPARQL Empty Query** (#934): Guard against empty or whitespace-only
+  LLM output in the SPARQL generator, preventing `IndexError`
+- **Pulsar Log Noise** (#936): Reverted consumer receive timeout to
+  2000ms (100ms generated ~200 WARN lines/sec with no benefit) and set
+  the Pulsar C++ client logger to Error level
+- **Workspace Initialisation Race** (#867): Config registration now runs
+  before the IAM table write, preventing a stuck state when `iam-svc`
+  starts before `config-svc`
+- **Document-RAG Workspace** (#866): Fixed workspace routing in
+  document-RAG; OpenAI text-completion processor now sets a placeholder
+  token when none is configured
+- **SPARQL Workspace Parameter** (#915): Removed spurious workspace
+  parameter threading through the SPARQL algebra evaluator — workspace
+  isolation is handled by pub/sub topic routing
+- **OpenAI Rate Limit Handling** (#925): Fail fast on unrecoverable
+  `RateLimitError` codes instead of retrying indefinitely
+- **Publisher Resource Leak** (#886): Wrapped `pub.start()`/`pub.send()`
+  in try/finally to guarantee cleanup on error
+- **Flow-svc ConfigClient Restart** (#843): UUID-based subscription
+  names prevent Pulsar `ConsumerBusy` on restart (v2.3 regression)
+- **Bootstrap Circular Dependency** (#863): `TemplateSeed` and
+  `WorkspaceInit` now run pre-gate to break the dependency cycle
+- **Bare Excepts in NLTK** (#896): Replaced bare `except:` with
+  specific exception types
+- **Container Vulnerability Updates** (#861): Updated packages with
+  known vulnerabilities in container builds
+
+### Breaking Changes
+- **User field removed**: All API schemas, CLI tools, and SDK methods
+  drop the `user` field — use `workspace` for tenant isolation
+- **CLI arguments**: All `tg-*` commands replace `--user` with
+  `--workspace`
+- **Python SDK**: `user` kwargs removed from all method signatures in
+  flow, socket client, async client, explainability, and library modules
+- **`tg-init-trustgraph` removed**: Replaced by the bootstrap processor
+  framework
+- **Authentication required**: API gateway now enforces authentication
+  by default via the IAM regime; use `no-auth-svc` for unauthenticated
+  access
+
+### Infrastructure / Technical
+- **Tech Specs**: New specifications for IAM protocol, capabilities
+  model, bootstrap framework, no-auth regime, and data ownership model
+- **Testing** (#848, #852, #916, #923, #929): Async-safe I/O tests,
+  domain/range validation tests, websocket smoke test, ontology selector
+  bypass tests, and upstream warning suppression
+
+---
 
 ## v2.3 (2026-04-23)
 

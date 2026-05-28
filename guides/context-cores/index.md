@@ -3,7 +3,7 @@ title: Working with Context Cores
 parent: Common knowledge management tasks
 grand_parent: How-to Guides
 nav_order: 5
-review_date: 2026-06-01
+review_date: 2026-11-01
 guide_category:
   - Common knowledge management tasks
 guide_category_order: 4
@@ -16,6 +16,8 @@ guide_labels:
   - Knowledge Cores
   - Context Management
   - RAG
+todo: true
+todo_notes: Context cores aren't available in the new Workbench UX yet — the guide currently covers Workbench steps that don't match the live UI. CLI workflows work fine, see the CLI guide in the meantime
 ---
 
 # Introduction to Context Cores

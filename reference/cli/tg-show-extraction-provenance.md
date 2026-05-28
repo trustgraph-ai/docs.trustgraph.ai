@@ -1,7 +1,7 @@
 ---
 title: tg-show-extraction-provenance
 parent: CLI
-review_date: 2027-01-01
+review_date: 2027-05-21
 ---
 
 # tg-show-extraction-provenance
@@ -33,7 +33,7 @@ Given a document ID, traverses and displays the full derivation hierarchy: Docum
 | `-u, --api-url URL` | `$TRUSTGRAPH_URL` or `http://localhost:8088/` | API URL |
 | `-t, --token TOKEN` | `$TRUSTGRAPH_TOKEN` | Authentication token |
 | `-f, --flow-id ID` | `default` | Flow ID |
-| `-U, --user USER` | `trustgraph` | User identifier |
+| `-w, --workspace WORKSPACE` | `$TRUSTGRAPH_WORKSPACE` or `default` | Workspace identifier |
 | `-C, --collection COLL` | `default` | Collection identifier |
 | `--show-content` | false | Include document/chunk content |
 | `--max-content N` | `200` | Max characters per content blob |
@@ -53,6 +53,7 @@ tg-show-extraction-provenance --format json "urn:trustgraph:doc:abc123"
 
 - `TRUSTGRAPH_URL`: Default API URL
 - `TRUSTGRAPH_TOKEN`: Default authentication token
+- `TRUSTGRAPH_WORKSPACE`: Default workspace identifier
 
 ## Related Commands
 

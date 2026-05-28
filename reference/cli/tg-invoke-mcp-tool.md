@@ -1,7 +1,7 @@
 ---
 title: tg-invoke-mcp-tool
 parent: CLI
-review_date: 2026-04-16
+review_date: 2027-05-21
 ---
 
 # tg-invoke-mcp-tool

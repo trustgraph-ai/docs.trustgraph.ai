@@ -3,7 +3,7 @@ title: Command-line document management
 nav_order: 3
 parent: Building with TrustGraph
 grand_parent: How-to Guides
-review_date: 2026-08-01
+review_date: 2026-11-01
 guide_category:
   - Building with TrustGraph
 guide_category_order: 3
@@ -35,6 +35,19 @@ guide_labels:
    you_will_need=requirements
    goal="Learn to manage documents, flows, collections, and query knowledge using TrustGraph command-line tools."
 %}
+
+## Authentication
+
+All CLI commands require a valid authentication token.  Set the
+`TRUSTGRAPH_TOKEN` environment variable before running any commands:
+
+```bash
+export TRUSTGRAPH_TOKEN="tg_my-secret-token"
+```
+
+Commands are scoped to a workspace.  By default the `default` workspace
+is used.  You can override this with the `-w` / `--workspace` flag or
+the `TRUSTGRAPH_WORKSPACE` environment variable.
 
 ## Introduction
 
@@ -164,7 +177,6 @@ Required arguments:
 - `files` - Path to file(s) to upload
 
 Optional metadata:
-- `-U, --user` - User ID (default: `trustgraph`)
 - `--name` - Document name
 - `--description` - Document description
 - `--identifier, --id` - Document identifier/URL
@@ -173,7 +185,7 @@ Optional metadata:
 
 Example:
 ```bash
-tg-add-library-document -U trustgraph \
+tg-add-library-document \
   --name "Mark's cats" \
   --description "A document about cats" \
   --keyword cats pets "domestic life" \
@@ -213,7 +225,7 @@ Example output:
 
 ## Collections
 
-Collections provide logical grouping for documents and knowledge graphs. Each user can have multiple collections to organize different projects or data domains.
+Collections provide logical grouping for documents and knowledge graphs. Each workspace can have multiple collections to organize different projects or data domains.
 
 **List collections:**
 

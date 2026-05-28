@@ -3,7 +3,7 @@ title: Explainable AI
 nav_order: 5
 parent: Common knowledge management tasks
 grand_parent: How-to Guides
-review_date: 2027-01-01
+review_date: 2026-11-01
 guide_category:
   - Common knowledge management tasks
 guide_category_order: 5
@@ -194,8 +194,7 @@ TrustGraph provides several ways to work with explainability data,
 depending on your needs:
 
 - **Workbench** — the built-in web interface shows reasoning traces inline
-  with answers.  See the
-  [Explainability at a glance](../explainability/) guide..
+  with answers.  See the [Graph RAG](../graph-rag/) guide.
 - **CLI tools** — command-line tools for running explainable queries,
   listing past traces, and inspecting provenance chains.  See the
   [Explainability using CLI](../explainability-cli/) guide.
@@ -209,8 +208,8 @@ depending on your needs:
 
 ## Next steps
 
-- **[Explainability at a glance](../explainability/)** — see explainability
-  in action using the Workbench
+- **[Graph RAG](../graph-rag/)** — see explainability in action using the
+  Workbench
 - **[Explainability using CLI](../explainability-cli/)** — inspect traces
   and provenance from the command line
 - **[Explainable AI with TypeScript](../building/explainable-ai)** — build

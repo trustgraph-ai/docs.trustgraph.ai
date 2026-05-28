@@ -1,7 +1,7 @@
 ---
 title: tg-invoke-llm
 parent: CLI
-review_date: 2026-12-02
+review_date: 2027-05-21
 ---
 
 # tg-invoke-llm

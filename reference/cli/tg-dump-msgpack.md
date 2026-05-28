@@ -1,7 +1,7 @@
 ---
 title: tg-dump-msgpack
 parent: CLI
-review_date: 2026-09-30
+review_date: 2027-05-21
 ---
 
 # tg-dump-msgpack

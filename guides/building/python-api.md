@@ -3,7 +3,6 @@ title: Building with the Python API
 nav_order: 4
 parent: Building with TrustGraph
 grand_parent: How-to Guides
-review_date: 2026-08-01
 guide_category:
   - Building with TrustGraph
 guide_category_order: 4
@@ -15,6 +14,7 @@ guide_banner: python.jpg
 guide_labels:
   - Python
   - API
+review_date: 2026-11-01
 ---
 
 # Building with the Python API
@@ -68,19 +68,19 @@ For a specific version:
 
 {% capture pip_install_version %}
 ```bash
-pip install trustgraph-base==1.8.10
+pip install trustgraph-base==2.4.29
 ```
 {% endcapture %}
 
 {% capture uv_install_version %}
 ```bash
-uv pip install trustgraph-base==1.8.10
+uv pip install trustgraph-base==2.4.29
 ```
 {% endcapture %}
 
 {% capture poetry_install_version %}
 ```bash
-poetry add trustgraph-base@1.8.10
+poetry add trustgraph-base@2.4.29
 ```
 {% endcapture %}
 
@@ -104,40 +104,46 @@ The `trustgraph-base` package provides Python interfaces to TrustGraph functiona
 - **Collections** - Manage document collections
 - **Knowledge graph** - Work with graph data
 
+## Authentication
+
+All API access requires a valid authentication token.  Tokens are either
+API keys (long-lived tokens with a `tg_` prefix) or temporary JWT tokens
+obtained through username/password login.
+
+The simplest approach is to set the `TRUSTGRAPH_TOKEN` environment variable
+before running your application:
+
+```bash
+export TRUSTGRAPH_TOKEN="tg_my-secret-token"
+```
+
 ## Creating a Client
 
-To connect to TrustGraph, create an `Api` client object:
-
-```python
-from trustgraph.api import Api
-
-# Connect to TrustGraph
-api = Api(url='http://localhost:8088/')
-```
-
-**With authentication:**
-
-```python
-from trustgraph.api import Api
-
-# Connect with authentication token
-api = Api(
-    url='http://localhost:8088/',
-    token='your-token-here'
-)
-```
-
-**Using environment variables:**
+To connect to TrustGraph, create an `Api` client object with your
+authentication token:
 
 ```python
 import os
 from trustgraph.api import Api
 
-# Get configuration from environment
-url = os.getenv('TRUSTGRAPH_URL', 'http://localhost:8088/')
-token = os.getenv('TRUSTGRAPH_TOKEN', None)
+api = Api(
+    url='http://localhost:8088/',
+    token=os.getenv('TRUSTGRAPH_TOKEN'),
+)
+```
 
-api = Api(url=url, token=token)
+**Workspace selection:**
+
+The `Api` client is scoped to a workspace.  All requests made through the
+client are automatically routed to the specified workspace.  If no workspace
+is specified, the `default` workspace is used.
+
+```python
+api = Api(
+    url='http://localhost:8088/',
+    token=os.getenv('TRUSTGRAPH_TOKEN'),
+    workspace='my-workspace',
+)
 ```
 
 ## Service Access Pattern
@@ -147,8 +153,6 @@ TrustGraph uses a consistent pattern: create an `Api` object, then call service 
 **Global services** are accessed directly from the API object:
 
 ```python
-api = Api(url='http://localhost:8088/')
-
 # Access different services
 flow_service = api.flow()
 config_service = api.config()
@@ -163,8 +167,6 @@ metrics_service = api.metrics()
 The **flow-specific service** uses a different pattern:
 
 ```python
-api = Api(url='http://localhost:8088/')
-
 # Access a specific flow
 flow = api.flow().id('default')
 
@@ -177,11 +179,15 @@ response = flow.text_completion(system="You are helpful", prompt="Hello")
 This example uses the config service to retrieve a specific prompt template:
 
 ```python
+import os
 from trustgraph.api import Api, ConfigKey
 import json
 
 # Create API client and get config service
-api = Api(url='http://localhost:8088/').config()
+api = Api(
+    url='http://localhost:8088/',
+    token=os.getenv('TRUSTGRAPH_TOKEN'),
+).config()
 
 # ConfigKey identifies a configuration item
 # type="prompt" specifies we want a prompt template
@@ -210,10 +216,14 @@ This pattern demonstrates:
 This example demonstrates the flow-specific service pattern by querying triples from the knowledge graph:
 
 ```python
+import os
 from trustgraph.api import Api
 
 # Create API client
-api = Api(url='http://localhost:8088/')
+api = Api(
+    url='http://localhost:8088/',
+    token=os.getenv('TRUSTGRAPH_TOKEN'),
+)
 
 # Access a specific flow using the flow-specific service pattern
 # api.flow() returns a Flow service
@@ -221,25 +231,25 @@ api = Api(url='http://localhost:8088/')
 flow = api.flow().id('default')
 
 # Query triples from the knowledge graph
-# This fetches subject-predicate-object triples stored in the graph
-# limit=10 restricts the result to 10 triples
 triples = flow.triples_query(limit=10)
 
 # Display the results
 print(f"Retrieved {len(triples)} triples:")
 for triple in triples:
-    # Each triple has s (subject), p (predicate), o (object) attributes
-    # These can be Uri or Literal objects
     print(f"  {triple.s} -> {triple.p} -> {triple.o}")
 ```
 
 This demonstrates the flow-specific service pattern where operations are scoped to a particular flow instance. You can also filter triples by subject, predicate, or object:
 
 ```python
+import os
 from trustgraph.api import Api
 from trustgraph.knowledge import Uri
 
-api = Api(url='http://localhost:8088/')
+api = Api(
+    url='http://localhost:8088/',
+    token=os.getenv('TRUSTGRAPH_TOKEN'),
+)
 flow = api.flow().id('default')
 
 # Query triples with a specific subject
@@ -261,18 +271,20 @@ Graph RAG retrieves relevant information from the knowledge graph to answer ques
 Use the standard flow service for non-streaming queries that return complete responses:
 
 ```python
+import os
 from trustgraph.api import Api
 
 # Create API client and access flow
-api = Api(url='http://localhost:8088/')
+api = Api(
+    url='http://localhost:8088/',
+    token=os.getenv('TRUSTGRAPH_TOKEN'),
+)
 flow = api.flow().id('default')
 
 # Execute Graph RAG query
-# Returns complete response as a string
 response = flow.graph_rag(
     query="What is the scientific name for cats?",
-    user="trustgraph",
-    collection="default"
+    collection="default",
 )
 
 print(response)
@@ -289,28 +301,27 @@ Optional parameters for tuning graph traversal:
 Use the socket service for streaming responses that arrive incrementally:
 
 ```python
+import os
 from trustgraph.api import Api
 
 # Create API client and access socket service
-api = Api(url='http://localhost:8088/')
+api = Api(
+    url='http://localhost:8088/',
+    token=os.getenv('TRUSTGRAPH_TOKEN'),
+)
 
 # Socket service uses WebSockets for streaming
-# Get flow instance from socket service, not regular flow service
 flow = api.socket().flow('default')
 
 # Execute streaming Graph RAG query
-# streaming=True returns an iterator that yields chunks as they arrive
 for chunk in flow.graph_rag(
     query="What is the scientific name for cats?",
-    user="trustgraph",
     collection="default",
-    streaming=True
+    streaming=True,
 ):
-    # Each chunk is a string containing part of the response
-    # Print without newline to display streaming effect
     print(chunk, end='', flush=True)
 
-print()  # Final newline
+print()
 ```
 
 The streaming mode is useful for:
@@ -323,38 +334,36 @@ The streaming mode is useful for:
 Agents can reason, use tools, and provide step-by-step thinking. Streaming mode lets you observe the agent's thought process in real-time.
 
 ```python
+import os
 from trustgraph.api import Api
 from trustgraph.api.types import AgentThought, AgentObservation, AgentAnswer
 
 # Create API client and access socket service
-api = Api(url='http://localhost:8088/')
+api = Api(
+    url='http://localhost:8088/',
+    token=os.getenv('TRUSTGRAPH_TOKEN'),
+)
 flow = api.socket().flow('default')
 
 # Execute streaming agent query
-# The agent returns different chunk types for thoughts, observations, and answers
 for chunk in flow.agent(
     question="What is the scientific name for cats?",
-    user="trustgraph",
-    streaming=True
+    streaming=True,
 ):
-    # Check chunk type to format output appropriately
     if isinstance(chunk, AgentThought):
-        # Agent's reasoning process
-        print(f"🤔 {chunk.content}", end='', flush=True)
+        print(f"Thought: {chunk.content}", end='', flush=True)
         if chunk.end_of_message:
-            print()  # Newline at end of thought
+            print()
 
     elif isinstance(chunk, AgentObservation):
-        # Results from tool usage
-        print(f"👁️ {chunk.content}", end='', flush=True)
+        print(f"Observation: {chunk.content}", end='', flush=True)
         if chunk.end_of_message:
-            print()  # Newline at end of observation
+            print()
 
     elif isinstance(chunk, AgentAnswer):
-        # Final answer to the user
-        print(f"✅ {chunk.content}", end='', flush=True)
+        print(f"Answer: {chunk.content}", end='', flush=True)
         if chunk.end_of_message:
-            print()  # Newline at end of answer
+            print()
 ```
 
 Agent streaming provides visibility into:

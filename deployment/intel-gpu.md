@@ -2,7 +2,7 @@
 title: Intel GPU
 nav_order: 11
 parent: Deployment
-review_date: 2026-01-28
+review_date: 2026-11-01
 guide_category:
   - Data centre
 guide_banner: intel-ai.jpg
@@ -15,8 +15,6 @@ guide_labels:
   - GPU
   - OpenVINO
   - Intel Arc
-todo: true
-todo_notes: Placeholder page - content to be added.
 ---
 
 # Self-Hosting with OpenVINO and Intel GPU

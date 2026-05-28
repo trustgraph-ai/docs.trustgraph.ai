@@ -2,7 +2,7 @@
 title: Schemas
 parent: Structured data processing
 nav_order: 1
-review_date: 2026-08-01
+review_date: 2026-11-01
 ---
 
 # Schemas for structured data processing

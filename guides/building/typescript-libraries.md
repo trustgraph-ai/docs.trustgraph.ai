@@ -15,6 +15,8 @@ guide_banner: typescript-intro.jpg
 guide_labels:
   - TypeScript
   - Libraries
+todo: true
+todo_notes: Needs updating to reflect the new Workbench UX component structure — review imports, component names, and any API changes in the TypeScript libraries
 ---
 
 # Introduction to the TypeScript libraries

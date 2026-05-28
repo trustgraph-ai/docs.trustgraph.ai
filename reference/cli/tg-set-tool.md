@@ -1,7 +1,7 @@
 ---
 title: tg-set-tool
 parent: CLI
-review_date: 2026-03-06
+review_date: 2027-05-21
 ---
 
 # tg-set-tool

@@ -3,7 +3,7 @@ title: Adding your own processing
 nav_order: 9
 parent: Building with TrustGraph
 grand_parent: How-to Guides
-review_date: 2026-08-01
+review_date: 2026-05-01
 guide_category:
   - Building with TrustGraph
 guide_category_order: 15
@@ -16,7 +16,7 @@ guide_labels:
   - Custom Processing
   - Extensions
 todo: true
-todo_notes: This is under construction
+todo_notes: This guide needs to be written from scratch — it should walk through building a custom processing component, connecting it to TrustGraph's pub/sub pipeline, and deploying it alongside the standard services
 ---
 
 # Adding your own processing

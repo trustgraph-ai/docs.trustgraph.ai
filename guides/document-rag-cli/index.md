@@ -3,7 +3,7 @@ title: Document RAG using CLI
 nav_order: 4
 parent: Advanced knowledge management
 grand_parent: How-to Guides
-review_date: 2026-08-01
+review_date: 2026-11-01
 guide_category:
   - Advanced knowledge management
 guide_category_order: 3
@@ -44,6 +44,14 @@ This guide demonstrates:
 - Loading documents via CLI
 - Creating Document RAG flows
 - Querying with vector search
+
+## Authentication
+
+All CLI commands require a valid authentication token:
+
+```bash
+export TRUSTGRAPH_TOKEN="tg_my-secret-token"
+```
 
 ## Step-by-Step Guide
 

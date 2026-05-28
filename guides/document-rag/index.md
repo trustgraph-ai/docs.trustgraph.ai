@@ -3,7 +3,7 @@ title: Document RAG
 nav_order: 4
 parent: Common knowledge management tasks
 grand_parent: How-to Guides
-review_date: 2026-08-01
+review_date: 2026-11-01
 guide_category:
   - Common knowledge management tasks
 guide_category_order: 3
@@ -116,74 +116,37 @@ which you can download at this URL:
 [https://raw.githubusercontent.com/trustgraph-ai/example-data/refs/heads/main/tracking/operation-phantom-cargo.md](https://raw.githubusercontent.com/trustgraph-ai/example-data/refs/heads/main/tracking/operation-phantom-cargo.md).
 
 - Download [the document](https://raw.githubusercontent.com/trustgraph-ai/example-data/refs/heads/main/tracking/operation-phantom-cargo.md)
-- Go the 'Library' page
-- Click 'Upload documents'
-- Set the title: PHANTOM CARGO
-- Set the Comments to: Intelligence report: Operation PHANTOM CARGO
-- Set keywords: maritime, intelligence, cargo, grey arms
-- Select 'Text' for the upload operation
-- Click 'Select text files'
-- Add the document you just downloaded
-- Click Submit
+- Go to the Workflows page and click **+ Add Document**
+- A new dialogue appears — click the filename button and select the
+  file you downloaded.  The MIME type field should fill in automatically.
+- Set the Title: Operation PHANTOM CARGO
+- Set the Description to: Intelligence report: Operation PHANTOM CARGO
+- Add tags: phantom cargo, intelligence, maritime, shipping
+- Click **Upload**
 
-<img src="load-document.png" alt="Document load dialogue"/>
+The document shows upload progress.  On upload completing, the new
+document outline changes to a solid line.
 
-### Step 2: Create a Collection
+### Step 2: Submit the Document for Processing
 
-A collection is used to organise a set of related documents or data sources
-into a single unit.  Retrieval operations operate across a single collection.
+Once the document is uploaded, click **Submit for Processing** on the
+document detail panel.  A 3-step wizard appears to select a flow and
+collection.
 
-We'll create an 'intelligence' collection:
+**Select a flow:** Choose which processing flow to use.  For this guide,
+select **default**.
 
-- Go to the 'Library' page
-- Select the 'Collections' tab
-- Click 'Create Collection'
-- Set the ID: intelligence
-- Set the name: Intelligence
-- Set the description to: Intelligence analysis
-- Click 'Submit'
+**Select a collection:** Choose which collection the results should be
+stored in.  For this guide, select **default**.
 
-### Step 3: Create the Flow
-
-A flow describes the collection of processing operations.  We're going
-to create a single flow for Document RAG processing.
-
-We'll create a 'doc-rag' flow:
-
-- Go to the 'Flows' page
-- Click 'Create'
-- Select the flow blueprint 'Document RAG'
-- Set the ID: doc-rag
-- Set the description: Document RAG
-- Click 'Create'
-
-### Step 4: Submit the Document for Processing
-
-This pushes the document into the flow input.
-
-There is a selection widget top right of the screen with an database icon
-top left.
-
-<img src="selection.png" alt="Selection widget"/>
-
-Click that to open the collection/flow selector, and select the
-Intelligence collection, and Document RAG, both of which you created earlier.
-
-<img src="collection-selected.png" alt="Selection dialogue"/>
-
-You are ready to submit the document:
-
-- Go to the 'Library' page
-- Select the PHANTOM CARGO document so that the tick box is selected
-- Click 'Submit' at the bottom of the page
-- Change the Processing flow to Document RAG
-- Click Submit
+**Confirm:** Review the document, flow and collection selections, then
+click **Submit for Processing**.
 
 ### Step 5: Monitoring
 
 If you want to see the document loading, you can go to Grafana at
-[`http://localhost:3000`](http://localhost:3000).  The default
-login user is admin, password admin.  Grafana is configured with a single
+[`http://localhost:3000`](http://localhost:3000).  Login with username `admin` and the password you set in
+`GF_SECURITY_ADMIN_PASSWORD`.  Grafana is configured with a single
 dashboard, which has a 'pub/sub backlog' graph.
 
 <img src="monitoring.png" alt="Grafana pub/sub backlog graph"/>
@@ -192,13 +155,24 @@ The document we loaded is small, and will process very quickly, so you
 should only see a 'blip' on the backlog showing that chunks were loaded
 and cleared quickly.
 
-### Step 6: Retrieval
+### Step 6: Query with Document RAG
 
-Presently, there is no Document RAG query interface in the Workbench.
+From the Workflows page, select **Document RAG Query**.  This console
+has Explainable AI enabled, which helps to understand and diagnose
+retrieval.
 
-For querying Document RAG using the command line, see the [Document RAG CLI Guide](../document-rag-cli/#step-6-query-with-document-rag).
+Enter a question such as "Explain the role of SAR in the operation" and
+after a short while you should see a response.
 
-The CLI guide also includes examples demonstrating Document RAG's limitations with complex queries and multiple documents.
+<img src="document-rag-query.png" alt="Document RAG query result"/>
+
+On the left-hand side you see the answer to the query.  The right-hand
+side shows the link between the query and the chunk identifiers used
+for context.  Document RAG does not have the rich explainability
+support of Graph RAG or Ontology RAG — there are no grounding,
+exploration or focus events to trace back to source material.
+
+For command-line workflows, see the [Document RAG CLI Guide](../document-rag-cli/).
 
 ## Document RAG vs. Other Approaches
 

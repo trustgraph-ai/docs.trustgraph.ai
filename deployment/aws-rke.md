@@ -3,7 +3,7 @@ title: Amazon Web Services (RKE)
 nav_order: 9
 parent: Deployment
 grand_parent: TrustGraph Documentation
-review_date: 2026-05-02
+review_date: 2026-11-01
 guide_category:
   - Global cloud
 guide_category_order: 1
@@ -58,7 +58,7 @@ This guide walks you through deploying TrustGraph on Amazon Web Services using R
 
 Once deployed, you'll have a complete TrustGraph stack running on AWS infrastructure with:
 - RKE2 Kubernetes cluster (3-node setup, configurable)
-- AWS Bedrock integration (Claude 3.5 Haiku default)
+- AWS Bedrock integration (Claude, Llama, Mistral, DeepSeek, Amazon Nova and more)
 - EBS CSI driver for persistent storage
 - Complete monitoring with Grafana and Prometheus
 - Web workbench for document processing and Graph RAG
@@ -162,8 +162,8 @@ AWS Bedrock requires explicit model access enablement:
 3. Go to **Model access** in the left navigation
 4. Click **Manage model access**
 5. Enable access to:
-   - **Anthropic Claude 3.5 Haiku** (recommended default)
-   - **Mistral Nemo Instruct** (optional alternative)
+   - **Anthropic Claude Haiku 4.5** (recommended default)
+   - **Meta Llama 4**, **Mistral Large 3**, **DeepSeek-R1**, **Amazon Nova** (optional alternatives)
    - Any other models you want to use
 6. Submit request (usually approved immediately for most models)
 
@@ -253,13 +253,34 @@ Refer to [AWS Regions](https://aws.amazon.com/about-aws/global-infrastructure/re
 Set the Bedrock model to use:
 
 ```bash
-pulumi config set bedrockModel anthropic.claude-3-5-haiku-20241022-v1:0
+pulumi config set bedrockModel global.anthropic.claude-haiku-4-5-20251001-v1:0
 ```
 
-Available Bedrock models include:
-- `anthropic.claude-3-5-haiku-20241022-v1:0` (fast, cost-effective)
-- `anthropic.claude-3-5-sonnet-20241022-v2:0` (balanced performance)
-- `mistral.mistral-nemo-instruct-2407-v1:0` (open source)
+Available Bedrock models (selection):
+
+**Anthropic Claude**:
+- `global.anthropic.claude-opus-4-6-v1` (maximum intelligence)
+- `global.anthropic.claude-opus-4-5-20251101-v1:0` (frontier coding + agents)
+- `global.anthropic.claude-sonnet-4-5-20250929-v1:0` (complex agents + coding)
+- `global.anthropic.claude-haiku-4-5-20251001-v1:0` (fastest with near-frontier intelligence)
+- `global.anthropic.claude-sonnet-4-20250514-v1:0` (Sonnet 4.0)
+
+**Meta Llama**:
+- `us.meta.llama4-maverick-17b-instruct-v1:0` (128 experts, 400B params, multimodal)
+- `us.meta.llama4-scout-17b-instruct-v1:0` (16 experts, 3.5M context)
+- `us.meta.llama3-3-70b-instruct-v1:0` (Llama 3.3 70B Instruct)
+
+**Mistral AI**:
+- `us.mistral.mistral-large-2511-v1:0` (flagship text, 128K context)
+- `us.mistral.magistral-small-2506-v1:0` (reasoning, cost-effective)
+
+**DeepSeek**:
+- `us.deepseek.r1-v1:0` (reasoning)
+
+**Amazon Nova**:
+- `us.amazon.nova-pro-v1:0` (multimodal, balanced)
+- `us.amazon.nova-lite-v1:0` (fast, multimodal)
+- `us.amazon.nova-micro-v1:0` (text-only, cheapest)
 
 Refer to the repository's README for more model options.
 
@@ -361,6 +382,20 @@ You should see your RKE2 nodes listed as `Ready`.
 
 {% include deployment/install-cli-tools.md %}
 
+Set the IAM bootstrap token so that CLI tools can authenticate:
+
+```bash
+export TRUSTGRAPH_TOKEN=$(pulumi stack output iamToken --show-secrets)
+```
+
+## Grafana access
+
+Login to Grafana with username `admin` and the password from:
+
+```bash
+pulumi stack output grafanaPassword --show-secrets
+```
+
 ## Startup period
 
 It can take 2-3 minutes for all services to stabilize after deployment. Services like Pulsar and Cassandra need time to initialize properly. Additionally, wait 30 seconds after pods show "Running" status for internal initialization.
@@ -408,10 +443,6 @@ This confirms that TrustGraph can successfully communicate with AWS Bedrock.
 ### Load a document
 
 {% include deployment/workbench/load-document.md %}
-
-### Use Vector search
-
-{% include deployment/workbench/vector-search.md %}
 
 ### Look at knowledge graph
 
@@ -774,7 +805,7 @@ Now that you have TrustGraph running on AWS with RKE2:
 - **Integrate AWS services**: Connect to S3, RDS, DynamoDB, or other AWS services
 - **CI/CD**: Set up AWS CodePipeline or GitHub Actions for automated deployments
 - **Monitoring**: Integrate with CloudWatch and AWS X-Ray
-- **Bedrock models**: Explore other Bedrock models (Claude, Mistral, LLaMA, etc.)
+- **Bedrock models**: Explore other Bedrock models (Claude, Llama, Mistral, DeepSeek, Amazon Nova, etc.)
 - **Custom models**: Consider Amazon SageMaker for custom model hosting
 
 {: .note }

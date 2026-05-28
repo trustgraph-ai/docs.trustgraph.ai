@@ -1,7 +1,7 @@
 ---
 title: tg-save-doc-embeds
 parent: CLI
-review_date: 2026-06-05
+review_date: 2027-05-21
 ---
 
 # tg-save-doc-embeds
@@ -36,7 +36,6 @@ The command should typically be started before document processing begins to cap
 | `-t, --token TOKEN` | `$TRUSTGRAPH_TOKEN` | Authentication token |
 | `-f, --flow-id ID` | `default` | Flow instance ID to monitor |
 | `--format FORMAT` | `msgpack` | Output format - `msgpack` or `json` |
-| `--user USER` | (none) | Filter by user ID |
 | `--collection COLLECTION` | (none) | Filter by collection ID |
 
 ## Examples

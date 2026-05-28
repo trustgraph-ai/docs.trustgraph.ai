@@ -2,7 +2,7 @@
 title: Security Considerations
 nav_order: 10
 parent: Deployment
-review_date: 2026-06-19
+review_date: 2026-11-01
 guide_category:
 guide_category_order: 3
 guide_description: Security characteristics and considerations for different deployment options
@@ -33,12 +33,13 @@ characteristics:
             <p>It is necessary to consider the external access in the TrustGraph deployment:</p>
             <ul>
                <li>Docker Compose / Podman Compose: You should take care
-               when using such a deployment to a box which is directly
+               when using such a deployment on a host which is directly
                addressable from the internet.  It is possible that
-               services will be directly accessible from the internet
-               without authentication.</li>
-               <li>Scaleway: The Kubernetes deployment does not have any external access enabled.  Access is only possible through `kubectl` port-forwarding using your Kubernetes credentials.</li>
-               <li>OVHcloud: The Kubernetes deployment does not have any external access enabled.  Access is only possible through `kubectl` port-forwarding using your Kubernetes credentials.</li>
+               services will be directly accessible from the internet.</li>
+               <li>Scaleway: The Kubernetes deployment does not have any external access enabled.  Access is only possible through <code>kubectl</code> port-forwarding using your Kubernetes credentials.</li>
+               <li>OVHcloud: The Kubernetes deployment does not have any external access enabled.  Access is only possible through <code>kubectl</code> port-forwarding using your Kubernetes credentials.</li>
+               <li>GCP: The Kubernetes deployment does not have any external access enabled.  Access is only possible through <code>kubectl</code> port-forwarding using your Kubernetes credentials.</li>
+               <li>Azure AKS: The Kubernetes deployment does not have any external access enabled.  Access is only possible through <code>kubectl</code> port-forwarding using your Kubernetes credentials.</li>
                <li>AWS EC2: The provided configuration has a security group configuration which does not permit external access.</li>
                <li>AWS RKE: The provided configuration has a security group configuration which does not permit external access.</li>
             </ul>
@@ -47,17 +48,24 @@ characteristics:
     </tr>
     <tr>
         <td style="vertical-align: top;">Service credentials</td>
-        <td style="vertical-align: top;">Services such as Cassandra and Pulsar are deployed without security credentials, relying on network isolation to prevent unauthorised access</td>
-        <td style="vertical-align: top;">For complex multi-tenant environments consider understanding the extra security features which are available in services</td>
+        <td style="vertical-align: top;">Internal services such as Cassandra and Pulsar are deployed without service-level credentials, relying on network isolation to prevent unauthorised access.  Workspace isolation provides structural data separation through per-workspace pub/sub queues and storage partitioning.</td>
+        <td style="vertical-align: top;">For complex multi-tenant environments consider understanding the extra security features which are available in services.  See <a href="../overview/workspaces">Workspaces &amp; Data Isolation</a> for details on the data separation model.</td>
     </tr>
     <tr>
         <td style="vertical-align: top;">Gateway authentication</td>
-        <td style="vertical-align: top;">Out-of-the-box, there is no authentication on the API gateway</td>
-        <td style="vertical-align: top;">Consider setting `GATEWAY_TOKEN`, and using a token in API calls.  Alternatively protect the gateway with a custom authentication gateway for external access.</td>
+        <td style="vertical-align: top;">The API gateway enforces authentication on all requests using Authorization headers.  Two credential types are supported: API keys (long-lived tokens with a <code>tg_</code> prefix) and username/password login which issues temporary JWT tokens.</td>
+        <td style="vertical-align: top;">Pay close attention to user access control management.  Ensure that API keys are handled and distributed only through secure channels.  Prefer username/password authentication for ordinary users so that only temporary tokens are in circulation.</td>
+    </tr>
+    <tr>
+        <td style="vertical-align: top;">IAM bootstrap token</td>
+        <td style="vertical-align: top;">On first cold start, TrustGraph creates an initial security account using the <code>IAM_BOOTSTRAP_TOKEN</code> environment variable.  This token is only used for initial setup — once the system is running, additional accounts can be created and tokens changed through the workbench.</td>
+        <td style="vertical-align: top;">Treat the bootstrap token as a sensitive credential.  In Pulumi-based deployments it is auto-generated and retrievable via <code>pulumi stack output</code>.  For compose deployments, choose a strong token value.  Consider rotating or replacing the bootstrap credentials once the system is operational.</td>
     </tr>
 </table>
 
 ## Enterprise Support
 
 Enhanced security support for TrustGraph is available from KnowNext at
-[https://knownext.io](https://knownext.io).
+[https://knownext.io](https://knownext.io).  See also
+[Security](../overview/security) for the broader security architecture and
+enterprise IAM capabilities.

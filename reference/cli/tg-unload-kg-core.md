@@ -1,7 +1,7 @@
 ---
 title: tg-unload-kg-core
 parent: CLI
-review_date: 2026-04-06
+review_date: 2027-05-21
 ---
 
 # tg-unload-kg-core
@@ -32,7 +32,7 @@ The `tg-unload-kg-core` command removes a previously loaded knowledge core from 
 |--------|---------|-------------|
 | `-u, --api-url URL` | `$TRUSTGRAPH_URL` or `http://localhost:8088/` | TrustGraph API URL |
 | `-t, --token TOKEN` | `$TRUSTGRAPH_TOKEN` | Authentication token |
-| `-U, --user USER` | `trustgraph` | User identifier |
+| `-w, --workspace WORKSPACE` | `$TRUSTGRAPH_WORKSPACE` or `default` | Workspace identifier |
 | `-f, --flow-id FLOW` | `default` | Flow ID to unload knowledge from |
 
 ## Examples
@@ -47,7 +47,7 @@ tg-unload-kg-core --id "research-knowledge"
 tg-unload-kg-core \
   --id "medical-knowledge" \
   --flow-id "medical-analysis" \
-  -U medical-team
+  -w medical-team
 ```
 
 ### Using Custom API
@@ -62,6 +62,7 @@ tg-unload-kg-core \
 
 - `TRUSTGRAPH_URL`: Default API URL
 - `TRUSTGRAPH_TOKEN`: Default authentication token
+- `TRUSTGRAPH_WORKSPACE`: Default workspace identifier
 
 ## Related Commands
 

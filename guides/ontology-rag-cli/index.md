@@ -3,7 +3,7 @@ title: Ontology RAG using CLI
 nav_order: 3
 parent: Advanced knowledge management
 grand_parent: How-to Guides
-review_date: 2026-08-01
+review_date: 2026-11-01
 guide_category:
   - Advanced knowledge management
 guide_category_order: 2
@@ -45,6 +45,14 @@ This guide demonstrates:
 - Creating ontology-based flows
 - Processing documents with schema-guided extraction
 - Querying with Ontology RAG
+
+## Authentication
+
+All CLI commands require a valid authentication token:
+
+```bash
+export TRUSTGRAPH_TOKEN="tg_my-secret-token"
+```
 
 ## Step-by-Step Guide
 

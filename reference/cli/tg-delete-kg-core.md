@@ -1,7 +1,7 @@
 ---
 title: tg-delete-kg-core
 parent: CLI
-review_date: 2026-03-08
+review_date: 2027-05-21
 ---
 
 # tg-delete-kg-core
@@ -34,7 +34,7 @@ The `tg-delete-kg-core` command permanently removes a stored knowledge core from
 |--------|---------|-------------|
 | `-u, --api-url URL` | `$TRUSTGRAPH_URL` or `http://localhost:8088/` | TrustGraph API URL |
 | `-t, --token TOKEN` | `$TRUSTGRAPH_TOKEN` | Authentication token |
-| `-U, --user USER` | `trustgraph` | User identifier |
+| `-w, --workspace WORKSPACE` | `$TRUSTGRAPH_WORKSPACE` or `default` | Workspace identifier |
 
 ## Examples
 
@@ -43,9 +43,9 @@ The `tg-delete-kg-core` command permanently removes a stored knowledge core from
 tg-delete-kg-core --id "old-research-data"
 ```
 
-### Delete with Specific User
+### Delete with Specific Workspace
 ```bash
-tg-delete-kg-core --id "test-knowledge" -U developer
+tg-delete-kg-core --id "test-knowledge" -w developer
 ```
 
 ### Using Custom API
@@ -66,6 +66,7 @@ tg-delete-kg-core --id "important-core"
 
 - `TRUSTGRAPH_URL`: Default API URL
 - `TRUSTGRAPH_TOKEN`: Default authentication token
+- `TRUSTGRAPH_WORKSPACE`: Default workspace identifier
 
 ## Related Commands
 

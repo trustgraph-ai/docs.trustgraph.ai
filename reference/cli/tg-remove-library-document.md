@@ -1,7 +1,7 @@
 ---
 title: tg-remove-library-document
 parent: CLI
-review_date: 2026-12-04
+review_date: 2027-05-21
 ---
 
 # tg-remove-library-document
@@ -33,7 +33,7 @@ The `tg-remove-library-document` command permanently removes a document from Tru
 | Option | Default | Description |
 |--------|---------|-------------|
 | `-u, --url URL` | `$TRUSTGRAPH_URL` or `http://localhost:8088/` | TrustGraph API URL |
-| `-U, --user USER` | `trustgraph` | User ID |
+| `-w, --workspace WORKSPACE` | `$TRUSTGRAPH_WORKSPACE` or `default` | Workspace identifier |
 | `-t, --token TOKEN` | `$TRUSTGRAPH_TOKEN` | Authentication token |
 
 ## Examples
@@ -43,9 +43,9 @@ The `tg-remove-library-document` command permanently removes a document from Tru
 tg-remove-library-document --id "doc_123456789"
 ```
 
-### Remove with Custom User
+### Remove with Custom Workspace
 ```bash
-tg-remove-library-document --id "doc_987654321" -U "research-team"
+tg-remove-library-document --id "doc_987654321" -w "research-team"
 ```
 
 ## Notes
@@ -56,6 +56,7 @@ Use [`tg-show-library-documents`](tg-show-library-documents) to list documents a
 
 - `TRUSTGRAPH_URL`: Default API URL
 - `TRUSTGRAPH_TOKEN`: Default authentication token
+- `TRUSTGRAPH_WORKSPACE`: Default workspace identifier
 
 ## Related Commands
 

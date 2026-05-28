@@ -1,7 +1,7 @@
 ---
 title: tg-list-explain-traces
 parent: CLI
-review_date: 2027-01-01
+review_date: 2027-05-21
 ---
 
 # tg-list-explain-traces
@@ -25,7 +25,7 @@ Queries the retrieval graph for all recorded explainability sessions and display
 | `-u, --api-url URL` | `$TRUSTGRAPH_URL` or `http://localhost:8088/` | API URL |
 | `-t, --token TOKEN` | `$TRUSTGRAPH_TOKEN` | Authentication token |
 | `-f, --flow-id ID` | `default` | Flow ID |
-| `-U, --user USER` | `trustgraph` | User identifier |
+| `-w, --workspace WORKSPACE` | `$TRUSTGRAPH_WORKSPACE` or `default` | Workspace identifier |
 | `-C, --collection COLL` | `default` | Collection identifier |
 | `--limit N` | `50` | Maximum results |
 | `--format FORMAT` | `table` | Output format: `table`, `json` |
@@ -42,6 +42,7 @@ tg-list-explain-traces --limit 20 --format json
 
 - `TRUSTGRAPH_URL`: Default API URL
 - `TRUSTGRAPH_TOKEN`: Default authentication token
+- `TRUSTGRAPH_WORKSPACE`: Default workspace identifier
 
 ## Related Commands
 
