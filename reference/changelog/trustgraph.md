@@ -3,10 +3,132 @@ title: Changelog - TrustGraph
 nav_order: 1
 parent: Reference
 grand_parent: TrustGraph Documentation
-review_date: 2027-05-21
+review_date: 2027-06-10
 ---
 
 # Changelog
+
+## v2.5 (2026-06-10)
+
+### Major Features
+- **MCP Server Authentication and Query Tools** (#984): End-to-end
+  Bearer token authentication for the MCP server, replacing the broken
+  `GATEWAY_SECRET` approach (token was sent as a query parameter,
+  silently ignored by the gateway):
+  - Each MCP caller gets a dedicated WebSocket authenticated via the
+    gateway's in-band first-frame protocol, with `whoami` verification
+    on first connect
+  - New `sparql_query` tool for SPARQL SELECT/ASK/CONSTRUCT/DESCRIBE
+  - New `graphql_query` tool for structured data (rows) GraphQL queries
+  - `embeddings` tool now accepts a list of texts (was single string)
+  - `triples_query` migrated to Term wire format with compact keys,
+    plus collection and graph parameters
+  - All tools accept an optional `workspace` parameter
+- **Comprehensive SPARQL 1.1 Function and Operator Support** (#945,
+  #946, #947): Major expansion and rewrite of the SPARQL query engine:
+  - 30+ built-in functions: string (SUBSTR, STRBEFORE, STRAFTER,
+    REPLACE, ENCODE_FOR_URI), numeric (FLOOR, CEIL, ROUND, ABS),
+    date/time (YEAR, MONTH, DAY, HOURS, MINUTES, SECONDS, NOW, TZ),
+    hash (MD5, SHA1, SHA256, SHA512), term constructors (IRI/URI,
+    BNODE, UUID, STRUUID), and others (LANGMATCHES, RAND,
+    EXISTS/NOT EXISTS)
+  - MINUS set-difference algebra operator
+  - Streaming evaluation via async generators — results stream
+    incrementally, Slice terminates early, and full result set
+    materialisation is avoided for streamable operators (Project,
+    Filter, Union, Extend)
+  - Bind join optimisation for VALUES/ToMultiSet joins — the small side
+    is iterated and used to seed selective queries on the large side,
+    turning wildcard BGP queries into selective ones
+  - `TriplesClient.query_gen()` async generator wrapping the streaming
+    callback API via an `asyncio.Queue` bridge
+  - Fixed LIMIT propagation into child algebra nodes that was starving
+    OPTIONAL and other operators of results
+  - Fixed FILTER IN/NOT IN handling for both rdflib representations
+- **Complete Knowledge Core Storage** (#973): Knowledge cores now
+  preserve the full provenance chain on round-trip:
+  - Named graph field preserved through Cassandra storage (7-element
+    tuple), so provenance triples retain their graph URIs
+  - Source material (library documents) streamed alongside triples and
+    embeddings during core download/upload, preserving the document
+    hierarchy across instances
+- **Data Store Replication and TLS Configuration** (#975, #976):
+  Production-readiness improvements for Cassandra and Qdrant:
+  - Centralised `qdrant_config.py` helper with environment variable
+    fallback for `QDRANT_URL`, `QDRANT_API_KEY`,
+    `QDRANT_REPLICATION_FACTOR`, `QDRANT_SHARD_NUMBER`
+  - All 6 Qdrant processors updated; writers pass replication factor
+    and shard number to `create_collection`
+  - Fixed hardcoded Cassandra `replication_factor=1` to respect
+    `CASSANDRA_REPLICATION_FACTOR`
+  - Cassandra TLS upgraded from deprecated `PROTOCOL_TLSv1_2` to
+    `ssl.create_default_context()`
+  - Replication parameters now correctly wired through the YAML/params
+    path for both Cassandra and Qdrant
+- **Reverse Gateway IAM Integration** (#940): The reverse gateway now
+  authenticates requests through the same IAM path as the API gateway
+  — token validation, workspace resolution, and permissions work
+  identically regardless of which direction initiated the connection
+
+### Improvements
+- **Librarian Object-Store Environment Variables** (#974): The
+  librarian reads `OBJECT_STORE_ENDPOINT`, `OBJECT_STORE_ACCESS_KEY`,
+  `OBJECT_STORE_SECRET_KEY`, `OBJECT_STORE_REGION`, and
+  `OBJECT_STORE_USE_SSL` from the environment when not set via params,
+  enabling K8s Secrets to supply credentials without them appearing in
+  `launch.yaml`
+- **List My Workspaces** (#961): New `list-my-workspaces` operation so
+  non-admin users can discover which workspaces they have access to;
+  IAM service fully documented in OpenAPI and AsyncAPI specs
+- **Bundled Sample Documents** (#956): `tg-load-sample-documents`
+  replaced URL-based PDF downloads with seven curated, locally bundled
+  documents, removing the dependency on external URLs
+- **Instance Tag ID** (#971): Added an instance tag identifier for
+  deployment tracking
+
+### Bug Fixes
+- **Structured Data Query and Auth** (#978): Fixed 401 errors when
+  loading structured data with IAM enabled; replaced single-page
+  `async_execute` with streaming `async_scan` to prevent OOM on large
+  datasets; added missing filter operators (`not`, `startsWith`,
+  `endsWith`, `not_in`); reverted top-level indexes array support
+  until schema redesign
+- **Workspace Routing in Bulk Clients** (#970): Bulk WebSocket clients
+  (sync and async) were not forwarding the workspace parameter,
+  causing all bulk operations to hit the default workspace
+- **Large Document Handling** (#969): Paginated heavy Cassandra reads
+  (triples, graph/document embeddings) using synchronous
+  `session.execute()` in `run_in_executor` with `fetch_size` paging;
+  fixed document stream endpoint to use workspace-scoped librarian
+  queues; added decoder error handling for PDF/OCR/unstructured
+  processors
+- **WebSocket Auth Workspace Override** (#966, #972): Fixed
+  `AsyncSocketClient` unconditionally adopting the auth-ok response
+  workspace, clobbering explicitly requested workspaces; fixed
+  `authorise()` being called for AUTHENTICATED/PUBLIC sentinels in the
+  WebSocket mux, breaking `whoami` over WebSocket
+- **CLI Workspace Routing** (#964): Several CLI commands
+  (`show-flows`, `show-flow-blueprints`, `show-parameter-types`,
+  `set-prompt --system`, `load-structured-data`) silently ignored the
+  `-w` flag for workspace routing
+- **Library Client Tenancy** (#951): Updated `library_client` to use
+  `workspace` parameter instead of removed `user` parameter
+- **OntoRAG Query Imports** (#950): Replaced broken relative imports
+  with correct absolute imports in the ontology query package
+- **Metric Label Parsing** (#948): Safely parse metric labels to
+  prevent crashes on malformed labels
+- **PDF Decoder Input Validation** (#977): Reject invalid input to the
+  PDF decoder instead of failing silently
+- **Bare Excepts** (#955): Replaced bare `except:` clauses in socket
+  client and prompt manager with specific exception types to avoid
+  swallowing interrupts
+
+### Infrastructure / Technical
+- **Testing** (#967, #976, #979): Fixed HuggingFace embeddings test
+  patching, added replication parameter tests for Cassandra and Qdrant,
+  updated row query tests for paged async interface
+
+---
 
 ## v2.4 (2026-05-21)
 

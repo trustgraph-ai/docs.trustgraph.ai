@@ -3,7 +3,7 @@ title: Changelog - TrustGraph UI
 nav_order: 2
 parent: Reference
 grand_parent: TrustGraph Documentation
-review_date: 2027-05-21
+review_date: 2027-06-10
 ---
 
 # Changelog - TrustGraph UI
@@ -11,7 +11,55 @@ review_date: 2027-05-21
 TrustGraph UI (`trustgraph-ui`) is the replacement for the
 [Workbench UI](workbench), which was deprecated in TrustGraph v2.4.
 
-## v0.1.1 (2026-05-21) - released in TrustGraph 2.4
+## v0.2.4 (2026-06-10) — released in TrustGraph 2.5
+
+### Features
+- **SPARQL Workbench**: Interactive SPARQL query editor with
+  syntax-highlighted results table, error reporting, and query history
+- **GraphQL Workbench** (#9): GraphQL query page with editor, presets,
+  and table/raw result views for structured data queries
+- **Config-Driven Query Presets** (#9): Preset/example query support
+  for SPARQL, Graph RAG, and Agent pages, driven by config-svc entries
+  (type `query`, keyed by language)
+- **Workspace/Collection/Flow Switcher**: Header workspace switcher
+  with live workspace, collection, and flow pills driven by IAM
+  (`whoami`, `list-my-workspaces`) over the authenticated WebSocket;
+  all post-auth calls scoped to the active workspace; ~40 hardcoded
+  `flow("default")` and `COLLECTION` references replaced with live
+  session/settings reads; workspace-scoped query caches wiped on switch
+- **Demo Pages**: Solar System Missions (top-down ecliptic
+  visualisation of spacecraft trajectories via SPARQL) and World Events
+  Explorer (geo-temporal event viewer with map, timeline range brush,
+  and type filtering) split into a dedicated Demos page with header
+  navigation
+
+### Bug Fixes
+- **Multi-Response Workspace Stamp** (#8): `makeRequestMulti` was not
+  attaching the active workspace to outbound messages, so streaming
+  operations (SPARQL queries, agent, document streaming, graph/document
+  RAG) always hit the token's default workspace
+- **Catch-All API Proxy**: Added generic `/api/v1` proxy for unhandled
+  gateway endpoints that previously fell through to the static file
+  handler, returning 405
+- **WebSocket Proxy** (#7): Detect `Upgrade: websocket` header in the
+  `/api/v1` catch-all and proxy as a full bidirectional WebSocket
+  (needed for bulk import/export paths)
+- **Empty Query String** (#7): Guard against appending bare `?` when
+  query string is empty on import-core, export-core, and socket
+  handlers
+- **Dropdown Transparency** (#9): Fixed dropdown menu transparency
+  making text unreadable
+- **Status Bar Overlap** (#9): Fixed status bar overlapping page
+  content using `--page-height` CSS variable
+
+### Infrastructure / Technical
+- **API URL Unification**: Frontend socket path changed from
+  `/api/socket` to `/api/v1/socket`; Vite proxy rewrites removed in
+  favour of a single `/api/v1` pass-through
+
+---
+
+## v0.1.1 (2026-05-21) — released in TrustGraph 2.4
 
 ### Features
 - **Agent Console**: Agent query interface with streaming responses and
