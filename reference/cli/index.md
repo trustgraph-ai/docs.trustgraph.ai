@@ -76,6 +76,10 @@ Most CLI commands support these common options:
 - [`tg-get-de-core`](tg-get-de-core) - Fetch document embeddings core to local file
 - [`tg-put-de-core`](tg-put-de-core) - Load document embeddings core from local file
 
+**Workspace Export/Import:**
+- [`tg-export-workspace`](tg-export-workspace) - Export workspace state as a portable `.tgx` bundle
+- [`tg-import-workspace`](tg-import-workspace) - Import a `.tgx` bundle into a deployment
+
 **Graph Data Operations:**
 - [`tg-show-graph`](tg-show-graph) - Dump graph triples (streaming)
 - [`tg-query-graph`](tg-query-graph) - Pattern-matching graph queries
@@ -112,6 +116,9 @@ Most CLI commands support these common options:
 - [`tg-invoke-structured-query`](tg-invoke-structured-query) - Execute queries against structured data
 - [`tg-invoke-rows-query`](tg-invoke-rows-query) - Query structured data rows
 - [`tg-invoke-sparql-query`](tg-invoke-sparql-query) - Execute SPARQL queries against the knowledge graph
+
+**Reranking:**
+- [`tg-invoke-reranker`](tg-invoke-reranker) - Rerank documents against queries using the cross-encoder service
 
 **Embeddings:**
 - [`tg-invoke-embeddings`](tg-invoke-embeddings) - Convert text to vector embeddings
