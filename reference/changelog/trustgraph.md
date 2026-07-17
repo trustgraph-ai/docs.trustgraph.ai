@@ -3,10 +3,151 @@ title: Changelog - TrustGraph
 nav_order: 1
 parent: Reference
 grand_parent: TrustGraph Documentation
-review_date: 2027-06-10
+review_date: 2027-07-17
 ---
 
 # Changelog
+
+## v2.6 (2026-07-17)
+
+### Major Features
+- **Cross-Encoder Reranking for GraphRAG** (#1005, #1016, #1021):
+  Replaced the three-prompt LLM edge scoring pipeline
+  (`kg-edge-scoring`, `kg-edge-reasoning`, `kg-edge-selection`) with a
+  FlashRank cross-encoder reranker service:
+  - New `hop_and_filter()` method performs iterative graph traversal
+    with per-hop semantic scoring
+  - Direction-aware reranker text: traversal direction determines which
+    triple components are scored, avoiding duplicate evaluations
+  - Schema predicates (`rdfs:domain`, `owl:inverseOf`, etc.) and
+    unlabeled IRIs filtered from traversal
+  - Safety cap `max-reranker-input` (default 350) exposed through
+    schema, REST API, WebSocket client, and CLI
+  - New `tg-invoke-reranker` CLI tool
+- **Cross-Encoder Reranking for Document-RAG** (#1011, #1014):
+  FlashRank cross-encoder reranker wired into Document-RAG with
+  two-limit control:
+  - Over-fetch a `fetch_limit` candidate pool from the vector store,
+    rerank with the cross-encoder, keep the top `doc_limit` chunks
+  - MMR (Maximal Marginal Relevance) diversity selection added as an
+    optional post-reranking step to reduce redundant chunks
+  - Both limits caller-controlled through schema, translators, client
+    SDKs, and `--fetch-limit` CLI flag
+  - Reranking is a no-op when no reranker role is wired, preserving
+    backward compatibility
+- **Workspace Export/Import Bundles** (#1019, #1024): Portable `.tgx`
+  bundles for migrating workspaces between TrustGraph deployments:
+  - New `tg-export-workspace` / `tg-import-workspace` CLI commands
+    producing gzipped tar archives
+  - Exports workspace config as per-key JSON files with a
+    `manifest.json`, per-collection triples as N-Quads, and full
+    document library (metadata + content)
+  - Streamed export via tempfile for flat memory usage
+  - Options: `--config-only`, `--triples-limit`, `-f/--flow-id`,
+    `--overwrite`, `--workspace` (rename on import), `--dry-run`,
+    `--process` (re-run embeddings on import)
+  - Import is additive for knowledge, skip-existing for config
+- **OpenAI Processor API Variants** (#1007, #1009, #1010, #1012):
+  Single OpenAI-compatible processor now covers multiple providers via
+  `--variant` flag:
+  - Variant profiles: `openai`, `deepseek`, `qwen`, `mistral`, `llama`,
+    `dashscope` (Alibaba Cloud DashScope API), and `glm` (Zhipu AI)
+  - Each variant encapsulates provider-specific differences: output
+    token parameter names, thinking/reasoning toggle location,
+    temperature rules, and thinking output extraction
+  - New `--thinking` flag (`off`/`low`/`medium`/`high`) for
+    reasoning-capable models
+  - All API calls route through variant methods, replacing direct
+    httpx bypass
+- **RDF Language Tags and Datatypes** (#1047): Full preservation of
+  RDF literal language tags and XSD datatypes through the entire
+  ingestion and query pipeline:
+  - `Triple` dataclass gains `o_datatype` and `o_language` fields
+  - Wire format gains `"dt"` and `"ln"` keys for literal terms
+  - `TriplesClient.query_gen()` preserves `Term` objects directly
+    instead of coercing through `Uri`/`Literal` str subclasses
+  - Enables `FILTER(LANG())` SPARQL queries and correct multilingual
+    dataset handling
+- **Fine-Grained IAM Capabilities** (#996): Coarse gateway
+  capabilities split into per-operation variants for enterprise
+  access control:
+  - `graph:read` → `triples:read`, `sparql:read`, `graph-rag:read`,
+    `graph-embeddings:read`
+  - `graph:write` → `triples:write`, `graph-embeddings:write`,
+    `entity-contexts:write`
+  - `documents:read` → `documents:read`, `document-rag:read`,
+    `document-embeddings:read`, `entity-contexts:read`
+  - `documents:write` → `documents:write`, `document-embeddings:write`
+  - `rows:read` → `rows:read`, `nlp-query:read`,
+    `structured-query:read`, `row-embeddings:read`
+  - Enterprise IAM schema extensions: `IamRequest` gains `group_id`,
+    `member_type`, `member_id`, `group`, and `grant` fields for
+    group/grant management
+  - OSS role definitions expanded to include all new names — no
+    behavioral change for OSS deployments
+- **Global Username Lookup and JWT Mapping** (#1001): Fixed the
+  Cassandra user table and JWT claims to match the intended global
+  user model:
+  - `iam_users_by_username` PRIMARY KEY drops `workspace`, so login
+    looks up username globally instead of per-workspace
+  - `-w` now overrides the JWT session workspace rather than selecting
+    which user registry to search
+  - `UserRecord.workspace` renamed to `default_workspace` throughout:
+    JWT claim, `IamResponse` field, WebSocket auth-ok frame, wire key,
+    and CLI output
+
+### Improvements
+- **Guided macOS Installer** (#1003): Interactive `install_trustgraph.sh`
+  script detecting hardware, recommending LLM mode (OpenAI vs Ollama),
+  installing prerequisites via Homebrew, setting up a Python venv,
+  generating a deployment, starting Docker Compose, and health-checking
+  the API gateway
+- **Configurable Bootstrapper Timeouts** (#999): `DefaultFlowStart`
+  and `WorkspaceInit` request timeouts now exposed as constructor
+  parameters (`list_timeout`, `start_timeout`, `iam_timeout`) via the
+  `params:` mechanism, enabling tuning in high-latency environments
+
+### Bug Fixes
+- **JWT Signing Key Retry** (#1033): If the API gateway started before
+  IAM was ready and exhausted startup retries, `_signing_public_pem`
+  stayed `None` permanently causing all JWT auth to return 401;
+  `_verify_jwt()` now lazily retries the fetch on demand
+- **Literal Object Indexing** (#1042): The Cassandra `quads_by_entity`
+  table skipped insertion for literal objects (e.g. `rdfs:label`
+  values), making `tg-query-graph -o <literal>` return no results;
+  removed the `otype` guard from insert and delete methods
+- **Missing Time Field in Library API** (#1028): `get_documents` and
+  `list_children` crashed with `KeyError` when a document or processing
+  record had no stored `time` field; changed to optional access
+- **Mux Authorisation Workspace** (#1000): The gateway mux extracted
+  the authorisation workspace from the inner request body instead of
+  the envelope, causing spurious `access-denied` errors when the CLI's
+  default workspace string differed; workspace-scoped operations now
+  resolve workspace from the envelope only
+- **list-my-workspaces Permissions** (#1002): `list-my-workspaces` was
+  incorrectly gated on a specific permission grant despite having
+  `AUTHENTICATED` scope; removed the erroneous permission check
+
+### Breaking Changes
+- **GraphRAG pipeline**: The three `kg-edge-*` LLM prompt services are
+  removed; the `edge_score_limit` parameter is removed. Deployments
+  must wire the new reranker service
+- **RDF round-trip**: Existing ingested data loses language/datatype
+  metadata — re-ingestion required to backfill language tags and
+  datatypes
+- **JWT claim rename**: `"workspace"` → `"default_workspace"` in JWT
+  claims, wire protocol, and Cassandra schema. Re-login and schema
+  migration required
+- **Fine-grained capabilities**: Any custom policy configs using
+  hardcoded coarse capability strings (`graph:read`, `graph:write`,
+  `documents:read`, `documents:write`, `rows:read`) must be updated
+  to the new fine-grained names
+
+### Infrastructure / Technical
+- **Testing** (#1008, #1013): Variant wiring added to text-completion
+  and streaming integration test mocks
+
+---
 
 ## v2.5 (2026-06-10)
 
