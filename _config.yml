@@ -96,6 +96,12 @@ exclude:
   - Gemfile.lock
   - .github/
   - README.md
+  - JOURNEYS.md
+  - REVIEW.md
+  - REFACTOR.md
+  - Makefile
+  - review.txt
+  - check-links.py
 
 defaults:
   - scope:

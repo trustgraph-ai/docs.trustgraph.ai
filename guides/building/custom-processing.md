@@ -540,4 +540,4 @@ tg-invoke-graph-rag -q "What threat actors are mentioned?"
 
 - [trustgraph-stix repository](https://github.com/trustgraph-ai/trustgraph-stix) - Complete example
 - [TrustGraph base library](https://github.com/trustgraph-ai/trustgraph) - Core processors
-- [Pulsar schemas](https://pulsar.apache.org/docs/next/schema-overview/) - Message formats
+- [Pulsar schemas](https://pulsar.apache.org/docs/next/schema-architecture/) - Message formats

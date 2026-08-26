@@ -1,7 +1,8 @@
 ---
+published: false
 title: Enterprise Offerings
 nav_order: 10
-parent: Overview
+parent: Architecture
 review_date: 2026-08-01
 guide_category:
   - Enterprise integration

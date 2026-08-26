@@ -1,8 +1,8 @@
 ---
 title: Security
 nav_order: 50
-parent: Overview
-review_date: 2026-07-01
+parent: Architecture
+review_date: 2027-01-01
 guide_category:
   - Enterprise integration
 guide_category_order: 3
@@ -15,8 +15,6 @@ guide_labels:
   - Security
   - Enterprise
   - Compliance
-todo: true
-todo_notes: Revisit once MCP IAM lands in 2.5 — will need to cover authentication and authorization for MCP tool services and how they integrate with the existing IAM model
 ---
 
 # Cybersecurity, Privacy and Safety
@@ -86,10 +84,8 @@ policy logic out of the gateway.
 
 ## MCP Service
 
-{: .warning }
-> The MCP server does not currently support IAM credentials. Its requests
-> to the API gateway will be rejected by the authentication layer. This is
-> expected to be addressed in TrustGraph 2.5.
+The MCP service integrates with TrustGraph credential architectures.  The
+credential regime is used to implement MCP client credentials.
 
 ## Enterprise IAM
 

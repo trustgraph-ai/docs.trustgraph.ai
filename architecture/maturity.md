@@ -1,7 +1,8 @@
 ---
+published: false
 title: Maturity
 nav_order: 5
-parent: Overview
+parent: Architecture
 review_date: 2026-08-01
 guide_category:
   - Enterprise integration

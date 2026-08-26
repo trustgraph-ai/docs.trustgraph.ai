@@ -49,7 +49,7 @@ characteristics:
     <tr>
         <td style="vertical-align: top;">Service credentials</td>
         <td style="vertical-align: top;">Internal services such as Cassandra and Pulsar are deployed without service-level credentials, relying on network isolation to prevent unauthorised access.  Workspace isolation provides structural data separation through per-workspace pub/sub queues and storage partitioning.</td>
-        <td style="vertical-align: top;">For complex multi-tenant environments consider understanding the extra security features which are available in services.  See <a href="../overview/workspaces">Workspaces &amp; Data Isolation</a> for details on the data separation model.</td>
+        <td style="vertical-align: top;">For complex multi-tenant environments consider understanding the extra security features which are available in services.  See <a href="../architecture/workspaces">Workspaces &amp; Data Isolation</a> for details on the data separation model.</td>
     </tr>
     <tr>
         <td style="vertical-align: top;">Gateway authentication</td>
@@ -67,5 +67,5 @@ characteristics:
 
 Enhanced security support for TrustGraph is available from KnowNext at
 [https://knownext.io](https://knownext.io).  See also
-[Security](../overview/security) for the broader security architecture and
+[Security](../architecture/security) for the broader security architecture and
 enterprise IAM capabilities.

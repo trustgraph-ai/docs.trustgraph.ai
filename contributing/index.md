@@ -1,8 +1,7 @@
 ---
 title: Contributing
-nav_order: 9
+nav_order: 800
 has_children: true
-parent: TrustGraph Documentation
 review_date: 2026-08-01
 ---
 

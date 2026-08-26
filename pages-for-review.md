@@ -1,7 +1,6 @@
 ---
-title: Pages for Review
-nav_order: 99
-parent: TrustGraph Documentation
+title: Documentation Status
+nav_order: 99999
 ---
 
 # Pages for Review

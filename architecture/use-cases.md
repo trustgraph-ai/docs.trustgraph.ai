@@ -1,7 +1,8 @@
 ---
+published: false
 title: Use Cases
 nav_order: 3
-parent: Overview
+parent: Architecture
 review_date: 2026-04-01
 guide_category:
   - Enterprise integration

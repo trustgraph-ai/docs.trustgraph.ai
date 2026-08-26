@@ -40,7 +40,7 @@ This guide covers explainability using command-line tools instead of the
 Workbench.
 
 **New to explainability?** Read the
-[Explainability overview](../../overview/explainability) first to
+[Explainability overview](../../architecture/explainability) first to
 understand the concepts.
 
 This guide demonstrates:
@@ -255,7 +255,7 @@ In this guide you:
 
 ## Next Steps
 
-- **[Explainability overview](../../overview/explainability)** — deeper
+- **[Explainability overview](../../architecture/explainability)** — deeper
   understanding of the architecture and named graphs
 - **[tg-list-explain-traces](../../reference/cli/tg-list-explain-traces)**
   — CLI reference

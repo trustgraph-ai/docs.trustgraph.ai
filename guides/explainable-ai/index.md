@@ -22,7 +22,7 @@ guide_labels:
 
 {% capture requirements %}
 <ul style="margin: 0; padding-left: 20px;">
-<li>Familiarity with TrustGraph's <a href="../../overview/explainability">core concepts</a></li>
+<li>Familiarity with TrustGraph's <a href="../../architecture/explainability">core concepts</a></li>
 </ul>
 {% endcapture %}
 
@@ -214,5 +214,5 @@ depending on your needs:
   and provenance from the command line
 - **[Explainable AI with TypeScript](../building/explainable-ai)** — build
   an application that consumes explainability events
-- **[Explainability overview](../../overview/explainability)** — deeper
+- **[Explainability overview](../../architecture/explainability)** — deeper
   technical detail on the RDF data model and named graphs

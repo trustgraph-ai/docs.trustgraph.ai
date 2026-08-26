@@ -1,7 +1,8 @@
 ---
+published: false
 title: Philosophy
 nav_order: 1
-parent: Overview
+parent: Architecture
 review_date: 2026-08-01
 guide_category:
   - Concepts

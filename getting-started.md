@@ -3,6 +3,7 @@ title: Getting Started
 nav_order: 2
 parent: TrustGraph Documentation
 permalink: /getting-started
+published: false
 ---
 
 # Getting Started with TrustGraph
@@ -22,7 +23,7 @@ Choose your path to get started with TrustGraph. Whether you want to learn the c
    description="Understand what TrustGraph is and how it works"
 %}
 {% include pathways/journey-card.html
-   url="overview/introduction"
+   url="architecture/introduction"
    text_color="#d4f4dd"
    bg_color="#0d2118"
    border_color="#48bb78"
@@ -30,7 +31,7 @@ Choose your path to get started with TrustGraph. Whether you want to learn the c
    description="What is TrustGraph and how it transforms AI agents into contextually-aware systems"
 %}
 {% include pathways/journey-card.html
-   url="overview/philosophy"
+   url="architecture/philosophy"
    text_color="#d4f4dd"
    bg_color="#0d2118"
    border_color="#48bb78"
@@ -38,7 +39,7 @@ Choose your path to get started with TrustGraph. Whether you want to learn the c
    description="Design principles and philosophy behind TrustGraph's approach"
 %}
 {% include pathways/journey-card.html
-   url="overview/retrieval"
+   url="architecture/retrieval"
    text_color="#d4f4dd"
    bg_color="#0d2118"
    border_color="#48bb78"
@@ -46,7 +47,7 @@ Choose your path to get started with TrustGraph. Whether you want to learn the c
    description="Understanding Graph RAG, Document RAG, and other retrieval strategies"
 %}
 {% include pathways/journey-card.html
-   url="overview/features"
+   url="architecture/features"
    text_color="#d4f4dd"
    bg_color="#0d2118"
    border_color="#48bb78"
@@ -54,7 +55,7 @@ Choose your path to get started with TrustGraph. Whether you want to learn the c
    description="Complete overview of TrustGraph features and platform capabilities"
 %}
 {% include pathways/journey-card.html
-   url="overview/use-cases"
+   url="architecture/use-cases"
    text_color="#d4f4dd"
    bg_color="#0d2118"
    border_color="#48bb78"
@@ -104,7 +105,7 @@ Choose your path to get started with TrustGraph. Whether you want to learn the c
    description="Query documents using vector embeddings and semantic similarity search"
 %}
 {% include pathways/journey-card.html
-   url="overview/retrieval"
+   url="architecture/retrieval"
    text_color="#e8f4fd"
    bg_color="#0d1621"
    border_color="#4a9eff"

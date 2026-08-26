@@ -1,7 +1,7 @@
 ---
 title: Explainability
 nav_order: 1.6
-parent: Overview
+parent: Architecture
 review_date: 2027-01-01
 guide_category:
   - How does it work?

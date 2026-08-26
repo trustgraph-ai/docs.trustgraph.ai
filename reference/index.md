@@ -1,8 +1,7 @@
 ---
 title: Reference
-nav_order: 8
+nav_order: 700
 has_children: true
-parent: TrustGraph Documentation
 review_date: 2026-08-01
 ---
 
@@ -10,7 +9,7 @@ review_date: 2026-08-01
 
 This section contains technical reference materials for TrustGraph APIs, CLI commands, and specifications.
 
-**Getting started?** Visit [Overview](../overview/) or [How-to Guides](../guides/) instead.
+**Getting started?** Visit [Architecture](../architecture/) or [How-to Guides](../guides/) instead.
 
 | Reference | Description |
 |-----------|-------------|

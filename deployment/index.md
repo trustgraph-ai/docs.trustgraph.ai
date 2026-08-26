@@ -1,8 +1,7 @@
 ---
 title: Deployment
-nav_order: 4
+nav_order: 500
 has_children: true
-parent: TrustGraph Documentation
 review_date: 2026-11-01
 ---
 

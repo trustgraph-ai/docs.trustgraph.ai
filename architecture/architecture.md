@@ -1,7 +1,7 @@
 ---
-title: Architecture
+title: Services
 nav_order: 2.5
-parent: Overview
+parent: Architecture
 has_children: true
 review_date: 2026-08-01
 guide_category:

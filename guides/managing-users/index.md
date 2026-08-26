@@ -190,7 +190,7 @@ tg-revoke-api-key --key-id <key-id>
 
 Workspaces provide data isolation — each workspace has its own
 documents, knowledge graphs, collections, and users.  See
-[Workspaces & Data Isolation](../../overview/workspaces) for details.
+[Workspaces & Data Isolation](../../architecture/workspaces) for details.
 
 ### List workspaces
 

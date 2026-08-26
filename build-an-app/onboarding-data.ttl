@@ -1,0 +1,833 @@
+@prefix : <http://example.org/ontology/office#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+<http://example.org/ontology/office> a owl:Ontology ;
+    rdfs:label "Office Onboarding and Service Ownership Ontology" ;
+    rdfs:comment "Defines organizational structure, service ownership, access rules, and approval workflows." .
+
+:Person_AveryJackson a :Person ;
+    rdfs:label "Avery Jackson" ;
+    :hasRole :Role_ItSupportSpecialist ;
+    :memberOf :Team_ItSupportServices ;
+    rdfs:comment "Employee Avery Jackson working as IT Support Specialist on the IT Support Services team." .
+
+:Person_AveryLopez a :Person ;
+    rdfs:label "Avery Lopez" ;
+    :hasRole :Role_CloudArchitect ;
+    :memberOf :Team_PlatformInfrastructure ;
+    rdfs:comment "Employee Avery Lopez working as Cloud Architect on the Platform Infrastructure team." .
+
+:Person_CameronMartinez a :Person ;
+    rdfs:label "Cameron Martinez" ;
+    :hasRole :Role_UxDesigner ;
+    :memberOf :Team_UxResearch ;
+    rdfs:comment "Employee Cameron Martinez working as UX Designer on the UX Research team." .
+
+:Person_CameronSmith a :Person ;
+    rdfs:label "Cameron Smith" ;
+    :hasRole :Role_UiLead ;
+    :memberOf :Team_CoreFrontend ;
+    rdfs:comment "Employee Cameron Smith working as UI Lead on the Core Frontend team." .
+
+:Person_CameronTaylor a :Person ;
+    rdfs:label "Cameron Taylor" ;
+    :hasRole :Role_SecurityEngineer ;
+    :memberOf :Team_SecurityOperations ;
+    rdfs:comment "Employee Cameron Taylor working as Security Engineer on the Security Operations team." .
+
+:Person_CameronWilliams a :Person ;
+    rdfs:label "Cameron Williams" ;
+    :hasRole :Role_FacilitiesManager ;
+    :memberOf :Team_WorkplaceOperations ;
+    rdfs:comment "Employee Cameron Williams working as Facilities Manager on the Workplace Operations team." .
+
+:Person_CaseyGonzalez a :Person ;
+    rdfs:label "Casey Gonzalez" ;
+    :hasRole :Role_ProcurementSpecialist ;
+    :memberOf :Team_Procurement ;
+    rdfs:comment "Employee Casey Gonzalez working as Procurement Specialist on the Procurement team." .
+
+:Person_DakotaMoore a :Person ;
+    rdfs:label "Dakota Moore" ;
+    :hasRole :Role_AppsecSpecialist ;
+    :memberOf :Team_SecurityOperations ;
+    rdfs:comment "Employee Dakota Moore working as AppSec Specialist on the Security Operations team." .
+
+:Person_HarperBrown a :Person ;
+    rdfs:label "Harper Brown" ;
+    :hasRole :Role_TechnicalRecruiter ;
+    :memberOf :Team_TalentAcquisition ;
+    rdfs:comment "Employee Harper Brown working as Technical Recruiter on the Talent Acquisition team." .
+
+:Person_HarperGonzalez a :Person ;
+    rdfs:label "Harper Gonzalez" ;
+    :hasRole :Role_ProductManager ;
+    :memberOf :Team_ProductManagement ;
+    rdfs:comment "Employee Harper Gonzalez working as Product Manager on the Product Management team." .
+
+:Person_JamieJackson a :Person ;
+    rdfs:label "Jamie Jackson" ;
+    :hasRole :Role_ProcurementSpecialist ;
+    :memberOf :Team_Procurement ;
+    rdfs:comment "Employee Jamie Jackson working as Procurement Specialist on the Procurement team." .
+
+:Person_JamieTaylor a :Person ;
+    rdfs:label "Jamie Taylor" ;
+    :hasRole :Role_AppsecSpecialist ;
+    :memberOf :Team_SecurityOperations ;
+    rdfs:comment "Employee Jamie Taylor working as AppSec Specialist on the Security Operations team." .
+
+:Person_JordanAnderson a :Person ;
+    rdfs:label "Jordan Anderson" ;
+    :hasRole :Role_SourcingSpecialist ;
+    :memberOf :Team_TalentAcquisition ;
+    rdfs:comment "Employee Jordan Anderson working as Sourcing Specialist on the Talent Acquisition team." .
+
+:Person_KendallMartinez a :Person ;
+    rdfs:label "Kendall Martinez" ;
+    :hasRole :Role_ItSupportSpecialist ;
+    :memberOf :Team_ItSupportServices ;
+    rdfs:comment "Employee Kendall Martinez working as IT Support Specialist on the IT Support Services team." .
+
+:Person_LoganHernandez a :Person ;
+    rdfs:label "Logan Hernandez" ;
+    :hasRole :Role_VendorManager ;
+    :memberOf :Team_Procurement ;
+    rdfs:comment "Employee Logan Hernandez working as Vendor Manager on the Procurement team." .
+
+:Person_PatDavis a :Person ;
+    rdfs:label "Pat Davis" ;
+    :hasRole :Role_FrontendDeveloper ;
+    :memberOf :Team_CoreFrontend ;
+    rdfs:comment "Employee Pat Davis working as Frontend Developer on the Core Frontend team." .
+
+:Person_PeytonSmith a :Person ;
+    rdfs:label "Peyton Smith" ;
+    :hasRole :Role_TechnicalPm ;
+    :memberOf :Team_ProductManagement ;
+    rdfs:comment "Employee Peyton Smith working as Technical PM on the Product Management team." .
+
+:Person_QuinnMartin a :Person ;
+    rdfs:label "Quinn Martin" ;
+    :hasRole :Role_OnboardingLead ;
+    :memberOf :Team_PeopleExperience ;
+    rdfs:comment "Employee Quinn Martin working as Onboarding Lead on the People Experience team." .
+
+:Person_QuinnMoore a :Person ;
+    rdfs:label "Quinn Moore" ;
+    :hasRole :Role_OfficeAdmin ;
+    :memberOf :Team_WorkplaceOperations ;
+    rdfs:comment "Employee Quinn Moore working as Office Admin on the Workplace Operations team." .
+
+:Person_ReeseGarcia a :Person ;
+    rdfs:label "Reese Garcia" ;
+    :hasRole :Role_StaffAccountant ;
+    :memberOf :Team_CorporateAccounting ;
+    rdfs:comment "Employee Reese Garcia working as Staff Accountant on the Corporate Accounting team." .
+
+:Person_ReeseJones a :Person ;
+    rdfs:label "Reese Jones" ;
+    :hasRole :Role_UiLead ;
+    :memberOf :Team_CoreFrontend ;
+    rdfs:comment "Employee Reese Jones working as UI Lead on the Core Frontend team." .
+
+:Person_ReeseMartinez a :Person ;
+    rdfs:label "Reese Martinez" ;
+    :hasRole :Role_SiteReliabilityEngineer ;
+    :memberOf :Team_PlatformInfrastructure ;
+    rdfs:comment "Employee Reese Martinez working as Site Reliability Engineer on the Platform Infrastructure team." .
+
+:Person_ReeseRodriguez a :Person ;
+    rdfs:label "Reese Rodriguez" ;
+    :hasRole :Role_StaffAccountant ;
+    :memberOf :Team_CorporateAccounting ;
+    rdfs:comment "Employee Reese Rodriguez working as Staff Accountant on the Corporate Accounting team." .
+
+:Person_RowanAnderson a :Person ;
+    rdfs:label "Rowan Anderson" ;
+    :hasRole :Role_HrPartner ;
+    :memberOf :Team_PeopleExperience ;
+    rdfs:comment "Employee Rowan Anderson working as HR Partner on the People Experience team." .
+
+:Person_SamHernandez a :Person ;
+    rdfs:label "Sam Hernandez" ;
+    :hasRole :Role_UxDesigner ;
+    :memberOf :Team_UxResearch ;
+    rdfs:comment "Employee Sam Hernandez working as UX Designer on the UX Research team." .
+
+:Person_SamJackson a :Person ;
+    rdfs:label "Sam Jackson" ;
+    :hasRole :Role_DevopsEngineer ;
+    :memberOf :Team_PlatformInfrastructure ;
+    rdfs:comment "Employee Sam Jackson working as DevOps Engineer on the Platform Infrastructure team." .
+
+:Person_SkylerWilliams a :Person ;
+    rdfs:label "Skyler Williams" ;
+    :hasRole :Role_OnboardingLead ;
+    :memberOf :Team_PeopleExperience ;
+    rdfs:comment "Employee Skyler Williams working as Onboarding Lead on the People Experience team." .
+
+:Person_TaylorMartinez a :Person ;
+    rdfs:label "Taylor Martinez" ;
+    :hasRole :Role_SourcingSpecialist ;
+    :memberOf :Team_TalentAcquisition ;
+    rdfs:comment "Employee Taylor Martinez working as Sourcing Specialist on the Talent Acquisition team." .
+
+:Person_TaylorTaylor a :Person ;
+    rdfs:label "Taylor Taylor" ;
+    :hasRole :Role_FinancialAccountant ;
+    :memberOf :Team_CorporateAccounting ;
+    rdfs:comment "Employee Taylor Taylor working as Financial Accountant on the Corporate Accounting team." .
+
+:Proc_HardwareProcurementProcess a :Process ;
+    rdfs:label "Hardware Procurement Process" ;
+    :hasStep :Step_HardwareProcurementProcess_FinanceSpendSignoff,
+        :Step_HardwareProcurementProcess_ManagerEndorsement ;
+    rdfs:comment "Administrative governance workflow: Hardware Procurement Process." .
+
+:Proc_HighValueInfrastructureUpgrade a :Process ;
+    rdfs:label "High Value Infrastructure Upgrade" ;
+    :hasStep :Step_HighValueInfrastructureUpgrade_ArchitecturalReview,
+        :Step_HighValueInfrastructureUpgrade_CfoApprovalStep ;
+    rdfs:comment "Administrative governance workflow: High Value Infrastructure Upgrade." .
+
+:Proc_ProductionSystemAccessRequest a :Process ;
+    rdfs:label "Production System Access Request" ;
+    :hasStep :Step_ProductionSystemAccessRequest_LeadSystemApproval,
+        :Step_ProductionSystemAccessRequest_SecurityComplianceCheck ;
+    rdfs:comment "Administrative governance workflow: Production System Access Request." .
+
+:Proc_SaasProcurementWorkflow a :Process ;
+    rdfs:label "SaaS Procurement Workflow" ;
+    :hasStep :Step_SaasProcurementWorkflow_DepartmentHeadReview,
+        :Step_SaasProcurementWorkflow_ExecutiveSpendClearance,
+        :Step_SaasProcurementWorkflow_VendorSecurityAssessment ;
+    rdfs:comment "Administrative governance workflow: SaaS Procurement Workflow." .
+
+:Proc_StandardSoftwareRequest a :Process ;
+    rdfs:label "Standard Software Request" ;
+    :hasStep :Step_StandardSoftwareRequest_HelpdeskAutoVerification ;
+    rdfs:comment "Administrative governance workflow: Standard Software Request." .
+
+:Role_DesignResearcher a :Role ;
+    rdfs:label "Design Researcher" ;
+    :requiresAccess :Svc_CoupaSpendPlatform ;
+    rdfs:comment "Job title and governance role of Design Researcher." .
+
+:approvedBy a owl:ObjectProperty ;
+    rdfs:label "approved by" ;
+    rdfs:comment "Identifies the designated Role authorized to evaluate and sign off on an ApprovalStep." ;
+    rdfs:domain :ApprovalStep ;
+    rdfs:range :Role .
+
+:associatedChannel a owl:ObjectProperty ;
+    rdfs:label "associated channel" ;
+    rdfs:comment "Links an entity (Team, Service, Process) to its primary communication Channel." ;
+    rdfs:range :Channel .
+
+:belongsToDepartment a owl:ObjectProperty ;
+    rdfs:label "belongs to department" ;
+    rdfs:comment "Links a Team to its parent Department within corporate structure." ;
+    rdfs:domain :Team ;
+    rdfs:range :Department .
+
+:hasRole a owl:ObjectProperty ;
+    rdfs:label "has role" ;
+    rdfs:comment "Links a Person to their assigned official Role or job title." ;
+    rdfs:domain :Person ;
+    rdfs:range :Role .
+
+:hasStep a owl:ObjectProperty ;
+    rdfs:label "has step" ;
+    rdfs:comment "Connects an overall Process workflow to an individual ApprovalStep." ;
+    rdfs:domain :Process ;
+    rdfs:range :ApprovalStep .
+
+:managedBy a owl:ObjectProperty ;
+    rdfs:label "managed by" ;
+    rdfs:comment "Designates the Person responsible for leading or managing a Team." ;
+    rdfs:domain :Team ;
+    rdfs:range :Person .
+
+:memberOf a owl:ObjectProperty ;
+    rdfs:label "member of" ;
+    rdfs:comment "Associates a Person with the Team they belong to." ;
+    rdfs:domain :Person ;
+    rdfs:range :Team .
+
+:owns a owl:ObjectProperty ;
+    rdfs:label "owns" ;
+    rdfs:comment "Indicates that a specific Team is responsible for maintaining and supporting a Service." ;
+    rdfs:domain :Team ;
+    rdfs:range :Service .
+
+:requiresAccess a owl:ObjectProperty ;
+    rdfs:label "requires access to" ;
+    rdfs:comment "Specifies that a Role requires default access to a Service to perform duties." ;
+    rdfs:domain :Role ;
+    rdfs:range :Service .
+
+:spendLimit a owl:DatatypeProperty ;
+    rdfs:label "spend limit" ;
+    rdfs:comment "The maximum financial monetary value authorized at this ApprovalStep." ;
+    rdfs:domain :ApprovalStep ;
+    rdfs:range xsd:decimal .
+
+:Chan_Svc_AwsInfrastructure a :Channel ;
+    rdfs:label "#svc-aws-infrastructure" ;
+    rdfs:comment "Dedicated communication channel for support and alerts on AWS Infrastructure." .
+
+:Chan_Svc_ConfluenceWiki a :Channel ;
+    rdfs:label "#svc-confluence-wiki" ;
+    rdfs:comment "Dedicated communication channel for support and alerts on Confluence Wiki." .
+
+:Chan_Svc_CoupaSpendPlatform a :Channel ;
+    rdfs:label "#svc-coupa-spend-platform" ;
+    rdfs:comment "Dedicated communication channel for support and alerts on Coupa Spend Platform." .
+
+:Chan_Svc_DatadogMonitoring a :Channel ;
+    rdfs:label "#svc-datadog-monitoring" ;
+    rdfs:comment "Dedicated communication channel for support and alerts on Datadog Monitoring." .
+
+:Chan_Svc_FigmaDesign a :Channel ;
+    rdfs:label "#svc-figma-design" ;
+    rdfs:comment "Dedicated communication channel for support and alerts on Figma Design." .
+
+:Chan_Svc_GithubEnterprise a :Channel ;
+    rdfs:label "#svc-github-enterprise" ;
+    rdfs:comment "Dedicated communication channel for support and alerts on GitHub Enterprise." .
+
+:Chan_Svc_JiraSoftware a :Channel ;
+    rdfs:label "#svc-jira-software" ;
+    rdfs:comment "Dedicated communication channel for support and alerts on Jira Software." .
+
+:Chan_Svc_OktaIdentity a :Channel ;
+    rdfs:label "#svc-okta-identity" ;
+    rdfs:comment "Dedicated communication channel for support and alerts on Okta Identity." .
+
+:Chan_Svc_PagerdutyIncidentResponse a :Channel ;
+    rdfs:label "#svc-pagerduty-incident-response" ;
+    rdfs:comment "Dedicated communication channel for support and alerts on PagerDuty Incident Response." .
+
+:Chan_Svc_QuickbooksOnline a :Channel ;
+    rdfs:label "#svc-quickbooks-online" ;
+    rdfs:comment "Dedicated communication channel for support and alerts on QuickBooks Online." .
+
+:Chan_Svc_WorkdayHris a :Channel ;
+    rdfs:label "#svc-workday-hris" ;
+    rdfs:comment "Dedicated communication channel for support and alerts on Workday HRIS." .
+
+:Chan_Svc_ZoomWorkplace a :Channel ;
+    rdfs:label "#svc-zoom-workplace" ;
+    rdfs:comment "Dedicated communication channel for support and alerts on Zoom Workplace." .
+
+:Chan_Team_CoreFrontend a :Channel ;
+    rdfs:label "#team-core-frontend" ;
+    rdfs:comment "Slack channel for discussions within the Core Frontend team." .
+
+:Chan_Team_CorporateAccounting a :Channel ;
+    rdfs:label "#team-corporate-accounting" ;
+    rdfs:comment "Slack channel for discussions within the Corporate Accounting team." .
+
+:Chan_Team_ItSupportServices a :Channel ;
+    rdfs:label "#team-it-support-services" ;
+    rdfs:comment "Slack channel for discussions within the IT Support Services team." .
+
+:Chan_Team_PeopleExperience a :Channel ;
+    rdfs:label "#team-people-experience" ;
+    rdfs:comment "Slack channel for discussions within the People Experience team." .
+
+:Chan_Team_PlatformInfrastructure a :Channel ;
+    rdfs:label "#team-platform-infrastructure" ;
+    rdfs:comment "Slack channel for discussions within the Platform Infrastructure team." .
+
+:Chan_Team_Procurement a :Channel ;
+    rdfs:label "#team-procurement" ;
+    rdfs:comment "Slack channel for discussions within the Procurement team." .
+
+:Chan_Team_ProductManagement a :Channel ;
+    rdfs:label "#team-product-management" ;
+    rdfs:comment "Slack channel for discussions within the Product Management team." .
+
+:Chan_Team_SecurityOperations a :Channel ;
+    rdfs:label "#team-security-operations" ;
+    rdfs:comment "Slack channel for discussions within the Security Operations team." .
+
+:Chan_Team_TalentAcquisition a :Channel ;
+    rdfs:label "#team-talent-acquisition" ;
+    rdfs:comment "Slack channel for discussions within the Talent Acquisition team." .
+
+:Chan_Team_UxResearch a :Channel ;
+    rdfs:label "#team-ux-research" ;
+    rdfs:comment "Slack channel for discussions within the UX Research team." .
+
+:Chan_Team_WorkplaceOperations a :Channel ;
+    rdfs:label "#team-workplace-operations" ;
+    rdfs:comment "Slack channel for discussions within the Workplace Operations team." .
+
+:Person_AlexJohnson a :Person ;
+    rdfs:label "Alex Johnson" ;
+    :hasRole :Role_SiteReliabilityEngineer ;
+    :memberOf :Team_PlatformInfrastructure ;
+    rdfs:comment "Employee Alex Johnson working as Site Reliability Engineer on the Platform Infrastructure team." .
+
+:Person_AveryMartin a :Person ;
+    rdfs:label "Avery Martin" ;
+    :hasRole :Role_UxDesigner ;
+    :memberOf :Team_UxResearch ;
+    rdfs:comment "Employee Avery Martin working as UX Designer on the UX Research team." .
+
+:Person_AveryWilson a :Person ;
+    rdfs:label "Avery Wilson" ;
+    :hasRole :Role_SystemAdministrator ;
+    :memberOf :Team_ItSupportServices ;
+    rdfs:comment "Employee Avery Wilson working as System Administrator on the IT Support Services team." .
+
+:Person_CameronGonzalez a :Person ;
+    rdfs:label "Cameron Gonzalez" ;
+    :hasRole :Role_OnboardingLead ;
+    :memberOf :Team_PeopleExperience ;
+    rdfs:comment "Employee Cameron Gonzalez working as Onboarding Lead on the People Experience team." .
+
+:Person_CaseyMartinez a :Person ;
+    rdfs:label "Casey Martinez" ;
+    :hasRole :Role_SourcingSpecialist ;
+    :memberOf :Team_TalentAcquisition ;
+    rdfs:comment "Employee Casey Martinez working as Sourcing Specialist on the Talent Acquisition team." .
+
+:Person_HarperAnderson a :Person ;
+    rdfs:label "Harper Anderson" ;
+    :hasRole :Role_VendorManager ;
+    :memberOf :Team_Procurement ;
+    rdfs:comment "Employee Harper Anderson working as Vendor Manager on the Procurement team." .
+
+:Person_HaydenGonzalez a :Person ;
+    rdfs:label "Hayden Gonzalez" ;
+    :hasRole :Role_TechnicalPm ;
+    :memberOf :Team_ProductManagement ;
+    rdfs:comment "Employee Hayden Gonzalez working as Technical PM on the Product Management team." .
+
+:Person_KendallJohnson a :Person ;
+    rdfs:label "Kendall Johnson" ;
+    :hasRole :Role_FrontendDeveloper ;
+    :memberOf :Team_CoreFrontend ;
+    rdfs:comment "Employee Kendall Johnson working as Frontend Developer on the Core Frontend team." .
+
+:Person_QuinnThomas a :Person ;
+    rdfs:label "Quinn Thomas" ;
+    :hasRole :Role_SecurityEngineer ;
+    :memberOf :Team_SecurityOperations ;
+    rdfs:comment "Employee Quinn Thomas working as Security Engineer on the Security Operations team." .
+
+:Person_TaylorHernandez a :Person ;
+    rdfs:label "Taylor Hernandez" ;
+    :hasRole :Role_FinancialAccountant ;
+    :memberOf :Team_CorporateAccounting ;
+    rdfs:comment "Employee Taylor Hernandez working as Financial Accountant on the Corporate Accounting team." .
+
+:Person_TaylorMoore a :Person ;
+    rdfs:label "Taylor Moore" ;
+    :hasRole :Role_OfficeAdmin ;
+    :memberOf :Team_WorkplaceOperations ;
+    rdfs:comment "Employee Taylor Moore working as Office Admin on the Workplace Operations team." .
+
+:Role_FacilitiesManager a :Role ;
+    rdfs:label "Facilities Manager" ;
+    :requiresAccess :Svc_JiraSoftware,
+        :Svc_OktaIdentity,
+        :Svc_ZoomWorkplace ;
+    rdfs:comment "Job title and governance role of Facilities Manager." .
+
+:Role_ProductManager a :Role ;
+    rdfs:label "Product Manager" ;
+    :requiresAccess :Svc_FigmaDesign,
+        :Svc_QuickbooksOnline,
+        :Svc_WorkdayHris ;
+    rdfs:comment "Job title and governance role of Product Manager." .
+
+:Role_TechnicalRecruiter a :Role ;
+    rdfs:label "Technical Recruiter" ;
+    :requiresAccess :Svc_JiraSoftware,
+        :Svc_OktaIdentity ;
+    rdfs:comment "Job title and governance role of Technical Recruiter." .
+
+:Step_HardwareProcurementProcess_FinanceSpendSignoff a :ApprovalStep ;
+    rdfs:label "Finance Spend Sign-off" ;
+    :approvedBy :Role_ProcurementSpecialist ;
+    :spendLimit 2500.0 ;
+    rdfs:comment "Approval stage 'Finance Spend Sign-off' assigned to Procurement Specialist with spend limit $2500.00." .
+
+:Step_HardwareProcurementProcess_ManagerEndorsement a :ApprovalStep ;
+    rdfs:label "Manager Endorsement" ;
+    :approvedBy :Role_ItSupportSpecialist ;
+    :spendLimit 500.0 ;
+    rdfs:comment "Approval stage 'Manager Endorsement' assigned to IT Support Specialist with spend limit $500.00." .
+
+:Step_HighValueInfrastructureUpgrade_ArchitecturalReview a :ApprovalStep ;
+    rdfs:label "Architectural Review" ;
+    :approvedBy :Role_CloudArchitect ;
+    :spendLimit 10000.0 ;
+    rdfs:comment "Approval stage 'Architectural Review' assigned to Cloud Architect with spend limit $10000.00." .
+
+:Step_HighValueInfrastructureUpgrade_CfoApprovalStep a :ApprovalStep ;
+    rdfs:label "CFO Approval Step" ;
+    :approvedBy :Role_VendorManager ;
+    :spendLimit 100000.0 ;
+    rdfs:comment "Approval stage 'CFO Approval Step' assigned to Vendor Manager with spend limit $100000.00." .
+
+:Step_ProductionSystemAccessRequest_LeadSystemApproval a :ApprovalStep ;
+    rdfs:label "Lead System Approval" ;
+    :approvedBy :Role_DevopsEngineer ;
+    :spendLimit 0.0 ;
+    rdfs:comment "Approval stage 'Lead System Approval' assigned to DevOps Engineer with spend limit $0.00." .
+
+:Step_ProductionSystemAccessRequest_SecurityComplianceCheck a :ApprovalStep ;
+    rdfs:label "Security Compliance Check" ;
+    :approvedBy :Role_SecurityEngineer ;
+    :spendLimit 0.0 ;
+    rdfs:comment "Approval stage 'Security Compliance Check' assigned to Security Engineer with spend limit $0.00." .
+
+:Step_SaasProcurementWorkflow_DepartmentHeadReview a :ApprovalStep ;
+    rdfs:label "Department Head Review" ;
+    :approvedBy :Role_HrPartner ;
+    :spendLimit 1000.0 ;
+    rdfs:comment "Approval stage 'Department Head Review' assigned to HR Partner with spend limit $1000.00." .
+
+:Step_SaasProcurementWorkflow_ExecutiveSpendClearance a :ApprovalStep ;
+    rdfs:label "Executive Spend Clearance" ;
+    :approvedBy :Role_FinancialAccountant ;
+    :spendLimit 25000.0 ;
+    rdfs:comment "Approval stage 'Executive Spend Clearance' assigned to Financial Accountant with spend limit $25000.00." .
+
+:Step_SaasProcurementWorkflow_VendorSecurityAssessment a :ApprovalStep ;
+    rdfs:label "Vendor Security Assessment" ;
+    :approvedBy :Role_AppsecSpecialist ;
+    :spendLimit 5000.0 ;
+    rdfs:comment "Approval stage 'Vendor Security Assessment' assigned to AppSec Specialist with spend limit $5000.00." .
+
+:Step_StandardSoftwareRequest_HelpdeskAutoVerification a :ApprovalStep ;
+    rdfs:label "Helpdesk Auto Verification" ;
+    :approvedBy :Role_SystemAdministrator ;
+    :spendLimit 250.0 ;
+    rdfs:comment "Approval stage 'Helpdesk Auto Verification' assigned to System Administrator with spend limit $250.00." .
+
+:Dept_Finance a :Department ;
+    rdfs:label "Finance" ;
+    rdfs:comment "The Finance organizational department." .
+
+:Dept_HumanResources a :Department ;
+    rdfs:label "Human Resources" ;
+    rdfs:comment "The Human Resources organizational department." .
+
+:Dept_Operations a :Department ;
+    rdfs:label "Operations" ;
+    rdfs:comment "The Operations organizational department." .
+
+:Dept_Product a :Department ;
+    rdfs:label "Product" ;
+    rdfs:comment "The Product organizational department." .
+
+:Role_CloudArchitect a :Role ;
+    rdfs:label "Cloud Architect" ;
+    :requiresAccess :Svc_DatadogMonitoring ;
+    rdfs:comment "Job title and governance role of Cloud Architect." .
+
+:Role_DevopsEngineer a :Role ;
+    rdfs:label "DevOps Engineer" ;
+    :requiresAccess :Svc_PagerdutyIncidentResponse ;
+    rdfs:comment "Job title and governance role of DevOps Engineer." .
+
+:Role_FrontendDeveloper a :Role ;
+    rdfs:label "Frontend Developer" ;
+    :requiresAccess :Svc_DatadogMonitoring ;
+    rdfs:comment "Job title and governance role of Frontend Developer." .
+
+:Role_HrPartner a :Role ;
+    rdfs:label "HR Partner" ;
+    :requiresAccess :Svc_OktaIdentity ;
+    rdfs:comment "Job title and governance role of HR Partner." .
+
+:Role_OfficeAdmin a :Role ;
+    rdfs:label "Office Admin" ;
+    :requiresAccess :Svc_OktaIdentity,
+        :Svc_PagerdutyIncidentResponse,
+        :Svc_QuickbooksOnline ;
+    rdfs:comment "Job title and governance role of Office Admin." .
+
+:Role_SiteReliabilityEngineer a :Role ;
+    rdfs:label "Site Reliability Engineer" ;
+    :requiresAccess :Svc_CoupaSpendPlatform,
+        :Svc_JiraSoftware ;
+    rdfs:comment "Job title and governance role of Site Reliability Engineer." .
+
+:Role_StaffAccountant a :Role ;
+    rdfs:label "Staff Accountant" ;
+    :requiresAccess :Svc_FigmaDesign,
+        :Svc_ZoomWorkplace ;
+    rdfs:comment "Job title and governance role of Staff Accountant." .
+
+:Role_SystemAdministrator a :Role ;
+    rdfs:label "System Administrator" ;
+    :requiresAccess :Svc_CoupaSpendPlatform ;
+    rdfs:comment "Job title and governance role of System Administrator." .
+
+:Role_TechnicalPm a :Role ;
+    rdfs:label "Technical PM" ;
+    :requiresAccess :Svc_JiraSoftware,
+        :Svc_OktaIdentity ;
+    rdfs:comment "Job title and governance role of Technical PM." .
+
+:Role_UiLead a :Role ;
+    rdfs:label "UI Lead" ;
+    :requiresAccess :Svc_PagerdutyIncidentResponse,
+        :Svc_ZoomWorkplace ;
+    rdfs:comment "Job title and governance role of UI Lead." .
+
+:Svc_ConfluenceWiki a :Service ;
+    rdfs:label "Confluence Wiki" ;
+    :associatedChannel :Chan_Svc_ConfluenceWiki ;
+    rdfs:comment "Internal software service or platform: Confluence Wiki." .
+
+:Dept_Engineering a :Department ;
+    rdfs:label "Engineering" ;
+    rdfs:comment "The Engineering organizational department." .
+
+:Role_AppsecSpecialist a :Role ;
+    rdfs:label "AppSec Specialist" ;
+    :requiresAccess :Svc_FigmaDesign,
+        :Svc_GithubEnterprise,
+        :Svc_JiraSoftware ;
+    rdfs:comment "Job title and governance role of AppSec Specialist." .
+
+:Role_FinancialAccountant a :Role ;
+    rdfs:label "Financial Accountant" ;
+    :requiresAccess :Svc_CoupaSpendPlatform,
+        :Svc_GithubEnterprise ;
+    rdfs:comment "Job title and governance role of Financial Accountant." .
+
+:Role_ItSupportSpecialist a :Role ;
+    rdfs:label "IT Support Specialist" ;
+    :requiresAccess :Svc_DatadogMonitoring,
+        :Svc_GithubEnterprise,
+        :Svc_OktaIdentity ;
+    rdfs:comment "Job title and governance role of IT Support Specialist." .
+
+:Role_OnboardingLead a :Role ;
+    rdfs:label "Onboarding Lead" ;
+    :requiresAccess :Svc_ConfluenceWiki ;
+    rdfs:comment "Job title and governance role of Onboarding Lead." .
+
+:Role_ProcurementSpecialist a :Role ;
+    rdfs:label "Procurement Specialist" ;
+    :requiresAccess :Svc_AwsInfrastructure,
+        :Svc_FigmaDesign,
+        :Svc_GithubEnterprise ;
+    rdfs:comment "Job title and governance role of Procurement Specialist." .
+
+:Role_SecurityEngineer a :Role ;
+    rdfs:label "Security Engineer" ;
+    :requiresAccess :Svc_DatadogMonitoring ;
+    rdfs:comment "Job title and governance role of Security Engineer." .
+
+:Role_SourcingSpecialist a :Role ;
+    rdfs:label "Sourcing Specialist" ;
+    :requiresAccess :Svc_JiraSoftware,
+        :Svc_WorkdayHris ;
+    rdfs:comment "Job title and governance role of Sourcing Specialist." .
+
+:Role_UxDesigner a :Role ;
+    rdfs:label "UX Designer" ;
+    :requiresAccess :Svc_DatadogMonitoring,
+        :Svc_ZoomWorkplace ;
+    rdfs:comment "Job title and governance role of UX Designer." .
+
+:Role_VendorManager a :Role ;
+    rdfs:label "Vendor Manager" ;
+    :requiresAccess :Svc_DatadogMonitoring,
+        :Svc_GithubEnterprise,
+        :Svc_JiraSoftware ;
+    rdfs:comment "Job title and governance role of Vendor Manager." .
+
+:Svc_AwsInfrastructure a :Service ;
+    rdfs:label "AWS Infrastructure" ;
+    :associatedChannel :Chan_Svc_AwsInfrastructure ;
+    rdfs:comment "Internal software service or platform: AWS Infrastructure." .
+
+:Svc_WorkdayHris a :Service ;
+    rdfs:label "Workday HRIS" ;
+    :associatedChannel :Chan_Svc_WorkdayHris ;
+    rdfs:comment "Internal software service or platform: Workday HRIS." .
+
+:Team_ItSupportServices a :Team ;
+    rdfs:label "IT Support Services Team" ;
+    :associatedChannel :Chan_Team_ItSupportServices ;
+    :belongsToDepartment :Dept_Operations ;
+    :managedBy :Person_AveryWilson ;
+    :owns :Svc_FigmaDesign,
+        :Svc_QuickbooksOnline ;
+    rdfs:comment "Functional team operating under the Operations department." .
+
+:Team_ProductManagement a :Team ;
+    rdfs:label "Product Management Team" ;
+    :associatedChannel :Chan_Team_ProductManagement ;
+    :belongsToDepartment :Dept_Product ;
+    :managedBy :Person_HaydenGonzalez ;
+    :owns :Svc_OktaIdentity ;
+    rdfs:comment "Functional team operating under the Product department." .
+
+:Team_UxResearch a :Team ;
+    rdfs:label "UX Research Team" ;
+    :associatedChannel :Chan_Team_UxResearch ;
+    :belongsToDepartment :Dept_Product ;
+    :managedBy :Person_AveryMartin ;
+    :owns :Svc_AwsInfrastructure ;
+    rdfs:comment "Functional team operating under the Product department." .
+
+:Team_WorkplaceOperations a :Team ;
+    rdfs:label "Workplace Operations Team" ;
+    :associatedChannel :Chan_Team_WorkplaceOperations ;
+    :belongsToDepartment :Dept_Operations ;
+    :managedBy :Person_TaylorMoore ;
+    :owns :Svc_PagerdutyIncidentResponse ;
+    rdfs:comment "Functional team operating under the Operations department." .
+
+:Svc_QuickbooksOnline a :Service ;
+    rdfs:label "QuickBooks Online" ;
+    :associatedChannel :Chan_Svc_QuickbooksOnline ;
+    rdfs:comment "Internal software service or platform: QuickBooks Online." .
+
+:Team_CoreFrontend a :Team ;
+    rdfs:label "Core Frontend Team" ;
+    :associatedChannel :Chan_Team_CoreFrontend ;
+    :belongsToDepartment :Dept_Engineering ;
+    :managedBy :Person_KendallJohnson ;
+    :owns :Svc_QuickbooksOnline ;
+    rdfs:comment "Functional team operating under the Engineering department." .
+
+:Team_CorporateAccounting a :Team ;
+    rdfs:label "Corporate Accounting Team" ;
+    :associatedChannel :Chan_Team_CorporateAccounting ;
+    :belongsToDepartment :Dept_Finance ;
+    :managedBy :Person_TaylorHernandez ;
+    :owns :Svc_CoupaSpendPlatform,
+        :Svc_PagerdutyIncidentResponse ;
+    rdfs:comment "Functional team operating under the Finance department." .
+
+:Team_PeopleExperience a :Team ;
+    rdfs:label "People Experience Team" ;
+    :associatedChannel :Chan_Team_PeopleExperience ;
+    :belongsToDepartment :Dept_HumanResources ;
+    :managedBy :Person_CameronGonzalez ;
+    :owns :Svc_DatadogMonitoring,
+        :Svc_PagerdutyIncidentResponse ;
+    rdfs:comment "Functional team operating under the Human Resources department." .
+
+:Team_PlatformInfrastructure a :Team ;
+    rdfs:label "Platform Infrastructure Team" ;
+    :associatedChannel :Chan_Team_PlatformInfrastructure ;
+    :belongsToDepartment :Dept_Engineering ;
+    :managedBy :Person_AlexJohnson ;
+    :owns :Svc_DatadogMonitoring,
+        :Svc_JiraSoftware ;
+    rdfs:comment "Functional team operating under the Engineering department." .
+
+:Team_Procurement a :Team ;
+    rdfs:label "Procurement Team" ;
+    :associatedChannel :Chan_Team_Procurement ;
+    :belongsToDepartment :Dept_Finance ;
+    :managedBy :Person_HarperAnderson ;
+    :owns :Svc_ZoomWorkplace ;
+    rdfs:comment "Functional team operating under the Finance department." .
+
+:Team_SecurityOperations a :Team ;
+    rdfs:label "Security Operations Team" ;
+    :associatedChannel :Chan_Team_SecurityOperations ;
+    :belongsToDepartment :Dept_Engineering ;
+    :managedBy :Person_QuinnThomas ;
+    :owns :Svc_ConfluenceWiki,
+        :Svc_PagerdutyIncidentResponse ;
+    rdfs:comment "Functional team operating under the Engineering department." .
+
+:Team_TalentAcquisition a :Team ;
+    rdfs:label "Talent Acquisition Team" ;
+    :associatedChannel :Chan_Team_TalentAcquisition ;
+    :belongsToDepartment :Dept_HumanResources ;
+    :managedBy :Person_CaseyMartinez ;
+    :owns :Svc_AwsInfrastructure,
+        :Svc_WorkdayHris ;
+    rdfs:comment "Functional team operating under the Human Resources department." .
+
+:Svc_CoupaSpendPlatform a :Service ;
+    rdfs:label "Coupa Spend Platform" ;
+    :associatedChannel :Chan_Svc_CoupaSpendPlatform ;
+    rdfs:comment "Internal software service or platform: Coupa Spend Platform." .
+
+:Svc_FigmaDesign a :Service ;
+    rdfs:label "Figma Design" ;
+    :associatedChannel :Chan_Svc_FigmaDesign ;
+    rdfs:comment "Internal software service or platform: Figma Design." .
+
+:Svc_GithubEnterprise a :Service ;
+    rdfs:label "GitHub Enterprise" ;
+    :associatedChannel :Chan_Svc_GithubEnterprise ;
+    rdfs:comment "Internal software service or platform: GitHub Enterprise." .
+
+:Svc_ZoomWorkplace a :Service ;
+    rdfs:label "Zoom Workplace" ;
+    :associatedChannel :Chan_Svc_ZoomWorkplace ;
+    rdfs:comment "Internal software service or platform: Zoom Workplace." .
+
+:Department a owl:Class ;
+    rdfs:label "Department" ;
+    rdfs:comment "A top-level organizational unit containing multiple teams." .
+
+:Process a owl:Class ;
+    rdfs:label "Process" ;
+    rdfs:comment "A structured sequence of administrative steps or workflows." .
+
+:Svc_OktaIdentity a :Service ;
+    rdfs:label "Okta Identity" ;
+    :associatedChannel :Chan_Svc_OktaIdentity ;
+    rdfs:comment "Internal software service or platform: Okta Identity." .
+
+:Svc_PagerdutyIncidentResponse a :Service ;
+    rdfs:label "PagerDuty Incident Response" ;
+    :associatedChannel :Chan_Svc_PagerdutyIncidentResponse ;
+    rdfs:comment "Internal software service or platform: PagerDuty Incident Response." .
+
+:Svc_DatadogMonitoring a :Service ;
+    rdfs:label "Datadog Monitoring" ;
+    :associatedChannel :Chan_Svc_DatadogMonitoring ;
+    rdfs:comment "Internal software service or platform: Datadog Monitoring." .
+
+:Svc_JiraSoftware a :Service ;
+    rdfs:label "Jira Software" ;
+    :associatedChannel :Chan_Svc_JiraSoftware ;
+    rdfs:comment "Internal software service or platform: Jira Software." .
+
+:ApprovalStep a owl:Class ;
+    rdfs:label "Approval Step" ;
+    rdfs:comment "A specific phase within a Process where sign-off is required." .
+
+:Service a owl:Class ;
+    rdfs:label "Service" ;
+    rdfs:comment "An internal tool, software platform, infrastructure system, or SaaS application." .
+
+:Team a owl:Class ;
+    rdfs:label "Team" ;
+    rdfs:comment "A functional group of individuals collaborating on specific operational goals." .
+
+:Channel a owl:Class ;
+    rdfs:label "Channel" ;
+    rdfs:comment "A communication medium, such as a Slack channel or distribution list." .
+
+:Role a owl:Class ;
+    rdfs:label "Role" ;
+    rdfs:comment "A designated job function, title, or position held by a Person." .
+
+:Person a owl:Class ;
+    rdfs:label "Person" ;
+    rdfs:comment "An individual employee, contractor, or team member within the organization." .
+

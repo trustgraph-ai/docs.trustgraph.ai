@@ -55,4 +55,4 @@ Where to get help and find useful resources for contributing to TrustGraph.
 
 ## Enterprise Support
 
-For enterprise support and services, contact [Knownext Inc.](https://knownext.io) — see [Enterprise Offerings](../overview/enterprise).
+For enterprise support and services, contact [Knownext Inc.](https://knownext.io) — see [Enterprise Offerings](../architecture/enterprise).

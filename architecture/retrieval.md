@@ -1,7 +1,7 @@
 ---
 title: Information retrieval
 nav_order: 1.5
-parent: Overview
+parent: Architecture
 review_date: 2026-08-01
 guide_category:
   - How does it work?

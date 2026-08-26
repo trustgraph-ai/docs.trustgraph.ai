@@ -1,7 +1,8 @@
 ---
+published: false
 title: Introduction
 nav_order: 0
-parent: Overview
+parent: Architecture
 review_date: 2026-08-01
 guide_category:
   - Concepts
