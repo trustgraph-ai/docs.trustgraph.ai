@@ -8,6 +8,180 @@ review_date: 2027-07-17
 
 # Changelog
 
+## v2.8 (2026-08-24)
+
+### Major Features
+- **Async Pub/Sub Infrastructure** (#1065, #1067, #1069, #1070, #1071):
+  Complete migration from thread-per-consumer pub/sub to an async
+  architecture, removing the scaling bottleneck that limited deployments
+  to ~50 workspaces:
+  - Thread-per-consumer model replaced with async receive/send pools
+    using `pulsar.asyncio.Client`, eliminating thread exhaustion at
+    scale (40+ workspaces × 4 flows = 480+ threads reduced to a
+    configurable pool)
+  - Async backends for all three fabrics: Pulsar, RabbitMQ
+    (`aio-pika`), and Kafka (`aiokafka`)
+  - API gateway and reverse gateway fully migrated to async
+    infrastructure
+  - ~7,600 lines of synchronous pub/sub code removed
+- **Hybrid Retrieval for Document RAG** (#1030): BM25 keyword search
+  combined with vector similarity using Reciprocal Rank Fusion (RRF):
+  - Pluggable `KeywordIndexService` with SQLite FTS5 backend
+  - Per-(workspace, collection) scoping
+  - Text sanitisation for BM25 indexing
+  - Graceful degradation when keyword path is unavailable
+- **LLM-Native Structured Output** (#1037): JSON schema enforcement
+  threaded from prompt definitions through the text-completion service
+  to LLM backends' native structured output APIs:
+  - Runtime schema compatibility checker with per-prompt eligibility
+  - Supported across OpenAI (+ vLLM variant), Ollama, Claude, Mistral,
+    Llamafile, LM Studio, Azure OpenAI, Azure serverless, TGI,
+    VertexAI Gemini, Google AI Studio, and Bedrock
+- **Image-to-Text Service** (#1038): Full-stack pluggable image
+  description service:
+  - Schema, base class, and OpenAI vision backend
+  - Gateway dispatch with sync/async REST and WebSocket clients
+  - `tg-describe-image` CLI tool
+  - IAM capability integration
+- **Docling Document Decoder** (#1054): Alternative document processing
+  backend powered by IBM's Docling library:
+  - New `trustgraph-docling` package supporting PDF, DOCX, XLSX, PPTX,
+    HTML, Markdown, and CSV
+  - Page mode (default) and hybrid chunking modes
+  - Drop-in replacement for the `unstructured`-based decoder
+- **Structured Audit Events** (#1027): Complete audit event pipeline
+  for every gateway request and IAM decision:
+  - `AuditEvent` dataclass with `AuditPublisher` utility
+  - Request ID and client IP correlation across gateway and IAM events
+  - Non-persistent pub/sub delivery with consumer-side storage and
+    retention
+- **Comprehensive Metrics Refactor** (#1075): Structured observability
+  across infrastructure, service, and application layers:
+  - `tg_` namespace prefix on all metrics
+  - Infrastructure metrics: chunker, metering, LLM, image-to-text,
+    tool services
+  - Service metrics: `DownstreamMetrics` in `RequestResponseClient`,
+    embeddings/reranker/query services, store writes across 10 backends
+  - Application metrics: agent orchestration, gateway dispatcher,
+    gateway auth, config receiver, knowledge extraction pipeline, IAM
+    service
+- **Gateway Passthrough** (#1079): Generic passthrough path for
+  enterprise services not part of the core platform:
+  - `PassthroughRequest`/`PassthroughResponse` schema with opaque JSON
+    payload
+  - Dynamic registry lookup and dispatcher integration
+  - Enables enterprise extensions (e.g. attestation engine) without
+    modifying core code
+- **RDF Multilingual Support** (#1046): Full preservation of RDF
+  literal language tags and XSD datatypes through ingestion and query:
+  - `Triple` dataclass gains `o_datatype` and `o_language` fields
+  - Wire format gains `"dt"` and `"ln"` keys for literal terms
+  - Enables `FILTER(LANG())` SPARQL queries and correct multilingual
+    dataset handling
+
+### Improvements
+- **Config Startup Performance** (#1058, #1062, #1063): Parallelised
+  per-workspace config fetches with `asyncio.gather`, increased
+  per-request timeout from 10s to 60s, and added `getkeys-all-ws`
+  operation to avoid oversized responses exceeding Pulsar's max message
+  size. Resolves 10+ minute startup times with 50+ workspaces
+- **Structured Data Batching** (#1055): Row import batching (default 40
+  rows) reducing embeddings service calls; schema `indexes` split into
+  `query-indexes` (exact-match) and `vector-indexes` (semantic search);
+  `row_id` added as clustering column to prevent overwrites
+- **Reranker Text Truncation** (#1089): Long text labels (5000+ chars)
+  truncated to configurable `max_reranker_text_length` (default 240
+  chars) for scoring, preventing reranker timeouts while preserving
+  full labels for selected edges
+- **Configurable Chunk Fetch Timeout** (#1031): Chunk fetch timeout
+  from librarian now configurable with processor accepting default and
+  override values
+- **Metrics Cardinality** (#1059, #1074): Removed workspace/flow labels
+  from infrastructure histogram metrics to eliminate unbounded
+  time-series growth; wired consumer/producer metrics into async pools
+  with eager label initialisation
+- **Non-ASCII Entity Names** (#1036): Unicode-aware `\w` patterns in
+  ontology URI normalisation preserve CJK and other non-ASCII
+  characters, preventing entity name collisions for non-English content
+- **MCP SDK v2 Compatibility** (#1083): Updated for breaking changes
+  from MCP v1 to v2: `FastMCP` → `MCPServer`, updated import paths,
+  host/port moved to `run()`, streamable HTTP client rename
+- **Default API Port** (#1078): Default API port changed from 8088 to
+  8888
+- **VertexAI Region Default** (#1090): VertexAI region defaults to
+  `global` (from `us-central1`) for Gemini model compatibility;
+  override via `VERTEXAI_REGION` environment variable or `--region`
+  flag
+- **Template Discovery** (#1092): Template discovery refactored from
+  maintaining a separate `template-index` list to filtering config keys
+  by `template.` prefix, eliminating redundant state
+- **Workspace Name Sanitisation** (#1053): Workspace names sanitised
+  for use as Cassandra keyspace identifiers
+
+### Bug Fixes
+- **Producer Reconnection** (#1057): Producer send loop reconnects
+  after failure instead of setting to `None`, preventing
+  `AttributeError` masking the original error
+- **JWT Signing Key Retry** (#1032): `_verify_jwt()` lazily retries
+  the signing key fetch on demand, enabling self-healing when IAM
+  becomes available after gateway startup
+- **Cassandra Collection Deletion** (#1077): Three delete paths
+  migrated to `async_scan` for proper pagination, preventing truncated
+  deletes on collections larger than `fetch_size` (5000)
+- **Row Query Filtering** (#1056): Multi-field GraphQL queries now
+  apply all filters post-index lookup and apply limit after filtering
+- **Extraction Metrics** (#1076): Shared extraction metrics moved to
+  `extract_metrics.py` to prevent `DuplicateTimeseries`; fixed
+  `tg-dump-queues` message loss (`asyncio.wait_for` → `asyncio.wait`);
+  added null guards in prompt manager and text-completion client
+- **Passthrough Routing** (#1084): Strip `thru/` prefix for flow
+  interface lookup; fix `TypeError` in `_make_impl_wrapper` for `None`
+  impl; add `SparqlClientSpec` with `query()` convenience method
+- **NLTK Import Blocker** (#1088): Pinned `nltk>=3.10.2` to avoid
+  `inisec.py` meta-path import hook blocking stdlib imports
+- **VertexAI Container Build** (#1081): Replaced unpinned
+  `google-cloud-aiplatform` with `google-genai` in Containerfile
+- **Docling Container Build** (#1093): Disabled `torch.compile` JIT
+  via `TORCH_COMPILE_DISABLE=1` to remove C++ compiler dependency
+- **Literal Object Indexing** (#1041): Cassandra `quads_by_entity`
+  table now indexes literal objects (e.g. `rdfs:label` values),
+  making `tg-query-graph -o <literal>` return results
+- **Bare Excepts** (#1039): Replaced bare `except:` clauses with
+  specific exception types in the API layer
+- **System Health Check** (#1061): `tg-verify-system-status` uses
+  UI URL for all checks, removing unused `--api-url` and
+  `--pulsar-url` parameters
+
+### Breaking Changes
+- **Async pub/sub migration**: Entire synchronous pub/sub layer
+  removed. `Publisher` → `backend.create_producer()`,
+  `RequestResponse` base class removed, sync `add()` methods replaced
+  with async `register()`. All custom processors must migrate to async
+  infrastructure
+- **API port**: Default port changed from 8088 to 8888. Existing
+  configurations using the default will need updating
+- **VertexAI region**: Default region changed from `us-central1` to
+  `global`. Override with `VERTEXAI_REGION` if needed
+- **Knowledge manager**: Librarian changed from single shared client
+  to per-workspace clients. `KnowledgeResponse.ids` changed from
+  `list[str]` to `Optional[list[str]]`
+- **System health CLI**: `--api-url` and `--pulsar-url` parameters
+  removed from `tg-verify-system-status`
+- **RDF round-trip**: Existing ingested data with language tags or
+  datatypes requires re-ingestion. Existing literal objects require
+  re-ingestion to be queryable by object value
+
+### Infrastructure / Technical
+- **Tech Specs**: New specifications for async receive pool
+  architecture, LLM structured output, and audit events
+- **Testing** (#1050, #1068, #1076, #1082): Async migration test
+  updates across 6 test files, removed duplicate `--concurrency`
+  argparse declarations from 19 subclasses, comprehensive metrics
+  tests, audit event tests, Docling decoder tests, and knowledge
+  bundle round-trip tests
+
+---
+
 ## v2.6 (2026-07-17)
 
 ### Major Features
