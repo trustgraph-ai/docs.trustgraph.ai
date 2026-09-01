@@ -11,6 +11,92 @@ review_date: 2027-07-17
 TrustGraph UI (`trustgraph-ui`) is the replacement for the
 [Workbench UI](workbench), which was deprecated in TrustGraph v2.4.
 
+## v2.0.3 (2026-08-24) — released in TrustGraph 2.8
+
+### Architectural Changes
+- **Monorepo Consolidation** (#56, #59): Dependency libraries previously
+  published from separate GitHub repos are now consolidated into this
+  repository monorepo-style using npm workspaces. Published packages:
+  `@trustgraph/client`, `@trustgraph/react-provider`,
+  `@trustgraph/react-state`, `@trustgraph/trustkit`. Automatic version
+  stamping from git tags at publish time with npm provenance
+  verification. The `packages/demo` directory renamed to
+  `packages/portal` to reflect its role as the main application shell
+- **Plugin Architecture** (#44, #45, #46, #47, #52): Manifest-driven
+  plugin system with IIFE-based dynamic loading. 10+ demo explorers
+  migrated from hardcoded builtins to dynamically loaded plugin
+  packages. Shared libraries (React, trustkit) provided via
+  `window.TrustKitShared` globals to ensure a single React instance.
+  Support for multi-component bundles, remote plugins, and customer-
+  configurable UI via volume-mounted `plugins.json`. Plugin development
+  guide included
+
+### Features
+- **Runtime Theme System** (#38, #40, #41, #42, #54, #55): Complete
+  migration from static colour imports to runtime `useTheme()` hook.
+  Five theme presets: Dark (default), Midnight, Light, High Contrast,
+  and Warm. Deep-merge theme override system with `ThemeContext`
+  provider. Scalable typography via `sz()` scale helper with
+  localStorage persistence. Theme selector in header toolbar dropdown
+- **Generic UI Component Library** (#49, #50, #58): Reusable themed
+  components extracted from duplicated inline styles — Input, Button,
+  Select, Card, QueryWorkbench, SplitPane, DetailPanel, EmptyState,
+  ModeSelector, Toolbar, PageLayout, GraphCanvas3D, and others.
+  ~287 hardcoded font string occurrences replaced with theme tokens
+- **Threat Explorer** (#33): Interactive investigation workbench for
+  OCSF insider-threat analysis from knowledge graph data. Two-layer
+  architecture: SPARQL for risk relationships, GraphQL for raw event
+  drill-down. 12 risk event subtypes supported. Pivot breadcrumb trail
+  with contextual AI analysis, investigation view with finding chain,
+  and AI-powered incident report / response plan generation
+- **3D Graph Visualisation** (#36): `GraphCanvas3D` component with
+  perspective projection, domain clusters distributed on sphere using
+  golden spiral placement, camera controls (drag, scroll, right-drag),
+  and depth cues (perspective scaling, opacity falloff, z-sorting).
+  ExploreView includes 2D/3D mode selector
+- **Schema Index Split** (#34): Single `indexes` field split into
+  `query-indexes` (exact-match) and `vector-indexes` (semantic search)
+  with colour-coded UX
+- **Prefix-Based Prompt Discovery** (#48): Replaced `template-index`
+  configuration with automatic discovery via `template.` prefix filter,
+  removing the index update step from create/delete operations
+
+### Improvements
+- **Incremental Data Loading** (#37): Law Explorer rewritten for
+  fully incremental loading — no upfront bulk load, per-language
+  caching, instant revisits. Socket readiness guards added to all data
+  hooks across explorers. Animated loading spinners with mode-specific
+  accent colours
+- **Search Result Highlighting** (#31): Matched fields highlighted in
+  structured data search results with tinted background, accent border,
+  and bold value text. Composite index support via `index_name`
+  splitting
+- **Guidance System** (#53): Guidance context provider with
+  `GuidanceSlot` anchor components, dismissible markdown popovers with
+  version-aware localStorage persistence, and `ActionButtonBar` for
+  config-driven toolbar buttons
+- **Default API Port** (#43): Local dev port changed to 8888 to match
+  updated API gateway default
+
+### Bug Fixes
+- **Light Theme Contrast** (#42, #55): Fixed light-mode contrast
+  issues throughout the application, including Solar Mission side panel
+  using hardcoded dark background
+- **ESLint Config** (#41): Root ESLint config updated to exclude
+  TypeScript sub-packages and plugin build output
+- **CI Test Workflows**: Removed incorrect `-- --run` flag from npm
+  test CI workflows
+
+### Infrastructure / Technical
+- **Plugin Build Pipeline** (#45): Plugin packages added to CI build
+  chain; monorepo npm publish workflow publishes all four public
+  packages on tag push; removed dead per-package workflow directories
+- **Testing**: Updated `@vitest/ui` to ^4.1.10 to match vitest (#51)
+- **Static File Serving** (#46): Added JSON file serving for
+  `plugins.json` loading
+
+---
+
 ## v0.3.12 (2026-07-17) — released in TrustGraph 2.6
 
 ### Features
