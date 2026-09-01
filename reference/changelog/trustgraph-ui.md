@@ -8,9 +8,6 @@ review_date: 2027-07-17
 
 # Changelog - TrustGraph UI
 
-TrustGraph UI (`trustgraph-ui`) is the replacement for the
-[Workbench UI](workbench), which was deprecated in TrustGraph v2.4.
-
 ## v2.0.3 (2026-08-24) — released in TrustGraph 2.8
 
 ### Architectural Changes
