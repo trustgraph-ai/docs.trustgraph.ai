@@ -11,16 +11,15 @@ has_children: true
 TrustGraph is an open-source Agent Intelligence Platform that transforms AI agents from simple task executors into contextually-aware systems. By combining knowledge graphs with vector embeddings, TrustGraph enables AI agents to understand relationships, reduce hallucinations, and provide more accurate responses.
 
 {: .note }
-> ⚡ **TrustGraph 2.4 is here**
+> ⚡ **TrustGraph 2.8 is here**
 > 
-> The TrustGraph Workbench has been completely replaced by a new UX which
-> properly integrates AI Explainability, a new Context Graph visuals,
-> ontology traversal, and authentication.
-> This release also introduces Workspace-Based Multi-Tenancy and an IAM
-> Service with Gateway Authentication.  A major update to the
-> documentation has been needed to bring everything up-to-date — a few
-> pages still have updates remaining, and these are flagged with a header
-> on affected pages.
+> This release replaces the internal thread model with async
+> infrastructure to support greater scale, comfortably handling 50+
+> workspaces. Also new: hybrid retrieval (BM25 + vector fusion) for
+> Document RAG, LLM-native structured output, an image-to-text service,
+> Docling-based document processing, structured audit events, and a
+> comprehensive metrics refactor.
+> See the [changelog](reference/changelog/trustgraph) for full details.
 
 ## Choose Your Path
 
