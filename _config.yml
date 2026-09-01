@@ -3,8 +3,7 @@ description: Information on the TrustGraph platform
 theme: just-the-docs
 
 url: "https://docs.trustgraph.ai"
-plugins:
-  - jekyll-sitemap
+plugins: []
 
 # logo: "/assets/images/just-the-docs.png"
 # favicon_ico: "/assets/images/favicon.ico"
@@ -103,6 +102,53 @@ defaults:
       path: ""
     values:
       layout: page
+      sitemap_priority: 0.5
+      sitemap_changefreq: weekly
+  - scope:
+      path: "get-started"
+    values:
+      sitemap_priority: 0.8
+      sitemap_changefreq: weekly
+  - scope:
+      path: "get-started/learn"
+    values:
+      sitemap_priority: 0.8
+      sitemap_changefreq: weekly
+  - scope:
+      path: "overview"
+    values:
+      sitemap_priority: 0.7
+      sitemap_changefreq: weekly
+  - scope:
+      path: "guides"
+    values:
+      sitemap_priority: 0.6
+      sitemap_changefreq: weekly
+  - scope:
+      path: "deployment"
+    values:
+      sitemap_priority: 0.5
+      sitemap_changefreq: weekly
+  - scope:
+      path: "reference"
+    values:
+      sitemap_priority: 0.4
+      sitemap_changefreq: weekly
+  - scope:
+      path: "reference/cli"
+    values:
+      sitemap_priority: 0.3
+      sitemap_changefreq: weekly
+  - scope:
+      path: "reference/changelog"
+    values:
+      sitemap_priority: 0.5
+      sitemap_changefreq: weekly
+  - scope:
+      path: "contributing"
+    values:
+      sitemap_priority: 0.3
+      sitemap_changefreq: weekly
 
 fathom:
   site_id: RJHALETV

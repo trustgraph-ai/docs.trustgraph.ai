@@ -1,5 +1,7 @@
-User-agent: Googlebot
-Disallow: /nogooglebot/
-
+---
+layout: null
+---
 User-agent: *
 Allow: /
+
+Sitemap: {{ site.url }}/sitemap.xml

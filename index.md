@@ -2,6 +2,8 @@
 title: TrustGraph Documentation
 nav_order: 1
 has_children: true
+sitemap_priority: 1.0
+sitemap_changefreq: weekly
 ---
 
 # TrustGraph Documentation
