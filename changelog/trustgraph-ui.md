@@ -1,7 +1,7 @@
 ---
-title: Changelog - TrustGraph UI
+title: TrustGraph UI
 nav_order: 2
-parent: Reference
+parent: Changelogs
 review_date: 2027-07-17
 ---
 
