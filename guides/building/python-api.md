@@ -2,7 +2,6 @@
 title: Building with the Python API
 nav_order: 4
 parent: Building with TrustGraph
-grand_parent: How-to Guides
 guide_category:
   - Building with TrustGraph
 guide_category_order: 4

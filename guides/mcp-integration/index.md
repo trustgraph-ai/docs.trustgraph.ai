@@ -1,7 +1,6 @@
 ---
 title: MCP Integration
 parent: Agentic systems
-grand_parent: How-to Guides
 nav_order: 1
 review_date: 2026-03-06
 guide_category:

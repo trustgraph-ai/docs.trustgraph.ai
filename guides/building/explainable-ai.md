@@ -2,7 +2,6 @@
 title: Explainable AI with TypeScript
 nav_order: 10
 parent: Building with TrustGraph
-grand_parent: How-to Guides
 review_date: 2026-08-01
 guide_category:
   - Building with TrustGraph

@@ -2,7 +2,6 @@
 title: Introduction to the TypeScript libraries
 nav_order: 6
 parent: Building with TrustGraph
-grand_parent: How-to Guides
 review_date: 2026-08-01
 guide_category:
   - Building with TrustGraph

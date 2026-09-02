@@ -1,7 +1,6 @@
 ---
 title: Agent Patterns
 parent: Configuration
-grand_parent: Reference
 nav_order: 3
 permalink: /reference/configuration/agent-patterns
 review_date: 2027-01-01

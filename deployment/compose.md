@@ -2,7 +2,6 @@
 title: Docker / Podman Compose
 nav_order: 1
 parent: Deployment
-grand_parent: TrustGraph Documentation
 review_date: 2026-11-01
 guide_category:
   - Standalone deployment

@@ -2,7 +2,6 @@
 title: Amazon Web Services (RKE)
 nav_order: 9
 parent: Deployment
-grand_parent: TrustGraph Documentation
 review_date: 2026-11-01
 guide_category:
   - Global cloud

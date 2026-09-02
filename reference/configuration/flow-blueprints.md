@@ -1,7 +1,6 @@
 ---
 title: Flow Blueprints
 parent: Configuration
-grand_parent: Reference
 nav_order: 1
 permalink: /reference/configuration/flow-blueprints
 review_date: 2026-08-01

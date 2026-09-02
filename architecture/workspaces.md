@@ -2,7 +2,6 @@
 title: Workspaces & Data Isolation
 nav_order: 30
 parent: Architecture
-grand_parent: TrustGraph Documentation
 review_date: 2026-11-01
 guide_category:
   - Enterprise integration

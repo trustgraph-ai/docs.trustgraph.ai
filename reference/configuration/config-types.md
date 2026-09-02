@@ -1,7 +1,6 @@
 ---
 title: Config Types
 parent: Configuration
-grand_parent: Reference
 nav_order: 4
 permalink: /reference/configuration/config-types
 review_date: 2027-01-01

@@ -1,7 +1,6 @@
 ---
 title: Managing Users and Workspaces
 parent: Managing operations
-grand_parent: How-to Guides
 nav_order: 2
 review_date: 2026-11-01
 guide_category:

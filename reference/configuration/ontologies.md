@@ -1,7 +1,6 @@
 ---
 title: Ontologies
 parent: Configuration
-grand_parent: Reference
 nav_order: 2.5
 permalink: /reference/configuration/ontologies
 review_date: 2026-08-01

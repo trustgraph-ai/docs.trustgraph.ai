@@ -1,7 +1,6 @@
 ---
 title: Agent Task Types
 parent: Configuration
-grand_parent: Reference
 nav_order: 3.5
 permalink: /reference/configuration/agent-task-types
 review_date: 2027-01-01

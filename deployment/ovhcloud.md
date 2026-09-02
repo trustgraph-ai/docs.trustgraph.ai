@@ -2,7 +2,6 @@
 title: OVHcloud
 nav_order: 4.5
 parent: Deployment
-grand_parent: TrustGraph Documentation
 review_date: 2026-11-01
 guide_category:
   - European Cloud Providers

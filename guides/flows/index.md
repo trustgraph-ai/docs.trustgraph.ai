@@ -1,7 +1,6 @@
 ---
 title: Introduction to Flows
 parent: Common knowledge management tasks
-grand_parent: How-to Guides
 nav_order: 6
 review_date: 2026-06-01
 guide_category:

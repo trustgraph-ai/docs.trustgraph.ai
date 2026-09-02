@@ -1,7 +1,6 @@
 ---
 title: Working with Context Cores
 parent: Common knowledge management tasks
-grand_parent: How-to Guides
 nav_order: 5
 review_date: 2026-11-01
 guide_category:

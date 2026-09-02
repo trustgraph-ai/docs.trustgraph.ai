@@ -2,7 +2,6 @@
 title: Adding your own processing
 nav_order: 9
 parent: Building with TrustGraph
-grand_parent: How-to Guides
 review_date: 2026-05-01
 guide_category:
   - Building with TrustGraph

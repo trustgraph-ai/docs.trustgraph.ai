@@ -2,7 +2,6 @@
 title: Production Considerations
 nav_order: 11
 parent: Deployment
-grand_parent: TrustGraph Documentation
 review_date: 2027-01-04
 guide_category:
 guide_category_order: 2

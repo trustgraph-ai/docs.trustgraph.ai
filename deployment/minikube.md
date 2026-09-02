@@ -2,7 +2,6 @@
 title: Minikube
 nav_order: 2
 parent: Deployment
-grand_parent: TrustGraph Documentation
 review_date: 2026-11-01
 guide_category:
   - Standalone deployment

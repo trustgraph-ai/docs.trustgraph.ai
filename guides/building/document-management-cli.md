@@ -2,7 +2,6 @@
 title: Command-line document management
 nav_order: 3
 parent: Building with TrustGraph
-grand_parent: How-to Guides
 review_date: 2026-11-01
 guide_category:
   - Building with TrustGraph

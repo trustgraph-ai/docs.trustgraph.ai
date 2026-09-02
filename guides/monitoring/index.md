@@ -1,7 +1,6 @@
 ---
 title: Monitoring
 parent: Managing operations
-grand_parent: How-to Guides
 nav_order: 1
 review_date: 2026-11-01
 guide_category:

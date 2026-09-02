@@ -2,7 +2,6 @@
 title: Changelog - Workbench
 nav_order: 3
 parent: Reference
-grand_parent: TrustGraph Documentation
 review_date: 2027-01-15
 published: false
 ---

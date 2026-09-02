@@ -2,7 +2,6 @@
 title: Changelog - TrustGraph
 nav_order: 1
 parent: Reference
-grand_parent: TrustGraph Documentation
 review_date: 2027-07-17
 ---
 

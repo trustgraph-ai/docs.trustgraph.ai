@@ -2,7 +2,6 @@
 title: Introduction to command-line tools
 nav_order: 2
 parent: Building with TrustGraph
-grand_parent: How-to Guides
 review_date: 2026-08-01
 guide_category:
   - Building with TrustGraph

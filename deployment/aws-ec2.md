@@ -2,7 +2,6 @@
 title: AWS EC2 Single Instance
 nav_order: 7
 parent: Deployment
-grand_parent: TrustGraph Documentation
 review_date: 2026-11-01
 guide_category:
   - Standalone deployment

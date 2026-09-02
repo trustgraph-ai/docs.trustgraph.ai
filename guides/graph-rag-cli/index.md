@@ -2,7 +2,6 @@
 title: Graph RAG using CLI
 nav_order: 2
 parent: Advanced knowledge management
-grand_parent: How-to Guides
 review_date: 2026-11-01
 guide_category:
   - Advanced knowledge management

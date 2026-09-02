@@ -2,7 +2,6 @@
 title: Storage
 nav_order: 1
 parent: Architecture
-grand_parent: Architecture
 guide_category:
   - How does it work?
 guide_category_order: 2

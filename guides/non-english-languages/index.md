@@ -2,7 +2,6 @@
 title: Working with non-English languages
 nav_order: 10
 parent: Common knowledge management tasks
-grand_parent: How-to Guides
 review_date: 2026-11-01
 guide_category:
   - Common knowledge management tasks
