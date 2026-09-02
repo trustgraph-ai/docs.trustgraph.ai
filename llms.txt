@@ -1,0 +1,11 @@
+---
+layout: null
+---
+# TrustGraph Documentation
+
+> TrustGraph is an open-source context orchestration layer for building AI systems that reason accurately over structured knowledge using Graph RAG, ontologies, and hypergraph-based retrieval.
+
+## Documentation
+
+{% assign sorted_pages = site.html_pages | sort: "url" %}{% for page in sorted_pages %}{% unless page.url contains '/assets/' or page.title == nil or page.title == '' or page.sitemap_exclude %}- [{{ page.title }}]({{ page.url | absolute_url }})
+{% endunless %}{% endfor %}
