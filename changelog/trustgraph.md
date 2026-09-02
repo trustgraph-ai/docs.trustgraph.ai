@@ -1,7 +1,7 @@
 ---
 title: TrustGraph
 nav_order: 1
-parent: Changelogs
+parent: Releases
 review_date: 2027-07-17
 ---
 

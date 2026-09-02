@@ -1,7 +1,7 @@
 ---
 title: Workbench
 nav_order: 3
-parent: Reference
+parent: Releases
 review_date: 2027-01-15
 published: false
 ---
