@@ -7,6 +7,60 @@ review_date: 2027-07-17
 
 # Changelog - TrustGraph UI
 
+## v2.2.4 (2026-09-22) — released in TrustGraph 2.9
+
+### Architectural Changes
+- **Config-Driven Navigation System** (#67): Replaced hardcoded routing
+  with an intent-based navigation system driven by JSON config files
+  (`routes.json`, `tabs.json`, `navigation.json`, `components.json`).
+  All routing is now resolved through an `IntentRouter` — no hardcoded
+  routes remain. Component IDs renamed for clarity: `raw-graph` →
+  `graph-navigator`, `explore` → `context-graph-navigator`, `doc-rag` →
+  `document-rag`, `data` → `table-explorer`
+
+### Features
+- **Welcome Page** (#67, #69, #70, #71): New landing page with DCAT
+  catalog display fetched via SPARQL, showing datasets with thumbnails,
+  keywords, access service buttons, and documentation links. Catalog
+  and dataset sections with visual hierarchy headings. "Documents
+  Submitted" section showing processed documents with title, description,
+  tags, and flow/collection submissions. Falls back to search box and
+  quick-link cards when no catalogs exist
+- **Search** (#67): Embedding-based semantic search with type chips
+  (palette-coloured by URI hash), keyword pills, thumbnail display,
+  and `RawNodeDetailPanel` side viewer. Reads initial query from URL
+  params for cross-page search. Clickable type chips open type nodes
+  in the side panel. Available as a workflow card
+- **Documentation Viewer** (#67): Inline markdown renderer for
+  `dcat:landingPage` URLs with custom renderers for image URL
+  resolution, external links, and relative hrefs. Back button
+  navigation
+- **Demo Data Loader** (#64, #65, #66, #68): Plugin for loading
+  ready-made datasets with streaming Turtle parser and bulk import.
+  Manifest-driven with support for knowledge, catalog, ontology,
+  queries, tools, prompts, schemas, and structured data. Progress
+  overlay with phase tracking. Markdown detail rendering with `marked`.
+  Catalog triples imported into `urn:graph:catalog` named graph
+- **IAM Admin Plugins** (#61, #62): Base IAM client API with workspace
+  admin (create, list, enable/disable workspaces), user admin (list,
+  manage users and API keys), and API key management plugins. Hidden
+  section support in plugin manifests
+- **Thumbnail Support** (#67): `schema:image` support added to
+  `useNodeDetail` hook and `RawNodeDetailPanel` in trustkit, showing
+  entity thumbnails in search results and node detail panels
+
+### Improvements
+- **Workspace/Collection/Flow Selectors** (#71): Header selector pills
+  now show human-readable names instead of bare IDs. Collection
+  dropdown shows descriptions. Flow dropdown shows descriptions
+- **Hidden Tab Routing** (#63): Tabs marked as `hidden` in config are
+  no longer shown in the tab bar but remain routable via direct URL
+- **Demo Data Loader UX** (#65, #66): Markdown rendering for dataset
+  detail pages, improved image sizing, guidance help icon, renamed
+  plugin route to avoid proxy collision
+
+---
+
 ## v2.0.3 (2026-08-24) — released in TrustGraph 2.8
 
 ### Architectural Changes

@@ -7,6 +7,77 @@ review_date: 2027-07-17
 
 # Changelog
 
+## v2.9 (2026-09-16)
+
+### Major Features
+- **Langchain Removal** (#1122, #1123): Removed the `langchain`
+  dependency from `trustgraph-flow` and `trustgraph-embeddings-hf`,
+  replacing thin wrappers with direct library usage:
+  - Token chunker uses `tiktoken` encode/decode directly instead of
+    `langchain.TokenTextSplitter`
+  - Recursive chunker reimplemented natively with the same separator
+    hierarchy (`\n\n`, `\n`, ` `, `""`)
+  - PDF decoder uses `pypdf.PdfReader` instead of
+    `langchain_community.PyPDFLoader`
+  - HuggingFace embeddings use `sentence_transformers.SentenceTransformer`
+    instead of `langchain_huggingface.HuggingFaceEmbeddings`
+  - Removes ~15 transitive dependencies from flow and HF container images
+- **Named Graph Support for Bulk API** (#1125, #1127): Bulk triple
+  import and export now carry the optional `g` (named graph) field,
+  enabling catalog graph loading via WebSocket:
+  - `Triple` dataclass gains `g: str = ""` field
+  - Sync and async bulk clients propagate the graph URI
+  - Graph URI sent as plain string (not Term dict) for Cassandra
+    compatibility
+
+### Improvements
+- **Pre-loaded Default Models** (#1117): Flow and Docling container
+  images now pre-load default models at build time, eliminating
+  first-request download latency
+- **Configurable Timeouts** (#1108): Prompt and librarian client
+  timeouts are now configurable via environment variables
+- **MCP Streamable HTTP** (#1105): MCP client updated to support
+  streamable HTTP transport contracts
+
+### Bug Fixes
+- **SPARQL Bool/Int Evaluation** (#1126): `BIND` evaluation now checks
+  `bool` before `int`/`float` in `isinstance`, preventing Python's
+  `bool ⊂ int` subclass relationship from coercing booleans to integers
+- **N-Quads Datatype/Language Preservation** (#1111): `parse_nquads`
+  now preserves datatype URIs and language tags on literal objects
+- **Language Tag Validation** (#1107): Language tags are validated
+  before being emitted, preventing malformed RDF output
+- **CLI Exception Handling** (#1115): Document embeddings tools now
+  catch the correct exception types instead of silently swallowing errors
+- **REST Triples Query** (#1096): REST triples query response aligned
+  with the explainability response format
+- **Bare Except in Token Costs** (#1097): Replaced bare `except:` in
+  show token costs with specific exception type
+- **Requires-Python Alignment** (#1110): `requires-python` constraint
+  aligned with MCP SDK dependency minimum
+
+### Breaking Changes
+- **Langchain removed**: Any code importing langchain via trustgraph
+  packages must migrate to the underlying libraries directly
+  (`tiktoken`, `pypdf`, `sentence-transformers`)
+- **`trustgraph-unstructured` dropped** (#1119): The
+  `trustgraph-unstructured` package has been removed; use the Docling
+  decoder (`trustgraph-docling`) instead
+
+### Infrastructure / Technical
+- **CI Workflow** (#1120, #1121): Container manifest creation now runs
+  per-container instead of waiting for all builds; top-level permissions
+  widened for reusable workflow inheritance
+- **Gateway Request Keys** (#1109): Typed `aiohttp` request keys
+  replace string-based dictionary access for audit annotations
+- **Test Updates** (#1118, #1124): MCP transport compatibility test
+  updated to remove SDK internal assertions; PDF decoder tests updated
+  for `pypdf` migration
+- **README Updates** (#1098, #1099, #1100, #1101): README revised for
+  branding, clarity, RDF/OWL details, and video link
+
+---
+
 ## v2.8 (2026-08-24)
 
 ### Major Features
