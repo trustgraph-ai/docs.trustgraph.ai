@@ -108,6 +108,9 @@ defaults:
       path: ""
     values:
       layout: page
+      image:
+        path: /assets/images/og-image.png
+        alt: TrustGraph
       sitemap_priority: 0.5
       sitemap_changefreq: weekly
   - scope:
