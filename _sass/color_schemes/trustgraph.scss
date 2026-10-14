@@ -1,0 +1,70 @@
+// TrustGraph brand color scheme (matches https://trustgraph.ai)
+// Built on the dark scheme: much of the docs content assumes a dark page.
+
+@import "./color_schemes/dark";
+
+// Brand palette
+$tg-obsidian: #050a24;
+$tg-navy: #0a1442;
+$tg-panel: #0e1a52;
+$tg-panel-deep: #081036;
+$tg-line: #1c2a66;
+$tg-blue: #2e5bd6;
+$tg-deep: #1e3fa8;
+$tg-sky: #8eaef7;
+$tg-sky-lt: #9db8ff;
+$tg-ice: #c9d8ff;
+$tg-mist: #c8d4f3;
+$tg-muted: #8fa3d6;
+$tg-mint: #7fd9a8;
+$tg-green: #3dbe6a;
+$tg-pause: #f0b03a;
+$tg-deny: #c9302c;
+
+// Theme palette overrides (used by callouts, labels, buttons)
+$blue-000: $tg-sky;
+$blue-100: $tg-blue;
+$blue-200: $tg-deep;
+$blue-300: $tg-navy;
+$green-000: $tg-mint;
+$green-100: $tg-green;
+$green-200: #2e9e5b;
+$green-300: #1f6e40;
+$yellow-000: #f6c76a;
+$yellow-100: $tg-pause;
+$yellow-200: #d6961f;
+$yellow-300: #9a6a00;
+$red-000: #e5605c;
+$red-100: #d9453f;
+$red-200: $tg-deny;
+$red-300: #9b2420;
+$purple-000: $tg-sky-lt;
+$purple-100: $tg-blue;
+$purple-200: $tg-deep;
+$purple-300: $tg-navy;
+$grey-dk-000: $tg-muted;
+$grey-dk-100: #3a4a8a;
+$grey-dk-200: $tg-line;
+$grey-dk-250: $tg-panel;
+$grey-dk-300: $tg-navy;
+$grey-lt-000: #f6f8fd;
+$grey-lt-100: #e3eafb;
+$grey-lt-200: #dce5fb;
+$grey-lt-300: $tg-ice;
+
+$body-background-color: #060c2e;
+$sidebar-color: $tg-obsidian;
+$border-color: $tg-line;
+$body-text-color: $tg-mist;
+$body-heading-color: #fff;
+$nav-child-link-color: $tg-muted;
+$search-result-preview-color: $tg-muted;
+$link-color: $tg-sky-lt;
+$btn-primary-color: $tg-blue;
+$base-button-color: $tg-panel;
+$code-background-color: $tg-panel-deep;
+$code-linenumber-color: $tg-muted;
+$feedback-color: $tg-panel;
+$table-background-color: $tg-navy;
+$search-background-color: $tg-navy;
+$search-foreground-color: $tg-mist;

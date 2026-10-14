@@ -1,9 +1,349 @@
+// ===========================================================================
+// TrustGraph brand styling, kept in step with https://trustgraph.ai
+// Palette lives in _sass/color_schemes/trustgraph.scss; fonts in setup.scss.
+// ===========================================================================
+
+$tg-obsidian: #050a24 !default;
+$tg-navy: #0a1442 !default;
+$tg-panel: #0e1a52 !default;
+$tg-panel-deep: #081036 !default;
+$tg-line: #1c2a66 !default;
+$tg-blue: #2e5bd6 !default;
+$tg-deep: #1e3fa8 !default;
+$tg-sky: #8eaef7 !default;
+$tg-sky-lt: #9db8ff !default;
+$tg-ice: #c9d8ff !default;
+$tg-mist: #c8d4f3 !default;
+$tg-muted: #8fa3d6 !default;
+$tg-mint: #7fd9a8 !default;
+$tg-green: #3dbe6a !default;
+$tg-card: #0b1440;
+$tg-display-font: "Newsreader", Georgia, ui-serif, serif;
+$tg-headline-gradient: linear-gradient(92deg, #c9d8ff, #8fb3ff 40%, #7fd9a8);
+
+// --- Base -------------------------------------------------------------------
+
+body {
+  font-feature-settings: "cv11", "ss01", "ss03";
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+::selection {
+  background: rgba(64, 108, 255, 0.45);
+  color: #fff;
+}
+
+.main {
+  background:
+    radial-gradient(900px 520px at 85% -120px, rgba(64, 108, 255, 0.16), rgba(64, 108, 255, 0) 65%),
+    radial-gradient(600px 400px at 0% 100%, rgba(61, 190, 106, 0.05), rgba(61, 190, 106, 0) 70%);
+  background-repeat: no-repeat;
+}
+
+// --- Typography -------------------------------------------------------------
+
+.main-content {
+  h1, h2, h3 {
+    font-family: $tg-display-font;
+    font-weight: 400;
+    letter-spacing: -0.018em;
+    text-wrap: balance;
+    font-optical-sizing: auto;
+    color: #fff;
+  }
+
+  h1 {
+    font-size: 2.6rem !important;
+    line-height: 1.08;
+    letter-spacing: -0.022em;
+  }
+
+  h2 {
+    font-size: 1.9rem !important;
+    line-height: 1.15;
+    margin-top: 2.5rem;
+  }
+
+  h3 {
+    font-size: 1.4rem !important;
+    line-height: 1.25;
+  }
+
+  h4, h5, h6 {
+    font-weight: 600;
+    color: $tg-ice;
+  }
+
+  h1:first-of-type {
+    background: $tg-headline-gradient;
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  a:not(.btn):not(.anchor-heading) {
+    text-decoration-color: rgba(142, 174, 247, 0.4);
+    text-underline-offset: 3px;
+
+    &:hover {
+      color: #fff;
+      text-decoration-color: $tg-mint;
+    }
+  }
+
+  hr {
+    background: linear-gradient(90deg, rgba(142, 174, 247, 0), $tg-line 20%, $tg-line 80%, rgba(142, 174, 247, 0));
+  }
+
+  blockquote {
+    border-left-color: $tg-blue;
+    color: $tg-mist;
+  }
+
+  table {
+    border-radius: 10px;
+    overflow: hidden;
+  }
+
+  th {
+    background: $tg-panel;
+    color: #fff;
+    font-weight: 600;
+  }
+
+  th, td {
+    border-color: $tg-line;
+  }
+
+  .label, .label-blue {
+    border-radius: 999px;
+    font-family: $mono-font-family;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+  }
+}
+
+// --- Code -------------------------------------------------------------------
+
+:not(pre, figure) > code {
+  background: rgba(64, 108, 255, 0.14);
+  border: 1px solid rgba(142, 174, 247, 0.18);
+  border-radius: 5px;
+  color: $tg-ice;
+  padding: 0.1em 0.35em;
+}
+
+div.highlighter-rouge,
+figure.highlight {
+  border: 1px solid $tg-line;
+  border-radius: 10px;
+  box-shadow: 0 18px 40px -24px rgba(2, 6, 30, 0.9);
+}
+
+// --- Sidebar & header -------------------------------------------------------
+
+.side-bar {
+  background: linear-gradient(180deg, $tg-obsidian, #070f34);
+  border-right: 1px solid $tg-line;
+}
+
+.site-header {
+  background: radial-gradient(420px 220px at 90% 0%, rgba(64, 108, 255, 0.28), rgba(64, 108, 255, 0) 70%);
+  border-bottom: 1px solid $tg-line;
+}
+
+.site-logo {
+  background-position: left center;
+}
+
+.site-button svg {
+  color: $tg-sky-lt;
+}
+
+.nav-list .nav-list-item {
+  .nav-list-link {
+    color: $tg-mist;
+    border-radius: 6px;
+
+    &:hover {
+      background: rgba(64, 108, 255, 0.12);
+      color: #fff;
+    }
+
+    &.active {
+      background: linear-gradient(90deg, rgba(64, 108, 255, 0.28), rgba(64, 108, 255, 0.06));
+      color: #fff;
+      font-weight: 600;
+      box-shadow: inset 2px 0 0 $tg-mint;
+    }
+  }
+
+  .nav-list-expander {
+    color: $tg-muted;
+
+    &:hover {
+      background: rgba(64, 108, 255, 0.12);
+    }
+  }
+
+  .nav-list .nav-list-item .nav-list-link {
+    color: $tg-muted;
+
+    &.active, &:hover {
+      color: #fff;
+    }
+  }
+}
+
+.main-header {
+  background: rgba(6, 12, 46, 0.82);
+  backdrop-filter: blur(8px);
+  border-bottom-color: $tg-line;
+}
+
+.aux-nav .aux-nav-list-link {
+  font-weight: 500;
+  color: $tg-ice;
+
+  &:hover {
+    color: #fff;
+  }
+}
+
+// --- Search -----------------------------------------------------------------
+
+.search-input-wrap {
+  background: transparent;
+}
+
+.search-input {
+  background: rgba(10, 20, 66, 0.6);
+  color: #fff;
+
+  &::placeholder {
+    color: $tg-muted;
+  }
+
+  &:focus {
+    box-shadow: inset 0 0 0 1px $tg-sky;
+  }
+}
+
+.search-label {
+  color: $tg-sky;
+}
+
+.search-results {
+  background: $tg-navy;
+  border: 1px solid $tg-line;
+  box-shadow: 0 30px 60px -30px rgba(2, 6, 30, 0.9);
+}
+
+.search-result:hover,
+.search-result.active {
+  background: rgba(64, 108, 255, 0.18);
+}
+
+.search-result-title,
+.search-result-doc-title {
+  color: #fff;
+}
+
+// --- Buttons ----------------------------------------------------------------
+
+.btn {
+  border-radius: 999px;
+  font-weight: 600;
+  padding: 0.45em 1.15em;
+  box-shadow: none;
+  transition: transform 0.15s ease, box-shadow 0.15s ease, background 0.15s ease;
+
+  &:hover {
+    transform: translateY(-1px);
+  }
+}
+
+.btn-primary {
+  background: linear-gradient(180deg, #3c6ae6, $tg-blue);
+  box-shadow: inset 0 -1px 0 rgba(13, 30, 90, 0.14), 0 8px 24px -10px rgba(120, 160, 255, 0.6);
+
+  &:hover {
+    background: linear-gradient(180deg, #4a76ee, #3563e0);
+  }
+}
+
+.btn-outline {
+  color: $tg-ice;
+  box-shadow: inset 0 0 0 1px rgba(157, 184, 255, 0.4);
+
+  &:hover {
+    color: #fff;
+    box-shadow: inset 0 0 0 1px $tg-sky;
+  }
+}
+
+// --- Callouts ---------------------------------------------------------------
+
+// Explicit brand accents per callout (names match `callouts:` in _config.yml)
+$tg-callouts: (
+  "warning": #e5605c,
+  "wip": #f0b03a,
+  "note": #f0b03a,
+  "highlight": #8fa3d6,
+  "important": #9db8ff,
+);
+
+@each $name, $accent in $tg-callouts {
+  p.#{$name}, blockquote.#{$name},
+  p.#{$name}-title, blockquote.#{$name}-title {
+    background: rgba($accent, 0.08) !important;
+    border: 1px solid rgba($accent, 0.28) !important;
+    border-left: 3px solid $accent !important;
+    border-radius: 0 10px 10px 0 !important;
+    box-shadow: none !important;
+    color: $tg-mist;
+
+    &::before,
+    > .#{$name}-title {
+      color: $accent !important;
+      font-family: $mono-font-family;
+      letter-spacing: 0.08em;
+    }
+  }
+
+  p.#{$name}-title > p:first-child,
+  blockquote.#{$name}-title > p:first-child {
+    color: $accent !important;
+    font-family: $mono-font-family;
+    letter-spacing: 0.08em;
+  }
+}
+
+// --- Footer -----------------------------------------------------------------
+
+.site-footer,
+.main-content + hr + footer,
+footer {
+  color: $tg-muted;
+}
+
+// --- Scrollbars -------------------------------------------------------------
+
+* {
+  scrollbar-color: $tg-line transparent;
+}
+
+// ===========================================================================
+// Components
+// ===========================================================================
+
 // Code Tabs Styling for Just the Docs
-// Add this to your _sass/custom/custom.scss file
 
 .code-tabs {
   margin: 1.5rem 0;
-  border: 1px solid var(--border-color, #e1e4e8);
+  border: 1px solid $tg-line;
   border-radius: 6px;
   overflow: hidden;
 }
@@ -11,8 +351,8 @@
 .code-tabs-nav {
   display: flex;
   flex-wrap: wrap;
-  background-color: var(--sidebar-color, #f5f6fa);
-  border-bottom: 1px solid var(--border-color, #e1e4e8);
+  background-color: $tg-panel-deep;
+  border-bottom: 1px solid $tg-line;
   gap: 0;
 }
 
@@ -23,31 +363,31 @@
   cursor: pointer;
   font-size: 0.85rem;
   font-weight: 500;
-  color: var(--grey-dk-100, #5c5c5c);
+  color: $tg-muted;
   transition: all 0.15s ease;
   position: relative;
   margin-bottom: -1px;
   border-bottom: 2px solid transparent;
 
   &:hover {
-    color: var(--link-color, #0366d6);
-    background-color: rgba(0, 0, 0, 0.03);
+    color: $tg-sky-lt;
+    background-color: rgba(157, 184, 255, 0.06);
   }
 
   &:focus {
-    outline: 2px solid var(--link-color, #0366d6);
+    outline: 2px solid $tg-sky-lt;
     outline-offset: -2px;
   }
 
   &.active {
-    color: var(--link-color, #0366d6);
-    background-color: var(--body-background-color, #fff);
-    border-bottom-color: var(--link-color, #0366d6);
+    color: $tg-sky-lt;
+    background-color: $tg-card;
+    border-bottom-color: $tg-sky-lt;
   }
 }
 
 .code-tabs-content {
-  background-color: var(--body-background-color, #fff);
+  background-color: $tg-card;
 }
 
 .code-tabs-panel {
@@ -86,62 +426,6 @@
   }
 }
 
-// Dark mode support (if using Just the Docs dark mode)
-@media (prefers-color-scheme: dark) {
-  .code-tabs {
-    border-color: #373b41;
-  }
-  
-  .code-tabs-nav {
-    background-color: #1e1e1e;
-    border-bottom-color: #373b41;
-  }
-  
-  .code-tabs-btn {
-    color: #a0a0a0;
-    
-    &:hover {
-      background-color: rgba(255, 255, 255, 0.05);
-    }
-    
-    &.active {
-      background-color: #0d1117;
-    }
-  }
-  
-  .code-tabs-content {
-    background-color: #0d1117;
-  }
-}
-
-// Just the Docs specific dark mode class
-[data-theme="dark"] {
-  .code-tabs {
-    border-color: #373b41;
-  }
-  
-  .code-tabs-nav {
-    background-color: #1e1e1e;
-    border-bottom-color: #373b41;
-  }
-  
-  .code-tabs-btn {
-    color: #a0a0a0;
-    
-    &:hover {
-      background-color: rgba(255, 255, 255, 0.05);
-    }
-    
-    &.active {
-      background-color: #0d1117;
-    }
-  }
-  
-  .code-tabs-content {
-    background-color: #0d1117;
-  }
-}
-
 pre {
   max-height: 30rem;  // adjust this to whatever you want
   overflow-y: auto;
@@ -158,10 +442,10 @@ pre {
 .feature-card {
   display: flex;
   flex-direction: row;
-  border: 1px solid var(--border-color, #e1e4e8);
+  border: 1px solid $tg-line;
   border-radius: 8px;
   overflow: hidden;
-  background: var(--body-background-color, #fff);
+  background: $tg-card;
 
   @media (max-width: 768px) {
     flex-direction: column;
@@ -171,8 +455,8 @@ pre {
 .feature-card-heading {
   flex: 0 0 280px;
   padding: 1.5rem;
-  background: var(--sidebar-color, #f5f6fa);
-  border-right: 1px solid var(--border-color, #e1e4e8);
+  background: $tg-panel-deep;
+  border-right: 1px solid $tg-line;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -183,7 +467,7 @@ pre {
 
   // When background image is present, use dark background for gaps
   &[style*="background-image"] {
-    background-color: #1a1a2e;
+    background-color: $tg-obsidian;
   }
 
   // Dark overlay for background images
@@ -194,7 +478,7 @@ pre {
     left: 0;
     right: 0;
     bottom: 0;
-    background: rgba(0, 0, 0, 0.45);
+    background: rgba(5, 10, 36, 0.55);
     z-index: 1;
   }
 
@@ -218,13 +502,13 @@ pre {
     flex: none;
     min-height: 120px;
     border-right: none;
-    border-bottom: 1px solid var(--border-color, #e1e4e8);
+    border-bottom: 1px solid $tg-line;
   }
 
   h3 {
     margin: 0 0 0.25rem 0;
     font-size: 1.1rem;
-    color: var(--heading-color, #27262b);
+    color: #fff;
   }
 
   .feature-icon {
@@ -260,39 +544,6 @@ pre {
   }
 }
 
-// Dark mode support for feature cards
-[data-theme="dark"] {
-  .feature-card {
-    border-color: #373b41;
-    background: #0d1117;
-  }
-
-  .feature-card-heading {
-    background: #161b22;
-    border-color: #373b41;
-
-    h3 {
-      color: #e6edf3;
-    }
-  }
-}
-
-@media (prefers-color-scheme: dark) {
-  .feature-card {
-    border-color: #373b41;
-    background: #0d1117;
-  }
-
-  .feature-card-heading {
-    background: #161b22;
-    border-color: #373b41;
-
-    h3 {
-      color: #e6edf3;
-    }
-  }
-}
-
 // Philosophy quote sections
 .philosophy-section {
   margin: 2.5rem 0;
@@ -304,7 +555,7 @@ pre {
   gap: 0.75rem;
   margin-bottom: 1.25rem;
   padding-bottom: 0.75rem;
-  border-bottom: 2px solid var(--link-color, #7c4dff);
+  border-bottom: 2px solid $tg-sky-lt;
 
   .philosophy-icon {
     font-size: 1.5rem;
@@ -313,7 +564,7 @@ pre {
   h3 {
     margin: 0;
     font-size: 1.2rem;
-    color: var(--heading-color, #27262b);
+    color: #fff;
   }
 }
 
@@ -327,8 +578,8 @@ pre {
   position: relative;
   padding: 1.25rem 1.5rem;
   padding-left: 3rem;
-  background: linear-gradient(135deg, rgba(124, 77, 255, 0.05) 0%, rgba(124, 77, 255, 0.02) 100%);
-  border-left: 4px solid var(--link-color, #7c4dff);
+  background: linear-gradient(135deg, rgba(64, 108, 255, 0.05) 0%, rgba(64, 108, 255, 0.02) 100%);
+  border-left: 4px solid $tg-sky-lt;
   border-radius: 0 8px 8px 0;
   font-style: italic;
   line-height: 1.6;
@@ -339,9 +590,9 @@ pre {
     left: 0.75rem;
     top: 0.5rem;
     font-size: 2.5rem;
-    color: var(--link-color, #7c4dff);
+    color: $tg-sky-lt;
     opacity: 0.4;
-    font-family: Georgia, serif;
+    font-family: $tg-display-font;
     line-height: 1;
   }
 
@@ -355,57 +606,10 @@ pre {
     font-style: normal;
     font-size: 0.9rem;
     font-weight: 500;
-    color: var(--link-color, #7c4dff);
+    color: $tg-sky-lt;
 
     &::before {
       content: '— ';
-    }
-  }
-}
-
-// Dark mode for philosophy quotes
-[data-theme="dark"] {
-  .philosophy-header {
-    border-color: #9d7bff;
-
-    h3 {
-      color: #e6edf3;
-    }
-  }
-
-  .philosophy-quote {
-    background: linear-gradient(135deg, rgba(124, 77, 255, 0.12) 0%, rgba(124, 77, 255, 0.05) 100%);
-    border-left-color: #9d7bff;
-
-    &::before {
-      color: #9d7bff;
-    }
-
-    .quote-source {
-      color: #b794ff;
-    }
-  }
-}
-
-@media (prefers-color-scheme: dark) {
-  .philosophy-header {
-    border-color: #9d7bff;
-
-    h3 {
-      color: #e6edf3;
-    }
-  }
-
-  .philosophy-quote {
-    background: linear-gradient(135deg, rgba(124, 77, 255, 0.12) 0%, rgba(124, 77, 255, 0.05) 100%);
-    border-left-color: #9d7bff;
-
-    &::before {
-      color: #9d7bff;
-    }
-
-    .quote-source {
-      color: #b794ff;
     }
   }
 }
@@ -419,14 +623,14 @@ pre {
 }
 
 .use-case-card {
-  border: 1px solid var(--border-color, #e1e4e8);
+  border: 1px solid $tg-line;
   border-radius: 12px;
   padding: 1.5rem;
-  background: var(--body-background-color, #fff);
+  background: $tg-card;
   transition: box-shadow 0.2s ease, transform 0.2s ease;
 
   &:hover {
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    box-shadow: 0 4px 12px rgba(2, 6, 30, 0.6);
     transform: translateY(-2px);
   }
 }
@@ -446,7 +650,7 @@ pre {
   h3 {
     margin: 0;
     font-size: 1.15rem;
-    color: var(--heading-color, #27262b);
+    color: #fff;
     line-height: 1.3;
   }
 }
@@ -459,7 +663,7 @@ pre {
     li {
       margin-bottom: 0.6rem;
       line-height: 1.5;
-      color: var(--body-text-color, #5c5c5c);
+      color: $tg-mist;
 
       &:last-child {
         margin-bottom: 0;
@@ -469,7 +673,7 @@ pre {
 
   p {
     margin: 0 0 0.75rem 0;
-    color: var(--body-text-color, #5c5c5c);
+    color: $tg-mist;
     line-height: 1.5;
 
     &:last-child {
@@ -481,63 +685,10 @@ pre {
     display: inline-block;
     margin-top: 0.75rem;
     padding: 0.35rem 0.75rem;
-    background: rgba(124, 77, 255, 0.1);
+    background: rgba(64, 108, 255, 0.1);
     border-radius: 4px;
     font-size: 0.85rem;
-    color: var(--link-color, #7c4dff);
-  }
-}
-
-// Dark mode for use case cards
-[data-theme="dark"] {
-  .use-case-card {
-    border-color: #373b41;
-    background: #161b22;
-
-    &:hover {
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
-    }
-  }
-
-  .use-case-header h3 {
-    color: #e6edf3;
-  }
-
-  .use-case-content {
-    ul li, p {
-      color: #a0a0a0;
-    }
-
-    .use-case-highlight {
-      background: rgba(124, 77, 255, 0.2);
-      color: #b794ff;
-    }
-  }
-}
-
-@media (prefers-color-scheme: dark) {
-  .use-case-card {
-    border-color: #373b41;
-    background: #161b22;
-
-    &:hover {
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
-    }
-  }
-
-  .use-case-header h3 {
-    color: #e6edf3;
-  }
-
-  .use-case-content {
-    ul li, p {
-      color: #a0a0a0;
-    }
-
-    .use-case-highlight {
-      background: rgba(124, 77, 255, 0.2);
-      color: #b794ff;
-    }
+    color: $tg-sky-lt;
   }
 }
 
@@ -552,7 +703,7 @@ pre {
   gap: 0.75rem;
   margin-bottom: 1.25rem;
   padding-bottom: 0.5rem;
-  border-bottom: 2px solid var(--link-color, #7c4dff);
+  border-bottom: 2px solid $tg-sky-lt;
 
   .feature-section-icon {
     font-size: 1.75rem;
@@ -562,7 +713,7 @@ pre {
   h2 {
     margin: 0;
     font-size: 1.35rem;
-    color: var(--heading-color, #27262b);
+    color: #fff;
   }
 }
 
@@ -577,13 +728,13 @@ pre {
   align-items: flex-start;
   gap: 0.75rem;
   padding: 1rem;
-  background: var(--sidebar-color, #f8f9fa);
+  background: $tg-navy;
   border-radius: 8px;
   transition: background 0.2s ease;
 
   &:hover {
-    background: var(--body-background-color, #fff);
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+    background: $tg-card;
+    box-shadow: 0 2px 8px rgba(2, 6, 30, 0.5);
   }
 
   .feature-item-icon {
@@ -600,79 +751,20 @@ pre {
       display: block;
       margin-bottom: 0.25rem;
       font-size: 0.95rem;
-      color: var(--heading-color, #27262b);
+      color: #fff;
     }
 
     span {
       font-size: 0.875rem;
-      color: var(--body-text-color, #5c5c5c);
+      color: $tg-mist;
       line-height: 1.45;
-    }
-  }
-}
-
-// Dark mode for feature sections
-[data-theme="dark"] {
-  .feature-section-header {
-    border-color: #9d7bff;
-
-    h2 {
-      color: #e6edf3;
-    }
-  }
-
-  .feature-item {
-    background: #161b22;
-
-    &:hover {
-      background: #1c2128;
-      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
-    }
-
-    .feature-item-content {
-      strong {
-        color: #e6edf3;
-      }
-
-      span {
-        color: #a0a0a0;
-      }
-    }
-  }
-}
-
-@media (prefers-color-scheme: dark) {
-  .feature-section-header {
-    border-color: #9d7bff;
-
-    h2 {
-      color: #e6edf3;
-    }
-  }
-
-  .feature-item {
-    background: #161b22;
-
-    &:hover {
-      background: #1c2128;
-      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
-    }
-
-    .feature-item-content {
-      strong {
-        color: #e6edf3;
-      }
-
-      span {
-        color: #a0a0a0;
-      }
     }
   }
 }
 
 details {
 
-  border: 1px solid var(--border-color, #e1e4e8);
+  border: 1px solid $tg-line;
   border-radius: 6px;
   padding: 0.75rem 1rem;
   margin: 1rem 0;
@@ -682,7 +774,7 @@ details {
     font-weight: 500;
 
     &:hover {
-      color: var(--link-color, #0366d6);
+      color: $tg-sky-lt;
     }
   }
   
@@ -692,7 +784,7 @@ details {
   
   img {
     max-width: 100%;
-    border: 1px solid var(--border-color, #e1e4e8);
+    border: 1px solid $tg-line;
     border-radius: 4px;
   }
 }

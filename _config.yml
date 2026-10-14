@@ -5,8 +5,8 @@ theme: just-the-docs
 url: "https://docs.trustgraph.ai"
 plugins: []
 
-# logo: "/assets/images/just-the-docs.png"
-# favicon_ico: "/assets/images/favicon.ico"
+logo: "/assets/images/trustgraph-logo-white.svg"
+favicon_ico: "/assets/images/favicon.ico"
 
 search_enabled: true
 
@@ -57,7 +57,7 @@ heading_anchors: true
 # Note: The footer_content option is deprecated and will be removed in a
 # future major release. Please use `_includes/footer_custom.html` for more
 # robust markup / liquid-based content.
-footer_content: "Copyright &copy; 2024-2025 TrustGraph.ai. Distributed under an <a href=\"https://github.com/trustgraph-ai/trustgraph/blob/master/LICENSE\">Apache 2 license.</a>"
+footer_content: "Copyright &copy; 2024-2026 TrustGraph.ai. Distributed under an <a href=\"https://github.com/trustgraph-ai/trustgraph/blob/master/LICENSE\">Apache 2 license.</a>"
 
 # Footer last edited timestamp
 last_edit_timestamp: true # show or hide edit time - page must have `last_modified_date` defined in the frontmatter
@@ -71,8 +71,8 @@ gh_edit_branch: "master" # the branch that your docs is served from
 # gh_edit_source: docs # the source that your files originate from
 gh_edit_view_mode: "tree" # "tree" or "edit" if you want the user to jump into the editor immediately
 
-# A load of stuff doesn't work in dark
-color_scheme: dark
+# TrustGraph brand scheme (_sass/color_schemes/trustgraph.scss), built on dark
+color_scheme: trustgraph
 
 callouts:
   warning:
