@@ -47,6 +47,31 @@ gateway, so it is accessible through both the CLI and the REST API.
 It is not currently integrated with any core TrustGraph processing
 pipelines — you call it directly as a standalone service.
 
+## Why Small Models Matter
+
+It's tempting to think of encoder models like BERT as yesterday's
+technology — superseded by large language models that can do everything.
+But there is a lot to be gained from smaller, lightweight,
+special-purpose models. A cloze classifier trained on your data can
+match or exceed LLM accuracy on its specific task while running
+thousands of times faster, at a fraction of the cost, with no external
+API dependency.
+
+This is a core TrustGraph principle: **use the right model for the
+job**. LLMs excel at open-ended reasoning and generation, but for
+well-defined classification tasks — tool routing, intent detection,
+content tagging — a focused model trained on 60 examples can
+outperform a billion-parameter generalist. The same family of compact
+encoder models also powers larger System 1 architectures: models like
+[Laya](https://huggingface.co/onnx-community/laya-multilingual-ONNX)
+and [Jev](https://huggingface.co/Trustgraph/jev-decision-0.1) draw
+on the capabilities of multilingual encoders such as
+[mmBERT](https://huggingface.co/blog/mmbert) to deliver general-purpose
+decision scoring without per-task training.
+
+Cloze classification gives you direct access to that same encoder
+foundation, fine-tuned to your exact use case.
+
 ## What Is a Cloze Model?
 
 Like [decision scoring](../decision-scoring/), cloze classification is
@@ -67,12 +92,18 @@ time and it gives you a reasonable answer. Cloze classification is a
 specialist: you invest a small amount of effort training it on your
 specific task, and it gives you a highly accurate answer on that task.
 
-The underlying model is **DistilBERT**, a compact language model that
-is small enough to train in around 90 seconds on CPU. It works by
-learning to fill in a masked token — given "Query: *What is my account
-balance?* Tool: [MASK]", it learns that `[MASK]` should be
-`[TOOL_BANK]`. At inference time, it predicts the most likely label
-with a confidence score.
+The default flows deploy **`distilbert-base-uncased`**, a compact
+English language model that is small enough to train in around 90
+seconds on CPU. For multilingual workloads, you can substitute
+**`jhu-clsp/mmBERT-base`**
+([mmBERT](https://huggingface.co/blog/mmbert)), a modern multilingual
+encoder covering 1800+ languages. mmBERT delivers significantly better
+cross-language accuracy but takes roughly 3x longer to train.
+
+The model works by learning to fill in a masked token — given "Query:
+*What is my account balance?* Tool: [MASK]", it learns that `[MASK]`
+should be `[TOOL_BANK]`. At inference time, it predicts the most
+likely label with a confidence score.
 
 ## When to Use Cloze Classification
 
