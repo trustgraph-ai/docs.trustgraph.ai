@@ -69,9 +69,9 @@ distributions over the options.
 
 TrustGraph uses **Laya**, an open multilingual System 1 model that is
 feature-equivalent to
-[Jev](https://huggingface.co/Trustgraph/jev-decision-0.1). Laya runs
-as an ONNX model on CPU, with no GPU required and a memory footprint
-under 2 GB.
+[Jev](https://huggingface.co/Trustgraph/jev-decision-0.1). The default
+configuration runs Laya as an ONNX model entirely on CPU — no GPU
+required — with a memory footprint under 2 GB.
 
 ## The Three Question Types
 

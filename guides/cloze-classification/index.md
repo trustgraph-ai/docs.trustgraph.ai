@@ -93,8 +93,11 @@ specialist: you invest a small amount of effort training it on your
 specific task, and it gives you a highly accurate answer on that task.
 
 The default flows deploy **`distilbert-base-uncased`**, a compact
-English language model that is small enough to train in around 90
-seconds on CPU. For multilingual workloads, you can substitute
+English language model. The default configuration runs entirely on
+CPU — no GPU required. Both training and inference are CPU-only, with
+training completing in around 90 seconds and inference taking a
+fraction of a millisecond. For multilingual workloads, you can
+substitute
 **`jhu-clsp/mmBERT-base`**
 ([mmBERT](https://huggingface.co/blog/mmbert)), a modern multilingual
 encoder covering 1800+ languages. mmBERT delivers significantly better
