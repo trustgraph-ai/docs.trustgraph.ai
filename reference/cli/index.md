@@ -39,6 +39,12 @@ Most CLI commands support these common options:
 - [`tg-init-trustgraph`](tg-init-trustgraph) - Initialize Pulsar with TrustGraph configuration
 - [`tg-show-config`](tg-show-config) - Display current system configuration
 
+**Configuration Items:**
+- [`tg-list-config-items`](tg-list-config-items) - List configuration items
+- [`tg-get-config-item`](tg-get-config-item) - Retrieve a configuration item
+- [`tg-put-config-item`](tg-put-config-item) - Create or update a configuration item
+- [`tg-delete-config-item`](tg-delete-config-item) - Delete a configuration item
+
 **Token Management:**
 - [`tg-set-token-costs`](tg-set-token-costs) - Configure model token costs
 - [`tg-show-token-costs`](tg-show-token-costs) - Display token cost configuration
@@ -79,6 +85,8 @@ Most CLI commands support these common options:
 **Workspace Export/Import:**
 - [`tg-export-workspace`](tg-export-workspace) - Export workspace state as a portable `.tgx` bundle
 - [`tg-import-workspace`](tg-import-workspace) - Import a `.tgx` bundle into a deployment
+- [`tg-export-workspace-config`](tg-export-workspace-config) - Export workspace configuration to JSON
+- [`tg-import-workspace-config`](tg-import-workspace-config) - Import workspace configuration from JSON
 
 **Graph Data Operations:**
 - [`tg-show-graph`](tg-show-graph) - Dump graph triples (streaming)
@@ -116,6 +124,12 @@ Most CLI commands support these common options:
 - [`tg-invoke-structured-query`](tg-invoke-structured-query) - Execute queries against structured data
 - [`tg-invoke-rows-query`](tg-invoke-rows-query) - Query structured data rows
 - [`tg-invoke-sparql-query`](tg-invoke-sparql-query) - Execute SPARQL queries against the knowledge graph
+
+**Classification & Decision Scoring:**
+- [`tg-invoke-cloze`](tg-invoke-cloze) - Classify text using a trained cloze model
+- [`tg-invoke-decision-scoring`](tg-invoke-decision-scoring) - Score structured decisions using the Laya model
+- [`tg-list-cloze-models`](tg-list-cloze-models) - List cloze model instances in a workspace
+- [`tg-list-models`](tg-list-models) - List available models from the text-completion backend
 
 **Reranking:**
 - [`tg-invoke-reranker`](tg-invoke-reranker) - Rerank documents against queries using the cross-encoder service
@@ -171,7 +185,11 @@ Most CLI commands support these common options:
 
 **Workspace Management:**
 - [`tg-list-workspaces`](tg-list-workspaces) - List workspaces (admin)
+- [`tg-list-my-workspaces`](tg-list-my-workspaces) - List workspaces the current user has access to
 - [`tg-create-workspace`](tg-create-workspace) - Create a workspace (admin)
+
+**Token Minting:**
+- [`tg-mint-token`](tg-mint-token) - Mint a JWT with custom user context (admin)
 
 ### System Monitoring & Debugging
 
