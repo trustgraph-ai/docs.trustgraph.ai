@@ -7,6 +7,175 @@ review_date: 2027-07-17
 
 # Changelog
 
+## v2.10 (2026-10-25)
+
+### Major Features
+- **SHACL-AF Policy-Based Query Filtering** (#1141, #1144, #1147,
+  #1149, #1151): Fine-grained access control on graph queries using
+  SHACL-AF policies stored in `urn:graph:policy`:
+  - `PolicyFilter` loads SHACL-AF `NodeShape` policies with
+    `sh:prefixes` namespace resolution, hydrates candidate nodes, and
+    runs each policy's SPARQL SELECT target in precedence order
+  - Tri-state determination model: Allowed, Filtered, or Violation
+  - `sh:SPARQLRule` CONSTRUCT execution parses `sh:ValidationResult`
+    for severity, message, and `tg-pol:blocks` — determination is now
+    a generic IRI with a blocks boolean rather than hard-coded strings
+  - Enforcement mode: policies present in `urn:graph:policy` require
+    `user_context`; no policies = open mode
+  - `triples-query-policy` service wraps any triples query backend
+    with per-node policy evaluation, streaming triples through the
+    filter instead of batch processing
+  - Structured `policy.evaluation` audit events with `request_id`
+    correlation, published to `notify:tg:policy-events`
+  - Admin-minted user context tokens via `tg-mint-token` CLI for
+    testing and service-to-service auth
+  - User context threaded through REST API, gateway translators,
+    `TriplesClient`, SPARQL service, and GraphRAG
+  - LRU+TTL query cache (30s, 256 entries) and compiled SPARQL cache
+    (64 entries) for policy evaluation performance
+  - Includes AeroSentinel and Bletchley Park test datasets with policy
+    rules and multi-persona verification
+- **Guided Graph Traversal** (#1150): Optional parameters to steer
+  GraphRAG traversal with fine-grained control:
+  - Grounding seeds bypass LLM concept extraction; graph seeds bypass
+    grounding and entity lookup entirely
+  - Language filtering restricts traversal to edges with matching
+    language tags
+  - Per-hop traversal instructions: type, relationship, and named graph
+    restrictions applied before reranking so the cross-encoder only
+    scores eligible edges
+  - Full stack: schema (`TraversalStep` dataclass), translator, core
+    logic, processor, Python API, socket client, and CLI
+    (`--grounding-seeds`, `--graph-seeds`, `--languages`,
+    `--traversal-instructions`)
+- **Cloze Model Classification** (#1171, #1173, #1174): New service
+  that auto-trains a masked language model (DistilBERT) from labeled
+  examples stored in config and serves single-label classification with
+  confidence scores:
+  - Supports multiple independent model instances per workspace,
+    stratified train/test splitting, and configurable minimum accuracy
+    thresholds
+  - New `trustgraph-cloze` package with FlowProcessor-based service
+  - Gateway dispatch, REST API, WebSocket client, and CLI tools
+    (`tg-invoke-cloze`, `tg-list-cloze-models`)
+- **Decision Scoring with Laya** (#1172, #1174, #1179, #1180): Fast,
+  structured decision-making service (~35ms per call) with three output
+  types evaluated in a single request:
+  - Choice: select from a list of options with per-option probabilities
+  - Score: probability distribution over ordered levels (e.g.
+    low/medium/high/critical)
+  - Noul: binary yes/no confidence score
+  - Auto-routes by input language (English/multilingual)
+  - New `trustgraph-laya` package, initially backed by PyTorch, then
+    migrated to ONNX Runtime inference against
+    `onnx-community/laya-multilingual-ONNX`, dropping ~2GB of
+    dependencies
+  - Gateway dispatch, REST API, WebSocket client, and CLI tool
+    (`tg-invoke-decision-scoring`)
+- **Embedding Search Attributes** (#1136): Optional metadata attributes
+  (rdf_type, generic key-value pairs) stored alongside graph, document,
+  and row embeddings in Qdrant, enabling payload-based filtering
+  alongside vector similarity search:
+  - Primary use case: filter graph embedding queries by RDF type to
+    return entities of a specific kind
+  - Row embeddings refactored to use payload-based schema filtering
+    instead of per-schema Qdrant collections
+  - Full stack: schemas, ontology extraction, embeddings processors,
+    Qdrant read/write, query services, REST API, Python clients, CLI,
+    and wire translators
+- **List Models** (#1160): Query available models from any
+  text-completion backend with normalised metadata:
+  - Multiplexed onto the text-completion request/response channel via
+    an `operation` field (defaults to `"completion"` for backward
+    compatibility)
+  - Returns `ModelInfo` with id, name, context limits, modalities,
+    pricing, and local runtime metadata
+  - Implemented across all 12 LLM backends
+  - New `tg-list-models` CLI command with table and `--json` output
+
+### Performance
+- **SPARQL BGP Query Cache** (#1178): Per-BGP query cache eliminates
+  redundant triple-store round trips when multiple intermediate
+  solutions resolve to the same (s, p, o) query — ~70% reduction in
+  triple-store calls for typical join patterns
+- **Policy Filter Caching and Parallelism** (#1162): Node determination
+  cache, parallel policy evaluation, and parallel hydration for the
+  SHACL-AF policy filter
+- **ONNX Runtime for Decision Scoring** (#1180): Replaced torch-based
+  Laya inference with direct ONNX Runtime, reducing container
+  dependencies by ~2GB and enabling the service to run in the standard
+  flow container
+
+### Improvements
+- **Schema Refactoring** (#1135): Flattened `schema/services/` and
+  `schema/knowledge/` directories into domain-based modules
+  (`llm.py`, `embeddings.py`, `triples.py`, `structured.py`, etc.)
+  for easier navigation
+- **Literal Datatype/Language Simplification** (#1143): `datatype` and
+  `language` fields moved directly onto the `Literal` type, removing
+  `o_datatype` and `o_language` from `Triple`
+- **Named Graph Loading** (#1142): `tg-load-knowledge` gains `--graph`
+  flag for loading triples into a specific named graph
+- **TriG Format Support** (#1153): `tg-load-knowledge` now accepts
+  TriG files, preserving named graph structure on import
+- **Container Restructuring** (#1179): Renamed `trustgraph-hf` to
+  `trustgraph-torch` to reflect its role as the torch-dependent
+  services container; `trustgraph-laya` extracted as a separate
+  package
+- **Resilient Loki Handler** (#1176): Replaced `python-logging-loki`
+  with a custom Loki log handler featuring graceful degradation —
+  logs are emitted to stderr when Loki is unavailable, with periodic
+  recovery attempts and no message loss on transient failures
+
+### Bug Fixes
+- **RDF Type in Knowledge Loading** (#1177): `tg-load-knowledge` now
+  extracts `rdf:type` triples and passes them through the entity
+  context pipeline for type-aware embeddings
+- **Claude Temperature** (#1165, #1166): Fixed temperature parameter
+  handling for Claude — use `messages.create(stream=True)` for
+  streaming and pass temperature via `extra_body` for Anthropic SDK
+  v1.x compatibility
+- **VertexAI/Google AI Studio Model Listing** (#1164): Fixed async
+  model listing and metadata derivation for VertexAI and Google AI
+  Studio backends
+- **GraphRAG Label Fallback** (#1159): Fixed label resolution to fall
+  back gracefully when `rdfs:label` is missing; removed IRI heuristic
+  name extraction; added named graph parameter support
+- **Policy Filter Hardening** (#1156, #1157, #1158, #1161): Fixed
+  error propagation and cache reuse in the policy response translator;
+  handled `URIRef` graph context from rdflib `Dataset.quads()`; fixed
+  streaming vs batch processing; hardened SPARQL evaluation and caching
+- **Ontology Types and Properties** (#1155): Added `rdfs:label` and
+  `rdfs:comment` to ontology type and property extraction
+- **User Context Propagation** (#1154): Fixed `user_context`
+  propagation from the SPARQL service to triples queries
+- **IAM Mint-Token Routing** (#1152): Fixed routing of `mint-token`
+  through `/api/v1/iam`; resolved user lookup by username/self; fixed
+  WebSocket `user_context` key
+- **Ontology Definition Parsing** (#1128): Fixed `eval()` usage in
+  ontology definition parsing
+
+### Breaking Changes
+- **Schema directory restructure**: `schema/services/` and
+  `schema/knowledge/` flattened into domain modules — imports from the
+  old paths will break
+- **Literal fields**: `o_datatype` and `o_language` removed from
+  `Triple`; use `Literal.datatype` and `Literal.language` instead
+- **Container rename**: `trustgraph-hf` container and package renamed
+  to `trustgraph-torch`; update any container references or
+  docker-compose configurations
+
+### Infrastructure / Technical
+- **Testing** (#1145): Mock signatures updated for `user_context`
+  parameter across test suite
+- **Cleanup** (#1134): Removed stale test scripts, legacy docs, and
+  root directory clutter
+- **Tech Specs**: New specifications for policy filtering, embedding
+  search attributes, guided graph traversal, user context, model
+  listing, cloze model service, and decision scoring service
+
+---
+
 ## v2.9 (2026-09-16)
 
 ### Major Features

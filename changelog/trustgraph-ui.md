@@ -7,6 +7,66 @@ review_date: 2027-07-17
 
 # Changelog - TrustGraph UI
 
+## v2.3.6 (2026-10-25) — released in TrustGraph 2.10
+
+### Features
+- **VOWL Ontology Visualiser** (#76, #77, #78): Interactive Visual
+  Notation for OWL Ontologies (VOWL) plugin with force-directed layout
+  and animated simulation:
+  - Renders `owl:Class` (circles with wrapped labels),
+    `owl:ObjectProperty` (arrows with auto-sized label boxes),
+    `owl:DatatypeProperty` (green rectangles), and `rdfs:subClassOf`
+    (dashed edges)
+  - Bidirectional relationships rendered as curved bezier arcs;
+    self-referencing object properties (e.g. `substitutes for`) rendered
+    as loop arcs above the node instead of collapsing onto it
+  - Pan (shift+drag), zoom (scroll), and draggable nodes
+  - Click-to-select detail panel with "add related classes", search
+    panel, Show All / Clear controls, and tooltips on all elements
+  - Integrated into the build pipeline and route config as a plugin
+- **Version Check and Upgrade Notifications** (#73, #74, #75): Startup
+  version check against the TrustGraph config service with contextual
+  upgrade prompts:
+  - Status bar version indicator — amber for available patches, red for
+    major upgrades, clickable to open overlay
+  - Overlay shows version diff, description, and links to release notes
+    and deployment guide
+  - Security advisory display with severity colour coding (red for
+    critical/high, amber for medium), fix version, and clickable
+    summary linking to the advisory URL
+  - Sends `X-Timezone` and `X-Language` headers with the version check
+    request for locale-aware messaging
+  - Auto-opens on first detection; dismissed version remembered in
+    localStorage to avoid nagging
+  - Silently does nothing if version.json is missing (dev) or the
+    config service is unreachable
+- **RDF Type Filter for Search** (#80): Server-side type filtering for
+  graph embeddings search:
+  - Dropdown selector when the ontology has ≤15 classes; autocomplete
+    with SPARQL regex search for larger ontologies
+  - "Searching..." indicator in autocomplete suggestions dropdown
+  - Adds `rdf_type` parameter to `GraphEmbeddingsQueryRequest` and
+    `FlowApi.graphEmbeddingsQuery()`
+
+### Improvements
+- **GraphRAG Explain Label Truncation** (#79): Node labels truncated
+  at 20 characters and edge labels at 16 characters with ellipsis in
+  the GraphRAG explainability graph visualisation; full text visible in
+  hover tooltips
+- **Ontology Data Loading** (#76): `useOntologySchema` hook refactored
+  to use targeted `rdfs:label`, `rdfs:domain`, `rdfs:range`,
+  `rdfs:comment`, and `rdfs:subClassOf` queries instead of a broad
+  `allTriples` query
+- **Named Graph Query Fix** (#76): `useRawGraphData` now passes
+  `undefined` instead of `""` for the graph parameter so queries search
+  across all named graphs
+
+### Cleanup
+- **Legacy Socket Interface** (#80): Removed unused `Socket` interface
+  from `@trustgraph/client`
+
+---
+
 ## v2.2.4 (2026-09-22) — released in TrustGraph 2.9
 
 ### Architectural Changes
