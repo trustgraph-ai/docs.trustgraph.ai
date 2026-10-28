@@ -198,9 +198,22 @@ figure.highlight {
 }
 
 .main-header {
-  background: rgba(6, 12, 46, 0.82);
-  backdrop-filter: blur(8px);
+  position: relative;
+  z-index: 10;
+  background: transparent;
   border-bottom-color: $tg-line;
+
+  // Blur lives on a pseudo-element: backdrop-filter on the header itself
+  // creates a stacking context that traps the search results behind content
+  &::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    background: rgba(6, 12, 46, 0.82);
+    backdrop-filter: blur(8px);
+    pointer-events: none;
+  }
 }
 
 .aux-nav .aux-nav-list-link {
